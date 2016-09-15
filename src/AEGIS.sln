@@ -1,9 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numerics", "Numerics\Numerics.csproj", "{1565F958-FC9D-4670-92E2-CA09025014CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Numerics", "Tests.Numerics\Tests.Numerics.csproj", "{3A27F669-1179-465F-B1FA-653DC3F632F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0FA79630-580C-4AFF-A3E5-04DFE27ED91C}"
+	ProjectSection(SolutionItems) = preProject
+		analyzer.ruleset = analyzer.ruleset
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1565F958-FC9D-4670-92E2-CA09025014CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1565F958-FC9D-4670-92E2-CA09025014CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1565F958-FC9D-4670-92E2-CA09025014CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1565F958-FC9D-4670-92E2-CA09025014CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A27F669-1179-465F-B1FA-653DC3F632F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A27F669-1179-465F-B1FA-653DC3F632F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A27F669-1179-465F-B1FA-653DC3F632F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A27F669-1179-465F-B1FA-653DC3F632F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
