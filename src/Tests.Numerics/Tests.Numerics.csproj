@@ -59,6 +59,7 @@
     <Compile Include="LinearAlgebra\QRDecompositionTest.cs" />
     <Compile Include="MatrixTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsTest.cs" />
     <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>

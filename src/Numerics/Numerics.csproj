@@ -63,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Statistics.cs" />
     <Compile Include="Vector.cs" />
   </ItemGroup>
   <ItemGroup>
