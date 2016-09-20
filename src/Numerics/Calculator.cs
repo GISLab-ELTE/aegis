@@ -22,6 +22,50 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public static class Calculator
     {
+        #region Private static fields
+
+        /// <summary>
+        /// An array containing the factorial of the first 170 integers.
+        /// </summary>
+        private static Double[] factorialCacheArray;
+
+        /// <summary>
+        /// A boolean indicating whether the Factorial method has been called at least once.
+        /// </summary>
+        private static Boolean isFactorialComputed = false;
+
+        #endregion
+
+        #region General methods
+
+        /// <summary>
+        /// Return the fraction part of a single precision floating point value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The fraction part of a single precision floating point value.</returns>
+        public static Single Fraction(Single value)
+        {
+            if (value < 0)
+                return Convert.ToSingle(value - Math.Ceiling(value));
+
+            return Convert.ToSingle(value - Math.Floor(value));
+        }
+
+        /// <summary>
+        /// Return the fraction part of a double precision floating point value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The fraction part of a double precision floating point value.</returns>
+        public static Double Fraction(Double value)
+        {
+            if (value < 0)
+                return value - Math.Ceiling(value);
+
+            return value - Math.Floor(value);
+        }
+
+        #endregion
+
         #region Common value calculation methods
 
         /// <summary>
@@ -32,6 +76,14 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The greatest common divisor of the two specified numbers.</returns>
         public static Int32 GreatestCommonDivisor(Int32 x, Int32 y)
         {
+            if (x == 0)
+                return y;
+            if (y == 0)
+                return x;
+
+            x = Math.Abs(x);
+            y = Math.Abs(y);
+
             Int32 result = 1;
             while (y != 0)
             {
@@ -51,6 +103,14 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The greatest common divisor of the two specified numbers.</returns>
         public static Int64 GreatestCommonDivisor(Int64 x, Int64 y)
         {
+            if (x == 0)
+                return y;
+            if (y == 0)
+                return x;
+
+            x = Math.Abs(x);
+            y = Math.Abs(y);
+
             Int64 result = 1;
             while (y != 0)
             {
@@ -70,12 +130,458 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The least common multiple of the two specified numbers.</returns>
         public static Int64 LeastCommonMultiple(Int64 x, Int64 y)
         {
+            if (x == 0 || y == 0)
+                return 0;
+
+            x = Math.Abs(x);
+            y = Math.Abs(y);
+
             return x * y / GreatestCommonDivisor(x, y);
         }
 
         #endregion
 
         #region Extrema computation methods
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static SByte AbsMax(params SByte[] values)
+        {
+            if (values == null || values.Length == 0)
+                return SByte.MaxValue;
+
+            SByte max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Int16 AbsMax(params Int16[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Int16.MaxValue;
+
+            Int16 max = Math.Abs(values[0]);
+            for (Int32 i = 0; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Int32 AbsMax(params Int32[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Int32.MaxValue;
+
+            Int32 max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Int64 AbsMax(params Int64[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Int64.MaxValue;
+
+            Int64 max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Byte AbsMax(params Byte[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Byte.MaxValue;
+
+            Byte max = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] > max)
+                    max = values[i];
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static UInt16 AbsMax(params UInt16[] values)
+        {
+            if (values == null || values.Length == 0)
+                return UInt16.MaxValue;
+
+            UInt16 max = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] > max)
+                    max = values[i];
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static UInt32 AbsMax(params UInt32[] values)
+        {
+            if (values == null || values.Length == 0)
+                return UInt32.MaxValue;
+
+            UInt32 max = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] > max)
+                    max = values[i];
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static UInt64 AbsMax(params UInt64[] values)
+        {
+            if (values == null || values.Length == 0)
+                return UInt64.MaxValue;
+
+            UInt64 max = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] > max)
+                    max = values[i];
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Single AbsMax(params Single[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Single.PositiveInfinity;
+
+            Single max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Double AbsMax(params Double[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Double.PositiveInfinity;
+
+            Double max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute maximum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute maximum of the specified values, or the largest possible value of the type if none are specified.</returns>
+        public static Decimal AbsMax(params Decimal[] values)
+        {
+            if (values == null || values.Length == 0)
+                return Decimal.MaxValue;
+
+            Decimal max = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) > max)
+                    max = Math.Abs(values[i]);
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static SByte AbsMin(params SByte[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            SByte min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Int16 AbsMin(params Int16[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Int16 min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Int32 AbsMin(params Int32[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Int32 min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Int64 AbsMin(params Int64[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Int64 min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Single AbsMin(params Single[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Single min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Double AbsMin(params Double[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Double min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the absolute minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The absolute minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Decimal AbsMin(params Decimal[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Decimal min = Math.Abs(values[0]);
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (Math.Abs(values[i]) < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static Byte AbsMin(params Byte[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            Byte min = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static UInt16 AbsMin(params UInt16[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            UInt16 min = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static UInt32 AbsMin(params UInt32[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            UInt32 min = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
+
+        /// <summary>
+        /// Returns the minimum of the specified values.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The minimum of the specified values, or the smallest possible value of the type if none are specified.</returns>
+        public static UInt64 AbsMin(params UInt64[] values)
+        {
+            if (values == null || values.Length == 0)
+                return 0;
+
+            UInt64 min = values[0];
+            for (Int32 i = 1; i < values.Length; i++)
+            {
+                if (values[i] < min)
+                    min = values[i];
+            }
+
+            return min;
+        }
 
         /// <summary>
         /// Returns the maximum of the specified values.
@@ -519,6 +1025,78 @@ namespace ELTE.AEGIS.Numerics
 
         #endregion
 
+        #region Factorial calculation methods
+
+        /// <summary>
+        /// Calculates the factorial of a specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The factorial of <paramref name="value" />.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">The value is less than 0.</exception>
+        public static Double Factorial(Int32 value)
+        {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value), Messages.ValueIsLessThan0);
+
+            if (value > 170)
+                return Double.PositiveInfinity;
+
+            if (isFactorialComputed)
+            {
+                return factorialCacheArray[value];
+            }
+
+            factorialCacheArray = new Double[170];
+            factorialCacheArray[0] = 1;
+
+            Double result = 1;
+            for (int i = 1; i < 170; i++)
+            {
+                result = result * i;
+                factorialCacheArray[i] = result;
+            }
+
+            isFactorialComputed = true;
+
+            return factorialCacheArray[value];
+        }
+
+        /// <summary>
+        /// Calculates the Gamma function of a specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The Gamma function value.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">The value is less than or equal to 0.</exception>
+        public static Double Gamma(Double value)
+        {
+            if (value <= 0 && Math.Ceiling(value) == Math.Floor(value))
+                throw new ArgumentOutOfRangeException(nameof(value), Messages.ValueIsLessThanOrEqualTo0);
+
+            Double[] p =
+            {
+                0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+                771.32342877765313, -176.61502916214059, 12.507343278686905,
+                -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+            };
+
+            const Int32 g = 7;
+            const Int32 n = 9;
+            if (value < 0.5)
+                return Math.PI / (Math.Sin(Math.PI * value) * Gamma(1 - value));
+
+            value = value - 1;
+
+            Double a = p[0];
+            for (Int32 i = 1; i < n; i++)
+            {
+                a += p[i] / (value + i);
+            }
+
+            return Math.Sqrt(2 * Math.PI) * Math.Pow(value + g + 0.5, value + 0.5) * Math.Exp(-(value + g + 0.5)) * a;
+        }
+
+        #endregion
+
         #region Summation methods
 
         /// <summary>
@@ -667,7 +1245,12 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The secant of the value.</returns>
         public static Double Sec(Double value)
         {
-            return 1 / Math.Cos(value);
+            Double cos = Math.Cos(value);
+
+            if (cos == 0)
+                return Double.NaN;
+
+            return 1 / cos;
         }
 
         /// <summary>
@@ -677,7 +1260,12 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The cosecant of the value.</returns>
         public static Double Csc(Double value)
         {
-            return 1 / Math.Sin(value);
+            Double sin = Math.Sin(value);
+
+            if (sin == 0)
+                return Double.NaN;
+
+            return 1 / sin;
         }
 
         /// <summary>
@@ -687,7 +1275,12 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The cotangent of the value.</returns>
         public static Double Cot(Double value)
         {
-            return 1 / Math.Tan(value);
+            Double tan = Math.Tan(value);
+
+            if (tan == 0)
+                return Double.NaN;
+
+            return 1 / tan;
         }
 
         /// <summary>
@@ -717,6 +1310,9 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The inverse hyperbolic tangent of the value.</returns>
         public static Double Atanh(Double value)
         {
+            if (value < -1 || value > 1)
+                return Double.NaN;
+
             return Math.Log((value + 1) / (1 - value)) / 2;
         }
 
@@ -725,8 +1321,11 @@ namespace ELTE.AEGIS.Numerics
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The inverse hyperbolic cotangent of the value.</returns>
-        public static Double ACotH(Double value)
+        public static Double Acoth(Double value)
         {
+            if (value > -1 && value < 1)
+                return Double.NaN;
+
             return Math.Log((value + 1) / (value - 1)) / 2;
         }
 
@@ -737,6 +1336,9 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The inverse hyperbolic secant of the value.</returns>
         public static Double Asech(Double value)
         {
+            if (value < 0 || value > 1)
+                return Double.NaN;
+
             return Math.Log(1 / value + Math.Sqrt(1 / value + 1) * Math.Sqrt(1 / value - 1));
         }
 
@@ -747,6 +1349,9 @@ namespace ELTE.AEGIS.Numerics
         /// <returns>The inverse hyperbolic cosecant of the value.</returns>
         public static Double Acsch(Double value)
         {
+            if (value == 0)
+                return Double.NaN;
+
             return Math.Log(1 / value + Math.Sqrt(1 / value / value + 1));
         }
 
@@ -850,7 +1455,6 @@ namespace ELTE.AEGIS.Numerics
         public static Double Tan3(Double value)
         {
             value = Math.Tan(value);
-            value = value * value;
             return value * value * value;
         }
 
@@ -862,6 +1466,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Tan4(Double value)
         {
             value = Math.Tan(value);
+            value = value * value;
             return value * value;
         }
 
