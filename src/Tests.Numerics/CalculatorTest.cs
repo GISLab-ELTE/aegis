@@ -538,5 +538,27 @@ namespace ELTE.AEGIS.Tests.Numerics
         }
 
         #endregion
+
+        #region Tests for algebra methods
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.Binomial(Int32, Int32)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorBinomialTest()
+        {
+            Calculator.Binomial(18, 13).ShouldBe(8568);
+            Calculator.Binomial(60, 30).ShouldBe(118264581564861424);
+            Calculator.Binomial(0, 0).ShouldBe(1);
+            Calculator.Binomial(5, 0).ShouldBe(1);
+            Calculator.Binomial(0, 5).ShouldBe(0);
+            Calculator.Binomial(30, 30).ShouldBe(1);
+            Calculator.Binomial(30, 31).ShouldBe(0);
+
+            Should.Throw<ArgumentOutOfRangeException>(() => Calculator.Binomial(-1, 1));
+            Should.Throw<ArgumentOutOfRangeException>(() => Calculator.Binomial(1, -1));
+        }
+
+        #endregion
     }
 }

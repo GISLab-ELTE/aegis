@@ -1471,5 +1471,49 @@ namespace ELTE.AEGIS.Numerics
         }
 
         #endregion
+
+        #region Algebra methods
+
+        /// <summary>
+        /// Computes the binomial coefficient indexed by two nonnegative integers.
+        /// </summary>
+        /// <param name="n">The first coefficient.</param>
+        /// <param name="k">The second coefficient.</param>
+        /// <returns>The binomial coefficient indexed by the two specified nonnegative integers</returns>
+        /// <remarks>
+        /// Binomial coefficients are a family of positive integers that occur as coefficients in the binomial theorem. They are indexed by two nonnegative integers; the binomial coefficient indexed by <paramref name="n" /> and <paramref name="k" />. The implementation uses the multiplicative formula, as it does not involve unnecessary computation, and can deal with a large range of integers.
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">The first coefficient is less than 0.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The second coefficient is less than 0.</exception>
+        public static Double Binomial(Int32 n, Int32 k)
+        {
+            if (n < 0)
+                throw new ArgumentOutOfRangeException(nameof(n), Messages.FirstCoefficientIsLessThan0);
+            if (k < 0)
+                throw new ArgumentOutOfRangeException(nameof(n), Messages.SecondCoefficientIsLessThan0);
+
+            Double result;
+
+            if (k > n)
+            {
+                result = 0;
+            }
+            else
+            {
+                if ((n - k) < k)
+                    k = n - k;
+
+                result = 1;
+
+                for (Int32 i = 1; i <= k; ++i)
+                {
+                    result = (result * (n + 1 - i)) / i;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
