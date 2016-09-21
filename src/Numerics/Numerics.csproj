@@ -57,6 +57,7 @@
     <Compile Include="LinearAlgebra\VectorFactory.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Randomizers\MersenneTwisterRandomGenerator.cs" />
     <Compile Include="Rational.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
