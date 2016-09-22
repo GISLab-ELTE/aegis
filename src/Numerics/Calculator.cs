@@ -22,6 +22,20 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public static class Calculator
     {
+        #region Public constants
+
+        /// <summary>
+        /// The value to convert degree to radian.
+        /// </summary>
+        public const Double DegreeToRadian = Math.PI / 180;
+
+        /// <summary>
+        /// The value to convert radian to degree.
+        /// </summary>
+        public const Double RadianToDegree = 180 / Math.PI;
+
+        #endregion
+
         #region Private static fields
 
         /// <summary>
@@ -74,6 +88,9 @@ namespace ELTE.AEGIS.Numerics
         /// <param name="x">The first number.</param>
         /// <param name="y">The second number.</param>
         /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
         public static Int32 GreatestCommonDivisor(Int32 x, Int32 y)
         {
             if (x == 0)
@@ -101,6 +118,9 @@ namespace ELTE.AEGIS.Numerics
         /// <param name="x">The first number.</param>
         /// <param name="y">The second number.</param>
         /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
         public static Int64 GreatestCommonDivisor(Int64 x, Int64 y)
         {
             if (x == 0)
@@ -123,11 +143,28 @@ namespace ELTE.AEGIS.Numerics
         }
 
         /// <summary>
-        /// Computes the least common multiple of two numbers.
+        /// Computes the least common multiple (LCM) of two numbers.
         /// </summary>
         /// <param name="x">The first number.</param>
         /// <param name="y">The second number.</param>
         /// <returns>The least common multiple of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the LCM.
+        /// </remarks>
+        public static Double LeastCommonMultiple(Int32 x, Int32 y)
+        {
+            return LeastCommonMultiple((Int64)x, y);
+        }
+
+        /// <summary>
+        /// Computes the least common multiple (LCM) of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The least common multiple of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the LCM.
+        /// </remarks>
         public static Int64 LeastCommonMultiple(Int64 x, Int64 y)
         {
             if (x == 0 || y == 0)
