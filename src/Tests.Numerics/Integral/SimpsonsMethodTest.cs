@@ -15,10 +15,6 @@
 namespace ELTE.AEGIS.Tests.Numerics.Integral
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using AEGIS.Numerics.Integral;
     using NUnit.Framework;
     using Shouldly;

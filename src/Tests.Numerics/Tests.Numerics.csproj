@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorTest.cs" />
+    <Compile Include="Integral\SimpsonsMethodTest.cs" />
     <Compile Include="LinearAlgebra\CholeskyDecompositionTest.cs" />
     <Compile Include="LinearAlgebra\HouseholderTransformationTest.cs" />
     <Compile Include="LinearAlgebra\LUDecompositionTest.cs" />
