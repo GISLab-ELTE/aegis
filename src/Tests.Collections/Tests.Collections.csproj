@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HeapTest.cs" />
+    <Compile Include="MultiValueDictionaryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlySetTest.cs" />
     <Compile Include="SearchTree\AvlTreeTest.cs" />
