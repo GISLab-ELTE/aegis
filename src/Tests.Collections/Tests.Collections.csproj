@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FibonacciHeapTest.cs" />
     <Compile Include="HeapTest.cs" />
     <Compile Include="MultiValueDictionaryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="SearchTree\AvlTreeTest.cs" />
     <Compile Include="SearchTree\BinarySearchTreeTest.cs" />
     <Compile Include="SearchTree\RedBlackTreeTest.cs" />
+    <Compile Include="SparseArrayTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collections\Collections.csproj">
