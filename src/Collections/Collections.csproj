@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collection.cs" />
+    <Compile Include="DisjointSetForest.cs" />
     <Compile Include="FibonacciHeap.cs" />
     <Compile Include="Heap.cs" />
+    <Compile Include="IDisjointSet.cs" />
     <Compile Include="IHeap.cs" />
     <Compile Include="MultiValueDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisjointSetForestTest.cs" />
     <Compile Include="FibonacciHeapTest.cs" />
     <Compile Include="HeapTest.cs" />
     <Compile Include="MultiValueDictionaryTest.cs" />
