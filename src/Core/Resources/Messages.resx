@@ -135,6 +135,9 @@
   <data name="FirstVectorIsNull" xml:space="preserve">
     <value>The first vector is null.</value>
   </data>
+  <data name="IdentifierIsNull" xml:space="preserve">
+    <value>The identifier is null.</value>
+  </data>
   <data name="ModelsArrayIsNull" xml:space="preserve">
     <value>The array of models is null.</value>
   </data>

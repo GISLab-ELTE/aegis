@@ -48,6 +48,7 @@
     <Compile Include="CoordinateComparer.cs" />
     <Compile Include="CoordinateVector.cs" />
     <Compile Include="Envelope.cs" />
+    <Compile Include="IdentifiedObject.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="PrecisionModel.cs" />
     <Compile Include="PrecisionModelType.cs" />

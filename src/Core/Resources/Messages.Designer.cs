@@ -116,6 +116,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The identifier is null..
+        /// </summary>
+        internal static string IdentifierIsNull {
+            get {
+                return ResourceManager.GetString("IdentifierIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The array of models is null..
         /// </summary>
         internal static string ModelsArrayIsNull {
