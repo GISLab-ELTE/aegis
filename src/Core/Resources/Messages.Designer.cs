@@ -89,11 +89,47 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The delta is less than or equal to 0..
+        /// </summary>
+        internal static string DeltaIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("DeltaIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The envelope is null..
         /// </summary>
         internal static string EnvelopeIsNull {
             get {
                 return ResourceManager.GetString("EnvelopeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The edge of the event is greater than the number of edges in the source..
+        /// </summary>
+        internal static string EventEdgeIsGreaterThanNumberOfEdges {
+            get {
+                return ResourceManager.GetString("EventEdgeIsGreaterThanNumberOfEdges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The edge of the event is less than 0..
+        /// </summary>
+        internal static string EventEdgeIsLessThan0 {
+            get {
+                return ResourceManager.GetString("EventEdgeIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The event is null..
+        /// </summary>
+        internal static string EventIsNull {
+            get {
+                return ResourceManager.GetString("EventIsNull", resourceCulture);
             }
         }
         
@@ -125,11 +161,56 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index is equal to or greater than the number of holes..
+        /// </summary>
+        internal static string IndexIsEqualToOrGreaterThanHoleCount {
+            get {
+                return ResourceManager.GetString("IndexIsEqualToOrGreaterThanHoleCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The index is equal to or greater than the number of coordinates..
+        /// </summary>
+        internal static string IndexIsEqualToOrGreaterThanNumberOfCoordinates {
+            get {
+                return ResourceManager.GetString("IndexIsEqualToOrGreaterThanNumberOfCoordinates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index is less than 0..
+        /// </summary>
+        internal static string IndexIsLessThan0 {
+            get {
+                return ResourceManager.GetString("IndexIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The intersection event is null..
+        /// </summary>
+        internal static string IntersectionEventIsNull {
+            get {
+                return ResourceManager.GetString("IntersectionEventIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The array of models is null..
         /// </summary>
         internal static string ModelsArrayIsNull {
             get {
                 return ResourceManager.GetString("ModelsArrayIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no holes in the polygon..
+        /// </summary>
+        internal static string NoHolesInPolygon {
+            get {
+                return ResourceManager.GetString("NoHolesInPolygon", resourceCulture);
             }
         }
         
@@ -148,6 +229,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string OriginIsNull {
             get {
                 return ResourceManager.GetString("OriginIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The polygon is null..
+        /// </summary>
+        internal static string PolygonIsNull {
+            get {
+                return ResourceManager.GetString("PolygonIsNull", resourceCulture);
             }
         }
         
@@ -175,6 +265,51 @@ namespace ELTE.AEGIS.Resources {
         internal static string SecondVectorIsNull {
             get {
                 return ResourceManager.GetString("SecondVectorIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The segment is null..
+        /// </summary>
+        internal static string SegmentIsNull {
+            get {
+                return ResourceManager.GetString("SegmentIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The segments do not intersect..
+        /// </summary>
+        internal static string SegmentsDoNotIntersect {
+            get {
+                return ResourceManager.GetString("SegmentsDoNotIntersect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The segments do not overlap..
+        /// </summary>
+        internal static string SegmentsDoNotOverlap {
+            get {
+                return ResourceManager.GetString("SegmentsDoNotOverlap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The shell is null..
+        /// </summary>
+        internal static string ShellIsNull {
+            get {
+                return ResourceManager.GetString("ShellIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source is null..
+        /// </summary>
+        internal static string SourceIsNull {
+            get {
+                return ResourceManager.GetString("SourceIsNull", resourceCulture);
             }
         }
         

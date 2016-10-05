@@ -44,15 +44,42 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\BentleyFaustPreparataAlgorithm.cs" />
+    <Compile Include="Algorithms\DouglasPeuckerAlgorithm.cs" />
+    <Compile Include="Algorithms\GrahamScanAlgorithm.cs" />
+    <Compile Include="Algorithms\Intersection.cs" />
+    <Compile Include="Algorithms\IntersectionType.cs" />
+    <Compile Include="Algorithms\LineAlgorithms.cs" />
+    <Compile Include="Algorithms\PolygonAlgorithms.cs" />
+    <Compile Include="Algorithms\PolygonCentroidAlgorithm.cs" />
+    <Compile Include="Algorithms\ShamosHoeyAlgorithm.cs" />
+    <Compile Include="Algorithms\SweepLines\EndPointEvent.cs" />
+    <Compile Include="Algorithms\SweepLines\Event.cs" />
+    <Compile Include="Algorithms\SweepLines\EventComparer.cs" />
+    <Compile Include="Algorithms\SweepLines\EventQueue.cs" />
+    <Compile Include="Algorithms\SweepLines\EventType.cs" />
+    <Compile Include="Algorithms\SweepLines\IntersectionEvent.cs" />
+    <Compile Include="Algorithms\SweepLines\PresortedEventQueue.cs" />
+    <Compile Include="Algorithms\SweepLines\SweepLine.cs" />
+    <Compile Include="Algorithms\SweepLines\SweepLineSegment.cs" />
+    <Compile Include="Algorithms\WindingNumberAlgorithm.cs" />
+    <Compile Include="BasicLineString.cs" />
+    <Compile Include="BasicPoint.cs" />
+    <Compile Include="BasicPolygon.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="CoordinateComparer.cs" />
     <Compile Include="CoordinateVector.cs" />
     <Compile Include="Envelope.cs" />
+    <Compile Include="IBasicGeometry.cs" />
+    <Compile Include="IBasicLineString.cs" />
+    <Compile Include="IBasicPoint.cs" />
+    <Compile Include="IBasicPolygon.cs" />
     <Compile Include="IdentifiedObject.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="PrecisionModel.cs" />
     <Compile Include="PrecisionModelType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelativeLocation.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

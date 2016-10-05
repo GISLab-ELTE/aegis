@@ -126,8 +126,20 @@
   <data name="CoordinatesCollectionIsNull" xml:space="preserve">
     <value>The collection of coordinates is null.</value>
   </data>
+  <data name="DeltaIsEqualToOrLessThan0" xml:space="preserve">
+    <value>The delta is less than or equal to 0.</value>
+  </data>
   <data name="EnvelopeIsNull" xml:space="preserve">
     <value>The envelope is null.</value>
+  </data>
+  <data name="EventEdgeIsGreaterThanNumberOfEdges" xml:space="preserve">
+    <value>The edge of the event is greater than the number of edges in the source.</value>
+  </data>
+  <data name="EventEdgeIsLessThan0" xml:space="preserve">
+    <value>The edge of the event is less than 0.</value>
+  </data>
+  <data name="EventIsNull" xml:space="preserve">
+    <value>The event is null.</value>
   </data>
   <data name="FirstCoordinateIsNull" xml:space="preserve">
     <value>The first coordinate is null.</value>
@@ -138,14 +150,32 @@
   <data name="IdentifierIsNull" xml:space="preserve">
     <value>The identifier is null.</value>
   </data>
+  <data name="IndexIsEqualToOrGreaterThanHoleCount" xml:space="preserve">
+    <value>Index is equal to or greater than the number of holes.</value>
+  </data>
+  <data name="IndexIsEqualToOrGreaterThanNumberOfCoordinates" xml:space="preserve">
+    <value>The index is equal to or greater than the number of coordinates.</value>
+  </data>
+  <data name="IndexIsLessThan0" xml:space="preserve">
+    <value>Index is less than 0.</value>
+  </data>
+  <data name="IntersectionEventIsNull" xml:space="preserve">
+    <value>The intersection event is null.</value>
+  </data>
   <data name="ModelsArrayIsNull" xml:space="preserve">
     <value>The array of models is null.</value>
+  </data>
+  <data name="NoHolesInPolygon" xml:space="preserve">
+    <value>There are no holes in the polygon.</value>
   </data>
   <data name="NoModelsSpecified" xml:space="preserve">
     <value>No models are specified.</value>
   </data>
   <data name="OriginIsNull" xml:space="preserve">
     <value>The origin is null.</value>
+  </data>
+  <data name="PolygonIsNull" xml:space="preserve">
+    <value>The polygon is null.</value>
   </data>
   <data name="ScaleIsEqualToOrLessThan0" xml:space="preserve">
     <value>The scale is equal to or less than 0.</value>
@@ -155,6 +185,21 @@
   </data>
   <data name="SecondVectorIsNull" xml:space="preserve">
     <value>The second vector is null.</value>
+  </data>
+  <data name="SegmentIsNull" xml:space="preserve">
+    <value>The segment is null.</value>
+  </data>
+  <data name="SegmentsDoNotIntersect" xml:space="preserve">
+    <value>The segments do not intersect.</value>
+  </data>
+  <data name="SegmentsDoNotOverlap" xml:space="preserve">
+    <value>The segments do not overlap.</value>
+  </data>
+  <data name="ShellIsNull" xml:space="preserve">
+    <value>The shell is null.</value>
+  </data>
+  <data name="SourceIsNull" xml:space="preserve">
+    <value>The source is null.</value>
   </data>
   <data name="VectorArrayIsNull" xml:space="preserve">
     <value>The array of vectors is null.</value>

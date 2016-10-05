@@ -52,6 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\BentleyFaustPreparataAlgorithmTest.cs" />
+    <Compile Include="Algorithms\DouglasPeuckerAlgorithmTest.cs" />
+    <Compile Include="Algorithms\GrahamScanAlgorithmTest.cs" />
+    <Compile Include="Algorithms\LineAlgorithmsTest.cs" />
+    <Compile Include="Algorithms\PolygonAlgorithmsTest.cs" />
+    <Compile Include="Algorithms\PolygonCentroidAlgorithmTest.cs" />
+    <Compile Include="Algorithms\ShamosHoeyAlgorithmTest.cs" />
+    <Compile Include="Algorithms\WindingNumberAlgorithmTest.cs" />
     <Compile Include="CoordinateTest.cs" />
     <Compile Include="EnvelopeTest.cs" />
     <Compile Include="PrecisionModelTest.cs" />
