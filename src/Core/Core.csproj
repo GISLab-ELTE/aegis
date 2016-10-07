@@ -108,6 +108,9 @@
     <Compile Include="IMultiPoint.cs" />
     <Compile Include="IMultiPolygon.cs" />
     <Compile Include="IMultiSurface.cs" />
+    <Compile Include="Indexes\ISpatialIndex.cs" />
+    <Compile Include="Indexes\Rectangle\RStarTree.cs" />
+    <Compile Include="Indexes\Rectangle\RTree.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IPolygon.cs" />
     <Compile Include="IReferenceSystem.cs" />

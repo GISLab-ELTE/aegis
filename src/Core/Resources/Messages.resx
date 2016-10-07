@@ -309,4 +309,16 @@
   <data name="VectorIsNull" xml:space="preserve">
     <value>The vector is null.</value>
   </data>
+  <data name="CollectionIsNull" xml:space="preserve">
+    <value>The collection is null.</value>
+  </data>
+  <data name="GeometryIsNull" xml:space="preserve">
+    <value>The geometry is null.</value>
+  </data>
+  <data name="MaximumNumberOfChildNodesIsEqualToMinimum" xml:space="preserve">
+    <value>The maximum number of child nodes is equal to or less than the minimum number of child nodes.</value>
+  </data>
+  <data name="MinimumNumberOfChildNodesIsLessThan1" xml:space="preserve">
+    <value>The minimum number of child nodes is less than 1.</value>
+  </data>
 </root>

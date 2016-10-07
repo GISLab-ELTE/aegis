@@ -98,6 +98,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The collection is null..
+        /// </summary>
+        internal static string CollectionIsNull {
+            get {
+                return ResourceManager.GetString("CollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate is null..
         /// </summary>
         internal static string CoordinateIsNull {
@@ -260,6 +269,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The geometry is null..
+        /// </summary>
+        internal static string GeometryIsNull {
+            get {
+                return ResourceManager.GetString("GeometryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The type of the geometry is not supported..
         /// </summary>
         internal static string GeometryTypeNotSupported {
@@ -346,6 +364,24 @@ namespace ELTE.AEGIS.Resources {
         internal static string LineReductionNotSupported {
             get {
                 return ResourceManager.GetString("LineReductionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum number of child nodes is equal to or less than the minimum number of child nodes..
+        /// </summary>
+        internal static string MaximumNumberOfChildNodesIsEqualToMinimum {
+            get {
+                return ResourceManager.GetString("MaximumNumberOfChildNodesIsEqualToMinimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum number of child nodes is less than 1..
+        /// </summary>
+        internal static string MinimumNumberOfChildNodesIsLessThan1 {
+            get {
+                return ResourceManager.GetString("MinimumNumberOfChildNodesIsLessThan1", resourceCulture);
             }
         }
         

@@ -65,6 +65,8 @@
     <Compile Include="Algorithms\WindingNumberAlgorithmTest.cs" />
     <Compile Include="CoordinateTest.cs" />
     <Compile Include="EnvelopeTest.cs" />
+    <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
+    <Compile Include="Indexes\Rectangle\RTreeTest.cs" />
     <Compile Include="PrecisionModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShouldlyExtensions.cs" />
