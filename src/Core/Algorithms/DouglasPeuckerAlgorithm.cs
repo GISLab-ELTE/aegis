@@ -139,7 +139,7 @@ namespace ELTE.AEGIS.Algorithms
 
             DouglasPeuckerAlgorithm algorithm = new DouglasPeuckerAlgorithm(source, delta, precisionModel);
             algorithm.Compute();
-            return new BasicLineString(algorithm.Result);
+            return new BasicProxyLineString(algorithm.Result);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace ELTE.AEGIS.Algorithms
                 holes.Add(algorithm.Result);
             }
 
-            return new BasicPolygon(shell, holes);
+            return new BasicProxyPolygon(shell, holes);
         }
 
         /// <summary>

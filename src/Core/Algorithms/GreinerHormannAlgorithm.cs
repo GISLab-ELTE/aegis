@@ -188,7 +188,7 @@ namespace ELTE.AEGIS.Algorithms
             /// <returns>The converted result polygon.</returns>
             public IBasicPolygon ToPolygon()
             {
-                return new BasicPolygon(this.Shell, this.Holes);
+                return new BasicProxyPolygon(this.Shell, this.Holes);
             }
 
             #endregion
@@ -295,6 +295,11 @@ namespace ELTE.AEGIS.Algorithms
         /// or
         /// The second polygon is null.
         /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// The first polygon is invalid.
+        /// or
+        /// The second polygon is invalid.
+        /// </exception>
         public GreinerHormannAlgorithm(IBasicPolygon first, IBasicPolygon second, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (first == null)
@@ -321,6 +326,11 @@ namespace ELTE.AEGIS.Algorithms
         /// or
         /// The second polygon is null.
         /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// The first polygon is invalid.
+        /// or
+        /// The second polygon is invalid.
+        /// </exception>
         public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> first, IReadOnlyList<Coordinate> second, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (first == null)
@@ -328,8 +338,8 @@ namespace ELTE.AEGIS.Algorithms
             if (second == null)
                 throw new ArgumentNullException(nameof(second), Messages.SecondPolygonIsNull);
 
-            this.polygonA = new BasicPolygon(first);
-            this.polygonB = new BasicPolygon(second);
+            this.polygonA = new BasicProxyPolygon(first);
+            this.polygonB = new BasicProxyPolygon(second);
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -349,17 +359,18 @@ namespace ELTE.AEGIS.Algorithms
         /// or
         /// The second polygon is null.
         /// </exception>
+        /// <exception cref="System.NotSupportedException">Self-intersecting polygons are not (yet) supported by the Greiner-Hormann algorithm.</exception>
         public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> firstShell, IEnumerable<IReadOnlyList<Coordinate>> firstHoles,
                                        IReadOnlyList<Coordinate> secondShell, IEnumerable<IReadOnlyList<Coordinate>> secondHoles,
                                        Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (firstShell == null)
-                throw new ArgumentNullException(nameof(firstShell), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(firstShell), Messages.FirstPolygonIsNull);
             if (secondShell == null)
                 throw new ArgumentNullException(nameof(secondShell), Messages.SecondPolygonIsNull);
 
-            this.polygonA = new BasicPolygon(firstShell, firstHoles);
-            this.polygonB = new BasicPolygon(secondShell, secondHoles);
+            this.polygonA = new BasicProxyPolygon(firstShell, firstHoles);
+            this.polygonB = new BasicProxyPolygon(secondShell, secondHoles);
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -681,8 +692,8 @@ namespace ELTE.AEGIS.Algorithms
             this.listB.RemoveLast();
 
             // initialize holes
-            this.holesA = new List<IBasicLineString>(this.polygonA.Holes.Select(hole => new BasicLineString(hole.Reverse())));
-            this.holesB = new List<IBasicLineString>(this.polygonB.Holes.Select(hole => new BasicLineString(hole.Reverse())));
+            this.holesA = new List<IBasicLineString>(this.polygonA.Holes.Select(hole => new BasicProxyLineString(hole.Reverse())));
+            this.holesB = new List<IBasicLineString>(this.polygonB.Holes.Select(hole => new BasicProxyLineString(hole.Reverse())));
         }
 
         /// <summary>
@@ -1122,7 +1133,7 @@ namespace ELTE.AEGIS.Algorithms
                             intersected = true;
 
                             externalB.AddRange(algorithm.internalClips);
-                            this.holesA.AddRange(algorithm.externalClipsA.Select(polygon => new BasicLineString(polygon.Shell)));
+                            this.holesA.AddRange(algorithm.externalClipsA.Select(polygon => new BasicProxyLineString(polygon.Shell)));
                             this.internalClips.AddRange(algorithm.externalClipsB);
 
                             this.holesA.RemoveAt(i);
@@ -1155,7 +1166,7 @@ namespace ELTE.AEGIS.Algorithms
 
                             this.externalClipsA.AddRange(algorithm.internalClips);
                             this.internalClips.AddRange(algorithm.externalClipsA);
-                            this.holesB.AddRange(algorithm.externalClipsB.Select(polygon => new BasicLineString(polygon.Shell)));
+                            this.holesB.AddRange(algorithm.externalClipsB.Select(polygon => new BasicProxyLineString(polygon.Shell)));
 
                             this.holesB.RemoveAt(i);
                             break;
@@ -1183,7 +1194,7 @@ namespace ELTE.AEGIS.Algorithms
 
                         // clips in algorithm.internalClips are intersection of the already existing holes in the internals, therefore they are already covered
                         this.externalClipsB.AddRange(algorithm.externalClipsA);
-                        this.holesB.AddRange(algorithm.externalClipsB.Select(polygon => new BasicLineString(polygon.Shell)));
+                        this.holesB.AddRange(algorithm.externalClipsB.Select(polygon => new BasicProxyLineString(polygon.Shell)));
 
                         this.holesB.RemoveAt(i);
                         break;

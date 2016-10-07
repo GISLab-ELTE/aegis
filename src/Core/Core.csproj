@@ -68,6 +68,8 @@
     <Compile Include="BasicLineString.cs" />
     <Compile Include="BasicPoint.cs" />
     <Compile Include="BasicPolygon.cs" />
+    <Compile Include="BasicProxyLineString.cs" />
+    <Compile Include="BasicProxyPolygon.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="CoordinateComparer.cs" />
     <Compile Include="CoordinateVector.cs" />
