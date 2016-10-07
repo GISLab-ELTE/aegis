@@ -52,6 +52,7 @@
     <Compile Include="Algorithms\Intersection.cs" />
     <Compile Include="Algorithms\IntersectionType.cs" />
     <Compile Include="Algorithms\LineAlgorithms.cs" />
+    <Compile Include="Algorithms\MinkowskiSumAlgorithm.cs" />
     <Compile Include="Algorithms\PolygonAlgorithms.cs" />
     <Compile Include="Algorithms\PolygonCentroidAlgorithm.cs" />
     <Compile Include="Algorithms\ShamosHoeyAlgorithm.cs" />

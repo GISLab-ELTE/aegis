@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BufferIsNull" xml:space="preserve">
+    <value>The buffer is null.</value>
+  </data>
   <data name="CoordinateIsNull" xml:space="preserve">
     <value>The coordinate is null.</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="NoModelsSpecified" xml:space="preserve">
     <value>No models are specified.</value>
+  </data>
+  <data name="NumberOfCoordinatesIsLessThan3" xml:space="preserve">
+    <value>The number of coordinates is less than 3.</value>
   </data>
   <data name="OriginIsNull" xml:space="preserve">
     <value>The origin is null.</value>

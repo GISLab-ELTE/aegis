@@ -62,6 +62,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The buffer is null..
+        /// </summary>
+        internal static string BufferIsNull {
+            get {
+                return ResourceManager.GetString("BufferIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate is null..
         /// </summary>
         internal static string CoordinateIsNull {
@@ -229,6 +238,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string NoModelsSpecified {
             get {
                 return ResourceManager.GetString("NoModelsSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of coordinates is less than 3..
+        /// </summary>
+        internal static string NumberOfCoordinatesIsLessThan3 {
+            get {
+                return ResourceManager.GetString("NumberOfCoordinatesIsLessThan3", resourceCulture);
             }
         }
         
