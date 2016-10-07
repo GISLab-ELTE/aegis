@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArrayIndexIsGreaterThanSpace" xml:space="preserve">
+    <value>The number of elements in the source collection is greater than the available space from the array index to the end of the destination array.</value>
+  </data>
+  <data name="ArrayIsNull" xml:space="preserve">
+    <value>The array is null.</value>
+  </data>
   <data name="BufferIsNull" xml:space="preserve">
     <value>The buffer is null.</value>
+  </data>
+  <data name="CapacityLessThan0" xml:space="preserve">
+    <value>The capacity is less than 0.</value>
   </data>
   <data name="CoordinateIsNull" xml:space="preserve">
     <value>The coordinate is null.</value>
@@ -132,6 +141,9 @@
   <data name="DeltaIsEqualToOrLessThan0" xml:space="preserve">
     <value>The delta is less than or equal to 0.</value>
   </data>
+  <data name="EndPointIsNull" xml:space="preserve">
+    <value>The end point is null.</value>
+  </data>
   <data name="EnvelopeIsNull" xml:space="preserve">
     <value>The envelope is null.</value>
   </data>
@@ -144,14 +156,41 @@
   <data name="EventIsNull" xml:space="preserve">
     <value>The event is null.</value>
   </data>
+  <data name="FactoryBehaviorIsNull" xml:space="preserve">
+    <value>The factory behavior is null.</value>
+  </data>
+  <data name="FactoryContractIsNull" xml:space="preserve">
+    <value>The factory contact is null.</value>
+  </data>
+  <data name="FactoryIsInvalid" xml:space="preserve">
+    <value>The factory is invalid.</value>
+  </data>
+  <data name="FactoryIsNull" xml:space="preserve">
+    <value>The factory is null.</value>
+  </data>
+  <data name="FactoryNotImplementingContract" xml:space="preserve">
+    <value>The factory behavior does not implement the contract.</value>
+  </data>
   <data name="FirstCoordinateIsNull" xml:space="preserve">
     <value>The first coordinate is null.</value>
+  </data>
+  <data name="FirstPointIsNull" xml:space="preserve">
+    <value>The first point is null.</value>
   </data>
   <data name="FirstPolygonIsNull" xml:space="preserve">
     <value>The first polygon is null.</value>
   </data>
   <data name="FirstVectorIsNull" xml:space="preserve">
     <value>The first vector is null.</value>
+  </data>
+  <data name="GeometryTypeNotSupported" xml:space="preserve">
+    <value>The type of the geometry is not supported.</value>
+  </data>
+  <data name="HoleIsNull" xml:space="preserve">
+    <value>The hole is null.</value>
+  </data>
+  <data name="HolesNotSupportedInTriangle" xml:space="preserve">
+    <value>Holes are not supported in the triangle.</value>
   </data>
   <data name="IdentifierIsNull" xml:space="preserve">
     <value>The identifier is null.</value>
@@ -168,6 +207,12 @@
   <data name="IntersectionEventIsNull" xml:space="preserve">
     <value>The intersection event is null.</value>
   </data>
+  <data name="LineExtensionNotSupported" xml:space="preserve">
+    <value>Extension of lines is not supported.</value>
+  </data>
+  <data name="LineReductionNotSupported" xml:space="preserve">
+    <value>Reduction of lines is not supported.</value>
+  </data>
   <data name="ModelsArrayIsNull" xml:space="preserve">
     <value>The array of models is null.</value>
   </data>
@@ -183,6 +228,39 @@
   <data name="OriginIsNull" xml:space="preserve">
     <value>The origin is null.</value>
   </data>
+  <data name="OtherGeometryCollectionIsNull" xml:space="preserve">
+    <value>The other geometry collection is null.</value>
+  </data>
+  <data name="OtherGeometryIsNull" xml:space="preserve">
+    <value>The other geometry is null.</value>
+  </data>
+  <data name="OtherLinearRingIsNull" xml:space="preserve">
+    <value>The other linear ring is null.</value>
+  </data>
+  <data name="OtherLineIsNull" xml:space="preserve">
+    <value>The other line is null.</value>
+  </data>
+  <data name="OtherLineStringIsNull" xml:space="preserve">
+    <value>The other line string is null.</value>
+  </data>
+  <data name="OtherMultiLineStringIsNull" xml:space="preserve">
+    <value>The other multi line string is null.</value>
+  </data>
+  <data name="OtherMultiPointIsNull" xml:space="preserve">
+    <value>The other multi point is null.</value>
+  </data>
+  <data name="OtherMultiPolygonIsNull" xml:space="preserve">
+    <value>The other multi polygon is null.</value>
+  </data>
+  <data name="OtherPointIsNull" xml:space="preserve">
+    <value>The other point is null.</value>
+  </data>
+  <data name="OtherPolygonIsNull" xml:space="preserve">
+    <value>The other polygon is null.</value>
+  </data>
+  <data name="OtherTriangleIsNull" xml:space="preserve">
+    <value>The other triangle is null.</value>
+  </data>
   <data name="PolygonIsNull" xml:space="preserve">
     <value>The polygon is null.</value>
   </data>
@@ -191,6 +269,9 @@
   </data>
   <data name="SecondCoordinateIsNull" xml:space="preserve">
     <value>The second Coordinate is null.</value>
+  </data>
+  <data name="SecondPointIsNull" xml:space="preserve">
+    <value>The second point is null.</value>
   </data>
   <data name="SecondPolygonIsNull" xml:space="preserve">
     <value>The second polygon is null.</value>
@@ -212,6 +293,12 @@
   </data>
   <data name="SourceIsNull" xml:space="preserve">
     <value>The source is null.</value>
+  </data>
+  <data name="StartPointIsNull" xml:space="preserve">
+    <value>The start point is null.</value>
+  </data>
+  <data name="ThirdPointIsNull" xml:space="preserve">
+    <value>The third point is null.</value>
   </data>
   <data name="VectorArrayIsNull" xml:space="preserve">
     <value>The array of vectors is null.</value>

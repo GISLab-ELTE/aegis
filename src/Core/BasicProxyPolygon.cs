@@ -164,7 +164,7 @@ namespace ELTE.AEGIS
         /// <returns>The hole at the specified index.</returns>
         /// <exception cref="System.InvalidOperationException">There are no holes in the polygon.</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// The index is less than 0.
+        /// Index is less than 0.
         /// or
         /// Index is equal to or greater than the number of holes.
         /// </exception>

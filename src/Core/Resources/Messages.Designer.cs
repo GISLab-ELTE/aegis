@@ -62,11 +62,38 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of elements in the source collection is greater than the available space from the array index to the end of the destination array..
+        /// </summary>
+        internal static string ArrayIndexIsGreaterThanSpace {
+            get {
+                return ResourceManager.GetString("ArrayIndexIsGreaterThanSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The array is null..
+        /// </summary>
+        internal static string ArrayIsNull {
+            get {
+                return ResourceManager.GetString("ArrayIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The buffer is null..
         /// </summary>
         internal static string BufferIsNull {
             get {
                 return ResourceManager.GetString("BufferIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The capacity is less than 0..
+        /// </summary>
+        internal static string CapacityLessThan0 {
+            get {
+                return ResourceManager.GetString("CapacityLessThan0", resourceCulture);
             }
         }
         
@@ -107,6 +134,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The end point is null..
+        /// </summary>
+        internal static string EndPointIsNull {
+            get {
+                return ResourceManager.GetString("EndPointIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The envelope is null..
         /// </summary>
         internal static string EnvelopeIsNull {
@@ -143,11 +179,65 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The factory behavior is null..
+        /// </summary>
+        internal static string FactoryBehaviorIsNull {
+            get {
+                return ResourceManager.GetString("FactoryBehaviorIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The factory contact is null..
+        /// </summary>
+        internal static string FactoryContractIsNull {
+            get {
+                return ResourceManager.GetString("FactoryContractIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The factory is invalid..
+        /// </summary>
+        internal static string FactoryIsInvalid {
+            get {
+                return ResourceManager.GetString("FactoryIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The factory is null..
+        /// </summary>
+        internal static string FactoryIsNull {
+            get {
+                return ResourceManager.GetString("FactoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The factory behavior does not implement the contract..
+        /// </summary>
+        internal static string FactoryNotImplementingContract {
+            get {
+                return ResourceManager.GetString("FactoryNotImplementingContract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first coordinate is null..
         /// </summary>
         internal static string FirstCoordinateIsNull {
             get {
                 return ResourceManager.GetString("FirstCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first point is null..
+        /// </summary>
+        internal static string FirstPointIsNull {
+            get {
+                return ResourceManager.GetString("FirstPointIsNull", resourceCulture);
             }
         }
         
@@ -166,6 +256,33 @@ namespace ELTE.AEGIS.Resources {
         internal static string FirstVectorIsNull {
             get {
                 return ResourceManager.GetString("FirstVectorIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type of the geometry is not supported..
+        /// </summary>
+        internal static string GeometryTypeNotSupported {
+            get {
+                return ResourceManager.GetString("GeometryTypeNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hole is null..
+        /// </summary>
+        internal static string HoleIsNull {
+            get {
+                return ResourceManager.GetString("HoleIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Holes are not supported in the triangle..
+        /// </summary>
+        internal static string HolesNotSupportedInTriangle {
+            get {
+                return ResourceManager.GetString("HolesNotSupportedInTriangle", resourceCulture);
             }
         }
         
@@ -215,6 +332,24 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extension of lines is not supported..
+        /// </summary>
+        internal static string LineExtensionNotSupported {
+            get {
+                return ResourceManager.GetString("LineExtensionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reduction of lines is not supported..
+        /// </summary>
+        internal static string LineReductionNotSupported {
+            get {
+                return ResourceManager.GetString("LineReductionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The array of models is null..
         /// </summary>
         internal static string ModelsArrayIsNull {
@@ -260,6 +395,105 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The other geometry collection is null..
+        /// </summary>
+        internal static string OtherGeometryCollectionIsNull {
+            get {
+                return ResourceManager.GetString("OtherGeometryCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other geometry is null..
+        /// </summary>
+        internal static string OtherGeometryIsNull {
+            get {
+                return ResourceManager.GetString("OtherGeometryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other linear ring is null..
+        /// </summary>
+        internal static string OtherLinearRingIsNull {
+            get {
+                return ResourceManager.GetString("OtherLinearRingIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other line is null..
+        /// </summary>
+        internal static string OtherLineIsNull {
+            get {
+                return ResourceManager.GetString("OtherLineIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other line string is null..
+        /// </summary>
+        internal static string OtherLineStringIsNull {
+            get {
+                return ResourceManager.GetString("OtherLineStringIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other multi line string is null..
+        /// </summary>
+        internal static string OtherMultiLineStringIsNull {
+            get {
+                return ResourceManager.GetString("OtherMultiLineStringIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other multi point is null..
+        /// </summary>
+        internal static string OtherMultiPointIsNull {
+            get {
+                return ResourceManager.GetString("OtherMultiPointIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other multi polygon is null..
+        /// </summary>
+        internal static string OtherMultiPolygonIsNull {
+            get {
+                return ResourceManager.GetString("OtherMultiPolygonIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other point is null..
+        /// </summary>
+        internal static string OtherPointIsNull {
+            get {
+                return ResourceManager.GetString("OtherPointIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other polygon is null..
+        /// </summary>
+        internal static string OtherPolygonIsNull {
+            get {
+                return ResourceManager.GetString("OtherPolygonIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other triangle is null..
+        /// </summary>
+        internal static string OtherTriangleIsNull {
+            get {
+                return ResourceManager.GetString("OtherTriangleIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The polygon is null..
         /// </summary>
         internal static string PolygonIsNull {
@@ -283,6 +517,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string SecondCoordinateIsNull {
             get {
                 return ResourceManager.GetString("SecondCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second point is null..
+        /// </summary>
+        internal static string SecondPointIsNull {
+            get {
+                return ResourceManager.GetString("SecondPointIsNull", resourceCulture);
             }
         }
         
@@ -346,6 +589,24 @@ namespace ELTE.AEGIS.Resources {
         internal static string SourceIsNull {
             get {
                 return ResourceManager.GetString("SourceIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The start point is null..
+        /// </summary>
+        internal static string StartPointIsNull {
+            get {
+                return ResourceManager.GetString("StartPointIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The third point is null..
+        /// </summary>
+        internal static string ThirdPointIsNull {
+            get {
+                return ResourceManager.GetString("ThirdPointIsNull", resourceCulture);
             }
         }
         

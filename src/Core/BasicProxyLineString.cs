@@ -133,7 +133,7 @@ namespace ELTE.AEGIS
         /// <param name="index">The zero-based index of the coordinate to get.</param>
         /// <returns>The coordinate located at the specified <paramref name="index" />.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// The index is less than 0.
+        /// Index is less than 0.
         /// or
         /// The index is equal to or greater than the number of coordinates.
         /// </exception>
@@ -215,7 +215,7 @@ namespace ELTE.AEGIS
         /// <param name="index">The zero-based index of the coordinate to get.</param>
         /// <returns>The coordinate located at the specified <paramref name="index" />.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// The index is less than 0.
+        /// Index is less than 0.
         /// or
         /// The index is equal to or greater than the number of coordinates.
         /// </exception>
