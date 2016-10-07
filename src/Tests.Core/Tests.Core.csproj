@@ -53,8 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\BentleyFaustPreparataAlgorithmTest.cs" />
+    <Compile Include="Algorithms\BentleyOttmannAlgorithmTest.cs" />
     <Compile Include="Algorithms\DouglasPeuckerAlgorithmTest.cs" />
     <Compile Include="Algorithms\GrahamScanAlgorithmTest.cs" />
+    <Compile Include="Algorithms\GreinerHormannAlgorithmTest.cs" />
     <Compile Include="Algorithms\LineAlgorithmsTest.cs" />
     <Compile Include="Algorithms\PolygonAlgorithmsTest.cs" />
     <Compile Include="Algorithms\PolygonCentroidAlgorithmTest.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="EnvelopeTest.cs" />
     <Compile Include="PrecisionModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShouldlyExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collections\Collections.csproj">

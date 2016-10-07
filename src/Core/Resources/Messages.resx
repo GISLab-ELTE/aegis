@@ -144,6 +144,9 @@
   <data name="FirstCoordinateIsNull" xml:space="preserve">
     <value>The first coordinate is null.</value>
   </data>
+  <data name="FirstPolygonIsNull" xml:space="preserve">
+    <value>The first polygon is null.</value>
+  </data>
   <data name="FirstVectorIsNull" xml:space="preserve">
     <value>The first vector is null.</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="SecondCoordinateIsNull" xml:space="preserve">
     <value>The second Coordinate is null.</value>
+  </data>
+  <data name="SecondPolygonIsNull" xml:space="preserve">
+    <value>The second polygon is null.</value>
   </data>
   <data name="SecondVectorIsNull" xml:space="preserve">
     <value>The second vector is null.</value>

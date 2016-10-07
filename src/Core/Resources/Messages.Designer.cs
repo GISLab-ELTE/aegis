@@ -143,6 +143,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The first polygon is null..
+        /// </summary>
+        internal static string FirstPolygonIsNull {
+            get {
+                return ResourceManager.GetString("FirstPolygonIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first vector is null..
         /// </summary>
         internal static string FirstVectorIsNull {
@@ -256,6 +265,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string SecondCoordinateIsNull {
             get {
                 return ResourceManager.GetString("SecondCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second polygon is null..
+        /// </summary>
+        internal static string SecondPolygonIsNull {
+            get {
+                return ResourceManager.GetString("SecondPolygonIsNull", resourceCulture);
             }
         }
         

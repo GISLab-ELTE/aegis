@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\BentleyFaustPreparataAlgorithm.cs" />
+    <Compile Include="Algorithms\BentleyOttmannAlgorithm.cs" />
     <Compile Include="Algorithms\DouglasPeuckerAlgorithm.cs" />
     <Compile Include="Algorithms\GrahamScanAlgorithm.cs" />
+    <Compile Include="Algorithms\GreinerHormannAlgorithm.cs" />
     <Compile Include="Algorithms\Intersection.cs" />
     <Compile Include="Algorithms\IntersectionType.cs" />
     <Compile Include="Algorithms\LineAlgorithms.cs" />
