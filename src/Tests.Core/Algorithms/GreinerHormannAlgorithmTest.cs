@@ -56,7 +56,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 true, null);
 
             algorithm.InternalPolygons.ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(0, 0),
@@ -65,8 +68,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(0, 10),
                     new Coordinate(0, 0)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(20, 0),
@@ -75,7 +81,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(20, 10),
                     new Coordinate(20, 0)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // containing polygons
             algorithm = new GreinerHormannAlgorithm(
@@ -97,6 +103,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -106,8 +114,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 20),
                     new Coordinate(10, 10)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(0, 0),
@@ -116,7 +127,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(0, 30),
                     new Coordinate(0, 0)
                 });
-            algorithm.ExternalFirstPolygons[0].Holes.ShouldBe(new[]
+            algorithm.ExternalPolygonsA[0].Holes.ShouldBe(new[]
             {
                 new[]
                 {
@@ -127,7 +138,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10)
                 }
             }, 0.0001);
-            algorithm.ExternalSecondPolygons.ShouldBeEmpty();
+
+            algorithm.ExternalPolygonsB.ShouldBeEmpty();
         }
 
         /// <summary>
@@ -157,7 +169,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 true, null);
 
             algorithm.InternalPolygons.ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(10, 10),
@@ -166,8 +181,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(10, 0),
@@ -176,7 +194,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(10, 0)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // tangent polygons with mid-intersection point on edge
             algorithm = new GreinerHormannAlgorithm(
@@ -199,7 +217,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 true, null);
 
             algorithm.InternalPolygons.ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(10, 10),
@@ -208,8 +229,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(10, 0),
@@ -219,7 +243,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(10, 0)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // tangent and containing polygons (touch from the inner boundary): case 1
             algorithm = new GreinerHormannAlgorithm(
@@ -241,6 +265,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -250,8 +276,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 6),
                     new Coordinate(10, 6)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(6, 10),
@@ -262,8 +291,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 6),
                     new Coordinate(6, 10)
                 }, true);
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.ShouldBeEmpty();
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.ShouldBeEmpty();
 
             // tangent and containing polygons (touch from the inner boundary): case 2
             algorithm = new GreinerHormannAlgorithm(
@@ -284,6 +314,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -292,8 +324,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 5),
                     new Coordinate(7, 10)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(3, 10),
@@ -303,8 +338,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 5),
                     new Coordinate(3, 10)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.ShouldBeEmpty();
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.ShouldBeEmpty();
         }
 
         /// <summary>
@@ -333,6 +369,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -342,8 +380,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 5),
                     new Coordinate(10, 5)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(5, 10),
@@ -354,8 +395,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 5),
                     new Coordinate(5, 10)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(10, 5),
@@ -366,7 +410,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(10, 5)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
 
         /// <summary>
@@ -397,6 +441,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -412,8 +458,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(18, 30),
                     new Coordinate(12, 0)
                 }, 0.001);
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(4);
+            algorithm.ExternalPolygonsA.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsA.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -446,9 +495,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(50, 25)
                 }
             }, 0.0001);
+            algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -479,7 +529,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(50, 5)
                 }
             }, 0.0001);
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
             // intersection of a convex and a concave polygon, multiple intersections
             algorithm = new GreinerHormannAlgorithm(
@@ -505,6 +555,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.ShouldAllBe(polygon => polygon.IsValid);
             algorithm.InternalPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
@@ -532,9 +583,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(48, 0)
                 }
             }, 0.0001);
-
             algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+
+            algorithm.ExternalPolygonsA.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsA.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -569,10 +621,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(50, 0)
                 }
             }, 0.0001);
+            algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -611,8 +663,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(48, 0)
                 }
             }, 0.0001);
-
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
         }
 
         /// <summary>
@@ -652,6 +703,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
 
             GreinerHormannAlgorithm algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -670,7 +723,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(7, 5),
                     new Coordinate(5, 5)
                 }, 0.0001);
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(4, 8),
@@ -681,8 +736,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(4, 4),
                     new Coordinate(4, 8)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -703,8 +760,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 5)
                 }
             }, 0.0001);
-
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // hole overlapping internal and external part
             shellA = new[]
@@ -736,6 +792,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -749,8 +808,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(7, 7),
                     new Coordinate(7, 4)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(5, 4),
@@ -765,8 +826,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 1),
                     new Coordinate(5, 4)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -787,8 +850,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(7, 4)
                 }
             }, 0.0001);
-
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // hole contained in internal part touching side of an external part
             shellA = new[]
@@ -820,6 +882,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -833,8 +898,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(7, 7),
                     new Coordinate(7, 4)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(4, 8),
@@ -847,8 +915,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(4, 4),
                     new Coordinate(4, 8)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -869,150 +939,42 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(7, 4)
                 }
             }, 0.0001);
-
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
             // hole is completely filled with the other subject polygon
-            BasicPolygon polygonA = new BasicPolygon(
-                new[]
-                {
-                    new Coordinate(0, 0),
-                    new Coordinate(10, 0),
-                    new Coordinate(10, 10),
-                    new Coordinate(0, 10),
-                    new Coordinate(0, 0),
-                },
-                new[]
-                {
-                    new[]
-                    {
-                        new Coordinate(2, 2),
-                        new Coordinate(2, 8),
-                        new Coordinate(8, 8),
-                        new Coordinate(8, 2),
-                        new Coordinate(2, 2),
-                    }
-                });
-
-            BasicPolygon polygonB = new BasicPolygon(
-                new[]
-                {
-                    new Coordinate(2, 2),
-                    new Coordinate(8, 2),
-                    new Coordinate(8, 8),
-                    new Coordinate(2, 8),
-                    new Coordinate(2, 2),
-                });
-
-            polygonA.IsValid.ShouldBeTrue();
-            polygonB.IsValid.ShouldBeTrue();
-
-            algorithm = new GreinerHormannAlgorithm(polygonA, polygonB, true, null);
-            algorithm.InternalPolygons.ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
-                new[]
-                {
-                    new Coordinate(0, 0),
-                    new Coordinate(10, 0),
-                    new Coordinate(10, 10),
-                    new Coordinate(0, 10),
-                    new Coordinate(0, 0),
-                });
-            algorithm.ExternalFirstPolygons[0].Holes[0].ShouldBe(
-                new[]
-                {
-                    new Coordinate(2, 2),
-                    new Coordinate(2, 8),
-                    new Coordinate(8, 8),
-                    new Coordinate(8, 2),
-                    new Coordinate(2, 2),
-                });
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
-                new[]
-                {
-                    new Coordinate(2, 2),
-                    new Coordinate(8, 2),
-                    new Coordinate(8, 8),
-                    new Coordinate(2, 8),
-                    new Coordinate(2, 2),
-                });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-
-            // hole is partially filled with the other subject polygon
-            polygonA = new BasicPolygon(
-                new[]
-                {
-                    new Coordinate(0, 0),
-                    new Coordinate(10, 0),
-                    new Coordinate(10, 10),
-                    new Coordinate(0, 10),
-                    new Coordinate(0, 0),
-                },
-                new[]
-                {
-                    new[]
-                    {
-                        new Coordinate(2, 2),
-                        new Coordinate(2, 8),
-                        new Coordinate(8, 8),
-                        new Coordinate(8, 2),
-                        new Coordinate(2, 2),
-                    }
-                });
-            polygonB = new BasicPolygon(
-                new[]
-                {
-                    new Coordinate(2, 2),
-                    new Coordinate(8, 2),
-                    new Coordinate(8, 8),
-                    new Coordinate(2, 2),
-                });
-
-            polygonA.IsValid.ShouldBeTrue();
-            polygonB.IsValid.ShouldBeTrue();
-
-            algorithm = new GreinerHormannAlgorithm(polygonA, polygonB, true, null);
-            algorithm.InternalPolygons.ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
-                new[]
-                {
-                    new Coordinate(0, 0),
-                    new Coordinate(10, 0),
-                    new Coordinate(10, 10),
-                    new Coordinate(0, 10),
-                    new Coordinate(0, 0),
-                });
-
-            algorithm.ExternalFirstPolygons[0].Holes.ShouldBe(new[]
+            shellA = new[]
+            {
+                new Coordinate(0, 0),
+                new Coordinate(10, 0),
+                new Coordinate(10, 10),
+                new Coordinate(0, 10),
+                new Coordinate(0, 0),
+            };
+            holesA = new[]
             {
                 new[]
                 {
                     new Coordinate(2, 2),
-                    new Coordinate(8, 8),
-                    new Coordinate(8, 2),
-                    new Coordinate(2, 2),
-                },
-                new[]
-                {
-                    new Coordinate(8, 8),
-                    new Coordinate(2, 2),
                     new Coordinate(2, 8),
-                    new Coordinate(8, 8)
-                }
-            }, 0.0001);
-
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
-                new[]
-                {
-                    new Coordinate(2, 2),
-                    new Coordinate(8, 2),
                     new Coordinate(8, 8),
+                    new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+                }
+            };
 
-            // shell of the first polygon contains the second and the holes also contain each other
-            polygonA = new BasicPolygon(
+            shellB = new[]
+            {
+                new Coordinate(2, 2),
+                new Coordinate(8, 2),
+                new Coordinate(8, 8),
+                new Coordinate(2, 8),
+                new Coordinate(2, 2),
+            };
+
+            algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
+            algorithm.InternalPolygons.ShouldBeEmpty();
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(0, 0),
@@ -1020,43 +982,137 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
                     new Coordinate(0, 0),
-                },
+                });
+            algorithm.ExternalPolygonsA[0].Holes[0].ShouldBe(
                 new[]
                 {
-                    new[]
-                    {
+                    new Coordinate(2, 2),
+                    new Coordinate(2, 8),
+                    new Coordinate(8, 8),
+                    new Coordinate(8, 2),
+                    new Coordinate(2, 2),
+                });
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
+                new[]
+                {
+                    new Coordinate(2, 2),
+                    new Coordinate(8, 2),
+                    new Coordinate(8, 8),
+                    new Coordinate(2, 8),
+                    new Coordinate(2, 2),
+                });
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+
+            // hole is partially filled with the other subject polygon
+            shellA = new[]
+            {
+                new Coordinate(0, 0),
+                new Coordinate(10, 0),
+                new Coordinate(10, 10),
+                new Coordinate(0, 10),
+                new Coordinate(0, 0),
+            };
+            holesA = new[]
+            {
+                new[]
+                {
+                    new Coordinate(2, 2),
+                    new Coordinate(2, 8),
+                    new Coordinate(8, 8),
+                    new Coordinate(8, 2),
+                    new Coordinate(2, 2),
+                }
+            };
+            shellB = new[]
+            {
+                new Coordinate(2, 2),
+                new Coordinate(8, 2),
+                new Coordinate(8, 8),
+                new Coordinate(2, 2),
+            };
+
+            algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
+            algorithm.Compute();
+            algorithm.InternalPolygons.ShouldBeEmpty();
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
+                new[]
+                {
+                    new Coordinate(0, 0),
+                    new Coordinate(10, 0),
+                    new Coordinate(10, 10),
+                    new Coordinate(0, 10),
+                    new Coordinate(0, 0),
+                });
+
+            algorithm.ExternalPolygonsA[0].Holes.ShouldBe(new[]
+            {
+                new[]
+                {
                         new Coordinate(2, 2),
                         new Coordinate(2, 8),
                         new Coordinate(8, 8),
                         new Coordinate(8, 2),
                         new Coordinate(2, 2),
-                    }
-                });
-            polygonB = new BasicPolygon(
+                }
+            }, 0.0001);
+
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
-                    new Coordinate(-2, -2),
-                    new Coordinate(12, -2),
-                    new Coordinate(12, 12),
-                    new Coordinate(-2, 12),
-                    new Coordinate(-2, -2),
-                },
+                    new Coordinate(2, 2),
+                    new Coordinate(8, 2),
+                    new Coordinate(8, 8),
+                    new Coordinate(2, 2),
+                });
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+
+            // shell of the first polygon contains the second and the holes also contain each other
+            shellA = new[]
+            {
+                new Coordinate(0, 0),
+                new Coordinate(10, 0),
+                new Coordinate(10, 10),
+                new Coordinate(0, 10),
+                new Coordinate(0, 0),
+            };
+            holesA = new[]
+            {
                 new[]
                 {
-                    new[]
-                    {
-                        new Coordinate(2, 2),
-                        new Coordinate(2, 8),
-                        new Coordinate(8, 8),
-                        new Coordinate(8, 2),
-                        new Coordinate(2, 2),
-                    }
-                });
+                    new Coordinate(2, 2),
+                    new Coordinate(2, 8),
+                    new Coordinate(8, 8),
+                    new Coordinate(8, 2),
+                    new Coordinate(2, 2),
+                }
+            };
+            shellB = new[]
+            {
+                new Coordinate(-2, -2),
+                new Coordinate(12, -2),
+                new Coordinate(12, 12),
+                new Coordinate(-2, 12),
+                new Coordinate(-2, -2),
+            };
+            Coordinate[][] holesB = new[]
+            {
+                new[]
+                {
+                    new Coordinate(2, 2),
+                    new Coordinate(2, 8),
+                    new Coordinate(8, 8),
+                    new Coordinate(8, 2),
+                    new Coordinate(2, 2),
+                }
+            };
 
-            polygonA.IsValid.ShouldBeTrue();
-            polygonB.IsValid.ShouldBeTrue();
+            algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, holesB, true, null);
 
-            algorithm = new GreinerHormannAlgorithm(polygonA, polygonB, true, null);
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1066,7 +1122,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(0, 10),
                     new Coordinate(0, 0),
                 });
-            algorithm.InternalPolygons[0].Holes.First().ShouldBe(
+            algorithm.InternalPolygons[0].Holes.ShouldBe(new[]
+            {
                 new[]
                 {
                     new Coordinate(2, 2),
@@ -1074,9 +1131,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                });
-            algorithm.ExternalFirstPolygons.ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+                }
+            }, 0.0001);
+            algorithm.ExternalPolygonsA.ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(-2, -2),
@@ -1085,7 +1144,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(-2, 12),
                     new Coordinate(-2, -2),
                 });
-            algorithm.ExternalSecondPolygons[0].Holes.First().ShouldBe(
+            algorithm.ExternalPolygonsB[0].Holes.ShouldBe(new[]
+            {
                 new[]
                 {
                     new Coordinate(0, 0),
@@ -1093,7 +1153,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(10, 0),
                     new Coordinate(0, 0),
-                });
+                }
+            }, 0.0001);
 
             // first polygon contains second polygon, which in reverse contains the hole of the first polygon
             shellA = new[]
@@ -1126,6 +1187,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1146,7 +1210,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(4, 4)
                 }
             }, 0.0001);
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(0, 0),
@@ -1155,7 +1222,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(0, 8),
                     new Coordinate(0, 0)
                 });
-            algorithm.ExternalFirstPolygons[0].Holes.ShouldBe(new[]
+            algorithm.ExternalPolygonsA[0].Holes.ShouldBe(new[]
             {
                 new[]
                 {
@@ -1166,7 +1233,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(3, 3)
                 }
             }, 0.0001);
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(4, 4),
@@ -1175,7 +1245,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(5, 4),
                     new Coordinate(4, 4)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
 
         /// <summary>
@@ -1208,6 +1278,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.ShouldAllBe(polygon => polygon.IsValid);
             algorithm.InternalPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
@@ -1222,7 +1293,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 }
             }, 0.0001);
             algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+
+            algorithm.ExternalPolygonsA.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsA.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -1243,9 +1316,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(4, 1),
                 }
             }, 0.0001);
+            algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(6, 8),
@@ -1254,7 +1328,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 8),
                     new Coordinate(6, 8),
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
             // degenerate test: common edges and multiple entry points in a row
             algorithm = new GreinerHormannAlgorithm(
@@ -1279,6 +1353,8 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
                 true, null);
 
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1288,8 +1364,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 6),
                     new Coordinate(2, 8),
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(0, 6),
@@ -1301,8 +1380,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 6),
                     new Coordinate(0, 6),
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(2, 8),
@@ -1312,7 +1394,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(0, 8),
                     new Coordinate(2, 8),
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // degenerate test: containment with common edges
             Coordinate[] shellA = new[]
@@ -1333,6 +1415,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, shellB, true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1342,8 +1427,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 8),
                     new Coordinate(2, 0),
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(2);
+            algorithm.ExternalPolygonsA.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsA.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -1362,12 +1450,15 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 0),
                 }
             }, 0.0001);
+            algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.ShouldBeEmpty();
 
             // the previous test case, only the order of the parameters are swapped
             algorithm = new GreinerHormannAlgorithm(shellB, shellA, true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1377,9 +1468,13 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 8),
                     new Coordinate(2, 8),
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons.ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons.Select(polygon => polygon.Shell).ShouldBe(new[]
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.ShouldBeEmpty();
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(2);
+            algorithm.ExternalPolygonsB.ShouldAllBe(polygon => polygon.IsValid);
+            algorithm.ExternalPolygonsB.Select(polygon => polygon.Shell).ShouldBe(new[]
             {
                 new[]
                 {
@@ -1398,8 +1493,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 0),
                 }
             }, 0.0001);
-
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
             // intersecting polygons with tangential internal part
             algorithm = new GreinerHormannAlgorithm(
@@ -1424,6 +1518,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 3),
                 },
                 true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1435,8 +1532,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 3),
                     new Coordinate(6, 3)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(2, 8),
@@ -1447,8 +1547,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(2, 3),
                     new Coordinate(2, 8)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(6, 3),
@@ -1457,7 +1560,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(6, 5),
                     new Coordinate(6, 3),
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
             // intersecting polygons with common border attached to internal part
             algorithm = new GreinerHormannAlgorithm(
@@ -1480,6 +1583,9 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(3, 6),
                 },
                 true, null);
+
+            algorithm.InternalPolygons.Count.ShouldBe(1);
+            algorithm.InternalPolygons[0].IsValid.ShouldBeTrue();
             algorithm.InternalPolygons[0].Shell.ShouldBe(
                 new[]
                 {
@@ -1488,8 +1594,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(3, 6),
                     new Coordinate(4, 8)
                 });
-            algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalFirstPolygons[0].Shell.ShouldBe(
+            algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsA.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsA[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(3, 8),
@@ -1502,8 +1611,11 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(3, 6),
                     new Coordinate(3, 8)
                 });
-            algorithm.ExternalFirstPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
-            algorithm.ExternalSecondPolygons[0].Shell.ShouldBe(
+            algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
+
+            algorithm.ExternalPolygonsB.Count.ShouldBe(1);
+            algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
+            algorithm.ExternalPolygonsB[0].Shell.ShouldBe(
                 new[]
                 {
                     new Coordinate(6, 12),
@@ -1513,7 +1625,7 @@ namespace ELTE.AEGIS.Tests.Algorithms
                     new Coordinate(4, 8),
                     new Coordinate(6, 12)
                 });
-            algorithm.ExternalSecondPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
+            algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
 
         #endregion

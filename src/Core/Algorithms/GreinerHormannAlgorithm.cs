@@ -286,8 +286,8 @@ namespace ELTE.AEGIS.Algorithms
         /// <summary>
         /// Initializes a new instance of the <see cref="GreinerHormannAlgorithm" /> class.
         /// </summary>
-        /// <param name="first">The first polygon.</param>
-        /// <param name="second">The second polygon.</param>
+        /// <param name="polygonA">The first polygon.</param>
+        /// <param name="polygonB">The second polygon.</param>
         /// <param name="computeExternalClips">A value indicating whether to compute the external clips.</param>
         /// <param name="precisionModel">The precision model.</param>
         /// <exception cref="System.ArgumentNullException">
@@ -300,15 +300,15 @@ namespace ELTE.AEGIS.Algorithms
         /// or
         /// The second polygon is invalid.
         /// </exception>
-        public GreinerHormannAlgorithm(IBasicPolygon first, IBasicPolygon second, Boolean computeExternalClips, PrecisionModel precisionModel)
+        public GreinerHormannAlgorithm(IBasicPolygon polygonA, IBasicPolygon polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
-            if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPolygonIsNull);
-            if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPolygonIsNull);
+            if (polygonA == null)
+                throw new ArgumentNullException(nameof(polygonA), Messages.FirstPolygonIsNull);
+            if (polygonB == null)
+                throw new ArgumentNullException(nameof(polygonB), Messages.SecondPolygonIsNull);
 
-            this.polygonA = first;
-            this.polygonB = second;
+            this.polygonA = polygonA;
+            this.polygonB = polygonB;
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -317,8 +317,8 @@ namespace ELTE.AEGIS.Algorithms
         /// <summary>
         /// Initializes a new instance of the <see cref="GreinerHormannAlgorithm" /> class.
         /// </summary>
-        /// <param name="first">The shell of the first polygon.</param>
-        /// <param name="second">The shell of the second polygon.</param>
+        /// <param name="polygonA">The shell of the first polygon.</param>
+        /// <param name="polygonB">The shell of the second polygon.</param>
         /// <param name="computeExternalClips">A value indicating whether to compute the external clips.</param>
         /// <param name="precisionModel">The precision model.</param>
         /// <exception cref="System.ArgumentNullException">
@@ -331,15 +331,15 @@ namespace ELTE.AEGIS.Algorithms
         /// or
         /// The second polygon is invalid.
         /// </exception>
-        public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> first, IReadOnlyList<Coordinate> second, Boolean computeExternalClips, PrecisionModel precisionModel)
+        public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> polygonA, IReadOnlyList<Coordinate> polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
-            if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPolygonIsNull);
-            if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPolygonIsNull);
+            if (polygonA == null)
+                throw new ArgumentNullException(nameof(polygonA), Messages.FirstPolygonIsNull);
+            if (polygonB == null)
+                throw new ArgumentNullException(nameof(polygonB), Messages.SecondPolygonIsNull);
 
-            this.polygonA = new BasicProxyPolygon(first);
-            this.polygonB = new BasicProxyPolygon(second);
+            this.polygonA = new BasicProxyPolygon(polygonA);
+            this.polygonB = new BasicProxyPolygon(polygonB);
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -348,10 +348,10 @@ namespace ELTE.AEGIS.Algorithms
         /// <summary>
         /// Initializes a new instance of the <see cref="GreinerHormannAlgorithm" /> class.
         /// </summary>
-        /// <param name="firstShell">The shell of the first polygon (in counter-clockwise order).</param>
-        /// <param name="firstHoles">The holes in the first polygon (in clockwise order).</param>
-        /// <param name="secondShell">The shell of the second polygon (in counter-clockwise order).</param>
-        /// <param name="secondHoles">The holes in the second polygon (in clockwise order).</param>
+        /// <param name="polygonAShell">The shell of the first polygon (in counter-clockwise order).</param>
+        /// <param name="polygonAHoles">The holes in the first polygon (in clockwise order).</param>
+        /// <param name="polygonBShell">The shell of the second polygon (in counter-clockwise order).</param>
+        /// <param name="polygonBHoles">The holes in the second polygon (in clockwise order).</param>
         /// <param name="computeExternalClips">A value indicating whether to compute the external clips.</param>
         /// <param name="precisionModel">The precision model.</param>
         /// <exception cref="System.ArgumentNullException">
@@ -360,17 +360,17 @@ namespace ELTE.AEGIS.Algorithms
         /// The second polygon is null.
         /// </exception>
         /// <exception cref="System.NotSupportedException">Self-intersecting polygons are not (yet) supported by the Greiner-Hormann algorithm.</exception>
-        public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> firstShell, IEnumerable<IReadOnlyList<Coordinate>> firstHoles,
-                                       IReadOnlyList<Coordinate> secondShell, IEnumerable<IReadOnlyList<Coordinate>> secondHoles,
+        public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> polygonAShell, IEnumerable<IReadOnlyList<Coordinate>> polygonAHoles,
+                                       IReadOnlyList<Coordinate> polygonBShell, IEnumerable<IReadOnlyList<Coordinate>> polygonBHoles,
                                        Boolean computeExternalClips, PrecisionModel precisionModel)
         {
-            if (firstShell == null)
-                throw new ArgumentNullException(nameof(firstShell), Messages.FirstPolygonIsNull);
-            if (secondShell == null)
-                throw new ArgumentNullException(nameof(secondShell), Messages.SecondPolygonIsNull);
+            if (polygonAShell == null)
+                throw new ArgumentNullException(nameof(polygonAShell), Messages.FirstPolygonIsNull);
+            if (polygonBShell == null)
+                throw new ArgumentNullException(nameof(polygonBShell), Messages.SecondPolygonIsNull);
 
-            this.polygonA = new BasicProxyPolygon(firstShell, firstHoles);
-            this.polygonB = new BasicProxyPolygon(secondShell, secondHoles);
+            this.polygonA = new BasicProxyPolygon(polygonAShell, polygonAHoles);
+            this.polygonB = new BasicProxyPolygon(polygonBShell, polygonBHoles);
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -390,13 +390,13 @@ namespace ELTE.AEGIS.Algorithms
         /// Gets the first polygon.
         /// </summary>
         /// <value>The first polygon.</value>
-        public IBasicPolygon FirstPolygon { get { return this.polygonA; } }
+        public IBasicPolygon PolygonA { get { return this.polygonA; } }
 
         /// <summary>
         /// Gets the second polygon.
         /// </summary>
         /// <value>The second polygon.</value>
-        public IBasicPolygon SecondPolygon { get { return this.polygonB; } }
+        public IBasicPolygon PolygonB { get { return this.polygonB; } }
 
         /// <summary>
         /// Gets or sets a value indicating whether a value indicating whether to compute the external clips of the polygons.
@@ -450,7 +450,7 @@ namespace ELTE.AEGIS.Algorithms
         /// Gets the external clips for the first polygon.
         /// </summary>
         /// <value>The list of polygons representing the external clips of the first subject polygon.</value>
-        public IReadOnlyList<IBasicPolygon> ExternalFirstPolygons
+        public IReadOnlyList<IBasicPolygon> ExternalPolygonsA
         {
             get
             {
@@ -468,7 +468,7 @@ namespace ELTE.AEGIS.Algorithms
         /// Gets the external clips for the second polygon.
         /// </summary>
         /// <value>The list of polygons representing the external clips of the second subject polygon.</value>
-        public IReadOnlyList<IBasicPolygon> ExternalSecondPolygons
+        public IReadOnlyList<IBasicPolygon> ExternalPolygonsB
         {
             get
             {
@@ -1066,8 +1066,10 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private void ComputeCompleteClips()
         {
-            Boolean isAinB = this.polygonA.Shell.All(position => !WindingNumberAlgorithm.InExterior(this.polygonB.Shell, position, this.PrecisionModel));
-            Boolean isBinA = this.polygonB.Shell.All(position => !WindingNumberAlgorithm.InExterior(this.polygonA.Shell, position, this.PrecisionModel));
+            Boolean isAinB = this.polygonA.Shell.All(coordinate => !WindingNumberAlgorithm.InExterior(this.polygonB.Shell, coordinate, this.PrecisionModel))
+                && (this.polygonB.HoleCount == 0 || this.polygonB.Holes.Any(hole => this.polygonA.Shell.Any(coordinate => WindingNumberAlgorithm.InExterior(hole, coordinate, this.PrecisionModel))));
+            Boolean isBinA = this.polygonB.Shell.All(coordinate => !WindingNumberAlgorithm.InExterior(this.polygonA.Shell, coordinate, this.PrecisionModel))
+                && (this.polygonA.HoleCount == 0 || this.polygonA.Holes.Any(hole => this.polygonB.Shell.Any(coordinate => WindingNumberAlgorithm.InExterior(hole, coordinate, this.PrecisionModel))));
 
             List<Coordinate> finalShellA = this.listA.ToList();
             finalShellA.Add(finalShellA[0]);
@@ -1216,36 +1218,34 @@ namespace ELTE.AEGIS.Algorithms
         /// <param name="holes">Possibly degenerate holes to process and locate.</param>
         private void ComputeExternalHoles(List<PolygonClip> polygons, List<IBasicLineString> holes)
         {
-            List<IBasicLineString> processedHoles = new List<IBasicLineString>();
-            while (holes.Count > 0)
+            List<IBasicLineString> currentHoles = new List<IBasicLineString>(holes);
+            foreach (IBasicLineString hole in currentHoles)
             {
                 Boolean intersected = false;
-                for (Int32 i = 0; i < polygons.Count; ++i)
+                for (Int32 index = 0; index < polygons.Count; ++index)
                 {
-                    if (ShamosHoeyAlgorithm.Intersects(new[] { polygons[i].Shell, holes[0] }, this.PrecisionModel))
+                    if (ShamosHoeyAlgorithm.Intersects(new[] { polygons[index].Shell, hole }, this.PrecisionModel))
                     {
-                        GreinerHormannAlgorithm clipping = new GreinerHormannAlgorithm(polygons[i].Shell, holes[0], true, this.PrecisionModel);
+                        GreinerHormannAlgorithm clipping = new GreinerHormannAlgorithm(polygons[index].Shell, hole, true, this.PrecisionModel);
                         clipping.Compute();
 
                         polygons.AddRange(clipping.externalClipsA);
-                        polygons.RemoveAt(i);
+                        polygons.RemoveAt(index);
 
                         intersected = true;
                         break;
                     }
                 }
 
-                if (!intersected)
-                    processedHoles.Add(holes[0]);
-                holes.RemoveAt(0);
+                if (intersected)
+                    holes.Remove(hole);
             }
-
-            holes.AddRange(processedHoles);
 
             foreach (IBasicLineString hole in holes)
             {
-                PolygonClip containerClip = polygons.First(clip => hole.All(coordinate => !WindingNumberAlgorithm.InExterior(clip.Shell, coordinate, this.PrecisionModel)));
-                containerClip.AddHole(hole);
+                PolygonClip containerClip = polygons.FirstOrDefault(clip => hole.All(coordinate => !WindingNumberAlgorithm.InExterior(clip.Shell, coordinate, this.PrecisionModel)));
+                if (containerClip != null)
+                    containerClip.AddHole(hole);
             }
         }
 
