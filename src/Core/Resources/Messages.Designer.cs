@@ -116,6 +116,33 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The convexity ratio is greater than 1..
+        /// </summary>
+        internal static string ConvexityRatioGreaterThan1 {
+            get {
+                return ResourceManager.GetString("ConvexityRatioGreaterThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The convexity ratio is less than 0..
+        /// </summary>
+        internal static string ConvexityRatioLessThan0 {
+            get {
+                return ResourceManager.GetString("ConvexityRatioLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of coordinates is less than 3..
+        /// </summary>
+        internal static string CoordinateCountLessThan3 {
+            get {
+                return ResourceManager.GetString("CoordinateCountLessThan3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate is null..
         /// </summary>
         internal static string CoordinateIsNull {
@@ -166,6 +193,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string EnvelopeIsNull {
             get {
                 return ResourceManager.GetString("EnvelopeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The envelope&apos;s minimum coordinate is greater than the maximum coordinate..
+        /// </summary>
+        internal static string EnvelopeMinIsGreaterThanMax {
+            get {
+                return ResourceManager.GetString("EnvelopeMinIsGreaterThanMax", resourceCulture);
             }
         }
         

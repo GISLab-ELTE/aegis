@@ -57,6 +57,7 @@
     <Compile Include="Algorithms\MinkowskiSumAlgorithm.cs" />
     <Compile Include="Algorithms\PolygonAlgorithms.cs" />
     <Compile Include="Algorithms\PolygonCentroidAlgorithm.cs" />
+    <Compile Include="Algorithms\RandomPolygonGenerator.cs" />
     <Compile Include="Algorithms\ShamosHoeyAlgorithm.cs" />
     <Compile Include="Algorithms\SweepLines\EndPointEvent.cs" />
     <Compile Include="Algorithms\SweepLines\Event.cs" />

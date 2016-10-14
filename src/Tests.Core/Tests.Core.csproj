@@ -63,6 +63,7 @@
     <Compile Include="Algorithms\MinkowskiSumAlgorithmTest.cs" />
     <Compile Include="Algorithms\PolygonAlgorithmsTest.cs" />
     <Compile Include="Algorithms\PolygonCentroidAlgorithmTest.cs" />
+    <Compile Include="Algorithms\RandomPolygonGeneratorTest.cs" />
     <Compile Include="Algorithms\ShamosHoeyAlgorithmTest.cs" />
     <Compile Include="Algorithms\WindingNumberAlgorithmTest.cs" />
     <Compile Include="CoordinateTest.cs" />

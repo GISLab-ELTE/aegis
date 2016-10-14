@@ -324,4 +324,16 @@
   <data name="ClippingWindowIsNull" xml:space="preserve">
     <value>The clipping window is null.</value>
   </data>
+  <data name="ConvexityRatioGreaterThan1" xml:space="preserve">
+    <value>The convexity ratio is greater than 1.</value>
+  </data>
+  <data name="ConvexityRatioLessThan0" xml:space="preserve">
+    <value>The convexity ratio is less than 0.</value>
+  </data>
+  <data name="CoordinateCountLessThan3" xml:space="preserve">
+    <value>The number of coordinates is less than 3.</value>
+  </data>
+  <data name="EnvelopeMinIsGreaterThanMax" xml:space="preserve">
+    <value>The envelope's minimum coordinate is greater than the maximum coordinate.</value>
+  </data>
 </root>
