@@ -61,6 +61,7 @@
     <Compile Include="Algorithms\LiangBarskyAlgorithmTest.cs" />
     <Compile Include="Algorithms\LineAlgorithmsTest.cs" />
     <Compile Include="Algorithms\MinkowskiSumAlgorithmTest.cs" />
+    <Compile Include="Algorithms\MonotoneSubdivisionAlgorithmTest.cs" />
     <Compile Include="Algorithms\PolygonAlgorithmsTest.cs" />
     <Compile Include="Algorithms\PolygonCentroidAlgorithmTest.cs" />
     <Compile Include="Algorithms\RandomPolygonGeneratorTest.cs" />
