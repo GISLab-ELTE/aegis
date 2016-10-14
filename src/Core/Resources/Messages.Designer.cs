@@ -98,6 +98,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The clipping window is null..
+        /// </summary>
+        internal static string ClippingWindowIsNull {
+            get {
+                return ResourceManager.GetString("ClippingWindowIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The collection is null..
         /// </summary>
         internal static string CollectionIsNull {

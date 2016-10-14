@@ -54,9 +54,11 @@
   <ItemGroup>
     <Compile Include="Algorithms\BentleyFaustPreparataAlgorithmTest.cs" />
     <Compile Include="Algorithms\BentleyOttmannAlgorithmTest.cs" />
+    <Compile Include="Algorithms\CohenSutherlandAlgorithmTest.cs" />
     <Compile Include="Algorithms\DouglasPeuckerAlgorithmTest.cs" />
     <Compile Include="Algorithms\GrahamScanAlgorithmTest.cs" />
     <Compile Include="Algorithms\GreinerHormannAlgorithmTest.cs" />
+    <Compile Include="Algorithms\LiangBarskyAlgorithmTest.cs" />
     <Compile Include="Algorithms\LineAlgorithmsTest.cs" />
     <Compile Include="Algorithms\MinkowskiSumAlgorithmTest.cs" />
     <Compile Include="Algorithms\PolygonAlgorithmsTest.cs" />

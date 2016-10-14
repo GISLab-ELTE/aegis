@@ -321,4 +321,7 @@
   <data name="MinimumNumberOfChildNodesIsLessThan1" xml:space="preserve">
     <value>The minimum number of child nodes is less than 1.</value>
   </data>
+  <data name="ClippingWindowIsNull" xml:space="preserve">
+    <value>The clipping window is null.</value>
+  </data>
 </root>
