@@ -101,6 +101,7 @@
     <Compile Include="IBasicPolygon.cs" />
     <Compile Include="ICurve.cs" />
     <Compile Include="IdentifiedObject.cs" />
+    <Compile Include="IdentifiedObjectAttribute.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="IGeometry.cs" />
     <Compile Include="IGeometryCollection.cs" />
