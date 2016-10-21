@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace ELTE.AEGIS.Reference
 {
     using System;
     using ELTE.AEGIS.Numerics;
@@ -397,92 +397,92 @@ namespace ELTE.AEGIS
         public static UnitOfMeasurement BinWidth82Feet { get { return binWidth82Feet.Value; } }
 
         /// <summary>
-        /// Gets british chain (Benoit 1895 A).
+        /// Gets British chain (Benoit 1895 A).
         /// </summary>
         public static UnitOfMeasurement BritishChainBenoit1895A { get { return britishChainBenoit1895A.Value; } }
 
         /// <summary>
-        /// Gets british chain (Benoit 1895 B).
+        /// Gets British chain (Benoit 1895 B).
         /// </summary>
         public static UnitOfMeasurement BritishChainBenoit1895B { get { return britishChainBenoit1895B.Value; } }
 
         /// <summary>
-        /// Gets british chain (Sears 1922).
+        /// Gets British chain (Sears 1922).
         /// </summary>
         public static UnitOfMeasurement BritishChainSears1922 { get { return britishChainSears1922.Value; } }
 
         /// <summary>
-        /// Gets british chain (Sears 1922 truncated).
+        /// Gets British chain (Sears 1922 truncated).
         /// </summary>
         public static UnitOfMeasurement BritishChainSears1922T { get { return britishChainSears1922T.Value; } }
 
         /// <summary>
-        /// Gets british foot (1865).
+        /// Gets British foot (1865).
         /// </summary>
         public static UnitOfMeasurement BritishFoot1865 { get { return britishFoot1865.Value; } }
 
         /// <summary>
-        /// Gets british foot (1936).
+        /// Gets British foot (1936).
         /// </summary>
         public static UnitOfMeasurement BritishFoot1936 { get { return britishFoot1936.Value; } }
 
         /// <summary>
-        /// Gets british foot (Benoit 1895 A).
+        /// Gets British foot (Benoit 1895 A).
         /// </summary>
         public static UnitOfMeasurement BritishFootBenoit1895A { get { return britishFootBenoit1895A.Value; } }
 
         /// <summary>
-        /// Gets british foot (Benoit 1895 B).
+        /// Gets British foot (Benoit 1895 B).
         /// </summary>
         public static UnitOfMeasurement BritishFootBenoit1895B { get { return britishFootBenoit1895B.Value; } }
 
         /// <summary>
-        /// Gets british foot (Sears 1922).
+        /// Gets British foot (Sears 1922).
         /// </summary>
         public static UnitOfMeasurement BritishFootSears1922 { get { return britishFootSears1922.Value; } }
 
         /// <summary>
-        /// Gets british foot (Sears 1922 truncated).
+        /// Gets British foot (Sears 1922 truncated).
         /// </summary>
         public static UnitOfMeasurement BritishFootSears1922T { get { return britishFootSears1922T.Value; } }
 
         /// <summary>
-        /// Gets british link (Benoit 1895 A).
+        /// Gets British link (Benoit 1895 A).
         /// </summary>
         public static UnitOfMeasurement BritishLinkBenoit1895A { get { return britishLinkBenoit1895A.Value; } }
 
         /// <summary>
-        /// Gets british link (Benoit 1895 B).
+        /// Gets British link (Benoit 1895 B).
         /// </summary>
         public static UnitOfMeasurement BritishLinkBenoit1895B { get { return britishLinkBenoit1895B.Value; } }
 
         /// <summary>
-        /// Gets british link (Sears 1922).
+        /// Gets British link (Sears 1922).
         /// </summary>
         public static UnitOfMeasurement BritishLinkSears1922 { get { return britishLinkSears1922.Value; } }
 
         /// <summary>
-        /// Gets british link (Sears 1922 truncated).
+        /// Gets British link (Sears 1922 truncated).
         /// </summary>
         public static UnitOfMeasurement BritishLinkSears1922T { get { return britishLinkSears1922T.Value; } }
 
         /// <summary>
-        /// Gets british yard (Benoit 1895 A).
+        /// Gets British yard (Benoit 1895 A).
         /// </summary>
         public static UnitOfMeasurement BritishYardBenoit1895A { get { return britishYardBenoit1895A.Value; } }
 
         /// <summary>
-        /// Gets british yard (Benoit 1895 B).
+        /// Gets British yard (Benoit 1895 B).
         /// </summary>
         public static UnitOfMeasurement BritishYardBenoit1895B { get { return britishYardBenoit1895B.Value; } }
 
         /// <summary>
-        /// Gets british yard (Sears 1922).
+        /// Gets British yard (Sears 1922).
         /// </summary>
         public static UnitOfMeasurement BritishYardSears1922 { get { return britishYardSears1922.Value; } }
 
         /// <summary>
-        /// Gets british yard (Sears 1922 truncated).
+        /// Gets British yard (Sears 1922 truncated).
         /// </summary>
         public static UnitOfMeasurement BritishYardSears1922T { get { return britishYardSears1922T.Value; } }
 
@@ -497,22 +497,22 @@ namespace ELTE.AEGIS
         public static UnitOfMeasurement Chain { get { return chain.Value; } }
 
         /// <summary>
-        /// Gets clarke's chain.
+        /// Gets Clarke's chain.
         /// </summary>
         public static UnitOfMeasurement ClarkesChain { get { return clarkesChain.Value; } }
 
         /// <summary>
-        /// Gets clarke's foot.
+        /// Gets Clarke's foot.
         /// </summary>
         public static UnitOfMeasurement ClarkesFoot { get { return clarkesFoot.Value; } }
 
         /// <summary>
-        /// Gets clarke's link.
+        /// Gets Clarke's link.
         /// </summary>
         public static UnitOfMeasurement ClarkesLink { get { return clarkesLink.Value; } }
 
         /// <summary>
-        /// Gets clarke's yard.
+        /// Gets Clarke's yard.
         /// </summary>
         public static UnitOfMeasurement ClarkesYard { get { return clarkesYard.Value; } }
 
@@ -527,7 +527,7 @@ namespace ELTE.AEGIS
         public static UnitOfMeasurement Foot { get { return foot.Value; } }
 
         /// <summary>
-        /// Gets german legal metre.
+        /// Gets German legal metre.
         /// </summary>
         public static UnitOfMeasurement GermanLegalMetre { get { return germanLegalMetre.Value; } }
 
@@ -537,42 +537,42 @@ namespace ELTE.AEGIS
         public static UnitOfMeasurement GoldCoastFoot { get { return goldCoastFoot.Value; } }
 
         /// <summary>
-        /// Gets indian foot.
+        /// Gets Indian foot.
         /// </summary>
         public static UnitOfMeasurement IndianFoot { get { return indianFoot.Value; } }
 
         /// <summary>
-        /// Gets indian foot (1937).
+        /// Gets Indian foot (1937).
         /// </summary>
         public static UnitOfMeasurement IndianFoot1937 { get { return indianFoot1937.Value; } }
 
         /// <summary>
-        /// Gets indian foot (1962).
+        /// Gets Indian foot (1962).
         /// </summary>
         public static UnitOfMeasurement IndianFoot1962 { get { return indianFoot1962.Value; } }
 
         /// <summary>
-        /// Gets indian foot (1975).
+        /// Gets Indian foot (1975).
         /// </summary>
         public static UnitOfMeasurement IndianFoot1975 { get { return indianFoot1975.Value; } }
 
         /// <summary>
-        /// Gets indian yard.
+        /// Gets Indian yard.
         /// </summary>
         public static UnitOfMeasurement IndianYard { get { return indianYard.Value; } }
 
         /// <summary>
-        /// Gets indian yard (1937).
+        /// Gets Indian yard (1937).
         /// </summary>
         public static UnitOfMeasurement IndianYard1937 { get { return indianYard1937.Value; } }
 
         /// <summary>
-        /// Gets indian yard (1962).
+        /// Gets Indian yard (1962).
         /// </summary>
         public static UnitOfMeasurement IndianYard1962 { get { return indianYard1962.Value; } }
 
         /// <summary>
-        /// Gets indian yard (1975).
+        /// Gets Indian yard (1975).
         /// </summary>
         public static UnitOfMeasurement IndianYard1975 { get { return indianYard1975.Value; } }
 

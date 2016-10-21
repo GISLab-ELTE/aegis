@@ -3,6 +3,7 @@
   "dependencies": {
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
     "NETStandard.Library": "1.6.0",
+    "SimpleInjector": "3.2.3",
     "StyleCop.Analyzers": "1.0.0"
   },
   "frameworks": {

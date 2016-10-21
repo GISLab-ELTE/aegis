@@ -8,7 +8,7 @@
     <ProjectGuid>{CE2D71C9-2638-4C9D-A179-F8DDE05B584B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ELTE.AEGIS</RootNamespace>
+    <RootNamespace>ELTE.AEGIS.Reference</RootNamespace>
     <AssemblyName>AEGIS.Core.Reference</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -43,7 +43,39 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs" />
+    <Compile Include="Angles.cs" />
+    <Compile Include="AreaOfUse.cs" />
+    <Compile Include="AxisDirection.cs" />
+    <Compile Include="CompoundCoordinateOperationMethod.cs" />
+    <Compile Include="CompoundReferenceSystem.cs" />
+    <Compile Include="CoordinateConversion.cs" />
+    <Compile Include="CoordinateOperation.cs" />
+    <Compile Include="CoordinateOperationMethod.cs" />
+    <Compile Include="CoordinateOperationParameter.cs" />
+    <Compile Include="CoordinateProjection.cs" />
+    <Compile Include="CoordinateReferenceSystem.cs" />
+    <Compile Include="CoordinateSystem.cs" />
+    <Compile Include="CoordinateSystemAxis.cs" />
+    <Compile Include="CoordinateSystemType.cs" />
+    <Compile Include="CoordinateTransformation.cs" />
+    <Compile Include="Datum.cs" />
+    <Compile Include="Ellipsoid.cs" />
+    <Compile Include="EllipsoidComputations.cs" />
+    <Compile Include="EllipsoidHemisphere.cs" />
+    <Compile Include="GeocentricCoordinateReferenceSystem.cs" />
+    <Compile Include="GeoCoordinate.cs" />
+    <Compile Include="GeodeticDatum.cs" />
+    <Compile Include="GeoEnvelope.cs" />
+    <Compile Include="GeographicCoordinateReferenceSystem.cs" />
+    <Compile Include="GeoVector.cs" />
+    <Compile Include="Length.cs" />
+    <Compile Include="Meridian.cs" />
+    <Compile Include="OperationAspect.cs" />
+    <Compile Include="ProjectedCoordinateReferenceSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceSystem.cs" />
+    <Compile Include="ReferenceSystemType.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,12 +84,9 @@
     <Compile Include="UnitOfMeasurement.cs" />
     <Compile Include="UnitQuantityType.cs" />
     <Compile Include="UnitsOfMeasurement.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="VerticalCoordinateReferenceSystem.cs" />
+    <Compile Include="VerticalDatum.cs" />
+    <Compile Include="VerticalDatumType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collections\Collections.csproj">
@@ -72,6 +101,12 @@
       <Project>{1565f958-fc9d-4670-92e2-ca09025014cb}</Project>
       <Name>Numerics</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

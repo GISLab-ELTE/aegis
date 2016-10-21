@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace ELTE.AEGIS.Reference
 {
     using System;
-    using ELTE.AEGIS.Resources;
+    using ELTE.AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a unit of measurement (UOM).

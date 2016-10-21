@@ -1,4 +1,4 @@
-﻿// <copyright file="UnitQuantityType.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="EllipsoidHemisphere.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -15,28 +15,23 @@
 namespace ELTE.AEGIS.Reference
 {
     /// <summary>
-    /// Defines the measurement quantity types.
+    /// Defines the ellipsoid hemispheres.
     /// </summary>
-    public enum UnitQuantityType
+    public enum EllipsoidHemisphere
     {
         /// <summary>
-        /// Indicates that the unit is a length measure.
+        /// The north hemisphere.
         /// </summary>
-        Length,
+        North,
 
         /// <summary>
-        /// Indicates that the unit is an angular measure.
+        /// The south hemisphere.
         /// </summary>
-        Angle,
+        South,
 
         /// <summary>
-        /// Indicates that the unit is a time measure.
+        /// The equator.
         /// </summary>
-        Time,
-
-        /// <summary>
-        /// Indicates that the unit is a scale measure.
-        /// </summary>
-        Scale
+        Equador
     }
 }

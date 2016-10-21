@@ -1,4 +1,4 @@
-﻿// <copyright file="UnitQuantityType.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="OperationAspect.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -15,28 +15,33 @@
 namespace ELTE.AEGIS.Reference
 {
     /// <summary>
-    /// Defines the measurement quantity types.
+    /// Defines the ellipsoidal application aspects of operation.
     /// </summary>
-    public enum UnitQuantityType
+    public enum OperationAspect
     {
         /// <summary>
-        /// Indicates that the unit is a length measure.
+        /// North polar case.
         /// </summary>
-        Length,
+        NorthPolar,
 
         /// <summary>
-        /// Indicates that the unit is an angular measure.
+        /// South polar case.
         /// </summary>
-        Angle,
+        SouthPolar,
 
         /// <summary>
-        /// Indicates that the unit is a time measure.
+        /// Oblique case.
         /// </summary>
-        Time,
+        Oblique,
 
         /// <summary>
-        /// Indicates that the unit is a scale measure.
+        /// Equatorial case.
         /// </summary>
-        Scale
+        Equatorial,
+
+        /// <summary>
+        /// Undefined case.
+        /// </summary>
+        Undefined
     }
 }

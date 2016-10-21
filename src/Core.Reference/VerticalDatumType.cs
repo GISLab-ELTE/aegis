@@ -1,4 +1,4 @@
-﻿// <copyright file="UnitQuantityType.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="VerticalDatumType.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -15,28 +15,23 @@
 namespace ELTE.AEGIS.Reference
 {
     /// <summary>
-    /// Defines the measurement quantity types.
+    /// Defines the subtypes of vertical datum.
     /// </summary>
-    public enum UnitQuantityType
+    public enum VerticalDatumType
     {
         /// <summary>
-        /// Indicates that the unit is a length measure.
+        /// Unknown datum.
         /// </summary>
-        Length,
+        Unknown,
 
         /// <summary>
-        /// Indicates that the unit is an angular measure.
+        /// Ellipsoidal datum.
         /// </summary>
-        Angle,
+        Ellipsoidal,
 
         /// <summary>
-        /// Indicates that the unit is a time measure.
+        /// Orthometric datum.
         /// </summary>
-        Time,
-
-        /// <summary>
-        /// Indicates that the unit is a scale measure.
-        /// </summary>
-        Scale
+        Orthometric
     }
 }

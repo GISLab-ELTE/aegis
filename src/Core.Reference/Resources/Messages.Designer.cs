@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ELTE.AEGIS.Resources {
+namespace ELTE.AEGIS.Reference.Resources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace ELTE.AEGIS.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Resources.Messages", typeof(Messages).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Reference.Resources.Messages", typeof(Messages).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,11 +62,515 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The array of angles is null..
+        /// </summary>
+        internal static string AngleArrayIsNull {
+            get {
+                return ResourceManager.GetString("AngleArrayIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The collection of angles is null..
+        /// </summary>
+        internal static string AngleCollectionIsNull {
+            get {
+                return ResourceManager.GetString("AngleCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The angular unit of measurement is invalid..
+        /// </summary>
+        internal static string AngularUnitOfMeasurementIsInvalid {
+            get {
+                return ResourceManager.GetString("AngularUnitOfMeasurementIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The angular unit of measurement is null..
+        /// </summary>
+        internal static string AngularUnitOfMeasurementIsNull {
+            get {
+                return ResourceManager.GetString("AngularUnitOfMeasurementIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The area of use is null..
+        /// </summary>
+        internal static string AreaOfUseIsNull {
+            get {
+                return ResourceManager.GetString("AreaOfUseIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The coordinate system does not contain an axis with the specified name..
+        /// </summary>
+        internal static string AxisNameIsInvalid {
+            get {
+                return ResourceManager.GetString("AxisNameIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The axis name is null..
+        /// </summary>
+        internal static string AxisNameIsNull {
+            get {
+                return ResourceManager.GetString("AxisNameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The base multiple is 0..
         /// </summary>
         internal static string BaseMultipleIs0 {
             get {
                 return ResourceManager.GetString("BaseMultipleIs0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The base reference system is null..
+        /// </summary>
+        internal static string BaseReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("BaseReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The coordinate is null..
+        /// </summary>
+        internal static string CoordinateIsNull {
+            get {
+                return ResourceManager.GetString("CoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No coordinates are specified..
+        /// </summary>
+        internal static string CoordinatesAreNull {
+            get {
+                return ResourceManager.GetString("CoordinatesAreNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The coordinate system is null..
+        /// </summary>
+        internal static string CoordinateSystemIsNull {
+            get {
+                return ResourceManager.GetString("CoordinateSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The datum is null..
+        /// </summary>
+        internal static string DatumIsNull {
+            get {
+                return ResourceManager.GetString("DatumIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The destination coordinate is null..
+        /// </summary>
+        internal static string DestinationCoordinateIsNull {
+            get {
+                return ResourceManager.GetString("DestinationCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The eccentricity is equal to or less than 0..
+        /// </summary>
+        internal static string EccentricityIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("EccentricityIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The eccentricity greater than 1..
+        /// </summary>
+        internal static string EccentricityIsGreaterThan1 {
+            get {
+                return ResourceManager.GetString("EccentricityIsGreaterThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ellipsoid is null..
+        /// </summary>
+        internal static string EllipsoidIsNull {
+            get {
+                return ResourceManager.GetString("EllipsoidIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The flattening is equal to or less than 0..
+        /// </summary>
+        internal static string FlatteningIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("FlatteningIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The flattening greater than 1..
+        /// </summary>
+        internal static string FlatteningIsGreaterThan1 {
+            get {
+                return ResourceManager.GetString("FlatteningIsGreaterThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The identifier is null..
+        /// </summary>
+        internal static string IdentifierIsNull {
+            get {
+                return ResourceManager.GetString("IdentifierIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The index is equal to or greater than the number of axis..
+        /// </summary>
+        internal static string IndexEqualToOrGreaterThanAxisCount {
+            get {
+                return ResourceManager.GetString("IndexEqualToOrGreaterThanAxisCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The index is less than 0..
+        /// </summary>
+        internal static string IndexIsLessThan0 {
+            get {
+                return ResourceManager.GetString("IndexIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The inverse flattening is less than 1..
+        /// </summary>
+        internal static string InverseFlatteningLessThan1 {
+            get {
+                return ResourceManager.GetString("InverseFlatteningLessThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The latitude is invalid..
+        /// </summary>
+        internal static string LatitudeInvalid {
+            get {
+                return ResourceManager.GetString("LatitudeInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The array of length values is null..
+        /// </summary>
+        internal static string LengthArrayIsNull {
+            get {
+                return ResourceManager.GetString("LengthArrayIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The collection of length values is null..
+        /// </summary>
+        internal static string LengthCollectionIsNull {
+            get {
+                return ResourceManager.GetString("LengthCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length unit of measurement is invalid..
+        /// </summary>
+        internal static string LengthUnitOfMeasurementIsInvalid {
+            get {
+                return ResourceManager.GetString("LengthUnitOfMeasurementIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length unit of measurement is null..
+        /// </summary>
+        internal static string LengthUnitOfMeasurementIsNull {
+            get {
+                return ResourceManager.GetString("LengthUnitOfMeasurementIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Longitude value is not between -180 and 180 degrees..
+        /// </summary>
+        internal static string LongitudeOutOfRangeDegrees {
+            get {
+                return ResourceManager.GetString("LongitudeOutOfRangeDegrees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Longitude value is not between -PI and +PI radians..
+        /// </summary>
+        internal static string LongitudeOutOfRangeRadians {
+            get {
+                return ResourceManager.GetString("LongitudeOutOfRangeRadians", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum value is equal to or less than the minimum value..
+        /// </summary>
+        internal static string MaximumIsEqualToOrLessThanMinimum {
+            get {
+                return ResourceManager.GetString("MaximumIsEqualToOrLessThanMinimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified method does not contain 3 internal methods..
+        /// </summary>
+        internal static string MethodInternalsNot3 {
+            get {
+                return ResourceManager.GetString("MethodInternalsNot3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified method does not contain 5 internal methods..
+        /// </summary>
+        internal static string MethodInternalsNot5 {
+            get {
+                return ResourceManager.GetString("MethodInternalsNot5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The method is null..
+        /// </summary>
+        internal static string MethodIsNull {
+            get {
+                return ResourceManager.GetString("MethodIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name is null..
+        /// </summary>
+        internal static string NameIsNull {
+            get {
+                return ResourceManager.GetString("NameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No axis is specified for the coordinate system..
+        /// </summary>
+        internal static string NoAxisSpecified {
+            get {
+                return ResourceManager.GetString("NoAxisSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No components are specified..
+        /// </summary>
+        internal static string NoComponentsAreSpecified {
+            get {
+                return ResourceManager.GetString("NoComponentsAreSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No methods are specified..
+        /// </summary>
+        internal static string NoMethodsSpecified {
+            get {
+                return ResourceManager.GetString("NoMethodsSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinate operation is not reversible..
+        /// </summary>
+        internal static string OperationNotReversible {
+            get {
+                return ResourceManager.GetString("OperationNotReversible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The other envelope is null..
+        /// </summary>
+        internal static string OtherEnvelopeIsNull {
+            get {
+                return ResourceManager.GetString("OtherEnvelopeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No general polynomial transformation is available for the given degree..
+        /// </summary>
+        internal static string PolynomialTransformationDegreeIsInvalid {
+            get {
+                return ResourceManager.GetString("PolynomialTransformationDegreeIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The prime meridian is null..
+        /// </summary>
+        internal static string PrimeMeridianIsNull {
+            get {
+                return ResourceManager.GetString("PrimeMeridianIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The projection is null..
+        /// </summary>
+        internal static string ProjectionIsNull {
+            get {
+                return ResourceManager.GetString("ProjectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The semi axis is equal to or less than 0..
+        /// </summary>
+        internal static string SemiAxisIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("SemiAxisIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The semi-major axis is equal to or less than 0..
+        /// </summary>
+        internal static string SemiMajorAxisIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("SemiMajorAxisIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The semi-minor axis is not measured in the same measurement unit as the semi-major axis..
+        /// </summary>
+        internal static string SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit {
+            get {
+                return ResourceManager.GetString("SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The semi-minor axis is grater than the semi-major axis..
+        /// </summary>
+        internal static string SemiMinorAxisGreaterThaneSemiMajorAxis {
+            get {
+                return ResourceManager.GetString("SemiMinorAxisGreaterThaneSemiMajorAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The semi-minor axis is equal to or less than 0..
+        /// </summary>
+        internal static string SemiMinorAxisIsEqualToOrLessThan0 {
+            get {
+                return ResourceManager.GetString("SemiMinorAxisIsEqualToOrLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source coordinate is null..
+        /// </summary>
+        internal static string SourceCoordinateIsNull {
+            get {
+                return ResourceManager.GetString("SourceCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source coordinate reference system is null..
+        /// </summary>
+        internal static string SourceCoordinateReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("SourceCoordinateReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target coordinate reference system is null..
+        /// </summary>
+        internal static string TargetCoordinateReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("TargetCoordinateReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The unit of measurement is not a length measure..
+        /// </summary>
+        internal static string UnitIsNotLength {
+            get {
+                return ResourceManager.GetString("UnitIsNotLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The unit of measurement is null..
+        /// </summary>
+        internal static string UnitIsNull {
+            get {
+                return ResourceManager.GetString("UnitIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The unit of measurement is invalid..
+        /// </summary>
+        internal static string UnitOfMeasurementIsInvalid {
+            get {
+                return ResourceManager.GetString("UnitOfMeasurementIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The unit of measurement is null..
+        /// </summary>
+        internal static string UnitOfMeasurementIsNull {
+            get {
+                return ResourceManager.GetString("UnitOfMeasurementIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vector computation is only supported on sphere..
+        /// </summary>
+        internal static string VectorComputationOnlySupportedOnSphere {
+            get {
+                return ResourceManager.GetString("VectorComputationOnlySupportedOnSphere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vector is null..
+        /// </summary>
+        internal static string VectorIsNull {
+            get {
+                return ResourceManager.GetString("VectorIsNull", resourceCulture);
             }
         }
     }
