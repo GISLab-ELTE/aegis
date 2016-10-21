@@ -278,11 +278,29 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The first collection is null..
+        /// </summary>
+        internal static string FirstCollectionIsNull {
+            get {
+                return ResourceManager.GetString("FirstCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first coordinate is null..
         /// </summary>
         internal static string FirstCoordinateIsNull {
             get {
                 return ResourceManager.GetString("FirstCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first line string is null..
+        /// </summary>
+        internal static string FirstLineStringIsNull {
+            get {
+                return ResourceManager.GetString("FirstLineStringIsNull", resourceCulture);
             }
         }
         
@@ -409,6 +427,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string LineReductionNotSupported {
             get {
                 return ResourceManager.GetString("LineReductionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The line string is null..
+        /// </summary>
+        internal static string LineStringIsNull {
+            get {
+                return ResourceManager.GetString("LineStringIsNull", resourceCulture);
             }
         }
         
@@ -575,6 +602,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The point is null..
+        /// </summary>
+        internal static string PointIsNull {
+            get {
+                return ResourceManager.GetString("PointIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The polygon is null..
         /// </summary>
         internal static string PolygonIsNull {
@@ -593,11 +629,29 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The second collection is null..
+        /// </summary>
+        internal static string SecondCollectionIsNull {
+            get {
+                return ResourceManager.GetString("SecondCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The second Coordinate is null..
         /// </summary>
         internal static string SecondCoordinateIsNull {
             get {
                 return ResourceManager.GetString("SecondCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second line string is null..
+        /// </summary>
+        internal static string SecondLineStringIsNull {
+            get {
+                return ResourceManager.GetString("SecondLineStringIsNull", resourceCulture);
             }
         }
         

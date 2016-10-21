@@ -336,4 +336,22 @@
   <data name="EnvelopeMinIsGreaterThanMax" xml:space="preserve">
     <value>The envelope's minimum coordinate is greater than the maximum coordinate.</value>
   </data>
+  <data name="FirstCollectionIsNull" xml:space="preserve">
+    <value>The first collection is null.</value>
+  </data>
+  <data name="FirstLineStringIsNull" xml:space="preserve">
+    <value>The first line string is null.</value>
+  </data>
+  <data name="LineStringIsNull" xml:space="preserve">
+    <value>The line string is null.</value>
+  </data>
+  <data name="PointIsNull" xml:space="preserve">
+    <value>The point is null.</value>
+  </data>
+  <data name="SecondCollectionIsNull" xml:space="preserve">
+    <value>The second collection is null.</value>
+  </data>
+  <data name="SecondLineStringIsNull" xml:space="preserve">
+    <value>The second line string is null.</value>
+  </data>
 </root>

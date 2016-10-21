@@ -56,6 +56,7 @@
     <Compile Include="Algorithms\BentleyOttmannAlgorithmTest.cs" />
     <Compile Include="Algorithms\CohenSutherlandAlgorithmTest.cs" />
     <Compile Include="Algorithms\DouglasPeuckerAlgorithmTest.cs" />
+    <Compile Include="Algorithms\GeometryDistanceAlgorithmTest.cs" />
     <Compile Include="Algorithms\GrahamScanAlgorithmTest.cs" />
     <Compile Include="Algorithms\GreinerHormannAlgorithmTest.cs" />
     <Compile Include="Algorithms\LiangBarskyAlgorithmTest.cs" />
