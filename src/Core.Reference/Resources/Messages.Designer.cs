@@ -143,6 +143,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The collection is null..
+        /// </summary>
+        internal static string CollectionIsNull {
+            get {
+                return ResourceManager.GetString("CollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate is null..
         /// </summary>
         internal static string CoordinateIsNull {

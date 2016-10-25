@@ -288,4 +288,7 @@
   <data name="LengthCollectionIsNull" xml:space="preserve">
     <value>The collection of length values is null.</value>
   </data>
+  <data name="CollectionIsNull" xml:space="preserve">
+    <value>The collection is null.</value>
+  </data>
 </root>
