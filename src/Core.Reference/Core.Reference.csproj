@@ -47,6 +47,10 @@
     <Compile Include="Angles.cs" />
     <Compile Include="AreaOfUse.cs" />
     <Compile Include="AxisDirection.cs" />
+    <Compile Include="Collections\ICoordinateProjectionCollection.cs" />
+    <Compile Include="Collections\ICoordinateSystemAxisCollection.cs" />
+    <Compile Include="Collections\ICoordinateTransformationCollection.cs" />
+    <Compile Include="Collections\IReferenceCollection.cs" />
     <Compile Include="CompoundCoordinateOperationMethod.cs" />
     <Compile Include="CompoundReferenceSystem.cs" />
     <Compile Include="CoordinateConversion.cs" />
