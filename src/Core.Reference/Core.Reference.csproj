@@ -47,6 +47,8 @@
     <Compile Include="Angles.cs" />
     <Compile Include="AreaOfUse.cs" />
     <Compile Include="AxisDirection.cs" />
+    <Compile Include="Collections\CoordinateOperationMethodCollection.cs" />
+    <Compile Include="Collections\CoordinateOperationParameterCollection.cs" />
     <Compile Include="Collections\Formula\Conversions\GeocentricToTopocentricConversion.cs" />
     <Compile Include="Collections\Formula\Conversions\Geographic3DTo2DConversion.cs" />
     <Compile Include="Collections\Formula\Conversions\GeographicToGeocentricConversion.cs" />
