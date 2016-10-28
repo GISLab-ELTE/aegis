@@ -291,4 +291,40 @@
   <data name="CollectionIsNull" xml:space="preserve">
     <value>The collection is null.</value>
   </data>
+  <data name="AreaOfUseCollectionIsNull" xml:space="preserve">
+    <value>The area of use source is null.</value>
+  </data>
+  <data name="AxisCollectionIsNull" xml:space="preserve">
+    <value>The coordinate system axis collection is null.</value>
+  </data>
+  <data name="BaseReferenceSystemCollectionsIsNull" xml:space="preserve">
+    <value>The base reference system collection is null.</value>
+  </data>
+  <data name="CoordinateProjectionCollectionIsNull" xml:space="preserve">
+    <value>The coordinate projection collection is null.</value>
+  </data>
+  <data name="CoordinateSystemCollectionIsNull" xml:space="preserve">
+    <value>The coordinate system collection is null.</value>
+  </data>
+  <data name="DatumCollectionIsNull" xml:space="preserve">
+    <value>The datum collection is null.</value>
+  </data>
+  <data name="EllipsoidCollectionIsNull" xml:space="preserve">
+    <value>The ellipsoid collection is null.</value>
+  </data>
+  <data name="ReferenceSystemCollectionIsNull" xml:space="preserve">
+    <value>The reference system collection is null.</value>
+  </data>
+  <data name="UnitOfMeasurementCollectionIsNull" xml:space="preserve">
+    <value>The unit of measurement collection is null.</value>
+  </data>
+  <data name="MeridianCollectionIsNull" xml:space="preserve">
+    <value>The meridian collection is null.</value>
+  </data>
+  <data name="MethodCollectionIsNull" xml:space="preserve">
+    <value>The coordinate operation method collection is null.</value>
+  </data>
+  <data name="ParameterCollectionIsNull" xml:space="preserve">
+    <value>The coordinate operation parameter collection is null.</value>
+  </data>
 </root>

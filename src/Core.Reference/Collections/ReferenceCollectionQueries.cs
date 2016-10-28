@@ -579,7 +579,7 @@ namespace ELTE.AEGIS.Reference.Collections
         /// <summary>
         /// Returns whether the specified parameter collections match.
         /// </summary>
-        /// <param name="parameters">The source of  parameters.</param>
+        /// <param name="parameters">The collection of  parameters.</param>
         /// <param name="otherParameters">The other collection of parameters.</param>
         /// <returns><c>true</c> if the collections match; otherwise, <c>false</c>.</returns>
         private static Boolean IsMatching(IEnumerable<CoordinateOperationParameter> parameters, IEnumerable<CoordinateOperationParameter> otherParameters)

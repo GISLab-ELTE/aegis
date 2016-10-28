@@ -98,11 +98,29 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The area of use source is null..
+        /// </summary>
+        internal static string AreaOfUseCollectionIsNull {
+            get {
+                return ResourceManager.GetString("AreaOfUseCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The area of use is null..
         /// </summary>
         internal static string AreaOfUseIsNull {
             get {
                 return ResourceManager.GetString("AreaOfUseIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The coordinate system axis collection is null..
+        /// </summary>
+        internal static string AxisCollectionIsNull {
+            get {
+                return ResourceManager.GetString("AxisCollectionIsNull", resourceCulture);
             }
         }
         
@@ -134,6 +152,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The base reference system collection is null..
+        /// </summary>
+        internal static string BaseReferenceSystemCollectionsIsNull {
+            get {
+                return ResourceManager.GetString("BaseReferenceSystemCollectionsIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The base reference system is null..
         /// </summary>
         internal static string BaseReferenceSystemIsNull {
@@ -161,6 +188,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The coordinate projection collection is null..
+        /// </summary>
+        internal static string CoordinateProjectionCollectionIsNull {
+            get {
+                return ResourceManager.GetString("CoordinateProjectionCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No coordinates are specified..
         /// </summary>
         internal static string CoordinatesAreNull {
@@ -170,11 +206,29 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The coordinate system collection is null..
+        /// </summary>
+        internal static string CoordinateSystemCollectionIsNull {
+            get {
+                return ResourceManager.GetString("CoordinateSystemCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate system is null..
         /// </summary>
         internal static string CoordinateSystemIsNull {
             get {
                 return ResourceManager.GetString("CoordinateSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The datum collection is null..
+        /// </summary>
+        internal static string DatumCollectionIsNull {
+            get {
+                return ResourceManager.GetString("DatumCollectionIsNull", resourceCulture);
             }
         }
         
@@ -211,6 +265,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         internal static string EccentricityIsGreaterThan1 {
             get {
                 return ResourceManager.GetString("EccentricityIsGreaterThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ellipsoid collection is null..
+        /// </summary>
+        internal static string EllipsoidCollectionIsNull {
+            get {
+                return ResourceManager.GetString("EllipsoidCollectionIsNull", resourceCulture);
             }
         }
         
@@ -350,6 +413,24 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The meridian collection is null..
+        /// </summary>
+        internal static string MeridianCollectionIsNull {
+            get {
+                return ResourceManager.GetString("MeridianCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The coordinate operation method collection is null..
+        /// </summary>
+        internal static string MethodCollectionIsNull {
+            get {
+                return ResourceManager.GetString("MethodCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified method does not contain 3 internal methods..
         /// </summary>
         internal static string MethodInternalsNot3 {
@@ -431,6 +512,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The coordinate operation parameter collection is null..
+        /// </summary>
+        internal static string ParameterCollectionIsNull {
+            get {
+                return ResourceManager.GetString("ParameterCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No general polynomial transformation is available for the given degree..
         /// </summary>
         internal static string PolynomialTransformationDegreeIsInvalid {
@@ -454,6 +544,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         internal static string ProjectionIsNull {
             get {
                 return ResourceManager.GetString("ProjectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reference system collection is null..
+        /// </summary>
+        internal static string ReferenceSystemCollectionIsNull {
+            get {
+                return ResourceManager.GetString("ReferenceSystemCollectionIsNull", resourceCulture);
             }
         }
         
@@ -544,6 +643,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         internal static string UnitIsNull {
             get {
                 return ResourceManager.GetString("UnitIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The unit of measurement collection is null..
+        /// </summary>
+        internal static string UnitOfMeasurementCollectionIsNull {
+            get {
+                return ResourceManager.GetString("UnitOfMeasurementCollectionIsNull", resourceCulture);
             }
         }
         
