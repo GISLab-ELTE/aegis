@@ -127,6 +127,7 @@
     <Compile Include="Collections\ICoordinateSystemAxisCollection.cs" />
     <Compile Include="Collections\ICoordinateTransformationCollection.cs" />
     <Compile Include="Collections\IReferenceCollection.cs" />
+    <Compile Include="Collections\IReferenceCollectionContainer.cs" />
     <Compile Include="Collections\Local\LocalCompoundReferenceSystemCollection.cs" />
     <Compile Include="Collections\Local\LocalCoordinateProjectionCollection.cs" />
     <Compile Include="Collections\Local\LocalCoordinateReferenceSystemCollection.cs" />
@@ -142,9 +143,11 @@
     <Compile Include="Collections\Local\LocalReferenceCollection.cs" />
     <Compile Include="Collections\Local\LocalMeridianCollection.cs" />
     <Compile Include="Collections\Local\LocalProjectedCoordinateReferenceSystemCollection.cs" />
+    <Compile Include="Collections\Local\LocalReferenceCollectionContainer.cs" />
     <Compile Include="Collections\Local\LocalReferenceSystemCollection.cs" />
     <Compile Include="Collections\Local\LocalVerticalCoordinateReferenceSystemCollection.cs" />
     <Compile Include="Collections\Local\LocalVerticalDatumCollection.cs" />
+    <Compile Include="Collections\ReferenceCollectionContainer.cs" />
     <Compile Include="Collections\ReferenceCollectionQueries.cs" />
     <Compile Include="Collections\UnitOfMeasurementCollection.cs" />
     <Compile Include="CompoundCoordinateOperationMethod.cs" />
