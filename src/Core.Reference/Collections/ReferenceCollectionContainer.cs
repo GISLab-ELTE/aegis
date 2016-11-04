@@ -297,11 +297,10 @@ namespace ELTE.AEGIS.Reference.Collections
         #region Protected fields
 
         /// <summary>
-        /// The underlying inversion of control container.
+        /// Gets the underlying inversion of control container.
         /// </summary>
         protected Container Container { get; private set; }
 
         #endregion
-
     }
 }
