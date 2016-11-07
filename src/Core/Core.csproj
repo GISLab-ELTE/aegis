@@ -130,6 +130,7 @@
     <Compile Include="IPoint.cs" />
     <Compile Include="IPolygon.cs" />
     <Compile Include="IReferenceSystem.cs" />
+    <Compile Include="IReferenceSystemFactory.cs" />
     <Compile Include="ISurface.cs" />
     <Compile Include="ITriangle.cs" />
     <Compile Include="Orientation.cs" />

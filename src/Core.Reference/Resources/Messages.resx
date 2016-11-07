@@ -327,4 +327,7 @@
   <data name="ParameterCollectionIsNull" xml:space="preserve">
     <value>The coordinate operation parameter collection is null.</value>
   </data>
+  <data name="CollectionContainerIsNull" xml:space="preserve">
+    <value>The collection container is null.</value>
+  </data>
 </root>
