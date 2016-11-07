@@ -80,6 +80,24 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The attribute collection is null..
+        /// </summary>
+        internal static string AttributeCollectionIsNull {
+            get {
+                return ResourceManager.GetString("AttributeCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attribute factory is null..
+        /// </summary>
+        internal static string AttributeFactoryIsNull {
+            get {
+                return ResourceManager.GetString("AttributeFactoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The buffer is null..
         /// </summary>
         internal static string BufferIsNull {
@@ -103,6 +121,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string ClippingWindowIsNull {
             get {
                 return ResourceManager.GetString("ClippingWindowIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The collection contains one or more duplicate identifiers..
+        /// </summary>
+        internal static string CollectionContainsDuplicateIdentifiers {
+            get {
+                return ResourceManager.GetString("CollectionContainsDuplicateIdentifiers", resourceCulture);
             }
         }
         
@@ -278,6 +305,24 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The feature collection is null..
+        /// </summary>
+        internal static string FeatureCollectionIsNull {
+            get {
+                return ResourceManager.GetString("FeatureCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The feature is null..
+        /// </summary>
+        internal static string FeatureIsNull {
+            get {
+                return ResourceManager.GetString("FeatureIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first collection is null..
         /// </summary>
         internal static string FirstCollectionIsNull {
@@ -328,6 +373,15 @@ namespace ELTE.AEGIS.Resources {
         internal static string FirstVectorIsNull {
             get {
                 return ResourceManager.GetString("FirstVectorIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The geometry factory is null..
+        /// </summary>
+        internal static string GeometryFactoryIsNull {
+            get {
+                return ResourceManager.GetString("GeometryFactoryIsNull", resourceCulture);
             }
         }
         
@@ -409,6 +463,24 @@ namespace ELTE.AEGIS.Resources {
         internal static string IntersectionEventIsNull {
             get {
                 return ResourceManager.GetString("IntersectionEventIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An item with the same identifier already exists in the collection..
+        /// </summary>
+        internal static string ItemIdentifierExists {
+            get {
+                return ResourceManager.GetString("ItemIdentifierExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The item is null..
+        /// </summary>
+        internal static string ItemIsNull {
+            get {
+                return ResourceManager.GetString("ItemIsNull", resourceCulture);
             }
         }
         

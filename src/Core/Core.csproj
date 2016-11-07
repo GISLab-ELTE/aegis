@@ -71,6 +71,13 @@
     <Compile Include="Algorithms\SweepLines\SweepLine.cs" />
     <Compile Include="Algorithms\SweepLines\SweepLineSegment.cs" />
     <Compile Include="Algorithms\WindingNumberAlgorithm.cs" />
+    <Compile Include="Attributes\AttributeCollection.cs" />
+    <Compile Include="Attributes\AttributeCollectionFactory.cs" />
+    <Compile Include="IAttributeCollection.cs" />
+    <Compile Include="IAttributeCollectionFactory.cs" />
+    <Compile Include="IFeature.cs" />
+    <Compile Include="IFeatureCollection.cs" />
+    <Compile Include="IFeatureFactory.cs" />
     <Compile Include="BasicLineString.cs" />
     <Compile Include="BasicPoint.cs" />
     <Compile Include="BasicPolygon.cs" />
@@ -81,6 +88,9 @@
     <Compile Include="CoordinateVector.cs" />
     <Compile Include="Envelope.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="Features\Feature.cs" />
+    <Compile Include="Features\FeatureCollection.cs" />
+    <Compile Include="Features\FeatureFactory.cs" />
     <Compile Include="Geometries\Curve.cs" />
     <Compile Include="Geometries\Geometry.cs" />
     <Compile Include="Geometries\GeometryFactory.cs" />

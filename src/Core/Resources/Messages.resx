@@ -354,4 +354,28 @@
   <data name="SecondLineStringIsNull" xml:space="preserve">
     <value>The second line string is null.</value>
   </data>
+  <data name="AttributeCollectionIsNull" xml:space="preserve">
+    <value>The attribute collection is null.</value>
+  </data>
+  <data name="AttributeFactoryIsNull" xml:space="preserve">
+    <value>The attribute factory is null.</value>
+  </data>
+  <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
+    <value>The collection contains one or more duplicate identifiers.</value>
+  </data>
+  <data name="FeatureCollectionIsNull" xml:space="preserve">
+    <value>The feature collection is null.</value>
+  </data>
+  <data name="FeatureIsNull" xml:space="preserve">
+    <value>The feature is null.</value>
+  </data>
+  <data name="GeometryFactoryIsNull" xml:space="preserve">
+    <value>The geometry factory is null.</value>
+  </data>
+  <data name="ItemIdentifierExists" xml:space="preserve">
+    <value>An item with the same identifier already exists in the collection.</value>
+  </data>
+  <data name="ItemIsNull" xml:space="preserve">
+    <value>The item is null.</value>
+  </data>
 </root>
