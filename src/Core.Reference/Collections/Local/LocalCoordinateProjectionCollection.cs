@@ -27,7 +27,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="CoordinateProjection" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG gedetic dataset format.
+    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
     public class LocalCoordinateProjectionCollection : ICoordinateProjectionCollection
     {
@@ -157,7 +157,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 CoordinateOperationMethod method = !String.IsNullOrEmpty(content[10]) ? this.methodCollection.WithIdentifier(IdentifiedObject.GetIdentifier(Authority, content[10])).FirstOrDefault() : null;
                 AreaOfUse areaOfUse = this.areaOfUseCollection.WithIdentifier(IdentifiedObject.GetIdentifier(Authority, content[7])).FirstOrDefault();
 
-                // some projections are not supported (TODO: remove, once all projections are implemented)
+                // TODO: remove condition, once all projections are implemented
                 if (method == null)
                     return null;
 
@@ -192,7 +192,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                         CoordinateOperationParameter parameter = this.parameterCollection.WithIdentifier(IdentifiedObject.GetIdentifier(Authority, content[2])).FirstOrDefault();
 
-                        // the parameter is not supported (TODO: remove, once all parameters are implemented)
+                        // TODO: remove condition, once all parameters are implemented
                         if (parameter == null)
                             continue;
 
@@ -342,7 +342,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                 this.EnsureOperationTypes();
 
-                // some projections are not supported (TODO: remove, once all projections are implemented)
+                // TODO: remove condition, once all projections are implemented
                 if (data == null || !this.projectionTypes.ContainsKey(data.Method.Code))
                     return null;
 
@@ -377,7 +377,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                 this.EnsureOperationTypes();
 
-                // some projections are not supported (TODO: remove, once all projections are implemented)
+                // TODO: remove condition, once all projections are implemented
                 if (data == null || !this.projectionTypes.ContainsKey(data.Method.Code))
                     return null;
 
@@ -433,7 +433,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             Ellipsoid ellipsoid = this.ellipsoidCollection.WithIdentifier(DefaultEllipsoidIdentifier).FirstOrDefault();
 
-            // some projections are not supported (TODO: remove, once all projections are implemented)
             return this.dataCollection.WithIdentifier(identifier).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, ellipsoid));
         }
 
@@ -450,7 +449,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some projections are not supported (TODO: remove, once all projections are implemented)
             return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 
@@ -467,7 +465,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some projections are not supported (TODO: remove, once all projections are implemented)
             return this.dataCollection.WithMatchingIdentifier(identifier).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 
@@ -484,7 +481,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some projections are not supported (TODO: remove, once all projections are implemented)
             return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 

@@ -24,7 +24,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="ProjectedCoordinateReferenceSystem" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG gedetic dataset format.
+    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
     public class LocalProjectedCoordinateReferenceSystemCollection : LocalReferenceCollection<ProjectedCoordinateReferenceSystem>
     {
@@ -196,10 +196,11 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     AreaOfUse areaOfUse = this.areaOfUseCollection[Authority, Int32.Parse(content[2])];
                     GeographicCoordinateReferenceSystem baseReferenceSystem = this.baseCoordinateReferenceSystemCollection[Authority, Int32.Parse(content[6])];
                     CoordinateSystem coordinateSystem = this.coordinateSystemCollection[Authority, Int32.Parse(content[4])];
-                    CoordinateProjection projection = this.coordinateProjectionCollection[Authority, Int32.Parse(content[7]), baseReferenceSystem.Datum.Ellipsoid.ToUnit(coordinateSystem.GetAxis(0).Unit)];
 
                     // the projection should use the ellipsoid with the unit specified by the coordinate system
-                    // some projections are not supported (TODO: remove, once all projections are implemented)
+                    CoordinateProjection projection = this.coordinateProjectionCollection[Authority, Int32.Parse(content[7]), baseReferenceSystem.Datum.Ellipsoid.ToUnit(coordinateSystem.GetAxis(0).Unit)];
+
+                    // TODO: remove condition, once all projections are implemented
                     if (projection == null)
                         return null;
 

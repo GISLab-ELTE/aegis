@@ -24,7 +24,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="VerticalCoordinateReferenceSystem" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG gedetic dataset format.
+    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
     public class LocalVerticalCoordinateReferenceSystemCollection : LocalReferenceCollection<VerticalCoordinateReferenceSystem>
     {

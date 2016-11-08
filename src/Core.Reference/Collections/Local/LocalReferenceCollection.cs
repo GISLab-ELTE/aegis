@@ -28,7 +28,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </summary>
     /// <typeparam name="ReferenceType">The type of the reference.</typeparam>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG gedetic dataset format.
+    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
     public abstract class LocalReferenceCollection<ReferenceType> : IReferenceCollection<ReferenceType>
         where ReferenceType : IdentifiedObject

@@ -693,7 +693,7 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         /// <param name="coordinates">The list of coordinates.</param>
         /// <param name="intersections">The intersections.</param>
-        /// <param name="edgeIndices">The edge indices.</param>
+        /// <param name="edgeIndices">The edge indexes.</param>
         /// <returns>
         /// The list of coordinates with intersections.
         /// </returns>

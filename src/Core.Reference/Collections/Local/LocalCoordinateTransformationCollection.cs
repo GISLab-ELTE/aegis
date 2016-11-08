@@ -28,7 +28,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </summary>
     /// <typeparam name="CoordinateType">The type of the coordinate.</typeparam>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG gedetic dataset format.
+    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
     public class LocalCoordinateTransformationCollection<CoordinateType> : ICoordinateTransformationCollection<CoordinateType>
     {
@@ -177,7 +177,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                 AreaOfUse areaOfUse = this.areaOfUseCollection[Authority, Int32.Parse(content[7])];
 
-                // some operations are not supported (TODO: remove, once all operations are implemented)
+                // TODO: remove condition, once all operations are implemented
                 if (method == null)
                     return null;
 
@@ -214,7 +214,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                         CoordinateOperationParameter parameter = this.parameterCollection[Authority, Int32.Parse(content[2])];
 
-                        // the parameter is not supported (TODO: remove, once all parameters are implemented)
+                        // TODO: remove condition, once all parameters are implemented
                         if (parameter == null)
                             continue;
 
@@ -330,7 +330,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                 this.EnsureOperationTypes();
 
-                // some operations are not supported (TODO: remove, once all operations are implemented)
+                // TODO: remove condition, once all operations are implemented
                 if (data == null || !this.transformationTypes.ContainsKey(data.Method.Code))
                     return null;
 
@@ -354,7 +354,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
                 this.EnsureOperationTypes();
 
-                // some operations are not supported (TODO: remove, once all operations are implemented)
+                // TODO: remove condition, once all operations are implemented
                 if (data == null || !this.transformationTypes.ContainsKey(data.Method.Code))
                     return null;
 
@@ -379,7 +379,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some operations are not supported (TODO: remove, once all operations are implemented)
             return this.dataCollection.WithIdentifier(identifier).Where(data => this.transformationTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateTransformation(data));
         }
 
@@ -396,7 +395,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some operations are not supported (TODO: remove, once all operations are implemented)
             return this.dataCollection.WithName(name).Where(data => this.transformationTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateTransformation(data));
         }
 
@@ -413,7 +411,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some operations are not supported (TODO: remove, once all operations are implemented)
             return this.dataCollection.WithMatchingIdentifier(identifier).Where(data => this.transformationTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateTransformation(data));
         }
 
@@ -430,7 +427,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            // some operations are not supported (TODO: remove, once all operations are implemented)
             return this.dataCollection.WithMatchingName(name).Where(data => this.transformationTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateTransformation(data));
         }
 

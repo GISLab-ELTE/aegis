@@ -17,11 +17,9 @@ namespace ELTE.AEGIS.Reference
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Collections;
-    using Collections.Local;
-    using Resources;
+    using ELTE.AEGIS.Reference.Collections;
+    using ELTE.AEGIS.Reference.Collections.Local;
+    using ELTE.AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a factory for producing <see cref="ReferenceSystem" /> instances.
@@ -29,18 +27,14 @@ namespace ELTE.AEGIS.Reference
     /// <remarks>
     /// This implementation of <see cref="IGeometryFactory" /> produces reference systems as defined by the OGC SRC standard.
     /// The factory uses an underlying <see cref="IReferenceCollectionContainer" /> instance for production.
-    /// If not specified differrently, the local collection of references is used to create the reference system.
+    /// If not specified differently, the local collection of references is used to create the reference system.
     /// </remarks>
     public class ReferenceSystemFactory : Factory, IReferenceSystemFactory
     {
-        #region Private fields
-
         /// <summary>
         /// The underrlying reference collection container. This field is read-only.
         /// </summary>
         private readonly IReferenceCollectionContainer collectionContainer;
-
-        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceSystemFactory" /> class.

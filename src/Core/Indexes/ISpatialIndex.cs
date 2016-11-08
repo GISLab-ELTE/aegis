@@ -18,7 +18,7 @@ namespace ELTE.AEGIS.Indexes
     using System.Collections.Generic;
 
     /// <summary>
-    /// Defines behavior of spatial indices.
+    /// Defines behavior of spatial indexes.
     /// </summary>
     public interface ISpatialIndex
     {
