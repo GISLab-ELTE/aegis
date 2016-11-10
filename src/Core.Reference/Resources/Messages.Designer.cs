@@ -188,6 +188,24 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conversion does not exist between the specified reference systems..
+        /// </summary>
+        internal static string ConversionDoesNotExistBetweenReferenceSystems {
+            get {
+                return ResourceManager.GetString("ConversionDoesNotExistBetweenReferenceSystems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The conversion is null..
+        /// </summary>
+        internal static string ConversionIsNull {
+            get {
+                return ResourceManager.GetString("ConversionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The coordinate is null..
         /// </summary>
         internal static string CoordinateIsNull {
@@ -220,6 +238,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         internal static string CoordinateSystemCollectionIsNull {
             get {
                 return ResourceManager.GetString("CoordinateSystemCollectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dimension of the coordinate system is less than expected..
+        /// </summary>
+        internal static string CoordinateSystemDimensionLessThanExpected {
+            get {
+                return ResourceManager.GetString("CoordinateSystemDimensionLessThanExpected", resourceCulture);
             }
         }
         
@@ -566,6 +593,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The reference system is null..
+        /// </summary>
+        internal static string ReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("ReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The semi axis is equal to or less than 0..
         /// </summary>
         internal static string SemiAxisIsEqualToOrLessThan0 {
@@ -629,11 +665,38 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The source reference system is null..
+        /// </summary>
+        internal static string SourceReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("SourceReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target coordinate reference system is null..
         /// </summary>
         internal static string TargetCoordinateReferenceSystemIsNull {
             get {
                 return ResourceManager.GetString("TargetCoordinateReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target reference system is null..
+        /// </summary>
+        internal static string TargetReferenceSystemIsNull {
+            get {
+                return ResourceManager.GetString("TargetReferenceSystemIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The transformation is null..
+        /// </summary>
+        internal static string TransformationIsNull {
+            get {
+                return ResourceManager.GetString("TransformationIsNull", resourceCulture);
             }
         }
         

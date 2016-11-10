@@ -330,4 +330,25 @@
   <data name="CollectionContainerIsNull" xml:space="preserve">
     <value>The collection container is null.</value>
   </data>
+  <data name="ConversionIsNull" xml:space="preserve">
+    <value>The conversion is null.</value>
+  </data>
+  <data name="ReferenceSystemIsNull" xml:space="preserve">
+    <value>The reference system is null.</value>
+  </data>
+  <data name="SourceReferenceSystemIsNull" xml:space="preserve">
+    <value>The source reference system is null.</value>
+  </data>
+  <data name="TargetReferenceSystemIsNull" xml:space="preserve">
+    <value>The target reference system is null.</value>
+  </data>
+  <data name="TransformationIsNull" xml:space="preserve">
+    <value>The transformation is null.</value>
+  </data>
+  <data name="CoordinateSystemDimensionLessThanExpected" xml:space="preserve">
+    <value>The dimension of the coordinate system is less than expected.</value>
+  </data>
+  <data name="ConversionDoesNotExistBetweenReferenceSystems" xml:space="preserve">
+    <value>Conversion does not exist between the specified reference systems.</value>
+  </data>
 </root>

@@ -185,6 +185,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Strategies\CompoundCoordinateConversionStrategy.cs" />
+    <Compile Include="Strategies\CoordinateConversionStrategy.cs" />
+    <Compile Include="Strategies\ForwardGeographicCoordinateTransformationStrategy.cs" />
+    <Compile Include="Strategies\ForwardLatLonCoordinateInterpretationStrategy.cs" />
+    <Compile Include="Strategies\ForwardLatLonHiCoordinateIntepretationStrategy.cs" />
+    <Compile Include="Strategies\ForwardLonLatCoordinateIntepretationStrategy.cs" />
+    <Compile Include="Strategies\ForwardLonLatHiCoordinateInterpretationStrategy.cs" />
+    <Compile Include="Strategies\ForwardCoordinateProjectionStrategy.cs" />
+    <Compile Include="Strategies\ICoordinateOperationStrategy.cs" />
+    <Compile Include="Strategies\ReverseGeographicCoordinateTransformationStrategy.cs" />
+    <Compile Include="Strategies\ReverseLatLonCoordinateInterpretationStrategy.cs" />
+    <Compile Include="Strategies\ReverseLatLonHiCoordinateInterpretationStrategy.cs" />
+    <Compile Include="Strategies\ReverseLonLatCoordinateIntepretationStrategy.cs" />
+    <Compile Include="Strategies\ReverseLonLatHiCoordinateInterpretationStrategy.cs" />
+    <Compile Include="Strategies\ReverseCoordinateProjectionStrategy.cs" />
+    <Compile Include="Strategies\CoordinateOperationStrategyFactory.cs" />
     <Compile Include="UnitOfMeasurement.cs" />
     <Compile Include="UnitQuantityType.cs" />
     <Compile Include="UnitsOfMeasurement.cs" />
