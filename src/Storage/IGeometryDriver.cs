@@ -53,18 +53,18 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void CreateCoordinate(Coordinate coordinate, String identifier, params Int32[] indices);
+        void CreateCoordinate(Coordinate coordinate, String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Creates a coordinate for the specified geometry.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the geometry.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the geometry.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void CreateCoordinate(Coordinate coordinate, String identifier, IEnumerable<Int32> indices);
+        void CreateCoordinate(Coordinate coordinate, String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Creates a collection of coordinates for the specified geometry.
@@ -79,18 +79,18 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <param name="collection">The list of coordinates.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void CreateCoordinates(IReadOnlyList<Coordinate> collection, String identifier, params Int32[] indices);
+        void CreateCoordinates(IReadOnlyList<Coordinate> collection, String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Creates a collection of coordinates for the specified geometry.
         /// </summary>
         /// <param name="collection">The list of coordinates.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void CreateCoordinates(IReadOnlyList<Coordinate> collection, String identifier, IEnumerable<Int32> indices);
+        void CreateCoordinates(IReadOnlyList<Coordinate> collection, String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Creates a geometry.
@@ -111,14 +111,14 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <typeparam name="GeometryType">The type of the geometry.</typeparam>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <returns>The geometry created by the driver.</returns>
         /// <exception cref="System.NotSupportedException">
         /// The operation is not supported by the driver.
         /// or
         /// The specified geometry is not supported by the driver.
         /// </exception>
-        GeometryType CreateGeometry<GeometryType>(String identifier, params Int32[] indices)
+        GeometryType CreateGeometry<GeometryType>(String identifier, params Int32[] indexes)
             where GeometryType : IGeometry;
 
         /// <summary>
@@ -126,14 +126,14 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <typeparam name="GeometryType">The type of the geometry.</typeparam>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <returns>The geometry created by the driver.</returns>
         /// <exception cref="System.NotSupportedException">
         /// The operation is not supported by the driver.
         /// or
         /// The specified geometry is not supported by the driver.
         /// </exception>
-        GeometryType CreateGeometry<GeometryType>(String identifier, IEnumerable<Int32> indices)
+        GeometryType CreateGeometry<GeometryType>(String identifier, IEnumerable<Int32> indexes)
             where GeometryType : IGeometry;
 
         /// <summary>
@@ -148,19 +148,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads the number of coordinate collections of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <returns>The number of coordinate collections within the feature at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Int32 ReadCollectionCount(String identifier, params Int32[] indices);
+        Int32 ReadCollectionCount(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads the number of coordinate collections of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <returns>The number of coordinate collections within the feature at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Int32 ReadCollectionCount(String identifier, IEnumerable<Int32> indices);
+        Int32 ReadCollectionCount(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Reads a coordinate of the specified geometry.
@@ -175,19 +175,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads a coordinate of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate.</param>
+        /// <param name="indexes">The indexes of the coordinate.</param>
         /// <returns>The coordinate.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Coordinate ReadCoordinate(String identifier, params Int32[] indices);
+        Coordinate ReadCoordinate(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads a coordinate of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate.</param>
+        /// <param name="indexes">The indexes of the coordinate.</param>
         /// <returns>The coordinate.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Coordinate ReadCoordinate(String identifier, IEnumerable<Int32> indices);
+        Coordinate ReadCoordinate(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Reads the number of coordinate of the specified geometry.
@@ -201,19 +201,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads the number of coordinate of at the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <returns>The number of coordinates within the feature at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Int32 ReadCoordinateCount(String identifier, params Int32[] indices);
+        Int32 ReadCoordinateCount(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads the number of coordinate of at the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <returns>The number of coordinates within the feature at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Int32 ReadCoordinateCount(String identifier, IEnumerable<Int32> indices);
+        Int32 ReadCoordinateCount(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Reads the coordinates of the specified geometry.
@@ -227,19 +227,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads the coordinates of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <returns>The list of coordinates at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        IReadOnlyList<Coordinate> ReadCoordinates(String identifier, params Int32[] indices);
+        IReadOnlyList<Coordinate> ReadCoordinates(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads the coordinates of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <returns>The list of coordinates at the specified indexes.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        IReadOnlyList<Coordinate> ReadCoordinates(String identifier, IEnumerable<Int32> indices);
+        IReadOnlyList<Coordinate> ReadCoordinates(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Reads all envelopes.
@@ -260,19 +260,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads the envelope of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the geometry within the feature.</param>
+        /// <param name="indexes">The indexes of the geometry within the feature.</param>
         /// <returns>The envelope of the geometry.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Envelope ReadEnvelope(String identifier, params Int32[] indices);
+        Envelope ReadEnvelope(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads the envelope of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the geometry within the feature.</param>
+        /// <param name="indexes">The indexes of the geometry within the feature.</param>
         /// <returns>The envelope of the geometry.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        Envelope ReadEnvelope(String identifier, IEnumerable<Int32> indices);
+        Envelope ReadEnvelope(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Reads the specified geometry.
@@ -286,19 +286,19 @@ namespace ELTE.AEGIS.Storage
         /// Reads the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate within the feature.</param>
         /// <returns>The geometry read by the driver.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        IGeometry ReadGeometry(String identifier, params Int32[] indices);
+        IGeometry ReadGeometry(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Reads the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate within the feature.</param>
         /// <returns>The geometry read by the driver.</returns>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        IGeometry ReadGeometry(String identifier, IEnumerable<Int32> indices);
+        IGeometry ReadGeometry(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Updates a coordinate of the specified geometry.
@@ -314,18 +314,18 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateCoordinate(Coordinate coordinate, String identifier, params Int32[] indices);
+        void UpdateCoordinate(Coordinate coordinate, String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Updates a coordinate of the specified geometry.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateCoordinate(Coordinate coordinate, String identifier, IEnumerable<Int32> indices);
+        void UpdateCoordinate(Coordinate coordinate, String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Updates the coordinates of the specified geometry.
@@ -340,18 +340,18 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <param name="coordinates">The list of coordinates.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateCoordinates(IReadOnlyList<Coordinate> coordinates, String identifier, params Int32[] indices);
+        void UpdateCoordinates(IReadOnlyList<Coordinate> coordinates, String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Updates the coordinates of the specified geometry.
         /// </summary>
         /// <param name="coordinates">The list of coordinates.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinate collection within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinate collection within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateCoordinates(IReadOnlyList<Coordinate> coordinates, String identifier, IEnumerable<Int32> indices);
+        void UpdateCoordinates(IReadOnlyList<Coordinate> coordinates, String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Updates the specified geometry.
@@ -366,18 +366,18 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateGeometry(IGeometry geometry, String identifier, params Int32[] indices);
+        void UpdateGeometry(IGeometry geometry, String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Updates the specified geometry.
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void UpdateGeometry(IGeometry geometry, String identifier, IEnumerable<Int32> indices);
+        void UpdateGeometry(IGeometry geometry, String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Deletes a coordinate of the specified geometry.
@@ -391,17 +391,17 @@ namespace ELTE.AEGIS.Storage
         /// Deletes a coordinate of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteCoordinate(String identifier, params Int32[] indices);
+        void DeleteCoordinate(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Deletes a coordinate of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteCoordinate(String identifier, IEnumerable<Int32> indices);
+        void DeleteCoordinate(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Deletes the coordinates of the specified geometry.
@@ -414,17 +414,17 @@ namespace ELTE.AEGIS.Storage
         /// Deletes the coordinates of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteCoordinates(String identifier, params Int32[] indices);
+        void DeleteCoordinates(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Deletes the coordinates of the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteCoordinates(String identifier, IEnumerable<Int32> indices);
+        void DeleteCoordinates(String identifier, IEnumerable<Int32> indexes);
 
         /// <summary>
         /// Deletes the specified geometry.
@@ -437,16 +437,16 @@ namespace ELTE.AEGIS.Storage
         /// Deletes the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteGeometry(String identifier, params Int32[] indices);
+        void DeleteGeometry(String identifier, params Int32[] indexes);
 
         /// <summary>
         /// Deletes the specified geometry.
         /// </summary>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indices">The indexes of the coordinates within the feature.</param>
+        /// <param name="indexes">The indexes of the coordinates within the feature.</param>
         /// <exception cref="System.NotSupportedException">The operation is not supported by the driver.</exception>
-        void DeleteGeometry(String identifier, IEnumerable<Int32> indices);
+        void DeleteGeometry(String identifier, IEnumerable<Int32> indexes);
     }
 }
