@@ -359,6 +359,15 @@ namespace ELTE.AEGIS.Storage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The type is null..
+        /// </summary>
+        internal static string TypeIsNull {
+            get {
+                return ResourceManager.GetString("TypeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The caller does not have the required permission..
         /// </summary>
         internal static string Unauthorized {

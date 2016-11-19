@@ -45,6 +45,10 @@
   <ItemGroup>
     <Compile Include="Authentication\AnonymousStorageAuthentication.cs" />
     <Compile Include="ConnectionException.cs" />
+    <Compile Include="DataHandling.cs" />
+    <Compile Include="DriverFormat.cs" />
+    <Compile Include="DriverOperation.cs" />
+    <Compile Include="DriverParameter.cs" />
     <Compile Include="FileSystemEntry.cs" />
     <Compile Include="FileSystemEntryType.cs" />
     <Compile Include="FileSystems\FileSystemBase.cs" />
@@ -52,7 +56,12 @@
     <Compile Include="FileSystems\FileSystemOperationResult.cs" />
     <Compile Include="FileSystems\FileSystemOperationResultCode.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
+    <Compile Include="IAttributeDriver.cs" />
+    <Compile Include="IDriver.cs" />
+    <Compile Include="IFeatureDriver.cs" />
     <Compile Include="IFileSystem.cs" />
+    <Compile Include="IGeometryDriver.cs" />
+    <Compile Include="IReferenceSystemDriver.cs" />
     <Compile Include="IStorageAuthentication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">

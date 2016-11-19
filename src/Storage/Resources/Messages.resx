@@ -216,6 +216,9 @@
   <data name="SourcePathTooLong" xml:space="preserve">
     <value>The path exceeds the maximum length supported by the file system.</value>
   </data>
+  <data name="TypeIsNull" xml:space="preserve">
+    <value>The type is null.</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>The caller does not have the required permission.</value>
   </data>
