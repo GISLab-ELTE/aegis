@@ -43,12 +43,17 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\StoredAttributeCollection.cs" />
+    <Compile Include="Attributes\StoredAttributeCollectionFactory.cs" />
     <Compile Include="Authentication\AnonymousStorageAuthentication.cs" />
     <Compile Include="ConnectionException.cs" />
     <Compile Include="DataHandling.cs" />
     <Compile Include="DriverFormat.cs" />
     <Compile Include="DriverOperation.cs" />
     <Compile Include="DriverParameter.cs" />
+    <Compile Include="Features\StoredFeature.cs" />
+    <Compile Include="Features\StoredFeatureCollection.cs" />
+    <Compile Include="Features\StoredFeatureFactory.cs" />
     <Compile Include="FileSystemEntry.cs" />
     <Compile Include="FileSystemEntryType.cs" />
     <Compile Include="FileSystems\FileSystemBase.cs" />
@@ -56,6 +61,20 @@
     <Compile Include="FileSystems\FileSystemOperationResult.cs" />
     <Compile Include="FileSystems\FileSystemOperationResultCode.cs" />
     <Compile Include="FileSystems\LocalFileSystem.cs" />
+    <Compile Include="Geometries\StoredCurve.cs" />
+    <Compile Include="Geometries\StoredGeometry.cs" />
+    <Compile Include="Geometries\StoredGeometryCollection.cs" />
+    <Compile Include="Geometries\StoredGeometryFactory.cs" />
+    <Compile Include="Geometries\StoredLine.cs" />
+    <Compile Include="Geometries\StoredLinearRing.cs" />
+    <Compile Include="Geometries\StoredLineString.cs" />
+    <Compile Include="Geometries\StoredMultiLineString.cs" />
+    <Compile Include="Geometries\StoredMultiPoint.cs" />
+    <Compile Include="Geometries\StoredMultiPolygon.cs" />
+    <Compile Include="Geometries\StoredPoint.cs" />
+    <Compile Include="Geometries\StoredPolygon.cs" />
+    <Compile Include="Geometries\StoredSurface.cs" />
+    <Compile Include="Geometries\StoredTriangle.cs" />
     <Compile Include="IAttributeDriver.cs" />
     <Compile Include="IDriver.cs" />
     <Compile Include="IFeatureDriver.cs" />
@@ -79,6 +98,10 @@
     <Compile Include="StorageAuthenticationType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collections\Collections.csproj">
+      <Project>{afda9cc1-b456-467b-b2bc-729c5498dd5f}</Project>
+      <Name>Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{ac1f78df-a627-46f0-bcdd-0521868beedf}</Project>
       <Name>Core</Name>

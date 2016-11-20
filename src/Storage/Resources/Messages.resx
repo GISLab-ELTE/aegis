@@ -135,6 +135,9 @@
   <data name="DestinationPathIsNull" xml:space="preserve">
     <value>The destination path is null.</value>
   </data>
+  <data name="DriverIsNull" xml:space="preserve">
+    <value>The driver is null.</value>
+  </data>
   <data name="InvalidFileAccess" xml:space="preserve">
     <value>The file access is invalid.</value>
   </data>

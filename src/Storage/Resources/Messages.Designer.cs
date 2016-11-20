@@ -116,6 +116,15 @@ namespace ELTE.AEGIS.Storage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The driver is null..
+        /// </summary>
+        internal static string DriverIsNull {
+            get {
+                return ResourceManager.GetString("DriverIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file access is invalid..
         /// </summary>
         internal static string InvalidFileAccess {
