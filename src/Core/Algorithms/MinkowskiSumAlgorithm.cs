@@ -577,11 +577,11 @@ namespace ELTE.AEGIS.Algorithms
         {
             BentleyOttmannAlgorithm algorithm = new BentleyOttmannAlgorithm(coordinates, this.PrecisionModel);
             List<Coordinate> intersections = new List<Coordinate>(algorithm.Intersections);
-            List<Tuple<Int32, Int32>> edgeIndices = new List<Tuple<Int32, Int32>>(algorithm.EdgeIndexes);
+            List<Tuple<Int32, Int32>> edgeIndexes = new List<Tuple<Int32, Int32>>(algorithm.EdgeIndexes);
 
             // add edge intersection coordinates to the list of coordinates in counterclockwise order
             List<Coordinate> coordinatesWithIntersections = new List<Coordinate>();
-            coordinatesWithIntersections = this.GetCoordinatesWithIntersections(coordinates, intersections, edgeIndices);
+            coordinatesWithIntersections = this.GetCoordinatesWithIntersections(coordinates, intersections, edgeIndexes);
 
             // remove unnecessary internal coordinates and create holes
             List<List<Coordinate>> internalPolygons = new List<List<Coordinate>>();
@@ -693,11 +693,11 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         /// <param name="coordinates">The list of coordinates.</param>
         /// <param name="intersections">The intersections.</param>
-        /// <param name="edgeIndices">The edge indexes.</param>
+        /// <param name="edgeIndexes">The edge indexes.</param>
         /// <returns>
         /// The list of coordinates with intersections.
         /// </returns>
-        private List<Coordinate> GetCoordinatesWithIntersections(IReadOnlyList<Coordinate> coordinates, List<Coordinate> intersections, List<Tuple<Int32, Int32>> edgeIndices)
+        private List<Coordinate> GetCoordinatesWithIntersections(IReadOnlyList<Coordinate> coordinates, List<Coordinate> intersections, List<Tuple<Int32, Int32>> edgeIndexes)
         {
             List<Coordinate> coordinatesWithIntersections = new List<Coordinate>();
 
@@ -707,15 +707,15 @@ namespace ELTE.AEGIS.Algorithms
                 List<Coordinate> intersectionCoordinates = new List<Coordinate>();
                 coordinatesWithIntersections.Add(coordinates[coordinateIndex]);
 
-                for (Int32 edgeIndex = 0; edgeIndex < edgeIndices.Count; edgeIndex++)
+                for (Int32 edgeIndex = 0; edgeIndex < edgeIndexes.Count; edgeIndex++)
                 {
-                    if (edgeIndices[edgeIndex].Item2.Equals(coordinateIndex))
+                    if (edgeIndexes[edgeIndex].Item2.Equals(coordinateIndex))
                         intersectionCoordinates.Add(intersections[edgeIndex]);
                 }
 
-                for (Int32 edgeIndex = 0; edgeIndex < edgeIndices.Count; edgeIndex++)
+                for (Int32 edgeIndex = 0; edgeIndex < edgeIndexes.Count; edgeIndex++)
                 {
-                    if (edgeIndices[edgeIndex].Item1.Equals(coordinateIndex))
+                    if (edgeIndexes[edgeIndex].Item1.Equals(coordinateIndex))
                         intersectionCoordinates.Add(intersections[edgeIndex]);
                 }
 

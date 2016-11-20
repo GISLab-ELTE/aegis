@@ -138,6 +138,9 @@
   <data name="CollectionIsNull" xml:space="preserve">
     <value>The collection is null.</value>
   </data>
+  <data name="CollectionIsReadOnly" xml:space="preserve">
+    <value>The collection is read-only.</value>
+  </data>
   <data name="CollectionWasModifiedAfterEnumerator" xml:space="preserve">
     <value>The collection was modified after the enumerator was created.</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="ItemIsNull" xml:space="preserve">
     <value>The item is null.</value>
+  </data>
+  <data name="KeyAlreadyExistsInTheCollection" xml:space="preserve">
+    <value>An element with the same key already exists in the collection.</value>
   </data>
   <data name="KeyExists" xml:space="preserve">
     <value>An element with the same key already exists in the tree.</value>

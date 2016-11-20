@@ -224,11 +224,11 @@ namespace ELTE.AEGIS.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.Messages.ArrayIsNull);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.Values.ToArray().CopyTo(array, arrayIndex);
         }

@@ -85,7 +85,7 @@ namespace ELTE.AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.Messages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -128,7 +128,7 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.Messages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -489,11 +489,11 @@ namespace ELTE.AEGIS.Geometries
         public void CopyTo(GeometryType[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.Messages.ArrayIsNull);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.CopyTo(array, arrayIndex);
         }

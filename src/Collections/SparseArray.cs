@@ -292,7 +292,7 @@ namespace ELTE.AEGIS.Collections
             if (index >= this.length)
                 throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
 
-            this.UpdateIndices(index, 1);
+            this.UpdateIndexes(index, 1);
 
             if (!AreEqual(item, default(T)))
             {
@@ -322,7 +322,7 @@ namespace ELTE.AEGIS.Collections
             if (this.items.ContainsKey(index))
                 this.items.Remove(index);
 
-            this.UpdateIndices(index, -1);
+            this.UpdateIndexes(index, -1);
 
             this.length--;
             this.version++;
@@ -407,7 +407,7 @@ namespace ELTE.AEGIS.Collections
                 if (!AreEqual(item, default(T)))
                     this.items.Remove(index);
 
-                this.UpdateIndices(index, -1);
+                this.UpdateIndexes(index, -1);
 
                 this.length--;
                 this.version++;
@@ -493,7 +493,7 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         /// <param name="index">The staring index.</param>
         /// <param name="offset">The offset.</param>
-        private void UpdateIndices(Int64 index, Int32 offset)
+        private void UpdateIndexes(Int64 index, Int32 offset)
         {
             this.items = this.items.ToDictionary(pair => pair.Key < index ? pair.Key : pair.Key + offset, pair => pair.Value);
         }

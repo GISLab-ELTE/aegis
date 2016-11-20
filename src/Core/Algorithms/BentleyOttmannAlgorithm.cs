@@ -51,7 +51,7 @@ namespace ELTE.AEGIS.Algorithms
         /// <summary>
         /// The list of intersection edge indexes in the source list.
         /// </summary>
-        private List<Tuple<Int32, Int32>> edgeIndices;
+        private List<Tuple<Int32, Int32>> edgeIndexes;
 
         /// <summary>
         /// A values indicating whether the result was already computed.
@@ -145,7 +145,7 @@ namespace ELTE.AEGIS.Algorithms
             {
                 if (!this.hasResult)
                     this.Compute();
-                return this.edgeIndices;
+                return this.edgeIndexes;
             }
         }
 
@@ -209,7 +209,7 @@ namespace ELTE.AEGIS.Algorithms
         public void Compute()
         {
             this.intersections = new List<Coordinate>();
-            this.edgeIndices = new List<Tuple<Int32, Int32>>();
+            this.edgeIndexes = new List<Tuple<Int32, Int32>>();
             Event currentEvent = this.eventQueue.Next();
 
             while (currentEvent != null)
@@ -261,7 +261,7 @@ namespace ELTE.AEGIS.Algorithms
                 if (!this.sweepLine.IsAdjacent(segment.Edge, segmentAbove.Edge))
                 {
                     this.intersections.Add(intersectionEvent.Vertex);
-                    this.edgeIndices.Add(Tuple.Create(Math.Min(segment.Edge, segmentAbove.Edge),
+                    this.edgeIndexes.Add(Tuple.Create(Math.Min(segment.Edge, segmentAbove.Edge),
                                                   Math.Max(segment.Edge, segmentAbove.Edge)));
                 }
             }
@@ -273,7 +273,7 @@ namespace ELTE.AEGIS.Algorithms
                 if (!this.sweepLine.IsAdjacent(segment.Edge, segmentAbove.Edge))
                 {
                     this.intersections.Add(intersectionEvent.Vertex);
-                    this.edgeIndices.Add(Tuple.Create(Math.Min(segment.Edge, segmentAbove.Edge),
+                    this.edgeIndexes.Add(Tuple.Create(Math.Min(segment.Edge, segmentAbove.Edge),
                                               Math.Max(segment.Edge, segmentAbove.Edge)));
 
                     intersection = LineAlgorithms.Intersection(segment.LeftCoordinate, segment.RightCoordinate, segmentAbove.LeftCoordinate, segmentAbove.RightCoordinate, this.PrecisionModel);

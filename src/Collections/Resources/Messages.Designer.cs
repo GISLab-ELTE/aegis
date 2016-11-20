@@ -23,7 +23,7 @@ namespace ELTE.AEGIS.Collections.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
+    public class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +37,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Collections.Resources.Messages", typeof(Messages).GetTypeInfo().Assembly);
@@ -52,7 +52,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The number of elements in the source collection is greater than the available space from the array index to the end of the destination array..
         /// </summary>
-        internal static string ArrayIndexIsGreaterThanSpace {
+        public static string ArrayIndexIsGreaterThanSpace {
             get {
                 return ResourceManager.GetString("ArrayIndexIsGreaterThanSpace", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The array index is less than 0..
         /// </summary>
-        internal static string ArrayIndexIsLessThan0 {
+        public static string ArrayIndexIsLessThan0 {
             get {
                 return ResourceManager.GetString("ArrayIndexIsLessThan0", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The array is null..
         /// </summary>
-        internal static string ArrayIsNull {
+        public static string ArrayIsNull {
             get {
                 return ResourceManager.GetString("ArrayIsNull", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The capacity is less than 0..
         /// </summary>
-        internal static string CapacityLessThan0 {
+        public static string CapacityLessThan0 {
             get {
                 return ResourceManager.GetString("CapacityLessThan0", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Capacity is set to a value that is less than Count..
         /// </summary>
-        internal static string CapacityLessThanCount {
+        public static string CapacityLessThanCount {
             get {
                 return ResourceManager.GetString("CapacityLessThanCount", resourceCulture);
             }
@@ -109,7 +109,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The collection is empty..
         /// </summary>
-        internal static string CollectionIsEmpty {
+        public static string CollectionIsEmpty {
             get {
                 return ResourceManager.GetString("CollectionIsEmpty", resourceCulture);
             }
@@ -118,16 +118,25 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The collection is null..
         /// </summary>
-        internal static string CollectionIsNull {
+        public static string CollectionIsNull {
             get {
                 return ResourceManager.GetString("CollectionIsNull", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The collection is read-only..
+        /// </summary>
+        public static string CollectionIsReadOnly {
+            get {
+                return ResourceManager.GetString("CollectionIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The collection was modified after the enumerator was created..
         /// </summary>
-        internal static string CollectionWasModifiedAfterEnumerator {
+        public static string CollectionWasModifiedAfterEnumerator {
             get {
                 return ResourceManager.GetString("CollectionWasModifiedAfterEnumerator", resourceCulture);
             }
@@ -136,7 +145,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The count is less than 1..
         /// </summary>
-        internal static string CountIsLessThan1 {
+        public static string CountIsLessThan1 {
             get {
                 return ResourceManager.GetString("CountIsLessThan1", resourceCulture);
             }
@@ -145,7 +154,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The dictionary is null..
         /// </summary>
-        internal static string DictionaryIsNull {
+        public static string DictionaryIsNull {
             get {
                 return ResourceManager.GetString("DictionaryIsNull", resourceCulture);
             }
@@ -154,7 +163,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The first item is not present in any set..
         /// </summary>
-        internal static string FirstItemIsNotPresentInAnySet {
+        public static string FirstItemIsNotPresentInAnySet {
             get {
                 return ResourceManager.GetString("FirstItemIsNotPresentInAnySet", resourceCulture);
             }
@@ -163,7 +172,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The first item is null..
         /// </summary>
-        internal static string FirstItemIsNull {
+        public static string FirstItemIsNull {
             get {
                 return ResourceManager.GetString("FirstItemIsNull", resourceCulture);
             }
@@ -172,7 +181,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The heap is empty..
         /// </summary>
-        internal static string HeapIsEmpty {
+        public static string HeapIsEmpty {
             get {
                 return ResourceManager.GetString("HeapIsEmpty", resourceCulture);
             }
@@ -181,7 +190,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The heap is null..
         /// </summary>
-        internal static string HeapIsNull {
+        public static string HeapIsNull {
             get {
                 return ResourceManager.GetString("HeapIsNull", resourceCulture);
             }
@@ -190,7 +199,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The index is equal to or greater than the number of items in the array..
         /// </summary>
-        internal static string IndexIsEqualToOrGreaterThanArraySize {
+        public static string IndexIsEqualToOrGreaterThanArraySize {
             get {
                 return ResourceManager.GetString("IndexIsEqualToOrGreaterThanArraySize", resourceCulture);
             }
@@ -199,7 +208,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The index is equal to or greater than the count..
         /// </summary>
-        internal static string IndexIsEqualToOrGreaterThanCount {
+        public static string IndexIsEqualToOrGreaterThanCount {
             get {
                 return ResourceManager.GetString("IndexIsEqualToOrGreaterThanCount", resourceCulture);
             }
@@ -208,7 +217,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The index is less than 0..
         /// </summary>
-        internal static string IndexIsLessThan0 {
+        public static string IndexIsLessThan0 {
             get {
                 return ResourceManager.GetString("IndexIsLessThan0", resourceCulture);
             }
@@ -217,7 +226,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The item is not present in any set..
         /// </summary>
-        internal static string ItemIsNotPresentInAnySet {
+        public static string ItemIsNotPresentInAnySet {
             get {
                 return ResourceManager.GetString("ItemIsNotPresentInAnySet", resourceCulture);
             }
@@ -226,16 +235,25 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The item is null..
         /// </summary>
-        internal static string ItemIsNull {
+        public static string ItemIsNull {
             get {
                 return ResourceManager.GetString("ItemIsNull", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An element with the same key already exists in the collection..
+        /// </summary>
+        public static string KeyAlreadyExistsInTheCollection {
+            get {
+                return ResourceManager.GetString("KeyAlreadyExistsInTheCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An element with the same key already exists in the tree..
         /// </summary>
-        internal static string KeyExists {
+        public static string KeyExists {
             get {
                 return ResourceManager.GetString("KeyExists", resourceCulture);
             }
@@ -244,7 +262,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The key is null..
         /// </summary>
-        internal static string KeyIsNull {
+        public static string KeyIsNull {
             get {
                 return ResourceManager.GetString("KeyIsNull", resourceCulture);
             }
@@ -253,7 +271,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The tree does not contain the specified key..
         /// </summary>
-        internal static string KeyNotExists {
+        public static string KeyNotExists {
             get {
                 return ResourceManager.GetString("KeyNotExists", resourceCulture);
             }
@@ -262,7 +280,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The length is less than 0..
         /// </summary>
-        internal static string LengthIsLessThan0 {
+        public static string LengthIsLessThan0 {
             get {
                 return ResourceManager.GetString("LengthIsLessThan0", resourceCulture);
             }
@@ -271,7 +289,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The predicate is null..
         /// </summary>
-        internal static string PredicateIsNull {
+        public static string PredicateIsNull {
             get {
                 return ResourceManager.GetString("PredicateIsNull", resourceCulture);
             }
@@ -280,7 +298,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The second item is not present in any set..
         /// </summary>
-        internal static string SecondItemIsNotPresentInAnySet {
+        public static string SecondItemIsNotPresentInAnySet {
             get {
                 return ResourceManager.GetString("SecondItemIsNotPresentInAnySet", resourceCulture);
             }
@@ -289,7 +307,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The second item is null..
         /// </summary>
-        internal static string SecondItemIsNull {
+        public static string SecondItemIsNull {
             get {
                 return ResourceManager.GetString("SecondItemIsNull", resourceCulture);
             }
@@ -298,7 +316,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The selector is null..
         /// </summary>
-        internal static string SelectorIsNull {
+        public static string SelectorIsNull {
             get {
                 return ResourceManager.GetString("SelectorIsNull", resourceCulture);
             }
@@ -307,7 +325,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The set is null..
         /// </summary>
-        internal static string SetIsNull {
+        public static string SetIsNull {
             get {
                 return ResourceManager.GetString("SetIsNull", resourceCulture);
             }
@@ -316,7 +334,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The set is read-only..
         /// </summary>
-        internal static string SetIsReadOnly {
+        public static string SetIsReadOnly {
             get {
                 return ResourceManager.GetString("SetIsReadOnly", resourceCulture);
             }
@@ -325,7 +343,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The source is null..
         /// </summary>
-        internal static string SourceIsNull {
+        public static string SourceIsNull {
             get {
                 return ResourceManager.GetString("SourceIsNull", resourceCulture);
             }
@@ -334,7 +352,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The array contains more elements than the maximum value..
         /// </summary>
-        internal static string TooManyElementsInArray {
+        public static string TooManyElementsInArray {
             get {
                 return ResourceManager.GetString("TooManyElementsInArray", resourceCulture);
             }
@@ -343,7 +361,7 @@ namespace ELTE.AEGIS.Collections.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The tree is null..
         /// </summary>
-        internal static string TreeIsNull {
+        public static string TreeIsNull {
             get {
                 return ResourceManager.GetString("TreeIsNull", resourceCulture);
             }

@@ -117,17 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ArrayIndexIsGreaterThanSpace" xml:space="preserve">
-    <value>The number of elements in the source collection is greater than the available space from the array index to the end of the destination array.</value>
-  </data>
-  <data name="ArrayIsNull" xml:space="preserve">
-    <value>The array is null.</value>
-  </data>
   <data name="BufferIsNull" xml:space="preserve">
     <value>The buffer is null.</value>
-  </data>
-  <data name="CapacityLessThan0" xml:space="preserve">
-    <value>The capacity is less than 0.</value>
   </data>
   <data name="CoordinateIsNull" xml:space="preserve">
     <value>The coordinate is null.</value>
@@ -360,9 +351,6 @@
   <data name="AttributeFactoryIsNull" xml:space="preserve">
     <value>The attribute factory is null.</value>
   </data>
-  <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
-    <value>The collection contains one or more duplicate identifiers.</value>
-  </data>
   <data name="FeatureCollectionIsNull" xml:space="preserve">
     <value>The feature collection is null.</value>
   </data>
@@ -377,5 +365,14 @@
   </data>
   <data name="ItemIsNull" xml:space="preserve">
     <value>The item is null.</value>
+  </data>
+  <data name="OtherFeatureIsNull" xml:space="preserve">
+    <value>The other feature is null.</value>
+  </data>
+  <data name="OtherGeometryNotSupported" xml:space="preserve">
+    <value>The type of the other geometry is not supported.</value>
+  </data>
+  <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
+    <value>The collection contains one or more duplicate identifiers.</value>
   </data>
 </root>
