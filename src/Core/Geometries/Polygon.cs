@@ -562,12 +562,12 @@ namespace ELTE.AEGIS.Geometries
                 builder.Append(LineStringStringDivider);
 
                 partBuilder.Clear();
-                for (Int32 index = 0; index < this.Shell.Count; index++)
+                for (Int32 index = 0; index < this.holes[holeIndex].Count; index++)
                 {
                     if (index > 0)
                         partBuilder.Append(CoordinateStringDivider);
 
-                    partBuilder.Append(String.Format(provider, CoordinateStringFormat, this.Holes[holeIndex][index].X, this.Holes[holeIndex][index].Y, this.Holes[holeIndex][index].Z));
+                    partBuilder.Append(String.Format(provider, CoordinateStringFormat, this.holes[holeIndex][index].X, this.holes[holeIndex][index].Y, this.holes[holeIndex][index].Z));
                 }
 
                 builder.Append(String.Format(provider, LineStringStringFormat, partBuilder.ToString()));
