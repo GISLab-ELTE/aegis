@@ -2,10 +2,10 @@
   "supports": {},
   "dependencies": {
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
-    "NETStandard.Library": "1.6.0",
-    "SimpleInjector": "3.2.7",
+    "NETStandard.Library": "1.6.1",
+    "SimpleInjector": "3.3.1",
     "StyleCop.Analyzers": "1.0.0",
-    "System.IO.FileSystem.Primitives": "4.0.1"
+    "System.IO.FileSystem.Primitives": "4.3.0"
   },
   "frameworks": {
     "netstandard1.4": {}
