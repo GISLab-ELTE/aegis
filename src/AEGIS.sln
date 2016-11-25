@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Core.Reference", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.csproj", "{699D1891-D8BB-4F62-B33D-B52109BAC4CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.Hadoop", "Storage.Hadoop\Storage.Hadoop.csproj", "{352D7923-B6BF-45DA-81BF-BBED8A41676B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Storage.Hadoop", "Tests.Storage.Hadoop\Tests.Storage.Hadoop.csproj", "{8D5D1588-2AA7-4882-B69E-02E2873642F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{699D1891-D8BB-4F62-B33D-B52109BAC4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{699D1891-D8BB-4F62-B33D-B52109BAC4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{699D1891-D8BB-4F62-B33D-B52109BAC4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{352D7923-B6BF-45DA-81BF-BBED8A41676B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{352D7923-B6BF-45DA-81BF-BBED8A41676B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{352D7923-B6BF-45DA-81BF-BBED8A41676B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{352D7923-B6BF-45DA-81BF-BBED8A41676B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5D1588-2AA7-4882-B69E-02E2873642F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5D1588-2AA7-4882-B69E-02E2873642F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5D1588-2AA7-4882-B69E-02E2873642F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5D1588-2AA7-4882-B69E-02E2873642F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
