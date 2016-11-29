@@ -375,4 +375,10 @@
   <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
     <value>The collection contains one or more duplicate identifiers.</value>
   </data>
+  <data name="DimensionIsGreaterThan3" xml:space="preserve">
+    <value>The dimension is greater than 3.</value>
+  </data>
+  <data name="DimensionIsLessThan2" xml:space="preserve">
+    <value>The dimension is less than 2.</value>
+  </data>
 </root>

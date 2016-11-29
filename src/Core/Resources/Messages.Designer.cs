@@ -179,6 +179,24 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The dimension is greater than 3..
+        /// </summary>
+        public static string DimensionIsGreaterThan3 {
+            get {
+                return ResourceManager.GetString("DimensionIsGreaterThan3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dimension is less than 2..
+        /// </summary>
+        public static string DimensionIsLessThan2 {
+            get {
+                return ResourceManager.GetString("DimensionIsLessThan2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The end point is null..
         /// </summary>
         public static string EndPointIsNull {

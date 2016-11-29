@@ -126,6 +126,9 @@
   <data name="ArrayIsNull" xml:space="preserve">
     <value>The array is null.</value>
   </data>
+  <data name="ArraySizeLessThanRequired" xml:space="preserve">
+    <value>The number of bytes in the array is less than required.</value>
+  </data>
   <data name="CapacityLessThan0" xml:space="preserve">
     <value>The capacity is less than 0.</value>
   </data>
@@ -212,6 +215,12 @@
   </data>
   <data name="SourceIsNull" xml:space="preserve">
     <value>The source is null.</value>
+  </data>
+  <data name="StartingIndexIsEqualToOrGraterThanArrayLength" xml:space="preserve">
+    <value>The starting index is equal to or greater than the length of the array.</value>
+  </data>
+  <data name="StartingIndexIsLessThan0" xml:space="preserve">
+    <value>The starting index is less than 0.</value>
   </data>
   <data name="TooManyElementsInArray" xml:space="preserve">
     <value>The array contains more elements than the maximum value.</value>

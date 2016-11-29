@@ -89,6 +89,15 @@ namespace ELTE.AEGIS.Collections.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of bytes in the array is less than required..
+        /// </summary>
+        public static string ArraySizeLessThanRequired {
+            get {
+                return ResourceManager.GetString("ArraySizeLessThanRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The capacity is less than 0..
         /// </summary>
         public static string CapacityLessThan0 {
@@ -346,6 +355,24 @@ namespace ELTE.AEGIS.Collections.Resources {
         public static string SourceIsNull {
             get {
                 return ResourceManager.GetString("SourceIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The starting index is equal to or greater than the length of the array..
+        /// </summary>
+        public static string StartingIndexIsEqualToOrGraterThanArrayLength {
+            get {
+                return ResourceManager.GetString("StartingIndexIsEqualToOrGraterThanArrayLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The starting index is less than 0..
+        /// </summary>
+        public static string StartingIndexIsLessThan0 {
+            get {
+                return ResourceManager.GetString("StartingIndexIsLessThan0", resourceCulture);
             }
         }
         
