@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class MercatorProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Longitude of natural origin.
         /// </summary>
@@ -54,10 +52,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected Double[] inverseParams;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MercatorProjection" /> class.
@@ -95,10 +89,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                 4279 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 161280
             };
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -154,7 +144,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalEllipsoidCollection : LocalReferenceCollection<Ellipsoid>
     {
-        #region Private fields
-
         /// <summary>
         /// The collection of <see cref="UnitOfMeasurement" /> instances.
         /// </summary>
         private readonly IReferenceCollection<UnitOfMeasurement> unitCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalEllipsoidCollection" /> class.
@@ -46,14 +40,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public LocalEllipsoidCollection(IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), Messages.UnitOfMeasurementCollectionIsNull);
+                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
 
             this.unitCollection = unitCollection;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -79,7 +69,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                                                    new Length(Double.Parse(content[5]), this.unitCollection[Authority, Int32.Parse(content[3])]));
             }
         }
-
-        #endregion
     }
 }

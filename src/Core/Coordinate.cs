@@ -26,8 +26,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class Coordinate : IEquatable<Coordinate>, IEquatable<CoordinateVector>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the empty <see cref="Coordinate" /> value. This field is read-only.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS
         /// </summary>
         public static readonly Coordinate Undefined = new Coordinate(Double.NaN, Double.NaN, Double.NaN);
 
-        #endregion
-
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -51,10 +45,6 @@ namespace ELTE.AEGIS
         /// The string for invalid coordinates. This field is constant.
         /// </summary>
         private const String InvalidCoordinateString = "INVALID";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The X component.
@@ -70,10 +60,6 @@ namespace ELTE.AEGIS
         /// The Z component.
         /// </summary>
         private readonly Double z;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Coordinate" /> class.
@@ -99,10 +85,6 @@ namespace ELTE.AEGIS
             this.y = y;
             this.z = z;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the X component.
@@ -134,10 +116,6 @@ namespace ELTE.AEGIS
         /// <value><c>true</c> if all component are numbers; otherwise, <c>false</c>.</value>
         public Boolean IsValid { get { return !Double.IsNaN(this.x) && !Double.IsNaN(this.y) && !Double.IsNaN(this.z); } }
 
-        #endregion
-
-        #region IEquatable methods
-
         /// <summary>
         /// Indicates whether this instance and a specified other <see cref="Coordinate" /> are equal.
         /// </summary>
@@ -165,10 +143,6 @@ namespace ELTE.AEGIS
 
             return this.x == other.X && this.y == other.Y && this.z == other.Z;
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -213,10 +187,6 @@ namespace ELTE.AEGIS
             return this.ToString(CultureInfo.InvariantCulture);
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -229,10 +199,6 @@ namespace ELTE.AEGIS
 
             return String.Format(provider, CoordinateStringFormat, this.x, this.y, this.z);
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Sums the specified <see cref="Coordinate" /> instance with a <see cref="CoordinateVector" /> instance.
@@ -248,9 +214,9 @@ namespace ELTE.AEGIS
         public static Coordinate operator +(Coordinate coordinate, CoordinateVector vector)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
 
             return new Coordinate(coordinate.X + vector.X, coordinate.Y + vector.Y, coordinate.Z + vector.Z);
         }
@@ -269,9 +235,9 @@ namespace ELTE.AEGIS
         public static Coordinate operator -(Coordinate coordinate, CoordinateVector vector)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
 
             return new Coordinate(coordinate.X - vector.X, coordinate.Y - vector.Y, coordinate.Z - vector.Z);
         }
@@ -290,9 +256,9 @@ namespace ELTE.AEGIS
         public static CoordinateVector operator -(Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
 
             return new CoordinateVector(first.X - second.X, first.Y - second.Y, first.Z - second.Z);
         }
@@ -347,10 +313,6 @@ namespace ELTE.AEGIS
             return new Coordinate(vector.X, vector.Y, vector.Z);
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Computes the distance between the two coordinates.
         /// </summary>
@@ -400,9 +362,9 @@ namespace ELTE.AEGIS
         public static Double Distance(Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
 
             if (first.Equals(second))
                 return 0;
@@ -423,7 +385,7 @@ namespace ELTE.AEGIS
         public static Coordinate Centroid(params Coordinate[] coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesArrayIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesArrayIsNull);
 
             if (coordinates.Length == 0)
                 return Coordinate.Undefined;
@@ -455,7 +417,7 @@ namespace ELTE.AEGIS
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             if (!coordinates.Any())
                 return Coordinate.Undefined;
@@ -524,11 +486,11 @@ namespace ELTE.AEGIS
                 precisionModel = PrecisionModel.Default;
 
             if (ReferenceEquals(origin, null))
-                throw new ArgumentNullException(nameof(origin), Messages.OriginIsNull);
+                throw new ArgumentNullException(nameof(origin), CoreMessages.OriginIsNull);
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
 
             Double det = (first.X - origin.X) * (second.Y - origin.Y) - (first.Y - origin.Y) * (second.X - origin.X);
 
@@ -561,11 +523,11 @@ namespace ELTE.AEGIS
         public static Double Angle(Coordinate origin, Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(origin, null))
-                throw new ArgumentNullException(nameof(origin), Messages.OriginIsNull);
+                throw new ArgumentNullException(nameof(origin), CoreMessages.OriginIsNull);
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
 
             Double distanceOriginFirst = Distance(origin, first);
             Double distanceOriginSecond = Distance(origin, second);
@@ -573,7 +535,5 @@ namespace ELTE.AEGIS
 
             return Math.Acos((distanceOriginFirst * distanceOriginFirst + distanceOriginSecond * distanceOriginSecond - distanceFirstSecond * distanceFirstSecond) / (2 * distanceOriginFirst * distanceOriginSecond));
         }
-
-        #endregion
     }
 }

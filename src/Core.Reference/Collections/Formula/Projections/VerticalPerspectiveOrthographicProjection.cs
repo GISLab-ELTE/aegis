@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9839", "Vertical Perspective (Orthographic case)")]
     public class VerticalPerspectiveOrthographicProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of topocentric origin.
         /// </summary>
@@ -44,10 +42,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Radius of prime vertical curvature at origin.
         /// </summary>
         private readonly Double originRadiusOfPrimeVerticalCurvature;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VerticalPerspectiveOrthographicProjection" /> class.
@@ -96,10 +90,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.originRadiusOfPrimeVerticalCurvature = this.Ellipsoid.RadiusOfPrimeVerticalCurvature(this.latitudeOfTopocentricOrigin);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -128,7 +118,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return GeoCoordinate.Undefined;
         }
-
-        #endregion
     }
 }

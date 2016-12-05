@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class PolygonCentroidAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The centroid of the polygon.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Coordinate baseCoordinate;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PolygonCentroidAlgorithm" /> class.
         /// </summary>
@@ -61,7 +55,7 @@ namespace ELTE.AEGIS.Algorithms
         public PolygonCentroidAlgorithm(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             this.Shell = polygon.Shell;
             this.Holes = polygon.Holes;
@@ -76,7 +70,7 @@ namespace ELTE.AEGIS.Algorithms
         public PolygonCentroidAlgorithm(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             this.Shell = shell;
             this.Holes = null;
@@ -92,16 +86,12 @@ namespace ELTE.AEGIS.Algorithms
         public PolygonCentroidAlgorithm(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             this.Shell = shell;
             this.Holes = holes;
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the coordinates of the polygon shell.
@@ -128,10 +118,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Compute the centroid of the polygon.
@@ -173,10 +159,6 @@ namespace ELTE.AEGIS.Algorithms
             return algorithm.Result;
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Computes the centroid of the polygon.
         /// </summary>
@@ -205,10 +187,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result = new Coordinate(resultX, resultY, this.baseCoordinate.Z);
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Add a list of coordinates.
@@ -259,7 +237,5 @@ namespace ELTE.AEGIS.Algorithms
             resultX += sign * triArea * (first.X + second.X + third.X);
             resultY += sign * triArea * (first.Y + second.Y + third.Y);
         }
-
-        #endregion
     }
 }

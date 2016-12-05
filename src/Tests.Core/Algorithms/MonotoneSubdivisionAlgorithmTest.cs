@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class MonotoneSubdivisionAlgorithmTest
     {
-        #region Private fields
-
         /// <summary>
         /// The source used for testing.
         /// </summary>
         private List<Coordinate> source;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -50,10 +44,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 new Coordinate(5, 20), new Coordinate(5, -10), new Coordinate(-10, -10)
             };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructor of the <see cref="MonotoneSubdivisionAlgorithm" /> class.
@@ -117,7 +107,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 }
             }
         }
-
-        #endregion
     }
 }

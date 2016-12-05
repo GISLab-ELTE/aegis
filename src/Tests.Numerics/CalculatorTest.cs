@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Tests.Numerics
     [TestFixture]
     public class CalculatorTest
     {
-        #region Tests for general methods
-
         /// <summary>
         /// Tests the <see cref="Calculator.Fraction(Single)" /> method.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Tests.Numerics
             Calculator.Fraction(-0.01).ShouldBe(-0.01, 1e-10);
         }
 
-        #endregion
-
-        #region Tests for extrema computation methods
-
         /// <summary>
         /// Tests the <see cref="Calculator.AbsMax(Double)" /> method.
         /// </summary>
@@ -86,10 +80,6 @@ namespace ELTE.AEGIS.Tests.Numerics
             Calculator.AbsMin(Double.NegativeInfinity, 0, 57, 4, Double.PositiveInfinity).ShouldBe(0);
             Calculator.AbsMin((Double[])null).ShouldBe(0);
         }
-
-        #endregion
-
-        #region Tests for Factorial calculation methods
 
         /// <summary>
         /// Tests the <see cref="Calculator.Factorial(Int32)" /> method.
@@ -131,10 +121,6 @@ namespace ELTE.AEGIS.Tests.Numerics
 
             Should.Throw<ArgumentOutOfRangeException>(() => Calculator.Gamma(-5));
         }
-
-        #endregion
-
-        #region Tests for summation methods
 
         /// <summary>
         /// Tests the <see cref="Calculator.Sum(Int32, Int32)" /> method.
@@ -222,10 +208,6 @@ namespace ELTE.AEGIS.Tests.Numerics
             Calculator.Sum(-4, -2, x => Math.Sin(x)).ShouldBe(-0.2936149395, 1e-10);
             Calculator.Sum(2, 1, x => Math.Sin(x)).ShouldBe(0, 1e-10);
         }
-
-        #endregion
-
-        #region Tests for trigonometry methods
 
         /// <summary>
         /// Tests the <see cref="Calculator.Sec(Double)" /> method.
@@ -470,10 +452,6 @@ namespace ELTE.AEGIS.Tests.Numerics
             Calculator.Tan4(Math.PI).ShouldBe(0, 1e-10);
         }
 
-        #endregion
-
-        #region Tests for common value computation methods
-
         /// <summary>
         /// Tests the <see cref="Calculator.GreatestCommonDivisor(Int32, Int32)" /> method.
         /// </summary>
@@ -537,10 +515,6 @@ namespace ELTE.AEGIS.Tests.Numerics
             Calculator.LeastCommonMultiple(-33, -11).ShouldBe(33);
         }
 
-        #endregion
-
-        #region Tests for algebra methods
-
         /// <summary>
         /// Tests the <see cref="Calculator.Binomial(Int32, Int32)" /> method.
         /// </summary>
@@ -558,7 +532,5 @@ namespace ELTE.AEGIS.Tests.Numerics
             Should.Throw<ArgumentOutOfRangeException>(() => Calculator.Binomial(-1, 1));
             Should.Throw<ArgumentOutOfRangeException>(() => Calculator.Binomial(1, -1));
         }
-
-        #endregion
     }
 }

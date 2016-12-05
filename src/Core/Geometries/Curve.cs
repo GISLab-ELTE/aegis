@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public abstract class Curve : Geometry, ICurve
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Curve" /> class.
         /// </summary>
@@ -44,19 +42,11 @@ namespace ELTE.AEGIS.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the curve.
         /// </summary>
         /// <value><c>1</c>, which is the defined dimension of a curve.</value>
         public override sealed Int32 Dimension { get { return 1; } }
-
-        #endregion
-
-        #region ICurve properties
 
         /// <summary>
         /// Gets a value indicating whether the curve is closed.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         /// <value>The last point of the curve if the curve has at least one point; otherwise, <c>null</c>.</value>
         public abstract IPoint EndPoint { get; }
-
-        #endregion
     }
 }

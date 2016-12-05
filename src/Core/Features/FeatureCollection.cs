@@ -25,16 +25,10 @@ namespace ELTE.AEGIS.Features
     /// </summary>
     public class FeatureCollection : IFeatureCollection
     {
-        #region Private fields
-
         /// <summary>
         /// The list of features.
         /// </summary>
         private Dictionary<String, IFeature> items;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
@@ -50,9 +44,9 @@ namespace ELTE.AEGIS.Features
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
@@ -78,11 +72,11 @@ namespace ELTE.AEGIS.Features
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
@@ -95,15 +89,11 @@ namespace ELTE.AEGIS.Features
                     continue;
 
                 if (this.items.ContainsKey(feature.Identifier))
-                    throw new ArgumentException(nameof(collection), Messages.CollectionContainsDuplicateIdentifiers);
+                    throw new ArgumentException(nameof(collection), CoreMessages.CollectionContainsDuplicateIdentifiers);
 
                this.items.Add(feature.Identifier, feature.Factory.Equals(this.Factory) ? feature : this.Factory.CreateFeature(feature));
             }
         }
-
-        #endregion
-
-        #region IFeature properties
 
         /// <summary>
         /// Gets the attribute collection of the feature.
@@ -128,10 +118,6 @@ namespace ELTE.AEGIS.Features
         /// </summary>
         /// <value>The identifier of the feature collection.</value>
         public String Identifier { get; private set; }
-
-        #endregion
-
-        #region IFeatureCollection properties
 
         /// <summary>
         /// Gets the number of elements contained in the collection.
@@ -171,10 +157,6 @@ namespace ELTE.AEGIS.Features
             }
         }
 
-        #endregion
-
-        #region IFeatureCollection methods
-
         /// <summary>
         /// Adds an item to the collection.
         /// </summary>
@@ -184,9 +166,9 @@ namespace ELTE.AEGIS.Features
         public void Add(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
             if (this.items.ContainsKey(item.Identifier))
-                throw new ArgumentException(Messages.ItemIdentifierExists, nameof(item));
+                throw new ArgumentException(CoreMessages.ItemIdentifierExists, nameof(item));
 
             this.items.Add(item.Identifier, item);
         }
@@ -208,7 +190,7 @@ namespace ELTE.AEGIS.Features
         public Boolean Contains(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
 
             return this.items.ContainsKey(item.Identifier) && this.items[item.Identifier].Equals(item);
         }
@@ -224,11 +206,11 @@ namespace ELTE.AEGIS.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.Values.ToArray().CopyTo(array, arrayIndex);
         }
@@ -242,17 +224,13 @@ namespace ELTE.AEGIS.Features
         public Boolean Remove(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
 
             if (!this.items.ContainsKey(item.Identifier) || !this.items[item.Identifier].Equals(item))
                 return false;
 
             return this.items.Remove(item.Identifier);
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -272,7 +250,5 @@ namespace ELTE.AEGIS.Features
         {
             return this.GetEnumerator();
         }
-
-        #endregion
     }
 }

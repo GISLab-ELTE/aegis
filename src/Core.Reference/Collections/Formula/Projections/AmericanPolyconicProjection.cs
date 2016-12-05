@@ -24,16 +24,10 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9818", "American Polyconic")]
     public class AmericanPolyconicProjection : CoordinateProjection
     {
-        #region Private constants
-
         /// <summary>
         /// Represents the limit for iterative computation. This field is constant.
         /// </summary>
         private const Int32 IterationLimit = 1000;
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// Latitude of natural origin.
@@ -79,10 +73,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Ellipsoid eccentricity.
         /// </summary>
         private readonly Double e8;
-
-        #endregion Protected fields
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AmericanPolyconicProjection" /> class.
@@ -135,10 +125,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.e8 = Math.Pow(this.Ellipsoid.Eccentricity, 8);
             this.m0 = this.ComputeM(this.latitudeOfNaturalOrigin);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -225,10 +211,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(phi, lambda);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the M value.
         /// </summary>
@@ -241,7 +223,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                                                          (15 * this.e4 / 256 + 45 * this.e6 / 1024) * Math.Sin(4 * latitude) -
                                                          35 * this.e6 / 3072 * Math.Sin(6 * latitude));
         }
-
-        #endregion
     }
 }

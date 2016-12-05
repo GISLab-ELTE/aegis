@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalGeodeticDatumCollection : LocalReferenceCollection<GeodeticDatum>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
         private const String ResourceName = "Datum";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
@@ -52,10 +46,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  <see cref="Meridian" /> instances.
         /// </summary>
         private IReferenceCollection<Meridian> meridianCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalGeodeticDatumCollection" /> class.
@@ -74,20 +64,16 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, ResourceName)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (ellipsoidCollection == null)
-                throw new ArgumentNullException(nameof(ellipsoidCollection), Messages.EllipsoidCollectionIsNull);
+                throw new ArgumentNullException(nameof(ellipsoidCollection), ReferenceMessages.EllipsoidCollectionIsNull);
             if (meridianCollection == null)
-                throw new ArgumentNullException(nameof(meridianCollection), Messages.MeridianCollectionIsNull);
+                throw new ArgumentNullException(nameof(meridianCollection), ReferenceMessages.MeridianCollectionIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
             this.ellipsoidCollection = ellipsoidCollection;
             this.meridianCollection = meridianCollection;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -109,7 +95,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

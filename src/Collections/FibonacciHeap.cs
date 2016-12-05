@@ -34,7 +34,7 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public sealed class FibonacciHeap<TKey, TValue> : IHeap<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The root list.
@@ -56,9 +56,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         private LinkedListNode<FibonacciHeapNode> peekLinkedListNode;
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FibonacciHeap{TKey, TValue}" /> class.
@@ -75,7 +75,7 @@ namespace ELTE.AEGIS.Collections
             : this(Comparer<TKey>.Default)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             foreach (KeyValuePair<TKey, TValue> element in collection)
                 this.Insert(element.Key, element.Value);
@@ -91,7 +91,7 @@ namespace ELTE.AEGIS.Collections
             : this(comparer)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             foreach (KeyValuePair<TKey, TValue> element in source)
                 this.Insert(element.Key, element.Value);
@@ -110,9 +110,9 @@ namespace ELTE.AEGIS.Collections
             this.peekLinkedListNode = null;
         }
 
-        #endregion
+        
 
-        #region IHeap properties
+        
 
         /// <summary>
         /// Gets the number of elements actually contained in the heap.
@@ -130,7 +130,7 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (this.size == 0)
-                    throw new InvalidOperationException(Messages.HeapIsEmpty);
+                    throw new InvalidOperationException(CollectionMessages.HeapIsEmpty);
 
                 return this.peekLinkedListNode.Value.Value;
             }
@@ -142,9 +142,9 @@ namespace ELTE.AEGIS.Collections
         /// <value>The number of elements that the heap can contain before resizing is required.</value>
         Int32 IHeap<TKey, TValue>.Capacity { get { return Int32.MaxValue; } set { } }
 
-        #endregion
+        
 
-        #region Public properties
+        
 
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the heap.
@@ -152,9 +152,9 @@ namespace ELTE.AEGIS.Collections
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current heap and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get { return this.comparer; } }
 
-        #endregion
+        
 
-        #region IHeap methods
+        
 
         /// <summary>
         /// Inserts the specified key and value to the heap.
@@ -165,7 +165,7 @@ namespace ELTE.AEGIS.Collections
         public void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             this.size++;
 
@@ -187,7 +187,7 @@ namespace ELTE.AEGIS.Collections
         public TValue RemovePeek()
         {
             if (this.size == 0)
-                throw new InvalidOperationException(Messages.HeapIsEmpty);
+                throw new InvalidOperationException(CollectionMessages.HeapIsEmpty);
 
             TValue result = this.peekLinkedListNode.Value.Value;
             FibonacciHeapNode peek = this.peekLinkedListNode.Value;
@@ -268,9 +268,9 @@ namespace ELTE.AEGIS.Collections
             this.rootList.Clear();
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -292,9 +292,9 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        #endregion
+        
 
-        #region Private methods
+        
 
         /// <summary>
         /// Flattens the specified node.
@@ -328,16 +328,16 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region Private types
+        
 
         /// <summary>
         /// Represents a Fibonacci heap node.
         /// </summary>
         private class FibonacciHeapNode
         {
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="FibonacciHeapNode" /> class.
@@ -353,9 +353,9 @@ namespace ELTE.AEGIS.Collections
                 this.IsMarked = isMarked;
             }
 
-            #endregion
+            
 
-            #region Public properties
+            
 
             /// <summary>
             /// Gets the key.
@@ -393,9 +393,9 @@ namespace ELTE.AEGIS.Collections
             /// <value>The rank.</value>
             public Int32 Rank { get { return this.Children.Count; } }
 
-            #endregion
+            
 
-            #region Public methods
+            
 
             /// <summary>
             /// Sets the parent node.
@@ -418,9 +418,9 @@ namespace ELTE.AEGIS.Collections
                 this.Children.Add(child);
             }
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

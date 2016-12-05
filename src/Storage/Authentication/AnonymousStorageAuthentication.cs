@@ -19,14 +19,10 @@ namespace ELTE.AEGIS.Storage.Authentication
     /// </summary>
     public class AnonymousStorageAuthentication : IStorageAuthentication
     {
-        #region IFileSystemAuthentication properties
-
         /// <summary>
         /// Gets the type of the authentication.
         /// </summary>
         /// <value>The type of the authentication.</value>
         public StorageAuthenticationType AutenticationType { get { return StorageAuthenticationType.Anonymous; } }
-
-        #endregion
     }
 }

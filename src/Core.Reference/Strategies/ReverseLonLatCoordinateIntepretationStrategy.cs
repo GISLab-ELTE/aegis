@@ -46,9 +46,9 @@ namespace ELTE.AEGIS.Reference.Strategies
         public ReverseLonLatCoordinateIntepretationStrategy(CoordinateReferenceSystem referenceSystem)
         {
             if (referenceSystem == null)
-                throw new ArgumentNullException(nameof(referenceSystem), Messages.ReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(referenceSystem), ReferenceMessages.ReferenceSystemIsNull);
             if (referenceSystem.CoordinateSystem.Dimension < 2)
-                throw new ArgumentException(Messages.CoordinateSystemDimensionLessThanExpected, nameof(referenceSystem));
+                throw new ArgumentException(ReferenceMessages.CoordinateSystemDimensionLessThanExpected, nameof(referenceSystem));
 
             this.referenceSystem = referenceSystem;
             this.longitudeUnit = this.referenceSystem.CoordinateSystem.GetAxis(0).Unit;

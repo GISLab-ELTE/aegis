@@ -35,7 +35,7 @@ namespace ELTE.AEGIS.Reference.Strategies
         public ReverseCoordinateProjectionStrategy(ProjectedCoordinateReferenceSystem source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.ReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source), ReferenceMessages.ReferenceSystemIsNull);
 
             this.source = source;
         }

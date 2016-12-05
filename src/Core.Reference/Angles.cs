@@ -19,8 +19,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public static class Angles
     {
-        #region Private static fields
-
         /// <summary>
         /// The equator.
         /// </summary>
@@ -56,10 +54,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private static Angle? tropicOfCapricorn;
 
-        #endregion
-
-        #region Public static properties
-
         /// <summary>
         /// Gets the equator.
         /// </summary>
@@ -94,7 +88,5 @@ namespace ELTE.AEGIS.Reference
         /// Gets the tropic of Capricorn.
         /// </summary>
         public static Angle TropicOfCapricorn { get { return (tropicOfCapricorn ?? (tropicOfCapricorn = Angle.FromDegree(-23.43777778))).Value; } }
-
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class LambertConicConformalProjection : CoordinateProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformalProjection" /> class.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, method, parameters, ellipsoid, areaOfUse)
         {
         }
-
-        #endregion
-
-        #region Protected utility methods
 
         /// <summary>
         /// Computes the T parameter value.
@@ -79,7 +73,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return phi;
         }
-
-        #endregion
     }
 }

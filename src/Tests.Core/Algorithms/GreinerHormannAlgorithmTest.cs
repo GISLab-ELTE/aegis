@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class GreinerHormannAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Test cases for non-intersecting polygon shells without holes.
         /// </summary>
@@ -1627,7 +1625,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
-
-        #endregion
     }
 }

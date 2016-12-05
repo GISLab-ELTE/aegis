@@ -16,6 +16,7 @@ namespace ELTE.AEGIS.Storage.Geometries
 {
     using System;
     using System.Collections.Generic;
+    using Collections.Resources;
     using ELTE.AEGIS.Resources;
 
     /// <summary>
@@ -23,16 +24,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredLinearRing : StoredLineString, ILinearRing
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the linear ring. This field is constant.
         /// </summary>
         private const String LinearRingName = "LINEARRING";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredLinearRing" /> class.
@@ -67,19 +62,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region ICurve properties
-
         /// <summary>
         /// Gets a value indicating whether the linear ring is closed.
         /// </summary>
         /// <value><c>true</c>, as linear ring is always considered to be closed.</value>
         public override Boolean IsClosed { get { return true; } }
-
-        #endregion
-
-        #region ILineString methods
 
         /// <summary>
         /// Sets the coordinate at the specified index.
@@ -94,9 +81,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public override void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             if (index == 0 || index == this.Count - 1)
             {
@@ -134,7 +121,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public override void Add(IEnumerable<Coordinate> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             if (this.Count == 0)
             {
@@ -160,9 +147,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public override void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             if (index == 0)
             {
@@ -217,9 +204,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public override void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             if (this.Count == 2)
             {
@@ -236,10 +223,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -249,7 +232,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, LinearRingName);
         }
-
-        #endregion
     }
 }

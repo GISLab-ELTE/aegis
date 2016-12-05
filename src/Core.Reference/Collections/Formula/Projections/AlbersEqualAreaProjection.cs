@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9822", "Albers Equal Area")]
     public class AlbersEqualAreaProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Easting at false origin.
         /// </summary>
@@ -91,10 +89,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         private readonly Double c;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbersEqualAreaProjection" /> class.
         /// </summary>
@@ -158,10 +152,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.c = this.ComputeC(m1, this.n, alpha1);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -207,10 +197,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(phi, lambda);
         }
 
-        #endregion
-
-        #region Private utility methods
-
         /// <summary>
         /// Computes the Alpha value.
         /// </summary>
@@ -255,7 +241,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return (m1 * m1 - m2 * m2) / (alpha2 - alpha1);
         }
-
-        #endregion
     }
 }

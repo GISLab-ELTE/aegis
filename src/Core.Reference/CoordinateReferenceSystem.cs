@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public abstract class CoordinateReferenceSystem : ReferenceSystem
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateReferenceSystem" /> class.
         /// </summary>
@@ -48,30 +46,22 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, scope)
         {
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), Messages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), Messages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
 
             this.CoordinateSystem = coordinateSystem;
             this.Datum = datum;
             this.AreaOfUse = areaOfUse;
         }
 
-        #endregion
-
-        #region Public ReferenceSystem properties
-
         /// <summary>
         /// Gets the dimension of the reference system.
         /// </summary>
         /// <value>The dimension of the reference system.</value>
         public override Int32 Dimension { get { return this.CoordinateSystem.Dimension; } }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the coordinate system.
@@ -90,7 +80,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The area of use where the reference system is applicable.</value>
         public AreaOfUse AreaOfUse { get; private set; }
-
-        #endregion
     }
 }

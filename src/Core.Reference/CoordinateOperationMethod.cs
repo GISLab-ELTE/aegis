@@ -22,16 +22,10 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class CoordinateOperationMethod : IdentifiedObject
     {
-        #region Private fields
-
         /// <summary>
         /// The array of parameters.
         /// </summary>
         private readonly CoordinateOperationParameter[] parameters;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateOperationMethod" /> class.
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS.Reference
             this.parameters = parameters;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets a value indicating whether the operation is reversible.
         /// </summary>
@@ -78,7 +68,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The array containing the parameters of the method.</value>
         public IReadOnlyList<CoordinateOperationParameter> Parameters { get { return this.parameters; } }
-
-        #endregion
     }
 }

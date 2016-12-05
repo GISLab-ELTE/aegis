@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9619", "Geographic2D offsets")]
     public class GeographicTranslation : CoordinateTransformation<GeoCoordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// The latitude offset.
         /// </summary>
@@ -34,10 +32,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// The longitude offset.
         /// </summary>
         private readonly Double longitudeOffset;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeographicTranslation" /> class.
@@ -91,10 +85,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.longitudeOffset = this.GetParameterValue(CoordinateOperationParameters.LongitudeOffset);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -114,7 +104,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return new GeoCoordinate(coordinate.Latitude.BaseValue - this.latitudeOffset, coordinate.Longitude.BaseValue - this.longitudeOffset);
         }
-
-        #endregion
     }
 }

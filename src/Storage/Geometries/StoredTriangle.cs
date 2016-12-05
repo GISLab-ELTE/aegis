@@ -25,16 +25,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredTriangle : StoredPolygon, ITriangle
     {
-        #region Private fields
-
         /// <summary>
         /// The name of the triangle. This field is constant.
         /// </summary>
         private const String TiangleName = "TRIANGLE";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredTriangle" /> class.
@@ -69,10 +63,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets a value indicating whether the triangle is valid.
         /// </summary>
@@ -102,10 +92,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region ISurface properties
-
         /// <summary>
         /// Gets a value indicating whether the triangle is convex.
         /// </summary>
@@ -118,10 +104,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value><c>true</c>, as a triangle is always whole.</value>
         public override sealed Boolean IsWhole { get { return true; } }
 
-        #endregion
-
-        #region IPolygon methods
-
         /// <summary>
         /// Add a hole to the triangle.
         /// </summary>
@@ -129,7 +111,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
         public override void AddHole(ILinearRing hole)
         {
-            throw new NotSupportedException(Messages.HolesNotSupportedInTriangle);
+            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
         }
 
         /// <summary>
@@ -140,7 +122,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
         public override ILinearRing GetHole(Int32 index)
         {
-            throw new NotSupportedException(Messages.HolesNotSupportedInTriangle);
+            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
         }
 
         /// <summary>
@@ -151,7 +133,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
         public override Boolean RemoveHole(ILinearRing hole)
         {
-            throw new NotSupportedException(Messages.HolesNotSupportedInTriangle);
+            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
         }
 
         /// <summary>
@@ -161,7 +143,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
         public override void RemoveHoleAt(Int32 index)
         {
-            throw new NotSupportedException(Messages.HolesNotSupportedInTriangle);
+            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
         }
 
         /// <summary>
@@ -170,12 +152,8 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
         public override void ClearHoles()
         {
-            throw new NotSupportedException(Messages.HolesNotSupportedInTriangle);
+            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
         }
-
-        #endregion
-
-        #region IGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -186,7 +164,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, TiangleName);
         }
-
-        #endregion
     }
 }

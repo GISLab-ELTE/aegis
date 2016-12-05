@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public class GeodeticDatum : Datum
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeodeticDatum" /> class.
         /// </summary>
@@ -77,20 +75,16 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, anchorPoint, realizationEpoch, scope)
         {
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
             if (primeMeridian == null)
-                throw new ArgumentNullException(nameof(primeMeridian), Messages.PrimeMeridianIsNull);
+                throw new ArgumentNullException(nameof(primeMeridian), ReferenceMessages.PrimeMeridianIsNull);
 
             this.AreaOfUse = areaOfUse;
             this.Ellipsoid = ellipsoid;
             this.PrimeMeridian = primeMeridian;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the area of use.
@@ -109,7 +103,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The prime meridian.</value>
         public Meridian PrimeMeridian { get; private set; }
-
-        #endregion
     }
 }

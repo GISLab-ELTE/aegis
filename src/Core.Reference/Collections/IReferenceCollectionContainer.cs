@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference.Collections
     /// </summary>
     public interface IReferenceCollectionContainer
     {
-        #region Public properties
-
         /// <summary>
         /// Gets the collection of <see cref="AreaOfUse" /> instances.
         /// </summary>
@@ -148,7 +146,5 @@ namespace ELTE.AEGIS.Reference.Collections
         /// </summary>
         /// <value>The registered collection of <see cref="VerticalCoordinateReferenceSystem" /> instances.</value>
         IReferenceCollection<VerticalCoordinateReferenceSystem> VerticalReferenceSystems { get; }
-
-        #endregion
     }
 }

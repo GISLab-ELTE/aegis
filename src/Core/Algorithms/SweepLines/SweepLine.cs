@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public sealed class SweepLine
     {
-        #region Private types
-
         /// <summary>
         /// Defines the intersection between two sweep line segments.
         /// </summary>
@@ -55,8 +53,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         private sealed class SweepLineSegmentComparer : IComparer<SweepLineSegment>
         {
-            #region Private fields
-
             /// <summary>
             /// Stores the precision model.
             /// </summary>
@@ -75,10 +71,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             /// </summary>
             private Double sweepLinePosition;
 
-            #endregion
-
-            #region Constructors
-
             /// <summary>
             /// Initializes a new instance of the <see cref="SweepLineSegmentComparer" /> class.
             /// </summary>
@@ -89,10 +81,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.sweepLinePosition = Double.MinValue;
                 this.intersections = new HashSet<Tuple<SweepLineSegment, SweepLineSegment>>();
             }
-
-            #endregion
-
-            #region IComparer methods
 
             /// <summary>
             /// Compares two <see cref="SweepLineSegment" /> instances and returns a value indicating whether one is less than, equal to, or greater than the other.
@@ -108,7 +96,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             {
                 // Comparing non-overlapping segments is not supported.
                 if (first.RightCoordinate.X < second.LeftCoordinate.X || first.LeftCoordinate.X > second.RightCoordinate.X)
-                    throw new InvalidOperationException(Messages.SegmentsDoNotOverlap);
+                    throw new InvalidOperationException(CoreMessages.SegmentsDoNotOverlap);
 
                 // The segments intersect.
                 SweepLineIntersection intersection = this.GetIntersection(first, second);
@@ -162,10 +150,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 return first.LeftCoordinate.Y.CompareTo(second.LeftCoordinate.Y);
             }
 
-            #endregion
-
-            #region Public methods
-
             /// <summary>
             /// Gets the intersection type between the two given sweep line segments.
             /// </summary>
@@ -212,8 +196,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.intersections.Add(Tuple.Create(x, y));
                 this.intersections.Add(Tuple.Create(y, x));
             }
-
-            #endregion
         }
 
         /// <summary>
@@ -221,16 +203,10 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         private sealed class SweepLineTree : AvlTree<SweepLineSegment, SweepLineSegment>
         {
-            #region Private fields
-
             /// <summary>
             /// The currently selected node.
             /// </summary>
             private Node currentNode;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="SweepLineTree" /> class.
@@ -242,18 +218,10 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.currentNode = null;
             }
 
-            #endregion
-
-            #region Public properties
-
             /// <summary>
             /// Gets the current sweep line segment.
             /// </summary>
             public SweepLineSegment Current { get { return this.currentNode?.Key; } }
-
-            #endregion
-
-            #region Public methods
 
             /// <summary>
             /// Inserts the specified segment to the tree.
@@ -263,7 +231,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             public void Insert(SweepLineSegment segment)
             {
                 if (segment == null)
-                    throw new ArgumentNullException(nameof(segment), Messages.SegmentIsNull);
+                    throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
 
                 if (this.root == null)
                 {
@@ -304,7 +272,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             public void SetCurrent(SweepLineSegment segment)
             {
                 if (segment == null)
-                    throw new ArgumentNullException(nameof(segment), Messages.SegmentIsNull);
+                    throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
 
                 this.currentNode = this.SearchNode(segment);
             }
@@ -382,13 +350,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                     return null;
                 }
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The source coordinates.
@@ -410,10 +372,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         private readonly IComparer<Coordinate> coordinateComparer;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SweepLine" /> class.
         /// </summary>
@@ -423,7 +381,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public SweepLine(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.source = new List<Coordinate>(source.Elements());
             this.tree = new SweepLineTree(precisionModel ?? PrecisionModel.Default);
@@ -442,7 +400,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public SweepLine(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             List<Coordinate> sourceList = new List<Coordinate>();
 
@@ -471,10 +429,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             this.coordinateComparer = new CoordinateComparer();
         }
 
-        #endregion
-
-        #region Private properties
-
         /// <summary>
         /// Gets a value indicating whether gets whether the source of the <see cref="SweepLine" /> contains any closed line string.
         /// </summary>
@@ -482,10 +436,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         {
             get { return this.endpoints != null && this.endpoints.Count > 0; }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Adds a new endpoint event to the sweep line.
@@ -501,11 +451,11 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public SweepLineSegment Add(EndPointEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), Messages.EventIsNull);
+                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
             if (e.Edge < 0)
-                throw new ArgumentException(Messages.EventEdgeIsLessThan0, nameof(e));
+                throw new ArgumentException(CoreMessages.EventEdgeIsLessThan0, nameof(e));
             if (e.Edge >= this.source.Count - 1)
-                throw new ArgumentException(Messages.EventEdgeIsGreaterThanNumberOfEdges, nameof(e));
+                throw new ArgumentException(CoreMessages.EventEdgeIsGreaterThanNumberOfEdges, nameof(e));
 
             SweepLineSegment segment = new SweepLineSegment { Edge = e.Edge };
 
@@ -553,7 +503,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public Boolean Add(IntersectionEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), Messages.EventIsNull);
+                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
 
             return this.Intersect(e.Below, e.Above);
         }
@@ -572,11 +522,11 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public SweepLineSegment Search(EndPointEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), Messages.EventIsNull);
+                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
             if (e.Edge < 0)
-                throw new ArgumentException(Messages.EventEdgeIsLessThan0, nameof(e));
+                throw new ArgumentException(CoreMessages.EventEdgeIsLessThan0, nameof(e));
             if (e.Edge >= this.source.Count - 1)
-                throw new ArgumentException(Messages.EventEdgeIsGreaterThanNumberOfEdges, nameof(e));
+                throw new ArgumentException(CoreMessages.EventEdgeIsGreaterThanNumberOfEdges, nameof(e));
 
             SweepLineSegment segment = new SweepLineSegment() { Edge = e.Edge };
 
@@ -606,7 +556,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public void Remove(SweepLineSegment segment)
         {
             if (segment == null)
-                throw new ArgumentNullException(nameof(segment), Messages.SegmentIsNull);
+                throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
 
             this.tree.SetCurrent(segment);
             if (this.tree.Current == null)
@@ -643,7 +593,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             SweepLineIntersection intersection = comparer.GetIntersection(x, y);
 
             if (intersection == SweepLineIntersection.NotExists)
-                throw new InvalidOperationException(Messages.SegmentsDoNotIntersect);
+                throw new InvalidOperationException(CoreMessages.SegmentsDoNotIntersect);
             if (intersection == SweepLineIntersection.Passed)
                 return false;
 
@@ -711,7 +661,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
 
             return false;
         }
-
-        #endregion
     }
 }

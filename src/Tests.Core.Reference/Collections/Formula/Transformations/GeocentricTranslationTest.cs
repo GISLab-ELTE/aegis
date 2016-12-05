@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class GeocentricTranslationTest
     {
-        #region Private fields
-
         /// <summary>
         /// The transformation.
         /// </summary>
         private GeocentricTranslation transformation;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.transformation = new GeocentricTranslation(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, source, target, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -88,7 +78,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.Y.ShouldBe(expected.Y, 0.01);
             transformed.Z.ShouldBe(expected.Z, 0.01);
         }
-
-        #endregion
     }
 }

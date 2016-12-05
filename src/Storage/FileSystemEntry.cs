@@ -40,9 +40,9 @@ namespace ELTE.AEGIS.Storage
         public FileSystemEntry(String path, String name, FileSystemEntryType entryType, DateTime creationTime, DateTime lastAccessTime, DateTime lastModificationTime, Int64 length)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), StorageMessages.NameIsNull);
 
             this.Path = path;
             this.Name = name;

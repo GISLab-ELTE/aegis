@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("ESRI::53008", "Sinusoidal Projection")]
     public class SinusoidalProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -44,10 +42,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// The radius of the sphere.
         /// </summary>
         private readonly Double sphereRadius;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SinusoidalProjection" /> class.
@@ -81,10 +75,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.longitudeOfNaturalOrigin = this.GetParameterBaseValue(CoordinateOperationParameters.LongitudeOfNaturalOrigin);
             this.sphereRadius = ellipsoid.SemiMajorAxis.BaseValue;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -124,10 +114,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                 return this.ComputeReverseEllipsoid(x, y);
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Computes the reverse sphere coordinate.
@@ -219,8 +205,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             Double e6 = Math.Pow(this.Ellipsoid.EccentricitySquare, 3);
             return y / (this.sphereRadius * (1 - e2 / 4 - 3 * e4 / 64 - 5 * e6 / 256));
         }
-
-        #endregion
-
     }
 }

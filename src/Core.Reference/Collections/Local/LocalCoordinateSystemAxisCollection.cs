@@ -28,16 +28,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCoordinateSystemAxisCollection : ICoordinateSystemAxisCollection
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
         private const String ResourceName = "CoordinateSystemAxis";
-
-        #endregion
-
-        #region Private types
 
         /// <summary>
         /// Represents raw data of coordinate system axes.
@@ -91,18 +85,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of  raw data.
         /// </summary>
         private CoordinateSystemAxisDataCollection dataCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCoordinateSystemAxisCollection" /> class.
@@ -111,10 +97,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             this.dataCollection = new CoordinateSystemAxisDataCollection();
         }
-
-        #endregion
-
-        #region ICoordinateSystemAxisCollection properties
 
         /// <summary>
         /// Gets the instance with the specified authority and code.
@@ -184,10 +166,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region ICoordinateSystemAxisCollection methods
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -214,9 +192,9 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithIdentifier(String identifier, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
 
             return this.dataCollection.WithIdentifier(identifier).Select(data => this.Convert(data, direction, unit));
         }
@@ -247,9 +225,9 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithName(String name, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
 
             return this.dataCollection.WithName(name).Select(data => this.Convert(data, direction, unit));
         }
@@ -280,9 +258,9 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithMatchingIdentifier(String identifier, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
 
             return this.dataCollection.WithMatchingIdentifier(identifier).Select(data => this.Convert(data, direction, unit));
         }
@@ -313,16 +291,12 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithMatchingName(String name, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
 
             return this.dataCollection.WithMatchingName(name).Select(data => this.Convert(data, direction, unit));
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -344,10 +318,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 yield return this.Convert(data, AxisDirection.Undefined, UnitsOfMeasurement.Unity);
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Converts the coordinate system axis data to an axis.
         /// </summary>
@@ -359,7 +329,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             return new CoordinateSystemAxis(data.Identifier, data.Name, data.Remarks, data.Aliases.ToArray(), data.Description, direction, unit);
         }
-
-        #endregion
     }
 }

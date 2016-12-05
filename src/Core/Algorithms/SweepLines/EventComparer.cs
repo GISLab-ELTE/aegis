@@ -22,16 +22,10 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public sealed class EventComparer : IComparer<Event>
     {
-        #region Private fields
-
         /// <summary>
         /// Stores an inner <see cref="CoordinateComparer" /> instance.
         /// </summary>
         private readonly CoordinateComparer coordinateComparer = new CoordinateComparer();
-
-        #endregion
-
-        #region IComparer methods
 
         /// <summary>
         /// Compares two <see cref="Event" /> instances and returns a value indicating whether one is less than, equal to, or greater than the other.
@@ -90,7 +84,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
 
             return result;
         }
-
-        #endregion
     }
 }

@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class GeographicToTopocentricConversionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The conversion.
         /// </summary>
         private GeographicToTopocentricConversion conversion;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -53,10 +47,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.conversion = new GeographicToTopocentricConversion(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -86,7 +76,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.Longitude.BaseValue, transformed.Longitude.BaseValue, 0.0001);
             Assert.AreEqual(expected.Height.BaseValue, transformed.Height.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

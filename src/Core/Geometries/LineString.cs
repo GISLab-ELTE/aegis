@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public class LineString : Curve, ILineString
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -54,18 +52,10 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         private const String LineStringName = "LINESTRING";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The list of coordinates.
         /// </summary>
         private readonly List<Coordinate> coordinates;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LineString" /> class.
@@ -89,7 +79,7 @@ namespace ELTE.AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.coordinates = new List<Coordinate>(source.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate)));
         }
@@ -118,14 +108,10 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.coordinates = new List<Coordinate>(source.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate)));
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the minimum bounding envelope of the geometry.
@@ -192,10 +178,6 @@ namespace ELTE.AEGIS.Geometries
             get { return this.coordinates.All(coordinate => coordinate.IsValid); }
         }
 
-        #endregion
-
-        #region ICurve properties
-
         /// <summary>
         /// Gets a value indicating whether the curve is closed.
         /// </summary>
@@ -244,10 +226,6 @@ namespace ELTE.AEGIS.Geometries
                 return this.Factory.CreatePoint(this.coordinates[this.coordinates.Count - 1]);
             }
         }
-
-        #endregion
-
-        #region ILineString properties
 
         /// <summary>
         /// Gets the number of coordinates in the line string.
@@ -302,10 +280,6 @@ namespace ELTE.AEGIS.Geometries
             }
         }
 
-        #endregion
-
-        #region ILineString methods
-
         /// <summary>
         /// Determines whether the line string contains the specified coordinate within its coordinates.
         /// </summary>
@@ -329,9 +303,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             return this.coordinates[index];
         }
@@ -349,9 +323,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             coordinate = this.PrecisionModel.MakePrecise(coordinate);
 
@@ -381,9 +355,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.coordinates.Insert(index, this.PrecisionModel.MakePrecise(coordinate));
         }
@@ -412,9 +386,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.coordinates.RemoveAt(index);
         }
@@ -426,10 +400,6 @@ namespace ELTE.AEGIS.Geometries
         {
             this.coordinates.Clear();
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -450,10 +420,6 @@ namespace ELTE.AEGIS.Geometries
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -463,10 +429,6 @@ namespace ELTE.AEGIS.Geometries
         {
             return this.ToString(provider, LineStringName);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -490,7 +452,5 @@ namespace ELTE.AEGIS.Geometries
 
             return name + String.Format(provider, CollectionStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }

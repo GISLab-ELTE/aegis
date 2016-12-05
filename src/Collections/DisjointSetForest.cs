@@ -32,7 +32,7 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class DisjointSetForest<T> : IDisjointSet<T>, IEnumerable, IEnumerable<T>
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The parent of the element in the tree.
@@ -44,9 +44,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         private Dictionary<T, Int32> rank;
 
-        #endregion
+        
 
-        #region IDisjointSet properties
+        
 
         /// <summary>
         /// Gets the number of elements in the disjoint-set forest.
@@ -64,9 +64,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         public Int32 SetCount { get; private set; }
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DisjointSetForest{TElement}" /> class that is empty and has the default initial capacity.
@@ -86,7 +86,7 @@ namespace ELTE.AEGIS.Collections
         public DisjointSetForest(Int32 capacity)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), CollectionMessages.CapacityLessThan0);
 
             this.parent = new Dictionary<T, T>(capacity);
             this.rank = new Dictionary<T, Int32>(capacity);
@@ -101,7 +101,7 @@ namespace ELTE.AEGIS.Collections
         public DisjointSetForest(IEnumerable<T> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             this.parent = new Dictionary<T, T>();
             this.rank = new Dictionary<T, Int32>();
@@ -112,9 +112,9 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region IDisjointSet methods
+        
 
         /// <summary>
         /// Makes a set containing only the given element.
@@ -127,7 +127,7 @@ namespace ELTE.AEGIS.Collections
         public void MakeSet(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
 
             if (!this.parent.ContainsKey(item))
             {
@@ -147,12 +147,12 @@ namespace ELTE.AEGIS.Collections
         public T FindSet(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
 
             T representative;
 
             if (!this.TryFindSet(item, out representative))
-                throw new ArgumentException(Messages.ItemIsNotPresentInAnySet, nameof(item));
+                throw new ArgumentException(CollectionMessages.ItemIsNotPresentInAnySet, nameof(item));
 
             return representative;
         }
@@ -166,7 +166,7 @@ namespace ELTE.AEGIS.Collections
         public Boolean TryFindSet(T item, out T representative)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
 
             representative = default(T);
 
@@ -204,13 +204,13 @@ namespace ELTE.AEGIS.Collections
         public void JoinSets(T first, T second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstItemIsNull);
+                throw new ArgumentNullException(nameof(first), CollectionMessages.FirstItemIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondItemIsNull);
+                throw new ArgumentNullException(nameof(second), CollectionMessages.SecondItemIsNull);
             if (!this.parent.ContainsKey(first))
-                throw new ArgumentException(Messages.FirstItemIsNotPresentInAnySet, nameof(first));
+                throw new ArgumentException(CollectionMessages.FirstItemIsNotPresentInAnySet, nameof(first));
             if (!this.parent.ContainsKey(second))
-                throw new ArgumentException(Messages.SecondItemIsNotPresentInAnySet, nameof(second));
+                throw new ArgumentException(CollectionMessages.SecondItemIsNotPresentInAnySet, nameof(second));
 
             this.InternalJoinSets(first, second);
         }
@@ -232,9 +232,9 @@ namespace ELTE.AEGIS.Collections
         public Boolean TryJoinSets(T first, T second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstItemIsNull);
+                throw new ArgumentNullException(nameof(first), CollectionMessages.FirstItemIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondItemIsNull);
+                throw new ArgumentNullException(nameof(second), CollectionMessages.SecondItemIsNull);
             if (!this.parent.ContainsKey(first))
                 return false;
             if (!this.parent.ContainsKey(second))
@@ -254,9 +254,9 @@ namespace ELTE.AEGIS.Collections
             this.SetCount = 0;
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection in subset order.
@@ -294,9 +294,9 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        #endregion
+        
 
-        #region Private methods
+        
 
         /// <summary>
         /// Joins two subsets into a single subset.
@@ -333,6 +333,6 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
     }
 }

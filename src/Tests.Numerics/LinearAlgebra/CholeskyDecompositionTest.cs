@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     [TestFixture]
     public class CholeskyDecompositionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
         /// The array of expected transposed L matrices.
         /// </summary>
         private Matrix[] expectedLT;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -73,10 +67,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
             };
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="CholeskyDecomposition" /> class.
         /// </summary>
@@ -102,7 +92,5 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
                 decomposition.LT.ShouldBe(this.expectedLT[matrixIndex], 0.001);
             }
         }
-
-        #endregion
     }
 }

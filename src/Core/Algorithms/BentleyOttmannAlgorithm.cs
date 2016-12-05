@@ -31,8 +31,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class BentleyOttmannAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The event queue.
         /// </summary>
@@ -58,10 +56,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BentleyOttmannAlgorithm" /> class.
         /// </summary>
@@ -71,7 +65,7 @@ namespace ELTE.AEGIS.Algorithms
         public BentleyOttmannAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.Source = source;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
@@ -89,7 +83,7 @@ namespace ELTE.AEGIS.Algorithms
         public BentleyOttmannAlgorithm(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             List<Coordinate> coordinates = new List<Coordinate>();
             foreach (IEnumerable<Coordinate> linestring in source)
@@ -101,10 +95,6 @@ namespace ELTE.AEGIS.Algorithms
             this.sweepLine = new SweepLine(source, this.PrecisionModel);
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -148,10 +138,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.edgeIndexes;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Computes the intersection coordinates of a line string.
@@ -199,10 +185,6 @@ namespace ELTE.AEGIS.Algorithms
             return new BentleyOttmannAlgorithm(source, precisionModel).Intersections;
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Computes the intersection of one or more line strings.
         /// </summary>
@@ -234,10 +216,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Processes the intersection event.
@@ -405,7 +383,5 @@ namespace ELTE.AEGIS.Algorithms
                     break;
             }
         }
-
-        #endregion
     }
 }

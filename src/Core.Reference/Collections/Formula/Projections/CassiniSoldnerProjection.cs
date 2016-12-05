@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9806", "Cassini-Soldner")]
     public class CassiniSoldnerProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -70,10 +68,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Ellipsoid eccentricity.
         /// </summary>
         protected readonly Double e8;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CassiniSoldnerProjection" /> class.
@@ -155,10 +149,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                                                        35 * this.e6 / 3072 * Math.Sin(6 * this.latitudeOfNaturalOrigin));
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -207,10 +197,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(phi, lambda);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the northing.
         /// </summary>
@@ -231,7 +217,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return this.M0 + (coordinate.Y - this.falseNorthing);
         }
-
-        #endregion
     }
 }

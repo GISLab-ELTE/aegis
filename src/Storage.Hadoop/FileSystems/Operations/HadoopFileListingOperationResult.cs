@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopFileListingOperationResult : HadoopFileSystemOperationResult
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileListingOperationResult" /> class.
         /// </summary>
@@ -46,16 +44,10 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 this.StatusList = statusList;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets or sets the status list.
         /// </summary>
         /// <value>The status list.</value>
         public IList<HadoopFileStatusOperationResult> StatusList { get; set; }
-
-        #endregion
     }
 }

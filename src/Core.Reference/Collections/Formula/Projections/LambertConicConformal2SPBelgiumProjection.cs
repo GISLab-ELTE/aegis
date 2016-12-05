@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9803", "Lambert Conic Conformal (2SP Belgium)")]
     public class LambertConicConformal2SPBelgiumProjection : LambertConicConformal2SPProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformal2SPBelgiumProjection" /> class.
         /// </summary>
@@ -67,10 +65,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Compute the coordinate easting and northing based on the R and Theta values.
         /// </summary>
@@ -95,7 +89,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return ((theta + Angle.FromArcSecond(29.2985).BaseValue) / this.n) + this.longitudeOfFalseOrigin;
         }
-
-        #endregion
     }
 }

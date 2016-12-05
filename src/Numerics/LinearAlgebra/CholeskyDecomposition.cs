@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </remarks>
     public class CholeskyDecomposition
     {
-        #region Private fields
-
         /// <summary>
         /// The original matrix.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         /// </summary>
         private Matrix transposedL;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CholeskyDecomposition" /> class.
         /// </summary>
@@ -55,16 +49,12 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public CholeskyDecomposition(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
             if (!MatrixComputations.IsSymmetric(matrix))
-                throw new ArgumentException(Messages.MatrixIsNotSymmetric, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSymmetric, nameof(matrix));
 
             this.matrix = matrix;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the L (lower triangular) matrix.
@@ -105,10 +95,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             }
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Perform computation.
         /// </summary>
@@ -116,10 +102,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         {
             Compute(this.matrix, out this.l, out this.transposedL);
         }
-
-        #endregion
-
-        #region Private static methods
 
         /// <summary>
         /// Computes the Cholesky decomposition.
@@ -156,7 +138,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             lt = l.Transpose();
         }
-
-        #endregion
     }
 }

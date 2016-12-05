@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class TransverseMercatorSouthProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private TransverseMercatorSouthProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new TransverseMercatorSouthProjection("EPSG::4148", "Hartebeesthoek94", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="Forward" /> method.
@@ -86,7 +76,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.Latitude.BaseValue, transformed.Latitude.BaseValue, 0.0001);
             Assert.AreEqual(expected.Longitude.BaseValue, transformed.Longitude.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

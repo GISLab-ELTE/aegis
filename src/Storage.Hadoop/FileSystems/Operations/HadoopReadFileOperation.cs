@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopReadFileOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopReadFileOperation" /> class.
         /// </summary>
@@ -70,9 +68,9 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(path, authentication)
         {
             if (offset < 0)
-                throw new ArgumentOutOfRangeException("offset", Messages.OffsetIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(offset), StorageMessages.OffsetIsLessThan0);
             if (length < 0)
-                throw new ArgumentOutOfRangeException("length", Messages.LengthIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(length), StorageMessages.LengthIsLessThan0);
 
             this.Offset = offset;
             this.Length = length;
@@ -130,17 +128,13 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(client, null, path, authentication)
         {
             if (offset < 0)
-                throw new ArgumentOutOfRangeException("offset", Messages.OffsetIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(offset), StorageMessages.OffsetIsLessThan0);
             if (length < 0)
-                throw new ArgumentOutOfRangeException("length", Messages.LengthIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(length), StorageMessages.LengthIsLessThan0);
 
             this.Offset = offset;
             this.Length = length;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets or sets the offset.
@@ -153,10 +147,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         /// </summary>
         /// <value>The number of bytes read from the file. If the length is zero, the entire content of the file will be read.</value>
         public Int64 Length { get; set; }
-
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
 
         /// <summary>
         /// Gets the type of the request.
@@ -187,10 +177,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             }
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -204,7 +190,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 FileStream = await content.ReadAsStreamAsync()
             };
         }
-
-        #endregion
     }
 }

@@ -27,16 +27,16 @@ namespace ELTE.AEGIS.Collections
     /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     public sealed class MultiValueDictionary<TKey, TValue> : IDictionary<TKey, ICollection<TValue>>
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The underlying dictionary.
         /// </summary>
         private Dictionary<TKey, List<TValue>> dictionary;
 
-        #endregion
+        
 
-        #region Constructor
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue}" /> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
@@ -63,7 +63,7 @@ namespace ELTE.AEGIS.Collections
         public MultiValueDictionary(MultiValueDictionary<TKey, TValue> dictionary)
         {
             if (dictionary == null)
-                throw new ArgumentNullException(nameof(dictionary), Messages.DictionaryIsNull);
+                throw new ArgumentNullException(nameof(dictionary), CollectionMessages.DictionaryIsNull);
 
             this.dictionary = new Dictionary<TKey, List<TValue>>(dictionary.dictionary);
         }
@@ -77,14 +77,14 @@ namespace ELTE.AEGIS.Collections
         public MultiValueDictionary(MultiValueDictionary<TKey, TValue> dictionary, IEqualityComparer<TKey> comparer)
         {
             if (dictionary == null)
-                throw new ArgumentNullException(nameof(dictionary), Messages.DictionaryIsNull);
+                throw new ArgumentNullException(nameof(dictionary), CollectionMessages.DictionaryIsNull);
 
             this.dictionary = new Dictionary<TKey, List<TValue>>(dictionary.dictionary, comparer);
         }
 
-        #endregion
+        
 
-        #region ICollection properties
+        
 
         /// <summary>
         /// Gets the number of elements contained in the dictionary.
@@ -96,9 +96,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         public Boolean IsReadOnly { get { return false; } }
 
-        #endregion
+        
 
-        #region IDictionary properties
+        
 
         /// <summary>
         /// Gets the keys currently present in the dictionary.
@@ -121,7 +121,7 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (key == null)
-                    throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                    throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
                 return this.dictionary[key];
             }
@@ -129,15 +129,15 @@ namespace ELTE.AEGIS.Collections
             set
             {
                 if (key == null)
-                    throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                    throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
                 this.dictionary[key] = value.ToList<TValue>();
             }
         }
 
-        #endregion
+        
 
-        #region ICollection methods
+        
 
         /// <summary>
         /// Adds a key-value pair to the dictionary.
@@ -186,11 +186,11 @@ namespace ELTE.AEGIS.Collections
         void ICollection<KeyValuePair<TKey, ICollection<TValue>>>.CopyTo(KeyValuePair<TKey, ICollection<TValue>>[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.ArrayIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.ArrayIndexIsLessThan0);
             if (array.Length - arrayIndex < this.Count)
-                throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(arrayIndex));
+                throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(arrayIndex));
 
             KeyValuePair<TKey, List<TValue>>[] tempArray = new KeyValuePair<TKey, List<TValue>>[this.dictionary.Count];
             (this.dictionary as IDictionary<TKey, List<TValue>>).CopyTo(tempArray, 0);
@@ -222,9 +222,9 @@ namespace ELTE.AEGIS.Collections
             return true;
         }
 
-        #endregion
+        
 
-        #region IDictionary methods
+        
 
         /// <summary>
         /// Adds the specified key and value to the dictionary.
@@ -235,7 +235,7 @@ namespace ELTE.AEGIS.Collections
         public void Add(TKey key, ICollection<TValue> value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.dictionary.ContainsKey(key))
             {
@@ -256,7 +256,7 @@ namespace ELTE.AEGIS.Collections
         public Boolean ContainsKey(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             return this.dictionary.ContainsKey(key);
         }
@@ -270,7 +270,7 @@ namespace ELTE.AEGIS.Collections
         public Boolean Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             return this.dictionary.Remove(key);
         }
@@ -285,7 +285,7 @@ namespace ELTE.AEGIS.Collections
         public Boolean TryGetValue(TKey key, out ICollection<TValue> value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             List<TValue> outValue;
             Boolean retValue = this.dictionary.TryGetValue(key, out outValue);
@@ -295,9 +295,9 @@ namespace ELTE.AEGIS.Collections
             return retValue;
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
@@ -318,9 +318,9 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        #endregion
+        
 
-        #region Public methods
+        
 
         /// <summary>
         /// Adds the specified key and value to the dictionary.
@@ -331,7 +331,7 @@ namespace ELTE.AEGIS.Collections
         public void Add(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (!this.dictionary.ContainsKey(key))
                 this.dictionary[key] = new List<TValue>();
@@ -349,7 +349,7 @@ namespace ELTE.AEGIS.Collections
         public Boolean Remove(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (!this.ContainsKey(key))
                 return false;
@@ -365,6 +365,6 @@ namespace ELTE.AEGIS.Collections
             return true;
         }
 
-        #endregion
+        
     }
 }

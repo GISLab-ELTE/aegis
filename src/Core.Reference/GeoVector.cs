@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class GeoVector : IEquatable<GeoVector>
     {
-        #region Static instances
-
         /// <summary>
         /// Represents the zero <see cref="GeoVector" /> value. This field is constant.
         /// </summary>
@@ -34,10 +32,6 @@ namespace ELTE.AEGIS.Reference
         /// Represents the undefined <see cref="GeoVector" /> value. This field is constant.
         /// </summary>
         public static readonly GeoVector Undefined = new GeoVector(Angle.FromRadian(Double.NaN), Length.FromMetre(Double.NaN));
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// Defines the string format for coordinate vectors. This field is constant.
@@ -54,10 +48,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private const String NullCoordinateVectorString = "NULL";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The azimuth of the vector.
         /// </summary>
@@ -67,10 +57,6 @@ namespace ELTE.AEGIS.Reference
         /// The length of the vector.
         /// </summary>
         private readonly Length length;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoVector" /> class.
@@ -110,10 +96,6 @@ namespace ELTE.AEGIS.Reference
             }
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the azimuth of the vector.
         /// </summary>
@@ -138,10 +120,6 @@ namespace ELTE.AEGIS.Reference
         /// <value><c>true</c> if the azimuth and length are numbers; otherwise, <c>false</c>.</value>
         public Boolean IsValid { get { return !Double.IsNaN(this.azimuth.Value) && !Double.IsNaN(this.length.Value); } }
 
-        #endregion
-
-        #region IEquatable methods
-
         /// <summary>
         /// Indicates whether this instance and a specified other geographic vector are equal.
         /// </summary>
@@ -156,10 +134,6 @@ namespace ELTE.AEGIS.Reference
 
             return this.azimuth.Equals(other.azimuth) && this.length.Equals(other.length);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -194,10 +168,6 @@ namespace ELTE.AEGIS.Reference
             return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.azimuth, this.length);
         }
 
-        #endregion
-
-        #region Operators
-
         /// <summary>
         /// Indicates whether the specified geographic vectors are equal.
         /// </summary>
@@ -224,7 +194,5 @@ namespace ELTE.AEGIS.Reference
         {
             return !(first == second);
         }
-
-        #endregion
     }
 }

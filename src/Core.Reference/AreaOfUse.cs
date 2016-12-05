@@ -25,16 +25,10 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class AreaOfUse : IdentifiedObject
     {
-        #region Public instances
-
         /// <summary>
         /// The undefined area of use. This field is read-only.
         /// </summary>
         public static readonly AreaOfUse Undefined = new AreaOfUse(UndefinedIdentifier, UndefinedName, Angle.Undefined, Angle.Undefined, Angle.Undefined, Angle.Undefined);
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AreaOfUse" /> class.
@@ -110,10 +104,6 @@ namespace ELTE.AEGIS.Reference
             this.Boundary = boundary;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the south boundary.
         /// </summary>
@@ -149,10 +139,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The description.</value>
         public String Description { get; private set; }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Creates an area of use from boundaries given in degrees.
@@ -298,10 +284,6 @@ namespace ELTE.AEGIS.Reference
             return new AreaOfUse(identifier, name, description, remarks, aliases, Angle.FromRadian(south), Angle.FromRadian(west), Angle.FromRadian(north), Angle.FromRadian(east), boundary);
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Determines whether the area contains a geographic coordinate.
         /// </summary>
@@ -344,7 +326,5 @@ namespace ELTE.AEGIS.Reference
         {
             return this.Within(area.South, area.West, area.North, area.East);
         }
-
-        #endregion
     }
 }

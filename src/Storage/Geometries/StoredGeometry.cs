@@ -20,14 +20,13 @@ namespace ELTE.AEGIS.Storage.Geometries
     using System.Linq;
     using ELTE.AEGIS.Collections;
     using ELTE.AEGIS.Resources;
+    using ELTE.AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a geometry located in a store.
     /// </summary>
     public abstract class StoredGeometry : IStoredGeometry
     {
-        #region Private fields
-
         /// <summary>
         /// The empty array of indexes. This field is read-only.
         /// </summary>
@@ -37,10 +36,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// The array of indexes.
         /// </summary>
         private Int32[] indexes;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredGeometry" /> class.
@@ -56,9 +51,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         protected StoredGeometry(StoredGeometryFactory factory, String identifier, IEnumerable<Int32> indexes)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
@@ -80,18 +75,14 @@ namespace ELTE.AEGIS.Storage.Geometries
         protected StoredGeometry(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = new StoredGeometryFactory(precisionModel, driver);
             this.Identifier = identifier;
             this.indexes = indexes == null ? EmptyIndexes : indexes.ToArray();
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the factory of the geometry.
@@ -171,10 +162,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
         public abstract Boolean IsValid { get; }
 
-        #endregion
-
-        #region IStoredGeometry properties
-
         /// <summary>
         /// Gets the feature identifier.
         /// </summary>
@@ -199,10 +186,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value>The factory implementation the geometry was constructed by.</value>
         public IStoredGeometryFactory Factory { get; private set; }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -212,20 +195,12 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.ToString(CultureInfo.InvariantCulture);
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
         public abstract String ToString(IFormatProvider provider);
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Creates a coordinate for the specified geometry.
@@ -450,7 +425,5 @@ namespace ELTE.AEGIS.Storage.Geometries
             else
                 this.Driver.DeleteCoordinates(this.Identifier, this.indexes.Append(index));
         }
-
-        #endregion
     }
 }

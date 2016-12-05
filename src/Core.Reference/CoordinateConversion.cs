@@ -29,8 +29,6 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public abstract class CoordinateConversion<SourceType, ResultType> : CoordinateOperation<SourceType, ResultType>
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateConversion{SourceType, ResultType}" /> class.
         /// </summary>
@@ -49,7 +47,5 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, method, parameters)
         {
         }
-
-        #endregion
     }
 }

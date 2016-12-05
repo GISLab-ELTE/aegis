@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Features
     /// </summary>
     public class Feature : IFeature
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Feature" /> class.
         /// </summary>
@@ -40,11 +38,11 @@ namespace ELTE.AEGIS.Features
         public Feature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             this.Factory = new FeatureFactory(geometry.Factory, attributes.Factory);
             this.Identifier = identifier;
@@ -69,19 +67,15 @@ namespace ELTE.AEGIS.Features
         public Feature(FeatureFactory factory, String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
             this.Geometry = (geometry == null) ? null : geometry.Factory.Equals(this.Factory.GeometryFactory) ? geometry : this.Factory.GeometryFactory.CreateGeometry(geometry);
             this.Attributes = (attributes == null) ? null : attributes.Factory.Equals(this.Factory.AttributeCollectionFactory) ? attributes : this.Factory.AttributeCollectionFactory.CreateCollection(attributes);
         }
-
-        #endregion
-
-        #region IFeature properties
 
         /// <summary>
         /// Gets the attribute collection of the feature.
@@ -106,7 +100,5 @@ namespace ELTE.AEGIS.Features
         /// </summary>
         /// <value>The identifier of the feature.</value>
         public String Identifier { get; private set; }
-
-        #endregion
     }
 }

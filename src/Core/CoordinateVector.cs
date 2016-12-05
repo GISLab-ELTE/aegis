@@ -25,16 +25,10 @@ namespace ELTE.AEGIS
     /// </summary>
     public class CoordinateVector : IEquatable<Coordinate>, IEquatable<CoordinateVector>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the null <see cref="CoordinateVector" /> value. This field is constant.
         /// </summary>
         public static readonly CoordinateVector NullVector = new CoordinateVector(0, 0, 0);
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// Defines the string format for coordinate vectors. This field is constant.
@@ -51,10 +45,6 @@ namespace ELTE.AEGIS
         /// </summary>
         private const String NullCoordinateVectorString = "NULL";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The X component.
         /// </summary>
@@ -69,10 +59,6 @@ namespace ELTE.AEGIS
         /// The Z component.
         /// </summary>
         private readonly Double z;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateVector" /> class.
@@ -98,10 +84,6 @@ namespace ELTE.AEGIS
             this.y = y;
             this.z = z;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the X component.
@@ -139,10 +121,6 @@ namespace ELTE.AEGIS
         /// <value>The length of the vector.</value>
         public Double Length { get { return Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z); } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Normalizes the <see cref="CoordinateVector" /> instance.
         /// </summary>
@@ -152,10 +130,6 @@ namespace ELTE.AEGIS
             Double length = this.Length;
             return new CoordinateVector(this.x / length, this.y / length, this.z / length);
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified other <see cref="Coordinate" /> are equal.
@@ -181,10 +155,6 @@ namespace ELTE.AEGIS
 
             return this.x == other.x && this.y == other.y && this.z == other.z;
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -234,10 +204,6 @@ namespace ELTE.AEGIS
             return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.x, this.y, this.z);
         }
 
-        #endregion
-
-        #region Operators
-
         /// <summary>
         /// Sums the specified vectors.
         /// </summary>
@@ -252,9 +218,9 @@ namespace ELTE.AEGIS
         public static CoordinateVector operator +(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return new CoordinateVector(first.x + second.x, first.y + second.y, first.z + second.z);
         }
@@ -273,9 +239,9 @@ namespace ELTE.AEGIS
         public static CoordinateVector operator -(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return new CoordinateVector(first.x - second.x, first.y - second.y, first.z - second.z);
         }
@@ -290,7 +256,7 @@ namespace ELTE.AEGIS
         public static CoordinateVector operator *(Double scalar, CoordinateVector vector)
         {
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
 
             return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
         }
@@ -305,7 +271,7 @@ namespace ELTE.AEGIS
         public static CoordinateVector operator *(CoordinateVector vector, Double scalar)
         {
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
 
             return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
         }
@@ -324,9 +290,9 @@ namespace ELTE.AEGIS
         public static Double operator *(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return first.x * second.x + first.y * second.y + first.z * second.z;
         }
@@ -371,10 +337,6 @@ namespace ELTE.AEGIS
             return new CoordinateVector(coordinate.X, coordinate.Y, coordinate.Z);
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Determines whether the two vectors are parallel.
         /// </summary>
@@ -406,9 +368,9 @@ namespace ELTE.AEGIS
         public static Boolean IsParallel(CoordinateVector first, CoordinateVector second, PrecisionModel precision)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             if (precision == null)
                 precision = PrecisionModel.Default;
@@ -448,9 +410,9 @@ namespace ELTE.AEGIS
         public static Boolean IsPerpendicular(CoordinateVector first, CoordinateVector second, PrecisionModel precision)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             if (precision == null)
                 precision = PrecisionModel.Default;
@@ -507,9 +469,9 @@ namespace ELTE.AEGIS
         public static Double Distance(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             Double x = first.x - second.x;
             Double y = first.y - second.y;
@@ -560,9 +522,9 @@ namespace ELTE.AEGIS
         public static Double DotProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return first.x * second.x + first.y * second.y + first.z * second.z;
         }
@@ -594,9 +556,9 @@ namespace ELTE.AEGIS
         public static Double PerpDotProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return first.x * second.y - first.y * second.x;
         }
@@ -630,13 +592,11 @@ namespace ELTE.AEGIS
         public static CoordinateVector CrossProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
 
             return new CoordinateVector(first.y * second.z - first.z * second.y, first.z * second.x - first.x * second.z, first.x * second.y - first.y * second.x);
         }
-
-        #endregion
     }
 }

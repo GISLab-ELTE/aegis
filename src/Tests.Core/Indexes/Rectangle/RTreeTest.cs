@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
     [TestFixture]
     public class RTreeTest
     {
-        #region Private fields
-
         /// <summary>
         /// The geometry factory.
         /// </summary>
@@ -45,10 +43,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
         /// </summary>
         private RTree tree;
 
-        #endregion
-
-        #region Test setup
-
         /// <summary>
         /// Test setup.
         /// </summary>
@@ -61,10 +55,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
             this.tree = new RTree();
             this.tree.Add(this.geometries);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructor.
@@ -275,7 +265,5 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
             this.tree.Height.ShouldBe(0);
             this.tree.NumberOfGeometries.ShouldBe(0);
         }
-
-        #endregion
     }
 }

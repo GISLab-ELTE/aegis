@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class HotineObliqueMercatorProjection : ObliqueMercatorProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Angle from rectified to skew grid.
         /// </summary>
@@ -59,10 +57,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double[] inverseParams;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HotineObliqueMercatorProjection" /> class.
@@ -121,10 +115,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             };
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the u and v values.
         /// </summary>
@@ -174,7 +164,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             latitude = chi + this.inverseParams[0] * Math.Sin(2 * chi) + this.inverseParams[1] * Math.Sin(4 * chi) + this.inverseParams[2] * Math.Sin(6 * chi) + this.inverseParams[3] * Math.Sin(8 * chi);
             longitude = this.lambdaO - Math.Atan((bS * Math.Cos(this.gammaO) - bV * Math.Sin(this.gammaO)) / Math.Cos(this.b * u / this.a)) / this.b;
         }
-
-        #endregion
     }
 }

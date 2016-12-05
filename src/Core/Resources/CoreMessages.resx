@@ -381,4 +381,19 @@
   <data name="DimensionIsLessThan2" xml:space="preserve">
     <value>The dimension is less than 2.</value>
   </data>
+  <data name="DimensionIsInvalid" xml:space="preserve">
+    <value>The specified dimension is invalid.</value>
+  </data>
+  <data name="GeometryIsInvalid" xml:space="preserve">
+    <value>The specified geometry is invalid.</value>
+  </data>
+  <data name="GeometryIsNotSupported" xml:space="preserve">
+    <value>The specified geometry is not supported.</value>
+  </data>
+  <data name="SourceIsInvalid" xml:space="preserve">
+    <value>The specified source is invalid.</value>
+  </data>
+  <data name="SourceIsNotSupported" xml:space="preserve">
+    <value>The specified source is not supported.</value>
+  </data>
 </root>

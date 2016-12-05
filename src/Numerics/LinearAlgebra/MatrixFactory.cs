@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public static class MatrixFactory
     {
-        #region Generic matrix
-
         /// <summary>
         /// Creates a generic matrix.
         /// </summary>
@@ -35,7 +33,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Create(Double[][] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (values.Length == 0)
                 return new Matrix(0, 0);
@@ -68,7 +66,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Create(Int32[][] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (values.Length == 0)
                 return new Matrix(0, 0);
@@ -101,7 +99,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Create(Double[,] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (values.Length == 0)
                 return new Matrix(0, 0);
@@ -118,7 +116,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Create(Int32[,] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (values.Length == 0)
                 return new Matrix(0, 0);
@@ -163,10 +161,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return matrix;
         }
 
-        #endregion
-
-        #region Identity matrix
-
         /// <summary>
         /// Creates an identity matrix.
         /// </summary>
@@ -176,7 +170,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateIdentity(Int32 size)
         {
             if (size < 0)
-                throw new ArgumentOutOfRangeException(nameof(size), Messages.SizeIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(size), NumericsMessages.SizeIsLessThan0);
 
             return CreateIdentity(size, size);
         }
@@ -201,10 +195,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return id;
         }
 
-        #endregion
-
-        #region Diagonal matrix
-
         /// <summary>
         /// Creates a diagonal matrix.
         /// </summary>
@@ -214,7 +204,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateDiagonal(params Double[] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             Matrix diagonal = new Matrix(values.Length, values.Length);
             for (Int32 valueIndex = 0; valueIndex < values.Length; valueIndex++)
@@ -232,7 +222,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateDiagonal(IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             Int32 count = values.Count();
             Matrix diagonal = new Matrix(count, count);
@@ -256,7 +246,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateDiagonal(params Int32[] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             Matrix diagonal = new Matrix(values.Length, values.Length);
             for (Int32 valueIndex = 0; valueIndex < values.Length; valueIndex++)
@@ -274,7 +264,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateDiagonal(IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             Int32 count = values.Count();
             Matrix diagonal = new Matrix(count, count);
@@ -289,10 +279,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return diagonal;
         }
 
-        #endregion
-
-        #region Square matrix
-
         /// <summary>
         /// Creates a square matrix.
         /// </summary>
@@ -303,10 +289,10 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateSquare(params Double[] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (Math.Sqrt(values.Length) != Math.Floor(Math.Sqrt(values.Length)))
-                throw new ArgumentException(Messages.NumberOfValuesIsNotSquare, nameof(values));
+                throw new ArgumentException(NumericsMessages.NumberOfValuesIsNotSquare, nameof(values));
 
             Int32 size = Convert.ToInt32(Math.Sqrt(values.Length));
             Matrix matrix = new Matrix(size, size);
@@ -328,11 +314,11 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix CreateSquare(IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             Int32 count = values.Count();
             if (Math.Sqrt(count) != Math.Floor(Math.Sqrt(count)))
-                throw new ArgumentException(Messages.NumberOfValuesIsNotSquare, nameof(values));
+                throw new ArgumentException(NumericsMessages.NumberOfValuesIsNotSquare, nameof(values));
 
             Int32 size = Convert.ToInt32(Math.Sqrt(count));
             Matrix matrix = new Matrix(size, size);
@@ -346,7 +332,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return matrix;
         }
-
-        #endregion
     }
 }

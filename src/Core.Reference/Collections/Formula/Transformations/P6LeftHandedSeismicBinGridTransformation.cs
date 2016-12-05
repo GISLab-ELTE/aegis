@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::1049", "P6 (I = J-90°) seismic bin grid transformation")]
     public class P6LeftHandedSeismicBinGridTransformation : P6SeismicBinGridTransformation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="P6LeftHandedSeismicBinGridTransformation" /> class.
         /// </summary>
@@ -75,7 +73,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             this.orientation = Orientation.LeftHanded;
         }
-
-        #endregion
     }
 }

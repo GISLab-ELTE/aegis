@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Geometries
     public class GeometryList<GeometryType> : Geometry, IGeometryCollection<GeometryType>, IList<GeometryType>
         where GeometryType : IGeometry
     {
-        #region Private constants
-
         /// <summary>
         /// The divider for items. This field is constant.
         /// </summary>
@@ -50,18 +48,10 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         private const String GeometryCollectionName = "GEOMETRYCOLLECTION";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The list of items.
         /// </summary>
         private List<GeometryType> items;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeometryList{GeometryType}" /> class.
@@ -85,7 +75,7 @@ namespace ELTE.AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -101,7 +91,7 @@ namespace ELTE.AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.items = new List<GeometryType>(source);
         }
@@ -128,7 +118,7 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -147,7 +137,7 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.items = new List<GeometryType>(source.OfType<IGeometry>().Where(item => item is GeometryType).Select(item => (GeometryType)item));
         }
@@ -166,14 +156,10 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.items = new List<GeometryType>(source);
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the inherent dimension of the geometry list.
@@ -286,10 +272,6 @@ namespace ELTE.AEGIS.Geometries
             get { return this.items.Count == 0 || this.items.All(geometry => geometry.IsValid); }
         }
 
-        #endregion
-
-        #region IGeometryCollection properties
-
         /// <summary>
         /// Gets the number of geometries contained in the geometry list.
         /// </summary>
@@ -313,9 +295,9 @@ namespace ELTE.AEGIS.Geometries
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
                 return this.items[index];
             }
@@ -336,18 +318,18 @@ namespace ELTE.AEGIS.Geometries
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
                 return this.items[index];
             }
 
             set
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
                 if (!ReferenceEquals(this.items[index], value))
                 {
@@ -356,19 +338,11 @@ namespace ELTE.AEGIS.Geometries
             }
         }
 
-        #endregion
-
-        #region IList properties
-
         /// <summary>
         /// Gets a value indicating whether the geometry list is read-only.
         /// </summary>
         /// <value><c>true</c> if the geometry list is read-only; otherwise, <c>false</c>.</value>
         public virtual Boolean IsReadOnly { get { return false; } }
-
-        #endregion
-
-        #region IList methods
 
         /// <summary>
         /// Determines the index of a specific geometry in the geometry list.
@@ -394,9 +368,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual void Insert(Int32 index, GeometryType geometry)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.items.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             if (geometry == null || geometry.Factory.Equals(this.Factory))
             {
@@ -420,16 +394,12 @@ namespace ELTE.AEGIS.Geometries
         public virtual void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.items.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.items.RemoveAt(index);
         }
-
-        #endregion
-
-        #region ICollection methods
 
         /// <summary>
         /// Determines whether a geometry is in the geometry list.
@@ -489,18 +459,14 @@ namespace ELTE.AEGIS.Geometries
         public void CopyTo(GeometryType[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.CopyTo(array, arrayIndex);
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the geometry list.
@@ -522,10 +488,6 @@ namespace ELTE.AEGIS.Geometries
                 yield return item;
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -535,10 +497,6 @@ namespace ELTE.AEGIS.Geometries
         {
             return this.ToString(provider, GeometryCollectionName);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -562,6 +520,5 @@ namespace ELTE.AEGIS.Geometries
 
             return name + String.Format(provider, CollectionStringFormat, builder.ToString());
         }
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9825", "Pseudo Plate Carrée")]
     public class PseudoPlateCareeProjection : CoordinateProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PseudoPlateCareeProjection" /> class.
         /// </summary>
@@ -67,10 +65,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -90,7 +84,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return new GeoCoordinate(coordinate.Y, coordinate.X);
         }
-
-        #endregion
     }
 }

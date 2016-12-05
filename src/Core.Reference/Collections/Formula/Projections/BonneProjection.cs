@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9827", "Bonne")]
     public class BonneProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -56,10 +54,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double e6;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BonneProjection" /> class.
@@ -133,10 +127,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.e6 = Math.Pow(this.Ellipsoid.Eccentricity, 6);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -173,10 +163,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return this.ComputeReverseInternal(x, y);
         }
-
-        #endregion
-
-        #region Protected utility methods
 
         /// <summary>
         /// Computes the m value.
@@ -244,7 +230,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

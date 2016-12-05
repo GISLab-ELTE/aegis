@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public static class Calculator
     {
-        #region Public constants
-
         /// <summary>
         /// The value to convert degree to radian.
         /// </summary>
@@ -34,10 +32,6 @@ namespace ELTE.AEGIS.Numerics
         /// </summary>
         public const Double RadianToDegree = 180 / Math.PI;
 
-        #endregion
-
-        #region Private static fields
-
         /// <summary>
         /// An array containing the factorial of the first 170 integers.
         /// </summary>
@@ -47,10 +41,6 @@ namespace ELTE.AEGIS.Numerics
         /// A boolean indicating whether the Factorial method has been called at least once.
         /// </summary>
         private static Boolean isFactorialComputed = false;
-
-        #endregion
-
-        #region General methods
 
         /// <summary>
         /// Return the fraction part of a single precision floating point value.
@@ -77,10 +67,6 @@ namespace ELTE.AEGIS.Numerics
 
             return value - Math.Floor(value);
         }
-
-        #endregion
-
-        #region Common value calculation methods
 
         /// <summary>
         /// Computes the greatest common divisor of two numbers.
@@ -175,10 +161,6 @@ namespace ELTE.AEGIS.Numerics
 
             return x * y / GreatestCommonDivisor(x, y);
         }
-
-        #endregion
-
-        #region Extrema computation methods
 
         /// <summary>
         /// Returns the absolute maximum of the specified values.
@@ -1060,10 +1042,6 @@ namespace ELTE.AEGIS.Numerics
             return min;
         }
 
-        #endregion
-
-        #region Factorial calculation methods
-
         /// <summary>
         /// Calculates the factorial of a specified value.
         /// </summary>
@@ -1073,7 +1051,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Factorial(Int32 value)
         {
             if (value < 0)
-                throw new ArgumentOutOfRangeException(nameof(value), Messages.ValueIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.ValueIsLessThan0);
 
             if (value > 170)
                 return Double.PositiveInfinity;
@@ -1107,7 +1085,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Gamma(Double value)
         {
             if (value <= 0 && Math.Ceiling(value) == Math.Floor(value))
-                throw new ArgumentOutOfRangeException(nameof(value), Messages.ValueIsLessThanOrEqualTo0);
+                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.ValueIsLessThanOrEqualTo0);
 
             Double[] p =
             {
@@ -1131,10 +1109,6 @@ namespace ELTE.AEGIS.Numerics
 
             return Math.Sqrt(2 * Math.PI) * Math.Pow(value + g + 0.5, value + 0.5) * Math.Exp(-(value + g + 0.5)) * a;
         }
-
-        #endregion
-
-        #region Summation methods
 
         /// <summary>
         /// Computes the sum of values in an interval.
@@ -1175,7 +1149,7 @@ namespace ELTE.AEGIS.Numerics
         public static Int32 Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Int32> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), Messages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
 
             Int32 sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1194,7 +1168,7 @@ namespace ELTE.AEGIS.Numerics
         public static Int64 Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Int64> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), Messages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
 
             Int64 sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1213,7 +1187,7 @@ namespace ELTE.AEGIS.Numerics
         public static Single Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Single> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), Messages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
 
             Single sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1232,17 +1206,13 @@ namespace ELTE.AEGIS.Numerics
         public static Double Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Double> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), Messages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
 
             Double sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
                 sum += function(value);
             return sum;
         }
-
-        #endregion
-
-        #region Geometry methods
 
         /// <summary>
         /// Returns the length of the hypotenuse of a right-angle triangle.
@@ -1270,10 +1240,6 @@ namespace ELTE.AEGIS.Numerics
 
             return x * Math.Sqrt(1 + t * t);
         }
-
-        #endregion
-
-        #region Trigonometry methods
 
         /// <summary>
         /// Returns the secant of a value.
@@ -1507,10 +1473,6 @@ namespace ELTE.AEGIS.Numerics
             return value * value;
         }
 
-        #endregion
-
-        #region Algebra methods
-
         /// <summary>
         /// Computes the binomial coefficient indexed by two nonnegative integers.
         /// </summary>
@@ -1525,9 +1487,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Binomial(Int32 n, Int32 k)
         {
             if (n < 0)
-                throw new ArgumentOutOfRangeException(nameof(n), Messages.FirstCoefficientIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(n), NumericsMessages.FirstCoefficientIsLessThan0);
             if (k < 0)
-                throw new ArgumentOutOfRangeException(nameof(n), Messages.SecondCoefficientIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(n), NumericsMessages.SecondCoefficientIsLessThan0);
 
             Double result;
 
@@ -1550,7 +1512,5 @@ namespace ELTE.AEGIS.Numerics
 
             return result;
         }
-
-        #endregion
     }
 }

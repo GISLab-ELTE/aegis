@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public static class MatrixComputations
     {
-        #region Matrix properties
-
         /// <summary>
         /// Determines whether the specified matrix is a zero matrix.
         /// </summary>
@@ -57,7 +55,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Boolean IsSymmetric(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (!matrix.IsSquare)
                 return false;
@@ -83,7 +81,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Boolean IsUpperTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfColumns != matrix.NumberOfRows)
                 return false;
@@ -109,7 +107,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Boolean IsLowerTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfColumns != matrix.NumberOfRows)
                 return false;
@@ -135,7 +133,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Boolean IsTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             return MatrixComputations.IsUpperTriangular(matrix) || MatrixComputations.IsLowerTriangular(matrix);
         }
@@ -149,7 +147,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Boolean IsDiagonal(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             return MatrixComputations.IsUpperTriangular(matrix) && MatrixComputations.IsLowerTriangular(matrix);
         }
@@ -164,9 +162,9 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Double Determinant(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
             if (matrix.NumberOfRows != matrix.NumberOfColumns)
-                throw new ArgumentException(Messages.MatrixIsNotSquare, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(matrix));
 
             if (matrix.NumberOfRows == 0)
                 return 0;
@@ -194,13 +192,13 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static MatrixDefiniteness Definiteness(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfRows == 0 && matrix.NumberOfColumns == 0)
-                throw new ArgumentException(Messages.MatrixIsEmpty, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsEmpty, nameof(matrix));
 
             if (!IsSymmetric(matrix))
-                throw new ArgumentException(Messages.MatrixIsNotSymmetric, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSymmetric, nameof(matrix));
 
             if (matrix.All(value => value == 0))
                 return MatrixDefiniteness.PositiveSemidefinite;
@@ -253,10 +251,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return QRAlgorithm.ComputeEigenvectors(matrix);
         }
 
-        #endregion
-
-        #region Matrix transformations
-
         /// <summary>
         /// Inverts the specified matrix.
         /// </summary>
@@ -278,7 +272,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Transpose(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             Matrix result = new Matrix(matrix.NumberOfColumns, matrix.NumberOfRows);
 
@@ -302,7 +296,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Transpose(this Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             Matrix matrix = new Matrix(1, vector.Size);
             for (Int32 index = 0; index < vector.Size; index++)
@@ -312,7 +306,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return matrix;
         }
-
-        #endregion
     }
 }

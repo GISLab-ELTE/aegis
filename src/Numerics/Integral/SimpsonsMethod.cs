@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Numerics.Integral
     /// </remarks>
     public static class SimpsonsMethod
     {
-        #region Public static methods
-
         /// <summary>
         /// Computes the integral of a function in a closed interval.
         /// </summary>
@@ -53,10 +51,10 @@ namespace ELTE.AEGIS.Numerics.Integral
         public static Double ComputeIntegral(Func<Double, Double> function, Double intervalStart, Double intervalEnd, Int32 numberOfIntervals)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), Messages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
 
             if (numberOfIntervals < 2 || numberOfIntervals % 2 == 1)
-                throw new ArgumentException(Messages.IntervalsNotPositiveEven, nameof(numberOfIntervals));
+                throw new ArgumentException(NumericsMessages.IntervalsNotPositiveEven, nameof(numberOfIntervals));
 
             if (intervalStart == intervalEnd)
                 return 0;
@@ -76,7 +74,5 @@ namespace ELTE.AEGIS.Numerics.Integral
 
             return value * intervalLength / 3;
         }
-
-        #endregion
     }
 }

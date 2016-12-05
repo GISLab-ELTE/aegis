@@ -25,16 +25,16 @@ namespace ELTE.AEGIS.Collections
     /// <typeparam name="T">The type of elements in the set.</typeparam>
     public sealed class ReadOnlySet<T> : ISet<T>, IReadOnlyCollection<T>
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The underlying set. This field is read-only.
         /// </summary>
         private readonly ISet<T> set;
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadOnlySet{T}" /> class.
@@ -44,14 +44,14 @@ namespace ELTE.AEGIS.Collections
         public ReadOnlySet(ISet<T> set)
         {
             if (set == null)
-                throw new ArgumentNullException(nameof(set), Messages.SetIsNull);
+                throw new ArgumentNullException(nameof(set), CollectionMessages.SetIsNull);
 
             this.set = set;
         }
 
-        #endregion
+        
 
-        #region ICollection properties
+        
 
         /// <summary>
         /// Gets the number of elements contained in the set.
@@ -71,9 +71,9 @@ namespace ELTE.AEGIS.Collections
             get { return true; }
         }
 
-        #endregion
+        
 
-        #region ISet methods
+        
 
         /// <summary>
         /// Determines whether a set is a subset of a specified collection.
@@ -141,9 +141,6 @@ namespace ELTE.AEGIS.Collections
             return this.set.SetEquals(other);
         }
 
-        #endregion
-
-        #region ISet methods (explicit)
 
         /// <summary>
         /// Modifies the current set so that it contains all elements that are present in both the current set and in the specified collection.
@@ -152,7 +149,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ISet<T>.UnionWith(IEnumerable<T> other)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -162,7 +159,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ISet<T>.IntersectWith(IEnumerable<T> other)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -172,7 +169,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ISet<T>.ExceptWith(IEnumerable<T> other)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -182,7 +179,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ISet<T>.SymmetricExceptWith(IEnumerable<T> other)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -193,12 +190,12 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         Boolean ISet<T>.Add(T item)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
-        #endregion
+        
 
-        #region ICollection methods
+        
 
         /// <summary>
         /// Determines whether the set contains a specific value.
@@ -229,10 +226,6 @@ namespace ELTE.AEGIS.Collections
             this.set.CopyTo(array, arrayIndex);
         }
 
-        #endregion
-
-        #region ICollection methods (explicit)
-
         /// <summary>
         /// Adds an item to the set.
         /// </summary>
@@ -240,7 +233,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ICollection<T>.Add(T item)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -249,7 +242,7 @@ namespace ELTE.AEGIS.Collections
         /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
         void ICollection<T>.Clear()
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
@@ -259,12 +252,12 @@ namespace ELTE.AEGIS.Collections
         /// <param name="item">The object to remove from the set.</param>
         Boolean ICollection<T>.Remove(T item)
         {
-            throw new NotSupportedException(Messages.SetIsReadOnly);
+            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -284,6 +277,6 @@ namespace ELTE.AEGIS.Collections
             return this.set.GetEnumerator();
         }
 
-        #endregion
+        
     }
 }

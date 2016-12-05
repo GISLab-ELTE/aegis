@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Operation
     [TestFixture]
     public class HadoopFileListingOperationResultTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="HadoopFileListingOperationResult" /> class.
         /// </summary>
@@ -46,7 +44,5 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Operation
             result.Request.ShouldBe("request");
             result.StatusList.Count.ShouldBe(1);
         }
-
-        #endregion
     }
 }

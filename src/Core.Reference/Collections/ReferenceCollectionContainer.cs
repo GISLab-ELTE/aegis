@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Reference.Collections
     /// </remarks>
     public abstract class ReferenceCollectionContainer : IReferenceCollectionContainer
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceCollectionContainer" /> class.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS.Reference.Collections
         {
             this.Container = new Container();
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the collection of <see cref="AreaOfUse" /> instances.
@@ -292,15 +286,9 @@ namespace ELTE.AEGIS.Reference.Collections
             }
         }
 
-        #endregion
-
-        #region Protected fields
-
         /// <summary>
         /// Gets the underlying inversion of control container.
         /// </summary>
         protected Container Container { get; private set; }
-
-        #endregion
     }
 }

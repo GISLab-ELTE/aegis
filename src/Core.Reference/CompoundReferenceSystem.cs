@@ -24,16 +24,10 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class CompoundReferenceSystem : ReferenceSystem
     {
-        #region Private fields
-
         /// <summary>
         /// The list of components.
         /// </summary>
         private readonly ReferenceSystem[] components;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompoundReferenceSystem" /> class.
@@ -73,17 +67,13 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, scope)
         {
             if (components == null || components.Length == 0)
-                throw new ArgumentException(Messages.NoComponentsAreSpecified, nameof(components));
+                throw new ArgumentException(ReferenceMessages.NoComponentsAreSpecified, nameof(components));
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
 
             this.components = components;
             this.AreaOfUse = areaOfUse;
         }
-
-        #endregion
-
-        #region ReferenceSystem properties
 
         /// <summary>
         /// Gets the number of dimensions.
@@ -97,10 +87,6 @@ namespace ELTE.AEGIS.Reference
         /// <value>The type of the reference system.</value>
         public override ReferenceSystemType Type { get { return ReferenceSystemType.Compound; } }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the area of use.
         /// </summary>
@@ -112,7 +98,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The read-only list of components of the compound reference system.</value>
         public IReadOnlyList<ReferenceSystem> Components { get { return this.components; } }
-
-        #endregion
     }
 }

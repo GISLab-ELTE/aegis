@@ -22,16 +22,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredMultiPoint : StoredGeometryCollection<IPoint>, IMultiPoint
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the multi point. This field is constant.
         /// </summary>
         private const String MultiPointName = "MULTIPOINT";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredMultiPoint" /> class.
@@ -66,10 +60,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the multi point.
         /// </summary>
@@ -96,10 +86,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IMultiPoint properties
-
         /// <summary>
         /// Gets the coordinates of the multi point.
         /// </summary>
@@ -108,10 +94,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             get { return this.Driver.ReadCoordinates(this.Identifier); }
         }
-
-        #endregion
-
-        #region IGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -122,7 +104,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, MultiPointName);
         }
-
-        #endregion
     }
 }

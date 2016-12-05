@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9645", "General polynomial of degree 2")]
     public class GeneralPolynomial2Transformation : GeneralPolynomialTransformation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralPolynomial2Transformation" /> class.
         /// </summary>
@@ -74,7 +72,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, 2, parameters, source, target, areaOfUse)
         {
         }
-
-        #endregion
     }
 }

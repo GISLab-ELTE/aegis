@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public static class Norm
     {
-        #region Vector norms
-
         /// <summary>
         /// Computes the p-norm of the specified vector.
         /// </summary>
@@ -35,9 +33,9 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(Double[] vector, Int32 p)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
             if (p < 1)
-                throw new ArgumentOutOfRangeException(nameof(p), Messages.PIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 
             Double sum = 0;
             for (Int32 valueIndex = 0; valueIndex < vector.Length; valueIndex++)
@@ -56,19 +54,15 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(this Vector vector, Int32 p)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
             if (p < 1)
-                throw new ArgumentOutOfRangeException(nameof(p), Messages.PIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 
             Double sum = 0;
             for (Int32 valueIndex = 0; valueIndex < vector.Size; valueIndex++)
                 sum += Math.Pow(Math.Abs(vector[valueIndex]), p);
             return Math.Pow(sum, 1.0 / p);
         }
-
-        #endregion
-
-        #region Matrix norms
 
         /// <summary>
         /// Computes the p-norm of the specified matrix.
@@ -81,9 +75,9 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(this Matrix matrix, Int32 p)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.VectorIsNull);
             if (p < 1)
-                throw new ArgumentOutOfRangeException(nameof(p), Messages.PIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 
             Double sum = 0;
             for (Int32 rowIndex = 0; rowIndex < matrix.NumberOfRows; rowIndex++)
@@ -94,7 +88,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return Math.Pow(sum, 1.0 / p);
         }
-
-        #endregion
     }
 }

@@ -25,16 +25,10 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
     [TestFixture]
     public class MersenneTwisterRandomGeneratorTest
     {
-        #region Private fields
-
         private MersenneTwisterRandomGenerator generator;
         private Int32 numberOfGeneratedNumbers;
         private Int32 numberOfIntervals;
         private Double allowedError;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -47,10 +41,6 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
             this.numberOfIntervals = 100;
             this.allowedError = 0.03;
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="MersenneTwisterRandomGenerator.NextDouble()" /> method.
@@ -82,7 +72,5 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
                 counter[interval].ShouldBeInRange(lowerBound, upperBound);
             }
         }
-
-        #endregion
     }
 }

@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public class Vector : IEnumerable<Double>
     {
-        #region Private fields
-
         /// <summary>
         /// The array of values.
         /// </summary>
         private Double[] values;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Vector" /> class.
@@ -46,7 +40,7 @@ namespace ELTE.AEGIS.Numerics
         public Vector(Int32 size)
         {
             if (size < 0)
-                throw new ArgumentOutOfRangeException(nameof(size), Messages.SizeIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(size), NumericsMessages.SizeIsLessThan0);
 
             this.values = new Double[size];
         }
@@ -59,7 +53,7 @@ namespace ELTE.AEGIS.Numerics
         public Vector(params Double[] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             this.values = values.ToArray();
         }
@@ -72,7 +66,7 @@ namespace ELTE.AEGIS.Numerics
         public Vector(IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             this.values = values.ToArray();
         }
@@ -85,15 +79,11 @@ namespace ELTE.AEGIS.Numerics
         public Vector(Vector other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherVectorIsNull);
+                throw new ArgumentNullException(nameof(other), NumericsMessages.OtherVectorIsNull);
 
             this.values = new Double[other.values.Length];
             Array.Copy(other.values, this.values, this.values.Length);
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the size of the vector.
@@ -119,7 +109,7 @@ namespace ELTE.AEGIS.Numerics
             get
             {
                 if (index < 0 || index >= this.Size)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsOutsideVectorBounds);
+                    throw new ArgumentOutOfRangeException(nameof(index), NumericsMessages.IndexIsOutsideVectorBounds);
 
                 return this.values[index];
             }
@@ -127,15 +117,11 @@ namespace ELTE.AEGIS.Numerics
             set
             {
                 if (index < 0 || index >= this.Size)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsOutsideVectorBounds);
+                    throw new ArgumentOutOfRangeException(nameof(index), NumericsMessages.IndexIsOutsideVectorBounds);
 
                 this.values[index] = value;
             }
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Converts the specified vector to a <see cref="Matrix" />.
@@ -146,7 +132,7 @@ namespace ELTE.AEGIS.Numerics
         public static explicit operator Matrix(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             Matrix matrix = new Matrix(vector.Size, 1);
             for (Int32 rowIndex = 0; rowIndex < vector.Size; rowIndex++)
@@ -166,7 +152,7 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator -(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             Vector result = new Vector(vector.Size);
             for (Int32 valueIndex = 0; valueIndex < vector.Size; valueIndex++)
@@ -192,12 +178,12 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator +(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             if (first.Size != second.Size)
-                throw new ArgumentException(Messages.VectorDimensionsAreDifferent, nameof(second));
+                throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
 
             Vector result = new Vector(first.Size);
             for (Int32 valueIndex = 0; valueIndex < first.Size; valueIndex++)
@@ -223,12 +209,12 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator +(Vector first, Double[] second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             if (first.Size != second.Length)
-                throw new ArgumentException(Messages.VectorDimensionsAreDifferent, nameof(second));
+                throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
 
             Vector result = new Vector(first.Size);
             for (Int32 valueIndex = 0; valueIndex < first.Size; valueIndex++)
@@ -254,12 +240,12 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator +(Double[] first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             if (first.Length != second.Size)
-                throw new ArgumentException(Messages.VectorDimensionsAreDifferent, nameof(second));
+                throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
 
             Vector result = new Vector(first.Length);
             for (Int32 valueIndex = 0; valueIndex < first.Length; valueIndex++)
@@ -285,12 +271,12 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator -(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             if (first.Size != second.Size)
-                throw new ArgumentException(Messages.VectorDimensionsAreDifferent, nameof(second));
+                throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
 
             Vector result = new Vector(first.Size);
             for (Int32 valueIndex = 0; valueIndex < first.Size; valueIndex++)
@@ -311,7 +297,7 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator *(Double scalar, Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             Vector result = new Vector(vector.Size);
             for (Int32 valueIndex = 0; valueIndex < result.Size; valueIndex++)
@@ -365,12 +351,12 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator *(Vector vector, Matrix matrix)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfRows != 1)
-                throw new ArgumentException(Messages.MatrixRowsMoreThan1, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixRowsMoreThan1, nameof(matrix));
 
             Matrix result = new Matrix(vector.Size, matrix.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -399,12 +385,12 @@ namespace ELTE.AEGIS.Numerics
         public static Vector operator *(Matrix matrix, Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (vector.Size != matrix.NumberOfColumns)
-                throw new ArgumentException(Messages.MatrixSizeDoesNotMatchVector, nameof(vector));
+                throw new ArgumentException(NumericsMessages.MatrixSizeDoesNotMatchVector, nameof(vector));
 
             Vector result = new Vector(matrix.NumberOfRows);
             for (Int32 rowIndex = 0; rowIndex < matrix.NumberOfRows; rowIndex++)
@@ -429,10 +415,6 @@ namespace ELTE.AEGIS.Numerics
         {
             return (1 / scalar) * vector;
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Determines whether the specified vector instances are equal.
@@ -464,7 +446,7 @@ namespace ELTE.AEGIS.Numerics
         public static Boolean IsZero(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             return vector.values.All(value => value == 0);
         }
@@ -478,7 +460,7 @@ namespace ELTE.AEGIS.Numerics
         public static Boolean IsValid(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             return vector.values.All(value => !Double.IsNaN(value));
         }
@@ -498,12 +480,12 @@ namespace ELTE.AEGIS.Numerics
         public static Double InnerProduct(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             if (first.Size != second.Size)
-                throw new ArgumentException(Messages.VectorDimensionsAreDifferent, nameof(second));
+                throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
 
             Double result = 0;
             for (Int32 valueIndex = 0; valueIndex < first.Size; valueIndex++)
@@ -529,9 +511,9 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix OuterProduct(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
 
             Matrix result = new Matrix(first.Size, second.Size);
             for (Int32 columnIndex = 0; columnIndex < result.NumberOfColumns; columnIndex++)
@@ -555,10 +537,6 @@ namespace ELTE.AEGIS.Numerics
             return new Vector(vector.Select(value => value /= vector.Length).ToArray());
         }
 
-        #endregion
-
-        #region IEnumerable methods
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -580,10 +558,6 @@ namespace ELTE.AEGIS.Numerics
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -603,7 +577,5 @@ namespace ELTE.AEGIS.Numerics
 
             return builder.ToString();
         }
-
-        #endregion
     }
 }

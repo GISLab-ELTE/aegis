@@ -31,7 +31,7 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class SparseArray<T> : IList<T>, IReadOnlyList<T>
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The items of the sparse array.
@@ -48,9 +48,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         private Int64 length;
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SparseArray{T}" /> class.
@@ -60,7 +60,7 @@ namespace ELTE.AEGIS.Collections
         public SparseArray(Int64 length)
         {
             if (length < 0)
-                throw new ArgumentOutOfRangeException(nameof(length), Messages.LengthIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(length), CollectionMessages.LengthIsLessThan0);
 
             this.items = new Dictionary<Int64, T>();
             this.version = 0;
@@ -75,7 +75,7 @@ namespace ELTE.AEGIS.Collections
         public SparseArray(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             this.items = new Dictionary<Int64, T>();
             this.version = 0;
@@ -108,9 +108,9 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region IList properties
+        
 
         /// <summary>
         /// Gets the number of elements contained in the array.
@@ -139,9 +139,9 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.length)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
                 T value;
                 if (!this.items.TryGetValue(index, out value))
@@ -153,9 +153,9 @@ namespace ELTE.AEGIS.Collections
             set
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.length)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
                 if (this.items.ContainsKey(index))
                     this.items[index] = value;
@@ -166,9 +166,9 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region Public properties
+        
 
         /// <summary>
         /// Gets the actual number of elements contained in the array.
@@ -186,7 +186,7 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (this.length > Int32.MaxValue)
-                    throw new OverflowException(Messages.TooManyElementsInArray);
+                    throw new OverflowException(CollectionMessages.TooManyElementsInArray);
 
                 return (Int32)this.length;
             }
@@ -213,9 +213,9 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.length)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
                 T value;
                 if (!this.items.TryGetValue(index, out value))
@@ -227,9 +227,9 @@ namespace ELTE.AEGIS.Collections
             set
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.length)
-                    throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
                 if (this.items.ContainsKey(index))
                     this.items[index] = value;
@@ -240,9 +240,9 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region Public methods
+        
 
         /// <summary>
         /// Determines the index of a specific item in the array.
@@ -288,9 +288,9 @@ namespace ELTE.AEGIS.Collections
         public void Insert(Int64 index, T item)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.length)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
             this.UpdateIndexes(index, 1);
 
@@ -315,9 +315,9 @@ namespace ELTE.AEGIS.Collections
         public void RemoveAt(Int64 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.length)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanArraySize);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
             if (this.items.ContainsKey(index))
                 this.items.Remove(index);
@@ -328,9 +328,9 @@ namespace ELTE.AEGIS.Collections
             this.version++;
         }
 
-        #endregion
+        
 
-        #region IList methods
+        
 
         /// <summary>
         /// Adds an item to the array.
@@ -377,11 +377,11 @@ namespace ELTE.AEGIS.Collections
         public void CopyTo(T[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.ArrayIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.ArrayIndexIsLessThan0);
             if (array.Length - arrayIndex < this.length)
-                throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(arrayIndex));
+                throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(arrayIndex));
 
             Int64 arrayLongIndex = arrayIndex;
 
@@ -462,9 +462,9 @@ namespace ELTE.AEGIS.Collections
             this.RemoveAt(index);
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -484,9 +484,9 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        #endregion
+        
 
-        #region Private methods
+        
 
         /// <summary>
         /// Updates the indexes of the array.
@@ -498,9 +498,9 @@ namespace ELTE.AEGIS.Collections
             this.items = this.items.ToDictionary(pair => pair.Key < index ? pair.Key : pair.Key + offset, pair => pair.Value);
         }
 
-        #endregion
+        
 
-        #region Private static methods
+        
 
         /// <summary>
         /// Determines whether the specified values are equal.
@@ -513,16 +513,16 @@ namespace ELTE.AEGIS.Collections
             return EqualityComparer<T>.Default.Equals(first, second);
         }
 
-        #endregion
+        
 
-        #region Public types
+        
 
         /// <summary>
         /// Supports a simple iteration over a <see cref="SparseArray{T}" /> collection.
         /// </summary>
         public sealed class Enumerator : IEnumerator<T>
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The array that is enumerated.
@@ -549,9 +549,9 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private IEnumerator<KeyValuePair<Int64, T>> innerEnumerator;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
@@ -561,7 +561,7 @@ namespace ELTE.AEGIS.Collections
             internal Enumerator(SparseArray<T> array)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
 
                 this.localVersion = array.version;
                 this.localArray = array;
@@ -570,9 +570,9 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(T);
             }
 
-            #endregion
+            
 
-            #region IEnumerator properties
+            
 
             /// <summary>
             /// Gets the element in the collection at the current position of the enumerator.
@@ -586,9 +586,9 @@ namespace ELTE.AEGIS.Collections
             /// <returns>The element in the collection at the current position of the enumerator.</returns>
             Object IEnumerator.Current { get { return this.current; } }
 
-            #endregion
+            
 
-            #region IEnumerable methods
+            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -598,7 +598,7 @@ namespace ELTE.AEGIS.Collections
             public Boolean MoveNext()
             {
                 if (this.localVersion != this.localArray.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.position++;
 
@@ -629,7 +629,7 @@ namespace ELTE.AEGIS.Collections
             public void Reset()
             {
                 if (this.localVersion != this.localArray.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.innerEnumerator.Reset();
                 this.position = -1;
@@ -637,9 +637,9 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(T);
             }
 
-            #endregion
+            
 
-            #region IDisposable methods
+            
 
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -648,9 +648,9 @@ namespace ELTE.AEGIS.Collections
             {
             }
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

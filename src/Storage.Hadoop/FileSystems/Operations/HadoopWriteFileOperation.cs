@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopWriteFileOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopWriteFileOperation" /> class.
         /// </summary>
@@ -78,10 +76,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
-
         /// <summary>
         /// Gets the type of the request.
         /// </summary>
@@ -100,10 +94,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             get { return "op=APPEND"; }
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -117,7 +107,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 FileStream = await content.ReadAsStreamAsync()
             };
         }
-
-        #endregion
     }
 }

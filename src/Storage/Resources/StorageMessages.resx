@@ -123,6 +123,9 @@
   <data name="AuthenticationIsNull" xml:space="preserve">
     <value>The authentication is null.</value>
   </data>
+  <data name="ClientIsNull" xml:space="preserve">
+    <value>The HTTP client is null.</value>
+  </data>
   <data name="DestinationPathExists" xml:space="preserve">
     <value>The destination path already exists.</value>
   </data>
@@ -138,6 +141,18 @@
   <data name="DriverIsNull" xml:space="preserve">
     <value>The driver is null.</value>
   </data>
+  <data name="FileSystemOperationNotSupported" xml:space="preserve">
+    <value>The operation is not supported by the file system.</value>
+  </data>
+  <data name="HostnameIsEmpty" xml:space="preserve">
+    <value>The hostname is empty, or consists only of whitespace characters.</value>
+  </data>
+  <data name="HostnameIsInvalid" xml:space="preserve">
+    <value>The hostname is in an invalid format.</value>
+  </data>
+  <data name="HostnameIsNull" xml:space="preserve">
+    <value>The hostname is null.</value>
+  </data>
   <data name="InvalidFileAccess" xml:space="preserve">
     <value>The file access is invalid.</value>
   </data>
@@ -147,8 +162,14 @@
   <data name="InvalidFileModeOrAccess" xml:space="preserve">
     <value>The specified file mode and file access combination is invalid.</value>
   </data>
+  <data name="InvalidResponseFromRemote" xml:space="preserve">
+    <value>The remote address returned with an invalid response.</value>
+  </data>
   <data name="InvalidSearchPattern" xml:space="preserve">
     <value>The search pattern is an invalid format.</value>
+  </data>
+  <data name="LengthIsLessThan0" xml:space="preserve">
+    <value>The length is less than 0.</value>
   </data>
   <data name="LocationIsNull" xml:space="preserve">
     <value>The location is null.</value>
@@ -162,7 +183,10 @@
   <data name="NoConnectionToPath" xml:space="preserve">
     <value>No connection is available to the specified path.</value>
   </data>
-  <data name="PathDoesNotExists" xml:space="preserve">
+  <data name="OffsetIsLessThan0" xml:space="preserve">
+    <value>The offset is less than 0.</value>
+  </data>
+  <data name="PathDoesNotExist" xml:space="preserve">
     <value>The path does not exist.</value>
   </data>
   <data name="PathExists" xml:space="preserve">
@@ -198,11 +222,17 @@
   <data name="PathUnauthorized" xml:space="preserve">
     <value>The caller does not have the required permission for the path.</value>
   </data>
+  <data name="PostNumberIsLessThan1" xml:space="preserve">
+    <value>The port number is less than 1.</value>
+  </data>
   <data name="SourceAndDestinationPathEqual" xml:space="preserve">
     <value>The source and destination paths are equal.</value>
   </data>
   <data name="SourceOrDestinationPathUnauthorized" xml:space="preserve">
     <value>The caller does not have the required permission for either the source or the destination path.</value>
+  </data>
+  <data name="SourcePathDoesNotExist" xml:space="preserve">
+    <value>The source path does not exist.</value>
   </data>
   <data name="SourcePathIsEmpty" xml:space="preserve">
     <value>The source path is empty, or consists only of white space characters.</value>
@@ -212,9 +242,6 @@
   </data>
   <data name="SourcePathIsNull" xml:space="preserve">
     <value>The source path is null.</value>
-  </data>
-  <data name="SourcePathNotExists" xml:space="preserve">
-    <value>The source path does not exist.</value>
   </data>
   <data name="SourcePathTooLong" xml:space="preserve">
     <value>The path exceeds the maximum length supported by the file system.</value>
@@ -227,5 +254,11 @@
   </data>
   <data name="UriSchemeIsNull" xml:space="preserve">
     <value>The URI scheme is null.</value>
+  </data>
+  <data name="UsernameIsEmpty" xml:space="preserve">
+    <value>The username is empty.</value>
+  </data>
+  <data name="UsernameIsNull" xml:space="preserve">
+    <value>The username is null.</value>
   </data>
 </root>

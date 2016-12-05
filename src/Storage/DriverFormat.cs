@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Storage
     /// </summary>
     public class DriverFormat : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DriverFormat" /> class.
         /// </summary>
@@ -61,10 +59,6 @@ namespace ELTE.AEGIS.Storage
             this.Parameters = parameters;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the version of the format.
         /// </summary>
@@ -94,7 +88,5 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <value>The array containing the parameters of the format.</value>
         public IReadOnlyList<DriverParameter> Parameters { get; private set; }
-
-        #endregion
     }
 }

@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredGeometryFactory : Factory, IStoredGeometryFactory
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredGeometryFactory" /> class.
         /// </summary>
@@ -35,7 +33,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public StoredGeometryFactory(IGeometryDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.PrecisionModel = driver.PrecisionModel;
             this.Driver = driver;
@@ -50,15 +48,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         public StoredGeometryFactory(PrecisionModel precisionModel, IGeometryDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.Driver = driver;
         }
-
-        #endregion
-
-        #region IGeometryFactory properties
 
         /// <summary>
         /// Gets the precision model used by the factory.
@@ -72,19 +66,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value>The reference system used by the factory.</value>
         public IReferenceSystem ReferenceSystem { get { return this.Driver.ReferenceSystemDriver.ReadReferenceSystem(); } }
 
-        #endregion
-
-        #region IStoredGeometryFactory properties
-
         /// <summary>
         /// Gets the geometry driver of the factory.
         /// </summary>
         /// <value>The geometry driver of the factory.</value>
         public IGeometryDriver Driver { get; private set; }
-
-        #endregion
-
-        #region Factory methods for points
 
         /// <summary>
         /// Creates a point.
@@ -139,10 +125,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreatePoint(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for line strings
-
         /// <summary>
         /// Creates a line string.
         /// </summary>
@@ -161,7 +143,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(params Coordinate[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLineString lineString = new StoredLineString(this, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -179,7 +161,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLineString lineString = new StoredLineString(this, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -197,7 +179,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLineString lineString = new StoredLineString(this, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -215,7 +197,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLineString lineString = new StoredLineString(this, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -234,10 +216,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.CreateLineString(other, null);
         }
-
-        #endregion
-
-        #region Factory methods for lines
 
         /// <summary>
         /// Creates a line.
@@ -268,9 +246,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILine CreateLine(IPoint start, IPoint end)
         {
             if (start == null)
-                throw new ArgumentNullException(nameof(start), Messages.StartPointIsNull);
+                throw new ArgumentNullException(nameof(start), CoreMessages.StartPointIsNull);
             if (end == null)
-                throw new ArgumentNullException(nameof(end), Messages.EndPointIsNull);
+                throw new ArgumentNullException(nameof(end), CoreMessages.EndPointIsNull);
 
             StoredLine line = new StoredLine(this, this.Driver.CreateIdentifier(), null);
             line.SetCoordinate(0, start.Coordinate);
@@ -290,10 +268,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreateLine(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for linear rings
-
         /// <summary>
         /// Creates a linear ring.
         /// </summary>
@@ -312,7 +286,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(params Coordinate[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLinearRing ring = new StoredLinearRing(this, this.Driver.CreateIdentifier(), null);
             ring.Add(source);
@@ -329,7 +303,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLinearRing ring = new StoredLinearRing(this, this.Driver.CreateIdentifier(), null);
             ring.Add(source.Where(point => point != null).Select(point => point.Coordinate));
@@ -346,7 +320,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLinearRing ring = new StoredLinearRing(this, this.Driver.CreateIdentifier(), null);
             ring.Add(source);
@@ -363,7 +337,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredLinearRing ring = new StoredLinearRing(this, this.Driver.CreateIdentifier(), null);
             ring.Add(source.Where(point => point != null).Select(point => point.Coordinate));
@@ -381,10 +355,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.CreateLinearRing(other, null);
         }
-
-        #endregion
-
-        #region Factory methods for polygons
 
         /// <summary>
         /// Creates a polygon.
@@ -404,7 +374,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(params Coordinate[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLineString).Add(shell);
@@ -421,7 +391,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(params IPoint[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLineString).Add(shell.Where(point => point != null).Select(point => point.Coordinate));
@@ -438,7 +408,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell);
@@ -455,7 +425,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<IPoint> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell.Elements().Select(point => point.Coordinate));
@@ -473,7 +443,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell);
@@ -500,7 +470,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<IPoint> shell, IEnumerable<IEnumerable<IPoint>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell.Elements().Select(point => point.Coordinate));
@@ -527,10 +497,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.CreatePolygon(other, null);
         }
-
-        #endregion
-
-        #region Factory methods for triangles
 
         /// <summary>
         /// Creates a triangle.
@@ -566,11 +532,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(IPoint first, IPoint second, IPoint third)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
             if (third == null)
-                throw new ArgumentNullException(nameof(third), Messages.ThirdPointIsNull);
+                throw new ArgumentNullException(nameof(third), CoreMessages.ThirdPointIsNull);
 
             StoredTriangle triangle = new StoredTriangle(this, this.Driver.CreateIdentifier(), null);
             triangle.Shell.Add(first.Coordinate);
@@ -590,10 +556,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.CreateTriangle(other, null);
         }
-
-        #endregion
-
-        #region Factory methods for geometry collections
 
         /// <summary>
         /// Creates a geometry collection.
@@ -648,7 +610,7 @@ namespace ELTE.AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredGeometryCollection<GeometryType> collection = new StoredGeometryCollection<GeometryType>(this, this.Driver.CreateIdentifier(), null);
 
@@ -675,10 +637,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreateGeometryCollection<GeometryType>(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for multi points
-
         /// <summary>
         /// Creates a multi point.
         /// </summary>
@@ -697,7 +655,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredMultiPoint multiPoint = new StoredMultiPoint(this, this.Driver.CreateIdentifier(), null);
 
@@ -720,7 +678,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredMultiPoint multiPoint = new StoredMultiPoint(this, this.Driver.CreateIdentifier(), null);
 
@@ -745,10 +703,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreateMultiPoint(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for multi line strings
-
         /// <summary>
         /// Creates a multi line string.
         /// </summary>
@@ -767,7 +721,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(IEnumerable<ILineString> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredMultiLineString multiLineString = new StoredMultiLineString(this, this.Driver.CreateIdentifier(), null);
 
@@ -792,10 +746,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreateMultiLineString(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for multi polygons
-
         /// <summary>
         /// Creates a multi polygon.
         /// </summary>
@@ -814,7 +764,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(IEnumerable<IPolygon> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             StoredMultiPolygon multiPolygon = new StoredMultiPolygon(this, this.Driver.CreateIdentifier(), null);
 
@@ -839,10 +789,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.CreateMultiPolygon(other, null);
         }
 
-        #endregion
-
-        #region Factory methods for geometries
-
         /// <summary>
         /// Creates a geometry matching another geometry.
         /// </summary>
@@ -854,10 +800,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.CreateGeometry(other, null);
         }
-
-        #endregion
-
-        #region Factory methods for stored points
 
         /// <summary>
         /// Creates a point.
@@ -942,7 +884,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPoint CreatePoint(String identifier, IPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
 
             StoredPoint point = new StoredPoint(this, identifier, indexes);
             point.Coordinate = other.Coordinate;
@@ -997,7 +939,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPoint CreatePoint(IPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
 
             StoredPoint point;
             if (other is IStoredGeometry)
@@ -1012,10 +954,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return point;
         }
-
-        #endregion
-
-        #region Factory methods for stored line strings
 
         /// <summary>
         /// Creates a line string.
@@ -1100,7 +1038,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(String identifier, ILineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentException(nameof(other), Messages.OtherLineStringIsNull);
+                throw new ArgumentException(nameof(other), CoreMessages.OtherLineStringIsNull);
 
             StoredLineString lineString = new StoredLineString(this, identifier, indexes);
             lineString.Add(other);
@@ -1130,7 +1068,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILineString CreateLineString(ILineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentException(nameof(other), Messages.OtherLineStringIsNull);
+                throw new ArgumentException(nameof(other), CoreMessages.OtherLineStringIsNull);
 
             StoredLineString lineString;
             if (other is IStoredGeometry)
@@ -1145,10 +1083,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return lineString;
         }
-
-        #endregion
-
-        #region Factory methods for stored lines
 
         /// <summary>
         /// Creates a line.
@@ -1229,7 +1163,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILine CreateLine(String identifier, ILine other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
 
             StoredLine line = new StoredLine(this, identifier, indexes);
             line.SetCoordinate(0, other.StartCoordinate);
@@ -1260,7 +1194,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILine CreateLine(ILine other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
 
             StoredLine line;
             if (other is IStoredGeometry)
@@ -1276,10 +1210,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return line;
         }
-
-        #endregion
-
-        #region Factory methods for stored linear rings
 
         /// <summary>
         /// Creates a linear ring.
@@ -1360,7 +1290,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(String identifier, ILinearRing other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
 
             StoredLinearRing linearRing = new StoredLinearRing(this, identifier, indexes);
             linearRing.Add(other);
@@ -1390,7 +1320,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(ILinearRing other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
 
             StoredLinearRing linearRing;
             if (other is IStoredGeometry)
@@ -1405,10 +1335,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return linearRing;
         }
-
-        #endregion
-
-        #region Factory methods for stored polygons
 
         /// <summary>
         /// Creates a polygon.
@@ -1489,7 +1415,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(String identifier, IPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
 
             StoredPolygon polygon = new StoredPolygon(this, identifier, indexes);
             (polygon.Shell as StoredLinearRing).Add(other.Shell);
@@ -1519,7 +1445,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
 
             StoredPolygon polygon;
             if (other is IStoredGeometry)
@@ -1540,10 +1466,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return polygon;
         }
-
-        #endregion
-
-        #region Factory methods for stored triangles
 
         /// <summary>
         /// Creates a triangle.
@@ -1624,7 +1546,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(String identifier, ITriangle other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
 
             StoredTriangle triangle = new StoredTriangle(this, identifier, indexes);
 
@@ -1658,7 +1580,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(ITriangle other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
 
             IReadOnlyList<Coordinate> coordinates = other.Shell;
 
@@ -1677,10 +1599,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return triangle;
         }
-
-        #endregion
-
-        #region Factory methods for stored geometry collections
 
         /// <summary>
         /// Creates a geometry collection.
@@ -1878,7 +1796,7 @@ namespace ELTE.AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
 
             StoredGeometryCollection<GeometryType> collection = new StoredGeometryCollection<GeometryType>(this, identifier, indexes);
             Int32 index = 0;
@@ -1917,7 +1835,7 @@ namespace ELTE.AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
 
             StoredGeometryCollection<GeometryType> collection;
             if (other is IStoredGeometry)
@@ -1937,10 +1855,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return collection;
         }
-
-        #endregion
-
-        #region Factory methods for stored multi points
 
         /// <summary>
         /// Creates a multi point.
@@ -2021,7 +1935,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(String identifier, IMultiPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
 
             StoredMultiPoint collection = new StoredMultiPoint(this, identifier, indexes);
             Int32 index = 0;
@@ -2056,7 +1970,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IMultiPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
 
             StoredMultiPoint collection;
             if (other is IStoredGeometry)
@@ -2076,10 +1990,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return collection;
         }
-
-        #endregion
-
-        #region Factory methods for stored multi line strings
 
         /// <summary>
         /// Creates a multi line string.
@@ -2160,7 +2070,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(String identifier, IMultiLineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
 
             StoredMultiLineString collection = new StoredMultiLineString(this, identifier, indexes);
             Int32 index = 0;
@@ -2195,7 +2105,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(IMultiLineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
 
             StoredMultiLineString collection;
             if (other is IStoredGeometry)
@@ -2215,10 +2125,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return collection;
         }
-
-        #endregion
-
-        #region Factory methods for multi polygons
 
         /// <summary>
         /// Creates a multi polygon.
@@ -2299,7 +2205,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(String identifier, IMultiPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
 
             StoredMultiPolygon collection = new StoredMultiPolygon(this, this.Driver.CreateIdentifier(), indexes);
             Int32 index = 0;
@@ -2334,7 +2240,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(IMultiPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
 
             StoredMultiPolygon collection;
             if (other is IStoredGeometry)
@@ -2354,10 +2260,6 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return collection;
         }
-
-        #endregion
-
-        #region Factory methods for stored geometries
 
         /// <summary>
         /// Creates a geometry matching another geometry.
@@ -2410,7 +2312,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IGeometry CreateGeometry(String identifier, IGeometry other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
 
             if (other is IPoint)
                 return this.CreatePoint(identifier, other as IPoint, indexes);
@@ -2433,7 +2335,7 @@ namespace ELTE.AEGIS.Storage.Geometries
             if (other is IGeometryCollection)
                 return this.CreateGeometryCollection(identifier, other as IGeometryCollection, indexes);
 
-            throw new ArgumentException(nameof(other), Messages.OtherGeometryNotSupported);
+            throw new ArgumentException(nameof(other), CoreMessages.OtherGeometryNotSupported);
         }
 
         /// <summary>
@@ -2460,7 +2362,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public IGeometry CreateGeometry(IGeometry other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
 
             if (other is IPoint)
                 return this.CreatePoint(other as IPoint, indexes);
@@ -2483,12 +2385,8 @@ namespace ELTE.AEGIS.Storage.Geometries
             if (other is IGeometryCollection)
                 return this.CreateGeometryCollection(other as IGeometryCollection, indexes);
 
-            throw new ArgumentException(nameof(other), Messages.OtherGeometryNotSupported);
+            throw new ArgumentException(nameof(other), CoreMessages.OtherGeometryNotSupported);
         }
-
-        #endregion
-
-        #region Private static methods
 
         /// <summary>
         /// Concatenates the indexes of the geometry.
@@ -2504,7 +2402,5 @@ namespace ELTE.AEGIS.Storage.Geometries
                 return (geometry as IStoredGeometry).Indexes;
             return (geometry as IStoredGeometry).Indexes.Concat(indexes);
         }
-
-        #endregion
     }
 }

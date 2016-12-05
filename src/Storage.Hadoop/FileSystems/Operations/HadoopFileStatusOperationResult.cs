@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopFileStatusOperationResult : HadoopFileSystemOperationResult
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileStatusOperationResult" /> class.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             this.Length = length;
             this.BlockSize = blockSize;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets or sets the path of the entry.
@@ -96,7 +90,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         /// </summary>
         /// <value>The size of the blocks in bytes.</value>
         public Int64 BlockSize { get; set; }
-
-        #endregion
     }
 }

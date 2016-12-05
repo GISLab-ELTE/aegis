@@ -44,9 +44,9 @@ namespace ELTE.AEGIS.Reference.Strategies
         public CoordinateConversionStrategy(ICoordinateOperationStrategy<Coordinate, GeoCoordinate> conversionToGeographic, ICoordinateOperationStrategy<GeoCoordinate, Coordinate> conversionFromGeographic)
         {
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionToGeographic), Messages.ConversionIsNull);
+                throw new ArgumentNullException(nameof(conversionToGeographic), ReferenceMessages.ConversionIsNull);
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionFromGeographic), Messages.ConversionIsNull);
+                throw new ArgumentNullException(nameof(conversionFromGeographic), ReferenceMessages.ConversionIsNull);
 
             this.conversionFromGeographic = conversionFromGeographic;
             this.conversionToGeographic = conversionToGeographic;

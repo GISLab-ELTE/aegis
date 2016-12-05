@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     [TestFixture]
     public class LUDecompositionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
@@ -58,10 +56,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
         /// The array of expected inverted matrices.
         /// </summary>
         private Matrix[] expectedInverse;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -127,10 +121,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
             };
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="LUDecomposition.Compute()" /> method.
         /// </summary>
@@ -179,7 +169,5 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
 
             Should.Throw<ArgumentNullException>(() => LUDecomposition.ComputeDeterminant(null));
         }
-
-        #endregion
     }
 }

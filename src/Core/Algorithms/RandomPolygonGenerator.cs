@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class RandomPolygonGenerator
     {
-        #region Private fields
-
         /// <summary>
         /// The resulting polygon.
         /// </summary>
@@ -37,10 +35,6 @@ namespace ELTE.AEGIS.Algorithms
         /// A value indicating whether the result has been computed.
         /// </summary>
         private Boolean hasResult;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomPolygonGenerator"/> class.
@@ -63,13 +57,13 @@ namespace ELTE.AEGIS.Algorithms
         public RandomPolygonGenerator(Int32 coordinateCount, Coordinate envelopeMin, Coordinate envelopeMax, Double convexityRatio, PrecisionModel precisionModel)
         {
             if (coordinateCount < 3)
-                throw new ArgumentOutOfRangeException(nameof(coordinateCount), Messages.CoordinateCountLessThan3);
+                throw new ArgumentOutOfRangeException(nameof(coordinateCount), CoreMessages.CoordinateCountLessThan3);
             if (envelopeMin.X > envelopeMax.X || envelopeMin.Y > envelopeMax.Y)
-                throw new ArgumentOutOfRangeException(nameof(envelopeMax), Messages.EnvelopeMinIsGreaterThanMax);
+                throw new ArgumentOutOfRangeException(nameof(envelopeMax), CoreMessages.EnvelopeMinIsGreaterThanMax);
             if (convexityRatio < 0.0)
-                throw new ArgumentOutOfRangeException(nameof(convexityRatio), Messages.ConvexityRatioLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(convexityRatio), CoreMessages.ConvexityRatioLessThan0);
             if (convexityRatio > 1.0)
-                throw new ArgumentOutOfRangeException(nameof(convexityRatio), Messages.ConvexityRatioGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(convexityRatio), CoreMessages.ConvexityRatioGreaterThan1);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.CoordinateCount = coordinateCount;
@@ -79,10 +73,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result = null;
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -127,10 +117,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the result of the algorithm.
@@ -186,10 +172,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result = new BasicProxyPolygon(shell);
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Generates a random polygon.
@@ -369,7 +351,5 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new RandomPolygonGenerator(coordinateCount, envelopeMin, envelopeMax, convexityRatio, null).Result;
         }
-
-        #endregion
     }
 }

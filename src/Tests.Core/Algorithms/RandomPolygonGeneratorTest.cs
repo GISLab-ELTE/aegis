@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class RandomPolygonGeneratorTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="CreateRandomPolygon" /> method.
         /// </summary>
@@ -72,7 +70,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Should.Throw<ArgumentOutOfRangeException>(() => RandomPolygonGenerator.CreateRandomPolygon(coordinateNumber, maxCoordinate, minCoordinate, convexityRatio));
             Should.Throw<ArgumentOutOfRangeException>(() => RandomPolygonGenerator.CreateRandomPolygon(coordinateNumber, minCoordinate, maxCoordinate, -1));
         }
-
-        #endregion
     }
 }

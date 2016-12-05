@@ -28,16 +28,16 @@ namespace ELTE.AEGIS.Tests.Collections
     [TestFixture]
     public class ReadOnlySetTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The array of inner sets that are wrapped.
         /// </summary>
         private ISet<Int32>[] innerSets;
 
-        #endregion
+        
 
-        #region Test setup
+        
 
         /// <summary>
         /// Test setup.
@@ -60,9 +60,9 @@ namespace ELTE.AEGIS.Tests.Collections
             };
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="ReadOnlySet{T}" /> class.
@@ -156,6 +156,6 @@ namespace ELTE.AEGIS.Tests.Collections
             }
         }
 
-        #endregion
+        
     }
 }

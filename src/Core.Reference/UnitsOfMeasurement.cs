@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public static class UnitsOfMeasurement
     {
-        #region Private fields
-
         private static Lazy<UnitOfMeasurement> arcMinute = new Lazy<UnitOfMeasurement>(() => new UnitOfMeasurement("EPSG::9103", "arc-minute", null, new String[] { "min", "mina" }, "'", Math.PI / 10800, UnitQuantityType.Angle));
 
         private static Lazy<UnitOfMeasurement> arcSecond = new Lazy<UnitOfMeasurement>(() => new UnitOfMeasurement("EPSG::9104", "arc-second", null, new String[] { "sec", "seca" }, "\"", Math.PI / 648000, UnitQuantityType.Angle));
@@ -214,10 +212,6 @@ namespace ELTE.AEGIS.Reference
 
         private static Lazy<UnitOfMeasurement> year = new Lazy<UnitOfMeasurement>(() => new UnitOfMeasurement("EPSG::1029", "year", null, 3.1556925445E7, UnitQuantityType.Time));
 
-        #endregion
-
-        #region Angle
-
         /// <summary>
         /// Gets arc-minute.
         /// </summary>
@@ -333,10 +327,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static UnitOfMeasurement SexagesimalDMSs { get { return sexagesimalDMSs.Value; } }
 
-        #endregion
-
-        #region Angle rate
-
         /// <summary>
         /// Gets arc-seconds per year.
         /// </summary>
@@ -351,10 +341,6 @@ namespace ELTE.AEGIS.Reference
         /// Gets radians per second.
         /// </summary>
         public static UnitOfMeasurement RadiansPerSecond { get { return radiansPerSecond.Value; } }
-
-        #endregion
-
-        #region Length
 
         /// <summary>
         /// Gets bin width 12.5 metres.
@@ -631,10 +617,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static UnitOfMeasurement Yard { get { return yard.Value; } }
 
-        #endregion
-
-        #region Length rate
-
         /// <summary>
         /// Gets centimetres per year.
         /// </summary>
@@ -654,10 +636,6 @@ namespace ELTE.AEGIS.Reference
         /// Gets millimetre per year.
         /// </summary>
         public static UnitOfMeasurement MillimetrePerYear { get { return millimetrePerYear.Value; } }
-
-        #endregion
-
-        #region Scale
 
         /// <summary>
         /// Gets bin.
@@ -684,10 +662,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static UnitOfMeasurement Unity { get { return unity.Value; } }
 
-        #endregion
-
-        #region Scale rate
-
         /// <summary>
         /// Gets parts per billion per year.
         /// </summary>
@@ -703,10 +677,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static UnitOfMeasurement UnityPerSecond { get { return unityPerSecond.Value; } }
 
-        #endregion
-
-        #region Time
-
         /// <summary>
         /// Gets second.
         /// </summary>
@@ -716,7 +686,5 @@ namespace ELTE.AEGIS.Reference
         /// Gets year.
         /// </summary>
         public static UnitOfMeasurement Year { get { return year.Value; } }
-
-        #endregion
     }
 }

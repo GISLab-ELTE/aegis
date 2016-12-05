@@ -16,14 +16,13 @@ namespace ELTE.AEGIS.Storage.Features
 {
     using System;
     using ELTE.AEGIS.Resources;
+    using ELTE.AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a feature located in a store.
     /// </summary>
     public class StoredFeature : IStoredFeature
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredFeature" /> class.
         /// </summary>
@@ -37,9 +36,9 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeature(IFeatureDriver driver, String identifier)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = new StoredFeatureFactory(driver);
             this.Identifier = identifier;
@@ -58,17 +57,13 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeature(IStoredFeatureFactory factory, String identifier)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
         }
-
-        #endregion
-
-        #region IFeature properties
 
         /// <summary>
         /// Gets the attribute collection of the feature.
@@ -94,10 +89,6 @@ namespace ELTE.AEGIS.Storage.Features
         /// <value>The factory implementation the feature was constructed by.</value>
         IFeatureFactory IFeature.Factory { get { return this.Factory; } }
 
-        #endregion
-
-        #region IStoredFeature properties
-
         /// <summary>
         /// Gets the driver of the feature.
         /// </summary>
@@ -109,7 +100,5 @@ namespace ELTE.AEGIS.Storage.Features
         /// </summary>
         /// <value>The factory implementation the feature was constructed by.</value>
         public IStoredFeatureFactory Factory { get; private set; }
-
-        #endregion
     }
 }

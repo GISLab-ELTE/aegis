@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public class LUDecomposition
     {
-        #region Private fields
-
         /// <summary>
         /// The original matrix.
         /// </summary>
@@ -60,10 +58,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         /// </summary>
         private Matrix u;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LUDecomposition" /> class.
         /// </summary>
@@ -72,15 +66,11 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public LUDecomposition(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             this.matrix = matrix;
             this.determinant = null;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the L (lower triangular) matrix.
@@ -157,10 +147,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             }
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Decomposes the specified matrix.
         /// </summary>
@@ -215,16 +201,16 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Invert(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.All(value => value == 0))
-                throw new ArgumentException(Messages.MatrixIsNotInvertible, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotInvertible, nameof(matrix));
 
             LUDecomposition decomposition = new LUDecomposition(matrix);
             decomposition.Compute();
 
             if (decomposition.Determinant == 0)
-                throw new ArgumentException(Messages.MatrixIsNotInvertible, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotInvertible, nameof(matrix));
 
             Matrix inverse = new Matrix(matrix.NumberOfRows, matrix.NumberOfColumns);
 
@@ -261,22 +247,18 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Vector SolveEquation(Matrix a, Vector b)
         {
             if (a == null)
-                throw new ArgumentNullException(nameof(a), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(a), NumericsMessages.MatrixIsNull);
             if (b == null)
-                throw new ArgumentNullException(nameof(b), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(b), NumericsMessages.VectorIsNull);
             if (!a.IsSquare)
-                throw new ArgumentException(Messages.MatrixIsNotSquare, nameof(a));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(a));
             if (a.NumberOfRows != b.Size)
-                throw new ArgumentException(Messages.MatrixSizeDoesNotMatchVector, nameof(b));
+                throw new ArgumentException(NumericsMessages.MatrixSizeDoesNotMatchVector, nameof(b));
 
             LUDecomposition decomposition = new LUDecomposition(a);
             decomposition.Compute();
             return SolveEquation(decomposition, b);
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Perform computation.
@@ -321,10 +303,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             }
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Solves a linear equation system.
         /// </summary>
@@ -364,10 +342,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return x;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Computes the pivot matrix.
@@ -448,7 +422,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             for (Int32 rowIndex = 0; rowIndex < this.matrix.NumberOfRows; rowIndex++)
                 this.determinant *= this.u[rowIndex, rowIndex];
         }
-
-        #endregion
     }
 }

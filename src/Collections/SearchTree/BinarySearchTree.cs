@@ -26,7 +26,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class BinarySearchTree<TKey, TValue> : ISearchTree<TKey, TValue>
     {
-        #region Protected fields
+        
 
         /// <summary>
         /// The root node.
@@ -43,9 +43,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </summary>
         protected Int32 version;
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTree{TKey, TValue}" /> class.
@@ -71,9 +71,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.Comparer = comparer ?? Comparer<TKey>.Default;
         }
 
-        #endregion
+        
 
-        #region ISearchTree properties
+        
 
         /// <summary>
         /// Gets the number of elements actually contained in the search tree.
@@ -87,9 +87,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// <value>The height of the search tree.</value>
         public virtual Int32 Height { get { return GetTreeHeight(this.root); } }
 
-        #endregion
+        
 
-        #region Public properties
+        
 
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the tree.
@@ -97,9 +97,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current search tree and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get; private set; }
 
-        #endregion
+        
 
-        #region ISearchTree methods
+        
 
         /// <summary>
         /// Searches the search tree for the specified key.
@@ -111,11 +111,11 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public TValue Search(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             Node node = this.SearchNode(key);
             if (node == null)
-                throw new ArgumentException(Messages.KeyNotExists, nameof(key));
+                throw new ArgumentException(CollectionMessages.KeyNotExists, nameof(key));
 
             return node.Value;
         }
@@ -130,7 +130,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public Boolean TrySearch(TKey key, out TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -152,7 +152,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public Boolean Contains(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             return this.SearchNode(key) != null;
         }
@@ -167,7 +167,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public virtual void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.root == null)
             {
@@ -179,7 +179,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
 
             Node node = this.SearchNodeForInsertion(key);
             if (node == null)
-                throw new ArgumentException(Messages.KeyExists, nameof(key));
+                throw new ArgumentException(CollectionMessages.KeyExists, nameof(key));
 
             if (this.Comparer.Compare(key, node.Key) < 0)
                 node.LeftChild = new Node { Key = key, Value = value, Parent = node };
@@ -199,7 +199,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public virtual Boolean Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -231,9 +231,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return new SearchTreeEnumerator(this);
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
@@ -253,9 +253,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return new Enumerator(this);
         }
 
-        #endregion
+        
 
-        #region Protected methods
+        
 
         /// <summary>
         /// Searches the tree for an element with a specific key.
@@ -473,9 +473,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return leftChild;
         }
 
-        #endregion
+        
 
-        #region Protected static methods
+        
 
         /// <summary>
         /// Gets the height of the tree.
@@ -512,9 +512,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return node.Parent.LeftChild;
         }
 
-        #endregion
+        
 
-        #region Public types
+        
 
         /// <summary>
         /// Enumerates the elements of a search tree.
@@ -524,7 +524,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </remarks>
         public sealed class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IEnumerator, IDisposable
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The tree that is enumerated.
@@ -551,9 +551,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             private Node currentNode;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
@@ -563,7 +563,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             internal Enumerator(BinarySearchTree<TKey, TValue> tree)
             {
                 if (tree == null)
-                    throw new ArgumentNullException(nameof(tree), Messages.TreeIsNull);
+                    throw new ArgumentNullException(nameof(tree), CollectionMessages.TreeIsNull);
 
                 this.localTree = tree;
                 this.localVersion = tree.version;
@@ -573,9 +573,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            #endregion
+            
 
-            #region IEnumerator properties
+            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -599,9 +599,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 get { return this.current; }
             }
 
-            #endregion
+            
 
-            #region IEnumerator methods
+            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -611,7 +611,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MoveNext()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 while (this.currentNode != null)
                 {
@@ -638,16 +638,16 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public void Reset()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.stack.Clear();
                 this.currentNode = this.localTree.root;
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            #endregion
+            
 
-            #region IDisposable methods
+            
 
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -656,7 +656,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             {
             }
 
-            #endregion
+            
         }
 
         /// <summary>
@@ -664,7 +664,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </summary>
         public sealed class SearchTreeEnumerator : ISearchTreeEnumerator<TKey, TValue>
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The tree that is enumerated.
@@ -686,9 +686,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             private Node currentNode;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="SearchTreeEnumerator" /> class.
@@ -698,7 +698,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             internal SearchTreeEnumerator(BinarySearchTree<TKey, TValue> tree)
             {
                 if (tree == null)
-                    throw new ArgumentNullException(nameof(tree), Messages.TreeIsNull);
+                    throw new ArgumentNullException(nameof(tree), CollectionMessages.TreeIsNull);
 
                 this.localTree = tree;
                 this.localVersion = tree.version;
@@ -706,9 +706,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.currentNode = null;
             }
 
-            #endregion
+            
 
-            #region IEnumerator properties
+            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -732,9 +732,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 get { return this.current; }
             }
 
-            #endregion
+            
 
-            #region ISearchTreeEnumerator methods
+            
 
             /// <summary>
             /// Advances the enumerator to the previous element of the collection.
@@ -744,7 +744,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MovePrev()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 if (this.currentNode == null)
                     return false;
@@ -788,7 +788,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MoveMin()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 if (this.localTree.root == null)
                 {
@@ -816,7 +816,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MoveMax()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 if (this.localTree.root == null)
                 {
@@ -844,7 +844,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MoveRoot()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 if (this.localTree.root == null)
                 {
@@ -858,9 +858,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 return true;
             }
 
-            #endregion
+            
 
-            #region IEnumerator methods
+            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -870,7 +870,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public Boolean MoveNext()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 if (this.currentNode == null)
                     return false;
@@ -913,15 +913,15 @@ namespace ELTE.AEGIS.Collections.SearchTree
             public void Reset()
             {
                 if (this.localVersion != this.localTree.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.currentNode = null;
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            #endregion
+            
 
-            #region IDisposable methods
+            
 
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -930,19 +930,19 @@ namespace ELTE.AEGIS.Collections.SearchTree
             {
             }
 
-            #endregion
+            
         }
 
-        #endregion
+        
 
-        #region Protected types
+        
 
         /// <summary>
         /// Represents a node of the search tree.
         /// </summary>
         protected class Node
         {
-            #region Public properties
+            
 
             /// <summary>
             /// Gets or sets the key of the node.
@@ -974,9 +974,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// <value>The right child node.</value>
             public Node RightChild { get; set; }
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

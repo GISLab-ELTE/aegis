@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public class Matrix : IEnumerable<Double>
     {
-        #region Private fields
-
         /// <summary>
         /// The version of the matrix.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Numerics
         /// The values stored in row major order.
         /// </summary>
         private Double[] values;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Matrix" /> class.
@@ -56,9 +50,9 @@ namespace ELTE.AEGIS.Numerics
         public Matrix(Int32 numberOfRows, Int32 numberOfColumns)
         {
             if (numberOfRows < 0)
-                throw new ArgumentOutOfRangeException(nameof(numberOfRows), Messages.NumberOfRowsIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(numberOfRows), NumericsMessages.NumberOfRowsIsLessThan0);
             if (numberOfColumns < 0)
-                throw new ArgumentOutOfRangeException(nameof(numberOfColumns), Messages.NumberOfColumnsIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(numberOfColumns), NumericsMessages.NumberOfColumnsIsLessThan0);
 
             this.NumberOfRows = numberOfRows;
             this.NumberOfColumns = numberOfColumns;
@@ -74,7 +68,7 @@ namespace ELTE.AEGIS.Numerics
         public Matrix(Double[,] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), NumericsMessages.SourceIsNull);
 
             this.NumberOfRows = source.GetLength(0);
             this.NumberOfColumns = source.GetLength(1);
@@ -98,7 +92,7 @@ namespace ELTE.AEGIS.Numerics
         public Matrix(Matrix other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMatrixIsNull);
+                throw new ArgumentNullException(nameof(other), NumericsMessages.OtherMatrixIsNull);
 
             this.NumberOfRows = other.NumberOfRows;
             this.NumberOfColumns = other.NumberOfColumns;
@@ -107,10 +101,6 @@ namespace ELTE.AEGIS.Numerics
 
             Array.Copy(other.values, this.values, this.values.Length);
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the number of rows.
@@ -152,10 +142,6 @@ namespace ELTE.AEGIS.Numerics
             }
         }
 
-        #endregion
-
-        #region Public indexers
-
         /// <summary>
         /// Gets or sets the <see cref="Double" /> value located at the specified row and column indexes.
         /// </summary>
@@ -173,9 +159,9 @@ namespace ELTE.AEGIS.Numerics
             get
             {
                 if (rowIndex < 0 || rowIndex >= this.NumberOfRows)
-                    throw new ArgumentOutOfRangeException(nameof(rowIndex), Messages.RowIndexOutsideMatrixBounds);
+                    throw new ArgumentOutOfRangeException(nameof(rowIndex), NumericsMessages.RowIndexOutsideMatrixBounds);
                 if (columnIndex < 0 || columnIndex >= this.NumberOfColumns)
-                    throw new ArgumentOutOfRangeException(nameof(columnIndex), Messages.ColumnIndexOutsideMatrixBounds);
+                    throw new ArgumentOutOfRangeException(nameof(columnIndex), NumericsMessages.ColumnIndexOutsideMatrixBounds);
 
                 return this.values[rowIndex * this.NumberOfColumns + columnIndex];
             }
@@ -183,9 +169,9 @@ namespace ELTE.AEGIS.Numerics
             set
             {
                 if (rowIndex < 0 || rowIndex >= this.NumberOfRows)
-                    throw new ArgumentOutOfRangeException(nameof(rowIndex), Messages.RowIndexOutsideMatrixBounds);
+                    throw new ArgumentOutOfRangeException(nameof(rowIndex), NumericsMessages.RowIndexOutsideMatrixBounds);
                 if (columnIndex < 0 || columnIndex >= this.NumberOfColumns)
-                    throw new ArgumentOutOfRangeException(nameof(columnIndex), Messages.ColumnIndexOutsideMatrixBounds);
+                    throw new ArgumentOutOfRangeException(nameof(columnIndex), NumericsMessages.ColumnIndexOutsideMatrixBounds);
 
                 if (this.values[rowIndex * this.NumberOfColumns + columnIndex] == value)
                     return;
@@ -194,10 +180,6 @@ namespace ELTE.AEGIS.Numerics
                 this.version++;
             }
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Sums the specified <see cref="Matrix" /> instances.
@@ -218,14 +200,14 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator +(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
 
             if (first.NumberOfRows != second.NumberOfRows)
-                throw new ArgumentException(Messages.NumberOfRowsDoesNotMatch, nameof(second));
+                throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatch, nameof(second));
             if (first.NumberOfColumns != second.NumberOfColumns)
-                throw new ArgumentException(Messages.NumberOfColumnsDoesNotMatch, nameof(second));
+                throw new ArgumentException(NumericsMessages.NumberOfColumnsDoesNotMatch, nameof(second));
 
             Matrix result = new Matrix(first.NumberOfRows, first.NumberOfColumns);
 
@@ -259,14 +241,14 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator -(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
 
             if (first.NumberOfRows != second.NumberOfRows)
-                throw new ArgumentException(Messages.NumberOfRowsDoesNotMatch, nameof(second));
+                throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatch, nameof(second));
             if (first.NumberOfColumns != second.NumberOfColumns)
-                throw new ArgumentException(Messages.NumberOfColumnsDoesNotMatch, nameof(second));
+                throw new ArgumentException(NumericsMessages.NumberOfColumnsDoesNotMatch, nameof(second));
 
             Matrix result = new Matrix(first.NumberOfRows, first.NumberOfColumns);
 
@@ -290,7 +272,7 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator -(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             Matrix result = new Matrix(matrix.NumberOfRows, matrix.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -314,7 +296,7 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator *(Double scalar, Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             Matrix result = new Matrix(matrix.NumberOfRows, matrix.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -355,12 +337,12 @@ namespace ELTE.AEGIS.Numerics
         public static Matrix operator *(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
 
             if (first.NumberOfColumns != second.NumberOfRows)
-                throw new ArgumentException(Messages.NumberOfRowsDoesNotMatchColumnsMatrix, nameof(second));
+                throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatchColumnsMatrix, nameof(second));
 
             Matrix result = new Matrix(first.NumberOfRows, second.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -387,10 +369,10 @@ namespace ELTE.AEGIS.Numerics
         public static explicit operator Vector(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfColumns != 1 && matrix.NumberOfRows != 1)
-                throw new ArgumentException(Messages.MatrixNotSingleColumnOrRow, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixNotSingleColumnOrRow, nameof(matrix));
 
             Vector result;
             if (matrix.NumberOfColumns == 1)
@@ -408,10 +390,6 @@ namespace ELTE.AEGIS.Numerics
 
             return result;
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Determines whether the specified matrix instances are equal.
@@ -443,7 +421,7 @@ namespace ELTE.AEGIS.Numerics
         public static Boolean IsZero(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfColumns == 0 && matrix.NumberOfRows == 0)
                 return true;
@@ -460,17 +438,13 @@ namespace ELTE.AEGIS.Numerics
         public static Boolean IsValid(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             if (matrix.NumberOfColumns == 0 && matrix.NumberOfRows == 0)
                 return true;
 
             return matrix.All(value => !Double.IsNaN(value));
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Returns the specified row of the matrix.
@@ -481,7 +455,7 @@ namespace ELTE.AEGIS.Numerics
         public Double[] GetRow(Int32 rowIndex)
         {
             if (rowIndex < 0 || rowIndex >= this.NumberOfRows)
-                throw new ArgumentOutOfRangeException(nameof(rowIndex), Messages.RowIndexOutsideMatrixBounds);
+                throw new ArgumentOutOfRangeException(nameof(rowIndex), NumericsMessages.RowIndexOutsideMatrixBounds);
 
             Double[] row = new Double[this.NumberOfColumns];
 
@@ -499,7 +473,7 @@ namespace ELTE.AEGIS.Numerics
         public Double[] GetColumn(Int32 columnIndex)
         {
             if (columnIndex < 0 || this.NumberOfRows == 0 || columnIndex >= this.NumberOfColumns)
-                throw new ArgumentOutOfRangeException(nameof(columnIndex), Messages.ColumnIndexOutsideMatrixBounds);
+                throw new ArgumentOutOfRangeException(nameof(columnIndex), NumericsMessages.ColumnIndexOutsideMatrixBounds);
 
             Double[] column = new Double[this.NumberOfRows];
 
@@ -508,10 +482,6 @@ namespace ELTE.AEGIS.Numerics
 
             return column;
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -537,10 +507,6 @@ namespace ELTE.AEGIS.Numerics
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -565,7 +531,5 @@ namespace ELTE.AEGIS.Numerics
 
             return builder.ToString();
         }
-
-        #endregion
     }
 }

@@ -36,8 +36,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
     /// </remarks>
     public class HadoopFileSystem : FileSystemBase
     {
-        #region Private fields
-
         /// <summary>
         /// The root path within the file system location. This field is constant.
         /// </summary>
@@ -47,10 +45,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
         /// The HTTP client.
         /// </summary>
         private HttpClient client;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileSystem" /> class.
@@ -147,7 +141,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
             : base(location, new HadoopAnonymousAuthentication())
         {
             if (location == null)
-                throw new ArgumentNullException("location", Messages.LocationIsNull);
+                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
 
             this.client = null;
         }
@@ -162,7 +156,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
             : base(location, authentication ?? new HadoopAnonymousAuthentication())
         {
             if (location == null)
-                throw new ArgumentNullException("location", Messages.LocationIsNull);
+                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
 
             this.client = null;
         }
@@ -182,9 +176,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
             : base(location, authentication ?? new HadoopAnonymousAuthentication())
         {
             if (location == null)
-                throw new ArgumentNullException("location", Messages.LocationIsNull);
+                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
             if (client == null)
-                throw new ArgumentNullException("client", Messages.ClientIsNull);
+                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
 
             this.client = client;
         }
@@ -203,16 +197,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
             : base(location, new HadoopAnonymousAuthentication())
         {
             if (location == null)
-                throw new ArgumentNullException("location", Messages.LocationIsNull);
+                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
             if (client == null)
-                throw new ArgumentNullException("client", Messages.ClientIsNull);
+                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
 
             this.client = client;
         }
-
-        #endregion
-
-        #region IFileSystem properties
 
         /// <summary>
         /// Gets the scheme name for this file system.
@@ -281,10 +271,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
         /// <value><c>true</c> if operations and credentials are handled in a secure manner; otherwise, <c>false</c>.</value>
         public override Boolean IsSecureConnection { get { return false; } }
 
-        #endregion
-
-        #region IFileSystem methods
-
         /// <summary>
         /// Creates the directory.
         /// </summary>
@@ -304,9 +290,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void CreateDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -323,7 +309,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "path");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
             }
             catch (AggregateException ex)
             {
@@ -335,19 +321,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "WebApplicationException":
                             return; // the directory already exists
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -370,9 +356,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override async void CreateDirectoryAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -389,7 +375,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "path");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
             }
             catch (AggregateException ex)
             {
@@ -401,19 +387,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "WebApplicationException":
                             return; // the directory already exists
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -427,7 +413,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override Stream CreateFile(String path, Boolean overwrite)
         {
             // TODO: file creation
-            throw new NotSupportedException(Messages.OperationNotSupported);
+            throw new NotSupportedException(StorageMessages.FileSystemOperationNotSupported);
         }
 
         /// <summary>
@@ -467,9 +453,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override Stream OpenFile(String path, FileMode mode, FileAccess access)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             // TODO: create stream to process read/write operations
 
@@ -497,19 +483,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -550,9 +536,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override async Task<Stream> OpenFileAsync(String path, FileMode mode, FileAccess access)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             // TODO: create stream to process read/write operations
 
@@ -580,19 +566,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -617,9 +603,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void Delete(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -636,7 +622,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "path");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
             }
             catch (AggregateException ex)
             {
@@ -646,19 +632,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -685,9 +671,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override void DeleteAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -704,7 +690,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "path");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
             }
             catch (AggregateException ex)
             {
@@ -714,19 +700,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -764,19 +750,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void Move(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException("sourcePath", Messages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
             if (destinationPath == null)
-                throw new ArgumentNullException("destinationPath", Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrWhiteSpace(sourcePath))
-                throw new ArgumentException(Messages.SourcePathIsEmpty, "sourcePath");
+                throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, "destinationPath");
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destinationPath));
 
             if (sourcePath.Equals(destinationPath))
-                throw new ArgumentException(Messages.SourceDestinationPathEqual, "destinationPath");
+                throw new ArgumentException(StorageMessages.SourceAndDestinationPathEqual, nameof(destinationPath));
 
             if (this.Exists(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathExists, "destinationPath");
+                throw new ArgumentException(StorageMessages.DestinationPathExists, nameof(destinationPath));
 
             try
             {
@@ -793,7 +779,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "sourcePath");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(sourcePath));
             }
             catch (AggregateException ex)
             {
@@ -803,19 +789,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "sourcePath", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(sourcePath), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "sourcePath", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(sourcePath), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, sourcePath, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, sourcePath, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -853,19 +839,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override void MoveAsync(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException("sourcePath", Messages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
             if (destinationPath == null)
-                throw new ArgumentNullException("destinationPath", Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrWhiteSpace(sourcePath))
-                throw new ArgumentException(Messages.SourcePathIsEmpty, "sourcePath");
+                throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, "destinationPath");
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destinationPath));
 
             if (sourcePath.Equals(destinationPath))
-                throw new ArgumentException(Messages.SourceDestinationPathEqual, "destinationPath");
+                throw new ArgumentException(StorageMessages.SourceAndDestinationPathEqual, nameof(destinationPath));
 
             if (this.Exists(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathExists, "destinationPath");
+                throw new ArgumentException(StorageMessages.DestinationPathExists, nameof(destinationPath));
 
             try
             {
@@ -882,7 +868,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
 
                 // process the result
                 if (!(result as HadoopBooleanOperationResult).Success)
-                    throw new ArgumentException(Messages.PathNotExists, "sourcePath");
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(sourcePath));
             }
             catch (AggregateException ex)
             {
@@ -892,19 +878,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "sourcePath", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(sourcePath), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "sourcePath", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(sourcePath), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, sourcePath, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, sourcePath, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -916,7 +902,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
         /// <exception cref="System.NotSupportedException">The operation is not supported by the file system.</exception>
         public override void Copy(String sourcePath, String destinationPath)
         {
-            throw new NotSupportedException(Messages.OperationNotSupported);
+            throw new NotSupportedException(StorageMessages.FileSystemOperationNotSupported);
         }
 
         /// <summary>
@@ -955,12 +941,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1000,12 +986,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1046,12 +1032,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1092,12 +1078,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1138,12 +1124,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1184,12 +1170,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "SecurityException":
                             return false;
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1203,9 +1189,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetDirectoryRoot(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             return this.DirectorySeparator.ToString();
         }
@@ -1229,9 +1215,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetParent(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             // in case the root directory is queried, the return value is null
             if (path.Length == 1 && path[0] == this.DirectorySeparator)
@@ -1260,14 +1246,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1292,9 +1278,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String> GetParentAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             // in case the root directory is queried, the return value is null
             if (path.Length == 1 && path[0] == this.DirectorySeparator)
@@ -1323,14 +1309,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1355,9 +1341,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             if (path.Length > 1)
                 path = path.TrimEnd(this.DirectorySeparator);
@@ -1389,14 +1375,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1422,9 +1408,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String> GetDirectoryAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             if (path.Length > 1)
                 path = path.TrimEnd(this.DirectorySeparator);
@@ -1456,14 +1442,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1486,9 +1472,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetFileName(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1514,14 +1500,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1544,9 +1530,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String> GetFileNameAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1572,14 +1558,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1597,9 +1583,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetFileNameWithoutExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1627,14 +1613,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1660,9 +1646,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String> GetFileNameWithoutExtensionAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1690,14 +1676,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1723,9 +1709,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1753,14 +1739,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1786,9 +1772,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String> GetExtensionAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1816,14 +1802,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                         case "FileNotFoundException":
                         case "NotFoundException":
                         case "SecurityException":
-                            throw new ArgumentException(Messages.PathNotExists, "path");
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path));
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1851,9 +1837,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String[] GetDirectories(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1872,14 +1858,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -1890,7 +1876,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1918,9 +1904,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String[]> GetDirectoriesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -1939,14 +1925,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -1956,7 +1942,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -1984,9 +1970,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String[] GetFiles(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -2005,14 +1991,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -2022,7 +2008,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -2050,9 +2036,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<String[]> GetFilesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -2071,14 +2057,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -2088,7 +2074,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -2116,9 +2102,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override FileSystemEntry[] GetFileSystemEntries(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -2136,14 +2122,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -2153,7 +2139,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
 
@@ -2181,9 +2167,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public async override Task<FileSystemEntry[]> GetFileSystemEntriesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -2201,14 +2187,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
                     switch ((ex.InnerException as HadoopRemoteException).ExceptionName)
                     {
                         case "IllegalArgumentException":
-                            throw new ArgumentException(Messages.PathIsInInvalidFormat, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                         case "FileNotFoundException":
                         case "NotFoundException":
-                            throw new ArgumentException(Messages.PathNotExists, "path", ex);
+                            throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                         case "SecurityException":
-                            throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                            throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                         case "IOException":
-                            throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                            throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
                     }
                 }
                 else if (ex.InnerException is ArgumentException)
@@ -2218,13 +2204,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
 
                 // handle unexpected exceptions
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex.InnerException);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex.InnerException);
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Returns the file status for the specified path asynchronously.
@@ -2328,10 +2310,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
             return statusList;
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Creates the location from the specified hostname and port number.
         /// </summary>
@@ -2348,14 +2326,14 @@ namespace ELTE.AEGIS.Storage.FileSystems
         private static Uri CreateLocation(String hostname, Int32 portNumber)
         {
             if (hostname == null)
-                throw new ArgumentNullException("hostname", Messages.HostnameIsNull);
+                throw new ArgumentNullException(nameof(hostname), StorageMessages.HostnameIsNull);
             if (String.IsNullOrWhiteSpace(hostname))
-                throw new ArgumentException(Messages.HostnameIsEmpty, "hostname");
+                throw new ArgumentException(StorageMessages.HostnameIsEmpty, nameof(hostname));
             if (portNumber < 1)
-                throw new ArgumentOutOfRangeException("portNumber", Messages.PostNumberIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(portNumber), StorageMessages.PostNumberIsLessThan1);
 
             if (Uri.CheckHostName(hostname) == UriHostNameType.Unknown)
-                throw new ArgumentException(Messages.HostnameIsInvalid, "hostname");
+                throw new ArgumentException(StorageMessages.HostnameIsInvalid, nameof(hostname));
 
             return new Uri(String.Format("http://{0}:{1}", hostname, portNumber));
         }
@@ -2370,7 +2348,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
         private static Boolean IsMatch(String path, String pattern)
         {
             if (String.IsNullOrWhiteSpace(pattern))
-                throw new ArgumentException(Messages.InvalidSearchPattern, "searchPattern");
+                throw new ArgumentException(StorageMessages.InvalidSearchPattern, nameof(pattern));
 
             pattern = "^" + Regex.Escape(pattern).Replace("\\*", ".*").Replace("\\?", ".") + "$";
 
@@ -2380,10 +2358,8 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (Exception ex)
             {
-                throw new ArgumentException(Messages.InvalidSearchPattern, "searchPattern", ex);
+                throw new ArgumentException(StorageMessages.InvalidSearchPattern, nameof(pattern), ex);
             }
         }
-
-        #endregion
     }
 }

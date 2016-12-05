@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class HelmertTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Protected fields
-
         /// <summary>
         /// X axis translation.
         /// </summary>
@@ -69,10 +67,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         protected Double[,] inverseParams;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HelmertTransformation" /> class.
         /// </summary>
@@ -110,10 +104,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.m = 1 + this.scaleDifference * 1E-6;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -141,7 +131,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new Coordinate(x, y, z);
         }
-
-        #endregion
     }
 }

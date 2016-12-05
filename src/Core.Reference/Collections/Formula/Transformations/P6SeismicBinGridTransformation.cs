@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class P6SeismicBinGridTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Protected types
-
         /// <summary>
         /// Defines the possible orientations of the grid.
         /// </summary>
@@ -41,18 +39,10 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             RightHanded
         }
 
-        #endregion
-
-        #region Protected fields
-
         /// <summary>
         /// The orientation of the transformation.
         /// </summary>
         protected Orientation orientation;
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// Bin grid origin I.
@@ -104,10 +94,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         private readonly Double binNodeIncOnJAxis;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="P6SeismicBinGridTransformation" /> class.
         /// </summary>
@@ -146,10 +132,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.binNodeIncOnIAxis = this.GetParameterValue(CoordinateOperationParameters.BinNodeIncrementOnIAxis);
             this.binNodeIncOnJAxis = this.GetParameterValue(CoordinateOperationParameters.BinNodeIncrementOnJAxis);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -202,7 +184,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new Coordinate(x, y);
         }
-
-        #endregion
     }
 }

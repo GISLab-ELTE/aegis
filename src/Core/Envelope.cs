@@ -26,8 +26,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class Envelope : IEquatable<Envelope>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the undefined <see cref="Envelope" /> value. This field is read-only.
         /// </summary>
@@ -37,10 +35,6 @@ namespace ELTE.AEGIS
         /// Represents the infinite <see cref="Envelope" /> value. This field is read-only.
         /// </summary>
         public static readonly Envelope Infinity = new Envelope(Double.NegativeInfinity, Double.PositiveInfinity, Double.PositiveInfinity, Double.NegativeInfinity, Double.NegativeInfinity, Double.PositiveInfinity);
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// The string format for envelopes. This field is constant.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS
         /// </summary>
         private const String InvalidEnvelopeString = "INVALID";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The minimal coordinate in all dimensions.
         /// </summary>
@@ -70,10 +60,6 @@ namespace ELTE.AEGIS
         /// The maximal coordinate in all dimensions.
         /// </summary>
         private readonly Coordinate maximum;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Envelope" /> class.
@@ -102,10 +88,6 @@ namespace ELTE.AEGIS
             this.maximum = new Coordinate(Math.Max(firstX, secondX), Math.Max(firstY, secondY), Math.Max(firstZ, secondZ));
             this.minimum = new Coordinate(Math.Min(firstX, secondX), Math.Min(firstY, secondY), Math.Min(firstZ, secondZ));
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the minimum X value.
@@ -200,10 +182,6 @@ namespace ELTE.AEGIS
         /// <value>The volume of the rectangle. The volume is zero in case of planar rectangles.</value>
         public Double Volume { get { return (this.maximum.X - this.minimum.X) * (this.maximum.Y - this.minimum.Y) * (this.maximum.Z - this.minimum.Z); } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Determines whether the envelope contains the specified coordinate.
         /// </summary>
@@ -213,7 +191,7 @@ namespace ELTE.AEGIS
         public Boolean Contains(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
 
             return this.minimum.X <= coordinate.X && coordinate.X <= this.maximum.X &&
                    this.minimum.Y <= coordinate.Y && coordinate.Y <= this.maximum.Y &&
@@ -229,7 +207,7 @@ namespace ELTE.AEGIS
         public Boolean Contains(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return this.minimum.X <= envelope.minimum.X && envelope.maximum.X <= this.maximum.X &&
                    this.minimum.Y <= envelope.minimum.Y && envelope.maximum.Y <= this.maximum.Y &&
@@ -245,7 +223,7 @@ namespace ELTE.AEGIS
         public Boolean Crosses(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return !this.Disjoint(envelope) && !this.Equals(envelope);
         }
@@ -259,7 +237,7 @@ namespace ELTE.AEGIS
         public Boolean Disjoint(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return this.maximum.X < envelope.minimum.X || this.minimum.X > envelope.maximum.X ||
                    this.maximum.Y < envelope.minimum.Y || this.minimum.Y > envelope.maximum.Y ||
@@ -275,7 +253,7 @@ namespace ELTE.AEGIS
         public Boolean Intersects(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return !this.Disjoint(envelope);
         }
@@ -289,7 +267,7 @@ namespace ELTE.AEGIS
         public Boolean Overlaps(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return !this.Disjoint(envelope) && !this.Equals(envelope);
         }
@@ -303,7 +281,7 @@ namespace ELTE.AEGIS
         public Boolean Touches(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return !this.Disjoint(envelope) && (this.minimum.X == envelope.maximum.X || this.maximum.X == envelope.minimum.X ||
                                         this.minimum.Y == envelope.maximum.Y || this.maximum.Y == envelope.minimum.Y ||
@@ -319,14 +297,10 @@ namespace ELTE.AEGIS
         public Boolean Within(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return envelope.Contains(this);
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified envelope are equal.
@@ -342,10 +316,6 @@ namespace ELTE.AEGIS
 
             return this.minimum.Equals(other.minimum) && this.maximum.Equals(other.maximum);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Determines whether the specified object is equal to this instance.
@@ -387,10 +357,6 @@ namespace ELTE.AEGIS
 
             return String.Format(CultureInfo.InvariantCulture, EnvelopeStringFormat, this.minimum.X, this.minimum.Y, this.minimum.Z, this.maximum.X, this.maximum.Y, this.maximum.Z);
         }
-
-        #endregion
-
-        #region Public static factory methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Envelope" /> class based on coordinates.
@@ -493,10 +459,6 @@ namespace ELTE.AEGIS
                                 envelopes.Min(envelope => envelope.minimum.Y), envelopes.Max(envelope => envelope.maximum.Y),
                                 envelopes.Min(envelope => envelope.minimum.Z), envelopes.Max(envelope => envelope.maximum.Z));
         }
-
-        #endregion
-
-        #region Public static query methods
 
         /// <summary>
         /// Determines whether the envelope contains the specified coordinate.
@@ -719,7 +681,5 @@ namespace ELTE.AEGIS
         {
             return Contains(third, fourth, first, second);
         }
-
-        #endregion
     }
 }

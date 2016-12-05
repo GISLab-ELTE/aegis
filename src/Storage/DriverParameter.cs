@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Storage
     /// </summary>
     public class DriverParameter : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DriverParameter" /> class.
         /// </summary>
@@ -46,17 +44,13 @@ namespace ELTE.AEGIS.Storage
             : base(identifier, name, remarks, aliases)
         {
             if (type == null)
-                throw new ArgumentNullException(nameof(type), Messages.TypeIsNull);
+                throw new ArgumentNullException(nameof(type), StorageMessages.TypeIsNull);
 
             this.Type = type;
             this.IsOptional = isOptional;
             this.DefaultValue = defaultValue;
             this.Conditions = conditions;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the type declaration of the parameter.
@@ -82,10 +76,6 @@ namespace ELTE.AEGIS.Storage
         /// <value>The conditions the parameter value must satisfy.</value>
         public IReadOnlyList<Predicate<Object>> Conditions { get; private set; }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Determines whether the specified value is valid for the parameter.
         /// </summary>
@@ -104,10 +94,6 @@ namespace ELTE.AEGIS.Storage
 
             return true;
         }
-
-        #endregion
-
-        #region Public static factory methods
 
         /// <summary>
         /// Creates an optional <see cref="DriverParameter" />.
@@ -732,7 +718,5 @@ namespace ELTE.AEGIS.Storage
         {
             return new DriverParameter(identifier, name, remarks, aliases, type, false, defaultValue, conditions);
         }
-
-        #endregion
     }
 }

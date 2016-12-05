@@ -16,6 +16,7 @@ namespace ELTE.AEGIS.Storage.Attributes
 {
     using System;
     using System.Collections.Generic;
+    using ELTE.AEGIS.Collections.Resources;
     using ELTE.AEGIS.Resources;
 
     /// <summary>
@@ -23,8 +24,6 @@ namespace ELTE.AEGIS.Storage.Attributes
     /// </summary>
     public class StoredAttributeCollectionFactory : Factory, IStoredAttributeCollectionFactory
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredAttributeCollectionFactory" /> class.
         /// </summary>
@@ -33,24 +32,16 @@ namespace ELTE.AEGIS.Storage.Attributes
         public StoredAttributeCollectionFactory(IAttributeDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.Driver = driver;
         }
-
-        #endregion
-
-        #region IStoredAttributeCollectionFactory properties
 
         /// <summary>
         /// Gets the attribute driver of the factory.
         /// </summary>
         /// <value>The attribute driver of the factory.</value>
         public IAttributeDriver Driver { get; private set; }
-
-        #endregion
-
-        #region Factory methods for attribute collections
 
         /// <summary>
         /// Creates an attribute collection.
@@ -70,7 +61,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(IDictionary<String, Object> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             StoredAttributeCollection collection = new StoredAttributeCollection(this, this.Driver.CreateIdentifier());
             foreach (String key in source.Keys)
@@ -90,7 +81,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(IAttributeCollection source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             if (source is IStoredAttributeCollection)
             {
@@ -101,10 +92,6 @@ namespace ELTE.AEGIS.Storage.Attributes
                 return this.CreateCollection(source as IDictionary<String, Object>);
             }
         }
-
-        #endregion
-
-        #region Factory methods for stored attribute collections
 
         /// <summary>
         /// Creates an attribute collection.
@@ -131,7 +118,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(String identifier, IAttributeCollection source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             StoredAttributeCollection collection = new StoredAttributeCollection(this, identifier);
 
@@ -142,7 +129,5 @@ namespace ELTE.AEGIS.Storage.Attributes
 
             return collection;
         }
-
-        #endregion
     }
 }

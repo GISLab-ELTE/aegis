@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalDatumCollection : LocalReferenceCollection<Datum>
     {
-        #region Private fields
-
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  <see cref="Meridian" /> instances.
         /// </summary>
         private IReferenceCollection<Meridian> meridianCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalDatumCollection" /> class.
@@ -63,20 +57,16 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public LocalDatumCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<Ellipsoid> ellipsoidCollection, IReferenceCollection<Meridian> meridianCollection)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (ellipsoidCollection == null)
-                throw new ArgumentNullException(nameof(ellipsoidCollection), Messages.EllipsoidCollectionIsNull);
+                throw new ArgumentNullException(nameof(ellipsoidCollection), ReferenceMessages.EllipsoidCollectionIsNull);
             if (meridianCollection == null)
-                throw new ArgumentNullException(nameof(meridianCollection), Messages.MeridianCollectionIsNull);
+                throw new ArgumentNullException(nameof(meridianCollection), ReferenceMessages.MeridianCollectionIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
             this.ellipsoidCollection = ellipsoidCollection;
             this.meridianCollection = meridianCollection;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -103,7 +93,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

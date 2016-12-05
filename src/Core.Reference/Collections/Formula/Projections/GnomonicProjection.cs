@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::735137", "Gnomonic Projection")]
     public class GnomonicProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// The radius of the sphere.
         /// </summary>
         private readonly Double sphereRadius;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GnomonicProjection" /> class.
@@ -87,10 +81,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.falseEasting = this.GetParameterValue(CoordinateOperationParameters.FalseEasting);
             this.sphereRadius = ellipsoid.SemiMajorAxis.Value;
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -132,10 +122,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(latitude, longitude);
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Returns the angular distance of a given point on the Earth's surface from the projection center.
         /// </summary>
@@ -162,7 +148,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             Angle correction = Angle.FromDegree(diff > threshold ? -360 : (diff < -threshold ? 360 : 0));
             return (diff + correction).BaseValue;
         }
-
-        #endregion
     }
 }

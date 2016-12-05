@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class LabordeObliqueMercatorProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private LabordeObliqueMercatorProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new LabordeObliqueMercatorProjection("EPSG::19861", "Laborde Grid", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -88,7 +78,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.Latitude.BaseValue, transformed.Latitude.BaseValue, 0.00000001);
             Assert.AreEqual(expected.Longitude.BaseValue, transformed.Longitude.BaseValue, 0.00000001);
         }
-
-        #endregion
     }
 }

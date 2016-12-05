@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1033", "Position Vector transformation (geocentric domain)")]
     public class PositionVectorTransformation : HelmertTransformation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PositionVectorTransformation" /> class.
         /// </summary>
@@ -84,7 +82,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.inverseParams[2, 1] = 1 / det * (this.yAxisRotation * this.zAxisRotation - this.xAxisRotation);
             this.inverseParams[2, 2] = 1 / det * (1 + this.zAxisTranslation * this.zAxisTranslation);
         }
-
-        #endregion
     }
 }

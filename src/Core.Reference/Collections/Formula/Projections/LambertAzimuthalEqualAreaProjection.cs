@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9820", "Lambert Azimuthal Equal Area Projection")]
     public class LambertAzimuthalEqualAreaProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -75,10 +73,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constants.
         /// </summary>
         protected readonly OperationAspect operationAspect;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertAzimuthalEqualAreaProjection" /> class.
@@ -167,10 +161,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             else
                 this.operationAspect = OperationAspect.Oblique;
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -296,7 +286,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

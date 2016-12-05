@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public struct Length : IEquatable<Length>, IComparable<Length>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the zero <see cref="Length" /> value. This field is constant.
         /// </summary>
@@ -52,18 +50,10 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static readonly Length Epsilon = new Length(Double.Epsilon, UnitsOfMeasurement.Metre);
 
-        #endregion
-
-        #region Private constants
-
         /// <summary>
         /// The string format for lengths. This field is constant.
         /// </summary>
         private const String LengthStringFormat = "{0}{1}";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The value.
@@ -75,10 +65,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private readonly UnitOfMeasurement unit;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Length" /> struct.
         /// </summary>
@@ -88,15 +74,11 @@ namespace ELTE.AEGIS.Reference
         public Length(Double value, UnitOfMeasurement unit)
         {
             if (unit != null && unit.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             this.value = value;
             this.unit = unit ?? UnitsOfMeasurement.Metre;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the value of the length.
@@ -113,10 +95,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public UnitOfMeasurement Unit { get { return this.unit; } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Gets the value using the specified <see cref="UnitOfMeasurement" />.
         /// </summary>
@@ -127,9 +105,9 @@ namespace ELTE.AEGIS.Reference
         public Double GetValue(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (unit == this.unit)
                 return this.value;
@@ -147,9 +125,9 @@ namespace ELTE.AEGIS.Reference
         public String ToString(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (this.Unit != unit)
             {
@@ -171,19 +149,15 @@ namespace ELTE.AEGIS.Reference
         public Length ToUnit(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (unit == this.unit)
                 return this;
 
             return new Length(this.BaseValue / unit.BaseMultiple, unit);
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified <see cref="Length" /> are equal.
@@ -200,10 +174,6 @@ namespace ELTE.AEGIS.Reference
             return this.BaseValue.Equals(other.BaseValue);
         }
 
-        #endregion
-
-        #region IComparable methods
-
         /// <summary>
         /// Compares the current instance with another <see cref="Length" />.
         /// </summary>
@@ -213,10 +183,6 @@ namespace ELTE.AEGIS.Reference
         {
             return this.BaseValue.CompareTo(other.BaseValue);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -251,10 +217,6 @@ namespace ELTE.AEGIS.Reference
         {
             return String.Format(CultureInfo.InvariantCulture, LengthStringFormat, this.Value, this.Unit.Symbol);
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Sums the specified <see cref="Length" /> instances.
@@ -412,10 +374,6 @@ namespace ELTE.AEGIS.Reference
         {
             return new Length(value, UnitsOfMeasurement.Radian);
         }
-
-        #endregion
-
-        #region Public static factory methods
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Length" /> struct from the value specified in <see cref="UnitsOfMeasurement.BritishChainBenoit1895A" />.
@@ -898,20 +856,16 @@ namespace ELTE.AEGIS.Reference
         public static Length Convert(Length length, UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
 
             if (unit.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (length.Unit.Equals(unit))
                 return length;
 
             return new Length(length.BaseValue / unit.BaseMultiple, unit);
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Determines whether the specified <see cref="Length" /> instance is valid.
@@ -932,7 +886,7 @@ namespace ELTE.AEGIS.Reference
         public static Length Max(params Length[] lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), Messages.LengthArrayIsNull);
+                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthArrayIsNull);
             if (lengths.Length == 0)
                 return Length.Undefined;
 
@@ -948,7 +902,7 @@ namespace ELTE.AEGIS.Reference
         public static Length Max(IEnumerable<Length> lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), Messages.LengthCollectionIsNull);
+                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthCollectionIsNull);
             if (!lengths.Any())
                 return Length.Undefined;
 
@@ -964,7 +918,7 @@ namespace ELTE.AEGIS.Reference
         public static Length Min(params Length[] lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), Messages.LengthArrayIsNull);
+                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthArrayIsNull);
             if (lengths.Length == 0)
                 return Length.Undefined;
 
@@ -980,13 +934,11 @@ namespace ELTE.AEGIS.Reference
         public static Length Min(IEnumerable<Length> lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), Messages.LengthCollectionIsNull);
+                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthCollectionIsNull);
             if (!lengths.Any())
                 return Length.Undefined;
 
             return new Length(lengths.Min(length => length.BaseValue), UnitsOfMeasurement.Metre);
         }
-
-        #endregion
     }
 }

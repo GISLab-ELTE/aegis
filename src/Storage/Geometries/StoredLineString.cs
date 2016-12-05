@@ -20,6 +20,7 @@ namespace ELTE.AEGIS.Storage.Geometries
     using System.Linq;
     using System.Text;
     using ELTE.AEGIS.Algorithms;
+    using ELTE.AEGIS.Collections.Resources;
     using ELTE.AEGIS.Resources;
 
     /// <summary>
@@ -27,8 +28,6 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredLineString : StoredCurve, ILineString
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -53,10 +52,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// The name of the line string. This field is constant.
         /// </summary>
         private const String LineStringName = "LINESTRING";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredLineString" /> class.
@@ -90,10 +85,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             : base(factory, identifier, indexes)
         {
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the bounding geometry.
@@ -141,10 +132,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// </summary>
         /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
         public override Boolean IsValid { get { return this.Coordinates.All(coordinate => coordinate.IsValid); } }
-
-        #endregion
-
-        #region ICurve properties
 
         /// <summary>
         /// Gets a value indicating whether the curve is closed.
@@ -200,10 +187,6 @@ namespace ELTE.AEGIS.Storage.Geometries
                 return this.Factory.CreatePoint(this.EndCoordinate);
             }
         }
-
-        #endregion
-
-        #region ILineString properties
 
         /// <summary>
         /// Gets the number of coordinates in the line string.
@@ -266,10 +249,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region ILineString methods
-
         /// <summary>
         /// Determines whether the line string contains the specified coordinate within its coordinates.
         /// </summary>
@@ -302,9 +281,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             return this.ReadCoordinate(index);
         }
@@ -322,9 +301,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.UpdateCoordinate(this.PrecisionModel.MakePrecise(coordinate), index);
         }
@@ -346,7 +325,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void Add(IEnumerable<Coordinate> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(collection).ToList());
         }
@@ -364,9 +343,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.CreateCoordinate(coordinate, index);
         }
@@ -385,11 +364,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void Insert(Int32 index, IEnumerable<Coordinate> collection)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             // TODO: enhance performance with insert options in the driver
             List<Coordinate> coordinates = this.ReadCoordinates().ToList();
@@ -431,9 +410,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             this.DeleteCoordinate(index);
         }
@@ -445,10 +424,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             this.DeleteCoordinates();
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -469,10 +444,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -482,10 +453,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, LineStringName);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -513,7 +480,5 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return name + String.Format(provider, CollectionStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }

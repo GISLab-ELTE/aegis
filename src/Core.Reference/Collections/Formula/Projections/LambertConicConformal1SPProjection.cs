@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9801", "Lambert Conic Conformal (1SP)")]
     public class LambertConicConformal1SPProjection : LambertConicConformalProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -65,10 +63,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double f;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformal1SPProjection" /> class.
@@ -148,10 +142,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.r0 = this.Ellipsoid.SemiMajorAxis.Value * this.f * Math.Pow(t0, this.n) * this.scaleFactorAtNaturalOrigin;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -187,10 +177,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(phi, lambda);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Compute the coordinate easting and northing based on the R and Theta values.
         /// </summary>
@@ -216,7 +202,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             theta = Math.Atan((easting - this.falseEasting) / (this.r0 - (northing - this.falseNorthing)));
             r = Math.Sign(this.n) * Math.Sqrt(Math.Pow(easting - this.falseEasting, 2) + Math.Pow(this.r0 - (northing - this.falseNorthing), 2));
         }
-
-        #endregion
     }
 }

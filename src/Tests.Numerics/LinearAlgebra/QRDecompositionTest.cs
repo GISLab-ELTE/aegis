@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     [TestFixture]
     public class QRDecompositionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
         /// The array of expected R matrices.
         /// </summary>
         private Matrix[] expectedR;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Sets up the test environment.
@@ -72,10 +66,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
             };
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="QRDecomposition.Compute()" /> method.
         /// </summary>
@@ -94,7 +84,5 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
                 product.ShouldBe(this.matrices[matrixIndex], 0.001);
             }
         }
-
-        #endregion
     }
 }

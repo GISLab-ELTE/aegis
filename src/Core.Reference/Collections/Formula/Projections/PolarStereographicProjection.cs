@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class PolarStereographicProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// The operation aspect.
         /// </summary>
         protected OperationAspect operationAspect;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolarStereographicProjection" /> class.
@@ -59,10 +53,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the t value.
         /// </summary>
@@ -84,7 +74,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return t;
         }
-
-        #endregion
     }
 }

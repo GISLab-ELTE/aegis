@@ -22,8 +22,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public interface IFeatureFactory : IFactory
     {
-        #region Properties
-
         /// <summary>
         /// Gets the attribute collection factory.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS
         /// </summary>
         /// <value>The geometry factory.</value>
         IGeometryFactory GeometryFactory { get; }
-
-        #endregion
-
-        #region Factory methods for features
 
         /// <summary>
         /// Creates a feature.
@@ -97,10 +91,6 @@ namespace ELTE.AEGIS
         /// <returns>The feature matching <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other feature is null.</exception>
         IFeature CreateFeature(IFeature other);
-
-        #endregion
-
-        #region Factory methods for feature collections
 
         /// <summary>
         /// Creates a feature collection.
@@ -161,7 +151,5 @@ namespace ELTE.AEGIS
         /// <returns>The feature collection matching <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other feature collection is null.</exception>
         IFeatureCollection CreateCollection(IFeatureCollection other);
-
-        #endregion
     }
 }

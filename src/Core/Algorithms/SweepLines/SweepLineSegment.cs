@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public sealed class SweepLineSegment : IEquatable<SweepLineSegment>
     {
-        #region Public properties
-
         /// <summary>
         /// Gets or sets the edge associated with the segment.
         /// </summary>
@@ -48,10 +46,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         public SweepLineSegment Below { get; set; }
 
-        #endregion
-
-        #region IEquatable methods
-
         /// <summary>
         /// Indicates whether this instance and a specified sweep line segment are equal.
         /// </summary>
@@ -66,10 +60,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
 
             return this.Edge.Equals(other.Edge) && this.LeftCoordinate.Equals(other.LeftCoordinate) && this.RightCoordinate.Equals(other.RightCoordinate);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Determines whether the specified object is equal to this instance.
@@ -89,7 +79,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         {
             return this.Edge.GetHashCode() >> 4 ^ this.LeftCoordinate.GetHashCode() >> 2 ^ this.RightCoordinate.GetHashCode();
         }
-
-        #endregion
     }
 }

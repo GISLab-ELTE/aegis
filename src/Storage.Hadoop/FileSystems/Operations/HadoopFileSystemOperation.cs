@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public abstract class HadoopFileSystemOperation : IDisposable
     {
-        #region Protected types
-
         /// <summary>
         /// Defines the possible HTTP request types.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             Delete
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The HTTP content.
         /// </summary>
@@ -78,10 +72,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         /// A value indicating whether the HTTP client should be disposed.
         /// </summary>
         private Boolean disposeClient;
-
-        #endregion
-
-        #region Constructors and destructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileSystemOperation" /> class.
@@ -108,11 +98,11 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : this()
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrEmpty(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
             if (authentication == null)
-                throw new ArgumentNullException("authentication", Messages.AuthenticationIsNull);
+                throw new ArgumentNullException(nameof(authentication), StorageMessages.AuthenticationIsNull);
 
             this.Path = path;
             this.Authentication = authentication;
@@ -127,7 +117,7 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         protected HadoopFileSystemOperation(HttpClient client, HttpContent content)
         {
             if (client == null)
-                throw new ArgumentNullException("client", Messages.ClientIsNull);
+                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
 
             this.client = client;
             this.content = content;
@@ -154,11 +144,11 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : this(client, content)
         {
             if (path == null)
-                throw new ArgumentNullException("path", Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrEmpty(path))
-                throw new ArgumentException(Messages.PathIsEmpty, "path");
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
             if (authentication == null)
-                throw new ArgumentNullException("authentication", Messages.AuthenticationIsNull);
+                throw new ArgumentNullException(nameof(authentication), StorageMessages.AuthenticationIsNull);
 
             this.Path = path;
             this.Authentication = authentication;
@@ -171,10 +161,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
             this.Dispose(false);
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets or sets the timeout of the client.
@@ -193,10 +179,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         /// </summary>
         /// <value>The absolute path to the operation.</value>
         public String Path { get; private set; }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Executes the operation asynchronously.
@@ -266,13 +248,9 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 case HttpStatusCode.InternalServerError:
                     throw await this.CreateRemoteExceptionAsync(message.Content);
                 default: // unexpected error cases
-                    throw new HttpRequestException(Messages.InvalidResponseFromRemote);
+                    throw new HttpRequestException(StorageMessages.InvalidResponseFromRemote);
             }
         }
-
-        #endregion
-
-        #region IDisposable methods
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -282,10 +260,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        #endregion
-
-        #region Protected properties
 
         /// <summary>
         /// Gets the type of the request.
@@ -317,10 +291,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             }
         }
 
-        #endregion
-
-        #region Protected methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -343,10 +313,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             }
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Creates the remote exception for the specified content asynchronously.
         /// </summary>
@@ -358,7 +324,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
 
             return new HadoopRemoteException(contentObject.Value<String>("message"), contentObject.Value<String>("exception"), contentObject.Value<String>("javaClassName"));
         }
-
-        #endregion
     }
 }

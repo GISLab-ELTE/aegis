@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public class MultiPoint : GeometryList<IPoint>, IMultiPoint
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the multi point. This field is constant.
         /// </summary>
         private const String MultiPointName = "MULTIPOINT";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiPoint" /> class.
@@ -81,10 +75,6 @@ namespace ELTE.AEGIS.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the multi point.
         /// </summary>
@@ -111,10 +101,6 @@ namespace ELTE.AEGIS.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -124,7 +110,5 @@ namespace ELTE.AEGIS.Geometries
         {
             return this.ToString(provider, MultiPointName);
         }
-
-        #endregion
     }
 }

@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class CompoundCoordinateOperationMethod : CoordinateOperationMethod
     {
-        #region Private fields
-
         /// <summary>
         /// The array of methods.
         /// </summary>
         private readonly CoordinateOperationMethod[] methods;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CompoundCoordinateOperationMethod" /> class.
@@ -46,7 +40,7 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, isReversible, null)
         {
             if (methods == null || methods.Length == 0)
-                throw new ArgumentNullException(nameof(methods), Messages.NoMethodsSpecified);
+                throw new ArgumentNullException(nameof(methods), ReferenceMessages.NoMethodsSpecified);
 
             this.methods = methods;
         }
@@ -65,21 +59,15 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, isReversible, null)
         {
             if (methods == null || methods.Length == 0)
-                throw new ArgumentNullException(nameof(methods), Messages.NoMethodsSpecified);
+                throw new ArgumentNullException(nameof(methods), ReferenceMessages.NoMethodsSpecified);
 
             this.methods = methods;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the internal methods of the compound coordinate operation.
         /// </summary>
         /// <value>The read-only list of the internal methods.</value>
         public IReadOnlyList<CoordinateOperationMethod> Methods { get { return this.methods; } }
-
-        #endregion
     }
 }

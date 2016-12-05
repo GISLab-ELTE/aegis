@@ -24,15 +24,11 @@ namespace ELTE.AEGIS.Indexes.Rectangle
     /// </summary>
     public class RTree : ISpatialIndex
     {
-        #region Protected types
-
         /// <summary>
         /// Represents a node of the R-tree.
         /// </summary>
         protected class Node
         {
-            #region Private fields
-
             /// <summary>
             /// The envelope of the node.
             /// </summary>
@@ -42,10 +38,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             /// The parent node.
             /// </summary>
             private Node parent;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Node" /> class.
@@ -75,10 +67,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             {
                 this.Geometry = geometry;
             }
-
-            #endregion
-
-            #region Public properties
 
             /// <summary>
             /// Gets or sets the parent node.
@@ -165,10 +153,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             /// </value>
             public Boolean IsOverflown { get { return this.ChildrenCount > this.MaxChildren; } }
 
-            #endregion
-
-            #region Public methods
-
             /// <summary>
             /// Adds a new child to the node.
             /// </summary>
@@ -233,13 +217,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
 
                 return enlarged.Surface - this.Envelope.Surface;
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// The default minimum child count. This field is constant.
@@ -250,10 +228,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// The default maximum child count. This field is constant.
         /// </summary>
         private const Int32 DefaultMaxChildCount = 12;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RTree" /> class.
@@ -274,19 +248,15 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public RTree(Int32 minChildren, Int32 maxChildren)
         {
             if (minChildren < 1)
-                throw new ArgumentOutOfRangeException(nameof(minChildren), Messages.MinimumNumberOfChildNodesIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(minChildren), CoreMessages.MinimumNumberOfChildNodesIsLessThan1);
             if (minChildren >= maxChildren)
-                throw new ArgumentOutOfRangeException(nameof(maxChildren), Messages.MaximumNumberOfChildNodesIsEqualToMinimum);
+                throw new ArgumentOutOfRangeException(nameof(maxChildren), CoreMessages.MaximumNumberOfChildNodesIsEqualToMinimum);
 
             this.Root = new Node(maxChildren);
             this.NumberOfGeometries = 0;
             this.Height = 0;
             this.MinChildren = minChildren;
         }
-
-        #endregion
-
-        #region ISpatialIndex properties
 
         /// <summary>
         /// Gets a value indicating whether the index is read-only.
@@ -299,10 +269,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </summary>
         /// <value>The number of indexed geometries.</value>
         public Int32 NumberOfGeometries { get; private set; }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the maximum number of children contained in a node.
@@ -322,18 +288,10 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <value>The number of levels in the tree under the root node.</value>
         public Int32 Height { get; protected set; }
 
-        #endregion
-
-        #region Protected properties
-
         /// <summary>
         /// Gets or sets gets the root node.
         /// </summary>
         protected Node Root { get; set; }
-
-        #endregion
-
-        #region ISpatialIndex methods
 
         /// <summary>
         /// Adds a geometry to the index.
@@ -343,7 +301,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public void Add(IGeometry geometry)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
 
             this.AddNode(new Node(geometry));
             this.NumberOfGeometries++;
@@ -357,7 +315,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public void Add(IEnumerable<IGeometry> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
             foreach (IGeometry geometry in collection)
             {
@@ -378,7 +336,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public IEnumerable<IGeometry> Search(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             return this.SearchNode(this.Root, envelope);
         }
@@ -405,7 +363,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public virtual Boolean Remove(IGeometry geometry)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
 
             return this.RemoveGeometry(geometry);
         }
@@ -433,7 +391,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         public Boolean Remove(Envelope envelope, out List<IGeometry> geometries)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), Messages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             geometries = this.SearchNode(this.Root, envelope).ToList();
 
@@ -457,10 +415,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             this.Height = 0;
             this.NumberOfGeometries = 0;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Adds a node into the tree on a specified height.
@@ -839,10 +793,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             return currentNode;
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Searches the leaf container which contains the leaf node.
         /// </summary>
@@ -906,7 +856,5 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             foreach (KeyValuePair<Node, Int32> deletedNode in deletedNodes)
                 this.AddNode(deletedNode.Key, deletedNode.Value + (this.Height - startHeight));
         }
-
-        #endregion
     }
 }

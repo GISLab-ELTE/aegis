@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCoordinateReferenceSystemCollection : IReferenceCollection<CoordinateReferenceSystem>
     {
-        #region Private fields
-
         /// <summary>
         /// The geocentric reference system collection. This field is read-only.
         /// </summary>
@@ -43,10 +41,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         private readonly IReferenceCollection<ProjectedCoordinateReferenceSystem> projectedCollection;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCoordinateReferenceSystemCollection" /> class.
         /// </summary>
@@ -59,10 +53,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             this.geographicCollection = geographicCollection;
             this.projectedCollection = projectedCollection;
         }
-
-        #endregion
-
-        #region IReferenceCollection properties
 
         /// <summary>
         /// Gets the item with the specified authority and code.
@@ -106,10 +96,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 return this.projectedCollection[identifier];
             }
         }
-
-        #endregion
-
-        #region IReferenceCollection methods
 
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
@@ -175,10 +161,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 yield return item;
         }
 
-        #endregion
-
-        #region IEnumerable methods
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -201,7 +183,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             return this.GetEnumerator();
         }
-
-        #endregion
     }
 }

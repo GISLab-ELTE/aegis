@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9815", "Hotine Oblique Mercator (variant B)")]
     public class HotineObliqueMercatorBProjection : HotineObliqueMercatorProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Easting at projection centre.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Northing at projection centre.
         /// </summary>
         private readonly Double northingAtProjectionCentre;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HotineObliqueMercatorBProjection" /> class.
@@ -84,10 +78,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.northingAtProjectionCentre = this.GetParameterValue(CoordinateOperationParameters.NorthingAtProjectionCentre);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -120,10 +110,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(latitude, longitude);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the u value.
         /// </summary>
@@ -139,7 +125,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                        ((longitude == this.longitudeOfProjectionCentre) ? 0 : this.a * Math.Atan((s * Math.Cos(this.gammaO) + v * Math.Sin(this.gammaO)) / Math.Cos(this.b * (longitude - this.lambdaO))) / this.b - Math.Abs(this.uC) * Math.Sign(this.latitudeOfProjectionCentre) * Math.Sign(this.longitudeOfProjectionCentre - longitude)) :
                        this.a * Math.Atan((s * Math.Cos(this.gammaO) + v * Math.Sin(this.gammaO)) / Math.Cos(this.b * (longitude - this.lambdaO))) / this.b - Math.Abs(this.uC) * Math.Sign(this.latitudeOfProjectionCentre);
         }
-
-        #endregion
     }
 }

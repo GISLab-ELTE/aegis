@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::1043", "Krovak Modified North Oriented Projection")]
     public class KrovakModifiedNorthOrientedProjection : KrovakModifiedProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="KrovakModifiedNorthOrientedProjection" /> class.
         /// </summary>
@@ -64,10 +62,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -89,7 +83,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return base.ComputeReverse(new Coordinate(-coordinate.X, -coordinate.Y));
         }
-
-        #endregion
     }
 }

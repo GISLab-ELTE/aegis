@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public static class CoordinateOperationParameters
     {
-        #region Private fields
-
         private static Lazy<CoordinateOperationParameter> a0;
         private static Lazy<CoordinateOperationParameter> a1;
         private static Lazy<CoordinateOperationParameter> a2;
@@ -192,10 +190,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         private static Lazy<CoordinateOperationParameter> zAxisRotation;
         private static Lazy<CoordinateOperationParameter> zAxisTranslation;
         private static Lazy<CoordinateOperationParameter> zoneWidth;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes static members of the <see cref="CoordinateOperationParameters" /> class.
@@ -372,10 +366,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             zAxisTranslation = new Lazy<CoordinateOperationParameter>(() => new CoordinateOperationParameter("EPSG::8607", "Z-axis translation", "The difference between the Z values of a point in the target and source coordinate reference systems."));
             zoneWidth = new Lazy<CoordinateOperationParameter>(() => new CoordinateOperationParameter("EPSG::8831", "Zone width", "The longitude width of a zone of a Transverse Mercator zoned grid system."));
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets A0.
@@ -1221,7 +1211,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Gets zone width.
         /// </summary>
         public static CoordinateOperationParameter ZoneWidth { get { return zoneWidth.Value; } }
-
-        #endregion
     }
 }

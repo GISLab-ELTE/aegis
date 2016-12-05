@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class GrahamScanAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="GrahamScanAlgorithm.ComputeConvexHull(IBasicPolygon)" /> method.
         /// </summary>
@@ -65,7 +63,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             convexHull = GrahamScanAlgorithm.ComputeConvexHull(shell);
             convexHull.ShouldBe(expected);
         }
-
-        #endregion
     }
 }

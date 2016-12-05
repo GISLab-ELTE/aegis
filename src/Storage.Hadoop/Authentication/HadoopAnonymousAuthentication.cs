@@ -22,24 +22,16 @@ namespace ELTE.AEGIS.Storage.Authentication
     /// </summary>
     public class HadoopAnonymousAuthentication : IHadoopAuthentication
     {
-        #region IFileSystemAuthentication properties
-
         /// <summary>
         /// Gets the type of the authentication.
         /// </summary>
         /// <value>The type of the authentication.</value>
         public StorageAuthenticationType AutenticationType { get { return StorageAuthenticationType.Anonymous; } }
 
-        #endregion
-
-        #region IHadoopFileSystemAuthentication properties
-
         /// <summary>
         /// Gets the request of the authentication.
         /// </summary>
         /// <value>The request form of the authentication.</value>
         public String Request { get { return String.Empty; } }
-
-        #endregion
     }
 }

@@ -23,24 +23,24 @@ namespace ELTE.AEGIS.Storage.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
+    public class StorageMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        internal StorageMessages() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Storage.Resources.Messages", typeof(Messages).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Storage.Resources.StorageMessages", typeof(StorageMessages).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -52,7 +52,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +64,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The authentication is not supported..
         /// </summary>
-        internal static string AuthenticationIsNotSupported {
+        public static string AuthenticationIsNotSupported {
             get {
                 return ResourceManager.GetString("AuthenticationIsNotSupported", resourceCulture);
             }
@@ -73,16 +73,25 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The authentication is null..
         /// </summary>
-        internal static string AuthenticationIsNull {
+        public static string AuthenticationIsNull {
             get {
                 return ResourceManager.GetString("AuthenticationIsNull", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The HTTP client is null..
+        /// </summary>
+        public static string ClientIsNull {
+            get {
+                return ResourceManager.GetString("ClientIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The destination path already exists..
         /// </summary>
-        internal static string DestinationPathExists {
+        public static string DestinationPathExists {
             get {
                 return ResourceManager.GetString("DestinationPathExists", resourceCulture);
             }
@@ -91,7 +100,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The destination path is in an invalid format..
         /// </summary>
-        internal static string DestinationPathInvalidFormat {
+        public static string DestinationPathInvalidFormat {
             get {
                 return ResourceManager.GetString("DestinationPathInvalidFormat", resourceCulture);
             }
@@ -100,7 +109,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The destination path is empty, or consists only of white space characters..
         /// </summary>
-        internal static string DestinationPathIsEmpty {
+        public static string DestinationPathIsEmpty {
             get {
                 return ResourceManager.GetString("DestinationPathIsEmpty", resourceCulture);
             }
@@ -109,7 +118,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The destination path is null..
         /// </summary>
-        internal static string DestinationPathIsNull {
+        public static string DestinationPathIsNull {
             get {
                 return ResourceManager.GetString("DestinationPathIsNull", resourceCulture);
             }
@@ -118,16 +127,52 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The driver is null..
         /// </summary>
-        internal static string DriverIsNull {
+        public static string DriverIsNull {
             get {
                 return ResourceManager.GetString("DriverIsNull", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The operation is not supported by the file system..
+        /// </summary>
+        public static string FileSystemOperationNotSupported {
+            get {
+                return ResourceManager.GetString("FileSystemOperationNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hostname is empty, or consists only of whitespace characters..
+        /// </summary>
+        public static string HostnameIsEmpty {
+            get {
+                return ResourceManager.GetString("HostnameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hostname is in an invalid format..
+        /// </summary>
+        public static string HostnameIsInvalid {
+            get {
+                return ResourceManager.GetString("HostnameIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The hostname is null..
+        /// </summary>
+        public static string HostnameIsNull {
+            get {
+                return ResourceManager.GetString("HostnameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file access is invalid..
         /// </summary>
-        internal static string InvalidFileAccess {
+        public static string InvalidFileAccess {
             get {
                 return ResourceManager.GetString("InvalidFileAccess", resourceCulture);
             }
@@ -136,7 +181,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The file mode is invalid..
         /// </summary>
-        internal static string InvalidFileMode {
+        public static string InvalidFileMode {
             get {
                 return ResourceManager.GetString("InvalidFileMode", resourceCulture);
             }
@@ -145,25 +190,43 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The specified file mode and file access combination is invalid..
         /// </summary>
-        internal static string InvalidFileModeOrAccess {
+        public static string InvalidFileModeOrAccess {
             get {
                 return ResourceManager.GetString("InvalidFileModeOrAccess", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The remote address returned with an invalid response..
+        /// </summary>
+        public static string InvalidResponseFromRemote {
+            get {
+                return ResourceManager.GetString("InvalidResponseFromRemote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The search pattern is an invalid format..
         /// </summary>
-        internal static string InvalidSearchPattern {
+        public static string InvalidSearchPattern {
             get {
                 return ResourceManager.GetString("InvalidSearchPattern", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The length is less than 0..
+        /// </summary>
+        public static string LengthIsLessThan0 {
+            get {
+                return ResourceManager.GetString("LengthIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The location is null..
         /// </summary>
-        internal static string LocationIsNull {
+        public static string LocationIsNull {
             get {
                 return ResourceManager.GetString("LocationIsNull", resourceCulture);
             }
@@ -172,7 +235,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The name is null..
         /// </summary>
-        internal static string NameIsNull {
+        public static string NameIsNull {
             get {
                 return ResourceManager.GetString("NameIsNull", resourceCulture);
             }
@@ -181,7 +244,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No connection is available to the file system..
         /// </summary>
-        internal static string NoConnectionToFileSystem {
+        public static string NoConnectionToFileSystem {
             get {
                 return ResourceManager.GetString("NoConnectionToFileSystem", resourceCulture);
             }
@@ -190,25 +253,34 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No connection is available to the specified path..
         /// </summary>
-        internal static string NoConnectionToPath {
+        public static string NoConnectionToPath {
             get {
                 return ResourceManager.GetString("NoConnectionToPath", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The offset is less than 0..
+        /// </summary>
+        public static string OffsetIsLessThan0 {
+            get {
+                return ResourceManager.GetString("OffsetIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The path does not exist..
         /// </summary>
-        internal static string PathDoesNotExists {
+        public static string PathDoesNotExist {
             get {
-                return ResourceManager.GetString("PathDoesNotExists", resourceCulture);
+                return ResourceManager.GetString("PathDoesNotExist", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The path already exists..
         /// </summary>
-        internal static string PathExists {
+        public static string PathExists {
             get {
                 return ResourceManager.GetString("PathExists", resourceCulture);
             }
@@ -217,7 +289,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The file system entry on the specified path is currently in use..
         /// </summary>
-        internal static string PathInUse {
+        public static string PathInUse {
             get {
                 return ResourceManager.GetString("PathInUse", resourceCulture);
             }
@@ -226,7 +298,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path is a directory..
         /// </summary>
-        internal static string PathIsDirectory {
+        public static string PathIsDirectory {
             get {
                 return ResourceManager.GetString("PathIsDirectory", resourceCulture);
             }
@@ -235,7 +307,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path is empty, or consists only of white space characters..
         /// </summary>
-        internal static string PathIsEmpty {
+        public static string PathIsEmpty {
             get {
                 return ResourceManager.GetString("PathIsEmpty", resourceCulture);
             }
@@ -244,7 +316,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The specified path is a file..
         /// </summary>
-        internal static string PathIsFile {
+        public static string PathIsFile {
             get {
                 return ResourceManager.GetString("PathIsFile", resourceCulture);
             }
@@ -253,7 +325,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path is in an invalid format..
         /// </summary>
-        internal static string PathIsInInvalidFormat {
+        public static string PathIsInInvalidFormat {
             get {
                 return ResourceManager.GetString("PathIsInInvalidFormat", resourceCulture);
             }
@@ -262,7 +334,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path is not supported..
         /// </summary>
-        internal static string PathIsNotSupported {
+        public static string PathIsNotSupported {
             get {
                 return ResourceManager.GetString("PathIsNotSupported", resourceCulture);
             }
@@ -271,7 +343,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path is null..
         /// </summary>
-        internal static string PathIsNull {
+        public static string PathIsNull {
             get {
                 return ResourceManager.GetString("PathIsNull", resourceCulture);
             }
@@ -280,7 +352,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The file on path is read-only..
         /// </summary>
-        internal static string PathIsReadOnly {
+        public static string PathIsReadOnly {
             get {
                 return ResourceManager.GetString("PathIsReadOnly", resourceCulture);
             }
@@ -289,7 +361,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The path exceeds the maximum length supported by the file system..
         /// </summary>
-        internal static string PathIsTooLong {
+        public static string PathIsTooLong {
             get {
                 return ResourceManager.GetString("PathIsTooLong", resourceCulture);
             }
@@ -298,16 +370,25 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The caller does not have the required permission for the path..
         /// </summary>
-        internal static string PathUnauthorized {
+        public static string PathUnauthorized {
             get {
                 return ResourceManager.GetString("PathUnauthorized", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The port number is less than 1..
+        /// </summary>
+        public static string PostNumberIsLessThan1 {
+            get {
+                return ResourceManager.GetString("PostNumberIsLessThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The source and destination paths are equal..
         /// </summary>
-        internal static string SourceAndDestinationPathEqual {
+        public static string SourceAndDestinationPathEqual {
             get {
                 return ResourceManager.GetString("SourceAndDestinationPathEqual", resourceCulture);
             }
@@ -316,16 +397,25 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The caller does not have the required permission for either the source or the destination path..
         /// </summary>
-        internal static string SourceOrDestinationPathUnauthorized {
+        public static string SourceOrDestinationPathUnauthorized {
             get {
                 return ResourceManager.GetString("SourceOrDestinationPathUnauthorized", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The source path does not exist..
+        /// </summary>
+        public static string SourcePathDoesNotExist {
+            get {
+                return ResourceManager.GetString("SourcePathDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The source path is empty, or consists only of white space characters..
         /// </summary>
-        internal static string SourcePathIsEmpty {
+        public static string SourcePathIsEmpty {
             get {
                 return ResourceManager.GetString("SourcePathIsEmpty", resourceCulture);
             }
@@ -334,7 +424,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The source path is in an invalid format..
         /// </summary>
-        internal static string SourcePathIsInInvalidFormat {
+        public static string SourcePathIsInInvalidFormat {
             get {
                 return ResourceManager.GetString("SourcePathIsInInvalidFormat", resourceCulture);
             }
@@ -343,25 +433,16 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The source path is null..
         /// </summary>
-        internal static string SourcePathIsNull {
+        public static string SourcePathIsNull {
             get {
                 return ResourceManager.GetString("SourcePathIsNull", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The source path does not exist..
-        /// </summary>
-        internal static string SourcePathNotExists {
-            get {
-                return ResourceManager.GetString("SourcePathNotExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The path exceeds the maximum length supported by the file system..
         /// </summary>
-        internal static string SourcePathTooLong {
+        public static string SourcePathTooLong {
             get {
                 return ResourceManager.GetString("SourcePathTooLong", resourceCulture);
             }
@@ -370,7 +451,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The type is null..
         /// </summary>
-        internal static string TypeIsNull {
+        public static string TypeIsNull {
             get {
                 return ResourceManager.GetString("TypeIsNull", resourceCulture);
             }
@@ -379,7 +460,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The caller does not have the required permission..
         /// </summary>
-        internal static string Unauthorized {
+        public static string Unauthorized {
             get {
                 return ResourceManager.GetString("Unauthorized", resourceCulture);
             }
@@ -388,9 +469,27 @@ namespace ELTE.AEGIS.Storage.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The URI scheme is null..
         /// </summary>
-        internal static string UriSchemeIsNull {
+        public static string UriSchemeIsNull {
             get {
                 return ResourceManager.GetString("UriSchemeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The username is empty..
+        /// </summary>
+        public static string UsernameIsEmpty {
+            get {
+                return ResourceManager.GetString("UsernameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The username is null..
+        /// </summary>
+        public static string UsernameIsNull {
+            get {
+                return ResourceManager.GetString("UsernameIsNull", resourceCulture);
             }
         }
     }

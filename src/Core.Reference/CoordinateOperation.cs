@@ -35,16 +35,10 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public abstract class CoordinateOperation<SourceType, ResultType> : IdentifiedObject
     {
-        #region Private fields
-
         /// <summary>
         /// The dictionary of parameters.
         /// </summary>
         private readonly IDictionary<CoordinateOperationParameter, Object> parameters;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateOperation{SourceType, ResultType}" /> class.
@@ -64,7 +58,7 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), Messages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
 
             this.Method = method;
 
@@ -85,10 +79,6 @@ namespace ELTE.AEGIS.Reference
             }
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the method associated with the operation.
         /// </summary>
@@ -107,10 +97,6 @@ namespace ELTE.AEGIS.Reference
         /// <value><c>true</c> if the operation is reversible; otherwise, <c>false</c>.</value>
         public Boolean IsReversible { get { return this.Method.IsReversible; } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -120,7 +106,7 @@ namespace ELTE.AEGIS.Reference
         public ResultType Forward(SourceType coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
 
             return this.ComputeForward(coordinate);
         }
@@ -134,7 +120,7 @@ namespace ELTE.AEGIS.Reference
         public ResultType[] Forward(params SourceType[] coordinates)
         {
             if (coordinates == null || coordinates.Length == 0)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesAreNull);
+                throw new ArgumentNullException(nameof(coordinates), ReferenceMessages.CoordinatesAreNull);
 
             ResultType[] result = new ResultType[coordinates.Length];
             for (Int32 index = 0; index < result.Length; index++)
@@ -154,7 +140,7 @@ namespace ELTE.AEGIS.Reference
         public ResultType[] Forward(IEnumerable<SourceType> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesAreNull);
+                throw new ArgumentNullException(nameof(coordinates), ReferenceMessages.CoordinatesAreNull);
 
             ResultType[] result = new ResultType[coordinates.Count()];
             Int32 index = 0;
@@ -177,10 +163,10 @@ namespace ELTE.AEGIS.Reference
         public SourceType Reverse(ResultType coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
 
             if (!this.Method.IsReversible)
-                throw new NotSupportedException(Messages.OperationNotReversible);
+                throw new NotSupportedException(ReferenceMessages.OperationNotReversible);
 
             return this.ComputeReverse(coordinate);
         }
@@ -195,10 +181,10 @@ namespace ELTE.AEGIS.Reference
         public SourceType[] Reverse(params ResultType[] coordinates)
         {
             if (!this.Method.IsReversible)
-                throw new NotSupportedException(Messages.OperationNotReversible);
+                throw new NotSupportedException(ReferenceMessages.OperationNotReversible);
 
             if (coordinates == null || coordinates.Length == 0)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesAreNull);
+                throw new ArgumentNullException(nameof(coordinates), ReferenceMessages.CoordinatesAreNull);
 
             SourceType[] result = new SourceType[coordinates.Length];
             for (Int32 index = 0; index < result.Length; index++)
@@ -219,10 +205,10 @@ namespace ELTE.AEGIS.Reference
         public SourceType[] Reverse(IEnumerable<ResultType> coordinates)
         {
             if (!this.Method.IsReversible)
-                throw new NotSupportedException(Messages.OperationNotReversible);
+                throw new NotSupportedException(ReferenceMessages.OperationNotReversible);
 
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesAreNull);
+                throw new ArgumentNullException(nameof(coordinates), ReferenceMessages.CoordinatesAreNull);
 
             SourceType[] result = new SourceType[coordinates.Count()];
             Int32 index = 0;
@@ -234,10 +220,6 @@ namespace ELTE.AEGIS.Reference
 
             return result;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Sets the specified parameter value.
@@ -328,7 +310,5 @@ namespace ELTE.AEGIS.Reference
         /// <param name="coordinate">The coordinate.</param>
         /// <returns>The transformed coordinate.</returns>
         protected abstract SourceType ComputeReverse(ResultType coordinate);
-
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9828", "Bonne South Orientated")]
     public class BonneSouthOrientatedProjection : BonneProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BonneSouthOrientatedProjection" /> class.
         /// </summary>
@@ -67,10 +65,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -107,7 +101,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return this.ComputeReverseInternal(x, y);
         }
-
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Attributes
     /// </summary>
     public class AttributeCollection : Dictionary<String, Object>, IAttributeCollection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
         /// </summary>
@@ -70,7 +68,7 @@ namespace ELTE.AEGIS.Attributes
             : base()
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
 
             this.Factory = factory;
         }
@@ -86,7 +84,7 @@ namespace ELTE.AEGIS.Attributes
             : base(capacity)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
 
             this.Factory = factory;
         }
@@ -105,7 +103,7 @@ namespace ELTE.AEGIS.Attributes
             : base(source)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
 
             this.Factory = factory;
         }
@@ -124,21 +122,15 @@ namespace ELTE.AEGIS.Attributes
             : base(source)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
 
             this.Factory = factory;
         }
-
-        #endregion
-
-        #region IAttributeCollection properties
 
         /// <summary>
         /// Gets the factory of the attribute collection.
         /// </summary>
         /// <value>The factory implementation the attribute collection was constructed by.</value>
         public IAttributeCollectionFactory Factory { get; private set; }
-
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9804", "Mercator (variant A)")]
     public class MercatorAProjection : MercatorProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MercatorAProjection" /> class.
         /// </summary>
@@ -67,7 +65,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             this.scaleFactorAtNaturalOrigin = this.GetParameterValue(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin);
         }
-
-        #endregion
     }
 }

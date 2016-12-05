@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9826", "Lambert Conic Conformal (West Orientated)")]
     public class LambertConicConformal1SPWestOrientatedProjection : LambertConicConformal1SPProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformal1SPWestOrientatedProjection" /> class.
         /// </summary>
@@ -68,10 +66,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Compute the coordinate easting and northing based on the R and Theta values.
         /// </summary>
@@ -97,7 +91,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             theta = Math.Atan((this.falseEasting - easting) / (this.r0 - (northing - this.falseNorthing)));
             r = Math.Sign(this.n) * Math.Sqrt(Math.Pow(this.falseEasting - easting, 2) + Math.Pow(this.r0 - (northing - this.falseNorthing), 2));
         }
-
-        #endregion
     }
 }

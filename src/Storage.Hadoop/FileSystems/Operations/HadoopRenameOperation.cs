@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopRenameOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopRenameOperation" /> class.
         /// </summary>
@@ -55,9 +53,9 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(path, authentication)
         {
             if (destination == null)
-                throw new ArgumentNullException("destination", Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destination), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrEmpty(destination))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, "destination");
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destination));
 
             this.Destination = destination;
         }
@@ -95,26 +93,18 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(client, null, path, authentication)
         {
             if (destination == null)
-                throw new ArgumentNullException("destination", Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destination), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrEmpty(destination))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, "destination");
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destination));
 
             this.Destination = destination;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets or sets the destination path.
         /// </summary>
         /// <value>The destination path.</value>
         public String Destination { get; set; }
-
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
 
         /// <summary>
         /// Gets the type of the request.
@@ -134,10 +124,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             get { return "op=RENAME&destination=" + this.Destination; }
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -151,7 +137,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 Success = JObject.Parse(await content.ReadAsStringAsync()).Value<Boolean>("boolean")
             };
         }
-
-        #endregion
     }
 }

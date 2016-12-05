@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Numerics
     [TestFixture]
     public class MatrixTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
         private Matrix[] matrices;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -52,10 +46,6 @@ namespace ELTE.AEGIS.Tests.Numerics
                 new Matrix(new[,] { { 11.0, 9, 24, 2 }, { 1, 5, 2, 6 }, { 3, 17, 18, 1 }, { 2, 5, 7, 1 } })
             };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests properties of the <see cref="Matrix" /> class.
@@ -318,7 +308,5 @@ namespace ELTE.AEGIS.Tests.Numerics
             Should.Throw<ArgumentException>(() => result = (Vector)this.matrices[0]);
             Should.Throw<ArgumentException>(() => result = (Vector)this.matrices[2]);
         }
-
-        #endregion
     }
 }

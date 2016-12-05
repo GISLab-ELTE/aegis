@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopCreateDirectoryOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopCreateDirectoryOperation" /> class.
         /// </summary>
@@ -74,10 +72,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(client, null, path, authentication)
         { }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
-
         /// <summary>
         /// Gets the type of the request.
         /// </summary>
@@ -96,10 +90,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             get { return "op=MKDIRS"; }
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -113,7 +103,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 Success = JObject.Parse(await content.ReadAsStringAsync()).Value<Boolean>("boolean")
             };
         }
-
-        #endregion
     }
 }

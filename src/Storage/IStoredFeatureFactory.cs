@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Storage
     /// </summary>
     public interface IStoredFeatureFactory : IFeatureFactory
     {
-        #region Properties
-
         /// <summary>
         /// Gets the attribute collection factory.
         /// </summary>
@@ -40,7 +38,5 @@ namespace ELTE.AEGIS.Storage
         /// </summary>
         /// <value>The feature driver of the factory.</value>
         IFeatureDriver Driver { get; }
-
-        #endregion
     }
 }

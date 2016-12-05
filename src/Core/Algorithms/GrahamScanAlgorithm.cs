@@ -29,15 +29,11 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class GrahamScanAlgorithm
     {
-        #region Private types
-
         /// <summary>
         /// Represents a comparer used by the Graham scan algorithm.
         /// </summary>
         private class GrahamComparer : IComparer<Coordinate>
         {
-            #region Private fields
-
             /// <summary>
             /// The origin coordinate.
             /// </summary>
@@ -47,10 +43,6 @@ namespace ELTE.AEGIS.Algorithms
             /// The precision model.
             /// </summary>
             private PrecisionModel precisionModel;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="GrahamComparer" /> class.
@@ -62,10 +54,6 @@ namespace ELTE.AEGIS.Algorithms
                 this.origin = origin;
                 this.precisionModel = precisionModel;
             }
-
-            #endregion
-
-            #region IComparer methods
 
             /// <summary>
             /// Compares the specified coordinates.
@@ -90,13 +78,7 @@ namespace ELTE.AEGIS.Algorithms
                         return Coordinate.Distance(this.origin, x) < Coordinate.Distance(this.origin, y) ? -1 : 1;
                 }
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The approximate convex hull of the source.
@@ -108,10 +90,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GrahamScanAlgorithm" /> class.
         /// </summary>
@@ -121,16 +99,12 @@ namespace ELTE.AEGIS.Algorithms
         protected GrahamScanAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.Source = source;
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -158,10 +132,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Computes the convex hull of the specified polygon.
         /// </summary>
@@ -171,7 +141,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ComputeConvexHull(IBasicPolygon source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new GrahamScanAlgorithm(source.Shell, PrecisionModel.Default).Result;
         }
@@ -186,7 +156,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ComputeConvexHull(IBasicPolygon source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new GrahamScanAlgorithm(source.Shell, precisionModel).Result;
         }
@@ -213,10 +183,6 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new GrahamScanAlgorithm(source, precisionModel).Result;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the convex hull.
@@ -273,7 +239,5 @@ namespace ELTE.AEGIS.Algorithms
             this.result = convexHullCoordinates.GetRange(convexHullCount);
             this.hasResult = true;
         }
-
-        #endregion
     }
 }

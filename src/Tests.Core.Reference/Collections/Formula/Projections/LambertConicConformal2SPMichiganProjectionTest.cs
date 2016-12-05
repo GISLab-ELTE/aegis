@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class LambertConicConformal2SPMichiganProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private LambertConicConformal2SPMichiganProjection projection2SPMichigan;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection2SPMichigan = new LambertConicConformal2SPMichiganProjection("EPSG::4267", "NAD 27 Michigan Central", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -88,7 +78,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.Latitude.BaseValue, transformed.Latitude.BaseValue, 0.00000001);
             Assert.AreEqual(expected.Longitude.BaseValue, transformed.Longitude.BaseValue, 0.00000001);
         }
-
-        #endregion
     }
 }

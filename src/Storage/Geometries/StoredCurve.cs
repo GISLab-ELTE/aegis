@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public abstract class StoredCurve : StoredGeometry, ICurve
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredCurve" /> class.
         /// </summary>
@@ -57,19 +55,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the curve.
         /// </summary>
         /// <value><c>1</c>, which is the defined dimension of a curve.</value>
         public override sealed Int32 Dimension { get { return 1; } }
-
-        #endregion
-
-        #region ICurve properties
 
         /// <summary>
         /// Gets a value indicating whether the curve is closed.
@@ -100,7 +90,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// </summary>
         /// <value>The last point of the curve if the curve has at least one point; otherwise, <c>null</c>.</value>
         public abstract IPoint EndPoint { get; }
-
-        #endregion
     }
 }

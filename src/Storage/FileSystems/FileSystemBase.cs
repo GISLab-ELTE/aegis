@@ -33,7 +33,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
         protected FileSystemBase(Uri location, IStorageAuthentication authentication)
         {
             if (location == null)
-                throw new ArgumentNullException(nameof(location), Messages.LocationIsNull);
+                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
 
             this.Location = location;
             this.Authentication = authentication;

@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9802", "Lambert Conic Conformal (2SP)")]
     public class LambertConicConformal2SPProjection : LambertConicConformalProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of false origin.
         /// </summary>
@@ -65,10 +63,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double f;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformal2SPProjection" /> class.
@@ -154,10 +148,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.f = m1 / (this.n * Math.Pow(t1, this.n));
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -193,10 +183,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
-
-        #region Protected utility methods
 
         /// <summary>
         /// Computes the rF value based on the tF value.
@@ -252,7 +238,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return theta / this.n + this.longitudeOfFalseOrigin;
         }
-
-        #endregion
     }
 }

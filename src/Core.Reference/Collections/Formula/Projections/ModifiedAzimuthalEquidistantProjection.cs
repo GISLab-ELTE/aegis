@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9832", "Modified Azimuthal Equidistant Projection")]
     public class ModifiedAzimuthalEquidistantProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double g;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModifiedAzimuthalEquidistantProjection" /> class.
@@ -102,10 +96,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             this.g = this.Ellipsoid.Eccentricity * Math.Sin(this.latitudeOfNaturalOrigin) / Math.Sqrt(1 - this.Ellipsoid.EccentricitySquare);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -159,7 +149,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(latitude, longitude);
         }
-
-        #endregion
     }
 }

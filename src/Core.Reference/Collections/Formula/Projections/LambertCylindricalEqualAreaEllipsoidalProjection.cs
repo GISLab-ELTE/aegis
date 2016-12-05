@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9835", "Lambert Cylindrical Equal Area (ellipsoidal case)")]
     public class LambertCylindricalEqualAreaEllipsoidalProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Projection constant.
         /// </summary>
         protected readonly Double qP;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertCylindricalEqualAreaEllipsoidalProjection" /> class.
@@ -136,10 +130,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                    Math.Log((1 - this.Ellipsoid.Eccentricity * Math.Sin(Math.PI / 2)) / (1 + this.Ellipsoid.Eccentricity * Math.Sin(Math.PI / 2))));
         }
 
-        #endregion
-
-        #region Protected methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -192,7 +182,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

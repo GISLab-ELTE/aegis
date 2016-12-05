@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class BentleyOttmannAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="BentleyOttmannAlgorithm.Intersection(IEnumerable{Coordinate})" /> method.
         /// </summary>
@@ -584,10 +582,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
             });
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Rounds the specified coordinate.
         /// </summary>
@@ -597,7 +591,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
         {
             return new Coordinate(Math.Round(coordinate.X, 5), Math.Round(coordinate.Y, 5), Math.Round(coordinate.Z, 5));
         }
-
-        #endregion
     }
 }

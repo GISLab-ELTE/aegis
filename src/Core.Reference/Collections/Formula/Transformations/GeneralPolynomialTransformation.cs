@@ -25,15 +25,11 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class GeneralPolynomialTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Private types
-
         /// <summary>
         /// Represents a coefficient.
         /// </summary>
         private struct Coefficient : IEquatable<Coefficient>
         {
-            #region Private fields
-
             /// <summary>
             /// The U degree.
             /// </summary>
@@ -43,10 +39,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             /// The V degree.
             /// </summary>
             private Int32 v;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Coefficient" /> struct.
@@ -58,10 +50,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                 this.u = u;
                 this.v = v;
             }
-
-            #endregion
-
-            #region Public properties
 
             /// <summary>
             /// Gets the U degree.
@@ -75,10 +63,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             /// <value>The u degree.</value>
             public Int32 V { get { return this.v; } }
 
-            #endregion
-
-            #region IEquatable methods
-
             /// <summary>
             /// Indicates whether the current object is equal to another object of the same type.
             /// </summary>
@@ -88,10 +72,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             {
                 return this.u == other.u && this.v == other.v;
             }
-
-            #endregion
-
-            #region Object methods
 
             /// <summary>
             /// Returns the hash code for this instance.
@@ -120,13 +100,7 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             {
                 return "U" + this.u + "V" + this.v;
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// Ordinate 1 of evaluation point in source.
@@ -167,10 +141,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// The collection of B parameters.
         /// </summary>
         private readonly Dictionary<Coefficient, Double> bParametersDicitonary;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneralPolynomialTransformation" /> class.
@@ -229,19 +199,11 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             }
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the degree of the polynomial.
         /// </summary>
         /// <value>The degree of the polynomial.</value>
         public Int32 Degree { get; private set; }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -281,10 +243,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return Coordinate.Undefined;
         }
 
-        #endregion
-
-        #region Private utility methods
-
         /// <summary>
         /// Gets the coordinate operation method.
         /// </summary>
@@ -295,11 +253,9 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             PropertyInfo propertyInfo = typeof(CoordinateOperationMethods).GetRuntimeProperty("GeneralPolynomial" + degree);
             if (propertyInfo == null)
-                throw new ArgumentException(Messages.PolynomialTransformationDegreeIsInvalid, nameof(degree));
+                throw new ArgumentException(ReferenceMessages.PolynomialTransformationDegreeIsInvalid, nameof(degree));
 
             return propertyInfo.GetValue(null, null) as CoordinateOperationMethod;
         }
-
-        #endregion
     }
 }

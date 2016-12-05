@@ -23,8 +23,6 @@ namespace ELTE.AEGIS
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     public class IdentifiedObjectAttribute : Attribute
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentifiedObjectAttribute" /> class.
         /// </summary>
@@ -34,15 +32,11 @@ namespace ELTE.AEGIS
         public IdentifiedObjectAttribute(String identifier, String name)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Identifier = identifier;
             this.Name = name ?? String.Empty;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the identifier of the instance.
@@ -55,7 +49,5 @@ namespace ELTE.AEGIS
         /// </summary>
         /// <value>The name of the instance.</value>
         public String Name { get; private set; }
-
-        #endregion
     }
 }

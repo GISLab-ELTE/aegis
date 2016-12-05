@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class ModifiedAzimuthalEquidistantProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private ModifiedAzimuthalEquidistantProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new ModifiedAzimuthalEquidistantProjection("EPSG::9832", "Yap Islands", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -86,7 +76,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             expected.Latitude.BaseValue.ShouldBe(transformed.Latitude.BaseValue, 0.0001);
             expected.Longitude.BaseValue.ShouldBe(transformed.Longitude.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

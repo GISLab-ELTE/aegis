@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalAreaOfUseCollection : LocalReferenceCollection<AreaOfUse>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
         private const String ResourceName = "Area";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalAreaOfUseCollection" /> class.
@@ -44,10 +38,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, ResourceName)
         {
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -66,7 +56,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                                          content[2], null, this.GetAliases(Int32.Parse(content[0])),
                                          south, west, north, east);
         }
-
-        #endregion
     }
 }

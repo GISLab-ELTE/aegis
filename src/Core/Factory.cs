@@ -28,16 +28,10 @@ namespace ELTE.AEGIS
     /// </remarks>
     public abstract class Factory : IFactory
     {
-        #region Private fields
-
         /// <summary>
         /// The dictionary of factories based on factory contract.
         /// </summary>
         private Dictionary<Type, IFactory> factoryDictionary;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Factory" /> class.
@@ -67,19 +61,11 @@ namespace ELTE.AEGIS
             }
         }
 
-        #endregion
-
-        #region IFactory properties
-
         /// <summary>
         /// Gets the directly underlying factories.
         /// </summary>
         /// <value>The collection of directly underlying factories.</value>
         public IEnumerable<IFactory> Factories { get { return this.factoryDictionary.Values; } }
-
-        #endregion
-
-        #region IFactory methods
 
         /// <summary>
         /// Determines whether an underlying factory behavior exists for the specified contract.
@@ -100,7 +86,7 @@ namespace ELTE.AEGIS
         public Boolean ContainsFactory(Type factoryContract)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), Messages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
 
             return this.GetFactoryInternal(factoryContract, new HashSet<Type>()) != null;
         }
@@ -135,15 +121,15 @@ namespace ELTE.AEGIS
         public void EnsureFactory(Type factoryContract, IFactory factory)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), Messages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryBehaviorIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryBehaviorIsNull);
             if (!factory.GetType().GetTypeInfo().ImplementedInterfaces.Contains(factoryContract))
-                throw new ArgumentException(Messages.FactoryNotImplementingContract, nameof(factory));
+                throw new ArgumentException(CoreMessages.FactoryNotImplementingContract, nameof(factory));
 
             Factory actualFactory = factory as Factory;
             if (actualFactory == null)
-                throw new ArgumentException(Messages.FactoryIsInvalid, nameof(factory));
+                throw new ArgumentException(CoreMessages.FactoryIsInvalid, nameof(factory));
 
             if (this.factoryDictionary.ContainsKey(factoryContract))
                 return;
@@ -171,14 +157,10 @@ namespace ELTE.AEGIS
         public IFactory GetFactory(Type factoryContract)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), Messages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
 
             return this.GetFactoryInternal(factoryContract, new HashSet<Type>());
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Returns the underlying factory behavior of the specified contract.
@@ -219,7 +201,5 @@ namespace ELTE.AEGIS
 
             return null;
         }
-
-        #endregion
     }
 }

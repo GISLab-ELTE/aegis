@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalGeographicCoordinateReferenceSystemCollection : LocalReferenceCollection<GeographicCoordinateReferenceSystem>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The name of the alias type. This field is constant.
         /// </summary>
         private const String AliasTypeName = "Coordinate Reference System";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  <see cref="GeodeticDatum" /> instances.
         /// </summary>
         private IReferenceCollection<GeodeticDatum> geodeticDatumCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalGeographicCoordinateReferenceSystemCollection" /> class.
@@ -79,20 +69,16 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, AliasTypeName)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (coordinateSystemCollection == null)
-                throw new ArgumentNullException(nameof(coordinateSystemCollection), Messages.CoordinateSystemCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystemCollection), ReferenceMessages.CoordinateSystemCollectionIsNull);
             if (geodeticDatumCollection == null)
-                throw new ArgumentNullException(nameof(geodeticDatumCollection), Messages.DatumCollectionIsNull);
+                throw new ArgumentNullException(nameof(geodeticDatumCollection), ReferenceMessages.DatumCollectionIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
             this.coordinateSystemCollection = coordinateSystemCollection;
             this.geodeticDatumCollection = geodeticDatumCollection;
         }
-
-        #endregion
-
-        #region IGeographicCoordinateReferenceSystemCollection methods
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -103,7 +89,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<GeographicCoordinateReferenceSystem> WithArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Equals(area));
         }
@@ -117,7 +103,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<GeographicCoordinateReferenceSystem> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Within(area));
         }
@@ -131,7 +117,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<GeographicCoordinateReferenceSystem> WithCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), Messages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.CoordinateSystem.Equals(coordinateSystem));
         }
@@ -145,7 +131,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<GeographicCoordinateReferenceSystem> WithDatum(GeodeticDatum datum)
         {
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), Messages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.Datum.Equals(datum));
         }
@@ -159,10 +145,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             return this.GetReferences().Where(referenceSystem => referenceSystem.Dimension == dimension);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -184,7 +166,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

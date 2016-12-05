@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public class LinearRing : LineString, ILinearRing
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the linear ring. This field is constant.
         /// </summary>
         private const String LinearRingName = "LINEARRING";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinearRing" /> class.
@@ -91,29 +85,17 @@ namespace ELTE.AEGIS.Geometries
                 base.Add(this.StartCoordinate);
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets a value indicating whether the linear ring is valid.
         /// </summary>
         /// <value><c>true</c> if the linear ring is simple and all coordinates of the linear ring are valid; otherwise, <c>false</c>.</value>
         public override Boolean IsValid { get { return base.IsValid && this.IsSimple; } }
 
-        #endregion
-
-        #region ICurve properties
-
         /// <summary>
         /// Gets a value indicating whether the linear ring is closed.
         /// </summary>
         /// <value><c>true</c>, as linear ring is always considered to be closed.</value>
         public override Boolean IsClosed { get { return true; } }
-
-        #endregion
-
-        #region ILineString methods
 
         /// <summary>
         /// Sets the coordinate at the specified index.
@@ -128,9 +110,9 @@ namespace ELTE.AEGIS.Geometries
         public override sealed void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             coordinate = this.PrecisionModel.MakePrecise(coordinate);
 
@@ -177,9 +159,9 @@ namespace ELTE.AEGIS.Geometries
         public override sealed void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             coordinate = this.PrecisionModel.MakePrecise(coordinate);
 
@@ -236,9 +218,9 @@ namespace ELTE.AEGIS.Geometries
         public override sealed void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             if (this.Count == 2)
             {
@@ -255,10 +237,6 @@ namespace ELTE.AEGIS.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -268,7 +246,5 @@ namespace ELTE.AEGIS.Geometries
         {
             return this.ToString(provider, LinearRingName);
         }
-
-        #endregion
     }
 }

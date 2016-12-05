@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class SimilarityTransformationTest
     {
-        #region Private fields
-
         /// <summary>
         /// The transformation.
         /// </summary>
         private SimilarityTransformation transformation;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -56,10 +50,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.transformation = new SimilarityTransformation("EPSG::5166", "ED50 / UTM zone 31N to ETRS89 / UTM zone 31N (1)", parameters, source, target, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             expected.X.ShouldBe(transformed.X, 1000);
             expected.Y.ShouldBe(transformed.Y, 1000);
         }
-
-        #endregion
     }
 }

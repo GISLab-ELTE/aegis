@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalMeridianCollection : LocalReferenceCollection<Meridian>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -39,18 +37,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         private const String AliasName = "Prime Meridian";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of <see cref="UnitOfMeasurement" /> instances.
         /// </summary>
         private readonly IReferenceCollection<UnitOfMeasurement> unitCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalMeridianCollection" /> class.
@@ -61,14 +51,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, AliasName)
         {
             if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), Messages.UnitOfMeasurementCollectionIsNull);
+                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
 
             this.unitCollection = unitCollection;
         }
-
-        #endregion
-
-        #region IMeridianCollection methods
 
         /// <summary>
         /// Returns a collection with items matching a specified longitude.
@@ -79,10 +65,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             return this.GetReferences().Where(meridian => meridian.Longitude == longitude);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -95,7 +77,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                                 content[4], this.GetAliases(Int32.Parse(content[0])),
                                 new Angle(Double.Parse(content[2]), this.unitCollection[Authority, Int32.Parse(content[3])]));
         }
-
-        #endregion
     }
 }

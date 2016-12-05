@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Numerics
     /// </summary>
     public static class Statistics
     {
-        #region Correlation
-
         /// <summary>
         /// Computes the correlation of the values within the specified collections.
         /// </summary>
@@ -40,9 +38,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Byte> first, IEnumerable<Byte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -69,9 +67,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<SByte> first, IEnumerable<SByte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -98,9 +96,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Int16> first, IEnumerable<Int16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -127,9 +125,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Int32> first, IEnumerable<Int32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -156,9 +154,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Int64> first, IEnumerable<Int64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -185,9 +183,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<UInt16> first, IEnumerable<UInt16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -214,9 +212,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<UInt32> first, IEnumerable<UInt32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -243,9 +241,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<UInt64> first, IEnumerable<UInt64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -272,9 +270,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Single> first, IEnumerable<Single> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -301,9 +299,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -325,7 +323,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Byte, Byte>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -339,7 +337,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<SByte, SByte>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -353,7 +351,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Int16, Int16>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -367,7 +365,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Int32, Int32>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -381,7 +379,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Int64, Int64>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -395,7 +393,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<UInt16, UInt16>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -409,7 +407,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<UInt32, UInt32>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -423,7 +421,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<UInt64, UInt64>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -437,7 +435,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Single, Single>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -451,7 +449,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Double, Double>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -465,7 +463,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Byte, Byte>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -479,7 +477,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<SByte, SByte>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -493,7 +491,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Int16, Int16>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -507,7 +505,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Int32, Int32>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -521,7 +519,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Int64, Int64>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -535,7 +533,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<UInt16, UInt16>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -549,7 +547,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<UInt32, UInt32>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -563,7 +561,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<UInt64, UInt64>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -577,7 +575,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Single, Single>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -591,14 +589,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Correlation(params Tuple<Double, Double>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
-
-        #endregion
-
-        #region Covariance
 
         /// <summary>
         /// Computes the covariance of the values within the specified collections.
@@ -614,9 +608,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Byte> first, IEnumerable<Byte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -652,9 +646,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<SByte> first, IEnumerable<SByte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -690,9 +684,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Int16> first, IEnumerable<Int16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -728,9 +722,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Int32> first, IEnumerable<Int32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -766,9 +760,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Int64> first, IEnumerable<Int64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -804,9 +798,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<UInt16> first, IEnumerable<UInt16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -842,9 +836,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<UInt32> first, IEnumerable<UInt32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -880,9 +874,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<UInt64> first, IEnumerable<UInt64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -918,9 +912,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Single> first, IEnumerable<Single> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -956,9 +950,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -989,7 +983,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Byte, Byte>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1003,7 +997,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<SByte, SByte>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1017,7 +1011,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Int16, Int16>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1031,7 +1025,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Int32, Int32>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1045,7 +1039,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Int64, Int64>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1059,7 +1053,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<UInt16, UInt16>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1073,7 +1067,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<UInt32, UInt32>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1087,7 +1081,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<UInt64, UInt64>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1101,7 +1095,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Single, Single>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1115,7 +1109,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Double, Double>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1129,7 +1123,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Byte, Byte>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1143,7 +1137,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<SByte, SByte>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1157,7 +1151,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Int16, Int16>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1171,7 +1165,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Int32, Int32>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1185,7 +1179,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Int64, Int64>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1199,7 +1193,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<UInt16, UInt16>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1213,7 +1207,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<UInt32, UInt32>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1227,7 +1221,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<UInt64, UInt64>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1241,7 +1235,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Single, Single>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -1255,14 +1249,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Covariance(params Tuple<Double, Double>[] valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), Messages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
-
-        #endregion
-
-        #region Mean
 
         /// <summary>
         /// Computes the mean of the specified values.
@@ -1273,7 +1263,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Byte> enumerator = values.GetEnumerator();
 
@@ -1300,7 +1290,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<SByte> enumerator = values.GetEnumerator();
 
@@ -1327,7 +1317,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int16> enumerator = values.GetEnumerator();
 
@@ -1354,7 +1344,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int32> enumerator = values.GetEnumerator();
 
@@ -1381,7 +1371,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int64> enumerator = values.GetEnumerator();
 
@@ -1408,7 +1398,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt16> enumerator = values.GetEnumerator();
 
@@ -1435,7 +1425,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt32> enumerator = values.GetEnumerator();
 
@@ -1462,7 +1452,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt64> enumerator = values.GetEnumerator();
 
@@ -1489,7 +1479,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Single> enumerator = values.GetEnumerator();
 
@@ -1516,7 +1506,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Mean(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -1644,10 +1634,6 @@ namespace ELTE.AEGIS.Numerics
             return Mean(values as IEnumerable<Double>);
         }
 
-        #endregion
-
-        #region Median
-
         /// <summary>
         /// Computes the median of the specified values.
         /// </summary>
@@ -1658,10 +1644,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Byte[] orderedValues = values.ToArray();
 
@@ -1683,10 +1669,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             SByte[] orderedValues = values.ToArray();
 
@@ -1708,10 +1694,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Int16[] orderedValues = values.ToArray();
 
@@ -1733,10 +1719,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Int32[] orderedValues = values.ToArray();
 
@@ -1758,10 +1744,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Int64[] orderedValues = values.ToArray();
 
@@ -1783,10 +1769,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             UInt16[] orderedValues = values.ToArray();
 
@@ -1808,10 +1794,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             UInt32[] orderedValues = values.ToArray();
 
@@ -1833,10 +1819,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             UInt64[] orderedValues = values.ToArray();
 
@@ -1858,10 +1844,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Single[] orderedValues = values.ToArray();
 
@@ -1883,10 +1869,10 @@ namespace ELTE.AEGIS.Numerics
         public static Double Median(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Double[] orderedValues = values.ToArray();
 
@@ -1908,10 +1894,10 @@ namespace ELTE.AEGIS.Numerics
         public static Decimal Median(this IEnumerable<Decimal> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
-                throw new ArgumentException(Messages.ValueCollectionIsEmpty, nameof(values));
+                throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
 
             Decimal[] orderedValues = values.ToArray();
 
@@ -1923,10 +1909,6 @@ namespace ELTE.AEGIS.Numerics
             return orderedValues[orderedValues.Length / 2];
         }
 
-        #endregion
-
-        #region Corrected standard deviation
-
         /// <summary>
         /// Computes the corrected standard deviation of the specified values.
         /// </summary>
@@ -1936,7 +1918,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Byte> enumerator = values.GetEnumerator();
 
@@ -1972,7 +1954,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<SByte> enumerator = values.GetEnumerator();
 
@@ -2008,7 +1990,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int16> enumerator = values.GetEnumerator();
 
@@ -2044,7 +2026,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int32> enumerator = values.GetEnumerator();
 
@@ -2080,7 +2062,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int64> enumerator = values.GetEnumerator();
 
@@ -2116,7 +2098,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt16> enumerator = values.GetEnumerator();
 
@@ -2152,7 +2134,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt32> enumerator = values.GetEnumerator();
 
@@ -2188,7 +2170,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt64> enumerator = values.GetEnumerator();
 
@@ -2224,7 +2206,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Single> enumerator = values.GetEnumerator();
 
@@ -2260,7 +2242,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -2397,10 +2379,6 @@ namespace ELTE.AEGIS.Numerics
             return CorrectedStandardDeviation(values as IEnumerable<Double>);
         }
 
-        #endregion
-
-        #region Standard deviation
-
         /// <summary>
         /// Computes the standard deviation of the specified values.
         /// </summary>
@@ -2410,7 +2388,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2424,7 +2402,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2438,7 +2416,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2452,7 +2430,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2466,7 +2444,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2480,7 +2458,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2494,7 +2472,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2508,7 +2486,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2522,7 +2500,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2536,7 +2514,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             return Math.Sqrt(Variance(values));
         }
@@ -2651,10 +2629,6 @@ namespace ELTE.AEGIS.Numerics
             return StandardDeviation(values as IEnumerable<Double>);
         }
 
-        #endregion
-
-        #region Standard error of mean
-
         /// <summary>
         /// Computes the standard error of the mean for the specified values.
         /// </summary>
@@ -2664,7 +2638,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2696,7 +2670,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2728,7 +2702,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2760,7 +2734,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2792,7 +2766,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2824,7 +2798,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2856,7 +2830,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2888,7 +2862,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2920,7 +2894,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -2952,7 +2926,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             if (!values.Any())
                 return 0;
@@ -3085,10 +3059,6 @@ namespace ELTE.AEGIS.Numerics
             return StandardErrorOfMean(values as IEnumerable<Double>);
         }
 
-        #endregion
-
-        #region One-sample T-test
-
         /// <summary>
         /// Computes a one-sample T-test.
         /// </summary>
@@ -3099,7 +3069,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Byte> values, Byte targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Byte> enumerator = values.GetEnumerator();
 
@@ -3141,7 +3111,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<SByte> values, SByte targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<SByte> enumerator = values.GetEnumerator();
 
@@ -3189,7 +3159,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Int16> values, Int16 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int16> enumerator = values.GetEnumerator();
 
@@ -3237,7 +3207,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Int32> values, Int32 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int32> enumerator = values.GetEnumerator();
 
@@ -3285,7 +3255,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Int64> values, Int64 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int64> enumerator = values.GetEnumerator();
 
@@ -3333,7 +3303,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<UInt16> values, UInt16 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt16> enumerator = values.GetEnumerator();
 
@@ -3381,7 +3351,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<UInt32> values, UInt32 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt32> enumerator = values.GetEnumerator();
 
@@ -3429,7 +3399,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<UInt64> values, UInt64 targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt64> enumerator = values.GetEnumerator();
 
@@ -3477,7 +3447,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Single> values, Single targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Single> enumerator = values.GetEnumerator();
 
@@ -3525,7 +3495,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Double> values, Double targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -3563,10 +3533,6 @@ namespace ELTE.AEGIS.Numerics
             return (mean - targetValue) / (Math.Sqrt(sum) / count);
         }
 
-        #endregion
-
-        #region Two-sample T-test
-
         /// <summary>
         /// Computes a two-sample T-test.
         /// </summary>
@@ -3581,9 +3547,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Byte> first, IEnumerable<Byte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Byte> firstEnumerator = first.GetEnumerator();
             IEnumerator<Byte> secondEnumerator = second.GetEnumerator();
@@ -3650,9 +3616,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<SByte> first, IEnumerable<SByte> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<SByte> firstEnumerator = first.GetEnumerator();
             IEnumerator<SByte> secondEnumerator = second.GetEnumerator();
@@ -3719,9 +3685,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Int16> first, IEnumerable<Int16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Int16> firstEnumerator = first.GetEnumerator();
             IEnumerator<Int16> secondEnumerator = second.GetEnumerator();
@@ -3788,9 +3754,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Int32> first, IEnumerable<Int32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Int32> firstEnumerator = first.GetEnumerator();
             IEnumerator<Int32> secondEnumerator = second.GetEnumerator();
@@ -3857,9 +3823,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Int64> first, IEnumerable<Int64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Int64> firstEnumerator = first.GetEnumerator();
             IEnumerator<Int64> secondEnumerator = second.GetEnumerator();
@@ -3926,9 +3892,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<UInt16> first, IEnumerable<UInt16> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<UInt16> firstEnumerator = first.GetEnumerator();
             IEnumerator<UInt16> secondEnumerator = second.GetEnumerator();
@@ -3995,9 +3961,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<UInt32> first, IEnumerable<UInt32> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<UInt32> firstEnumerator = first.GetEnumerator();
             IEnumerator<UInt32> secondEnumerator = second.GetEnumerator();
@@ -4064,9 +4030,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<UInt64> first, IEnumerable<UInt64> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<UInt64> firstEnumerator = first.GetEnumerator();
             IEnumerator<UInt64> secondEnumerator = second.GetEnumerator();
@@ -4133,9 +4099,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Single> first, IEnumerable<Single> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Single> firstEnumerator = first.GetEnumerator();
             IEnumerator<Single> secondEnumerator = second.GetEnumerator();
@@ -4202,9 +4168,9 @@ namespace ELTE.AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
 
             IEnumerator<Double> firstEnumerator = first.GetEnumerator();
             IEnumerator<Double> secondEnumerator = second.GetEnumerator();
@@ -4257,10 +4223,6 @@ namespace ELTE.AEGIS.Numerics
             return (firstMean - secondMean) / Math.Sqrt(firstSum / firstCount / firstCount + secondSum / secondCount / secondCount);
         }
 
-        #endregion
-
-        #region Variance
-
         /// <summary>
         /// Computes the variance of the specified values.
         /// </summary>
@@ -4270,7 +4232,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Byte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Byte> enumerator = values.GetEnumerator();
 
@@ -4306,7 +4268,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<SByte> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<SByte> enumerator = values.GetEnumerator();
 
@@ -4342,7 +4304,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Int16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int16> enumerator = values.GetEnumerator();
 
@@ -4378,7 +4340,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Int32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int32> enumerator = values.GetEnumerator();
 
@@ -4414,7 +4376,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Int64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Int64> enumerator = values.GetEnumerator();
 
@@ -4450,7 +4412,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<UInt16> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt16> enumerator = values.GetEnumerator();
 
@@ -4486,7 +4448,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<UInt32> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt32> enumerator = values.GetEnumerator();
 
@@ -4522,7 +4484,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<UInt64> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<UInt64> enumerator = values.GetEnumerator();
 
@@ -4558,7 +4520,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Single> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Single> enumerator = values.GetEnumerator();
 
@@ -4594,7 +4556,7 @@ namespace ELTE.AEGIS.Numerics
         public static Double Variance(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), Messages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -4730,7 +4692,5 @@ namespace ELTE.AEGIS.Numerics
         {
             return Variance(values as IEnumerable<Double>);
         }
-
-        #endregion
     }
 }

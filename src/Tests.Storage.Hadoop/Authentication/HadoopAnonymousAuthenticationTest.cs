@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Authentication
     [TestFixture]
     public class HadoopAnonymousAuthenticationTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="HadoopAnonymousAuthentication" /> class.
         /// </summary>
@@ -39,7 +37,5 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Authentication
             authentication.Request.ShouldBe(String.Empty);
             authentication.AutenticationType.ShouldBe(StorageAuthenticationType.Anonymous);
         }
-
-        #endregion
     }
 }

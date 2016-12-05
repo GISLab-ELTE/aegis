@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCompoundReferenceSystemCollection : LocalReferenceCollection<CompoundReferenceSystem>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -39,10 +37,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         private const String AliasTypeName = "Coordinate Reference System";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
         /// </summary>
@@ -52,10 +46,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  <see cref="ReferenceSystem" /> instances.
         /// </summary>
         private IReferenceCollection<ReferenceSystem> referenceSystemCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCompoundReferenceSystemCollection" /> class.
@@ -71,17 +61,13 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, AliasTypeName)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (referenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(referenceSystemCollection), Messages.ReferenceSystemCollectionIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemCollection), ReferenceMessages.ReferenceSystemCollectionIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
             this.referenceSystemCollection = referenceSystemCollection;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -102,7 +88,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

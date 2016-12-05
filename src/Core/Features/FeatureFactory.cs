@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Features
     /// </summary>
     public class FeatureFactory : Factory, IFeatureFactory
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="FeatureFactory" /> class.
         /// </summary>
@@ -40,14 +38,10 @@ namespace ELTE.AEGIS.Features
             : base(geometryFactory, attributeFactory)
         {
             if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory), Messages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(geometryFactory), CoreMessages.GeometryFactoryIsNull);
             if (attributeFactory == null)
-                throw new ArgumentNullException(nameof(attributeFactory), Messages.AttributeFactoryIsNull);
+                throw new ArgumentNullException(nameof(attributeFactory), CoreMessages.AttributeFactoryIsNull);
         }
-
-        #endregion
-
-        #region IFeatureFactory properties
 
         /// <summary>
         /// Gets the attribute collection factory.
@@ -61,10 +55,6 @@ namespace ELTE.AEGIS.Features
         /// <value>The geometry factory.</value>
         public IGeometryFactory GeometryFactory { get { return this.GetFactory<IGeometryFactory>(); } }
 
-        #endregion
-
-        #region Factory methods for features
-
         /// <summary>
         /// Creates a feature.
         /// </summary>
@@ -74,7 +64,7 @@ namespace ELTE.AEGIS.Features
         public IFeature CreateFeature(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             return new Feature(this, identifier, null, null);
         }
@@ -93,9 +83,9 @@ namespace ELTE.AEGIS.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
 
             return new Feature(this, identifier, geometry, null);
         }
@@ -117,11 +107,11 @@ namespace ELTE.AEGIS.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             return new Feature(this, identifier, geometry, attributes);
         }
@@ -140,9 +130,9 @@ namespace ELTE.AEGIS.Features
         public IFeature CreateFeature(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             return new Feature(this, identifier, null, attributes);
         }
@@ -156,14 +146,10 @@ namespace ELTE.AEGIS.Features
         public IFeature CreateFeature(IFeature other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.FeatureIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.FeatureIsNull);
 
             return new Feature(this, other.Identifier, other.Geometry, other.Attributes);
         }
-
-        #endregion
-
-        #region Factory methods for feature collections
 
         /// <summary>
         /// Creates a feature collection.
@@ -174,7 +160,7 @@ namespace ELTE.AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             return new FeatureCollection(this, identifier, null);
         }
@@ -193,9 +179,9 @@ namespace ELTE.AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             return new FeatureCollection(this, identifier, attributes);
         }
@@ -217,11 +203,11 @@ namespace ELTE.AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
             return new FeatureCollection(this, identifier, attributes, collection);
         }
@@ -240,9 +226,9 @@ namespace ELTE.AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
             return new FeatureCollection(this, identifier, null, collection);
         }
@@ -256,11 +242,9 @@ namespace ELTE.AEGIS.Features
         public IFeatureCollection CreateCollection(IFeatureCollection other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.FeatureCollectionIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.FeatureCollectionIsNull);
 
             return new FeatureCollection(this, other.Identifier, null, other);
         }
-
-        #endregion
     }
 }

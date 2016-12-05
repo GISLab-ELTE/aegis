@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     [TestFixture]
     public class MatrixComputationsTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
         private Matrix[] matrices;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -53,10 +47,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
                 new Matrix(new Double[,] { { 1, 2, 18 }, { 7.5, 4, 13.4 } })
             };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="MatrixComputations.IsZero(Matrix)" /> method.
@@ -362,6 +352,4 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
             Should.Throw<ArgumentNullException>(() => MatrixComputations.Transpose((Vector)null));
         }
     }
-
-    #endregion
 }

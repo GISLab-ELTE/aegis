@@ -32,7 +32,7 @@ namespace ELTE.AEGIS.Reference
     public class ReferenceSystemFactory : Factory, IReferenceSystemFactory
     {
         /// <summary>
-        /// The underrlying reference collection container. This field is read-only.
+        /// The underlying reference collection container. This field is read-only.
         /// </summary>
         private readonly IReferenceCollectionContainer collectionContainer;
 
@@ -52,7 +52,7 @@ namespace ELTE.AEGIS.Reference
         public ReferenceSystemFactory(IReferenceCollectionContainer collectionContainer)
         {
             if (collectionContainer == null)
-                throw new ArgumentNullException(nameof(collectionContainer), Messages.CollectionContainerIsNull);
+                throw new ArgumentNullException(nameof(collectionContainer), ReferenceMessages.CollectionContainerIsNull);
 
             this.collectionContainer = collectionContainer;
         }

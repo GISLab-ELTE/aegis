@@ -54,11 +54,11 @@ namespace ELTE.AEGIS.Reference.Strategies
         public CompoundCoordinateConversionStrategy(ICoordinateOperationStrategy<Coordinate, GeoCoordinate> conversionToGeographic, ICoordinateOperationStrategy<GeoCoordinate, GeoCoordinate> geographicTransformation, ICoordinateOperationStrategy<GeoCoordinate, Coordinate> conversionFromGeographic)
         {
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionToGeographic), Messages.ConversionIsNull);
+                throw new ArgumentNullException(nameof(conversionToGeographic), ReferenceMessages.ConversionIsNull);
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(geographicTransformation), Messages.TransformationIsNull);
+                throw new ArgumentNullException(nameof(geographicTransformation), ReferenceMessages.TransformationIsNull);
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionFromGeographic), Messages.ConversionIsNull);
+                throw new ArgumentNullException(nameof(conversionFromGeographic), ReferenceMessages.ConversionIsNull);
 
             this.conversionFromGeographic = conversionFromGeographic;
             this.geographicTransformation = geographicTransformation;

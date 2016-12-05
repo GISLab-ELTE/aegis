@@ -24,8 +24,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public abstract class IdentifiedObject : IEquatable<IdentifiedObject>
     {
-        #region Public constants
-
         /// <summary>
         /// The user-defined identifier. This field is constant.
         /// </summary>
@@ -36,10 +34,6 @@ namespace ELTE.AEGIS
         /// </summary>
         public const String UserDefinedName = "User-defined";
 
-        #endregion
-
-        #region Protected constants
-
         /// <summary>
         /// The undefined identifier. This field is constant.
         /// </summary>
@@ -49,10 +43,6 @@ namespace ELTE.AEGIS
         /// The undefined name. This field is constant.
         /// </summary>
         protected const String UndefinedName = "Undefined";
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// The default authority. This field is constant.
@@ -78,10 +68,6 @@ namespace ELTE.AEGIS
         /// The string format of the identified object. This field is constant.
         /// </summary>
         private const String StringFormat = "[{0}] {1}";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentifiedObject" /> class.
@@ -113,17 +99,13 @@ namespace ELTE.AEGIS
         protected IdentifiedObject(String identifier, String name, String remarks, String[] aliases)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Identifier = identifier;
             this.Name = name ?? String.Empty;
             this.Remarks = remarks ?? String.Empty;
             this.Aliases = aliases ?? new String[0];
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the identifier.
@@ -161,10 +143,6 @@ namespace ELTE.AEGIS
         /// <value>The collection of aliases containing alternative names by which this object is identified.</value>
         public IEnumerable<String> Aliases { get; private set; }
 
-        #endregion
-
-        #region IEquatable methods
-
         /// <summary>
         /// Determines whether the specified identifier object is equal to the current instance.
         /// </summary>
@@ -179,10 +157,6 @@ namespace ELTE.AEGIS
 
             return this.Identifier.Equals(other.Identifier) && this.Name.Equals(other.Name);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Determines whether the specified object is equal to the current identifier object.
@@ -219,10 +193,6 @@ namespace ELTE.AEGIS
             return String.Format(CultureInfo.InvariantCulture, StringFormat, this.Identifier, this.Name);
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Returns the authority for the specified identifier.
         /// </summary>
@@ -232,7 +202,7 @@ namespace ELTE.AEGIS
         public static String GetAuthority(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             return identifier.Contains(Separator) ? identifier.Substring(0, identifier.IndexOf(Separator, StringComparison.Ordinal)) : String.Empty;
         }
@@ -246,7 +216,7 @@ namespace ELTE.AEGIS
         public static Int32 GetCode(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             String codeString = identifier.Contains(Separator) ? identifier.Substring(identifier.LastIndexOf(Separator, StringComparison.Ordinal) + Separator.Length) : identifier;
             Int32 code;
@@ -283,7 +253,5 @@ namespace ELTE.AEGIS
 
             return authority + Separator + code;
         }
-
-        #endregion
     }
 }

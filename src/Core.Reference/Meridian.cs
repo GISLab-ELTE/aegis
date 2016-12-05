@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class Meridian : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Meridian" /> class.
         /// </summary>
@@ -52,19 +50,11 @@ namespace ELTE.AEGIS.Reference
             this.Longitude = longitude;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the longitude angle of the meridian.
         /// </summary>
         /// <value>The longitude angle of the meridian.</value>
         public Angle Longitude { get; private set; }
-
-        #endregion
-
-        #region Static factory methods
 
         /// <summary>
         /// Creates a meridian from the longitude specified in degrees.
@@ -78,7 +68,7 @@ namespace ELTE.AEGIS.Reference
         public static Meridian FromDegrees(String identifier, String name, Double longitude)
         {
             if (longitude < -180 || longitude > 180)
-                throw new ArgumentOutOfRangeException(nameof(longitude), Messages.LongitudeOutOfRangeDegrees);
+                throw new ArgumentOutOfRangeException(nameof(longitude), ReferenceMessages.LongitudeOutOfRangeDegrees);
 
             return new Meridian(identifier, name, Angle.FromDegree(longitude));
         }
@@ -95,11 +85,9 @@ namespace ELTE.AEGIS.Reference
         public static Meridian FromRadian(String identifier, String name, Double longitude)
         {
             if (longitude < -Math.PI || longitude > Math.PI)
-                throw new ArgumentOutOfRangeException(nameof(longitude), Messages.LongitudeOutOfRangeRadians);
+                throw new ArgumentOutOfRangeException(nameof(longitude), ReferenceMessages.LongitudeOutOfRangeRadians);
 
             return new Meridian(identifier, name, Angle.FromRadian(longitude));
         }
-
-        #endregion
     }
 }

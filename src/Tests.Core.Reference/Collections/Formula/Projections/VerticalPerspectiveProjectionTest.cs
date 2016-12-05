@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class VerticalPerspectiveProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private VerticalPerspectiveProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             this.projection = new VerticalPerspectiveProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, areaOfUse);
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="Forward" /> method.
         /// </summary>
@@ -72,7 +62,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.X, transformed.X, 0.01);
             Assert.AreEqual(expected.Y, transformed.Y, 0.01);
         }
-
-        #endregion
     }
 }

@@ -32,8 +32,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class LiangBarskyAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The collection of source line strings.
         /// </summary>
@@ -54,10 +52,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LiangBarskyAlgorithm" /> class.
         /// </summary>
@@ -71,9 +65,9 @@ namespace ELTE.AEGIS.Algorithms
         public LiangBarskyAlgorithm(IReadOnlyList<Coordinate> source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             this.source = new List<IReadOnlyList<Coordinate>>();
             (this.source as List<IReadOnlyList<Coordinate>>).Add(source);
@@ -94,18 +88,14 @@ namespace ELTE.AEGIS.Algorithms
         public LiangBarskyAlgorithm(IEnumerable<IReadOnlyList<Coordinate>> source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             this.source = source;
             this.window = window;
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the collection of source line strings.
@@ -137,10 +127,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Clips a line string with an envelope.
         /// </summary>
@@ -155,7 +141,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IBasicLineString source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new LiangBarskyAlgorithm(source, window).Result;
         }
@@ -174,7 +160,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IBasicPolygon source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 
@@ -205,9 +191,9 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IReadOnlyList<IBasicPolygon> source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 
@@ -229,10 +215,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return new LiangBarskyAlgorithm(coordinates, window).Result;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the result of the algorithm.
@@ -271,10 +253,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private static methods
 
         /// <summary>
         /// Clips a line.
@@ -343,7 +321,5 @@ namespace ELTE.AEGIS.Algorithms
                 new Coordinate(first.X + maxT * deltaX, first.Y + maxT * deltaY)
             };
         }
-
-        #endregion
     }
 }

@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public abstract class CoordinateProjection : CoordinateConversion<GeoCoordinate, Coordinate>
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateProjection" /> class.
         /// </summary>
@@ -50,10 +48,10 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, method, parameters)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
 
             CoordinateOperationParameter[] parameterArray = this.Parameters.Keys.ToArray();
 
@@ -68,10 +66,6 @@ namespace ELTE.AEGIS.Reference
             this.Ellipsoid = ellipsoid;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the ellipsoid.
         /// </summary>
@@ -83,7 +77,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The area of use where the operation is applicable.</value>
         public AreaOfUse AreaOfUse { get; private set; }
-
-        #endregion
     }
 }

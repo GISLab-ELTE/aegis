@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1026", "Mercator (Spherical)")]
     public class MercatorSphericalProjection : MercatorProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MercatorSphericalProjection" /> class.
         /// </summary>
@@ -70,7 +68,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                 this.ellipsoidRadius = this.Ellipsoid.RadiusOfConformalSphere((Angle)this.Parameters[CoordinateOperationParameters.LatitudeOfNaturalOrigin]).Value;
             }
         }
-
-        #endregion
     }
 }

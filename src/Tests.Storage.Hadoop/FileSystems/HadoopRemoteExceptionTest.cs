@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage
     [TestFixture]
     public class HadoopRemoteExceptionTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="HadoopRemoteException" /> class.
         /// </summary>
@@ -54,7 +52,5 @@ namespace ELTE.AEGIS.Tests.IO.Storage
             exception.ExceptionName.ShouldBe("Exception name.");
             exception.JavaClassName.ShouldBe("Class name.");
         }
-
-        #endregion
     }
 }

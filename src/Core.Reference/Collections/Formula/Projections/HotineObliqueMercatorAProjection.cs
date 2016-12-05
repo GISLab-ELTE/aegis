@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9812", "Hotine Oblique Mercator (variant A)")]
     public class HotineObliqueMercatorAProjection : HotineObliqueMercatorProjection
     {
-        #region Private fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// False northing.
         /// </summary>
         private readonly Double falseNorthing;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HotineObliqueMercatorAProjection" /> class.
@@ -92,10 +86,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.falseNorthing = this.GetParameterValue(CoordinateOperationParameters.FalseNorthing);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -128,10 +118,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(latitude, longitude);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the u value.
         /// </summary>
@@ -143,7 +129,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return this.a * Math.Atan((s * Math.Cos(this.gammaO) + v * Math.Sin(this.gammaO)) / Math.Cos(this.b * (longitude - this.lambdaO))) / this.b;
         }
-
-        #endregion
     }
 }

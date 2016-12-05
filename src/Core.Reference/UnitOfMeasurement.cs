@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class UnitOfMeasurement : IdentifiedObject
     {
-        #region Private fields
-
         /// <summary>
         /// The symbol. This field is read-only.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Reference
         /// The type of the unit. This field is read-only.
         /// </summary>
         private readonly UnitQuantityType type;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitOfMeasurement" /> class.
@@ -73,16 +67,12 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases)
         {
             if (baseMultiple == 0)
-                throw new ArgumentOutOfRangeException(nameof(baseMultiple), Messages.BaseMultipleIs0);
+                throw new ArgumentOutOfRangeException(nameof(baseMultiple), ReferenceMessages.BaseMultipleIs0);
 
             this.symbol = symbol;
             this.baseMultiple = baseMultiple;
             this.type = type;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the symbol.
@@ -101,7 +91,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The type of the unit.</value>
         public UnitQuantityType Type { get { return this.type; } }
-
-        #endregion
     }
 }

@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class LiangBarskyAlgorithmTest
     {
-        #region Private fields
-
         /// <summary>
         /// The clipping window used for testing.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
         /// The array of coordinate arrays used for testing.
         /// </summary>
         private Coordinate[][] coordinates;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -79,10 +73,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
             };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="LiangBarskyAlgorithm.Compute()" /> method.
@@ -154,7 +144,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Coordinate[][] expected = new[] { new[] { new Coordinate(10, 12), new Coordinate(20, 12) }, new[] { new Coordinate(20, 18), new Coordinate(10, 18) } };
             actual.ShouldBe(expected);
         }
-
-        #endregion
     }
 }

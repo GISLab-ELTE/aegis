@@ -28,8 +28,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class BasicLineString : IBasicLineString
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS
         /// </summary>
         private const String LineStringStringFormat = "LINESTRING ({0})";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The list of coordinates.
         /// </summary>
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS
         /// The envelope of the polygon.
         /// </summary>
         private Envelope envelope;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicLineString" /> class.
@@ -84,14 +74,10 @@ namespace ELTE.AEGIS
         public BasicLineString(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.coordinates = new List<Coordinate>(source.Elements());
         }
-
-        #endregion
-
-        #region IBasicGeometry properties
 
         /// <summary>
         /// Gets the inherent dimension of the geometry.
@@ -144,10 +130,6 @@ namespace ELTE.AEGIS
             get { return this.GetCoordinate(index); }
         }
 
-        #endregion
-
-        #region IBasicLineString properties
-
         /// <summary>
         /// Gets the number of coordinates in the line string.
         /// </summary>
@@ -188,10 +170,6 @@ namespace ELTE.AEGIS
             }
         }
 
-        #endregion
-
-        #region IBasicLineString methods
-
         /// <summary>
         /// Determines whether the line string contains the specified coordinate within its coordinates.
         /// </summary>
@@ -201,7 +179,7 @@ namespace ELTE.AEGIS
         public virtual Boolean Contains(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
 
             return this.coordinates.Contains(coordinate);
         }
@@ -219,16 +197,12 @@ namespace ELTE.AEGIS
         public virtual Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.coordinates.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
             return this.coordinates[index];
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -249,10 +223,6 @@ namespace ELTE.AEGIS
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -261,10 +231,6 @@ namespace ELTE.AEGIS
         {
             return this.ToString(CultureInfo.InvariantCulture);
         }
-
-        #endregion
-
-        #region IGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -287,7 +253,5 @@ namespace ELTE.AEGIS
 
             return String.Format(provider, LineStringStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }

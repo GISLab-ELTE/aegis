@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     /// </summary>
     public class QRAlgorithmTest
     {
-        #region Private fields
-
         /// <summary>
         /// The array of matrices.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
         /// The array of expected eigenvectors.
         /// </summary>
         private Vector[][] expectedEigenvectors;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Sets up the test environment.
@@ -71,8 +65,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
                 new[] { new Vector(0.3281, -0.9369, -0.1207), new Vector(0.8668, 0.3494, -0.356), new Vector(-0.375, -0.0121, -0.9268) }
             };
         }
-
-        #endregion
 
         /// <summary>
         /// Tests the <see cref="QRAlgorithm.ComputeEigenvalues(Matrix)" /> method.

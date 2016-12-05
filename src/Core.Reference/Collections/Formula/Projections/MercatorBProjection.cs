@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9805", "Mercator (variant B)")]
     public class MercatorBProjection : MercatorProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MercatorBProjection" /> class.
         /// </summary>
@@ -69,7 +67,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             Double latitudeOf1stStandardParallel = this.GetParameterBaseValue(CoordinateOperationParameters.LatitudeOf1stStandardParallel);
             this.scaleFactorAtNaturalOrigin = Math.Cos(latitudeOf1stStandardParallel) / Math.Sqrt(1 - this.Ellipsoid.EccentricitySquare * Calculator.Sin2(latitudeOf1stStandardParallel));
         }
-
-        #endregion
     }
 }

@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public static class CoordinateOperationMethods
     {
-        #region Private field
-
         private static Lazy<CoordinateOperationMethod> affineParametricTransformation;
         private static Lazy<CoordinateOperationMethod> albersEqualAreaProjection;
         private static Lazy<CoordinateOperationMethod> americanPolyconicProjection;
@@ -98,10 +96,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         private static Lazy<CoordinateOperationMethod> verticalPerspectiveOrthographicProjection;
         private static Lazy<CoordinateOperationMethod> verticalPerspectiveProjection;
         private static Lazy<CoordinateOperationMethod> worldMillerCylindricalProjection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes static members of the <see cref="CoordinateOperationMethods" /> class.
@@ -875,10 +869,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                                               CoordinateOperationParameters.FalseNorthing));
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the operation method Affine parametric transformation.
         /// </summary>
@@ -1253,7 +1243,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Gets the operation World Miller Cylindrical Projection.
         /// </summary>
         public static CoordinateOperationMethod WorldMillerCylindricalProjection { get { return worldMillerCylindricalProjection.Value; } }
-
-        #endregion
     }
 }

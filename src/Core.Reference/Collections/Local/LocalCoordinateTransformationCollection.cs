@@ -32,8 +32,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCoordinateTransformationCollection<CoordinateType> : ICoordinateTransformationCollection<CoordinateType>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -48,10 +46,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The name of the parameter value resource. This field is constant.
         /// </summary>
         private const String ResourceNameParameterValue = "CoordinateOperationParameterValue";
-
-        #endregion
-
-        #region Private types
 
         /// <summary>
         /// Represents raw data of coordinate transformations.
@@ -258,10 +252,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of  raw data.
         /// </summary>
@@ -271,10 +261,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  transformation types.
         /// </summary>
         private Dictionary<Int32, Type> transformationTypes;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCoordinateTransformationCollection{CoordinateType}" /> class.
@@ -298,20 +284,16 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public LocalCoordinateTransformationCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<CoordinateOperationMethod> methodCollection, IReferenceCollection<CoordinateOperationParameter> parameterCollection, IReferenceCollection<CoordinateReferenceSystem> referenceSystemCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (methodCollection == null)
-                throw new ArgumentNullException(nameof(methodCollection), Messages.MethodCollectionIsNull);
+                throw new ArgumentNullException(nameof(methodCollection), ReferenceMessages.MethodCollectionIsNull);
             if (parameterCollection == null)
-                throw new ArgumentNullException(nameof(parameterCollection), Messages.ParameterCollectionIsNull);
+                throw new ArgumentNullException(nameof(parameterCollection), ReferenceMessages.ParameterCollectionIsNull);
             if (referenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(referenceSystemCollection), Messages.ReferenceSystemCollectionIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemCollection), ReferenceMessages.ReferenceSystemCollectionIsNull);
 
             this.dataCollection = new CoordinateTransformationDataCollection(areaOfUseCollection, methodCollection, parameterCollection, referenceSystemCollection, unitCollection);
         }
-
-        #endregion
-
-        #region ICoordinateTransformationCollection properties
 
         /// <summary>
         /// Gets the instance with the specified authority and code.
@@ -362,10 +344,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region ICoordinateTransformationCollection methods
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -375,7 +353,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureOperationTypes();
 
@@ -391,7 +369,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureOperationTypes();
 
@@ -407,7 +385,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureOperationTypes();
 
@@ -423,7 +401,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureOperationTypes();
 
@@ -444,9 +422,9 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateReferenceSystem source, CoordinateReferenceSystem target)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateReferenceSystemIsNull);
             if (target == null)
-                throw new ArgumentNullException(nameof(target), Messages.TargetCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetCoordinateReferenceSystemIsNull);
 
             this.EnsureOperationTypes();
 
@@ -468,9 +446,9 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, AreaOfUse areaOfUse)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), Messages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
 
             this.EnsureOperationTypes();
 
@@ -498,22 +476,18 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, CoordinateReferenceSystem source, CoordinateReferenceSystem target, AreaOfUse areaOfUse)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), Messages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateReferenceSystemIsNull);
             if (target == null)
-                throw new ArgumentNullException(nameof(target), Messages.TargetCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetCoordinateReferenceSystemIsNull);
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
 
             this.EnsureOperationTypes();
 
             return this.dataCollection.Where(data => this.transformationTypes.ContainsKey(data.Method.Code)).Where(data => data.Method.Equals(method) && data.Collection.Equals(source) && data.Target.Equals(target) && data.AreaOfUse.Equals(areaOfUse) && this.IsMatching(data.Parameters, parameters)).Select(data => this.CreateTransformation(data));
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -538,10 +512,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             foreach (CoordinateTransformationData data in this.dataCollection)
                 yield return this.CreateTransformation(data);
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Ensures that all operation types are available.
@@ -597,7 +567,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             return true;
         }
-
-        #endregion
     }
 }

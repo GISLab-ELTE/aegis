@@ -27,16 +27,16 @@ namespace ELTE.AEGIS.Tests.Collections
     [TestFixture]
     public class MultiValueDictionaryTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The array of values that are inserted into the dictionary.
         /// </summary>
         private KeyValuePair<Int32, List<String>>[] values;
 
-        #endregion
+        
 
-        #region Test setup
+        
 
         /// <summary>
         /// Test setup.
@@ -51,9 +51,9 @@ namespace ELTE.AEGIS.Tests.Collections
             };
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="MultiValueDictionary{TKey, TValue}" /> class.
@@ -200,6 +200,6 @@ namespace ELTE.AEGIS.Tests.Collections
             dictionary.Values.ShouldBe(expected);
         }
 
-        #endregion
+        
     }
 }

@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public class IntersectionEvent : Event
     {
-        #region Public fields
-
         /// <summary>
         /// Gets or sets the below <see cref="SweepLineSegment" /> instance intersecting at this event.
         /// </summary>
@@ -40,7 +38,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         /// <value><c>true</c> if the event is a closing point for the intersection; otherwise, <c>false</c>.</value>
         public Boolean IsClosing { get; set; }
-
-        #endregion
     }
 }

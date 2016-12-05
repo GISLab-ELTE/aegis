@@ -28,16 +28,16 @@ namespace ELTE.AEGIS.Tests.Collections
     [TestFixture]
     public class SparseArrayTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The array of values that are inserted into the sparse array.
         /// </summary>
         private Int32[] values;
 
-        #endregion
+        
 
-        #region Test setup
+        
 
         /// <summary>
         /// Test setup.
@@ -48,9 +48,9 @@ namespace ELTE.AEGIS.Tests.Collections
             this.values = Collection.GenerateNumbers(0, 1000, 200).ToArray();
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="SparseArray{T}" /> class.
@@ -367,6 +367,6 @@ namespace ELTE.AEGIS.Tests.Collections
             Should.Throw<InvalidOperationException>(() => arrayEnumerator.Reset());
         }
 
-        #endregion
+        
     }
 }

@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
     [TestFixture]
     public class HouseholderTransformationTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="HouseholderTransformation.Compute()" /> method.
         /// </summary>
@@ -109,7 +107,5 @@ namespace ELTE.AEGIS.Tests.Numerics.LinearAlgebra
             Should.Throw<ArgumentException>(() => HouseholderTransformation.Tridiagonalize(new Matrix(2, 3)));
             Should.Throw<ArgumentException>(() => HouseholderTransformation.Tridiagonalize(MatrixFactory.CreateSquare(1, 2, 3, 4)));
         }
-
-        #endregion
     }
 }

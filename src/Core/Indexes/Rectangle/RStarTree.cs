@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Indexes.Rectangle
     /// </summary>
     public class RStarTree : RTree
     {
-        #region Private fields
-
         /// <summary>
         /// Indicates the levels where reinsertion happened during an insertion.
         /// </summary>
         private Boolean[] visitedLevels;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RStarTree" /> class.
@@ -52,10 +46,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </exception>
         public RStarTree(Int32 minChildren, Int32 maxChildren)
             : base(minChildren, maxChildren) { }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Adds a node into the tree on a specified height.
@@ -175,10 +165,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
 
             return node;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Inserts a node into the tree on a specified height.
@@ -331,10 +317,6 @@ namespace ELTE.AEGIS.Indexes.Rectangle
                 return orderedByY;
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Chooses which node should we enlarge with the new envelope to minimize the overlap between the nodes
         /// </summary>
@@ -402,7 +384,5 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             else
                 return (2 * (maxX - minX) * (maxY - minY)) + (2 * (maxX - minX) * (maxZ - minZ)) + (2 * (maxY - minY) * (maxZ - minZ));
         }
-
-        #endregion
     }
 }

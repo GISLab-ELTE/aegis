@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9817", "Lambert Conic Near-Conformal")]
     public class LambertConicNearConformalProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -103,10 +101,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         protected readonly Double r0;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicNearConformalProjection" /> class.
         /// </summary>
@@ -164,10 +158,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.s0 = this.a * (this.latitudeOfNaturalOrigin * Calculator.RadianToDegree) - this.b * Math.Sin(2 * this.latitudeOfNaturalOrigin) + this.c * Math.Sin(4 * this.latitudeOfNaturalOrigin) - this.d * Math.Sin(6 * this.latitudeOfNaturalOrigin) + this.e * Math.Sin(8 * this.latitudeOfNaturalOrigin);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -208,7 +198,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9836", "Geocentric/topocentric conversion")]
     public class GeocentricToTopocentricConversion : CoordinateConversion<Coordinate, Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// Geocentric X of topocentric origin.
         /// </summary>
@@ -61,10 +59,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double cosFi0;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeocentricToTopocentricConversion" /> class.
@@ -101,7 +95,7 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeocentricToTopocentricConversion, parameters)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             this.geocentricXOfTopocentricOrigin = this.GetParameterValue(CoordinateOperationParameters.GeocenticXOfTopocentricOrigin);
             this.geocentricYOfTopocentricOrigin = this.GetParameterValue(CoordinateOperationParameters.GeocenticYOfTopocentricOrigin);
@@ -115,10 +109,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.sinFi0 = Math.Sin(geographicOrigin.Latitude.BaseValue);
             this.cosFi0 = Math.Cos(geographicOrigin.Latitude.BaseValue);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -151,10 +141,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new Coordinate(x, y, z);
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Computes the geographic origin.
         /// </summary>
@@ -172,7 +158,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda, height);
         }
-
-        #endregion
     }
 }

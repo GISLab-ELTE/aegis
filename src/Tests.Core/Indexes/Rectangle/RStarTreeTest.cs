@@ -29,8 +29,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
     [TestFixture]
     public class RStarTreeTest
     {
-        #region Private fields
-
         /// <summary>
         /// The geometry factory.
         /// </summary>
@@ -41,10 +39,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
         /// </summary>
         private List<IPoint> geometries;
 
-        #endregion
-
-        #region Test setup
-
         /// <summary>
         /// Test setup.
         /// </summary>
@@ -54,10 +48,6 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
             this.factory = new GeometryFactory();
             this.geometries = new List<IPoint>(Enumerable.Range(1, 1000).Select(value => this.factory.CreatePoint(value, value, value)));
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructor.
@@ -136,7 +126,5 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
             Should.Throw<ArgumentNullException>(() => tree.Add((IGeometry)null));
             Should.Throw<ArgumentNullException>(() => tree.Add((IEnumerable<IGeometry>)null));
         }
-
-        #endregion
     }
 }

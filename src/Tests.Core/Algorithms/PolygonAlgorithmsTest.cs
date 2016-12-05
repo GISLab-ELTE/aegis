@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class PolygonAlgorithmsTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="PolygonAlgorithms.Area(IBasicPolygon)" /> method.
         /// </summary>
@@ -410,7 +408,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Should.Throw<ArgumentNullException>(() => PolygonAlgorithms.SignedArea((List<Coordinate>)null));
             Should.Throw<ArgumentNullException>(() => PolygonAlgorithms.SignedArea((IBasicPolygon)null));
         }
-
-        #endregion
     }
 }

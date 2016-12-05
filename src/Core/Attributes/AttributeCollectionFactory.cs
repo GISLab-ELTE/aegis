@@ -22,16 +22,10 @@ namespace ELTE.AEGIS.Attributes
     /// </summary>
     public class AttributeCollectionFactory : Factory, IAttributeCollectionFactory
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AttributeCollectionFactory" /> class.
         /// </summary>
         public AttributeCollectionFactory() { }
-
-        #endregion
-
-        #region Factory methods for attribute collections
 
         /// <summary>
         /// Creates an attribute collection.
@@ -62,7 +56,5 @@ namespace ELTE.AEGIS.Attributes
                 return null;
             return new AttributeCollection(this, source);
         }
-
-        #endregion
     }
 }

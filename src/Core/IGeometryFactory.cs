@@ -22,8 +22,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public interface IGeometryFactory : IFactory
     {
-        #region Properties
-
         /// <summary>
         /// Gets the precision model used by the factory.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS
         /// </summary>
         /// <value>The reference system used by the factory.</value>
         IReferenceSystem ReferenceSystem { get; }
-
-        #endregion
-
-        #region Factory methods for points
 
         /// <summary>
         /// Creates a point.
@@ -71,10 +65,6 @@ namespace ELTE.AEGIS
         /// <returns>A point that matches <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other point is null.</exception>
         IPoint CreatePoint(IPoint other);
-
-        #endregion
-
-        #region Factory methods for line strings
 
         /// <summary>
         /// Creates a line string.
@@ -118,10 +108,6 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other line string is null.</exception>
         ILineString CreateLineString(ILineString other);
 
-        #endregion
-
-        #region Factory methods for lines
-
         /// <summary>
         /// Creates a line.
         /// </summary>
@@ -150,10 +136,6 @@ namespace ELTE.AEGIS
         /// <returns>A line that matches <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other line is null.</exception>
         ILine CreateLine(ILine other);
-
-        #endregion
-
-        #region Factory methods for linear rings
 
         /// <summary>
         /// Creates a linear ring.
@@ -201,10 +183,6 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other linear ring is null.</exception>
         ILinearRing CreateLinearRing(ILinearRing other);
 
-        #endregion
-
-        #region Factory methods for polygons
-
         /// <summary>
         /// Creates a polygon.
         /// </summary>
@@ -246,10 +224,6 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other polygon is null.</exception>
         IPolygon CreatePolygon(IPolygon other);
 
-        #endregion
-
-        #region Factory methods for triangles
-
         /// <summary>
         /// Creates a triangle.
         /// </summary>
@@ -282,10 +256,6 @@ namespace ELTE.AEGIS
         /// <returns>A triangle that matches <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other triangle is null.</exception>
         ITriangle CreateTriangle(ITriangle other);
-
-        #endregion
-
-        #region Factory methods for geometry collections
 
         /// <summary>
         /// Creates a geometry collection.
@@ -335,10 +305,6 @@ namespace ELTE.AEGIS
         IGeometryCollection<GeometryType> CreateGeometryCollection<GeometryType>(IGeometryCollection<GeometryType> other)
             where GeometryType : IGeometry;
 
-        #endregion
-
-        #region Factory methods for multi points
-
         /// <summary>
         /// Creates a multi point.
         /// </summary>
@@ -367,10 +333,6 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other multi point is null.</exception>
         IMultiPoint CreateMultiPoint(IMultiPoint other);
 
-        #endregion
-
-        #region Factory methods for multi line strings
-
         /// <summary>
         /// Creates a multi line string.
         /// </summary>
@@ -391,10 +353,6 @@ namespace ELTE.AEGIS
         /// <returns>A multi line string that matches <paramref name="other" />.</returns>
         /// <exception cref="System.ArgumentNullException">The other multi line string is null.</exception>
         IMultiLineString CreateMultiLineString(IMultiLineString other);
-
-        #endregion
-
-        #region Factory methods for multi polygons
 
         /// <summary>
         /// Creates a multi polygon.
@@ -417,10 +375,6 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other multi polygon is null.</exception>
         IMultiPolygon CreateMultiPolygon(IMultiPolygon other);
 
-        #endregion
-
-        #region Factory methods for geometries
-
         /// <summary>
         /// Creates a geometry matching another geometry.
         /// </summary>
@@ -429,7 +383,5 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other geometry is null.</exception>
         /// <exception cref="System.ArgumentException">The type of the geometry is not supported.</exception>
         IGeometry CreateGeometry(IGeometry other);
-
-        #endregion
     }
 }

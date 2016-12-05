@@ -118,12 +118,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void CreateDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             if (File.Exists(path))
-                throw new ArgumentException(Messages.PathIsFile, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsFile, nameof(path));
 
             try
             {
@@ -131,27 +131,27 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (NotSupportedException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
             }
             catch (IOException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -180,12 +180,12 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override Stream CreateFile(String path, Boolean overwrite)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             if (!overwrite && this.Exists(path))
-                throw new ArgumentException(Messages.PathExists, nameof(path));
+                throw new ArgumentException(StorageMessages.PathExists, nameof(path));
 
             try
             {
@@ -193,27 +193,27 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (NotSupportedException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
             }
             catch (IOException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -255,9 +255,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override Stream OpenFile(String path, FileMode mode, FileAccess access)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -265,49 +265,49 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (FileNotFoundException ex)
             {
-                throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
             }
             catch (ArgumentOutOfRangeException ex)
             {
                 if (ex.ParamName == nameof(mode))
-                    throw new ArgumentException(Messages.InvalidFileMode, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.InvalidFileMode, nameof(path), ex);
                 else
-                    throw new ArgumentException(Messages.InvalidFileAccess, nameof(mode), ex);
+                    throw new ArgumentException(StorageMessages.InvalidFileAccess, nameof(mode), ex);
             }
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == nameof(path))
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                 else
-                    throw new ArgumentException(Messages.InvalidFileModeOrAccess, nameof(access), ex);
+                    throw new ArgumentException(StorageMessages.InvalidFileModeOrAccess, nameof(access), ex);
             }
             catch (NotSupportedException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
                 if (Directory.Exists(path))
-                    throw new ArgumentException(Messages.PathIsDirectory, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsDirectory, nameof(path), ex);
 
                 if (mode == FileMode.Create || mode == FileMode.CreateNew)
-                    throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                 if (access == FileAccess.ReadWrite || access == FileAccess.Write)
-                    throw new UnauthorizedAccessException(Messages.PathIsReadOnly, ex);
+                    throw new UnauthorizedAccessException(StorageMessages.PathIsReadOnly, ex);
 
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToPath, path, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToPath, path, ex);
             }
             catch (IOException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -331,9 +331,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void Delete(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             // determine whether the specified path is a directory or file
             if (File.Exists(path))
@@ -345,15 +345,15 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
                 catch (PathTooLongException ex)
                 {
-                    throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                    throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                 }
                 catch (IOException ex)
                 {
-                    throw new ArgumentException(Messages.PathInUse, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathInUse, nameof(path), ex);
                 }
             }
             else
@@ -364,27 +364,27 @@ namespace ELTE.AEGIS.Storage.FileSystems
                 }
                 catch (ArgumentException ex)
                 {
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                 }
                 catch (NotSupportedException ex)
                 {
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
                 }
                 catch (PathTooLongException ex)
                 {
-                    throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                    throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
                 }
                 catch (DirectoryNotFoundException ex)
                 {
-                    throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
                 }
                 catch (IOException ex)
                 {
-                    throw new ArgumentException(Messages.PathInUse, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathInUse, nameof(path), ex);
                 }
             }
         }
@@ -421,19 +421,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void Move(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException(nameof(sourcePath), Messages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
             if (destinationPath == null)
-                throw new ArgumentNullException(nameof(destinationPath), Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrWhiteSpace(sourcePath))
-                throw new ArgumentException(Messages.SourcePathIsEmpty, nameof(sourcePath));
+                throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destinationPath));
 
             if (sourcePath.Equals(destinationPath))
-                throw new ArgumentException(Messages.SourceAndDestinationPathEqual, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.SourceAndDestinationPathEqual, nameof(destinationPath));
 
             if (this.Exists(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathExists, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.DestinationPathExists, nameof(destinationPath));
 
             // move to entry to the new destination
             try
@@ -443,25 +443,25 @@ namespace ELTE.AEGIS.Storage.FileSystems
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == "sourceDirName")
-                    throw new ArgumentException(Messages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
+                    throw new ArgumentException(StorageMessages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
                 else
-                    throw new ArgumentException(Messages.DestinationPathInvalidFormat, nameof(destinationPath), ex);
+                    throw new ArgumentException(StorageMessages.DestinationPathInvalidFormat, nameof(destinationPath), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.SourcePathTooLong, nameof(sourcePath), ex);
+                throw new ArgumentException(StorageMessages.SourcePathTooLong, nameof(sourcePath), ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ArgumentException(Messages.SourcePathNotExists, nameof(sourcePath), ex);
+                throw new ArgumentException(StorageMessages.SourcePathDoesNotExist, nameof(sourcePath), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.SourceOrDestinationPathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.SourceOrDestinationPathUnauthorized, ex);
             }
             catch (IOException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -501,19 +501,19 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override void Copy(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException(nameof(sourcePath), Messages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
             if (destinationPath == null)
-                throw new ArgumentNullException(nameof(destinationPath), Messages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
             if (String.IsNullOrWhiteSpace(sourcePath))
-                throw new ArgumentException(Messages.SourcePathIsEmpty, nameof(sourcePath));
+                throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathIsEmpty, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destinationPath));
 
             if (sourcePath.Equals(destinationPath))
-                throw new ArgumentException(Messages.SourceAndDestinationPathEqual, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.SourceAndDestinationPathEqual, nameof(destinationPath));
 
             if (this.Exists(destinationPath))
-                throw new ArgumentException(Messages.DestinationPathExists, nameof(destinationPath));
+                throw new ArgumentException(StorageMessages.DestinationPathExists, nameof(destinationPath));
 
             // move to entry to the new destination
             try
@@ -529,34 +529,34 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (FileNotFoundException ex)
             {
-                throw new ArgumentException(Messages.SourcePathNotExists, nameof(sourcePath), ex);
+                throw new ArgumentException(StorageMessages.SourcePathDoesNotExist, nameof(sourcePath), ex);
             }
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == "sourceFileName")
-                    throw new ArgumentException(Messages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
+                    throw new ArgumentException(StorageMessages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
                 else
-                    throw new ArgumentException(Messages.DestinationPathInvalidFormat, nameof(destinationPath), ex);
+                    throw new ArgumentException(StorageMessages.DestinationPathInvalidFormat, nameof(destinationPath), ex);
             }
             catch (NotSupportedException ex)
             {
-                throw new ArgumentException(Messages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
+                throw new ArgumentException(StorageMessages.SourcePathIsInInvalidFormat, nameof(sourcePath), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.SourcePathTooLong, nameof(sourcePath), ex);
+                throw new ArgumentException(StorageMessages.SourcePathTooLong, nameof(sourcePath), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.SourceOrDestinationPathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.SourceOrDestinationPathUnauthorized, ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToPath, destinationPath, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToPath, destinationPath, ex);
             }
             catch (IOException ex)
             {
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -607,9 +607,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetDirectoryRoot(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -617,15 +617,15 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
         }
 
@@ -648,9 +648,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetParent(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -664,23 +664,23 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
             }
             catch (IOException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
         }
 
@@ -700,9 +700,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -710,11 +710,11 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
         }
 
@@ -732,9 +732,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetFileName(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -742,7 +742,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
         }
 
@@ -760,9 +760,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetFileNameWithoutExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -770,7 +770,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
         }
 
@@ -788,9 +788,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String GetExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -798,7 +798,7 @@ namespace ELTE.AEGIS.Storage.FileSystems
             }
             catch (ArgumentException ex)
             {
-                throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
         }
 
@@ -828,9 +828,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String[] GetDirectories(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -839,28 +839,28 @@ namespace ELTE.AEGIS.Storage.FileSystems
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == nameof(searchPattern))
-                    throw new ArgumentException(Messages.InvalidSearchPattern, nameof(searchPattern), ex);
+                    throw new ArgumentException(StorageMessages.InvalidSearchPattern, nameof(searchPattern), ex);
                 else
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (IOException ex)
             {
                 if (File.Exists(path))
-                    throw new ArgumentException(Messages.PathIsFile, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsFile, nameof(path), ex);
 
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -890,9 +890,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override String[] GetFiles(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -901,28 +901,28 @@ namespace ELTE.AEGIS.Storage.FileSystems
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == nameof(searchPattern))
-                    throw new ArgumentException(Messages.InvalidSearchPattern, nameof(searchPattern), ex);
+                    throw new ArgumentException(StorageMessages.InvalidSearchPattern, nameof(searchPattern), ex);
                 else
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (IOException ex)
             {
                 if (File.Exists(path))
-                    throw new ArgumentException(Messages.PathIsFile, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsFile, nameof(path), ex);
 
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 
@@ -952,9 +952,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
         public override FileSystemEntry[] GetFileSystemEntries(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), Messages.PathIsNull);
+                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
             if (String.IsNullOrWhiteSpace(path))
-                throw new ArgumentException(Messages.PathIsEmpty, nameof(path));
+                throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
             try
             {
@@ -986,28 +986,28 @@ namespace ELTE.AEGIS.Storage.FileSystems
             catch (ArgumentException ex)
             {
                 if (ex.ParamName == nameof(searchPattern))
-                    throw new ArgumentException(Messages.InvalidSearchPattern, nameof(searchPattern), ex);
+                    throw new ArgumentException(StorageMessages.InvalidSearchPattern, nameof(searchPattern), ex);
                 else
-                    throw new ArgumentException(Messages.PathIsInInvalidFormat, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsInInvalidFormat, nameof(path), ex);
             }
             catch (PathTooLongException ex)
             {
-                throw new ArgumentException(Messages.PathIsTooLong, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathIsTooLong, nameof(path), ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                throw new ArgumentException(Messages.PathDoesNotExists, nameof(path), ex);
+                throw new ArgumentException(StorageMessages.PathDoesNotExist, nameof(path), ex);
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException(Messages.PathUnauthorized, ex);
+                throw new UnauthorizedAccessException(StorageMessages.PathUnauthorized, ex);
             }
             catch (IOException ex)
             {
                 if (File.Exists(path))
-                    throw new ArgumentException(Messages.PathIsFile, nameof(path), ex);
+                    throw new ArgumentException(StorageMessages.PathIsFile, nameof(path), ex);
 
-                throw new ConnectionException(Messages.NoConnectionToFileSystem, ex);
+                throw new ConnectionException(StorageMessages.NoConnectionToFileSystem, ex);
             }
         }
 

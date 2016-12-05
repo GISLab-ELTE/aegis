@@ -25,23 +25,15 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public class EventQueue
     {
-        #region Private types
-
         /// <summary>
         /// Represents a heap data structure containing <see cref="Event" /> instances.
         /// </summary>
         private sealed class EventHeap : Heap<Event, Event>
         {
-            #region Private fields
-
             /// <summary>
             /// An inner <see cref="CoordinateComparer" /> instance.
             /// </summary>
             private readonly CoordinateComparer coordinateComparer;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="EventHeap" /> class.
@@ -52,10 +44,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.coordinateComparer = new CoordinateComparer();
             }
 
-            #endregion
-
-            #region Public methods
-
             /// <summary>
             /// Inserts the specified event element into the heap.
             /// </summary>
@@ -64,7 +52,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             public void Insert(Event eventElement)
             {
                 if (eventElement == null)
-                    throw new ArgumentNullException(nameof(eventElement), Messages.EventIsNull);
+                    throw new ArgumentNullException(nameof(eventElement), CoreMessages.EventIsNull);
 
                 this.Insert(eventElement, eventElement);
             }
@@ -78,13 +66,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             {
                 return this.Any(item => this.coordinateComparer.Compare(item.Key.Vertex, position) == 0);
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The coordinate comparer.
@@ -101,10 +83,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         private Int32 coordinateCount;
 
-        #endregion
-
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EventQueue" /> class.
         /// </summary>
@@ -113,7 +91,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public EventQueue(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.comparer = new CoordinateComparer();
             this.coordinateCount = 0;
@@ -130,7 +108,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public EventQueue(IEnumerable<IEnumerable<Coordinate>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.comparer = new CoordinateComparer();
             this.coordinateCount = 0;
@@ -141,10 +119,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.AppendCoordinates(collection);
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Retrieves the next event from the queue.
@@ -163,7 +137,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public void Add(IntersectionEvent intersectionEvent)
         {
             if (intersectionEvent == null)
-                throw new ArgumentNullException(nameof(intersectionEvent), Messages.IntersectionEventIsNull);
+                throw new ArgumentNullException(nameof(intersectionEvent), CoreMessages.IntersectionEventIsNull);
 
             this.eventHeap.Insert(intersectionEvent);
         }
@@ -187,14 +161,10 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public Boolean Contains(IntersectionEvent intersectionEvent)
         {
             if (intersectionEvent == null)
-                throw new ArgumentNullException(nameof(intersectionEvent), Messages.IntersectionEventIsNull);
+                throw new ArgumentNullException(nameof(intersectionEvent), CoreMessages.IntersectionEventIsNull);
 
             return this.eventHeap.Contains(intersectionEvent);
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Appends the coordinates to the queue.
@@ -245,7 +215,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
 
             this.coordinateCount++;
         }
-
-        #endregion
     }
 }

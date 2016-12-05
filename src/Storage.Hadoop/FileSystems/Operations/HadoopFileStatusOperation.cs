@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopFileStatusOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileStatusOperation" /> class.
         /// </summary>
@@ -74,10 +72,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             : base(client, null, path, authentication)
         { }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
-
         /// <summary>
         /// Gets the type of the request.
         /// </summary>
@@ -95,10 +89,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
             get { return "op=GETFILESTATUS"; }
         }
-
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
 
         /// <summary>
         /// Creates the result for the specified content asynchronously.
@@ -134,7 +124,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
 
             return result;
         }
-
-        #endregion
     }
 }

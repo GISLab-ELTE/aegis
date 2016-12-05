@@ -48,7 +48,7 @@ namespace ELTE.AEGIS.Reference.Strategies
         public CoordinateOperationStrategyFactory(IReferenceCollectionContainer collectionContainer)
         {
             if (collectionContainer == null)
-                throw new ArgumentNullException(nameof(collectionContainer), Messages.CollectionContainerIsNull);
+                throw new ArgumentNullException(nameof(collectionContainer), ReferenceMessages.CollectionContainerIsNull);
 
             this.collectionContainer = collectionContainer;
         }
@@ -111,7 +111,7 @@ namespace ELTE.AEGIS.Reference.Strategies
                 return new CompoundCoordinateConversionStrategy(conversionToGeographic, transformation, conversionFromGeographic);
             }
 
-            throw new NotSupportedException(Messages.ConversionDoesNotExistBetweenReferenceSystems);
+            throw new NotSupportedException(ReferenceMessages.ConversionDoesNotExistBetweenReferenceSystems);
         }
 
         /// <summary>

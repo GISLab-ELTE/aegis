@@ -21,17 +21,11 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopBooleanOperationResult : HadoopFileSystemOperationResult
     {
-        #region Public properties
-
         /// <summary>
         /// Gets or sets a value indicating whether the operation was successful.
         /// </summary>
         /// <value><c>true</c> if the operation was successful; otherwise <c>false</c>.</value>
         public Boolean Success { get; set; }
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopBooleanOperationResult" /> class.
@@ -48,7 +42,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
             this.Success = success;
         }
-
-        #endregion
     }
 }

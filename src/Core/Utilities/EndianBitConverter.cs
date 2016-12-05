@@ -17,6 +17,7 @@ namespace ELTE.AEGIS.Utilities
     using System;
     using ELTE.AEGIS.Collections.Resources;
     using ELTE.AEGIS.Numerics;
+    using Resources;
 
     /// <summary>
     /// Converts base data types to an array of bytes, and an array of bytes to base data types with respect to byte-order.
@@ -57,13 +58,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int16 ToInt16(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToInt16(array, startIndex);
         }
@@ -98,13 +99,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int16 ToInt16(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -146,13 +147,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int32 ToInt32(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToInt32(array, startIndex);
         }
@@ -187,13 +188,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int32 ToInt32(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -235,13 +236,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int64 ToInt64(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToInt64(array, startIndex);
         }
@@ -276,13 +277,13 @@ namespace ELTE.AEGIS.Utilities
         public static Int64 ToInt64(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -324,13 +325,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt16 ToUInt16(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToUInt16(array, startIndex);
         }
@@ -365,13 +366,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt16 ToUInt16(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -413,13 +414,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt32 ToUInt32(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToUInt32(array, startIndex);
         }
@@ -454,13 +455,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt32 ToUInt32(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -502,13 +503,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt64 ToUInt64(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToUInt64(array, startIndex);
         }
@@ -543,13 +544,13 @@ namespace ELTE.AEGIS.Utilities
         public static UInt64 ToUInt64(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -591,13 +592,13 @@ namespace ELTE.AEGIS.Utilities
         public static Single ToSingle(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Single) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToSingle(array, startIndex);
         }
@@ -632,13 +633,13 @@ namespace ELTE.AEGIS.Utilities
         public static Single ToSingle(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Single) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -680,13 +681,13 @@ namespace ELTE.AEGIS.Utilities
         public static Double ToDouble(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return BitConverter.ToDouble(array, startIndex);
         }
@@ -721,13 +722,13 @@ namespace ELTE.AEGIS.Utilities
         public static Double ToDouble(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -769,13 +770,13 @@ namespace ELTE.AEGIS.Utilities
         public static Rational ToRational(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             return new Rational(BitConverter.ToInt32(array, startIndex), BitConverter.ToInt32(array, startIndex + sizeof(Int32)));
         }
@@ -809,13 +810,13 @@ namespace ELTE.AEGIS.Utilities
         public static Rational ToRational(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + 2 * sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -867,17 +868,17 @@ namespace ELTE.AEGIS.Utilities
         public static Coordinate ToCoordinate(Byte[] array, Int32 startIndex, Int32 dimension)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
             if (startIndex + dimension * sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (dimension == 3)
             {
@@ -930,17 +931,17 @@ namespace ELTE.AEGIS.Utilities
         public static Coordinate ToCoordinate(Byte[] array, Int32 startIndex, Int32 dimension, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
             if (startIndex + dimension * sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             if (order != DefaultByteOrder)
             {
@@ -1271,9 +1272,9 @@ namespace ELTE.AEGIS.Utilities
         public static Byte[] GetBytes(Coordinate value, Int32 dimension)
         {
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
 
             Byte[] coordinateBytes = null;
             if (dimension == 3)
@@ -1320,9 +1321,9 @@ namespace ELTE.AEGIS.Utilities
         public static Byte[] GetBytes(Coordinate value, Int32 dimension, ByteOrder order)
         {
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.Messages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
 
             Byte[] coordinateBytes = null;
             if (order != DefaultByteOrder)
@@ -1407,13 +1408,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int16 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1437,13 +1438,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int16 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1469,13 +1470,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int32 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1499,13 +1500,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int32 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1531,13 +1532,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int64 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1561,13 +1562,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Int64 value, Byte[] array, Int32 startIndex, ByteOrder order = ByteOrder.LittleEndian)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Int64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1593,13 +1594,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt16 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1623,13 +1624,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt16 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt16) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1655,13 +1656,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt32 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1685,13 +1686,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt32 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1717,13 +1718,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt64 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1747,13 +1748,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(UInt64 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(UInt64) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1779,13 +1780,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Single value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Single) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1809,13 +1810,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Single value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Single) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1841,13 +1842,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Double value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1871,13 +1872,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Double value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Double) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -1903,13 +1904,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Rational value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + 2 * sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value.Numerator);
 
@@ -1937,13 +1938,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Rational value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + 2 * sizeof(Int32) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value.Numerator);
 
@@ -1976,13 +1977,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Char value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Char) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -2006,13 +2007,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(Char value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + sizeof(Char) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             Byte[] valueArray = BitConverter.GetBytes(value);
 
@@ -2038,13 +2039,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(String value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + value.Length * sizeof(Char) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             for (Int32 i = 0; i < value.Length; i++)
             {
@@ -2070,13 +2071,13 @@ namespace ELTE.AEGIS.Utilities
         public static void CopyBytes(String value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.StartingIndexIsEqualToOrGraterThanArrayLength);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (startIndex + value.Length * sizeof(Char) > array.Length)
-                throw new ArgumentException(Messages.ArraySizeLessThanRequired, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
             for (Int32 i = 0; i < value.Length; i++)
             {

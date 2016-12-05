@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::1027", "Lambert Azimuthal Equal Area (Spherical) Projection")]
     public class LambertAzimuthalEqualAreaSphericalProjection : LambertAzimuthalEqualAreaProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertAzimuthalEqualAreaSphericalProjection" /> class.
         /// </summary>
@@ -66,7 +64,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.LambertAzimuthalEqualAreaSphericalProjection, parameters, ellipsoid, areaOfUse)
         {
         }
-
-        #endregion
     }
 }

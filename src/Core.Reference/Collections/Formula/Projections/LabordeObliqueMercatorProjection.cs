@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9813", "Laborde Oblique Mercator")]
     public class LabordeObliqueMercatorProjection : ObliqueMercatorProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Epsilon (for terminating the iteration).
         /// </summary>
@@ -56,10 +54,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double r;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LabordeObliqueMercatorProjection" /> class.
@@ -117,10 +111,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.c = Math.Log(Math.Tan(Math.PI / 4 + this.fiS / 2)) -
                  this.b * Math.Log(Math.Tan(Math.PI / 4 + this.latitudeOfProjectionCentre / 2) * Math.Pow((1 - ellipsoid.Eccentricity * Math.Sin(this.latitudeOfProjectionCentre)) / (1 + ellipsoid.Eccentricity * Math.Sin(this.latitudeOfProjectionCentre)), ellipsoid.Eccentricity / 2));
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -212,7 +202,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

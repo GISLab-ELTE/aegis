@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class ShamosHoeyAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests intersection evaluation of the <see cref="ShamosHoeyAlgorithm" /> method.
         /// </summary>
@@ -124,7 +122,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
         }
-
-        #endregion
     }
 }

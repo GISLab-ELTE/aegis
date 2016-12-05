@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public static class EllipsoidComputations
     {
-        #region Transformations
-
         /// <summary>
         /// Transforms the ellipsoid to the specified unit of measurement.
         /// </summary>
@@ -41,11 +39,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid ToUnit(this Ellipsoid ellipsoid, UnitOfMeasurement unitOfMeasurement)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
             if (unitOfMeasurement == null)
-                throw new ArgumentNullException(nameof(unitOfMeasurement), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unitOfMeasurement), ReferenceMessages.UnitIsNull);
             if (unitOfMeasurement.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.UnitIsNotLength, nameof(unitOfMeasurement));
+                throw new ArgumentException(ReferenceMessages.UnitIsNotLength, nameof(unitOfMeasurement));
 
             if (ellipsoid.SemiMajorAxis.Unit.Equals(unitOfMeasurement))
                 return ellipsoid;
@@ -61,10 +59,6 @@ namespace ELTE.AEGIS.Reference
                                                        new Length(ellipsoid.SemiMajorAxis.GetValue(unitOfMeasurement), unitOfMeasurement), ellipsoid.InverseFattening);
             }
         }
-
-        #endregion
-
-        #region Latitude queries
 
         /// <summary>
         /// Determines the geocentric latitude at a specified geodetic latitude.
@@ -88,7 +82,7 @@ namespace ELTE.AEGIS.Reference
         public static Double GetGeocentricLatitude(this Ellipsoid ellipsoid, Double geodeticLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             if (geodeticLatitude > Math.PI / 2 || geodeticLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -119,7 +113,7 @@ namespace ELTE.AEGIS.Reference
         public static Double GetReducedLatitude(this Ellipsoid ellipsoid, Double geodeticLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             if (geodeticLatitude > Math.PI / 2 || geodeticLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -129,10 +123,6 @@ namespace ELTE.AEGIS.Reference
             else
                 return ellipsoid.SemiMinorAxis.Value / ellipsoid.SemiMajorAxis.Value * Math.Tan(geodeticLatitude);
         }
-
-        #endregion
-
-        #region Latitude based queries
 
         /// <summary>
         /// Determines the distances the of parallel curvature at a specified geodetic latitude.
@@ -157,7 +147,7 @@ namespace ELTE.AEGIS.Reference
         public static Double DistanceOfParalellCurvature(this Ellipsoid ellipsoid, Double latitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             if (latitude > Math.PI / 2 || latitude < -Math.PI / 2)
                 return Double.NaN;
@@ -197,7 +187,7 @@ namespace ELTE.AEGIS.Reference
         public static Double LengthOfVerticalCurvature(this Ellipsoid ellipsoid, Double startingLatitude, Double endingLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             if (startingLatitude > Math.PI / 2 || startingLatitude < -Math.PI / 2 || endingLatitude > Math.PI / 2 || endingLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -207,10 +197,6 @@ namespace ELTE.AEGIS.Reference
             else
                 return Numerics.Integral.SimpsonsMethod.ComputeIntegral(latitude => ellipsoid.RadiusOfMeridianCurvature(latitude), startingLatitude, endingLatitude);
         }
-
-        #endregion
-
-        #region Latitude and longitude based queries
 
         /// <summary>
         /// Determines the length of parallel curvature at a specified latitude.
@@ -237,7 +223,7 @@ namespace ELTE.AEGIS.Reference
         public static Length LengthOfParalellCurvature(this Ellipsoid ellipsoid, Angle latitude, Angle longitudeDifference)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             return ellipsoid.RadiusOfParalellCurvature(latitude) * longitudeDifference.BaseValue;
         }
@@ -267,14 +253,10 @@ namespace ELTE.AEGIS.Reference
         public static Double LengthOfParalellCurvature(this Ellipsoid ellipsoid, Double latitude, Double longitudeDifference)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             return ellipsoid.RadiusOfParalellCurvature(latitude) * longitudeDifference;
         }
-
-        #endregion
-
-        #region Displacement queries
 
         /// <summary>
         /// Determines a destination geodetic coordinate based on starting coordinate and vector.
@@ -293,11 +275,11 @@ namespace ELTE.AEGIS.Reference
         public static GeoCoordinate GetCoordinate(this Ellipsoid ellipsoid, GeoCoordinate sourceCoordinate, GeoVector vector)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
             if (sourceCoordinate == null)
-                throw new ArgumentNullException(nameof(sourceCoordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(sourceCoordinate), ReferenceMessages.CoordinateIsNull);
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), ReferenceMessages.VectorIsNull);
 
             if (!vector.IsValid)
                 return GeoCoordinate.Undefined;
@@ -404,14 +386,14 @@ namespace ELTE.AEGIS.Reference
         public static GeoVector GetVector(this Ellipsoid ellipsoid, GeoCoordinate source, GeoCoordinate destination)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceCoordinateIsNull);
+                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateIsNull);
             if (destination == null)
-                throw new ArgumentNullException(nameof(destination), Messages.DestinationCoordinateIsNull);
+                throw new ArgumentNullException(nameof(destination), ReferenceMessages.DestinationCoordinateIsNull);
 
             if (ellipsoid.IsSphere)
-                throw new NotSupportedException(Messages.VectorComputationOnlySupportedOnSphere);
+                throw new NotSupportedException(ReferenceMessages.VectorComputationOnlySupportedOnSphere);
 
             if (!source.IsValid || !destination.IsValid)
                 return GeoVector.Undefined;
@@ -454,7 +436,5 @@ namespace ELTE.AEGIS.Reference
 
             return new GeoVector(azimuth, dist);
         }
-
-        #endregion
     }
 }

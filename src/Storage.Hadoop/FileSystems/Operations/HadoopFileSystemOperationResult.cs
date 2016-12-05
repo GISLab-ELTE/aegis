@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public abstract class HadoopFileSystemOperationResult
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileSystemOperationResult" /> class.
         /// </summary>
@@ -37,16 +35,10 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             this.Request = request;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets or sets the request of the operation.
         /// </summary>
         /// <value>The request of the operation.</value>
         public String Request { get; set; }
-
-        #endregion
     }
 }

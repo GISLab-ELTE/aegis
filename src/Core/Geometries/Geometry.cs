@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Geometries
     /// </remarks>
     public abstract class Geometry : IGeometry
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Geometry" /> class.
         /// </summary>
@@ -47,14 +45,10 @@ namespace ELTE.AEGIS.Geometries
         protected Geometry(IGeometryFactory factory)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
 
             this.Factory = factory;
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the factory of the geometry.
@@ -128,10 +122,6 @@ namespace ELTE.AEGIS.Geometries
         /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
         public abstract Boolean IsValid { get; }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -141,17 +131,11 @@ namespace ELTE.AEGIS.Geometries
             return this.ToString(CultureInfo.InvariantCulture);
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
         public abstract String ToString(IFormatProvider provider);
-
-        #endregion
     }
 }

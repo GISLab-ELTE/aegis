@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9621", "Similarity Transformation")]
     public class SimilarityTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// Ordinate 1 of evaluation point in target CRS.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double m;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimilarityTransformation" /> class.
@@ -109,10 +103,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.m = 1 + this.scaleDifference * 1E-6;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -144,7 +134,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new Coordinate(x, y);
         }
-
-        #endregion
     }
 }

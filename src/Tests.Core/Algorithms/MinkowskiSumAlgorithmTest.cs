@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class MinkowskiSumAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="Buffer" /> method.
         /// </summary>
@@ -406,6 +404,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Should.Throw<ArgumentNullException>(() => MinkowskiSumAlgorithm.Buffer((IBasicPolygon)null, new BasicPolygon(buffer)));
             Should.Throw<ArgumentNullException>(() => MinkowskiSumAlgorithm.Buffer(new BasicPolygon(sourceShell, sourceHoles), null));
         }
-        #endregion
     }
 }

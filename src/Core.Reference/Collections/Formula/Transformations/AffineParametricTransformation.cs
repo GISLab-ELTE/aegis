@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9624 ", "Affine parametric transformation")]
     public class AffineParametricTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// A0 parameter.
         /// </summary>
@@ -84,10 +82,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Inverted A0 parameter.
         /// </summary>
         private readonly Double b2Inv;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AffineParametricTransformation" /> class.
@@ -153,10 +147,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.b2Inv = this.a1 / d;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -176,7 +166,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return new Coordinate(this.a0Inv + this.a1Inv * coordinate.X + this.a2Inv * coordinate.Y, this.b0Inv + this.b1Inv * coordinate.X + this.b2Inv * coordinate.Y);
         }
-
-        #endregion
     }
 }

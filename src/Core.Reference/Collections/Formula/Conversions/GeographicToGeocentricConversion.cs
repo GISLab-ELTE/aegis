@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9602", "Geographic/geocentric conversion")]
     public class GeographicToGeocentricConversion : CoordinateConversion<GeoCoordinate, Coordinate>
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeographicToGeocentricConversion" /> class.
         /// </summary>
@@ -60,24 +58,16 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeographicToGeocentricConversion, null)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             this.Ellipsoid = ellipsoid;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid used by the operation.</value>
         public Ellipsoid Ellipsoid { get; private set; }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -115,7 +105,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda, height);
         }
-
-        #endregion
     }
 }

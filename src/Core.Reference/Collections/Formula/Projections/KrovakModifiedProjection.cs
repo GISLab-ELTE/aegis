@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::1042", "Krovak Modified Projection")]
     public class KrovakModifiedProjection : KrovakProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Ordinate 1 of evaluation point.
         /// </summary>
@@ -85,10 +83,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// C10 parameter.
         /// </summary>
         protected readonly Double C10;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KrovakModifiedProjection" /> class.
@@ -163,10 +157,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.C10 = this.GetParameterValue(CoordinateOperationParameters.C10);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -203,7 +193,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return base.ComputeReverse(new Coordinate(coordinate.X + dY, coordinate.Y + dX));
         }
-
-        #endregion
     }
 }

@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public struct Angle : IEquatable<Angle>, IComparable<Angle>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the zero <see cref="Angle" /> value. This field is read-only.
         /// </summary>
@@ -62,18 +60,10 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public static readonly Angle Circle = Angle.FromDegree(360);
 
-        #endregion
-
-        #region Private constants
-
         /// <summary>
         /// The string format for angles. This field is constant.
         /// </summary>
         private const String AngleStringFormat = "{0}{1}";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The value.
@@ -85,10 +75,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private readonly UnitOfMeasurement unit;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Angle" /> struct.
         /// </summary>
@@ -98,15 +84,11 @@ namespace ELTE.AEGIS.Reference
         public Angle(Double value, UnitOfMeasurement unit)
         {
             if (unit != null && unit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             this.value = value;
             this.unit = unit ?? UnitsOfMeasurement.Radian;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the value of the angle.
@@ -123,10 +105,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public UnitOfMeasurement Unit { get { return this.unit; } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Gets the value using the specified unit of measurement.
         /// </summary>
@@ -137,9 +115,9 @@ namespace ELTE.AEGIS.Reference
         public Double GetValue(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (unit == this.unit)
                 return this.value;
@@ -157,9 +135,9 @@ namespace ELTE.AEGIS.Reference
         public String ToString(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (this.Unit != unit)
             {
@@ -181,19 +159,15 @@ namespace ELTE.AEGIS.Reference
         public Angle ToUnit(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
             if (unit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.UnitOfMeasurementIsInvalid, nameof(unit));
+                throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
             if (unit == this.unit)
                 return this;
 
             return new Angle(this.BaseValue / unit.BaseMultiple, unit);
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified other angle are equal.
@@ -210,10 +184,6 @@ namespace ELTE.AEGIS.Reference
             return this.BaseValue.Equals(other.BaseValue);
         }
 
-        #endregion
-
-        #region IComparable methods
-
         /// <summary>
         /// Compares the current instance with another angle.
         /// </summary>
@@ -223,10 +193,6 @@ namespace ELTE.AEGIS.Reference
         {
             return this.BaseValue.CompareTo(other.BaseValue);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -260,10 +226,6 @@ namespace ELTE.AEGIS.Reference
         {
             return String.Format(CultureInfo.InvariantCulture, AngleStringFormat, this.Value, this.Unit.Symbol);
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Sums the specified angle instances.
@@ -422,10 +384,6 @@ namespace ELTE.AEGIS.Reference
             return new Angle(value, UnitsOfMeasurement.Radian);
         }
 
-        #endregion
-
-        #region Public static factory methods
-
         /// <summary>
         /// Initializes a new instance of the angle struct from the value specified in <see cref="UnitsOfMeasurement.ArcMinute" />.
         /// </summary>
@@ -555,10 +513,6 @@ namespace ELTE.AEGIS.Reference
             return new Angle(value, UnitsOfMeasurement.Radian);
         }
 
-        #endregion
-
-        #region Public static query methods
-
         /// <summary>
         /// Determines whether the specified angle instance is valid.
         /// </summary>
@@ -578,7 +532,7 @@ namespace ELTE.AEGIS.Reference
         public static Angle Max(params Angle[] angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), Messages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
             if (angles.Length == 0)
                 return Angle.Undefined;
 
@@ -594,7 +548,7 @@ namespace ELTE.AEGIS.Reference
         public static Angle Max(IEnumerable<Angle> angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), Messages.AngleCollectionIsNull);
+                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleCollectionIsNull);
             if (!angles.Any())
                 return Angle.Undefined;
 
@@ -610,7 +564,7 @@ namespace ELTE.AEGIS.Reference
         public static Angle Min(params Angle[] angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), Messages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
             if (angles.Length == 0)
                 return Angle.Undefined;
 
@@ -626,13 +580,11 @@ namespace ELTE.AEGIS.Reference
         public static Angle Min(IEnumerable<Angle> angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), Messages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
             if (!angles.Any())
                 return Angle.Undefined;
 
             return new Angle(angles.Min(angle => angle.BaseValue), UnitsOfMeasurement.Radian);
         }
-
-        #endregion
     }
 }

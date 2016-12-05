@@ -31,8 +31,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class BentleyFaustPreparataAlgorithm
     {
-        #region Private types
-
         /// <summary>
         /// Represents a range bin.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Algorithms
             public Int32? Max { get; set; }
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The approximate convex hull of the source.
         /// </summary>
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BentleyFaustPreparataAlgorithm" /> class.
         /// </summary>
@@ -76,16 +66,12 @@ namespace ELTE.AEGIS.Algorithms
         public BentleyFaustPreparataAlgorithm(IReadOnlyList<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.Source = source;
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -112,10 +98,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the approximate convex hull.
@@ -298,10 +280,6 @@ namespace ELTE.AEGIS.Algorithms
             this.hasResult = true;
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Computes the approximate convex hull of the specified polygon.
         /// </summary>
@@ -311,7 +289,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IBasicPolygon source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new BentleyFaustPreparataAlgorithm(source.Shell, PrecisionModel.Default).Result;
         }
@@ -326,7 +304,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IBasicPolygon source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new BentleyFaustPreparataAlgorithm(source.Shell, precisionModel).Result;
         }
@@ -340,7 +318,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new BentleyFaustPreparataAlgorithm(new List<Coordinate>(source), PrecisionModel.Default).Result;
         }
@@ -355,7 +333,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new BentleyFaustPreparataAlgorithm(new List<Coordinate>(source), precisionModel).Result;
         }
@@ -382,7 +360,5 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new BentleyFaustPreparataAlgorithm(source, precisionModel).Result;
         }
-
-        #endregion
     }
 }

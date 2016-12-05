@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Reference.Collections
     /// </summary>
     public class CoordinateOperationParameterCollection : IReferenceCollection<CoordinateOperationParameter>
     {
-        #region private fields
-
         /// <summary>
         /// The array of all <see cref="CoordinateOperationParameter" /> instances.
         /// </summary>
         private readonly SortedDictionary<String, CoordinateOperationParameter> collection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateOperationParameterCollection" /> class.
@@ -50,10 +44,6 @@ namespace ELTE.AEGIS.Reference.Collections
                 this.collection.Add(unit.Identifier, unit);
             }
         }
-
-        #endregion
-
-        #region IReferenceCollection properties
 
         /// <summary>
         /// Gets the instance with the specified authority and code.
@@ -91,10 +81,6 @@ namespace ELTE.AEGIS.Reference.Collections
             }
         }
 
-        #endregion
-
-        #region IReferenceCollection methods
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -104,7 +90,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationParameter> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             return this.collection.Values.WithIdentifier(identifier);
         }
@@ -118,7 +104,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationParameter> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             return this.collection.Values.WithName(name);
         }
@@ -132,7 +118,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationParameter> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             return this.collection.Values.WithMatchingIdentifier(identifier);
         }
@@ -146,14 +132,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationParameter> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             return this.collection.Values.WithMatchingName(name);
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -174,7 +156,5 @@ namespace ELTE.AEGIS.Reference.Collections
             foreach (CoordinateOperationParameter parameter in this.collection.Values)
                 yield return parameter;
         }
-
-        #endregion
     }
 }

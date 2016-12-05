@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public sealed class PresortedEventQueue
     {
-        #region Private fields
-
         /// <summary>
         /// The coordinate comparer.
         /// </summary>
@@ -45,10 +43,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         private Int32 eventIndex;
 
-        #endregion
-
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PresortedEventQueue" /> class.
         /// </summary>
@@ -57,7 +51,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public PresortedEventQueue(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.comparer = new CoordinateComparer();
             this.edgeCount = 0;
@@ -77,7 +71,7 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         public PresortedEventQueue(IEnumerable<IEnumerable<Coordinate>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.comparer = new CoordinateComparer();
             this.edgeCount = 0;
@@ -93,10 +87,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
             this.eventList.Sort(new EventComparer());
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Retrieves the next event from the queue.
         /// </summary>
@@ -105,10 +95,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         {
             return (this.eventIndex < this.eventList.Count) ? this.eventList[this.eventIndex++] : null;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Appends the coordinates to the queue.
@@ -154,7 +140,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
                 this.edgeCount++;
             }
         }
-
-        #endregion
     }
 }

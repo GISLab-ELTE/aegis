@@ -22,8 +22,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class CoordinateComparer : IComparer<Coordinate>
     {
-        #region IComparer methods
-
         /// <summary>
         /// Compares two <see cref="Coordinate" /> instances and returns a value indicating whether one is less than, equal to, or greater than the other.
         /// </summary>
@@ -48,7 +46,5 @@ namespace ELTE.AEGIS
                 return -1;
             return x.Y > y.Y ? 1 : 0;
         }
-
-        #endregion
     }
 }

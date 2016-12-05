@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1029", "Equidistant Cylindrical (Spherical)")]
     public class EquidistantCylindricalSphericalProjection : EquidistantCylindricalProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="EquidistantCylindricalSphericalProjection" /> class.
         /// </summary>
@@ -67,7 +65,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.EquidistantCylindricalSphericalProjection, parameters, ellipsoid, areaOfUse)
         {
         }
-
-        #endregion
     }
 }

@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public abstract class Surface : Geometry, ISurface
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Surface" /> class.
         /// </summary>
@@ -44,19 +42,11 @@ namespace ELTE.AEGIS.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the surface.
         /// </summary>
         /// <value><c>2</c>, which is the defined dimension of a surface.</value>
         public override sealed Int32 Dimension { get { return 2; } }
-
-        #endregion
-
-        #region ISurface properties
 
         /// <summary>
         /// Gets a value indicating whether the surface is convex.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         /// <value>The perimeter of the surface.</value>
         public abstract Double Perimeter { get; }
-
-        #endregion
     }
 }

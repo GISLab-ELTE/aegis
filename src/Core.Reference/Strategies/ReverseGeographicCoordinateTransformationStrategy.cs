@@ -53,11 +53,11 @@ namespace ELTE.AEGIS.Reference.Strategies
         public ReverseGeographicCoordinateTransformationStrategy(GeographicCoordinateReferenceSystem source, GeographicCoordinateReferenceSystem target, CoordinateTransformation<GeoCoordinate> transformation)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceReferenceSystemIsNull);
             if (target == null)
-                throw new ArgumentNullException(nameof(target), Messages.TargetReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetReferenceSystemIsNull);
             if (transformation == null)
-                throw new ArgumentNullException(nameof(transformation), Messages.TransformationIsNull);
+                throw new ArgumentNullException(nameof(transformation), ReferenceMessages.TransformationIsNull);
 
             this.source = source;
             this.target = target;

@@ -26,7 +26,7 @@ namespace ELTE.AEGIS.Collections
     /// </summary>
     public static class Collection
     {
-        #region Private types
+        
 
         /// <summary>
         /// Represents a proxy list for querying a range within a list.
@@ -34,7 +34,7 @@ namespace ELTE.AEGIS.Collections
         /// <typeparam name="T">The type of the objects within the list.</typeparam>
         private class ProxyRangeReadOnlyList<T> : IReadOnlyList<T>
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The source list.
@@ -51,9 +51,9 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private Int32 count;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyRangeReadOnlyList{T}" /> class.
@@ -68,9 +68,9 @@ namespace ELTE.AEGIS.Collections
                 this.count = Math.Min(count, source.Count - startIndex);
             }
 
-            #endregion
+            
 
-            #region IReadOnlyList properties
+            
 
             /// <summary>
             /// Gets or sets the element at the specified index.
@@ -88,9 +88,9 @@ namespace ELTE.AEGIS.Collections
                 get
                 {
                     if (index < 0)
-                        throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                        throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                     if (index >= this.count)
-                        throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanCount);
+                        throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanCount);
 
                     return this.source[index - this.startIndex];
                 }
@@ -108,9 +108,9 @@ namespace ELTE.AEGIS.Collections
                 }
             }
 
-            #endregion
+            
 
-            #region IEnumerable methods
+            
 
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
@@ -131,7 +131,7 @@ namespace ELTE.AEGIS.Collections
                 return this.GetEnumerator();
             }
 
-            #endregion
+            
         }
 
         /// <summary>
@@ -140,16 +140,16 @@ namespace ELTE.AEGIS.Collections
         /// <typeparam name="T">The type of the objects within the list.</typeparam>
         private class ProxyReverseReadOnlyList<T> : IReadOnlyList<T>
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The source list.
             /// </summary>
             private IReadOnlyList<T> source;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyReverseReadOnlyList{T}" /> class.
@@ -160,9 +160,9 @@ namespace ELTE.AEGIS.Collections
                 this.source = source;
             }
 
-            #endregion
+            
 
-            #region IReadOnlyList properties
+            
 
             /// <summary>
             /// Gets or sets the element at the specified index.
@@ -195,9 +195,9 @@ namespace ELTE.AEGIS.Collections
                 }
             }
 
-            #endregion
+            
 
-            #region IEnumerable methods
+            
 
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
@@ -218,12 +218,12 @@ namespace ELTE.AEGIS.Collections
                 return this.GetEnumerator();
             }
 
-            #endregion
+            
         }
 
-        #endregion
+        
 
-        #region Number generator methods
+        
 
         /// <summary>
         /// Generates a collection of numbers.
@@ -236,7 +236,7 @@ namespace ELTE.AEGIS.Collections
         public static IEnumerable<Int32> GenerateNumbers(Int32 firstBoundary, Int32 secondBoundary, Int32 count)
         {
             if (count < 1)
-                throw new ArgumentOutOfRangeException(nameof(count), Messages.CountIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(count), CollectionMessages.CountIsLessThan1);
 
             if (firstBoundary > secondBoundary)
             {
@@ -251,9 +251,9 @@ namespace ELTE.AEGIS.Collections
                 yield return Math.Min((Int32)Math.Round(firstBoundary + index * delta), secondBoundary);
         }
 
-        #endregion
+        
 
-        #region Extension methods to collections
+        
 
         /// <summary>
         /// Determines whether a sequence contains any non-null elements.
@@ -265,7 +265,7 @@ namespace ELTE.AEGIS.Collections
         public static Boolean AnyElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -290,7 +290,7 @@ namespace ELTE.AEGIS.Collections
         public static T FirstElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -301,7 +301,7 @@ namespace ELTE.AEGIS.Collections
                 }
             }
 
-            throw new ArgumentException(Messages.CollectionIsEmpty, nameof(collection));
+            throw new ArgumentException(CollectionMessages.CollectionIsEmpty, nameof(collection));
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace ELTE.AEGIS.Collections
         public static T FirstOrDefaultElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -339,7 +339,7 @@ namespace ELTE.AEGIS.Collections
         public static T LastElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             T last = default(T);
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
@@ -354,7 +354,7 @@ namespace ELTE.AEGIS.Collections
             if (last != null)
                 return last;
 
-            throw new ArgumentException(Messages.CollectionIsEmpty, nameof(collection));
+            throw new ArgumentException(CollectionMessages.CollectionIsEmpty, nameof(collection));
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace ELTE.AEGIS.Collections
         public static IEnumerable<T> Elements<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -389,7 +389,7 @@ namespace ELTE.AEGIS.Collections
         public static Int32 ElementCount<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             Int32 count = 0;
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
@@ -414,7 +414,7 @@ namespace ELTE.AEGIS.Collections
         public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, T item)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -437,7 +437,7 @@ namespace ELTE.AEGIS.Collections
         public static IReadOnlyList<T> AsReadOnly<T>(this IList<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             IReadOnlyList<T> readOnlyCollection = collection as IReadOnlyList<T>;
             if (readOnlyCollection != null)
@@ -457,7 +457,7 @@ namespace ELTE.AEGIS.Collections
         public static IReadOnlyDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
 
             IReadOnlyDictionary<TKey, TValue> readOnlyDictionary = collection as IReadOnlyDictionary<TKey, TValue>;
             if (readOnlyDictionary != null)
@@ -476,7 +476,7 @@ namespace ELTE.AEGIS.Collections
         public static ISet<T> AsReadOnly<T>(this ISet<T> set)
         {
             if (set == null)
-                throw new ArgumentNullException(nameof(set), Messages.SetIsNull);
+                throw new ArgumentNullException(nameof(set), CollectionMessages.SetIsNull);
 
             if (set.IsReadOnly)
                 return set;
@@ -499,9 +499,9 @@ namespace ELTE.AEGIS.Collections
         public static Int32 IndexOf<T>(this IEnumerable<T> collection, Predicate<T> match)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             if (match == null)
-                throw new ArgumentNullException(nameof(match), Messages.PredicateIsNull);
+                throw new ArgumentNullException(nameof(match), CollectionMessages.PredicateIsNull);
 
             Int32 index = 0;
             foreach (T item in collection)
@@ -529,9 +529,9 @@ namespace ELTE.AEGIS.Collections
         public static IEnumerable<Int32> IndexesOf<T>(this IEnumerable<T> collection, Predicate<T> match)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             if (match == null)
-                throw new ArgumentNullException(nameof(match), Messages.PredicateIsNull);
+                throw new ArgumentNullException(nameof(match), CollectionMessages.PredicateIsNull);
 
             Int32 index = 0;
             foreach (T item in collection)
@@ -560,14 +560,14 @@ namespace ELTE.AEGIS.Collections
             where TResult : IComparable<TResult>
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             if (selector == null)
-                throw new ArgumentNullException(nameof(selector), Messages.SelectorIsNull);
+                throw new ArgumentNullException(nameof(selector), CollectionMessages.SelectorIsNull);
 
             IEnumerator<TSource> enumerator = collection.GetEnumerator();
 
             if (!enumerator.MoveNext())
-                throw new ArgumentException(Messages.CollectionIsEmpty, nameof(collection));
+                throw new ArgumentException(CollectionMessages.CollectionIsEmpty, nameof(collection));
 
             Int32 index = 0, maxIndex = 0;
             TResult max = selector(enumerator.Current);
@@ -605,14 +605,14 @@ namespace ELTE.AEGIS.Collections
             where TResult : IComparable<TResult>
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             if (selector == null)
-                throw new ArgumentNullException(nameof(selector), Messages.SelectorIsNull);
+                throw new ArgumentNullException(nameof(selector), CollectionMessages.SelectorIsNull);
 
             IEnumerator<TSource> enumerator = collection.GetEnumerator();
 
             if (!enumerator.MoveNext())
-                throw new ArgumentException(Messages.CollectionIsEmpty, nameof(collection));
+                throw new ArgumentException(CollectionMessages.CollectionIsEmpty, nameof(collection));
 
             Int32 index = 0, minIndex = 0;
             TResult min = selector(enumerator.Current);
@@ -642,7 +642,7 @@ namespace ELTE.AEGIS.Collections
         public static IReadOnlyList<T> Reverse<T>(this IReadOnlyList<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             return new ProxyReverseReadOnlyList<T>(collection);
         }
 
@@ -677,15 +677,15 @@ namespace ELTE.AEGIS.Collections
         public static IReadOnlyList<T> GetRange<T>(this IReadOnlyList<T> collection, Int32 startIndex, Int32 count)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
             if (startIndex > collection.Count)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), Messages.IndexIsEqualToOrGreaterThanCount);
+                throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.IndexIsEqualToOrGreaterThanCount);
             if (count < 1)
-                throw new ArgumentOutOfRangeException(nameof(count), Messages.CountIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(count), CollectionMessages.CountIsLessThan1);
 
             return new ProxyRangeReadOnlyList<T>(collection, startIndex, count);
         }
 
-        #endregion
+        
     }
 }

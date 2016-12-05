@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class CoordinateSystemAxis : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateSystemAxis" /> class.
         /// </summary>
@@ -103,9 +101,9 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), Messages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
             if (maximum <= minimum)
-                throw new ArgumentException(Messages.MaximumIsEqualToOrLessThanMinimum, nameof(maximum));
+                throw new ArgumentException(ReferenceMessages.MaximumIsEqualToOrLessThanMinimum, nameof(maximum));
 
             this.Description = description ?? String.Empty;
             this.Direction = direction;
@@ -113,10 +111,6 @@ namespace ELTE.AEGIS.Reference
             this.Minimum = minimum;
             this.Maximum = maximum;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the description of the axis.
@@ -147,7 +141,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The maximum value normally allowed for this axis, in the unit for the axis.</value>
         public Double Maximum { get; private set; }
-
-        #endregion
     }
 }

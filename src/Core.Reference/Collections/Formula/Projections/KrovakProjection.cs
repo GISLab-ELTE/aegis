@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("AEGIS::9819", "Krovak Projection")]
     public class KrovakProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of projection centre.
         /// </summary>
@@ -90,10 +88,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double rO;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KrovakProjection" /> class.
@@ -170,10 +164,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.rO = this.scaleFactorOnPseudoStandardParallel * this.A / Math.Tan(this.latitudeOfPseudoStandardParallel);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -222,7 +212,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phiJ1, lambda);
         }
-
-        #endregion
     }
 }

@@ -36,8 +36,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class GreinerHormannAlgorithm
     {
-        #region Private types
-
         /// <summary>
         /// Defines the kinds of the intersection points.
         /// </summary>
@@ -72,8 +70,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private class Intersection
         {
-            #region Public properties
-
             /// <summary>
             /// Gets or sets the position of the intersection.
             /// </summary>
@@ -104,8 +100,6 @@ namespace ELTE.AEGIS.Algorithms
             /// Gets or sets the next intersection in the second subject polygon.
             /// </summary>
             public Intersection NextB { get; set; }
-
-            #endregion
         }
 
         /// <summary>
@@ -113,8 +107,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private class IntersectionCollection : KeyedCollection<Coordinate, Intersection>
         {
-            #region KeyedCollection methods
-
             /// <summary>
             /// Extracts the key from the specified element.
             /// </summary>
@@ -126,8 +118,6 @@ namespace ELTE.AEGIS.Algorithms
             {
                 return item.Position;
             }
-
-            #endregion
         }
 
         /// <summary>
@@ -135,8 +125,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private class PolygonClip
         {
-            #region Constructors
-
             /// <summary>
             /// Initializes a new instance of the <see cref="PolygonClip" /> class.
             /// </summary>
@@ -147,10 +135,6 @@ namespace ELTE.AEGIS.Algorithms
                 this.Holes = new List<IReadOnlyList<Coordinate>>();
             }
 
-            #endregion
-
-            #region Public properties
-
             /// <summary>
             /// Gets the shell of the clip.
             /// </summary>
@@ -160,10 +144,6 @@ namespace ELTE.AEGIS.Algorithms
             /// Gets the holes of the clip.
             /// </summary>
             public List<IReadOnlyList<Coordinate>> Holes { get; private set; }
-
-            #endregion
-
-            #region Public methods
 
             /// <summary>
             /// Adds a new hole to the polygon clip.
@@ -190,13 +170,7 @@ namespace ELTE.AEGIS.Algorithms
             {
                 return new BasicProxyPolygon(this.Shell, this.Holes);
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The first polygon.
@@ -279,10 +253,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean computeExternalClips;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GreinerHormannAlgorithm" /> class.
         /// </summary>
@@ -303,9 +273,9 @@ namespace ELTE.AEGIS.Algorithms
         public GreinerHormannAlgorithm(IBasicPolygon polygonA, IBasicPolygon polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (polygonA == null)
-                throw new ArgumentNullException(nameof(polygonA), Messages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonA), CoreMessages.FirstPolygonIsNull);
             if (polygonB == null)
-                throw new ArgumentNullException(nameof(polygonB), Messages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonB), CoreMessages.SecondPolygonIsNull);
 
             this.polygonA = polygonA;
             this.polygonB = polygonB;
@@ -334,9 +304,9 @@ namespace ELTE.AEGIS.Algorithms
         public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> polygonA, IReadOnlyList<Coordinate> polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (polygonA == null)
-                throw new ArgumentNullException(nameof(polygonA), Messages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonA), CoreMessages.FirstPolygonIsNull);
             if (polygonB == null)
-                throw new ArgumentNullException(nameof(polygonB), Messages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonB), CoreMessages.SecondPolygonIsNull);
 
             this.polygonA = new BasicProxyPolygon(polygonA);
             this.polygonB = new BasicProxyPolygon(polygonB);
@@ -365,9 +335,9 @@ namespace ELTE.AEGIS.Algorithms
                                        Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (polygonAShell == null)
-                throw new ArgumentNullException(nameof(polygonAShell), Messages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonAShell), CoreMessages.FirstPolygonIsNull);
             if (polygonBShell == null)
-                throw new ArgumentNullException(nameof(polygonBShell), Messages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonBShell), CoreMessages.SecondPolygonIsNull);
 
             this.polygonA = new BasicProxyPolygon(polygonAShell, polygonAHoles);
             this.polygonB = new BasicProxyPolygon(polygonBShell, polygonBHoles);
@@ -375,10 +345,6 @@ namespace ELTE.AEGIS.Algorithms
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -482,10 +448,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Computes the result of the algorithm.
         /// </summary>
@@ -532,10 +494,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Computes the common parts of two subject polygons by clipping them.
@@ -669,10 +627,6 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new GreinerHormannAlgorithm(firstShell, firstHoles, secondShell, secondHoles, false, precisionModel).InternalPolygons;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Initializes the computation.
@@ -1248,7 +1202,5 @@ namespace ELTE.AEGIS.Algorithms
                     containerClip.AddHole(hole);
             }
         }
-
-        #endregion
     }
 }

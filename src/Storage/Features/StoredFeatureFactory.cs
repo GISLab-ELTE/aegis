@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Storage.Features
     /// </summary>
     public class StoredFeatureFactory : Factory, IStoredFeatureFactory
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredFeatureFactory" /> class.
         /// </summary>
@@ -35,7 +33,7 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeatureFactory(IFeatureDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.Driver = driver;
 
@@ -48,10 +46,6 @@ namespace ELTE.AEGIS.Storage.Features
             this.EnsureFactory<IStoredGeometryFactory>(geometryFactory);
         }
 
-        #endregion
-
-        #region IFeatureFactory properties
-
         /// <summary>
         /// Gets the attribute collection factory.
         /// </summary>
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS.Storage.Features
         /// </summary>
         /// <value>The geometry factory.</value>
         IGeometryFactory IFeatureFactory.GeometryFactory { get { return this.GetFactory<IGeometryFactory>(); } }
-
-        #endregion
-
-        #region IStoredFeatureFactory properties
 
         /// <summary>
         /// Gets the attribute collection factory.
@@ -85,10 +75,6 @@ namespace ELTE.AEGIS.Storage.Features
         /// </summary>
         /// <value>The feature driver of the factory.</value>
         public IFeatureDriver Driver { get; private set; }
-
-        #endregion
-
-        #region Factory methods for features
 
         /// <summary>
         /// Creates a feature.
@@ -136,11 +122,11 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), Messages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
             (this.GeometryFactory as IStoredGeometryFactory).CreateGeometry(identifier, geometry);
@@ -162,9 +148,9 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeature CreateFeature(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -180,7 +166,7 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeature CreateFeature(IFeature other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherFeatureIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherFeatureIsNull);
 
             if (other is IStoredFeature)
             {
@@ -194,10 +180,6 @@ namespace ELTE.AEGIS.Storage.Features
                 return new StoredFeature(this, other.Identifier);
             }
         }
-
-        #endregion
-
-        #region Factory methods for feature collections
 
         /// <summary>
         /// Creates a feature collection.
@@ -224,9 +206,9 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -251,11 +233,11 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), Messages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
             if (collection == null)
-                throw new ArgumentNullException(Messages.CollectionIsNull, nameof(collection));
+                throw new ArgumentNullException(CoreMessages.CollectionIsNull, nameof(collection));
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -268,7 +250,7 @@ namespace ELTE.AEGIS.Storage.Features
                     continue;
 
                 if (storedIdentifiers.Contains(feature.Identifier))
-                    throw new ArgumentException(nameof(collection), Messages.CollectionContainsDuplicateIdentifiers);
+                    throw new ArgumentException(nameof(collection), CoreMessages.CollectionContainsDuplicateIdentifiers);
 
                 featureCollection.Add(feature);
                 storedIdentifiers.Add(feature.Identifier);
@@ -292,9 +274,9 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
             StoredFeatureCollection featureCollection = new StoredFeatureCollection(this, identifier);
             List<String> storedIdentifiers = new List<String>();
@@ -305,7 +287,7 @@ namespace ELTE.AEGIS.Storage.Features
                     continue;
 
                 if (storedIdentifiers.Contains(feature.Identifier))
-                    throw new ArgumentException(Messages.CollectionContainsDuplicateIdentifiers, nameof(collection));
+                    throw new ArgumentException(CoreMessages.CollectionContainsDuplicateIdentifiers, nameof(collection));
 
                 featureCollection.Add(feature);
                 storedIdentifiers.Add(feature.Identifier);
@@ -323,11 +305,9 @@ namespace ELTE.AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(IFeatureCollection other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.CollectionIsNull);
 
             return this.CreateCollection(other.Identifier, other.Attributes, other);
         }
-
-        #endregion
     }
 }

@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Geometries
     /// </remarks>
     public class GeometryFactory : Factory, IGeometryFactory
     {
-        #region IGeometryFactory properties
-
         /// <summary>
         /// Gets the precision model used by the factory.
         /// </summary>
@@ -40,10 +38,6 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         /// <value>The reference system used by the factory.</value>
         public IReferenceSystem ReferenceSystem { get; private set; }
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeometryFactory" /> class.
@@ -73,10 +67,6 @@ namespace ELTE.AEGIS.Geometries
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.ReferenceSystem = referenceSystem;
         }
-
-        #endregion
-
-        #region Factory methods for points
 
         /// <summary>
         /// Creates a point.
@@ -120,14 +110,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual IPoint CreatePoint(IPoint other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
 
             return new Point(this, other.X, other.Y, other.Z);
         }
-
-        #endregion
-
-        #region Factory methods for line strings
 
         /// <summary>
         /// Creates a line string.
@@ -193,14 +179,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILineString CreateLineString(ILineString other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLineStringIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineStringIsNull);
 
             return new LineString(this, other);
         }
-
-        #endregion
-
-        #region Factory methods for lines
 
         /// <summary>
         /// Creates a line.
@@ -227,9 +209,9 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILine CreateLine(IPoint start, IPoint end)
         {
             if (start == null)
-                throw new ArgumentNullException(nameof(start), Messages.StartPointIsNull);
+                throw new ArgumentNullException(nameof(start), CoreMessages.StartPointIsNull);
             if (end == null)
-                throw new ArgumentNullException(nameof(end), Messages.EndPointIsNull);
+                throw new ArgumentNullException(nameof(end), CoreMessages.EndPointIsNull);
 
             return new Line(this, start.Coordinate, end.Coordinate);
         }
@@ -243,14 +225,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILine CreateLine(ILine other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
 
             return new Line(this, other.StartCoordinate, other.EndCoordinate);
         }
-
-        #endregion
-
-        #region Factory methods for linear rings
 
         /// <summary>
         /// Creates a linear ring.
@@ -281,7 +259,7 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new LinearRing(this, source.Select(point => point.Coordinate));
         }
@@ -306,7 +284,7 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             return new LinearRing(this, source.Select(point => point.Coordinate));
         }
@@ -320,14 +298,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(ILinearRing other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
 
             return new LinearRing(this, other);
         }
-
-        #endregion
-
-        #region Factory methods for polygons
 
         /// <summary>
         /// Creates a polygon.
@@ -349,7 +323,7 @@ namespace ELTE.AEGIS.Geometries
         public virtual IPolygon CreatePolygon(params IPoint[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return new Polygon(this, shell.Select(point => point.Coordinate), null);
         }
@@ -387,14 +361,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual IPolygon CreatePolygon(IPolygon other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
 
             return new Polygon(this, other.Shell, other.Holes);
         }
-
-        #endregion
-
-        #region Factory methods for triangles
 
         /// <summary>
         /// Creates a triangle.
@@ -425,11 +395,11 @@ namespace ELTE.AEGIS.Geometries
         public virtual ITriangle CreateTriangle(IPoint first, IPoint second, IPoint third)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
             if (third == null)
-                throw new ArgumentNullException(nameof(third), Messages.ThirdPointIsNull);
+                throw new ArgumentNullException(nameof(third), CoreMessages.ThirdPointIsNull);
 
             return new Triangle(this, first.Coordinate, second.Coordinate, third.Coordinate);
         }
@@ -443,14 +413,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual ITriangle CreateTriangle(ITriangle other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
 
             return new Triangle(this, other.Shell[0], other.Shell[1], other.Shell[2]);
         }
-
-        #endregion
-
-        #region Factory methods for geometry collections
 
         /// <summary>
         /// Creates a geometry collection.
@@ -516,14 +482,10 @@ namespace ELTE.AEGIS.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
 
             return new GeometryList<GeometryType>(this, (IEnumerable<GeometryType>)other);
         }
-
-        #endregion
-
-        #region Factory methods for multi points
 
         /// <summary>
         /// Creates a multi point.
@@ -563,14 +525,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual IMultiPoint CreateMultiPoint(IMultiPoint other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
 
             return new MultiPoint(this, other);
         }
-
-        #endregion
-
-        #region Factory methods for multi line strings
 
         /// <summary>
         /// Creates a multi line string.
@@ -600,14 +558,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual IMultiLineString CreateMultiLineString(IMultiLineString other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
 
             return new MultiLineString(this, other);
         }
-
-        #endregion
-
-        #region Factory methods for multi polygons
 
         /// <summary>
         /// Creates a multi polygon.
@@ -637,14 +591,10 @@ namespace ELTE.AEGIS.Geometries
         public virtual IMultiPolygon CreateMultiPolygon(IMultiPolygon other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
 
             return new MultiPolygon(this, other);
         }
-
-        #endregion
-
-        #region Factory methods for geometries
 
         /// <summary>
         /// Creates a geometry matching another geometry.
@@ -656,7 +606,7 @@ namespace ELTE.AEGIS.Geometries
         public IGeometry CreateGeometry(IGeometry other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
 
             if (other is IPoint)
                 return this.CreatePoint(other as IPoint);
@@ -679,9 +629,7 @@ namespace ELTE.AEGIS.Geometries
             if (other is IGeometryCollection<IGeometry>)
                 return this.CreateGeometryCollection(other as IGeometryCollection<IGeometry>);
 
-            throw new ArgumentException(Messages.GeometryTypeNotSupported, nameof(other));
+            throw new ArgumentException(CoreMessages.GeometryTypeNotSupported, nameof(other));
         }
-
-        #endregion
     }
 }

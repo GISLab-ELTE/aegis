@@ -23,25 +23,15 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public class Point : Geometry, IPoint
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for points. This field is constant.
         /// </summary>
         private const String PointStringFormat = "POINT ({0} {1} {2})";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The coordinate.
         /// </summary>
         private Coordinate coordinate;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Point" /> class.
@@ -70,10 +60,6 @@ namespace ELTE.AEGIS.Geometries
         {
             this.coordinate = new Coordinate(this.PrecisionModel.MakePrecise(x), this.PrecisionModel.MakePrecise(y), this.PrecisionModel.MakePrecise(z));
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the inherent dimension of the point.
@@ -128,10 +114,6 @@ namespace ELTE.AEGIS.Geometries
         /// </summary>
         /// <value><c>true</c> if the <see cref="Coordinate" /> associated with the point is valid; otherwise, <c>false</c>.</value>
         public override Boolean IsValid { get { return this.coordinate.IsValid; } }
-
-        #endregion
-
-        #region IPoint properties
 
         /// <summary>
         /// Gets or sets the X coordinate.
@@ -217,10 +199,6 @@ namespace ELTE.AEGIS.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -230,7 +208,5 @@ namespace ELTE.AEGIS.Geometries
         {
             return String.Format(provider, PointStringFormat, this.Coordinate.X, this.Coordinate.Y, this.Coordinate.Z);
         }
-
-        #endregion
     }
 }

@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredPolygon : StoredSurface, IPolygon
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -58,10 +56,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// The name of the polygon. This field is constant.
         /// </summary>
         private const String PolygonName = "POLYGON";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPolygon" /> class.
@@ -95,10 +89,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             : base(factory, identifier, indexes)
         {
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the bounding geometry.
@@ -145,10 +135,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value><c>true</c> if the polygon is considered to be valid; otherwise, <c>false</c>.</value>
         public override Boolean IsValid { get { return PolygonAlgorithms.IsValid(this); } }
 
-        #endregion
-
-        #region ISurface properties
-
         /// <summary>
         /// Gets a value indicating whether the polygon is convex.
         /// </summary>
@@ -191,10 +177,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IBasicPolygon properties
-
         /// <summary>
         /// Gets the shell of the polygon.
         /// </summary>
@@ -212,10 +194,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             get { return this.Holes; }
         }
-
-        #endregion
-
-        #region IPolygon properties
 
         /// <summary>
         /// Gets the shell of the polygon.
@@ -235,10 +213,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value>The <see cref="IList{LinearRing}" /> containing the holes of the polygon.</value>
         public IReadOnlyList<ILinearRing> Holes { get { return Enumerable.Range(1, this.HoleCount).Select(holeIndex => (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, holeIndex)).ToList(); } }
 
-        #endregion
-
-        #region IBasicPolygon methods
-
         /// <summary>
         /// Gets a hole at the specified index.
         /// </summary>
@@ -249,10 +223,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.GetHole(index);
         }
 
-        #endregion
-
-        #region IPolygon methods
-
         /// <summary>
         /// Add a hole to the polygon.
         /// </summary>
@@ -262,7 +232,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void AddHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), Messages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(hole), this.HoleCount + 1);
         }
@@ -275,7 +245,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void AddHole(IEnumerable<Coordinate> hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), Messages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(hole).ToArray(), this.HoleCount + 1);
         }
@@ -294,11 +264,11 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual ILinearRing GetHole(Int32 index)
         {
             if (this.HoleCount == 0)
-                throw new InvalidOperationException(Messages.NoHolesInPolygon);
+                throw new InvalidOperationException(CoreMessages.NoHolesInPolygon);
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.HoleCount)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanHoleCount);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
             return (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, this.Indexes.Append(index + 1));
         }
@@ -313,7 +283,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual Boolean RemoveHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), Messages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
 
             if (this.HoleCount == 0)
                 return false;
@@ -342,9 +312,9 @@ namespace ELTE.AEGIS.Storage.Geometries
         public virtual void RemoveHoleAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.HoleCount)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanHoleCount);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
             this.DeleteCoordinates(index + 1);
         }
@@ -358,10 +328,6 @@ namespace ELTE.AEGIS.Storage.Geometries
                 this.DeleteCoordinates(holeIndex + 1);
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -371,10 +337,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, PolygonName);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -418,7 +380,5 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return name + String.Format(provider, PolygonStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace ELTE.AEGIS.Storage.Features
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using ELTE.AEGIS.Collections.Resources;
     using ELTE.AEGIS.Resources;
 
     /// <summary>
@@ -24,8 +25,6 @@ namespace ELTE.AEGIS.Storage.Features
     /// </summary>
     public class StoredFeatureCollection : IStoredFeatureCollection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredFeatureCollection" /> class.
         /// </summary>
@@ -39,9 +38,9 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeatureCollection(IFeatureDriver driver, String identifier)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.Messages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = new StoredFeatureFactory(driver);
             this.Identifier = identifier;
@@ -60,17 +59,13 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeatureCollection(IStoredFeatureFactory factory, String identifier)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
         }
-
-        #endregion
-
-        #region ICollection properties
 
         /// <summary>
         /// Gets the number of elements contained in the collection.
@@ -83,10 +78,6 @@ namespace ELTE.AEGIS.Storage.Features
         /// </summary>
         /// <value><c>true</c> if the collection is read-only; otherwise, <c>false</c>.</value>
         public Boolean IsReadOnly { get { return this.Driver.SupportedOperations.Length == 1 && this.Driver.SupportedOperations[0] == DriverOperation.Read; } }
-
-        #endregion
-
-        #region IFeature properties
 
         /// <summary>
         /// Gets the attribute collection of the feature.
@@ -111,10 +102,6 @@ namespace ELTE.AEGIS.Storage.Features
         /// </summary>
         /// <value>The factory implementation the feature was constructed by.</value>
         IFeatureFactory IFeature.Factory { get { return this.Factory; } }
-
-        #endregion
-
-        #region IStoredFeatureCollection properties
 
         /// <summary>
         /// Gets the feature identifiers within the collection.
@@ -153,10 +140,6 @@ namespace ELTE.AEGIS.Storage.Features
             }
         }
 
-        #endregion
-
-        #region ICollection methods
-
         /// <summary>
         /// Adds an item to the collection.
         /// </summary>
@@ -166,9 +149,9 @@ namespace ELTE.AEGIS.Storage.Features
         public void Add(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
             if (this.Driver.ContainsIdentifier(item.Identifier))
-                throw new ArgumentException(Messages.ItemIdentifierExists, nameof(item));
+                throw new ArgumentException(CoreMessages.ItemIdentifierExists, nameof(item));
 
             this.Driver.UpdateFeature(item.Identifier, item);
         }
@@ -191,7 +174,7 @@ namespace ELTE.AEGIS.Storage.Features
         public Boolean Contains(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
 
             return this.Driver.ContainsIdentifier(item.Identifier);
         }
@@ -207,11 +190,11 @@ namespace ELTE.AEGIS.Storage.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.Count > array.Length)
-                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             foreach (String identifier in this.Driver.GetIdentifiers(this.Identifier))
             {
@@ -229,7 +212,7 @@ namespace ELTE.AEGIS.Storage.Features
         public Boolean Remove(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), Messages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
 
             if (!this.Driver.ContainsIdentifier(item.Identifier))
                 return false;
@@ -237,10 +220,6 @@ namespace ELTE.AEGIS.Storage.Features
             this.Driver.DeleteFeature(item.Identifier);
             return true;
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -260,7 +239,5 @@ namespace ELTE.AEGIS.Storage.Features
         {
             return this.GetEnumerator();
         }
-
-        #endregion
     }
 }

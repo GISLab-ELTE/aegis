@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class PolygonCentroidAlgorithmTest
     {
-        #region Private fields
-
         /// <summary>
         /// The list of polygons.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
         /// The list of expected coordinates.
         /// </summary>
         private List<Coordinate> expected;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -91,10 +85,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
             this.expected.Add(new Coordinate(-98.3413124738, 39.8526108305));
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="PolygonCentroidAlgorithm.ComputeCentroid(IBasicPolygon)" /> method.
         /// </summary>
@@ -117,7 +107,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Should.Throw<ArgumentNullException>(() => PolygonCentroidAlgorithm.ComputeCentroid((List<Coordinate>)null));
             Should.Throw<ArgumentNullException>(() => PolygonCentroidAlgorithm.ComputeCentroid(null, null));
         }
-
-        #endregion
     }
 }

@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9837", "Geographic/topocentric conversion")]
     public class GeographicToTopocentricConversion : CoordinateConversion<GeoCoordinate, Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of topocentric origin.
         /// </summary>
@@ -77,10 +75,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         private readonly GeographicToGeocentricConversion conversion;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeographicToTopocentricConversion" /> class.
         /// </summary>
@@ -116,7 +110,7 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeographicToTopocentricConversion, parameters)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             this.latitudeOfTopocentricOrigin = this.GetParameterBaseValue(CoordinateOperationParameters.LatitudeOfTopocentricOrigin);
             this.longitudeOfTopocentricOrigin = this.GetParameterBaseValue(CoordinateOperationParameters.LongitudeOfTopocentricOrigin);
@@ -137,19 +131,11 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.cosFi0 = Math.Cos(this.latitudeOfTopocentricOrigin);
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid used by the operation.</value>
         public Ellipsoid Ellipsoid { get; private set; }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -184,7 +170,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return this.conversion.Reverse(new Coordinate(x, y, z));
         }
-
-        #endregion
     }
 }

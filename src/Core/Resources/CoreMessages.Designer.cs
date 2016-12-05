@@ -23,14 +23,14 @@ namespace ELTE.AEGIS.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Messages {
+    public class CoreMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        internal CoreMessages() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace ELTE.AEGIS.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Resources.Messages", typeof(Messages).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Resources.CoreMessages", typeof(CoreMessages).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -184,6 +184,15 @@ namespace ELTE.AEGIS.Resources {
         public static string DimensionIsGreaterThan3 {
             get {
                 return ResourceManager.GetString("DimensionIsGreaterThan3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified dimension is invalid..
+        /// </summary>
+        public static string DimensionIsInvalid {
+            get {
+                return ResourceManager.GetString("DimensionIsInvalid", resourceCulture);
             }
         }
         
@@ -373,6 +382,24 @@ namespace ELTE.AEGIS.Resources {
         public static string GeometryFactoryIsNull {
             get {
                 return ResourceManager.GetString("GeometryFactoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified geometry is invalid..
+        /// </summary>
+        public static string GeometryIsInvalid {
+            get {
+                return ResourceManager.GetString("GeometryIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified geometry is not supported..
+        /// </summary>
+        public static string GeometryIsNotSupported {
+            get {
+                return ResourceManager.GetString("GeometryIsNotSupported", resourceCulture);
             }
         }
         
@@ -796,6 +823,24 @@ namespace ELTE.AEGIS.Resources {
         public static string ShellIsNull {
             get {
                 return ResourceManager.GetString("ShellIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified source is invalid..
+        /// </summary>
+        public static string SourceIsInvalid {
+            get {
+                return ResourceManager.GetString("SourceIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified source is not supported..
+        /// </summary>
+        public static string SourceIsNotSupported {
+            get {
+                return ResourceManager.GetString("SourceIsNotSupported", resourceCulture);
             }
         }
         

@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class VerticalDatum : Datum
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="VerticalDatum" /> class.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Reference
             this.AreaOfUse = areaOfUse;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the area of use.
         /// </summary>
@@ -89,7 +83,5 @@ namespace ELTE.AEGIS.Reference
                 }
             }
         }
-
-        #endregion
     }
 }

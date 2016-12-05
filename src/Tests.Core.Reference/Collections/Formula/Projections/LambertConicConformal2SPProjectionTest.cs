@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class LambertConicConformal2SPProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private LambertConicConformal2SPProjection projection2SP;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection2SP = new LambertConicConformal2SPProjection("EPSG::14204", " Texas CS27 South Central zone", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -88,7 +78,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.Latitude.BaseValue.ShouldBe(expected.Latitude.BaseValue, 0.00000001);
             transformed.Longitude.BaseValue.ShouldBe(expected.Longitude.BaseValue, 0.00000001);
         }
-
-        #endregion
     }
 }

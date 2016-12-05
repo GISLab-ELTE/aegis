@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class CohenSutherlandAlgorithmTest
     {
-        #region Private fields
-
         /// <summary>
         /// The clipping window used for testing.
         /// </summary>
@@ -38,10 +36,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
         /// The array of coordinate arrays used for testing.
         /// </summary>
         private Coordinate[][] coordinates;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -79,10 +73,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
                 },
             };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="CohenSutherlandAlgorithm.Compute()" /> method.
@@ -177,7 +167,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             };
             actual.ShouldBe(expected);
         }
-
-        #endregion
     }
 }

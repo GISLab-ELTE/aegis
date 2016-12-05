@@ -26,25 +26,15 @@ namespace ELTE.AEGIS.Numerics
     /// </remarks>
     public struct Rational : IComparable<Rational>, IComparable, IEquatable<Rational>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the zero rational value. This field is read-only.
         /// </summary>
         public static readonly Rational Zero = new Rational(0, 1);
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The string format of a rational number. This field is constant.
         /// </summary>
         private const String RationalStringFormat = "{0}/{1}";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The numerator. This field is read-only.
@@ -56,10 +46,6 @@ namespace ELTE.AEGIS.Numerics
         /// </summary>
         private readonly Int32 denominator;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Rational" /> struct.
         /// </summary>
@@ -70,7 +56,7 @@ namespace ELTE.AEGIS.Numerics
         {
             if (denominator == 0)
             {
-                throw new ArgumentException(Messages.DenomatorIs0, nameof(denominator));
+                throw new ArgumentException(NumericsMessages.DenomatorIs0, nameof(denominator));
             }
 
             if (numerator == 0)
@@ -98,10 +84,6 @@ namespace ELTE.AEGIS.Numerics
         {
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the numerator.
         /// </summary>
@@ -120,10 +102,6 @@ namespace ELTE.AEGIS.Numerics
             get { return this.denominator; }
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Determines whether the specified rational is valid.
         /// </summary>
@@ -133,10 +111,6 @@ namespace ELTE.AEGIS.Numerics
         {
             return value.denominator != 0;
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Converts the specified value to a rational number.
@@ -157,7 +131,7 @@ namespace ELTE.AEGIS.Numerics
         public static explicit operator Rational(Single value)
         {
             if (Math.Abs(value) > Int32.MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(value), Messages.RationalConversionOutOfRange);
+                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.RationalConversionOutOfRange);
 
             if (Math.Abs(value) > (1 << 20))
                 return new Rational((Int32)value, 1);
@@ -177,7 +151,7 @@ namespace ELTE.AEGIS.Numerics
         public static explicit operator Rational(Double value)
         {
             if (Math.Abs(value) > Int32.MaxValue)
-                throw new ArgumentOutOfRangeException(nameof(value), Messages.RationalConversionOutOfRange);
+                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.RationalConversionOutOfRange);
 
             if (Math.Abs(value) > (1 << 20))
                 return new Rational((Int32)value, 1);
@@ -496,10 +470,6 @@ namespace ELTE.AEGIS.Numerics
             return new Rational(rational.Denominator * value, rational.Numerator);
         }
 
-        #endregion
-
-        #region IComparable methods
-
         /// <summary>
         /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
         /// </summary>
@@ -523,7 +493,7 @@ namespace ELTE.AEGIS.Numerics
         public Int32 CompareTo(Object obj)
         {
             if (ReferenceEquals(obj, null))
-                throw new ArgumentNullException(nameof(obj), Messages.ObjectIsNull);
+                throw new ArgumentNullException(nameof(obj), NumericsMessages.ObjectIsNull);
             if (ReferenceEquals(obj, this))
                 return 0;
 
@@ -535,12 +505,8 @@ namespace ELTE.AEGIS.Numerics
             if (comparable != null)
                 return comparable.CompareTo(1.0 * this.numerator / this.denominator);
 
-            throw new ArgumentException(Messages.ObjectIsNotComparableWithRational, "obj");
+            throw new ArgumentException(NumericsMessages.ObjectIsNotComparableWithRational, "obj");
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified other rational number are equal.
@@ -554,10 +520,6 @@ namespace ELTE.AEGIS.Numerics
 
             return (1.0 * this.numerator / this.denominator).Equals(1.0 * other.numerator / other.denominator);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -603,7 +565,5 @@ namespace ELTE.AEGIS.Numerics
 
             return String.Format(CultureInfo.InvariantCulture, RationalStringFormat, this.numerator, this.denominator);
         }
-
-        #endregion
     }
 }

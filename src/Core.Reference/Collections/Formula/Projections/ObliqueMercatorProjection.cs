@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     /// </summary>
     public abstract class ObliqueMercatorProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of projection centre.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double b;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ObliqueMercatorProjection" /> class.
@@ -86,7 +80,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             this.b = Math.Sqrt(1 + (this.Ellipsoid.EccentricitySquare * Calculator.Cos4(this.latitudeOfProjectionCentre) / (1 - this.Ellipsoid.EccentricitySquare)));
         }
-
-        #endregion
     }
 }

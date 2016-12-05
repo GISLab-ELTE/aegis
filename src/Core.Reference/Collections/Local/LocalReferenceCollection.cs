@@ -33,8 +33,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     public abstract class LocalReferenceCollection<ReferenceType> : IReferenceCollection<ReferenceType>
         where ReferenceType : IdentifiedObject
     {
-        #region Protected constants
-
         /// <summary>
         /// The divider character. This field is constant.
         /// </summary>
@@ -45,10 +43,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         protected const String Authority = "EPSG";
 
-        #endregion
-
-        #region Private constants
-
         /// <summary>
         /// The resource path. This field is constant.
         /// </summary>
@@ -58,10 +52,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The resource path to the name aliases. This field is constant.
         /// </summary>
         private const String ResourcePathAlias = "Alias";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The name of the resource. This field is read-only.
@@ -83,10 +73,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         private Dictionary<Int32, List<String>> aliasDictionary;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalReferenceCollection{ReferenceType}" /> class.
         /// </summary>
@@ -105,10 +91,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             this.resourceName = resourceName ?? typeof(ReferenceType).Name;
             this.aliasName = sliasName ?? typeof(ReferenceType).Name;
         }
-
-        #endregion
-
-        #region IReferenceCollection properties
 
         /// <summary>
         /// Gets the item with the specified identifier.
@@ -149,10 +131,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region IReferenceCollection methods
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -162,7 +140,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -188,7 +166,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -212,7 +190,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -233,7 +211,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -244,10 +222,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             foreach (ReferenceType regexMatch in this.referenceDictionary.Values.Where(reference => nameRegex.IsMatch(reference.Name) || reference.Aliases.Any(alias => nameRegex.IsMatch(alias))))
                 yield return regexMatch;
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -274,10 +248,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             foreach (ReferenceType reference in this.referenceDictionary.Values)
                 yield return reference;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns a reference.
@@ -343,10 +313,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// <returns>The converted reference.</returns>
         protected abstract ReferenceType Convert(String[] content);
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Ensures that the references are available.
         /// </summary>
@@ -400,7 +366,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 }
             }
         }
-
-        #endregion
     }
 }

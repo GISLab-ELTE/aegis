@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9809", "Oblique Stereographic")]
     public class ObliqueStereographicProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -85,10 +83,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double h;
-
-        #endregion Protected fields
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ObliqueStereographicProjection" /> class.
@@ -166,10 +160,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.h = 4 * this.radiusOfConformalSphere * this.scaleFactorAtNaturalOrigin * Math.Tan(this.conformalLatitudeOfNaturalOrigin) + this.g;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -243,7 +233,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(latitude, longitude);
         }
-
-        #endregion
     }
 }

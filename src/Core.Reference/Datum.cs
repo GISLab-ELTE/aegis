@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public abstract class Datum : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Datum" /> class.
         /// </summary>
@@ -62,10 +60,6 @@ namespace ELTE.AEGIS.Reference
             this.Scope = scope ?? String.Empty;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the anchor point of the datum.
         /// </summary>
@@ -83,7 +77,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>Description of usage, or limitations of usage, for which this datum is valid.</value>
         public String Scope { get; private set; }
-
-        #endregion
     }
 }

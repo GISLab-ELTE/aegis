@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9810", "Polar Stereographic (variant A)")]
     public class PolarStereographicAProjection : PolarStereographicProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// False northing.
         /// </summary>
         private readonly Double falseNorthing;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolarStereographicAProjection" /> class.
@@ -111,10 +105,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             this.operationAspect = (this.latitudeOfNaturalOrigin >= 0) ? OperationAspect.NorthPolar : OperationAspect.SouthPolar;
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -184,7 +174,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(latitude, longitude);
         }
-
-        #endregion
     }
 }

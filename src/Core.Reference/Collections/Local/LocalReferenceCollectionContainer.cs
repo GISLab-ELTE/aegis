@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalReferenceCollectionContainer : ReferenceCollectionContainer
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalReferenceCollectionContainer" /> class.
         /// </summary>
@@ -54,7 +52,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             this.Container.RegisterSingleton<IReferenceCollection<VerticalCoordinateReferenceSystem>, LocalVerticalCoordinateReferenceSystemCollection>();
             this.Container.RegisterSingleton<IReferenceCollection<VerticalDatum>, LocalVerticalDatumCollection>();
         }
-
-        #endregion
     }
 }

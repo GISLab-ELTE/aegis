@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public class ProjectedCoordinateReferenceSystem : CoordinateReferenceSystem
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectedCoordinateReferenceSystem" /> class.
         /// </summary>
@@ -79,17 +77,13 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name, remarks, aliases, scope, coordinateSystem, baseReferenceSystem != null ? baseReferenceSystem.Datum : null, areaOfUse)
         {
             if (baseReferenceSystem == null)
-                throw new ArgumentNullException(nameof(baseReferenceSystem), Messages.BaseReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(baseReferenceSystem), ReferenceMessages.BaseReferenceSystemIsNull);
             if (projection == null)
-                throw new ArgumentNullException(nameof(projection), Messages.ProjectionIsNull);
+                throw new ArgumentNullException(nameof(projection), ReferenceMessages.ProjectionIsNull);
 
             this.BaseReferenceSystem = baseReferenceSystem;
             this.Projection = projection;
         }
-
-        #endregion
-
-        #region Public ReferenceSystem properties
 
         /// <summary>
         /// Gets the type of the reference system.
@@ -97,19 +91,11 @@ namespace ELTE.AEGIS.Reference
         /// <value>The type of the reference system.</value>
         public override ReferenceSystemType Type { get { return ReferenceSystemType.Projected; } }
 
-        #endregion
-
-        #region Public CoordinateReferenceSystem Properties
-
         /// <summary>
         /// Gets the datum of the coordinate reference system.
         /// </summary>
         /// <value>The datum of the coordinate reference system.</value>
         public new GeodeticDatum Datum { get { return base.Datum as GeodeticDatum; } }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the base geographic coordinate reference system.
@@ -122,7 +108,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The coordinate projection used by the reference system.</value>
         public CoordinateProjection Projection { get; private set; }
-
-        #endregion
     }
 }

@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class DouglasPeuckerAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="DouglasPeuckerAlgorithm.Simplify(IReadOnlyList{Coordinate}, Double)" /> method.
         /// </summary>
@@ -109,7 +107,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             Should.Throw<ArgumentNullException>(() => DouglasPeuckerAlgorithm.Simplify((List<Coordinate>)null, 1.0));
             Should.Throw<ArgumentOutOfRangeException>(() => DouglasPeuckerAlgorithm.Simplify(coordinates, 0));
         }
-
-        #endregion
     }
 }

@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class CoordinateOperationParameter : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateOperationParameter" /> class.
         /// </summary>
@@ -50,16 +48,10 @@ namespace ELTE.AEGIS.Reference
             this.Description = description ?? String.Empty;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the description of the parameter.
         /// </summary>
         /// <value>The description of the parameter.</value>
         public String Description { get; private set; }
-
-        #endregion
     }
 }

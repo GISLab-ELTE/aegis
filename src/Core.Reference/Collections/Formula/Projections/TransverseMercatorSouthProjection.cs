@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9808", "Transverse Mercator (South Orientated)")]
     public class TransverseMercatorSouthProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -80,10 +78,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private Double bM0;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransverseMercatorSouthProjection" /> class.
@@ -142,10 +136,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                                                        35 * this.e6 / 3072 * Math.Sin(6 * this.latitudeOfNaturalOrigin));
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -198,7 +188,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

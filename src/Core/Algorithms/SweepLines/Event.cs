@@ -21,14 +21,10 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public class Event
     {
-        #region Public properties
-
         /// <summary>
         /// Gets or sets the polygon vertex associated with the event.
         /// </summary>
         /// <value>The polygon vertex associated with the event.</value>
         public Coordinate Vertex { get; set; }
-
-        #endregion
     }
 }

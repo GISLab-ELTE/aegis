@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
     /// </summary>
     public class EndPointEvent : Event
     {
-        #region Public fields
-
         /// <summary>
         /// Gets or sets the polygon edge associated with the event.
         /// </summary>
@@ -34,7 +32,5 @@ namespace ELTE.AEGIS.Algorithms.SweepLines
         /// </summary>
         /// <value>The event type.</value>
         public EventType Type { get; set; }
-
-        #endregion
     }
 }

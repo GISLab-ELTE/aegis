@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </summary>
     public static class LineAlgorithms
     {
-        #region Centroid computation
-
         /// <summary>
         /// Computes the centroid of a line.
         /// </summary>
@@ -65,7 +63,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             // simple cases
             IEnumerator<Coordinate> coordinateEnumerator = coordinates.Elements().GetEnumerator();
@@ -110,17 +108,13 @@ namespace ELTE.AEGIS.Algorithms
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates, PrecisionModel precisionModel)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             if (precisionModel == null)
                 precisionModel = PrecisionModel.Default;
 
             return precisionModel.MakePrecise(Centroid(coordinates));
         }
-
-        #endregion
-
-        #region Coincides computation
 
         /// <summary>
         /// Determines whether two infinite lines coincide.
@@ -155,10 +149,6 @@ namespace ELTE.AEGIS.Algorithms
             return CoordinateVector.IsParallel(firstVector, secondVector, precisionModel) &&
                    Distance(firstCoordinate, firstVector, secondCoordinate) <= Math.Max(precisionModel.Tolerance(firstCoordinate, secondCoordinate), precisionModel.Tolerance(firstVector, secondVector));
         }
-
-        #endregion
-
-        #region Contains computation
 
         /// <summary>
         /// Determines whether a line contains a specified coordinate.
@@ -224,10 +214,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return Distance(lineCoordinate, lineVector, coordinate) <= precisionModel.Tolerance(lineCoordinate, coordinate);
         }
-
-        #endregion
-
-        #region Distance computation
 
         /// <summary>
         /// Computes the distance of a line to a specified coordinate.
@@ -408,10 +394,6 @@ namespace ELTE.AEGIS.Algorithms
             return x / y;
         }
 
-        #endregion
-
-        #region Length computation
-
         /// <summary>
         /// Returns the length of the specified coordinate collection.
         /// </summary>
@@ -421,7 +403,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Length(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             IEnumerator<Coordinate> enumerator = coordinates.Elements().GetEnumerator();
             if (!enumerator.MoveNext())
@@ -437,10 +419,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return length;
         }
-
-        #endregion
-
-        #region Intersects computation
 
         /// <summary>
         /// Determines whether two lines intersect internally.
@@ -578,10 +556,6 @@ namespace ELTE.AEGIS.Algorithms
             return intersection != null && intersection.Type != IntersectionType.None;
         }
 
-        #endregion
-
-        #region Intersection computation
-
         /// <summary>
         /// Computes the internal intersection of two lines.
         /// </summary>
@@ -690,10 +664,6 @@ namespace ELTE.AEGIS.Algorithms
             return ComputeIntersectionWithPlane(lineStart, lineEnd, planeCoordinate, planeNormalVector, precisionModel);
         }
 
-        #endregion
-
-        #region IsCollinear computation
-
         /// <summary>
         /// Determines whether two lines are collinear.
         /// </summary>
@@ -731,10 +701,6 @@ namespace ELTE.AEGIS.Algorithms
             return CoordinateVector.IsParallel(firstVector, secondVector, precisionModel) &&
                    Coordinate.Distance(secondLineStart, firstLineStart + (secondLineStart - firstLineStart) * firstVector * firstVector) <= precisionModel.Tolerance(firstLineStart, firstLineEnd, secondLineStart, secondLineEnd);
         }
-
-        #endregion
-
-        #region IsParallel computation
 
         /// <summary>
         /// Determines whether two lines are parallel.
@@ -796,10 +762,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return CoordinateVector.IsParallel(firstVector, secondVector, precisionModel);
         }
-
-        #endregion
-
-        #region Private intersection computation methods
 
         /// <summary>
         /// Computes the intersection of two lines.
@@ -1036,7 +998,5 @@ namespace ELTE.AEGIS.Algorithms
             // compute segment intersection coordinate
             return new Intersection(precisionModel.MakePrecise(lineStart + ratio * lineVector));
         }
-
-        #endregion
     }
 }

@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredMultiLineString : StoredGeometryCollection<ILineString>, IMultiLineString
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the multi line strings. This field is constant.
         /// </summary>
         private const String MultiLineStringName = "MULTILINESTRING";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredMultiLineString" /> class.
@@ -67,10 +61,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the multi line string.
         /// </summary>
@@ -82,10 +72,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// </summary>
         /// <value><c>true</c> if all line string within the multi line string are simple; otherwise, <c>false</c>.</value>
         public override Boolean IsSimple { get { return this.All(lineString => lineString.IsSimple); } }
-
-        #endregion
-
-        #region IMultiCurve properties
 
         /// <summary>
         /// Gets a value indicating whether the multi line string is closed.
@@ -99,10 +85,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <value>The length of the multi line string.</value>
         public virtual Double Length { get { return this.Sum(lineString => lineString.Length); } }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -112,7 +94,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, MultiLineStringName);
         }
-
-        #endregion
     }
 }

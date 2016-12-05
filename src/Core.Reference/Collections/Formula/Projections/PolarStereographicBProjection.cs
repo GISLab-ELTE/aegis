@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9829", "Polar Stereographic (variant B)")]
     public class PolarStereographicBProjection : PolarStereographicProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of 1st standard parallel.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Scale factor at natural origin.
         /// </summary>
         private readonly Double scaleFactorAtNaturalOrigin;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolarStereographicBProjection" /> class.
@@ -126,10 +120,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.scaleFactorAtNaturalOrigin = mF * Math.Sqrt(Math.Pow(1 + this.Ellipsoid.Eccentricity, 1 + this.Ellipsoid.Eccentricity) * Math.Pow(1 - this.Ellipsoid.Eccentricity, 1 - this.Ellipsoid.Eccentricity)) / (2 * tF);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -198,7 +188,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(latitude, longitude);
         }
-
-        #endregion
     }
 }

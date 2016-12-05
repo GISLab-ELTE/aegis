@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1052", "Colombia Urban Projection")]
     public class ColombiaUrbanProjection : CoordinateProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -60,10 +58,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         protected readonly Double nu0;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColombiaUrbanProjection" /> class.
@@ -115,9 +109,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.rho0 = this.Ellipsoid.SemiMajorAxis.Value * (1 - this.Ellipsoid.EccentricitySquare / Math.Pow(1 - this.Ellipsoid.EccentricitySquare * sinLatitude * sinLatitude, 1.5));
             this.nu0 = this.Ellipsoid.SemiMajorAxis.Value / Math.Sqrt(1 - this.Ellipsoid.EccentricitySquare * Math.Sqrt(this.latitudeOfNaturalOrigin) * Math.Sin(this.latitudeOfNaturalOrigin));
         }
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -158,7 +149,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

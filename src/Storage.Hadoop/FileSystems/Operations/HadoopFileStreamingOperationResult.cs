@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopFileStreamingOperationResult : HadoopFileSystemOperationResult
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileStreamingOperationResult" /> class.
         /// </summary>
@@ -40,16 +38,10 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             this.FileStream = fileStream;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets or sets the resulting file stream.
         /// </summary>
         /// <value>The resulting file stream.</value>
         public Stream FileStream { get; set; }
-
-        #endregion
     }
 }

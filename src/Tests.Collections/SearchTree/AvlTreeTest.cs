@@ -28,16 +28,16 @@ namespace ELTE.AEGIS.Tests.Collections.SearchTree
     [TestFixture]
     public class AvlTreeTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The array of integer values.
         /// </summary>
         private KeyValuePair<Int32, String>[] values;
 
-        #endregion
+        
 
-        #region Test setup
+        
 
         /// <summary>
         /// Test setup.
@@ -48,9 +48,9 @@ namespace ELTE.AEGIS.Tests.Collections.SearchTree
             this.values = Collection.GenerateNumbers(1000, -1000, 20).Select(value => new KeyValuePair<Int32, String>(value, value.ToString())).ToArray();
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="AvlTree{TKey, TValue}" /> class.
@@ -296,6 +296,6 @@ namespace ELTE.AEGIS.Tests.Collections.SearchTree
             forwardList.ShouldBe(backwardList);
         }
 
-        #endregion
+        
     }
 }

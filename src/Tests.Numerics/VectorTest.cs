@@ -30,8 +30,6 @@ namespace ELTE.AEGIS.Tests.Numerics
     [TestFixture]
     public class VectorTest
     {
-        #region Private fields
-
         /// <summary>
         /// An array of vector array.
         /// </summary>
@@ -46,10 +44,6 @@ namespace ELTE.AEGIS.Tests.Numerics
         /// The null vector.
         /// </summary>
         private Vector nullVector;
-
-        #endregion
-
-        #region Setup
 
         /// <summary>
         /// Test setup.
@@ -69,10 +63,6 @@ namespace ELTE.AEGIS.Tests.Numerics
 
             this.nullVector = null;
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructors of the <see cref="Vector" /> class.
@@ -417,7 +407,5 @@ namespace ELTE.AEGIS.Tests.Numerics
             // exceptions
             Should.Throw<ArgumentNullException>(() => result = (Matrix)this.nullVector);
         }
-
-        #endregion
     }
 }

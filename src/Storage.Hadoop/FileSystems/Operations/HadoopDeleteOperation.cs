@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopDeleteOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopDeleteOperation" /> class.
         /// </summary>
@@ -82,19 +80,11 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             this.Recursive = recursive;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets or sets a value indicating whether the deletion is recursive.
         /// </summary>
         /// <value><c>true</c> if the deletion recursive; otherwise, <c>false</c>.</value>
         public Boolean Recursive { get; set; }
-
-        #endregion
-
-        #region Protected HadoopFileSystemOperation properties
 
         /// <summary>
         /// Gets the type of the request.
@@ -114,10 +104,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
             get { return "op=DELETE&recursive=" + (this.Recursive ? "true" : "false"); }
         }
 
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
-
         /// <summary>
         /// Creates the result for the specified content asynchronously.
         /// </summary>
@@ -131,7 +117,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 Success = JObject.Parse(await content.ReadAsStringAsync()).Value<Boolean>("boolean")
             };
         }
-
-        #endregion
     }
 }

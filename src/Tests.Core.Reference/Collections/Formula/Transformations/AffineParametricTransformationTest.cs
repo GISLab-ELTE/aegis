@@ -28,16 +28,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class AffineParametricTransformationTest
     {
-        #region Private fields
-
         /// <summary>
         /// The transformation.
         /// </summary>
         private AffineParametricTransformation transformation;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -59,10 +53,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.transformation = new AffineParametricTransformation("ESPG::10087", "Jamaica 1875 / Jamaica (Old Grid) to JAD69 / Jamaica National Grid (1)", parameters, source, target, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -90,7 +80,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.X.ShouldBe(expected.X, 0.01);
             transformed.Y.ShouldBe(expected.Y, 0.01);
         }
-
-        #endregion
     }
 }

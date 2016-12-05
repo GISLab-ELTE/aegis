@@ -31,8 +31,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCoordinateProjectionCollection : ICoordinateProjectionCollection
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -52,10 +50,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The identifier of the default ellipsoid.
         /// </summary>
         private const String DefaultEllipsoidIdentifier = "EPSG::7030";
-
-        #endregion
-
-        #region Private types
 
         /// <summary>
         /// Represents raw data of coordinate projections.
@@ -236,10 +230,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of  raw data. This field is read-only.
         /// </summary>
@@ -265,10 +255,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// </summary>
         private Ellipsoid defaultEllipsoid;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCoordinateProjectionCollection" /> class.
         /// </summary>
@@ -291,24 +277,20 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public LocalCoordinateProjectionCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<Ellipsoid> ellpsoidCollection, IReferenceCollection<CoordinateOperationMethod> methodCollection, IReferenceCollection<CoordinateOperationParameter> parameterCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (ellpsoidCollection == null)
-                throw new ArgumentNullException(nameof(ellpsoidCollection), Messages.EllipsoidCollectionIsNull);
+                throw new ArgumentNullException(nameof(ellpsoidCollection), ReferenceMessages.EllipsoidCollectionIsNull);
             if (methodCollection == null)
-                throw new ArgumentNullException(nameof(methodCollection), Messages.MethodCollectionIsNull);
+                throw new ArgumentNullException(nameof(methodCollection), ReferenceMessages.MethodCollectionIsNull);
             if (parameterCollection == null)
-                throw new ArgumentNullException(nameof(parameterCollection), Messages.ParameterCollectionIsNull);
+                throw new ArgumentNullException(nameof(parameterCollection), ReferenceMessages.ParameterCollectionIsNull);
             if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), Messages.UnitOfMeasurementCollectionIsNull);
+                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
 
             this.dataCollection = new CoordinateProjectionDataCollection(areaOfUseCollection, methodCollection, parameterCollection, unitCollection);
             this.ellipsoidCollection = ellpsoidCollection;
             this.unitCollection = unitCollection;
         }
-
-        #endregion
-
-        #region ICoordinateProjectionCollection properties
 
         /// <summary>
         /// Gets the item with the specified authority and code.
@@ -414,10 +396,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             }
         }
 
-        #endregion
-
-        #region ICoordinateProjectionCollection methods
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -427,7 +405,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureOperationTypes();
 
@@ -445,7 +423,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureOperationTypes();
 
@@ -461,7 +439,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             this.EnsureOperationTypes();
 
@@ -477,7 +455,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             this.EnsureOperationTypes();
 
@@ -502,20 +480,16 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, AreaOfUse areaOfUse, Ellipsoid ellipsoid)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), Messages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             this.EnsureOperationTypes();
 
             return this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code)).Where(data => data.Method.Equals(method) && (areaOfUse.Equals(AreaOfUse.Undefined) || data.AreaOfUse.Equals(areaOfUse)) && this.IsMatching(data.Parameters, parameters)).Select(data => this.CreateProjection(data, ellipsoid));
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -540,10 +514,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             foreach (CoordinateProjectionData data in this.dataCollection)
                 yield return this.CreateProjection(data, this.defaultEllipsoid);
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Ensures that all operation types are available.
@@ -622,7 +592,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
 
             return Double.NaN;
         }
-
-        #endregion
     }
 }

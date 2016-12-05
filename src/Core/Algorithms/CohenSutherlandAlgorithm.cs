@@ -29,8 +29,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class CohenSutherlandAlgorithm
     {
-        #region Private types
-
         /// <summary>
         /// The bits represent the location of the point in relation to the viewport.
         /// </summary>
@@ -62,10 +60,6 @@ namespace ELTE.AEGIS.Algorithms
             Top = 8
         }
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of source line strings.
         /// </summary>
@@ -86,10 +80,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CohenSutherlandAlgorithm" /> class.
         /// </summary>
@@ -104,9 +94,9 @@ namespace ELTE.AEGIS.Algorithms
         public CohenSutherlandAlgorithm(IReadOnlyList<Coordinate> source, Envelope window, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             this.source = new List<IReadOnlyList<Coordinate>>();
             (this.source as List<IReadOnlyList<Coordinate>>).Add(source);
@@ -129,19 +119,15 @@ namespace ELTE.AEGIS.Algorithms
         public CohenSutherlandAlgorithm(IEnumerable<IReadOnlyList<Coordinate>> source, Envelope window, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             this.source = source;
             this.window = window;
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -178,10 +164,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Clips a line string with an envelope.
@@ -247,7 +229,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IBasicPolygon source, Envelope window, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 
@@ -295,9 +277,9 @@ namespace ELTE.AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IEnumerable<IBasicPolygon> source, Envelope window, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (window == null)
-                throw new ArgumentNullException(nameof(window), Messages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 
@@ -319,10 +301,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return new CohenSutherlandAlgorithm(coordinates, window, precisionModel).Result;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the result of the algorithm.
@@ -360,10 +338,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private static methods
 
         /// <summary>
         /// Compute the bit code of a coordinate.
@@ -489,7 +463,5 @@ namespace ELTE.AEGIS.Algorithms
 
             return Coordinate.Undefined;
         }
-
-        #endregion
     }
 }

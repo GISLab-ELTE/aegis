@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9833", "Hyperbolic Cassini-Soldner")]
     public class HyperbolicCassiniSoldnerProjection : CassiniSoldnerProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HyperbolicCassiniSoldnerProjection" /> class.
         /// </summary>
@@ -68,10 +66,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the northing.
         /// </summary>
@@ -98,7 +92,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return this.M0 + (coordinate.Y - this.falseNorthing) + q;
         }
-
-        #endregion
     }
 }

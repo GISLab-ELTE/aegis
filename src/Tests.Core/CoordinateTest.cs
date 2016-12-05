@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests
     [TestFixture]
     public class CoordinateTest
     {
-        #region Test methods
-
         /// <summary>
         /// Test properties of the <see cref="Coordinate" /> method.
         /// </summary>
@@ -120,7 +118,5 @@ namespace ELTE.AEGIS.Tests
             orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), Coordinate.Undefined);
             orientation.ShouldBe(Orientation.Undefined);
         }
-
-        #endregion
     }
 }

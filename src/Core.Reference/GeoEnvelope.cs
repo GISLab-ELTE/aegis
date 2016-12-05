@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class GeoEnvelope : IEquatable<GeoEnvelope>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the undefined <see cref="GeoEnvelope" /> value. This field is read-only.
         /// </summary>
@@ -37,10 +35,6 @@ namespace ELTE.AEGIS.Reference
         /// Represents the <see cref="GeoEnvelope" /> value for the globe. This field is read-only.
         /// </summary>
         public static readonly GeoEnvelope Globe = new GeoEnvelope(Angle.FromRadian(-Math.PI / 2), Angle.FromRadian(Math.PI / 2), Angle.FromRadian(-Math.PI), Angle.FromRadian(Math.PI), Length.NegativeInfinity, Length.PositiveInfinity);
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// The string format for envelopes. This field is constant.
@@ -57,10 +51,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private const String InvalidEnvelopeString = "INVALID";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The minimal coordinate.
         /// </summary>
@@ -70,10 +60,6 @@ namespace ELTE.AEGIS.Reference
         /// Gets the maximal coordinate.
         /// </summary>
         private readonly GeoCoordinate maximum;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoEnvelope" /> class.
@@ -89,10 +75,6 @@ namespace ELTE.AEGIS.Reference
             this.maximum = new GeoCoordinate(Angle.Min(firstLatitude, secondLatitude), Angle.Max(firstLongitude, secondLongitude), Length.Max(firstHeight, secondHeight));
             this.minimum = new GeoCoordinate(Angle.Min(firstLatitude, secondLatitude), Angle.Min(firstLongitude, secondLongitude), Length.Min(firstHeight, secondHeight));
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the minimal coordinate.
@@ -124,10 +106,6 @@ namespace ELTE.AEGIS.Reference
         /// <value><c>true</c> if the instance has zero extent in the Z dimension; otherwise, <c>false</c>.</value>
         public Boolean IsPlanar { get { return this.minimum.Height == this.maximum.Height; } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Determines whether the envelope contains the specified geographic coordinate.
         /// </summary>
@@ -137,7 +115,7 @@ namespace ELTE.AEGIS.Reference
         public Boolean Contains(GeoCoordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
 
             return this.minimum.Latitude <= coordinate.Latitude && coordinate.Latitude <= this.maximum.Latitude &&
                    this.minimum.Longitude <= coordinate.Longitude && coordinate.Longitude <= this.maximum.Longitude &&
@@ -153,16 +131,12 @@ namespace ELTE.AEGIS.Reference
         public Boolean Contains(GeoEnvelope other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), Messages.OtherEnvelopeIsNull);
+                throw new ArgumentNullException(nameof(other), ReferenceMessages.OtherEnvelopeIsNull);
 
             return this.minimum.Latitude <= other.minimum.Latitude && other.maximum.Latitude <= this.maximum.Latitude &&
                    this.minimum.Longitude <= other.minimum.Longitude && other.maximum.Longitude <= this.maximum.Longitude &&
                    this.minimum.Height <= other.minimum.Height && other.maximum.Height <= this.maximum.Height;
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified geographic envelope are equal.
@@ -178,10 +152,6 @@ namespace ELTE.AEGIS.Reference
 
             return this.minimum.Equals(another.minimum) && this.maximum.Equals(another.maximum);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Determines whether the specified object is equal to this instance.
@@ -216,7 +186,5 @@ namespace ELTE.AEGIS.Reference
 
             return String.Format(CultureInfo.InvariantCulture, EnvelopeStringFormat, this.minimum.Latitude, this.minimum.Longitude, this.minimum.Height, this.maximum.Latitude, this.maximum.Longitude, this.maximum.Height);
         }
-
-        #endregion
     }
 }

@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
     /// </summary>
     public class HadoopRemoteException : Exception
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopRemoteException" /> class.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Storage.FileSystems
             this.JavaClassName = javaClassName;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the name of the remote exception.
         /// </summary>
@@ -65,7 +59,5 @@ namespace ELTE.AEGIS.Storage.FileSystems
         /// </summary>
         /// <value>The full name of the JAVA exception class.</value>
         public String JavaClassName { get; private set; }
-
-        #endregion
     }
 }

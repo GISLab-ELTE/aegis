@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1034", "Molodensky-Badekas (geocentric domain)")]
     public class MolodenskyBadekasTransformation : CoordinateTransformation<Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// X axis translation.
         /// </summary>
@@ -79,10 +77,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double m;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MolodenskyBadekasTransformation" /> class.
@@ -146,10 +140,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.m = 1 + this.scaleDifference * 1E-6;
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -173,7 +163,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return Coordinate.Undefined;
         }
-
-        #endregion
     }
 }

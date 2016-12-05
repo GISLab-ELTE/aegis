@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class MonotoneSubdivisionAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The coordinates of the resulting triangles.
         /// </summary>
@@ -40,10 +38,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MonotoneSubdivisionAlgorithm" /> class.
         /// </summary>
@@ -53,7 +47,7 @@ namespace ELTE.AEGIS.Algorithms
         public MonotoneSubdivisionAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.Source = source;
             if (this.Source.First() != this.Source.Last())
@@ -62,10 +56,6 @@ namespace ELTE.AEGIS.Algorithms
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model used by the algorithm.
@@ -93,10 +83,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Partitions a polygon by triangles.
@@ -139,10 +125,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result.Add(triangle);
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Determines the triangles of the polygon.
@@ -189,7 +171,5 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new MonotoneSubdivisionAlgorithm(shell, precisionModel).Result;
         }
-
-        #endregion
     }
 }

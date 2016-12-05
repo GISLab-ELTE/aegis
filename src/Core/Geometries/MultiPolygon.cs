@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Geometries
     /// </summary>
     public class MultiPolygon : GeometryList<IPolygon>, IMultiPolygon
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the multi polygon. This field is constant.
         /// </summary>
         private const String MultiPolygonName = "MULTIPOLYGON";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiPolygon" /> class.
@@ -81,19 +75,11 @@ namespace ELTE.AEGIS.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the multi polygon.
         /// </summary>
         /// <value><c>2</c>, which is the defined dimension of a multi polygon.</value>
         public override sealed Int32 Dimension { get { return 2; } }
-
-        #endregion
-
-        #region IMultiSurface properties
 
         /// <summary>
         /// Gets the area of the multi polygon.
@@ -104,10 +90,6 @@ namespace ELTE.AEGIS.Geometries
             get { return this.Sum(polygon => polygon.Area); }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -117,7 +99,5 @@ namespace ELTE.AEGIS.Geometries
         {
             return this.ToString(provider, MultiPolygonName);
         }
-
-        #endregion
     }
 }

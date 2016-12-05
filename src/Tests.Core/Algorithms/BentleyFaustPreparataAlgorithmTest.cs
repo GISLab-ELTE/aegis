@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.Algorithms
     [TestFixture]
     public class BentleyFaustPreparataAlgorithmTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the <see cref="BentleyFaustPreparataAlgorithm.ApproximateConvexHull(IBasicPolygon)" /> method.
         /// </summary>
@@ -71,7 +69,5 @@ namespace ELTE.AEGIS.Tests.Algorithms
             for (Int32 index = 0; index < expected.Count; index++)
                 convexHull[index].ShouldBe(expected[index]);
         }
-
-        #endregion
     }
 }

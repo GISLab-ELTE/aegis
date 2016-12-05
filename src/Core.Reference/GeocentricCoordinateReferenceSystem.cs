@@ -21,8 +21,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class GeocentricCoordinateReferenceSystem : CoordinateReferenceSystem
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeocentricCoordinateReferenceSystem" /> class.
         /// </summary>
@@ -70,26 +68,16 @@ namespace ELTE.AEGIS.Reference
         {
         }
 
-        #endregion
-
-        #region Public ReferenceSystem properties
-
         /// <summary>
         /// Gets the type of the reference system.
         /// </summary>
         /// <value>The type of the reference system.</value>
         public override ReferenceSystemType Type { get { return ReferenceSystemType.Geocentric; } }
 
-        #endregion
-
-        #region Public CoordinateReferenceSystem Properties
-
         /// <summary>
         /// Gets the datum of the coordinate reference system.
         /// </summary>
         /// <value>The datum of the coordinate reference system.</value>
         public new GeodeticDatum Datum { get { return base.Datum as GeodeticDatum; } }
-
-        #endregion
     }
 }

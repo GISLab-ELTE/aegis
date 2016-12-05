@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class KrovakModifiedProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private KrovakModifiedProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -71,10 +65,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             this.projection = new KrovakModifiedProjection("EPSG::5224", "S-JTSK/05 (Ferro) / Modified Krovak", parameters, ellipsoid, areaOfUse);
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the forward computation.
         /// </summary>
@@ -101,7 +91,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformer.Latitude.BaseValue.ShouldBe(expected.Latitude.BaseValue, 0.00000001);
             transformer.Longitude.BaseValue.ShouldBe(expected.Longitude.BaseValue, 0.00000001);
         }
-
-        #endregion
     }
 }

@@ -31,8 +31,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class WindingNumberAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The coordinate.
         /// </summary>
@@ -53,10 +51,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean isCoordinateOnEdge;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="WindingNumberAlgorithm" /> class.
         /// </summary>
@@ -67,7 +61,7 @@ namespace ELTE.AEGIS.Algorithms
         public WindingNumberAlgorithm(IEnumerable<Coordinate> shell, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             this.Shell = shell;
             this.PrecisionModel = precisionModel;
@@ -75,10 +69,6 @@ namespace ELTE.AEGIS.Algorithms
             this.hasResult = false;
             this.isCoordinateOnEdge = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -127,10 +117,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Location computation
-
         /// <summary>
         /// Computes the location of the specified coordinate with respect to a polygon.
         /// </summary>
@@ -141,7 +127,7 @@ namespace ELTE.AEGIS.Algorithms
         public static RelativeLocation Location(IReadOnlyList<Coordinate> shell, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, null, coordinate, null);
         }
@@ -157,7 +143,7 @@ namespace ELTE.AEGIS.Algorithms
         public static RelativeLocation Location(IReadOnlyList<Coordinate> shell, Coordinate coordinate, PrecisionModel precision)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, null, coordinate, precision);
         }
@@ -172,7 +158,7 @@ namespace ELTE.AEGIS.Algorithms
         public static RelativeLocation Location(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return ComputeLocation(polygon.Shell, polygon.Holes, coordinate, null);
         }
@@ -188,7 +174,7 @@ namespace ELTE.AEGIS.Algorithms
         public static RelativeLocation Location(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precision)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return ComputeLocation(polygon.Shell, polygon.Holes, coordinate, precision);
         }
@@ -230,7 +216,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean OnBoundary(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             if (ComputeOnBoundary(shell, coordinate, PrecisionModel.Default))
                 return true;
@@ -260,7 +246,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean OnBoundary(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             if (ComputeOnBoundary(shell, coordinate, precisionModel))
                 return true;
@@ -290,7 +276,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InInterior(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return InInterior(polygon.Shell, polygon.Holes, coordinate, PrecisionModel.Default);
         }
@@ -309,7 +295,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InInterior(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precision)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return InInterior(polygon.Shell, polygon.Holes, coordinate, precision);
         }
@@ -360,7 +346,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InInterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, holes, coordinate, PrecisionModel.Default) == RelativeLocation.Interior;
         }
@@ -381,7 +367,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InInterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, holes, coordinate, precisionModel) == RelativeLocation.Interior;
         }
@@ -399,7 +385,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InExterior(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return InExterior(polygon.Shell, polygon.Holes, coordinate, PrecisionModel.Default);
         }
@@ -418,7 +404,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InExterior(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return InExterior(polygon.Shell, polygon.Holes, coordinate, precisionModel);
         }
@@ -468,7 +454,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InExterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, holes, coordinate, PrecisionModel.Default) == RelativeLocation.Exterior;
         }
@@ -488,14 +474,10 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean InExterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precision)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             return ComputeLocation(shell, holes, coordinate, precision) == RelativeLocation.Exterior;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the Winding Number.
@@ -557,10 +539,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private static methods
 
         /// <summary>
         /// Computes the location of the specified coordinate within a polygon.
@@ -652,7 +630,5 @@ namespace ELTE.AEGIS.Algorithms
 
             return false;
         }
-
-        #endregion
     }
 }

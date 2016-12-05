@@ -30,16 +30,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalCoordinateSystemCollection : LocalReferenceCollection<CoordinateSystem>
     {
-        #region Private constants
-
         /// <summary>
         /// The resource path to the axis mappings. This field is constant.
         /// </summary>
         private const String ResourcePathMapping = "ELTE.AEGIS.Reference.Resources.CoordinateSystemAxisMapping.txt";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The collection of <see cref="CoordinateSystemAxis" /> instances.
@@ -50,10 +44,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of <see cref="UnitOfMeasurement" /> instances.
         /// </summary>
         private readonly IReferenceCollection<UnitOfMeasurement> unitCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCoordinateSystemCollection" /> class.
@@ -68,17 +58,13 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public LocalCoordinateSystemCollection(ICoordinateSystemAxisCollection axisCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (axisCollection == null)
-                throw new ArgumentNullException(nameof(axisCollection), Messages.AxisCollectionIsNull);
+                throw new ArgumentNullException(nameof(axisCollection), ReferenceMessages.AxisCollectionIsNull);
             if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), Messages.UnitOfMeasurementCollectionIsNull);
+                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
 
             this.axisCollection = axisCollection;
             this.unitCollection = unitCollection;
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -93,10 +79,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                                         content[4], this.GetAliases(Int32.Parse(content[0])),
                                         type, this.GetAxes(content[0]));
         }
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// Returns the axes for the specified coordinate system.
@@ -143,7 +125,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 }
             }
         }
-
-        #endregion
     }
 }

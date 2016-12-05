@@ -138,10 +138,10 @@
     <Compile Include="PrecisionModelType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeLocation.cs" />
-    <Compile Include="Resources\Messages.Designer.cs">
+    <Compile Include="Resources\CoreMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
+      <DependentUpon>CoreMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\ByteOrder.cs" />
     <Compile Include="Utilities\EndianBitConverter.cs" />
@@ -157,9 +157,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Messages.resx">
+    <EmbeddedResource Include="Resources\CoreMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <LastGenOutput>CoreMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1032", "Coordinate Frame Rotation (geocentric domain)")]
     public class CoordinateFrameRotation : HelmertTransformation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateFrameRotation" /> class.
         /// </summary>
@@ -90,7 +88,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.inverseParams[2, 1] = 1 / det * (this.yAxisRotation * this.zAxisRotation - this.xAxisRotation);
             this.inverseParams[2, 2] = 1 / det * (1 + this.zAxisRotation * this.zAxisRotation);
         }
-
-        #endregion
     }
 }

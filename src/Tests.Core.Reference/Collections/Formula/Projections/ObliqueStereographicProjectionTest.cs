@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class ObliqueStereographicProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private ObliqueStereographicProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -56,10 +50,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new ObliqueStereographicProjection("EPSG::19914", "RD New", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.Latitude.BaseValue.ShouldBe(expected.Latitude.BaseValue, 0.0001);
             transformed.Longitude.BaseValue.ShouldBe(expected.Longitude.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

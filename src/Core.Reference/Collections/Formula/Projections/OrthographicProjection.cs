@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9840", "Orthographic")]
     public class OrthographicProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -45,10 +43,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// False northing.
         /// </summary>
         private readonly Double falseNorthing;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OrthographicProjection" /> class.
@@ -95,10 +89,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.falseEasting = this.GetParameterValue(CoordinateOperationParameters.FalseEasting);
             this.falseNorthing = this.GetParameterValue(CoordinateOperationParameters.FalseNorthing);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -157,7 +147,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

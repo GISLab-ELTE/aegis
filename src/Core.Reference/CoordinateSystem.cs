@@ -29,25 +29,15 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public class CoordinateSystem : IdentifiedObject
     {
-        #region Public instances
-
         /// <summary>
         /// The undefined coordinate system. This field is read-only.
         /// </summary>
         public static readonly CoordinateSystem Undefined = new CoordinateSystem(UndefinedIdentifier, UndefinedName);
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The array of coordinate system axes.
         /// </summary>
         private readonly CoordinateSystemAxis[] axes;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateSystem" /> class.
@@ -62,7 +52,7 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name)
         {
             if (axes == null || axes.Length == 0)
-                throw new ArgumentException(Messages.NoAxisSpecified, nameof(axes));
+                throw new ArgumentException(ReferenceMessages.NoAxisSpecified, nameof(axes));
 
             this.axes = axes;
             this.Type = type;
@@ -83,7 +73,7 @@ namespace ELTE.AEGIS.Reference
             : base(identifier, name)
         {
             if (axes == null || axes.Length == 0)
-                throw new ArgumentException(Messages.NoAxisSpecified, nameof(axes));
+                throw new ArgumentException(ReferenceMessages.NoAxisSpecified, nameof(axes));
 
             this.axes = axes;
             this.Type = type;
@@ -100,10 +90,6 @@ namespace ELTE.AEGIS.Reference
             this.axes = new CoordinateSystemAxis[0];
             this.Type = CoordinateSystemType.Unknown;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the axes of the coordinate system.
@@ -146,10 +132,6 @@ namespace ELTE.AEGIS.Reference
         /// <exception cref="System.ArgumentException">The coordinate system does not contain an axis with the specified name.</exception>
         public CoordinateSystemAxis this[String name] { get { return this.GetAxis(name); } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Gets the <see cref="CoordinateSystemAxis" /> at the specified index.
         /// </summary>
@@ -163,9 +145,9 @@ namespace ELTE.AEGIS.Reference
         public CoordinateSystemAxis GetAxis(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), ReferenceMessages.IndexIsLessThan0);
             if (index >= this.axes.Length)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexEqualToOrGreaterThanAxisCount);
+                throw new ArgumentOutOfRangeException(nameof(index), ReferenceMessages.IndexEqualToOrGreaterThanAxisCount);
 
             return this.axes[index];
         }
@@ -180,15 +162,13 @@ namespace ELTE.AEGIS.Reference
         public CoordinateSystemAxis GetAxis(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.AxisNameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.AxisNameIsNull);
 
             CoordinateSystemAxis axis = this.axes.Where(ax => ax.Name == name).FirstOrDefault();
             if (axis != null)
                 return axis;
             else
-                throw new ArgumentException(Messages.AxisNameIsInvalid, nameof(name));
+                throw new ArgumentException(ReferenceMessages.AxisNameIsInvalid, nameof(name));
         }
-
-        #endregion
     }
 }

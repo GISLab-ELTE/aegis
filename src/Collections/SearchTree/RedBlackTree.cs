@@ -25,7 +25,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class RedBlackTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
     {
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RedBlackTree{TKey, TValue}" /> class.
@@ -44,9 +44,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
         {
         }
 
-        #endregion
+        
 
-        #region ISearchTree methods
+        
 
         /// <summary>
         /// Inserts the specified key/value pair to the tree.
@@ -58,7 +58,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public override void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.root == null)
             {
@@ -70,7 +70,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
 
             RedBlackNode node = this.SearchNodeForInsertion(key) as RedBlackNode;
             if (node == null)
-                throw new ArgumentException(Messages.KeyExists, nameof(key));
+                throw new ArgumentException(CollectionMessages.KeyExists, nameof(key));
 
             if (this.Comparer.Compare(key, node.Key) < 0)
             {
@@ -96,7 +96,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public override Boolean Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -140,9 +140,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return true;
         }
 
-        #endregion
+        
 
-        #region Private methods
+        
 
         /// <summary>
         /// Balances the tree after insertion.
@@ -285,9 +285,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             parent.Color = NodeColor.Black;
         }
 
-        #endregion
+        
 
-        #region Private types
+        
 
         /// <summary>
         /// Defines the node colors.
@@ -310,16 +310,16 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </summary>
         private class RedBlackNode : Node
         {
-            #region Public fields
+            
 
             /// <summary>
             /// The color of the node.
             /// </summary>
             public NodeColor Color;
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

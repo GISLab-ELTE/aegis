@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class ShamosHoeyAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The event queue.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Algorithms
         /// The result of the algorithm.
         /// </summary>
         private Boolean result;
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -74,10 +68,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShamosHoeyAlgorithm" /> class.
         /// </summary>
@@ -87,7 +77,7 @@ namespace ELTE.AEGIS.Algorithms
         public ShamosHoeyAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.eventQueue = new PresortedEventQueue(source);
@@ -104,17 +94,13 @@ namespace ELTE.AEGIS.Algorithms
         public ShamosHoeyAlgorithm(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.eventQueue = new PresortedEventQueue(source);
             this.sweepLine = new SweepLine(source, precisionModel);
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes whether one or more line strings specified by coordinates intersects with each other.
@@ -183,10 +169,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result = false;
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Determines whether a line string specified by coordinates intersects with itself.
         /// </summary>
@@ -232,7 +214,5 @@ namespace ELTE.AEGIS.Algorithms
         {
             return new ShamosHoeyAlgorithm(source, precisionModel).Result;
         }
-
-        #endregion
     }
 }

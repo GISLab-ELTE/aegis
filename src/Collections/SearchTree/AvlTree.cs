@@ -25,7 +25,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class AvlTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
     {
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AvlTree{TKey, TValue}" /> class.
@@ -43,9 +43,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
         {
         }
 
-        #endregion
+        
 
-        #region ISearchTree properties
+        
 
         /// <summary>
         /// Gets the height of the search tree.
@@ -59,9 +59,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             }
         }
 
-        #endregion
+        
 
-        #region ISearchTree methods
+        
 
         /// <summary>
         /// Inserts the specified key/value pair to the tree.
@@ -73,7 +73,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
         public override void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.root == null)
             {
@@ -85,7 +85,7 @@ namespace ELTE.AEGIS.Collections.SearchTree
 
             AvlNode node = this.SearchNodeForInsertion(key) as AvlNode;
             if (node == null)
-                throw new ArgumentException(Messages.KeyExists, nameof(key));
+                throw new ArgumentException(CollectionMessages.KeyExists, nameof(key));
 
             if (this.Comparer.Compare(key, node.Key) < 0)
             {
@@ -101,9 +101,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.version++;
         }
 
-        #endregion
+        
 
-        #region Protected BinarySearchTree methods
+        
 
         /// <summary>
         /// Removes a node that has no children.
@@ -136,9 +136,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.Balance(node as AvlNode);
         }
 
-        #endregion
+        
 
-        #region Protected methods
+        
 
         /// <summary>
         /// Balances a subtree to comply with AVL property.
@@ -212,9 +212,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             }
         }
 
-        #endregion
+        
 
-        #region Private static methods
+        
 
         /// <summary>
         /// Gets the height of a node.
@@ -242,16 +242,16 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return rightHeight - leftHeight;
         }
 
-        #endregion
+        
 
-        #region Protected types
+        
 
         /// <summary>
         /// Represents a node of the AVL tree.
         /// </summary>
         protected class AvlNode : Node
         {
-            #region Public properties
+            
 
             /// <summary>
             /// Gets or sets the height of the subtree starting with the node.
@@ -265,9 +265,9 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// <value>The balance of the node.</value>
             public Int32 Balance { get; set; }
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

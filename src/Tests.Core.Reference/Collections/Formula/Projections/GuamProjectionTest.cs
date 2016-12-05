@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class GuamProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private GuamProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new GuamProjection("EPSG::15400", "Guam SPCS", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -86,7 +76,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.Latitude.BaseValue.ShouldBe(expected.Latitude.BaseValue, 0.001);
             transformed.Longitude.BaseValue.ShouldBe(expected.Longitude.BaseValue, 0.001);
         }
-
-        #endregion
     }
 }

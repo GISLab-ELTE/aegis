@@ -29,8 +29,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </remarks>
     public class QRDecomposition
     {
-        #region Private fields
-
         /// <summary>
         /// The source matrix.
         /// </summary>
@@ -66,10 +64,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         /// </summary>
         private Matrix r;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="QRDecomposition" /> class.
         /// </summary>
@@ -78,14 +72,10 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public QRDecomposition(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             this.source = matrix;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the H (Householder) matrix.
@@ -179,10 +169,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             }
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Perform computation.
         /// </summary>
@@ -206,10 +192,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
                 this.ComputeIteration();
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Initializes the computation.
@@ -353,7 +335,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return this.r;
         }
-
-        #endregion
     }
 }

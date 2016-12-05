@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Tests
     [TestFixture]
     public class EnvelopeTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="Envelope" /> class.
         /// </summary>
@@ -624,7 +622,5 @@ namespace ELTE.AEGIS.Tests
             Envelope.FromEnvelopes(source).ShouldBe(new Envelope(0, 0, 0, 0, 0, 0));
             Envelope.FromEnvelopes(source.ToList()).ShouldBe(new Envelope(0, 0, 0, 0, 0, 0));
         }
-
-        #endregion
     }
 }

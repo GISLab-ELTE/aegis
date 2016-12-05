@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredMultiPolygon : StoredGeometryCollection<IPolygon>, IMultiPolygon
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the multi point. This field is constant.
         /// </summary>
         private const String MultiPointName = "MULTIPOLYGON";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredMultiPolygon" /> class.
@@ -67,29 +61,17 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the multi polygon.
         /// </summary>
         /// <value><c>2</c>, which is the defined dimension of a multi polygon.</value>
         public override sealed Int32 Dimension { get { return 2; } }
 
-        #endregion
-
-        #region IMultiSurface properties
-
         /// <summary>
         /// Gets the area of the multi polygon.
         /// </summary>
         /// <value>The sum of polygon areas within the multi polygon.</value>
         public Double Area { get { return this.Sum(polygon => polygon.Area); } }
-
-        #endregion
-
-        #region IGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -100,7 +82,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, MultiPointName);
         }
-
-        #endregion
     }
 }

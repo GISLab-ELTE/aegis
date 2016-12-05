@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
     /// </summary>
     public class HadoopFileListingOperation : HadoopFileSystemOperation
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HadoopFileListingOperation" /> class.
         /// </summary>
@@ -78,10 +76,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
         }
 
-        #endregion
-
-        #region Protected FileStatusListOperation properties
-
         /// <summary>
         /// Gets the type of the request.
         /// </summary>
@@ -99,10 +93,6 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
         {
             get { return "op=LISTSTATUS"; }
         }
-
-        #endregion
-
-        #region Protected HadoopFileSystemOperation methods
 
         /// <summary>
         /// Creates the result for the specified content asynchronously.
@@ -142,7 +132,5 @@ namespace ELTE.AEGIS.Storage.FileSystems.Operations
                 }).ToArray()
             };
         }
-
-        #endregion
     }
 }

@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference
     /// </remarks>
     public abstract class ReferenceSystem : IdentifiedObject, IReferenceSystem
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceSystem" /> class.
         /// </summary>
@@ -40,10 +38,6 @@ namespace ELTE.AEGIS.Reference
         {
             this.Scope = scope ?? String.Empty;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the dimension of the reference system.
@@ -62,7 +56,5 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         /// <value>The type of the reference system.</value>
         public abstract ReferenceSystemType Type { get; }
-
-        #endregion
     }
 }

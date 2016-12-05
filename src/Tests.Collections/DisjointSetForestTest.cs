@@ -28,16 +28,16 @@ namespace ELTE.AEGIS.Tests.Collections
     [TestFixture]
     public class DisjointSetForestTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The array of values that are inserted into the DisjointSetForest.
         /// </summary>
         private Int32[] values;
 
-        #endregion
+        
 
-        #region Test setup
+        
 
         /// <summary>
         /// Test setup.
@@ -48,9 +48,9 @@ namespace ELTE.AEGIS.Tests.Collections
             this.values = Collection.GenerateNumbers(1000, -1000, 20).ToArray();
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="DisjointSetForest{T}" /> class.
@@ -250,6 +250,6 @@ namespace ELTE.AEGIS.Tests.Collections
             }
         }
 
-        #endregion
+        
     }
 }

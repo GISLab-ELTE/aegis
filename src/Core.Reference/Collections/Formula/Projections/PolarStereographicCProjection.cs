@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9830", "Polar Stereographic (variant C)")]
     public class PolarStereographicCProjection : PolarStereographicProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of standard parallel.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double tF;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolarStereographicCProjection" /> class.
@@ -130,10 +124,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             this.roF = this.Ellipsoid.SemiMajorAxis.Value * mF;
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -209,7 +199,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(latitude, longitude);
         }
-
-        #endregion
     }
 }

@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class TransverseMercatorProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private TransverseMercatorProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -56,10 +50,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new TransverseMercatorProjection("EPSG::19916", "British National Grid", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             expected.Latitude.BaseValue.ShouldBe(transformed.Latitude.BaseValue, 0.0001);
             expected.Longitude.BaseValue.ShouldBe(transformed.Longitude.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

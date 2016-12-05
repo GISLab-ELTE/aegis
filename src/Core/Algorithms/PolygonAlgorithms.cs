@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </summary>
     public static class PolygonAlgorithms
     {
-        #region Area computation
-
         /// <summary>
         /// Computes the area of the specified polygon.
         /// </summary>
@@ -37,7 +35,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Area(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return Math.Abs(SignedArea(polygon));
         }
@@ -74,7 +72,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Double SignedArea(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return SignedArea(polygon.Shell, polygon.Holes);
         }
@@ -88,7 +86,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Double SignedArea(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             IEnumerator<Coordinate> enumerator = shell.Elements().GetEnumerator();
             if (!enumerator.MoveNext())
@@ -135,10 +133,6 @@ namespace ELTE.AEGIS.Algorithms
             return area;
         }
 
-        #endregion
-
-        #region IsConvex computation
-
         /// <summary>
         /// Determines whether the specified polygon is convex.
         /// </summary>
@@ -148,7 +142,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean IsConvex(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             if (polygon.HoleCount > 0)
                 return false;
@@ -165,7 +159,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean IsConvex(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             IEnumerator<Coordinate> enumerator = shell.Elements().GetEnumerator();
             if (!enumerator.MoveNext())
@@ -203,10 +197,6 @@ namespace ELTE.AEGIS.Algorithms
             return orientation == initialOrientation || orientation == AEGIS.Orientation.Collinear;
         }
 
-        #endregion
-
-        #region IsValid computation
-
         /// <summary>
         /// Determines whether the specified polygon is valid.
         /// </summary>
@@ -216,7 +206,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean IsValid(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return IsValid(polygon.Shell, polygon.Holes, true, null);
         }
@@ -231,7 +221,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean IsValid(IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return IsValid(polygon.Shell, polygon.Holes, true, precisionModel);
         }
@@ -309,7 +299,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Boolean IsValid(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes, Boolean validateIntersections, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             if (precisionModel == null)
                 precisionModel = PrecisionModel.Default;
@@ -389,10 +379,6 @@ namespace ELTE.AEGIS.Algorithms
             return true;
         }
 
-        #endregion
-
-        #region Orientation computation
-
         /// <summary>
         /// Computes the planar orientation of a polygon.
         /// </summary>
@@ -414,7 +400,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Orientation Orientation(IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             return Orientation(polygon.Shell, precisionModel);
         }
@@ -440,7 +426,7 @@ namespace ELTE.AEGIS.Algorithms
         public static Orientation Orientation(IEnumerable<Coordinate> shell, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             // check for polygon properties
             IEnumerator<Coordinate> enumerator = shell.GetEnumerator();
@@ -476,8 +462,5 @@ namespace ELTE.AEGIS.Algorithms
 
             return (sum > 0) ? AEGIS.Orientation.Clockwise : AEGIS.Orientation.Counterclockwise;
         }
-
-        #endregion
-
     }
 }

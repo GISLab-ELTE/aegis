@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Storage.Geometries
     public class StoredGeometryCollection<GeometryType> : StoredGeometry, IGeometryCollection<GeometryType>
         where GeometryType : IGeometry
     {
-        #region Private constants
-
         /// <summary>
         /// The divider for items. This field is constant.
         /// </summary>
@@ -48,10 +46,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// The name of the geometry collections. This field is constant.
         /// </summary>
         private const String GeometryCollectionName = "GEOMETRYCOLLECTION";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredGeometryCollection{GeometryType}" /> class.
@@ -85,10 +79,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             : base(factory, identifier, indexes)
         {
         }
-
-        #endregion
-
-        #region IGeometry properties
 
         /// <summary>
         /// Gets the inherent dimension of the geometry list.
@@ -208,10 +198,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometryCollection properties
-
         /// <summary>
         /// Gets the number of elements in the collection.
         /// </summary>
@@ -254,10 +240,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IEnumerable methods
-
         /// <summary>
         /// Returns an enumerator that iterates through the geometry list.
         /// </summary>
@@ -278,10 +260,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             return this.GetEnumerator();
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -291,10 +269,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, GeometryCollectionName);
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -321,7 +295,5 @@ namespace ELTE.AEGIS.Storage.Geometries
 
             return name + String.Format(provider, CollectionStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }

@@ -180,10 +180,10 @@
     <Compile Include="ReferenceSystem.cs" />
     <Compile Include="ReferenceSystemFactory.cs" />
     <Compile Include="ReferenceSystemType.cs" />
-    <Compile Include="Resources\Messages.Designer.cs">
+    <Compile Include="Resources\ReferenceMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
+      <DependentUpon>ReferenceMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="Strategies\CompoundCoordinateConversionStrategy.cs" />
     <Compile Include="Strategies\CoordinateConversionStrategy.cs" />
@@ -223,9 +223,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Messages.resx">
+    <EmbeddedResource Include="Resources\ReferenceMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <LastGenOutput>ReferenceMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

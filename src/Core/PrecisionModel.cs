@@ -27,8 +27,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class PrecisionModel : IComparable<PrecisionModel>, IEquatable<PrecisionModel>
     {
-        #region Private constants
-
         /// <summary>
         /// The string for fixed precision models. This field is constant.
         /// </summary>
@@ -44,18 +42,10 @@ namespace ELTE.AEGIS
         /// </summary>
         private const String FloatingSinglePrecisionModelString = "FLOATING (SINGLE)";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The base tolerance value.
         /// </summary>
         private Double baseTolerance;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrecisionModel" /> class.
@@ -90,16 +80,12 @@ namespace ELTE.AEGIS
         public PrecisionModel(Double scale)
         {
             if (scale <= 0)
-                throw new ArgumentOutOfRangeException(nameof(scale), Messages.ScaleIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(scale), CoreMessages.ScaleIsEqualToOrLessThan0);
 
             this.ModelType = PrecisionModelType.Fixed;
             this.Scale = scale;
             this.baseTolerance = 0.5 / this.Scale;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the type of the model.
@@ -172,10 +158,6 @@ namespace ELTE.AEGIS
                 }
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Rounds the specified value to match the precision model.
@@ -253,7 +235,7 @@ namespace ELTE.AEGIS
         public IReadOnlyList<Coordinate> MakePrecise(IReadOnlyList<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return coordinates;
@@ -297,7 +279,7 @@ namespace ELTE.AEGIS
         public IEnumerable<Coordinate> MakePrecise(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), Messages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return coordinates;
@@ -325,7 +307,7 @@ namespace ELTE.AEGIS
         public IReadOnlyList<CoordinateVector> MakePrecise(IReadOnlyList<CoordinateVector> vectors)
         {
             if (vectors == null)
-                throw new ArgumentNullException(nameof(vectors), Messages.VectorCollectionIsNull);
+                throw new ArgumentNullException(nameof(vectors), CoreMessages.VectorCollectionIsNull);
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return vectors;
@@ -369,7 +351,7 @@ namespace ELTE.AEGIS
         public IEnumerable<CoordinateVector> MakePrecise(IEnumerable<CoordinateVector> vectors)
         {
             if (vectors == null)
-                throw new ArgumentNullException(nameof(vectors), Messages.VectorCollectionIsNull);
+                throw new ArgumentNullException(nameof(vectors), CoreMessages.VectorCollectionIsNull);
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return vectors;
@@ -512,10 +494,6 @@ namespace ELTE.AEGIS
             return values.Max(vector => Calculator.Max(Math.Abs(vector.X), Math.Abs(vector.Y), Math.Abs(vector.Z))) * this.baseTolerance;
         }
 
-        #endregion
-
-        #region IComparable methods
-
         /// <summary>
         /// Compares the current object with another object of the same type.
         /// </summary>
@@ -531,10 +509,6 @@ namespace ELTE.AEGIS
             return this.MaximumSignificantDigits.CompareTo(other.MaximumSignificantDigits);
         }
 
-        #endregion
-
-        #region IEquatable methods
-
         /// <summary>
         /// Indicates whether the current object is equal to another precision model.
         /// </summary>
@@ -549,10 +523,6 @@ namespace ELTE.AEGIS
 
             return this.ModelType == other.ModelType && this.Scale == other.Scale;
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Determines whether the specified <see cref="Object" /> is equal to the current precision model.
@@ -592,28 +562,16 @@ namespace ELTE.AEGIS
             }
         }
 
-        #endregion
-
-        #region Private static fields
-
         /// <summary>
         /// The lazily initialized default precision model.
         /// </summary>
         private static readonly Lazy<PrecisionModel> DefaultModel = new Lazy<PrecisionModel>(() => new PrecisionModel(PrecisionModelType.Floating));
-
-        #endregion
-
-        #region Public static properties
 
         /// <summary>
         /// Gets the default precision model.
         /// </summary>
         /// <value>The default floating precision model.</value>
         public static PrecisionModel Default { get { return DefaultModel.Value; } }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Returns the least precise precision model.
@@ -625,9 +583,9 @@ namespace ELTE.AEGIS
         public static PrecisionModel LeastPrecise(params PrecisionModel[] models)
         {
             if (models == null)
-                throw new ArgumentNullException(nameof(models), Messages.ModelsArrayIsNull);
+                throw new ArgumentNullException(nameof(models), CoreMessages.ModelsArrayIsNull);
             if (models.Length == 0)
-                throw new ArgumentException(Messages.NoModelsSpecified, nameof(models));
+                throw new ArgumentException(CoreMessages.NoModelsSpecified, nameof(models));
 
             Int32 preciceIndex = 0;
 
@@ -650,9 +608,9 @@ namespace ELTE.AEGIS
         public static PrecisionModel MostPrecise(params PrecisionModel[] models)
         {
             if (models == null)
-                throw new ArgumentNullException(nameof(models), Messages.ModelsArrayIsNull);
+                throw new ArgumentNullException(nameof(models), CoreMessages.ModelsArrayIsNull);
             if (models.Length == 0)
-                throw new ArgumentException(Messages.NoModelsSpecified, nameof(models));
+                throw new ArgumentException(CoreMessages.NoModelsSpecified, nameof(models));
 
             Int32 preciceIndex = 0;
 
@@ -664,7 +622,5 @@ namespace ELTE.AEGIS
 
             return models[preciceIndex];
         }
-
-        #endregion
     }
 }

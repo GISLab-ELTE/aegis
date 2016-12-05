@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9824", "Transverse Mercator Zoned Grid System")]
     public class TransverseMercatorZonedProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of natural origin.
         /// </summary>
@@ -81,10 +79,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         private readonly Double e8;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TransverseMercatorZonedProjection" /> class.
         /// </summary>
@@ -139,10 +133,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.bM0 = this.ComputeM(this.latitudeOfNaturalOrigin);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -193,10 +183,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(phi, lambda);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the M value.
         /// </summary>
@@ -207,7 +193,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return this.Ellipsoid.SemiMajorAxis.BaseValue * ((1 - this.e2 / 4 - 3 * this.e4 / 64 - 5 * this.e6 / 256) * latitude - (3 * this.e2 / 8 + 3 * this.e4 / 32 + 45 * this.e6 / 1024) * Math.Sin(2 * latitude) +
                                                         (15 * this.e4 / 256 + 45 * this.e6 / 1024) * Math.Sin(4 * latitude) - 35 * this.e6 / 3072 * Math.Sin(6 * latitude));
         }
-
-        #endregion
     }
 }

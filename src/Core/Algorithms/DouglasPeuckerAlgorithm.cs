@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class DouglasPeuckerAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The tolerance.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DouglasPeuckerAlgorithm" /> class.
         /// </summary>
@@ -65,19 +59,15 @@ namespace ELTE.AEGIS.Algorithms
         public DouglasPeuckerAlgorithm(IReadOnlyList<Coordinate> source, Double delta, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (delta <= 0)
-                throw new ArgumentOutOfRangeException(nameof(delta), Messages.DeltaIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(delta), CoreMessages.DeltaIsEqualToOrLessThan0);
 
             this.Source = source;
             this.delta = delta;
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -106,10 +96,6 @@ namespace ELTE.AEGIS.Algorithms
             }
         }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Simplifies the specified line string.
         /// </summary>
@@ -135,7 +121,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicLineString Simplify(IBasicLineString source, Double delta, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             DouglasPeuckerAlgorithm algorithm = new DouglasPeuckerAlgorithm(source, delta, precisionModel);
             algorithm.Compute();
@@ -167,7 +153,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicPolygon Simplify(IBasicPolygon source, Double delta, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
 
             DouglasPeuckerAlgorithm algorithm = new DouglasPeuckerAlgorithm(source.Shell, delta, precisionModel);
             algorithm.Compute();
@@ -213,10 +199,6 @@ namespace ELTE.AEGIS.Algorithms
             return algorithm.Result;
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Runs the reduction algorithm.
         /// </summary>
@@ -243,10 +225,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Simplifies a segment of the line string.
@@ -290,7 +268,5 @@ namespace ELTE.AEGIS.Algorithms
             this.SimplifySegment(startIndex, maxIndex);
             this.SimplifySegment(maxIndex, startIndex);
         }
-
-        #endregion
     }
 }

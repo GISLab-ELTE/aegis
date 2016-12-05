@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1051", "Lambert Conic Conformal (2SP Michigan)")]
     public class LambertConicConformal2SPMichiganProjection : LambertConicConformal2SPProjection
     {
-        #region Protected fields
-
         /// <summary>
         /// Ellipsoid scaling factor.
         /// </summary>
         protected readonly Double ellipsoidScalingFactor;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertConicConformal2SPMichiganProjection" /> class.
@@ -81,10 +75,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.ellipsoidScalingFactor = this.GetParameterValue(CoordinateOperationParameters.EllipsoidScalingFactor);
         }
 
-        #endregion
-
-        #region Protected utility methods
-
         /// <summary>
         /// Computes the rF value based on the tF value.
         /// </summary>
@@ -120,7 +110,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return Math.Pow(r / (this.Ellipsoid.SemiMajorAxis.Value * this.ellipsoidScalingFactor * this.f), 1 / this.n);
         }
-
-        #endregion
     }
 }

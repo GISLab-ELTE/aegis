@@ -28,8 +28,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalProjectedCoordinateReferenceSystemCollection : LocalReferenceCollection<ProjectedCoordinateReferenceSystem>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
@@ -39,10 +37,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The name of the alias type. This field is constant.
         /// </summary>
         private const String AliasTypeName = "Coordinate Reference System";
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// The collection of  <see cref="GeographicCoordinateReferenceSystem" /> instances.
         /// </summary>
         private IReferenceCollection<GeographicCoordinateReferenceSystem> baseCoordinateReferenceSystemCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalProjectedCoordinateReferenceSystemCollection" /> class.
@@ -91,23 +81,19 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, AliasTypeName)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
             if (coordinateProjectionCollection == null)
-                throw new ArgumentNullException(nameof(coordinateProjectionCollection), Messages.CoordinateProjectionCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinateProjectionCollection), ReferenceMessages.CoordinateProjectionCollectionIsNull);
             if (coordinateSystemCollection == null)
-                throw new ArgumentNullException(nameof(coordinateSystemCollection), Messages.CoordinateSystemCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystemCollection), ReferenceMessages.CoordinateSystemCollectionIsNull);
             if (baseReferenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(baseReferenceSystemCollection), Messages.BaseReferenceSystemCollectionsIsNull);
+                throw new ArgumentNullException(nameof(baseReferenceSystemCollection), ReferenceMessages.BaseReferenceSystemCollectionsIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
             this.coordinateProjectionCollection = coordinateProjectionCollection;
             this.coordinateSystemCollection = coordinateSystemCollection;
             this.baseCoordinateReferenceSystemCollection = baseReferenceSystemCollection;
         }
-
-        #endregion
-
-        #region IProjectedCoordinateReferenceSystemCollection methods
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -118,7 +104,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Equals(area));
         }
@@ -132,7 +118,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Within(area));
         }
@@ -146,7 +132,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), Messages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.CoordinateSystem.Equals(coordinateSystem));
         }
@@ -160,7 +146,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithDatum(GeodeticDatum datum)
         {
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), Messages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.Datum.Equals(datum));
         }
@@ -174,14 +160,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithProjection(CoordinateProjection projection)
         {
             if (projection == null)
-                throw new ArgumentNullException(nameof(projection), Messages.ProjectionIsNull);
+                throw new ArgumentNullException(nameof(projection), ReferenceMessages.ProjectionIsNull);
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.Projection.Equals(projection));
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -211,7 +193,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

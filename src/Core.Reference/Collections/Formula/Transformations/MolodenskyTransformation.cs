@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9604", "Molodensky")]
     public class MolodenskyTransformation : CoordinateTransformation<GeoCoordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// X axis translation.
         /// </summary>
@@ -52,19 +50,11 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// </summary>
         private readonly Double flatteningDifference;
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid model of Earth.</value>
         public Ellipsoid Ellipsoid { get; private set; }
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MolodenskyTransformation" /> class.
@@ -117,7 +107,7 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.MolodenskyTransformation, parameters, source, target, areaOfUse)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
 
             this.Ellipsoid = ellipsoid;
             this.xAxisTranslation = this.GetParameterValue(CoordinateOperationParameters.XAxisTranslation);
@@ -126,10 +116,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.semiMajorAxisLengthDifference = this.GetParameterValue(CoordinateOperationParameters.SemiMajorAxisLengthDifference);
             this.flatteningDifference = this.GetParameterValue(CoordinateOperationParameters.FlatteningDifference);
         }
-
-        #endregion
-
-        #region Protected operation methods
 
         /// <summary>
         /// Computes the forward transformation.
@@ -155,7 +141,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return GeoCoordinate.Undefined;
         }
-
-        #endregion
     }
 }

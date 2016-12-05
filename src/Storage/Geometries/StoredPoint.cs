@@ -22,16 +22,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredPoint : StoredGeometry, IPoint
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for points. This field is constant.
         /// </summary>
         private const String PointStringFormat = "POINT ({0} {1} {2})";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPoint" /> class.
@@ -97,10 +91,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the point.
         /// </summary>
@@ -142,10 +132,6 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// </summary>
         /// <value><c>true</c> if the <see cref="Coordinate" /> associated with the point is valid; otherwise, <c>false</c>.</value>
         public override Boolean IsValid { get { return this.Coordinate.IsValid; } }
-
-        #endregion
-
-        #region IPoint properties
 
         /// <summary>
         /// Gets or sets the X coordinate.
@@ -233,10 +219,6 @@ namespace ELTE.AEGIS.Storage.Geometries
             }
         }
 
-        #endregion
-
-        #region IGeometry methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -246,7 +228,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return String.Format(provider, PointStringFormat, this.Coordinate.X, this.Coordinate.Y, this.Coordinate.Z);
         }
-
-        #endregion
     }
 }

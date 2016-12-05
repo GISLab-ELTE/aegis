@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class OrthographicProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private OrthographicProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -54,10 +48,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new OrthographicProjection("EPSG::4326", "WGS 84 / Orthographic", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -85,6 +75,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(expected.Latitude.BaseValue, transformer.Latitude.BaseValue, 0.00000001);
             Assert.AreEqual(expected.Longitude.BaseValue, transformer.Longitude.BaseValue, 0.00000001);
         }
-        #endregion
     }
 }

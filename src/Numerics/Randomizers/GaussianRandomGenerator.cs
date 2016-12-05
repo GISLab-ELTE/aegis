@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
     /// </remarks>
     public class GaussianRandomGenerator : Random
     {
-        #region Private fields
-
         /// <summary>
         /// A value indicating whether the next number is available.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         /// The underlying random generator.
         /// </summary>
         private Random random;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GaussianRandomGenerator" /> class.
@@ -63,14 +57,10 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public GaussianRandomGenerator(Random random)
         {
             if (random == null)
-                throw new ArgumentNullException(nameof(random), Messages.RandomIsNull);
+                throw new ArgumentNullException(nameof(random), NumericsMessages.RandomIsNull);
 
             this.random = random;
         }
-
-        #endregion
-
-        #region Public Random methods
 
         /// <summary>
         /// Returns a non-negative random integer.
@@ -93,7 +83,7 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public override Int32 Next(Int32 minValue, Int32 maxValue)
         {
             if (maxValue < minValue)
-                throw new ArgumentOutOfRangeException(nameof(minValue), Messages.MinValueGreaterThanMaxValue);
+                throw new ArgumentOutOfRangeException(nameof(minValue), NumericsMessages.MinValueGreaterThanMaxValue);
 
             if (maxValue == minValue)
                 return minValue;
@@ -111,17 +101,13 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public override void NextBytes(Byte[] buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), NumericsMessages.BufferIsNull);
 
             for (Int32 i = 0; i < buffer.Length; i++)
             {
                 buffer[i] = (Byte)(this.Sample() * (Byte.MaxValue + 1));
             }
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Returns a random number based on the median and standard deviation.
@@ -144,10 +130,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
             return standardDeviation * this.InternalSample();
         }
 
-        #endregion
-
-        #region Protected Random methods
-
         /// <summary>
         /// Returns a random floating-point number between 0.0 and 1.0.
         /// </summary>
@@ -163,10 +145,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
 
             return sample;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Returns a random floating-point number between -1.0 and 1.0.
@@ -197,7 +175,5 @@ namespace ELTE.AEGIS.Numerics.Randomizers
 
             return u * s;
         }
-
-        #endregion
     }
 }

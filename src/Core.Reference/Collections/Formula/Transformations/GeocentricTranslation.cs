@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1031", "Geocentric translations (geocentric domain)")]
     public class GeocentricTranslation : CoordinateTransformation<Coordinate>
     {
-        #region Private fields
-
         /// <summary>
         /// X axis translation.
         /// </summary>
@@ -39,10 +37,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Z axis translation.
         /// </summary>
         private readonly Double zAxisTranslation;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeocentricTranslation" /> class.
@@ -97,10 +91,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.zAxisTranslation = this.GetParameterValue(CoordinateOperationParameters.ZAxisTranslation);
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -120,7 +110,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return new Coordinate(coordinate.X - this.xAxisTranslation, coordinate.Y - this.yAxisTranslation, coordinate.Z - this.zAxisTranslation);
         }
-
-        #endregion
     }
 }

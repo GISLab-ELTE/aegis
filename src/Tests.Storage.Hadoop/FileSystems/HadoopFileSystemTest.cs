@@ -29,8 +29,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage
     [TestFixture]
     public class HadoopFileSystemTest
     {
-        #region Private fields
-
         /// <summary>
         /// The hostname.
         /// </summary>
@@ -50,10 +48,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         /// The path of the working directory.
         /// </summary>
         private String directoryPath;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -79,10 +73,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage
             if (fileSystem.IsConnected && fileSystem.Exists(this.directoryPath))
                 fileSystem.Delete(this.directoryPath);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructor of the <see cref="HadoopFileSystem" /> class.
@@ -179,7 +169,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="OpenFile" /> method.
+        /// Tests the <see cref="HadoopFileSystem.OpenFile(String, FileMode, FileAccess)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemOpenFileTest()
@@ -203,7 +193,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="Delete" /> method.
+        /// Tests the <see cref="HadoopFileSystem.Delete(String)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemDeleteTest()
@@ -234,7 +224,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="GetRootDirectories" /> method.
+        /// Tests the <see cref="HadoopFileSystem.GetDirectoryRoot(String)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemGetDirectoryRootTest()
@@ -253,7 +243,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="GetParent" /> method.
+        /// Tests the <see cref="HadoopFileSystem.GetParent(String)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemGetParentTest()
@@ -285,7 +275,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="GetDirectory" /> method.
+        /// Tests the <see cref="HadoopFileSystem.GetDirectory(String)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemGetDirectoryTest()
@@ -316,7 +306,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="GetDirectories" /> method.
+        /// Tests the <see cref="HadoopFileSystem.GetDirectories(String, String, Boolean)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemGetDirectoriesTest()
@@ -373,7 +363,7 @@ namespace ELTE.AEGIS.Tests.IO.Storage
         }
 
         /// <summary>
-        /// Tests the <see cref="GetFileSystemEntries" /> method.
+        /// Tests the <see cref="HadoopFileSystem.GetFileSystemEntries(String, String, Boolean)" /> method.
         /// </summary>
         [Test]
         public void HadoopFileSystemGetFileSystemEntriesTest()
@@ -428,7 +418,5 @@ namespace ELTE.AEGIS.Tests.IO.Storage
             Should.Throw<ArgumentException>(() => fileSystem.GetFileSystemEntries(":"));
             Should.Throw<ArgumentException>(() => fileSystem.GetFileSystemEntries("/NotExistingPath/"));
         }
-
-        #endregion
     }
 }

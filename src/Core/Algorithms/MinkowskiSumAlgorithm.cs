@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class MinkowskiSumAlgorithm
     {
-        #region Private constants
-
         /// <summary>
         /// The number of points to create a circle. This field is constant.
         /// </summary>
         private const Int32 NumberOfPoints = 128;
-
-        #endregion
-
-        #region Private fields
 
         /// <summary>
         /// The list of source shell coordinates.
@@ -73,10 +67,6 @@ namespace ELTE.AEGIS.Algorithms
         /// </summary>
         private Boolean hasResult;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MinkowskiSumAlgorithm" /> class.
         /// </summary>
@@ -91,9 +81,9 @@ namespace ELTE.AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IBasicPoint source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.sourceShellCoordinates = new Coordinate[] { source.Coordinate };
@@ -121,9 +111,9 @@ namespace ELTE.AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IBasicPolygon source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.sourceShellCoordinates = source.Shell;
@@ -151,9 +141,9 @@ namespace ELTE.AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IReadOnlyList<Coordinate> source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
 
@@ -171,10 +161,6 @@ namespace ELTE.AEGIS.Algorithms
 
             this.hasResult = false;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the precision model.
@@ -198,10 +184,6 @@ namespace ELTE.AEGIS.Algorithms
                 return this.result;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Buffers he specified source.
@@ -271,7 +253,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPoint source, IBasicPolygon buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, null).Result;
         }
@@ -291,7 +273,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPoint source, IBasicPolygon buffer, PrecisionModel precisionModel)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, precisionModel).Result;
         }
@@ -364,7 +346,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPolygon source, IBasicPolygon buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, null).Result;
         }
@@ -384,7 +366,7 @@ namespace ELTE.AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPolygon source, IBasicPolygon buffer, PrecisionModel precisionModel)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, precisionModel).Result;
         }
@@ -476,10 +458,6 @@ namespace ELTE.AEGIS.Algorithms
             return new MinkowskiSumAlgorithm(source, buffer, precisionModel).Result;
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Buffers he specified source.
         /// </summary>
@@ -506,10 +484,6 @@ namespace ELTE.AEGIS.Algorithms
             this.result = new BasicProxyPolygon(this.resultShellCoordinates, this.resultHoleCoordinates);
             this.hasResult = true;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Computes the Minkowski sum of a point.
@@ -742,10 +716,6 @@ namespace ELTE.AEGIS.Algorithms
             return coordinatesWithIntersections;
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Sorts the edges in counterclockwise order.
         /// </summary>
@@ -795,10 +765,6 @@ namespace ELTE.AEGIS.Algorithms
             return coordinates.OrderBy(coordinate => coordinate.X).ThenBy(coordinate => coordinate.Y).ToList();
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Creates a circle as a polygon with the given radius and number of coordinates.
         /// </summary>
@@ -809,7 +775,7 @@ namespace ELTE.AEGIS.Algorithms
         private static List<Coordinate> CreateCircle(Double radius, Int32 numberOfCoordinates)
         {
             if (numberOfCoordinates < 3)
-                throw new ArgumentOutOfRangeException(nameof(numberOfCoordinates), Messages.NumberOfCoordinatesIsLessThan3);
+                throw new ArgumentOutOfRangeException(nameof(numberOfCoordinates), CoreMessages.NumberOfCoordinatesIsLessThan3);
 
             List<Coordinate> coordinates = new List<Coordinate>(numberOfCoordinates);
             for (Int32 index = 0; index < numberOfCoordinates; index++)
@@ -822,7 +788,5 @@ namespace ELTE.AEGIS.Algorithms
 
             return coordinates;
         }
-
-        #endregion
     }
 }

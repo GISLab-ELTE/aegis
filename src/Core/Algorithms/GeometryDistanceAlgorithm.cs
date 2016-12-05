@@ -27,8 +27,6 @@ namespace ELTE.AEGIS.Algorithms
     /// </remarks>
     public class GeometryDistanceAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// Contains the computed result (distance).
         /// </summary>
@@ -43,10 +41,6 @@ namespace ELTE.AEGIS.Algorithms
         /// Precision Model used during computation.
         /// </summary>
         private PrecisionModel precisionModel;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeometryDistanceAlgorithm" /> class.
@@ -65,19 +59,15 @@ namespace ELTE.AEGIS.Algorithms
         public GeometryDistanceAlgorithm(IEnumerable<Coordinate> first, IEnumerable<Coordinate> second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCollectionIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCollectionIsNull);
 
             this.hasResult = false;
             this.First = first;
             this.Second = second;
             this.precisionModel = precisionModel ?? PrecisionModel.Default;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the result (the distance between the two 2-dimensional objects).
@@ -105,10 +95,6 @@ namespace ELTE.AEGIS.Algorithms
         /// <value>The second collection of coordinates.</value>
         public IEnumerable<Coordinate> Second { get; private set; }
 
-        #endregion
-
-        #region Public static methods
-
         /// <summary>
         /// Computes the distance between the specified geometries.
         /// </summary>
@@ -123,9 +109,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPoint first, IBasicPoint second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
 
             return Coordinate.Distance(first.Coordinate, second.Coordinate);
         }
@@ -145,9 +131,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPoint first, IBasicPoint second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
 
             if (precisionModel == null)
                 return Coordinate.Distance(first.Coordinate, second.Coordinate);
@@ -169,9 +155,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicLineString lineString)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), Messages.PointIsNull);
+                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), Messages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
 
             return new GeometryDistanceAlgorithm(new[] { point.Coordinate }, lineString, PrecisionModel.Default).Result;
         }
@@ -191,9 +177,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicLineString lineString, PrecisionModel precisionModel)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), Messages.PointIsNull);
+                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), Messages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
 
             return new GeometryDistanceAlgorithm(new[] { point.Coordinate }, lineString, precisionModel).Result;
         }
@@ -229,9 +215,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), Messages.PointIsNull);
+                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             if (!WindingNumberAlgorithm.InExterior(polygon, point.Coordinate))
                 return 0;
@@ -308,9 +294,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicLineString first, IBasicLineString second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstLineStringIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstLineStringIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondLineStringIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondLineStringIsNull);
 
             return new GeometryDistanceAlgorithm(first, second, precisionModel).Result;
         }
@@ -346,9 +332,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicLineString lineString, IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), Messages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), Messages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
 
             if (WindingNumberAlgorithm.InExterior(polygon, lineString[0]))
                 return 0;
@@ -458,9 +444,9 @@ namespace ELTE.AEGIS.Algorithms
         public static Double Distance(IBasicPolygon first, IBasicPolygon second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), Messages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPolygonIsNull);
             if (second == null)
-                throw new ArgumentNullException(nameof(second), Messages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPolygonIsNull);
 
             if (WindingNumberAlgorithm.InExterior(first, second.Shell[0]))
                 return 0;
@@ -472,10 +458,6 @@ namespace ELTE.AEGIS.Algorithms
 
             return Math.Min(Distance(first.Shell, second, precisionModel), first.Holes.Min(hole => Distance(hole, second, precisionModel)));
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the result of the algorithm.
@@ -539,10 +521,6 @@ namespace ELTE.AEGIS.Algorithms
             this.hasResult = true;
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Computes the square of the distance between a coordinate and a line.
         /// </summary>
@@ -597,7 +575,5 @@ namespace ELTE.AEGIS.Algorithms
 
             return x * x + y * y + z * z;
         }
-
-        #endregion
     }
 }

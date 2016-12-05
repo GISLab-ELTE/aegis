@@ -27,17 +27,11 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
     [TestFixture]
     public class GaussianRandomGeneratorTest
     {
-        #region Private fields
-
         private GaussianRandomGenerator generator;
         private Int32 numberOfGeneratedNumbers;
         private Double[] mean;
         private Double[] stdDeviation;
         private Double[] error;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -51,10 +45,6 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
             this.stdDeviation = new Double[] { 1, 1, 5, 5, 10, 10, 100, 100, 0.1, 0.1 };
             this.error = new Double[] { 0.01, 0.1, 0.1, 0.1, 1, 1, 1, 1, 0.01, 0.01 };
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="GaussianRandomGenerator.NextDouble(Double, Double)" /> method.
@@ -87,7 +77,5 @@ namespace ELTE.AEGIS.Tests.Numerics.Randomizers
                 stdDeviation.ShouldBe(this.stdDeviation[i], this.error[i]);
             }
         }
-
-        #endregion
     }
 }

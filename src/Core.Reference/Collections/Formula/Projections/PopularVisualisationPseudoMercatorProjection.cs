@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1024", "Popular Visualisation Pseudo Mercator")]
     public class PopularVisualisationPseudoMercatorProjection : MercatorProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PopularVisualisationPseudoMercatorProjection" /> class.
         /// </summary>
@@ -70,7 +68,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
                 this.ellipsoidRadius = this.Ellipsoid.RadiusOfConformalSphere((Angle)this.Parameters[CoordinateOperationParameters.LatitudeOfNaturalOrigin]).Value;
             }
         }
-
-        #endregion
     }
 }

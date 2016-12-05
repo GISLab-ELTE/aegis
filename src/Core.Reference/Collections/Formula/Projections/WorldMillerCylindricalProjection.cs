@@ -24,8 +24,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("ESRI::54002", "Miller Cylindrical Projection")]
     public class WorldMillerCylindricalProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// False easting.
         /// </summary>
@@ -45,10 +43,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// The radius of the sphere.
         /// </summary>
         private readonly Double sphereRadius;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldMillerCylindricalProjection" /> class.
@@ -85,10 +79,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.sphereRadius = ellipsoid.SemiMajorAxis.BaseValue;
         }
 
-        #endregion
-
-        #region Protected methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -117,10 +107,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             return new GeoCoordinate(latitude, longitude);
         }
 
-        #endregion
-
-        #region Private methods
-
         /// <summary>
         /// Computes the longitude delta.
         /// </summary>
@@ -133,7 +119,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             Angle correction = Angle.FromDegree(diff > threshold ? -360 : (diff < -threshold ? 360 : 0));
             return (diff + correction).BaseValue;
         }
-
-        #endregion
     }
 }

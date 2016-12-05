@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class P6LeftHandedSeismicBinGridTransformationTest
     {
-        #region Private fields
-
         /// <summary>
         /// The transformation.
         /// </summary>
         private P6LeftHandedSeismicBinGridTransformation transformation;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -62,10 +56,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.transformation = new P6LeftHandedSeismicBinGridTransformation("EPSG::6919", "[enter here name of (I = J-90°) bin grid] ", parameters, source, target, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the forward computation.
@@ -93,7 +83,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.X.ShouldBe(expected.X, 0.01);
             transformed.Y.ShouldBe(expected.Y, 0.01);
         }
-
-        #endregion
     }
 }

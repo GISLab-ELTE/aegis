@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public class HouseholderTransformation
     {
-        #region Private fields
-
         /// <summary>
         /// The original vector.
         /// </summary>
@@ -35,10 +33,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         /// </summary>
         private Matrix h;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HouseholderTransformation" /> class.
         /// </summary>
@@ -47,7 +41,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public HouseholderTransformation(Double[] vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             this.vector = vector;
         }
@@ -60,14 +54,10 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public HouseholderTransformation(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), Messages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
 
             this.vector = vector.ToArray();
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the Householder transform.
@@ -82,10 +72,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
                 return this.h;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Transforms the specified vector.
@@ -127,11 +113,11 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Matrix Tridiagonalize(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
             if (!matrix.IsSquare)
-                throw new ArgumentException(Messages.MatrixIsNotSquare, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(matrix));
             if (!MatrixComputations.IsSymmetric(matrix))
-                throw new ArgumentException(Messages.MatrixIsNotSymmetric, nameof(matrix));
+                throw new ArgumentException(NumericsMessages.MatrixIsNotSymmetric, nameof(matrix));
 
             Matrix tridiagonalMatrix = new Matrix(matrix);
 
@@ -159,10 +145,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return tridiagonalMatrix;
         }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Perform computation.
         /// </summary>
@@ -183,7 +165,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             this.h = MatrixFactory.CreateIdentity(this.vector.Length) - 2 / (vTranspone * v)[0] * (v * vTranspone);
         }
-
-        #endregion
     }
 }

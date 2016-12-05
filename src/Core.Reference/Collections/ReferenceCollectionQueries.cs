@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Reference.Collections
     /// </summary>
     internal static class ReferenceCollectionQueries
     {
-        #region Generic queries
-
         /// <summary>
         /// Returns a collection with items matching the specified identifier.
         /// </summary>
@@ -44,9 +42,9 @@ namespace ELTE.AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             return collection.Where(item => item.Identifier == identifier || item.Identifier.Contains(identifier));
         }
@@ -67,9 +65,9 @@ namespace ELTE.AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             return collection.Where(item => item.Name == name || item.Name.Contains(name) || item.Aliases.Any(alias => alias == name || alias.Contains(name)));
         }
@@ -90,9 +88,9 @@ namespace ELTE.AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
             Regex identifierRegex = new Regex(identifier, RegexOptions.CultureInvariant);
 
@@ -115,18 +113,14 @@ namespace ELTE.AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (name == null)
-                throw new ArgumentNullException(nameof(name), Messages.NameIsNull);
+                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
             Regex nameRegex = new Regex(name, RegexOptions.CultureInvariant);
 
             return collection.Where(item => item.Name == name || nameRegex.IsMatch(item.Name) || item.Aliases.Any(alias => alias == name || nameRegex.IsMatch(alias)));
         }
-
-        #endregion
-
-        #region Area of use queries
 
         /// <summary>
         /// Returns a collection with items with the specified area.
@@ -141,7 +135,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<AreaOfUse> WithArea(this IEnumerable<AreaOfUse> collection, Angle south, Angle west, Angle north, Angle east)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.South.Equals(south) && item.East.Equals(east) && item.North.Equals(north) && item.West.Equals(west));
         }
@@ -159,14 +153,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<AreaOfUse> WithinArea(this IEnumerable<AreaOfUse> collection, Angle south, Angle west, Angle north, Angle east)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Within(south, west, north, east));
         }
-
-        #endregion
-
-        #region Compound reference system queries
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -182,9 +172,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CompoundReferenceSystem> WithAreaOfUse(this IEnumerable<CompoundReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -203,16 +193,12 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CompoundReferenceSystem> WithinAreaOfUse(this IEnumerable<CompoundReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
-
-        #endregion
-
-        #region Coordinate operation methods queries
 
         /// <summary>
         /// Returns a collection with items matching the specified parameters.
@@ -224,10 +210,6 @@ namespace ELTE.AEGIS.Reference.Collections
         {
             return collection.Where(item => IsMatching(item.Parameters, parameters));
         }
-
-        #endregion
-
-        #region Coordinate reference system queries
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -243,9 +225,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithAreaOfUse(this IEnumerable<CoordinateReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -264,9 +246,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithinAreaOfUse(this IEnumerable<CoordinateReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -285,9 +267,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithCoordinateSystem(this IEnumerable<CoordinateReferenceSystem> collection, CoordinateSystem coordinateSystem)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), Messages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
 
             return collection.Where(item => item.CoordinateSystem.Equals(coordinateSystem));
         }
@@ -306,16 +288,12 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithDatum(this IEnumerable<CoordinateReferenceSystem> collection, GeodeticDatum datum)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), Messages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
 
             return collection.Where(item => item.Datum.Equals(datum));
         }
-
-        #endregion
-
-        #region Coordinate system queries
 
         /// <summary>
         /// Returns a collection with items with the specified dimension.
@@ -327,7 +305,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateSystem> WithDimension(this IEnumerable<CoordinateSystem> collection, Int32 dimension)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Dimension == dimension);
         }
@@ -342,14 +320,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<CoordinateSystem> WithType(this IEnumerable<CoordinateSystem> collection, CoordinateSystemType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Type == type);
         }
-
-        #endregion
-
-        #region Geodetic datum queries
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -365,9 +339,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithArea(this IEnumerable<GeodeticDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -386,9 +360,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithinArea(this IEnumerable<GeodeticDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -407,9 +381,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithEllipsoid(this IEnumerable<GeodeticDatum> collection, Ellipsoid ellipsoid)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.Ellipsoid.Equals(ellipsoid));
         }
@@ -428,16 +402,12 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithPrimeMeridian(this IEnumerable<GeodeticDatum> collection, Meridian primeMeridian)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (primeMeridian == null)
-                throw new ArgumentNullException(nameof(primeMeridian), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(primeMeridian), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.PrimeMeridian.Equals(primeMeridian));
         }
-
-        #endregion
-
-        #region Meridian queries
 
         /// <summary>
         /// Returns a collection with items matching a specified longitude.
@@ -449,14 +419,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<Meridian> WithLongitude(this IEnumerable<Meridian> collection, Angle longitude)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Longitude.Equals(longitude));
         }
-
-        #endregion
-
-        #region Projected coordinate reference system queries
 
         /// <summary>
         /// Returns a collection with items matching a specified projection.
@@ -472,14 +438,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<ProjectedCoordinateReferenceSystem> WithProjection(this IEnumerable<ProjectedCoordinateReferenceSystem> collection,  CoordinateProjection projection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Projection.Equals(projection));
         }
-
-        #endregion
-
-        #region Reference system queries
 
         /// <summary>
         /// Returns a collection with items with the specified dimension.
@@ -491,7 +453,7 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<ReferenceSystem> WithDimension(this IEnumerable<ReferenceSystem> collection, Int32 dimension)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Dimension == dimension);
         }
@@ -506,14 +468,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<ReferenceSystem> WithType(this IEnumerable<ReferenceSystem> collection, ReferenceSystemType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Type == type);
         }
-
-        #endregion
-
-        #region Vertical datum queries
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -529,9 +487,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithArea(this IEnumerable<VerticalDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -550,9 +508,9 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithinArea(this IEnumerable<VerticalDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -567,14 +525,10 @@ namespace ELTE.AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithType(this IEnumerable<VerticalDatum> collection, VerticalDatumType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), Messages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
 
             return collection.Where(item => item.Type.Equals(type));
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Returns whether the specified parameter collections match.
@@ -601,7 +555,5 @@ namespace ELTE.AEGIS.Reference.Collections
 
             return true;
         }
-
-        #endregion
     }
 }

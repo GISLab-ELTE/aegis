@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
     /// </remarks>
     public class MersenneTwisterRandomGenerator : Random
     {
-        #region Private constants
-
         /// <summary>
         /// The word size (in number of bits).
         /// </summary>
@@ -103,10 +101,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         /// </summary>
         private const Int32 UpperMask = ~LowerMask;
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// Array to store the state of the generator.
         /// </summary>
@@ -116,10 +110,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         /// The index of the generated numbers.
         /// </summary>
         private Int16 index;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MersenneTwisterRandomGenerator" /> class.
@@ -143,10 +133,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
                 this.mT[i] = (Int32)(F * (this.mT[i - 1] ^ (this.mT[i - 1] >> (W - 2))) + i);
             }
         }
-
-        #endregion
-
-        #region Public Random methods
 
         /// <summary>
         /// Returns a non-negative random integer.
@@ -177,7 +163,7 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public override Int32 Next(Int32 maxValue)
         {
             if (maxValue < 0)
-                throw new ArgumentOutOfRangeException(nameof(maxValue), Messages.MaxValueLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(maxValue), NumericsMessages.MaxValueLessThan0);
 
             if (maxValue == 0)
                 return 0;
@@ -197,7 +183,7 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public override Int32 Next(Int32 minValue, Int32 maxValue)
         {
             if (maxValue < minValue)
-                throw new ArgumentOutOfRangeException(nameof(minValue), Messages.MinValueGreaterThanMaxValue);
+                throw new ArgumentOutOfRangeException(nameof(minValue), NumericsMessages.MinValueGreaterThanMaxValue);
 
             if (maxValue == minValue)
                 return minValue;
@@ -213,7 +199,7 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         public override void NextBytes(Byte[] buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), Messages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer), NumericsMessages.BufferIsNull);
 
             for (Int32 i = 0; i < buffer.Length; i++)
             {
@@ -229,10 +215,6 @@ namespace ELTE.AEGIS.Numerics.Randomizers
         {
             return (Double)this.Next() / Int32.MaxValue;
         }
-
-        #endregion
-
-        #region Private methods
 
         /// <summary>
         /// Generates the next n values.
@@ -250,7 +232,5 @@ namespace ELTE.AEGIS.Numerics.Randomizers
 
             this.index = 0;
         }
-
-        #endregion
     }
 }

@@ -30,8 +30,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </remarks>
     public class QRAlgorithm
     {
-        #region Private fields
-
         /// <summary>
         /// The limit of value change in order for the iteration to stop. This field is constant.
         /// </summary>
@@ -52,10 +50,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         /// </summary>
         private Vector[] eigenvectors;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="QRAlgorithm" /> class.
         /// </summary>
@@ -64,14 +58,10 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public QRAlgorithm(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), Messages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
 
             this.source = matrix;
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the eigenvalues.
@@ -102,10 +92,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
                 return this.eigenvectors;
             }
         }
-
-        #endregion
-
-        #region Public static methods
 
         /// <summary>
         /// Computes the eigenvalues of the specified matrix.
@@ -166,10 +152,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
 
             return algorithm.Eigenvectors;
         }
-
-        #endregion
-
-        #region Public methods
 
         /// <summary>
         /// Computes the result of the algorithm.
@@ -241,7 +223,7 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public void Compute(Int32 numberOfIterations)
         {
             if (numberOfIterations < 1)
-                throw new ArgumentOutOfRangeException(nameof(numberOfIterations), Messages.NumberOfIterationsIsLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(numberOfIterations), NumericsMessages.NumberOfIterationsIsLessThan1);
 
             if (this.source.NumberOfRows == 0 || this.source.NumberOfColumns == 0)
             {
@@ -273,10 +255,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
                 this.eigenvectors[columnIndex] = new Vector(resultQ.GetColumn(columnIndex));
         }
 
-        #endregion
-
-        #region Private static methods
-
         /// <summary>
         /// Swaps the specified items.
         /// </summary>
@@ -289,7 +267,5 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             first = second;
             second = temp;
         }
-
-        #endregion
     }
 }

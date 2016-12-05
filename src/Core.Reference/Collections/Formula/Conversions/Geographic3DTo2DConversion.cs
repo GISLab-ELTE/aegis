@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9659", "Geographic3D to 2D conversion")]
     public class Geographic3DTo2DConversion : CoordinateConversion<GeoCoordinate, GeoCoordinate>
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Geographic3DTo2DConversion" /> class.
         /// </summary>
@@ -49,10 +47,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -72,7 +66,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
             return coordinate;
         }
-
-        #endregion
     }
 }

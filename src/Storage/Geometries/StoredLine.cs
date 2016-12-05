@@ -23,16 +23,10 @@ namespace ELTE.AEGIS.Storage.Geometries
     /// </summary>
     public class StoredLine : StoredLineString, ILine
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the line. This field is constant.
         /// </summary>
         private const String LineName = "LINE";
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredLine" /> class.
@@ -67,29 +61,17 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
         }
 
-        #endregion
-
-        #region IGeometry properties
-
         /// <summary>
         /// Gets a value indicating whether the current geometry is simple.
         /// </summary>
         /// <value><c>true</c>, as a line is always considered to be simple.</value>
         public override Boolean IsSimple { get { return true; } }
 
-        #endregion
-
-        #region ICurve properties
-
         /// <summary>
         /// Gets the length of the line.
         /// </summary>
         /// <value>The length of the line.</value>
         public override Double Length { get { return Coordinate.Distance(this.StartCoordinate, this.EndCoordinate); } }
-
-        #endregion
-
-        #region ILineString methods
 
         /// <summary>
         /// Adds a coordinate to the end of the line.
@@ -98,7 +80,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Extension of lines is not supported.</exception>
         public override void Add(Coordinate coordinate)
         {
-            throw new NotSupportedException(Messages.LineExtensionNotSupported);
+            throw new NotSupportedException(CoreMessages.LineExtensionNotSupported);
         }
 
         /// <summary>
@@ -109,7 +91,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Extension of lines is not supported.</exception>
         public override void Insert(Int32 index, Coordinate coordinate)
         {
-            throw new NotSupportedException(Messages.LineExtensionNotSupported);
+            throw new NotSupportedException(CoreMessages.LineExtensionNotSupported);
         }
 
         /// <summary>
@@ -120,7 +102,7 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Reduction of lines is not supported.</exception>
         public override Boolean Remove(Coordinate coordinate)
         {
-            throw new NotSupportedException(Messages.LineReductionNotSupported);
+            throw new NotSupportedException(CoreMessages.LineReductionNotSupported);
         }
 
         /// <summary>
@@ -130,12 +112,8 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <exception cref="System.NotSupportedException">Reduction of lines is not supported.</exception>
         public override void RemoveAt(Int32 index)
         {
-            throw new NotSupportedException(Messages.LineReductionNotSupported);
+            throw new NotSupportedException(CoreMessages.LineReductionNotSupported);
         }
-
-        #endregion
-
-        #region IGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -146,7 +124,5 @@ namespace ELTE.AEGIS.Storage.Geometries
         {
             return this.ToString(provider, LineName);
         }
-
-        #endregion
     }
 }

@@ -23,25 +23,15 @@ namespace ELTE.AEGIS
     /// </summary>
     public class BasicPoint : IBasicPoint
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for points. This field is constant.
         /// </summary>
         private const String PointStringFormat = "POINT ({0} {1} {2})";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The envelope of the point.
         /// </summary>
         private Envelope envelope;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicPoint" /> class.
@@ -51,14 +41,10 @@ namespace ELTE.AEGIS
         public BasicPoint(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
 
             this.Coordinate = coordinate;
         }
-
-        #endregion
-
-        #region IBasicGeometry properties
 
         /// <summary>
         /// Gets the inherent dimension of the geometry.
@@ -87,10 +73,6 @@ namespace ELTE.AEGIS
         /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
         public Boolean IsValid { get { return this.Coordinate.IsValid; } }
 
-        #endregion
-
-        #region IBasicPoint properties
-
         /// <summary>
         /// Gets the X coordinate.
         /// </summary>
@@ -115,10 +97,6 @@ namespace ELTE.AEGIS
         /// <value>The coordinate associated with the point.</value>
         public Coordinate Coordinate { get; private set; }
 
-        #endregion
-
-        #region Object methods
-
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
         /// </summary>
@@ -127,10 +105,6 @@ namespace ELTE.AEGIS
         {
             return this.ToString(CultureInfo.InvariantCulture);
         }
-
-        #endregion
-
-        #region IBasicGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -141,7 +115,5 @@ namespace ELTE.AEGIS
         {
             return String.Format(provider, PointStringFormat, this.Coordinate.X, this.Coordinate.Y, this.Coordinate.Z);
         }
-
-        #endregion
     }
 }

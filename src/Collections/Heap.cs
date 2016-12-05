@@ -34,16 +34,16 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class Heap<TKey, TValue> : IHeap<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable
     {
-        #region Private constants
+        
 
         /// <summary>
         /// The default capacity. This field is constant.
         /// </summary>
         private const Int32 DefaultCapacity = 4;
 
-        #endregion
+        
 
-        #region Private fields
+        
 
         /// <summary>
         /// The empty array. This field is read-only.
@@ -70,9 +70,9 @@ namespace ELTE.AEGIS.Collections
         /// </summary>
         private Int32 version;
 
-        #endregion
+        
 
-        #region Constructors
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Heap{TKey, TValue}" /> class that is empty, has the default initial capacity, and uses the default comparer for the key type.
@@ -93,7 +93,7 @@ namespace ELTE.AEGIS.Collections
         public Heap(Int32 capacity)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(CollectionMessages.CapacityLessThan0);
 
             this.items = new KeyValuePair<TKey, TValue>[capacity];
             this.size = 0;
@@ -122,7 +122,7 @@ namespace ELTE.AEGIS.Collections
         public Heap(IEnumerable<KeyValuePair<TKey, TValue>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             this.size = 0;
             this.version = 0;
@@ -144,7 +144,7 @@ namespace ELTE.AEGIS.Collections
         public Heap(IEnumerable<KeyValuePair<TKey, TValue>> source, IComparer<TKey> comparer)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), Messages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
 
             this.items = EmptyArray;
             this.size = 0;
@@ -167,7 +167,7 @@ namespace ELTE.AEGIS.Collections
         public Heap(Int32 capacity, IComparer<TKey> comparer)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), Messages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), CollectionMessages.CapacityLessThan0);
 
             this.items = new KeyValuePair<TKey, TValue>[capacity];
             this.size = 0;
@@ -176,9 +176,9 @@ namespace ELTE.AEGIS.Collections
             this.comparer = comparer ?? Comparer<TKey>.Default;
         }
 
-        #endregion
+        
 
-        #region IHeap properties
+        
 
         /// <summary>
         /// Gets the number of elements actually contained in the heap.
@@ -203,7 +203,7 @@ namespace ELTE.AEGIS.Collections
                 if (value != this.items.Length)
                 {
                     if (value < this.size)
-                        throw new InvalidOperationException(Messages.CapacityLessThanCount);
+                        throw new InvalidOperationException(CollectionMessages.CapacityLessThanCount);
 
                     if (value > 0)
                     {
@@ -233,15 +233,15 @@ namespace ELTE.AEGIS.Collections
             get
             {
                 if (this.size == 0)
-                    throw new InvalidOperationException(Messages.HeapIsEmpty);
+                    throw new InvalidOperationException(CollectionMessages.HeapIsEmpty);
 
                 return this.items[0].Value;
             }
         }
 
-        #endregion
+        
 
-        #region Public properties
+        
 
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the heap.
@@ -249,9 +249,9 @@ namespace ELTE.AEGIS.Collections
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current heap and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get { return this.comparer; } }
 
-        #endregion
+        
 
-        #region IHeap methods
+        
 
         /// <summary>
         /// Inserts the specified key and value to the heap.
@@ -262,7 +262,7 @@ namespace ELTE.AEGIS.Collections
         public void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.size == this.items.Length)
                 this.EnsureCapacity(this.size + 1);
@@ -290,7 +290,7 @@ namespace ELTE.AEGIS.Collections
         public TValue RemovePeek()
         {
             if (this.size == 0)
-                throw new InvalidOperationException(Messages.HeapIsEmpty);
+                throw new InvalidOperationException(CollectionMessages.HeapIsEmpty);
 
             KeyValuePair<TKey, TValue> result = this.items[0];
             Int32 current = 0, leftChild, rightChild, parent;
@@ -350,9 +350,9 @@ namespace ELTE.AEGIS.Collections
             this.version++;
         }
 
-        #endregion
+        
 
-        #region IEnumerable methods
+        
 
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
@@ -372,9 +372,9 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        #endregion
+        
 
-        #region Protected methods
+        
 
         /// <summary>
         /// Ensures the capacity of the heap is at least the given minimum value.
@@ -406,9 +406,9 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        #endregion
+        
 
-        #region Public types
+        
 
         /// <summary>
         /// Enumerates the elements of a heap.
@@ -418,7 +418,7 @@ namespace ELTE.AEGIS.Collections
         /// </remarks>
         public sealed class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IEnumerator, IDisposable
         {
-            #region Private fields
+            
 
             /// <summary>
             /// The heap that is enumerated.
@@ -440,9 +440,9 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private KeyValuePair<TKey, TValue> current;
 
-            #endregion
+            
 
-            #region Constructors
+            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
@@ -452,7 +452,7 @@ namespace ELTE.AEGIS.Collections
             internal Enumerator(Heap<TKey, TValue> heap)
             {
                 if (heap == null)
-                    throw new ArgumentNullException(nameof(heap), Messages.HeapIsNull);
+                    throw new ArgumentNullException(nameof(heap), CollectionMessages.HeapIsNull);
 
                 this.localHeap = heap;
                 this.localVersion = heap.version;
@@ -461,9 +461,9 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            #endregion
+            
 
-            #region IEnumerator properties
+            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -483,9 +483,9 @@ namespace ELTE.AEGIS.Collections
                 get { return this.current; }
             }
 
-            #endregion
+            
 
-            #region IEnumerator methods
+            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -495,7 +495,7 @@ namespace ELTE.AEGIS.Collections
             public Boolean MoveNext()
             {
                 if (this.localVersion != this.localHeap.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.position++;
 
@@ -519,15 +519,15 @@ namespace ELTE.AEGIS.Collections
             public void Reset()
             {
                 if (this.localVersion != this.localHeap.version)
-                    throw new InvalidOperationException(Messages.CollectionWasModifiedAfterEnumerator);
+                    throw new InvalidOperationException(CollectionMessages.CollectionWasModifiedAfterEnumerator);
 
                 this.position = -1;
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            #endregion
+            
 
-            #region IDisposable methods
+            
 
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -536,9 +536,9 @@ namespace ELTE.AEGIS.Collections
             {
             }
 
-            #endregion
+            
         }
 
-        #endregion
+        
     }
 }

@@ -22,17 +22,11 @@ namespace ELTE.AEGIS.Storage
     /// </summary>
     public interface IStoredGeometryFactory : IGeometryFactory
     {
-        #region Properties
-
         /// <summary>
         /// Gets the geometry driver of the factory.
         /// </summary>
         /// <value>The geometry driver of the factory.</value>
         IGeometryDriver Driver { get; }
-
-        #endregion
-
-        #region Factory methods for stored points
 
         /// <summary>
         /// Creates a point.
@@ -135,10 +129,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other point is null.</exception>
         IPoint CreatePoint(IPoint other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored line strings
-
         /// <summary>
         /// Creates a line string.
         /// </summary>
@@ -224,10 +214,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other line string is null.</exception>
         ILineString CreateLineString(ILineString other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored lines
-
         /// <summary>
         /// Creates a line.
         /// </summary>
@@ -308,10 +294,6 @@ namespace ELTE.AEGIS.Storage
         /// <returns>The line created by the factory.</returns>
         /// <exception cref="System.ArgumentNullException">The other line is null.</exception>
         ILine CreateLine(ILine other, IEnumerable<Int32> indexes);
-
-        #endregion
-
-        #region Factory methods for stored linear rings
 
         /// <summary>
         /// Creates a linear ring.
@@ -394,10 +376,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other linear ring is null.</exception>
         ILinearRing CreateLinearRing(ILinearRing other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored polygons
-
         /// <summary>
         /// Creates a polygon.
         /// </summary>
@@ -479,10 +457,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other polygon is null.</exception>
         IPolygon CreatePolygon(IPolygon other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored triangles
-
         /// <summary>
         /// Creates a triangle.
         /// </summary>
@@ -563,10 +537,6 @@ namespace ELTE.AEGIS.Storage
         /// <returns>The triangle created by the factory.</returns>
         /// <exception cref="System.ArgumentNullException">The other triangle is null.</exception>
         ITriangle CreateTriangle(ITriangle other, IEnumerable<Int32> indexes);
-
-        #endregion
-
-        #region Factory methods for stored geometry collections
 
         /// <summary>
         /// Creates a geometry collection.
@@ -746,10 +716,6 @@ namespace ELTE.AEGIS.Storage
         IGeometryCollection<GeometryType> CreateGeometryCollection<GeometryType>(IGeometryCollection<GeometryType> other, IEnumerable<Int32> indexes)
             where GeometryType : IGeometry;
 
-        #endregion
-
-        #region Factory methods for stored multi points
-
         /// <summary>
         /// Creates a multi point.
         /// </summary>
@@ -830,10 +796,6 @@ namespace ELTE.AEGIS.Storage
         /// <returns>The multi point created by the factory.</returns>
         /// <exception cref="System.ArgumentNullException">The other multi point is null.</exception>
         IMultiPoint CreateMultiPoint(IMultiPoint other, IEnumerable<Int32> indexes);
-
-        #endregion
-
-        #region Factory methods for stored multi line strings
 
         /// <summary>
         /// Creates a multi line string.
@@ -916,10 +878,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other multi line string is null.</exception>
         IMultiLineString CreateMultiLineString(IMultiLineString other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored multi polygons
-
         /// <summary>
         /// Creates a multi polygon.
         /// </summary>
@@ -1001,10 +959,6 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other multi polygon is null.</exception>
         IMultiPolygon CreateMultiPolygon(IMultiPolygon other, IEnumerable<Int32> indexes);
 
-        #endregion
-
-        #region Factory methods for stored geometries
-
         /// <summary>
         /// Creates a geometry matching another geometry.
         /// </summary>
@@ -1068,7 +1022,5 @@ namespace ELTE.AEGIS.Storage
         /// <exception cref="System.ArgumentNullException">The other geometry is null.</exception>
         /// <exception cref="System.ArgumentException">The type of the other geometry is not supported.</exception>
         IGeometry CreateGeometry(IGeometry other, IEnumerable<Int32> indexes);
-
-        #endregion
     }
 }

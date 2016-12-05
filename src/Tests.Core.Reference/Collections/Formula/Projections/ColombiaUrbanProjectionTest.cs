@@ -26,16 +26,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class ColombiaUrbanProjectionTest
     {
-        #region Private fields
-
         /// <summary>
         /// The projection.
         /// </summary>
         private ColombiaUrbanProjection projection;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -55,10 +49,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
 
             this.projection = new ColombiaUrbanProjection("EPSG::3116", "MAGNA-SIRGAS / Bogota urban grid", parameters, ellipsoid, areaOfUse);
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the <see cref="Forward" /> method.
@@ -86,7 +76,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             Assert.AreEqual(transformed.Latitude.BaseValue, expected.Latitude.BaseValue, 0.0001);
             Assert.AreEqual(transformed.Longitude.BaseValue, expected.Longitude.BaseValue, 0.0001);
         }
-
-        #endregion
     }
 }

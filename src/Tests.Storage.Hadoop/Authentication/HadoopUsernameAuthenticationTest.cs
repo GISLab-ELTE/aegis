@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Authentication
     [TestFixture]
     public class HadoopUsernameAuthenticationTest
     {
-        #region Test methods
-
         /// <summary>
         /// Tests the constructor of the <see cref="HadoopUsernameAuthentication" /> class.
         /// </summary>
@@ -47,7 +45,5 @@ namespace ELTE.AEGIS.Tests.IO.Storage.Authentication
             Should.Throw<ArgumentNullException>(() => new HadoopUsernameAuthentication(null));
             Should.Throw<ArgumentException>(() => new HadoopUsernameAuthentication(String.Empty));
         }
-
-        #endregion
     }
 }

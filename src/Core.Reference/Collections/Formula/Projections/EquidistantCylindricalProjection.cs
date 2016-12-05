@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::1028", "Equidistant Cylindrical")]
     public class EquidistantCylindricalProjection : CoordinateProjection
     {
-        #region Private fields
-
         /// <summary>
         /// Latitude of 1st standard parallel.
         /// </summary>
@@ -51,10 +49,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         /// Operation constant.
         /// </summary>
         private readonly Double nu1;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EquidistantCylindricalProjection" /> class.
@@ -127,10 +121,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
             this.nu1 = this.Ellipsoid.SemiMajorAxis.Value / Math.Sqrt(1 - this.Ellipsoid.EccentricitySquare * Calculator.Sin2(this.latitudeOf1stStadardParallel));
         }
 
-        #endregion
-
-        #region Protected operation methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -199,7 +189,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

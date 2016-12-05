@@ -28,25 +28,15 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// </remarks>
     public class LocalVerticalDatumCollection : LocalReferenceCollection<VerticalDatum>, IEnumerable<VerticalDatum>
     {
-        #region Private constants
-
         /// <summary>
         /// The name of the resource. This field is constant.
         /// </summary>
         private const String ResourceName = "Datum";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
         /// </summary>
         private IReferenceCollection<AreaOfUse> areaOfUseCollection;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalVerticalDatumCollection" /> class.
@@ -57,14 +47,10 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             : base(ResourceName, ResourceName)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), Messages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
 
             this.areaOfUseCollection = areaOfUseCollection;
         }
-
-        #endregion
-
-        #region IEnumerable<VerticalDatum> methods
 
         /// <summary>
         /// Returns a collection with items with the specified area of use.
@@ -86,7 +72,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         public IEnumerable<VerticalDatum> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), Messages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
 
             return this.GetReferences().Where(datum => datum.AreaOfUse.Within(area));
         }
@@ -101,10 +87,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             return this.GetReferences().Where(datum => datum.Type.Equals(type));
         }
 
-        #endregion
-
-        #region IEnumerable methods
-
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -113,10 +95,6 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         {
             return this.GetEnumerator();
         }
-
-        #endregion
-
-        #region Protected methods
 
         /// <summary>
         /// Converts the specified content.
@@ -136,7 +114,5 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                     return null;
             }
         }
-
-        #endregion
     }
 }

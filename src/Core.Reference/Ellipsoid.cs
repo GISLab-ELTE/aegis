@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public sealed class Ellipsoid : IdentifiedObject
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Ellipsoid" /> class.
         /// </summary>
@@ -71,10 +69,6 @@ namespace ELTE.AEGIS.Reference
             this.SecondEccentricitySquare = this.SecondEccentricity * this.SecondEccentricity;
             this.RadiusOfAuthalicSphere = new Length(this.SemiMajorAxis.Value * Math.Sqrt((1 - (1 - this.EccentricitySquare) / (2 * this.Eccentricity) * Math.Log((1 - this.Eccentricity) / (1 + this.Eccentricity))) * 0.5), this.SemiMajorAxis.Unit);
         }
-
-        #endregion
-
-        #region Public properties
 
         /// <summary>
         /// Gets the semi-major axis.
@@ -126,10 +120,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         public Double SecondEccentricitySquare { get; private set; }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Determines the radius of meridian curvature at a specified latitude.
         /// </summary>
@@ -139,7 +129,7 @@ namespace ELTE.AEGIS.Reference
         public Length RadiusOfMeridianCurvature(Angle latitude)
         {
             if (latitude.BaseValue > Math.PI / 2 || latitude.BaseValue < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis;
@@ -156,7 +146,7 @@ namespace ELTE.AEGIS.Reference
         public Double RadiusOfMeridianCurvature(Double latitude)
         {
             if (latitude > Math.PI / 2 || latitude < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis.Value;
@@ -173,7 +163,7 @@ namespace ELTE.AEGIS.Reference
         public Length RadiusOfPrimeVerticalCurvature(Angle latitude)
         {
             if (latitude.BaseValue > Math.PI / 2 || latitude.BaseValue < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis;
@@ -190,7 +180,7 @@ namespace ELTE.AEGIS.Reference
         public Double RadiusOfPrimeVerticalCurvature(Double latitude)
         {
             if (latitude > Math.PI / 2 || latitude < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis.Value;
@@ -207,7 +197,7 @@ namespace ELTE.AEGIS.Reference
         public Length RadiusOfParalellCurvature(Angle latitude)
         {
             if (latitude.BaseValue > Math.PI / 2 || latitude.BaseValue < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis * Math.Cos(latitude.BaseValue);
@@ -224,7 +214,7 @@ namespace ELTE.AEGIS.Reference
         public Double RadiusOfParalellCurvature(Double latitude)
         {
             if (latitude > Math.PI / 2 || latitude < -Math.PI / 2)
-                throw new ArgumentException(Messages.LatitudeInvalid, nameof(latitude));
+                throw new ArgumentException(ReferenceMessages.LatitudeInvalid, nameof(latitude));
 
             if (this.IsSphere)
                 return this.SemiMajorAxis.Value * Math.Cos(latitude);
@@ -256,10 +246,6 @@ namespace ELTE.AEGIS.Reference
             return Math.Sqrt(this.RadiusOfMeridianCurvature(latitude) * this.RadiusOfPrimeVerticalCurvature(latitude));
         }
 
-        #endregion
-
-        #region Public static factory methods
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Ellipsoid" /> class based on the semi-minor axis.
         /// </summary>
@@ -280,13 +266,13 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSemiMinorAxis(String identifier, String name, Length semiMajorAxis, Length semiMinorAxis)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (semiMinorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisIsEqualToOrLessThan0);
             if (semiMajorAxis < semiMinorAxis)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisGreaterThaneSemiMajorAxis);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisGreaterThaneSemiMajorAxis);
             if (semiMajorAxis.Unit != semiMinorAxis.Unit)
-                throw new ArgumentException(Messages.SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit, nameof(semiMinorAxis));
+                throw new ArgumentException(ReferenceMessages.SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit, nameof(semiMinorAxis));
 
             Double inverseFlattening = (semiMajorAxis == semiMinorAxis) ? 1 : semiMajorAxis.Value / (semiMajorAxis.Value - semiMinorAxis.Value);
 
@@ -312,11 +298,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSemiMinorAxis(String identifier, String name, Double semiMajorAxis, Double semiMinorAxis)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (semiMinorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisIsEqualToOrLessThan0);
             if (semiMajorAxis < semiMinorAxis)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisGreaterThaneSemiMajorAxis);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisGreaterThaneSemiMajorAxis);
 
             Double inverseFlattening = (semiMajorAxis == semiMinorAxis) ? 1 : semiMajorAxis / (semiMajorAxis - semiMinorAxis);
 
@@ -345,13 +331,13 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSemiMinorAxis(String identifier, String name, String remarks, String[] aliases, Length semiMajorAxis, Length semiMinorAxis)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (semiMinorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisIsEqualToOrLessThan0);
             if (semiMajorAxis < semiMinorAxis)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisGreaterThaneSemiMajorAxis);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisGreaterThaneSemiMajorAxis);
             if (semiMajorAxis.Unit != semiMinorAxis.Unit)
-                throw new ArgumentException(Messages.SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit, nameof(semiMinorAxis));
+                throw new ArgumentException(ReferenceMessages.SemiMajorAxisUnitNotEqualToSemiMinorAxisUnit, nameof(semiMinorAxis));
 
             Double inverseFlattening = (semiMajorAxis == semiMinorAxis) ? 1 : semiMajorAxis.Value / (semiMajorAxis.Value - semiMinorAxis.Value);
 
@@ -379,11 +365,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSemiMinorAxis(String identifier, String name, String remarks, String[] aliases, Double semiMajorAxis, Double semiMinorAxis)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (semiMinorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisIsEqualToOrLessThan0);
             if (semiMajorAxis < semiMinorAxis)
-                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), Messages.SemiMinorAxisGreaterThaneSemiMajorAxis);
+                throw new ArgumentOutOfRangeException(nameof(semiMinorAxis), ReferenceMessages.SemiMinorAxisGreaterThaneSemiMajorAxis);
 
             Double inverseFlattening = (semiMajorAxis == semiMinorAxis) ? 1 : semiMajorAxis / (semiMajorAxis - semiMinorAxis);
 
@@ -407,9 +393,9 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromInverseFlattening(String identifier, String name, Length semiMajorAxis, Double inverseFlattening)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (inverseFlattening < 1)
-                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), Messages.InverseFlatteningLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), ReferenceMessages.InverseFlatteningLessThan1);
 
             Length semiMinorAxis = new Length((inverseFlattening != 0) ? semiMajorAxis.Value * (1 - 1 / inverseFlattening) : semiMajorAxis.Value, semiMajorAxis.Unit);
 
@@ -433,9 +419,9 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromInverseFlattening(String identifier, String name, Double semiMajorAxis, Double inverseFlattening)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (inverseFlattening < 1)
-                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), Messages.InverseFlatteningLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), ReferenceMessages.InverseFlatteningLessThan1);
 
             Double semiMinorAxis = (inverseFlattening != 0) ? semiMajorAxis * (1 - 1 / inverseFlattening) : semiMajorAxis;
 
@@ -461,9 +447,9 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromInverseFlattening(String identifier, String name, String remarks, String[] aliases, Length semiMajorAxis, Double inverseFlattening)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (inverseFlattening < 1)
-                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), Messages.InverseFlatteningLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), ReferenceMessages.InverseFlatteningLessThan1);
 
             Length semiMinorAxis = new Length((inverseFlattening != 0) ? semiMajorAxis.Value * (1 - 1 / inverseFlattening) : semiMajorAxis.Value, semiMajorAxis.Unit);
 
@@ -489,9 +475,9 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromInverseFlattening(String identifier, String name, String remarks, String[] aliases, Double semiMajorAxis, Double inverseFlattening)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (inverseFlattening < 1)
-                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), Messages.InverseFlatteningLessThan1);
+                throw new ArgumentOutOfRangeException(nameof(inverseFlattening), ReferenceMessages.InverseFlatteningLessThan1);
 
             Double semiMinorAxis = (inverseFlattening != 0) ? semiMajorAxis * (1 - 1 / inverseFlattening) : semiMajorAxis;
 
@@ -517,11 +503,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromFlattening(String identifier, String name, Length semiMajorAxis, Double flattening)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (flattening <= 0)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsEqualToOrLessThan0);
             if (flattening > 1)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsGreaterThan1);
 
             Length semiMinorAxis = new Length((flattening != 1) ? semiMajorAxis.Value * (1 - flattening) : semiMajorAxis.Value, UnitsOfMeasurement.Metre);
 
@@ -547,11 +533,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromFlattening(String identifier, String name, Double semiMajorAxis, Double flattening)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (flattening <= 0)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsEqualToOrLessThan0);
             if (flattening > 1)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsGreaterThan1);
 
             Double semiMinorAxis = (flattening != 1) ? semiMajorAxis * (1 - flattening) : semiMajorAxis;
 
@@ -579,11 +565,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromFlattening(String identifier, String name, String remarks, String[] aliases, Length semiMajorAxis, Double flattening)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (flattening <= 0)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsEqualToOrLessThan0);
             if (flattening > 1)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsGreaterThan1);
 
             Length semiMinorAxis = new Length((flattening != 1) ? semiMajorAxis.Value * (1 - flattening) : semiMajorAxis.Value, UnitsOfMeasurement.Metre);
 
@@ -611,11 +597,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromFlattening(String identifier, String name, String remarks, String[] aliases, Double semiMajorAxis, Double flattening)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (flattening <= 0)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsEqualToOrLessThan0);
             if (flattening > 1)
-                throw new ArgumentOutOfRangeException(nameof(flattening), Messages.FlatteningIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(flattening), ReferenceMessages.FlatteningIsGreaterThan1);
 
             Double semiMinorAxis = (flattening != 1) ? semiMajorAxis * (1 - flattening) : semiMajorAxis;
 
@@ -641,11 +627,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromEccentricity(String identifier, String name, Length semiMajorAxis, Double eccentricity)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (eccentricity <= 0)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsEqualToOrLessThan0);
             if (eccentricity > 1)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsGreaterThan1);
 
             Double flattening = 1 - Math.Sqrt(1 - eccentricity * eccentricity);
             Length semiMinorAxis = new Length((flattening != 1) ? semiMajorAxis.Value * (1 - flattening) : semiMajorAxis.Value, UnitsOfMeasurement.Metre);
@@ -672,11 +658,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromEccentricity(String identifier, String name, Double semiMajorAxis, Double eccentricity)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (eccentricity <= 0)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsEqualToOrLessThan0);
             if (eccentricity > 1)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsGreaterThan1);
 
             Double flattening = 1 - Math.Sqrt(1 - eccentricity * eccentricity);
             Double semiMinorAxis = (flattening != 1) ? semiMajorAxis * (1 - flattening) : semiMajorAxis;
@@ -705,11 +691,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromEccentricity(String identifier, String name, String remarks, String[] aliases, Length semiMajorAxis, Double eccentricity)
         {
             if (semiMajorAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (eccentricity <= 0)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsEqualToOrLessThan0);
             if (eccentricity > 1)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsGreaterThan1);
 
             Double flattening = 1 - Math.Sqrt(1 - eccentricity * eccentricity);
             Length semiMinorAxis = new Length((flattening != 1) ? semiMajorAxis.Value * (1 - flattening) : semiMajorAxis.Value, UnitsOfMeasurement.Metre);
@@ -738,11 +724,11 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromEccentricity(String identifier, String name, String remarks, String[] aliases, Double semiMajorAxis, Double eccentricity)
         {
             if (semiMajorAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), Messages.SemiMajorAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiMajorAxis), ReferenceMessages.SemiMajorAxisIsEqualToOrLessThan0);
             if (eccentricity <= 0)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsEqualToOrLessThan0);
             if (eccentricity > 1)
-                throw new ArgumentOutOfRangeException(nameof(eccentricity), Messages.EccentricityIsGreaterThan1);
+                throw new ArgumentOutOfRangeException(nameof(eccentricity), ReferenceMessages.EccentricityIsGreaterThan1);
 
             Double flattening = 1 - Math.Sqrt(1 - eccentricity * eccentricity);
             Double semiMinorAxis = (flattening != 1) ? semiMajorAxis * (1 - flattening) : semiMajorAxis;
@@ -762,7 +748,7 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSphere(String identifier, String name, Length semiAxis)
         {
             if (semiAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiAxis), Messages.SemiAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiAxis), ReferenceMessages.SemiAxisIsEqualToOrLessThan0);
 
             return new Ellipsoid(identifier, name, null, null, semiAxis, semiAxis, 1, 0, 0);
         }
@@ -779,7 +765,7 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSphere(String identifier, String name, Double semiAxis)
         {
             if (semiAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiAxis), Messages.SemiAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiAxis), ReferenceMessages.SemiAxisIsEqualToOrLessThan0);
 
             return new Ellipsoid(identifier, name, null, null, semiAxis, semiAxis, 1, 0, 0);
         }
@@ -798,7 +784,7 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSphere(String identifier, String name, String remarks, String[] aliases, Length semiAxis)
         {
             if (semiAxis.Value <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiAxis), Messages.SemiAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiAxis), ReferenceMessages.SemiAxisIsEqualToOrLessThan0);
 
             return new Ellipsoid(identifier, name, null, null, semiAxis, semiAxis, 1, 0, 0);
         }
@@ -817,11 +803,9 @@ namespace ELTE.AEGIS.Reference
         public static Ellipsoid FromSphere(String identifier, String name, String remarks, String[] aliases, Double semiAxis)
         {
             if (semiAxis <= 0)
-                throw new ArgumentOutOfRangeException(nameof(semiAxis), Messages.SemiAxisIsEqualToOrLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(semiAxis), ReferenceMessages.SemiAxisIsEqualToOrLessThan0);
 
             return new Ellipsoid(identifier, name, null, null, semiAxis, semiAxis, 1, 0, 0);
         }
-
-        #endregion
     }
 }

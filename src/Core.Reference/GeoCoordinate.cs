@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     public class GeoCoordinate : IEquatable<GeoCoordinate>
     {
-        #region Public instances
-
         /// <summary>
         /// Represents the empty <see cref="GeoCoordinate" /> value. This field is constant.
         /// </summary>
@@ -34,10 +32,6 @@ namespace ELTE.AEGIS.Reference
         /// Represents the undefined <see cref="GeoCoordinate" /> value. This field is constant.
         /// </summary>
         public static readonly GeoCoordinate Undefined = new GeoCoordinate(Double.NaN, Double.NaN, Double.NaN);
-
-        #endregion
-
-        #region Private constants
 
         /// <summary>
         /// The string format for coordinates. This field is constant.
@@ -54,10 +48,6 @@ namespace ELTE.AEGIS.Reference
         /// </summary>
         private const String InvalidCoordinateString = "INVALID";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The latitude.
         /// </summary>
@@ -72,10 +62,6 @@ namespace ELTE.AEGIS.Reference
         /// The height.
         /// </summary>
         private readonly Length height;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoCoordinate" /> class.
@@ -127,10 +113,6 @@ namespace ELTE.AEGIS.Reference
             this.height = height;
         }
 
-        #endregion
-
-        #region Public properties
-
         /// <summary>
         /// Gets the geographic latitude.
         /// </summary>
@@ -161,10 +143,6 @@ namespace ELTE.AEGIS.Reference
         /// <value><c>true</c> if all coordinates are numbers and within the globe; otherwise, <c>false</c>.</value>
         public Boolean IsValid { get { return !Double.IsNaN(this.longitude.Value) && !Double.IsNaN(this.latitude.Value) && Math.Abs(this.longitude.BaseValue) <= Math.PI && Math.Abs(this.latitude.BaseValue) <= Math.PI / 2; } }
 
-        #endregion
-
-        #region Public methods
-
         /// <summary>
         /// Converts the coordinate to a valid globe value.
         /// </summary>
@@ -193,16 +171,16 @@ namespace ELTE.AEGIS.Reference
         public String ToString(UnitOfMeasurement angularUnit, UnitOfMeasurement lengthUnit)
         {
             if (angularUnit == null)
-                throw new ArgumentNullException(nameof(angularUnit), Messages.AngularUnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(angularUnit), ReferenceMessages.AngularUnitOfMeasurementIsNull);
 
             if (angularUnit.Type != UnitQuantityType.Angle)
-                throw new ArgumentException(Messages.AngularUnitOfMeasurementIsInvalid, nameof(angularUnit));
+                throw new ArgumentException(ReferenceMessages.AngularUnitOfMeasurementIsInvalid, nameof(angularUnit));
 
             if (lengthUnit == null)
-                throw new ArgumentNullException(nameof(lengthUnit), Messages.LengthUnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(lengthUnit), ReferenceMessages.LengthUnitOfMeasurementIsNull);
 
             if (lengthUnit.Type != UnitQuantityType.Length)
-                throw new ArgumentException(Messages.LengthUnitOfMeasurementIsInvalid, nameof(lengthUnit));
+                throw new ArgumentException(ReferenceMessages.LengthUnitOfMeasurementIsInvalid, nameof(lengthUnit));
 
             if (!this.IsValid)
                 return InvalidCoordinateString;
@@ -212,10 +190,6 @@ namespace ELTE.AEGIS.Reference
 
             return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.latitude.ToString(angularUnit), this.longitude.ToString(angularUnit), this.height.ToString(lengthUnit));
         }
-
-        #endregion
-
-        #region IEquatable methods
 
         /// <summary>
         /// Indicates whether this instance and a specified other geographic coordinate are equal.
@@ -231,10 +205,6 @@ namespace ELTE.AEGIS.Reference
 
             return this.latitude.Equals(other.latitude) && this.longitude.Equals(other.longitude) && this.height.Equals(other.height);
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -269,10 +239,6 @@ namespace ELTE.AEGIS.Reference
 
             return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.latitude, this.longitude, this.height);
         }
-
-        #endregion
-
-        #region Operators
 
         /// <summary>
         /// Indicates whether the specified geographic coordinates are equal.
@@ -310,11 +276,9 @@ namespace ELTE.AEGIS.Reference
         public static explicit operator Coordinate(GeoCoordinate coordinate)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), Messages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
 
             return new Coordinate(coordinate.latitude.Value, coordinate.Longitude.Value, coordinate.Height.Value);
         }
-
-        #endregion
     }
 }

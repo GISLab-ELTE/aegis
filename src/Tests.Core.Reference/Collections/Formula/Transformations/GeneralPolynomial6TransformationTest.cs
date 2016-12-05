@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
     [TestFixture]
     public class GeneralPolynomial6TransformationTest
     {
-        #region Private fields
-
         /// <summary>
         /// The transformation.
         /// </summary>
         private GeneralPolynomial6Transformation transformation;
-
-        #endregion
-
-        #region Test setup
 
         /// <summary>
         /// Test setup.
@@ -90,10 +84,6 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             this.transformation = new GeneralPolynomial6Transformation("ESPG::1041", "TM75 to ETRS89 (1)", parameters, source, target, areaOfUse);
         }
 
-        #endregion
-
-        #region Test methods
-
         /// <summary>
         /// Tests the forward computation.
         /// </summary>
@@ -107,7 +97,5 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             transformed.X.ShouldBe(expected.X, 0.00001);
             transformed.Y.ShouldBe(expected.Y, 0.00001);
         }
-
-        #endregion
     }
 }

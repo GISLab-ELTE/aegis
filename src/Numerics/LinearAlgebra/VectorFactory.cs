@@ -22,8 +22,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
     /// </summary>
     public static class VectorFactory
     {
-        #region Generic vector
-
         /// <summary>
         /// Creates a vector.
         /// </summary>
@@ -41,10 +39,6 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
             return vector;
         }
 
-        #endregion
-
-        #region Unit vector
-
         /// <summary>
         /// Creates a unit vector.
         /// </summary>
@@ -61,18 +55,16 @@ namespace ELTE.AEGIS.Numerics.LinearAlgebra
         public static Vector CreateUnitVector(Int32 size, Int32 unitIndex)
         {
             if (size < 1)
-                throw new ArgumentOutOfRangeException(nameof(size), Messages.SizeIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(size), NumericsMessages.SizeIsLessThan0);
             if (unitIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(unitIndex), Messages.UnitIndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(unitIndex), NumericsMessages.UnitIndexIsLessThan0);
             if (unitIndex >= size)
-                throw new ArgumentOutOfRangeException(nameof(unitIndex), Messages.UnitIndexIsGeaterThanSize);
+                throw new ArgumentOutOfRangeException(nameof(unitIndex), NumericsMessages.UnitIndexIsGeaterThanSize);
 
             Vector unitVector = new Vector(size);
             unitVector[unitIndex] = 1;
 
             return unitVector;
         }
-
-        #endregion
     }
 }

@@ -28,16 +28,16 @@ namespace ELTE.AEGIS.Tests.Collections
     [TestFixture]
     public class FibonacciHeapTest
     {
-        #region Private fields
+        
 
         /// <summary>
         /// The source array.
         /// </summary>
         private KeyValuePair<Int32, String>[] values;
 
-        #endregion
+        
 
-        #region Setup
+        
 
         /// <summary>
         /// Test setup.
@@ -48,9 +48,9 @@ namespace ELTE.AEGIS.Tests.Collections
             this.values = Collection.GenerateNumbers(-1000, 1000, 200).Distinct().Select(value => new KeyValuePair<Int32, String>(value, value.ToString())).ToArray();
         }
 
-        #endregion
+        
 
-        #region Test methods
+        
 
         /// <summary>
         /// Tests the constructor of the <see cref="FibonacciHeap{TKey, TValue}" /> class.
@@ -255,6 +255,6 @@ namespace ELTE.AEGIS.Tests.Collections
             Should.Throw<InvalidOperationException>(() => heapEnumerator.MoveNext());
         }
 
-        #endregion
+        
     }
 }

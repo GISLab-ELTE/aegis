@@ -23,8 +23,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
     [IdentifiedObject("EPSG::9834", "Lambert Cylindrical Equal Area (spherical case)")]
     public class LambertCylindricalEqualAreaSphericalProjection : LambertCylindricalEqualAreaEllipsoidalProjection
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LambertCylindricalEqualAreaSphericalProjection" /> class.
         /// </summary>
@@ -67,10 +65,6 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
         {
         }
 
-        #endregion
-
-        #region Protected methods
-
         /// <summary>
         /// Computes the forward transformation.
         /// </summary>
@@ -101,7 +95,5 @@ namespace ELTE.AEGIS.Reference.Collections.Formula
 
             return new GeoCoordinate(phi, lambda);
         }
-
-        #endregion
     }
 }

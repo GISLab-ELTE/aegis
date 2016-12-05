@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Tests
     [TestFixture]
     public class PrecisionModelTest
     {
-        #region Private fields
-
         /// <summary>
         /// The default precision model.
         /// </summary>
@@ -67,10 +65,6 @@ namespace ELTE.AEGIS.Tests
         /// </summary>
         private Double[] values;
 
-        #endregion
-
-        #region Test setup
-
         /// <summary>
         /// Test setup.
         /// </summary>
@@ -87,10 +81,6 @@ namespace ELTE.AEGIS.Tests
 
             this.values = Enumerable.Range(1, 28).Select(value => Math.Pow((Double)value / 2, (value / 2) * ((value % 2 == 0) ? 1 : -1))).ToArray();
         }
-
-        #endregion
-
-        #region Test methods
 
         /// <summary>
         /// Tests the constructor of the <see cref="PrecisionModel" /> class.
@@ -179,7 +169,5 @@ namespace ELTE.AEGIS.Tests
                 this.fixedSmallModel2.Tolerance(this.values[i]).ShouldBe(500000000000);
             }
         }
-
-        #endregion
     }
 }

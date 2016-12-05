@@ -24,23 +24,15 @@ namespace ELTE.AEGIS.Storage.Attributes
     /// </summary>
     public class StoredAttributeCollection : IStoredAttributeCollection
     {
-        #region Private types
-
         /// <summary>
         /// Represents the collection of attribute keys.
         /// </summary>
         private class KeyCollection : ICollection<String>
         {
-            #region Private fields
-
             /// <summary>
             /// The underlying attribute collection.
             /// </summary>
             private StoredAttributeCollection collection;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="KeyCollection" /> class.
@@ -50,10 +42,6 @@ namespace ELTE.AEGIS.Storage.Attributes
             {
                 this.collection = collection;
             }
-
-            #endregion
-
-            #region ICollection properties
 
             /// <summary>
             /// Gets the number of elements contained in the collection.
@@ -65,10 +53,6 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// </summary>
             public Boolean IsReadOnly { get { return true; } }
 
-            #endregion
-
-            #region ICollection methods
-
             /// <summary>
             /// Adds an item to the collection.
             /// </summary>
@@ -76,7 +60,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public void Add(String item)
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -87,7 +71,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public Boolean Remove(String item)
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -96,7 +80,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public void Clear()
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -120,11 +104,11 @@ namespace ELTE.AEGIS.Storage.Attributes
             public void CopyTo(String[] array, Int32 arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
                 if (arrayIndex < 0)
-                    throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
                 if (arrayIndex + this.collection.Driver.ReadAttributeCount(this.collection.Identifier) > array.Length)
-                    throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                    throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
                 foreach (String key in this.collection.Driver.ReadAttributeKeys(this.collection.Identifier))
                 {
@@ -132,10 +116,6 @@ namespace ELTE.AEGIS.Storage.Attributes
                     arrayIndex++;
                 }
             }
-
-            #endregion
-
-            #region IEnumerable methods
 
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
@@ -155,8 +135,6 @@ namespace ELTE.AEGIS.Storage.Attributes
             {
                 return this.GetEnumerator();
             }
-
-            #endregion
         }
 
         /// <summary>
@@ -164,16 +142,10 @@ namespace ELTE.AEGIS.Storage.Attributes
         /// </summary>
         private class ValueCollection : ICollection<Object>
         {
-            #region Private fields
-
             /// <summary>
             /// The underlying attribute collection.
             /// </summary>
             private StoredAttributeCollection collection;
-
-            #endregion
-
-            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ValueCollection" /> class.
@@ -183,10 +155,6 @@ namespace ELTE.AEGIS.Storage.Attributes
             {
                 this.collection = collection;
             }
-
-            #endregion
-
-            #region ICollection properties
 
             /// <summary>
             /// Gets the number of elements contained in the collection.
@@ -198,10 +166,6 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// </summary>
             public Boolean IsReadOnly { get { return true; } }
 
-            #endregion
-
-            #region ICollection methods
-
             /// <summary>
             /// Adds an item to the collection.
             /// </summary>
@@ -209,7 +173,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public void Add(Object item)
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -220,7 +184,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public Boolean Remove(Object item)
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -229,7 +193,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             /// <exception cref="System.NotSupportedException">The collection is read-only.</exception>
             public void Clear()
             {
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
             }
 
             /// <summary>
@@ -259,11 +223,11 @@ namespace ELTE.AEGIS.Storage.Attributes
             public void CopyTo(Object[] array, Int32 arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
                 if (arrayIndex < 0)
-                    throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
                 if (arrayIndex + this.collection.Driver.ReadAttributeCount(this.collection.Identifier) > array.Length)
-                    throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                    throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
                 foreach (String key in this.collection.Driver.ReadAttributeKeys(this.collection.Identifier))
                 {
@@ -271,10 +235,6 @@ namespace ELTE.AEGIS.Storage.Attributes
                     arrayIndex++;
                 }
             }
-
-            #endregion
-
-            #region IEnumerable methods
 
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
@@ -294,13 +254,7 @@ namespace ELTE.AEGIS.Storage.Attributes
             {
                 return this.GetEnumerator();
             }
-
-            #endregion
         }
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredAttributeCollection" /> class.
@@ -315,17 +269,13 @@ namespace ELTE.AEGIS.Storage.Attributes
         public StoredAttributeCollection(IStoredAttributeCollectionFactory factory, String identifier)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), ELTE.AEGIS.Resources.Messages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), ELTE.AEGIS.Resources.CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ELTE.AEGIS.Resources.Messages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), ELTE.AEGIS.Resources.CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;
         }
-
-        #endregion
-
-        #region IStoredAttributeCollection properties
 
         /// <summary>
         /// Gets the feature identifier.
@@ -350,10 +300,6 @@ namespace ELTE.AEGIS.Storage.Attributes
         /// </summary>
         /// <value>The factory the attribute collection was constructed by.</value>
         IAttributeCollectionFactory IAttributeCollection.Factory { get { return this.Factory; } }
-
-        #endregion
-
-        #region IDictionary properties
 
         /// <summary>
         /// Gets the number of elements contained in the collection.
@@ -395,15 +341,11 @@ namespace ELTE.AEGIS.Storage.Attributes
             set
             {
                 if (this.IsReadOnly)
-                    throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                    throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
                 this.Driver.UpdateAttribute(this.Identifier, key, value);
             }
         }
-
-        #endregion
-
-        #region IDictionary methods
 
         /// <summary>
         /// Adds an element with the provided key and value to the collection.
@@ -415,13 +357,13 @@ namespace ELTE.AEGIS.Storage.Attributes
         public void Add(String key, Object value)
         {
             if (this.IsReadOnly)
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (this.Driver.ContainsAttribute(this.Identifier, key))
-                throw new ArgumentException(Messages.KeyAlreadyExistsInTheCollection);
+                throw new ArgumentException(CollectionMessages.KeyAlreadyExistsInTheCollection);
 
             this.Driver.UpdateAttribute(this.Identifier, key, value);
         }
@@ -439,13 +381,13 @@ namespace ELTE.AEGIS.Storage.Attributes
         void ICollection<KeyValuePair<String, Object>>.Add(KeyValuePair<String, Object> item)
         {
             if (this.IsReadOnly)
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (item.Key == null)
-                throw new ArgumentException(Messages.KeyIsNull, nameof(item));
+                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
 
             if (this.Driver.ContainsAttribute(this.Identifier, item.Key))
-                throw new ArgumentException(Messages.KeyAlreadyExistsInTheCollection);
+                throw new ArgumentException(CollectionMessages.KeyAlreadyExistsInTheCollection);
 
             this.Driver.UpdateAttribute(this.Identifier, item.Key, item.Value);
         }
@@ -459,7 +401,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public Boolean ContainsKey(String key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             return this.Driver.ContainsAttribute(this.Identifier, key);
         }
@@ -473,7 +415,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         Boolean ICollection<KeyValuePair<String, Object>>.Contains(KeyValuePair<String, Object> item)
         {
             if (item.Key == null)
-                throw new ArgumentException(Messages.KeyIsNull, nameof(item));
+                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
 
             if (!this.Driver.ContainsAttribute(this.Identifier, item.Key))
                 return false;
@@ -493,10 +435,10 @@ namespace ELTE.AEGIS.Storage.Attributes
         public Boolean Remove(String key)
         {
             if (this.IsReadOnly)
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             if (!this.Driver.ContainsAttribute(this.Identifier, key))
                 return false;
@@ -515,10 +457,10 @@ namespace ELTE.AEGIS.Storage.Attributes
         Boolean ICollection<KeyValuePair<String, Object>>.Remove(KeyValuePair<String, Object> item)
         {
             if (this.IsReadOnly)
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (item.Key == null)
-                throw new ArgumentException(Messages.KeyIsNull, nameof(item));
+                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
 
             if (!this.Driver.ContainsAttribute(this.Identifier, item.Key))
                 return false;
@@ -542,7 +484,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public Boolean TryGetValue(String key, out Object value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), Messages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
 
             value = null;
             if (!this.Driver.ContainsAttribute(this.Identifier, key))
@@ -559,7 +501,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public void Clear()
         {
             if (this.IsReadOnly)
-                throw new NotSupportedException(Messages.CollectionIsReadOnly);
+                throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             this.Driver.DeleteAttributes(this.Identifier);
         }
@@ -575,11 +517,11 @@ namespace ELTE.AEGIS.Storage.Attributes
         public void CopyTo(KeyValuePair<String, Object>[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), Messages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.Driver.ReadAttributeCount(this.Identifier) > array.Length)
-                throw new ArgumentException(Messages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             foreach (String key in this.Driver.ReadAttributeKeys(this.Identifier))
             {
@@ -587,10 +529,6 @@ namespace ELTE.AEGIS.Storage.Attributes
                 arrayIndex++;
             }
         }
-
-        #endregion
-
-        #region IEnumerable methods
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -612,7 +550,5 @@ namespace ELTE.AEGIS.Storage.Attributes
         {
             return this.GetEnumerator();
         }
-
-        #endregion
     }
 }

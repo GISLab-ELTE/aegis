@@ -27,8 +27,6 @@ namespace ELTE.AEGIS
     /// </summary>
     public class BasicPolygon : IBasicPolygon
     {
-        #region Private constants
-
         /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
@@ -54,18 +52,10 @@ namespace ELTE.AEGIS
         /// </summary>
         private const String PolygonStringFormat = "POLYGON ({0})";
 
-        #endregion
-
-        #region Private fields
-
         /// <summary>
         /// The list of holes.
         /// </summary>
         private List<IBasicLineString> holes;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicPolygon" /> class.
@@ -86,7 +76,7 @@ namespace ELTE.AEGIS
         public BasicPolygon(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), Messages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             if (shell.Count == 0)
             {
@@ -116,10 +106,6 @@ namespace ELTE.AEGIS
             }
         }
 
-        #endregion
-
-        #region IBasicGeometry properties
-
         /// <summary>
         /// Gets the inherent dimension of the surface.
         /// </summary>
@@ -144,10 +130,6 @@ namespace ELTE.AEGIS
         /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
         public Boolean IsValid { get { return PolygonAlgorithms.IsValid(this); } }
 
-        #endregion
-
-        #region IBasicPolygon properties
-
         /// <summary>
         /// Gets the shell of the clip.
         /// </summary>
@@ -166,10 +148,6 @@ namespace ELTE.AEGIS
         /// <value>The read-only list containing the holes of the polygon.</value>
         public IReadOnlyList<IBasicLineString> Holes { get { return this.holes; } }
 
-        #endregion
-
-        #region IBasicPolygon methods
-
         /// <summary>
         /// Gets a hole at the specified index.
         /// </summary>
@@ -184,18 +162,14 @@ namespace ELTE.AEGIS
         public IBasicLineString GetHole(Int32 index)
         {
             if (this.holes.Count == 0)
-                throw new InvalidOperationException(Messages.NoHolesInPolygon);
+                throw new InvalidOperationException(CoreMessages.NoHolesInPolygon);
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
             if (index >= this.holes.Count)
-                throw new ArgumentOutOfRangeException(nameof(index), Messages.IndexIsEqualToOrGreaterThanHoleCount);
+                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
             return this.holes[index];
         }
-
-        #endregion
-
-        #region Object methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -205,10 +179,6 @@ namespace ELTE.AEGIS
         {
             return this.ToString(CultureInfo.InvariantCulture);
         }
-
-        #endregion
-
-        #region IBasicGeometry methods
 
         /// <summary>
         /// Returns the <see cref="System.String" /> equivalent of the instance.
@@ -248,7 +218,5 @@ namespace ELTE.AEGIS
 
             return String.Format(provider, PolygonStringFormat, builder.ToString());
         }
-
-        #endregion
     }
 }
