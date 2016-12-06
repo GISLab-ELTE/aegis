@@ -341,6 +341,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The first geometry is null..
+        /// </summary>
+        public static string FirstGeometryIsNull {
+            get {
+                return ResourceManager.GetString("FirstGeometryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first line string is null..
         /// </summary>
         public static string FirstLineStringIsNull {
@@ -373,6 +382,15 @@ namespace ELTE.AEGIS.Resources {
         public static string FirstVectorIsNull {
             get {
                 return ResourceManager.GetString("FirstVectorIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comparison of the specified geometries is not supported..
+        /// </summary>
+        public static string GeometryComparisonNotSupported {
+            get {
+                return ResourceManager.GetString("GeometryComparisonNotSupported", resourceCulture);
             }
         }
         
@@ -751,6 +769,15 @@ namespace ELTE.AEGIS.Resources {
         public static string SecondCoordinateIsNull {
             get {
                 return ResourceManager.GetString("SecondCoordinateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The second geometry is null..
+        /// </summary>
+        public static string SecondGeometryIsNull {
+            get {
+                return ResourceManager.GetString("SecondGeometryIsNull", resourceCulture);
             }
         }
         

@@ -73,6 +73,9 @@
     <Compile Include="Algorithms\WindingNumberAlgorithm.cs" />
     <Compile Include="Attributes\AttributeCollection.cs" />
     <Compile Include="Attributes\AttributeCollectionFactory.cs" />
+    <Compile Include="Converters\WellKnownBinaryConverter.cs" />
+    <Compile Include="Converters\WellKnownTextConverter.cs" />
+    <Compile Include="GeometryComparer.cs" />
     <Compile Include="IAttributeCollection.cs" />
     <Compile Include="IAttributeCollectionFactory.cs" />
     <Compile Include="IFeature.cs" />

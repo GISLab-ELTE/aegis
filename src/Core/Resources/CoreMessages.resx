@@ -396,4 +396,13 @@
   <data name="SourceIsNotSupported" xml:space="preserve">
     <value>The specified source is not supported.</value>
   </data>
+  <data name="FirstGeometryIsNull" xml:space="preserve">
+    <value>The first geometry is null.</value>
+  </data>
+  <data name="GeometryComparisonNotSupported" xml:space="preserve">
+    <value>Comparison of the specified geometries is not supported.</value>
+  </data>
+  <data name="SecondGeometryIsNull" xml:space="preserve">
+    <value>The second geometry is null.</value>
+  </data>
 </root>

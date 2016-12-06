@@ -68,6 +68,8 @@
     <Compile Include="Algorithms\RandomPolygonGeneratorTest.cs" />
     <Compile Include="Algorithms\ShamosHoeyAlgorithmTest.cs" />
     <Compile Include="Algorithms\WindingNumberAlgorithmTest.cs" />
+    <Compile Include="Converters\WellKnownBinaryConverterTest.cs" />
+    <Compile Include="Converters\WellKnownTextConverterTest.cs" />
     <Compile Include="CoordinateTest.cs" />
     <Compile Include="EnvelopeTest.cs" />
     <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
