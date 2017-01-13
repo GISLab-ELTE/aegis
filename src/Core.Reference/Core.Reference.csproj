@@ -152,6 +152,7 @@
     <Compile Include="Collections\UnitOfMeasurementCollection.cs" />
     <Compile Include="CompoundCoordinateOperationMethod.cs" />
     <Compile Include="CompoundReferenceSystem.cs" />
+    <Compile Include="Converters\WellKnownTextConverter.cs" />
     <Compile Include="CoordinateConversion.cs" />
     <Compile Include="CoordinateOperation.cs" />
     <Compile Include="CoordinateOperationMethod.cs" />
