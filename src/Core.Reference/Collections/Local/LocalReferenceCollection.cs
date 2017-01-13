@@ -153,7 +153,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
                 yield return this.referenceDictionary[code];
 
             // match contained code
-            foreach (ReferenceType reference in this.referenceDictionary.Values.Where(reference => reference.Identifier.Contains(identifier)))
+            foreach (ReferenceType reference in this.referenceDictionary.Values.Where(reference => reference.Identifier.IndexOf(identifier, StringComparison.OrdinalIgnoreCase) >= 0))
                 yield return reference;
         }
 
@@ -172,12 +172,12 @@ namespace ELTE.AEGIS.Reference.Collections.Local
             this.EnsureReferences();
 
             // match exact name
-            ReferenceType match = this.referenceDictionary.Values.FirstOrDefault(reference => reference.Name == name || reference.Aliases.Any(alias => alias == name));
+            ReferenceType match = this.referenceDictionary.Values.FirstOrDefault(reference => String.Equals(reference.Name, name, StringComparison.OrdinalIgnoreCase) || reference.Aliases.Any(alias => String.Equals(alias, name, StringComparison.OrdinalIgnoreCase)));
             if (match != null)
                 yield return match;
 
             // match contained name
-            foreach (ReferenceType reference in this.referenceDictionary.Values.Where(reference => reference.Name.Contains(name) || reference.Aliases.Any(alias => alias.Contains(name))))
+            foreach (ReferenceType reference in this.referenceDictionary.Values.Where(reference => reference.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0 || reference.Aliases.Any(alias => alias.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0)))
                 yield return reference;
         }
 

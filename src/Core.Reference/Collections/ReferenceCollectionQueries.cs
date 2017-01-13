@@ -17,6 +17,7 @@ namespace ELTE.AEGIS.Reference.Collections
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
     using ELTE.AEGIS.Reference.Resources;
@@ -46,7 +47,7 @@ namespace ELTE.AEGIS.Reference.Collections
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
-            return collection.Where(item => item.Identifier == identifier || item.Identifier.Contains(identifier));
+            return collection.Where(item => item.Identifier.IndexOf(identifier, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace ELTE.AEGIS.Reference.Collections
             if (name == null)
                 throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
-            return collection.Where(item => item.Name == name || item.Name.Contains(name) || item.Aliases.Any(alias => alias == name || alias.Contains(name)));
+            return collection.Where(item => item.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0 || item.Aliases.Any(alias => alias.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0));
         }
 
         /// <summary>
@@ -92,9 +93,9 @@ namespace ELTE.AEGIS.Reference.Collections
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
 
-            Regex identifierRegex = new Regex(identifier, RegexOptions.CultureInvariant);
+            Regex identifierRegex = new Regex(identifier, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-            return collection.Where(item => (item.Identifier == identifier || identifierRegex.IsMatch(item.Identifier)));
+            return collection.Where(item => identifierRegex.IsMatch(item.Identifier));
         }
 
         /// <summary>
@@ -117,9 +118,9 @@ namespace ELTE.AEGIS.Reference.Collections
             if (name == null)
                 throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
 
-            Regex nameRegex = new Regex(name, RegexOptions.CultureInvariant);
+            Regex nameRegex = new Regex(name, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-            return collection.Where(item => item.Name == name || nameRegex.IsMatch(item.Name) || item.Aliases.Any(alias => alias == name || nameRegex.IsMatch(alias)));
+            return collection.Where(item => nameRegex.IsMatch(item.Name) || item.Aliases.Any(alias => nameRegex.IsMatch(alias)));
         }
 
         /// <summary>
