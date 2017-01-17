@@ -29,9 +29,9 @@ namespace ELTE.AEGIS
         PrecisionModel PrecisionModel { get; }
 
         /// <summary>
-        /// Gets the reference system used by the factory.
+        /// Gets the reference system.
         /// </summary>
-        /// <value>The reference system used by the factory.</value>
+        /// <value>The reference system.</value>
         IReferenceSystem ReferenceSystem { get; }
 
         /// <summary>
@@ -383,5 +383,19 @@ namespace ELTE.AEGIS
         /// <exception cref="System.ArgumentNullException">The other geometry is null.</exception>
         /// <exception cref="System.ArgumentException">The type of the geometry is not supported.</exception>
         IGeometry CreateGeometry(IGeometry other);
+
+        /// <summary>
+        /// Returns a geometry factory with the specified precision model.
+        /// </summary>
+        /// <param name="precisionModel">The precision model.</param>
+        /// <returns>A geometry factory with the specified precision model.</returns>
+        IGeometryFactory WithPrecisionModel(PrecisionModel precisionModel);
+
+        /// <summary>
+        /// Returns a geometry factory with the specified reference system.
+        /// </summary>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <returns>A geometry factory with the specified reference system.</returns>
+        IGeometryFactory WithReferenceSystem(IReferenceSystem referenceSystem);
     }
 }

@@ -631,5 +631,25 @@ namespace ELTE.AEGIS.Geometries
 
             throw new ArgumentException(CoreMessages.GeometryTypeNotSupported, nameof(other));
         }
+
+        /// <summary>
+        /// Returns a geometry factory with the specified precision model.
+        /// </summary>
+        /// <param name="precisionModel">The precision model.</param>
+        /// <returns>A geometry factory with the specified precision model.</returns>
+        public IGeometryFactory WithPrecisionModel(PrecisionModel precisionModel)
+        {
+            return new GeometryFactory(precisionModel, this.ReferenceSystem);
+        }
+
+        /// <summary>
+        /// Returns a geometry factory with the specified reference system.
+        /// </summary>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <returns>A geometry factory with the specified reference system.</returns>
+        public IGeometryFactory WithReferenceSystem(IReferenceSystem referenceSystem)
+        {
+            return new GeometryFactory(this.PrecisionModel, referenceSystem);
+        }
     }
 }

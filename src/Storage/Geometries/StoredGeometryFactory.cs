@@ -19,6 +19,7 @@ namespace ELTE.AEGIS.Storage.Geometries
     using System.Linq;
     using ELTE.AEGIS.Collections;
     using ELTE.AEGIS.Resources;
+    using ELTE.AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a factory producing <see cref="IGeometry" /> instances located in stores.
@@ -26,17 +27,18 @@ namespace ELTE.AEGIS.Storage.Geometries
     public class StoredGeometryFactory : Factory, IStoredGeometryFactory
     {
         /// <summary>
+        /// The internal reference system.
+        /// </summary>
+        private IReferenceSystem referenceSystem;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="StoredGeometryFactory" /> class.
         /// </summary>
         /// <param name="driver">The geometry driver.</param>
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
         public StoredGeometryFactory(IGeometryDriver driver)
+            : this(driver, null, null)
         {
-            if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
-
-            this.PrecisionModel = driver.PrecisionModel;
-            this.Driver = driver;
         }
 
         /// <summary>
@@ -45,13 +47,26 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// <param name="precisionModel">The precision model.</param>
         /// <param name="driver">The geometry driver.</param>
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
-        public StoredGeometryFactory(PrecisionModel precisionModel, IGeometryDriver driver)
+        public StoredGeometryFactory(IGeometryDriver driver, PrecisionModel precisionModel)
+            : this(driver, precisionModel, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoredGeometryFactory" /> class.
+        /// </summary>
+        /// <param name="driver">The geometry driver.</param>
+        /// <param name="precisionModel">The precision model.</param>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
+        public StoredGeometryFactory(IGeometryDriver driver, PrecisionModel precisionModel, IReferenceSystem referenceSystem)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.Driver = driver;
+            this.referenceSystem = referenceSystem;
         }
 
         /// <summary>
@@ -64,7 +79,15 @@ namespace ELTE.AEGIS.Storage.Geometries
         /// Gets the reference system used by the factory.
         /// </summary>
         /// <value>The reference system used by the factory.</value>
-        public IReferenceSystem ReferenceSystem { get { return this.Driver.ReferenceSystemDriver.ReadReferenceSystem(); } }
+        public IReferenceSystem ReferenceSystem
+        {
+            get
+            {
+                if (this.referenceSystem != null)
+                    return this.referenceSystem;
+                return this.Driver.ReferenceSystemDriver.ReadReferenceSystem();
+            }
+        }
 
         /// <summary>
         /// Gets the geometry driver of the factory.
@@ -2386,6 +2409,26 @@ namespace ELTE.AEGIS.Storage.Geometries
                 return this.CreateGeometryCollection(other as IGeometryCollection, indexes);
 
             throw new ArgumentException(nameof(other), CoreMessages.OtherGeometryNotSupported);
+        }
+
+        /// <summary>
+        /// Returns a geometry factory with the specified precision model.
+        /// </summary>
+        /// <param name="precisionModel">The precision model.</param>
+        /// <returns>A geometry factory with the specified precision model.</returns>
+        public IGeometryFactory WithPrecisionModel(PrecisionModel precisionModel)
+        {
+            return new StoredGeometryFactory(this.Driver, precisionModel, this.referenceSystem);
+        }
+
+        /// <summary>
+        /// Returns a geometry factory with the specified reference system.
+        /// </summary>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <returns>A geometry factory with the specified reference system.</returns>
+        public IGeometryFactory WithReferenceSystem(IReferenceSystem referenceSystem)
+        {
+            return new StoredGeometryFactory(this.Driver, this.PrecisionModel, this.referenceSystem);
         }
 
         /// <summary>

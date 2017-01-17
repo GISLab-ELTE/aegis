@@ -79,7 +79,7 @@ namespace ELTE.AEGIS.Storage.Geometries
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
-            this.Factory = new StoredGeometryFactory(precisionModel, driver);
+            this.Factory = new StoredGeometryFactory(driver, precisionModel);
             this.Identifier = identifier;
             this.indexes = indexes == null ? EmptyIndexes : indexes.ToArray();
         }
