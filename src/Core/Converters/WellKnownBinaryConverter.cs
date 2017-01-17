@@ -490,21 +490,26 @@ namespace ELTE.AEGIS.Converters
             throw new ArgumentException(CoreMessages.GeometryIsNotSupported, nameof(geometry));
         }
 
+
         /// <summary>
         /// Converts a Well-known Binary (WKB) to geometry.
         /// </summary>
+        /// <param name="factory">The geometry factory.</param>
         /// <param name="source">The source byte array.</param>
-        /// <param name="referenceSystem">The reference system of the geometry.</param>
         /// <returns>The converted geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The source is null.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// The source is null.
+        /// or
+        /// The geometry factory is null.
+        /// </exception>
         /// <exception cref="System.ArgumentException">
         /// The specified source is invalid.
         /// or
         /// The specified source is not supported.
         /// </exception>
-        public static IGeometry ToGeometry(Byte[] source, IReferenceSystem referenceSystem)
+        public static IGeometry ToGeometry(this IGeometryFactory factory, Byte[] source)
         {
-            return ToGeometry(source, new GeometryFactory(referenceSystem));
+            return ToGeometry(source, factory);
         }
 
         /// <summary>
@@ -513,7 +518,11 @@ namespace ELTE.AEGIS.Converters
         /// <param name="source">The source byte array.</param>
         /// <param name="factory">The geometry factory.</param>
         /// <returns>The converted geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The source is null.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// The source is null.
+        /// or
+        /// The geometry factory is null.
+        /// </exception>
         /// <exception cref="System.ArgumentException">
         /// The specified source is invalid.
         /// or
@@ -526,9 +535,8 @@ namespace ELTE.AEGIS.Converters
 
             if (source.Length == 0)
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
-
             if (factory == null)
-                factory = new GeometryFactory();
+                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
 
             IGeometry resultGeometry = null;
 

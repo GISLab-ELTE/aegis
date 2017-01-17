@@ -119,36 +119,48 @@ namespace ELTE.AEGIS.Converters
         /// <summary>
         /// Convert Well-known Text representation to <see cref="IGeometry" /> representation.
         /// </summary>
-        /// <param name="source">The source text.</param>
-        /// <param name="referenceSystem">The reference system of the geometry.</param>
+        /// <param name="factory">The geometry factory.</param>
+        /// <param name="source">The source.</param>
         /// <returns>The <see cref="IGeometry" /> representation of the geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The text is null.</exception>
-        /// <exception cref="System.ArgumentException">The text is empty.</exception>
-        /// <exception cref="System.IO.InvalidDataException">The content of the text is invalid.</exception>
-        public static IGeometry ToGeometry(String source, IReferenceSystem referenceSystem)
+        /// <exception cref="System.ArgumentNullException">
+        /// The source is null.
+        /// or
+        /// The geometry factory is null.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// The specified source is invalid.
+        /// or
+        /// The specified source is not supported.
+        /// </exception>
+        public static IGeometry ToGeometry(this IGeometryFactory factory, String source)
         {
-            return ToGeometry(source, new GeometryFactory(referenceSystem));
+            return ToGeometry(source, factory);
         }
 
         /// <summary>
         /// Convert Well-known Text representation to <see cref="IGeometry" /> representation.
         /// </summary>
-        /// <param name="source">The source text.</param>
+        /// <param name="source">The source.</param>
         /// <param name="factory">The geometry factory.</param>
         /// <returns>The <see cref="IGeometry" /> representation of the geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The text is null.</exception>
-        /// <exception cref="System.ArgumentException">The text is empty.</exception>
-        /// <exception cref="System.IO.InvalidDataException">The content of the text is invalid.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// The source is null.
+        /// or
+        /// The geometry factory is null.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        /// The specified source is invalid.
+        /// or
+        /// The specified source is not supported.
+        /// </exception>
         public static IGeometry ToGeometry(String source, IGeometryFactory factory)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
             if (String.IsNullOrEmpty(source))
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
-
             if (factory == null)
-                factory = new GeometryFactory();
+                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
 
             IGeometry resultGeometry = null;
 
