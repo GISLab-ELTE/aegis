@@ -32,6 +32,18 @@ namespace ELTE.AEGIS
         String Identifier { get; }
 
         /// <summary>
+        /// Gets the authority.
+        /// </summary>
+        /// <value>The authority responsible for the object if provided; otherwise, <c>Empty</c>.</value>
+        String Authority { get; }
+
+        /// <summary>
+        /// Gets the code.
+        /// </summary>
+        /// <value>The code by which the object is identified in the authority's domain if provided; otherwise, <c>0</c>.</value>
+        Int32 Code { get; }
+
+        /// <summary>
         /// Gets the name.
         /// </summary>
         String Name { get; }
