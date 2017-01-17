@@ -47,7 +47,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 1.000000);
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7008", "Clarke 1866", 6378206.4, 294.9786982);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::3342"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::3342"];
 
             this.projection = new LambertConicConformal1SPWestOrientatedProjection("EPSG::19910", "Jamaica National Grid", parameters, ellipsoid, areaOfUse);
         }

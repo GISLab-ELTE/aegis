@@ -36,21 +36,21 @@ namespace ELTE.AEGIS.Reference.Strategies
         private const String ExpectedLongitudeString = "long";
 
         /// <summary>
-        /// The underlying reference collection container. This field is read-only.
+        /// The underlying reference provider. This field is read-only.
         /// </summary>
-        private readonly IReferenceCollectionContainer collectionContainer;
+        private readonly IReferenceProvider provider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateOperationStrategyFactory" /> class.
         /// </summary>
-        /// <param name="collectionContainer">The collection container.</param>
-        /// <exception cref="System.ArgumentNullException">The collection container is null.</exception>
-        public CoordinateOperationStrategyFactory(IReferenceCollectionContainer collectionContainer)
+        /// <param name="provider">The reference provider.</param>
+        /// <exception cref="System.ArgumentNullException">The provider is null.</exception>
+        public CoordinateOperationStrategyFactory(IReferenceProvider provider)
         {
-            if (collectionContainer == null)
-                throw new ArgumentNullException(nameof(collectionContainer), ReferenceMessages.CollectionContainerIsNull);
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider), ReferenceMessages.ProviderIsNull);
 
-            this.collectionContainer = collectionContainer;
+            this.provider = provider;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace ELTE.AEGIS.Reference.Strategies
             GeographicCoordinateReferenceSystem conversionSourceReferenceSystem = conversionFromGeographic.SourceReferenceSystem as GeographicCoordinateReferenceSystem;
 
             // load matching forward transformation
-            IEnumerable<CoordinateTransformation<GeoCoordinate>> transformations = this.collectionContainer.GeoCoordinateTransformations.WithProperties(conversionTargetReferenceSystem, conversionSourceReferenceSystem);
+            IEnumerable<CoordinateTransformation<GeoCoordinate>> transformations = this.provider.GeoCoordinateTransformations.WithProperties(conversionTargetReferenceSystem, conversionSourceReferenceSystem);
             if (transformations.Any())
             {
                 transformation = new ForwardGeographicCoordinateTransformationStrategy(conversionTargetReferenceSystem, conversionSourceReferenceSystem, transformations.First());
@@ -104,7 +104,7 @@ namespace ELTE.AEGIS.Reference.Strategies
             }
 
             // if none found, load matching reverse transformation
-            transformations = this.collectionContainer.GeoCoordinateTransformations.WithProperties(conversionSourceReferenceSystem, conversionTargetReferenceSystem);
+            transformations = this.provider.GeoCoordinateTransformations.WithProperties(conversionSourceReferenceSystem, conversionTargetReferenceSystem);
             if (transformations.Any())
             {
                 transformation = new ReverseGeographicCoordinateTransformationStrategy(conversionTargetReferenceSystem, conversionSourceReferenceSystem, transformations.First());

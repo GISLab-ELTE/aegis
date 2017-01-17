@@ -47,7 +47,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.EllipsoidScalingFactor, 1.0000382);
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7008", "Clarke 1866", 6378206.4, 294.9786982);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::2256"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::2256"];
 
             this.projection2SPMichigan = new LambertConicConformal2SPMichiganProjection("EPSG::4267", "NAD 27 Michigan Central", parameters, ellipsoid, areaOfUse);
         }

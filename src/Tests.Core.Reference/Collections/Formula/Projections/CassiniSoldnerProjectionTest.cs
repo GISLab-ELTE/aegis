@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromClarkesLink(325000));
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7007", "Clarke 1858", Length.FromClarkesFoot(20926348), Length.FromClarkesFoot(20855233)).ToUnit(UnitsOfMeasurement.ClarkesLink);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1339"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1339"];
 
             this.projection = new CassiniSoldnerProjection("EPSG::19925", "Trinidad Grid", parameters, ellipsoid, areaOfUse);
         }

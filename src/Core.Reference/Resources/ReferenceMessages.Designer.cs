@@ -170,15 +170,6 @@ namespace ELTE.AEGIS.Reference.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The collection container is null..
-        /// </summary>
-        internal static string CollectionContainerIsNull {
-            get {
-                return ResourceManager.GetString("CollectionContainerIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The collection is null..
         /// </summary>
         internal static string CollectionIsNull {
@@ -580,6 +571,15 @@ namespace ELTE.AEGIS.Reference.Resources {
         internal static string ProjectionIsNull {
             get {
                 return ResourceManager.GetString("ProjectionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provider is null..
+        /// </summary>
+        internal static string ProviderIsNull {
+            get {
+                return ResourceManager.GetString("ProviderIsNull", resourceCulture);
             }
         }
         

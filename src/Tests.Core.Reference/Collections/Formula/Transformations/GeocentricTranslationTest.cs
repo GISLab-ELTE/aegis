@@ -43,9 +43,9 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.YAxisTranslation, Length.FromMetre(96.49));
             parameters.Add(CoordinateOperationParameters.ZAxisTranslation, Length.FromMetre(116.95));
 
-            CoordinateReferenceSystem source = TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4326"];
-            CoordinateReferenceSystem target = TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4230"];
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1262"];
+            CoordinateReferenceSystem source = TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4326"];
+            CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4230"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
             this.transformation = new GeocentricTranslation(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, source, target, areaOfUse);
         }

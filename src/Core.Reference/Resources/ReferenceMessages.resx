@@ -327,9 +327,6 @@
   <data name="ParameterCollectionIsNull" xml:space="preserve">
     <value>The coordinate operation parameter collection is null.</value>
   </data>
-  <data name="CollectionContainerIsNull" xml:space="preserve">
-    <value>The collection container is null.</value>
-  </data>
   <data name="ConversionIsNull" xml:space="preserve">
     <value>The conversion is null.</value>
   </data>
@@ -350,5 +347,8 @@
   </data>
   <data name="ConversionDoesNotExistBetweenReferenceSystems" xml:space="preserve">
     <value>Conversion does not exist between the specified reference systems.</value>
+  </data>
+  <data name="ProviderIsNull" xml:space="preserve">
+    <value>The provider is null.</value>
   </data>
 </root>

@@ -48,7 +48,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.Convert(Length.FromClarkesChain(16628.885), UnitsOfMeasurement.ClarkesFoot));
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7034", "Clarke 1880", Length.FromClarkesFoot(20926202), Length.FromClarkesFoot(20854895));
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1262"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
             this.projection = new HyperbolicCassiniSoldnerProjection("EPSG::9833", "Vanua Levu Grid", parameters, ellipsoid, areaOfUse);
         }

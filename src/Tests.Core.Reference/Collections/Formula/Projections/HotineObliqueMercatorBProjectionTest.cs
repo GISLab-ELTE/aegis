@@ -48,7 +48,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.NorthingAtProjectionCentre, Length.FromMetre(442857.65));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7016", "Everest 1830 (1967 Definition)", 6377298.556, 300.8017);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1362"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1362"];
 
             this.projection = new HotineObliqueMercatorBProjection("EPSG::19958", "Rectified Skew Orthomorphic Borneo Grid (metres)", parameters, ellipsoid, areaOfUse);
         }

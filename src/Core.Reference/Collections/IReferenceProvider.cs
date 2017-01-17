@@ -1,4 +1,4 @@
-﻿// <copyright file="IReferenceCollectionContainer.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="IReferenceProvider.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -17,9 +17,9 @@ namespace ELTE.AEGIS.Reference.Collections
     using System;
 
     /// <summary>
-    /// Defines properties for containers of reference collections.
+    /// Defines properties for reference providers.
     /// </summary>
-    public interface IReferenceCollectionContainer
+    public interface IReferenceProvider
     {
         /// <summary>
         /// Gets the collection of <see cref="AreaOfUse" /> instances.

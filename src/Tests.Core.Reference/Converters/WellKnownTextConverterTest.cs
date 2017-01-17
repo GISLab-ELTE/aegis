@@ -46,17 +46,17 @@ namespace ELTE.AEGIS.Tests.Reference.Converters
         {
             this.identifiedObjects = new IdentifiedObject[]
             {
-                TestUtilities.ReferenceCollection.Meridians["EPSG::8901"],
-                TestUtilities.ReferenceCollection.Meridians["EPSG::8901"],
-                TestUtilities.ReferenceCollection.Ellipsoids["EPSG::7030"],
-                TestUtilities.ReferenceCollection.Ellipsoids["EPSG::7030"],
-                TestUtilities.ReferenceCollection.Datums["EPSG::6326"],
-                TestUtilities.ReferenceCollection.Datums["EPSG::6326"],
-                TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4326"],
-                TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4326"],
-                TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::32633"],
-                TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::32633"],
-                new GeographicCoordinateReferenceSystem(IdentifiedObject.UserDefinedIdentifier, "Unknown", CoordinateSystem.Undefined, new GeodeticDatum(IdentifiedObject.UserDefinedIdentifier, "Unknown", null, null, AreaOfUse.Undefined, TestUtilities.ReferenceCollection.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceCollection.Meridians["EPSG::8901"]), AreaOfUse.Undefined)
+                TestUtilities.ReferenceProvider.Meridians["EPSG::8901"],
+                TestUtilities.ReferenceProvider.Meridians["EPSG::8901"],
+                TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7030"],
+                TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7030"],
+                TestUtilities.ReferenceProvider.Datums["EPSG::6326"],
+                TestUtilities.ReferenceProvider.Datums["EPSG::6326"],
+                TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4326"],
+                TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4326"],
+                TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
+                TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
+                new GeographicCoordinateReferenceSystem(IdentifiedObject.UserDefinedIdentifier, "Unknown", CoordinateSystem.Undefined, new GeodeticDatum(IdentifiedObject.UserDefinedIdentifier, "Unknown", null, null, AreaOfUse.Undefined, TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceProvider.Meridians["EPSG::8901"]), AreaOfUse.Undefined)
             };
 
             this.identifiedObjectsText = new String[]
@@ -84,7 +84,7 @@ namespace ELTE.AEGIS.Tests.Reference.Converters
             for (Int32 index = 0; index < this.identifiedObjects.Length - 1; index++)
             {
                 String text = WellKnownTextConverter.ToWellKnownText(this.identifiedObjects[index]);
-                IdentifiedObject identifiedObject = WellKnownTextConverter.ToIdentifiedObject(text, TestUtilities.ReferenceCollection);
+                IdentifiedObject identifiedObject = WellKnownTextConverter.ToIdentifiedObject(text, TestUtilities.ReferenceProvider);
 
                 Assert.AreEqual(this.identifiedObjects[index], identifiedObject);
             }
@@ -101,31 +101,31 @@ namespace ELTE.AEGIS.Tests.Reference.Converters
         {
             for (Int32 index = 0; index < this.identifiedObjects.Length; index++)
             {
-                IdentifiedObject identifiedObject = WellKnownTextConverter.ToIdentifiedObject(this.identifiedObjectsText[index], TestUtilities.ReferenceCollection);
+                IdentifiedObject identifiedObject = WellKnownTextConverter.ToIdentifiedObject(this.identifiedObjectsText[index], TestUtilities.ReferenceProvider);
                 Assert.AreEqual(this.identifiedObjects[index], identifiedObject);
             }
 
-            Meridian meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[\"Greenwich\",0.0]", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            Meridian meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[\"Greenwich\",0.0]", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
-            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM(\"Greenwich\",0.0)", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM(\"Greenwich\",0.0)", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
-            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM(Greenwich,0.0)", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM(Greenwich,0.0)", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
-            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\", 8901]]", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\", 8901]]", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
-            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM [\"Greenwich\", 0.0, AUTHORITY [\"EPSG\", 8901]])", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM [\"Greenwich\", 0.0, AUTHORITY [\"EPSG\", 8901]])", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
-            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[Greenwich, 0.0, AUTHORITY[EPSG, 8901]]", TestUtilities.ReferenceCollection) as Meridian;
-            Assert.AreEqual(meridian, TestUtilities.ReferenceCollection.Meridians["EPSG", 8901]);
+            meridian = WellKnownTextConverter.ToIdentifiedObject("PRIMEM[Greenwich, 0.0, AUTHORITY[EPSG, 8901]]", TestUtilities.ReferenceProvider) as Meridian;
+            Assert.AreEqual(meridian, TestUtilities.ReferenceProvider.Meridians["EPSG", 8901]);
 
             Assert.Throws<ArgumentNullException>(() => WellKnownTextConverter.ToIdentifiedObject(null, null));
-            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToIdentifiedObject(String.Empty, TestUtilities.ReferenceCollection));
-            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToIdentifiedObject("UNDEFINED[\"something\"]", TestUtilities.ReferenceCollection));
+            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToIdentifiedObject(String.Empty, TestUtilities.ReferenceProvider));
+            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToIdentifiedObject("UNDEFINED[\"something\"]", TestUtilities.ReferenceProvider));
         }
     }
 }

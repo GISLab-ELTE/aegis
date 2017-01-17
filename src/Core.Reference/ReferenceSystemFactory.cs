@@ -26,35 +26,35 @@ namespace ELTE.AEGIS.Reference
     /// </summary>
     /// <remarks>
     /// This implementation of <see cref="IGeometryFactory" /> produces reference systems as defined by the OGC SRC standard.
-    /// The factory uses an underlying <see cref="IReferenceCollectionContainer" /> instance for production.
+    /// The factory uses an underlying <see cref="IReferenceProvider" /> instance for production.
     /// If not specified differently, the local collection of references is used to create the reference system.
     /// </remarks>
     public class ReferenceSystemFactory : Factory, IReferenceSystemFactory
     {
         /// <summary>
-        /// The underlying reference collection container. This field is read-only.
+        /// The underlying reference provider. This field is read-only.
         /// </summary>
-        private readonly IReferenceCollectionContainer collectionContainer;
+        private readonly IReferenceProvider provider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceSystemFactory" /> class.
         /// </summary>
         public ReferenceSystemFactory()
-            : this(new LocalReferenceCollectionContainer())
+            : this(new LocalReferenceProvider())
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReferenceSystemFactory" /> class.
         /// </summary>
-        /// <param name="collectionContainer">The collection container.</param>
-        /// <exception cref="System.ArgumentNullException">The collection container is null.</exception>
-        public ReferenceSystemFactory(IReferenceCollectionContainer collectionContainer)
+        /// <param name="provider">The reference provider.</param>
+        /// <exception cref="System.ArgumentNullException">The provider is null.</exception>
+        public ReferenceSystemFactory(IReferenceProvider provider)
         {
-            if (collectionContainer == null)
-                throw new ArgumentNullException(nameof(collectionContainer), ReferenceMessages.CollectionContainerIsNull);
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider), ReferenceMessages.ProviderIsNull);
 
-            this.collectionContainer = collectionContainer;
+            this.provider = provider;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ELTE.AEGIS.Reference
         /// </exception>
         public IReferenceSystem CreateReferenceSystem(String identifier, String name)
         {
-            return this.collectionContainer.ReferenceSystems.WithIdentifier(identifier).WithName(name).FirstOrDefault();
+            return this.provider.ReferenceSystems.WithIdentifier(identifier).WithName(name).FirstOrDefault();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ELTE.AEGIS.Reference
         /// <exception cref="System.ArgumentNullException">The identifier is null.</exception>
         public IReferenceSystem CreateReferenceSystemFromIdentifier(String identifier)
         {
-            return this.collectionContainer.ReferenceSystems.WithIdentifier(identifier).FirstOrDefault();
+            return this.provider.ReferenceSystems.WithIdentifier(identifier).FirstOrDefault();
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace ELTE.AEGIS.Reference
         /// <exception cref="System.ArgumentNullException">The name is null.</exception>
         public IReferenceSystem CreateReferenceSystemFromName(String name)
         {
-            return this.collectionContainer.ReferenceSystems.WithName(name).FirstOrDefault();
+            return this.provider.ReferenceSystems.WithName(name).FirstOrDefault();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 0.9999079);
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7004", "Bessel 1841", 6377397.155, 299.1528128);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1275"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1275"];
 
             this.projection = new ObliqueStereographicProjection("EPSG::19914", "RD New", parameters, ellipsoid, areaOfUse);
         }

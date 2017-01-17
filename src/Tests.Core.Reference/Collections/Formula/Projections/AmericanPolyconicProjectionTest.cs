@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(10000000));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7019", "GRS 1980", 6378137.0, 298.257222101);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1053"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1053"];
 
             this.projection = new AmericanPolyconicProjection("EPSG::19941", "Brazil Polyconic", parameters, ellipsoid, areaOfUse);
         }

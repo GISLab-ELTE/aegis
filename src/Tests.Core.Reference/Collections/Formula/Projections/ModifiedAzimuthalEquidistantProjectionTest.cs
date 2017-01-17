@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(60000.00));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7008", "Clarke 1866", 6378206.4, 294.9786982);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::3108"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::3108"];
 
             this.projection = new ModifiedAzimuthalEquidistantProjection("EPSG::9832", "Yap Islands", parameters, ellipsoid, areaOfUse);
         }

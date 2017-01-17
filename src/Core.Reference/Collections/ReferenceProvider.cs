@@ -1,4 +1,4 @@
-﻿// <copyright file="ReferenceCollectionContainer.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="ReferenceProvider.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -24,12 +24,12 @@ namespace ELTE.AEGIS.Reference.Collections
     /// This type uses an underlying IoC container to specify realization of different reference collections.
     /// All implementing types must ensure that all the required collections are registered in the underlying container after construction.
     /// </remarks>
-    public abstract class ReferenceCollectionContainer : IReferenceCollectionContainer
+    public abstract class ReferenceProvider : IReferenceProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReferenceCollectionContainer" /> class.
+        /// Initializes a new instance of the <see cref="ReferenceProvider" /> class.
         /// </summary>
-        protected ReferenceCollectionContainer()
+        protected ReferenceProvider()
         {
             this.Container = new Container();
         }

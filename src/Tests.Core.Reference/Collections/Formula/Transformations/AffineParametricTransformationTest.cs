@@ -47,9 +47,9 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.B1, -0.000015417425);
             parameters.Add(CoordinateOperationParameters.B2, 0.304794369);
 
-            CoordinateReferenceSystem source = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::24100"];
-            CoordinateReferenceSystem target = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::24200"];
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::3342"];
+            CoordinateReferenceSystem source = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::24100"];
+            CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::24200"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::3342"];
 
             this.transformation = new AffineParametricTransformation("ESPG::10087", "Jamaica 1875 / Jamaica (Old Grid) to JAD69 / Jamaica National Grid (1)", parameters, source, target, areaOfUse);
         }

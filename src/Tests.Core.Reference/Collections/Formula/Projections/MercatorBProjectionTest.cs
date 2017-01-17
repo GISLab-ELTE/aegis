@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(0));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7024", "Krassowsky 1940", 6378245.0, 298.3);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1291"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1291"];
 
             this.projection = new MercatorBProjection("EPSG::19884", "Caspian Sea Mercator", parameters, ellipsoid, areaOfUse);
         }

@@ -44,9 +44,9 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.XAxisRotation, Angle.FromArcSecond(1.56504));
             parameters.Add(CoordinateOperationParameters.ScaleDifference, 1.0000015504);
 
-            CoordinateReferenceSystem source = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::23031"];
-            CoordinateReferenceSystem target = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::25831"];
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::3732"];
+            CoordinateReferenceSystem source = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::23031"];
+            CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::25831"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::3732"];
 
             this.transformation = new SimilarityTransformation("EPSG::5166", "ED50 / UTM zone 31N to ETRS89 / UTM zone 31N (1)", parameters, source, target, areaOfUse);
         }

@@ -50,9 +50,9 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.BinNodeIncrementOnIAxis, 1);
             parameters.Add(CoordinateOperationParameters.BinNodeIncrementOnJAxis, 1);
 
-            CoordinateReferenceSystem source = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::32066"];
-            CoordinateReferenceSystem target = TestUtilities.ReferenceCollection.ProjectedCoordinateReferenceSystems["EPSG::32066"];
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::3641"];
+            CoordinateReferenceSystem source = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32066"];
+            CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32066"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::3641"];
 
             this.transformation = new P6LeftHandedSeismicBinGridTransformation("EPSG::6919", "[enter here name of (I = J-90°) bin grid] ", parameters, source, target, areaOfUse);
         }

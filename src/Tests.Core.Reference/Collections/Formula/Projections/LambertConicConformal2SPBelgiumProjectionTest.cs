@@ -47,7 +47,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.NorthingAtFalseOrigin, Length.FromMetre(5400088.44));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7022", "International 1924", 6378388, 297);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1347"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1347"];
 
             this.projection2SPBelgium = new LambertConicConformal2SPBelgiumProjection("EPSG::19902 ", "Belge Lambert 72", parameters, ellipsoid, areaOfUse);
         }

@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 0.997);
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7004", "Bessel 1841", 6377397.155, 299.1528128);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::4020"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::4020"];
 
             this.projection = new MercatorAProjection("EPSG::19905", "Netherlands East Indies Equatorial Zone", parameters, ellipsoid, areaOfUse);
         }

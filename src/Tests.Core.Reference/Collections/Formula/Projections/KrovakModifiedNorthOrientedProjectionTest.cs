@@ -60,7 +60,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.C10, -3.689471323 * Math.Pow(10, -24));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7004", "Bessel 1841", 6377397.155, 299.1528128);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1079"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1079"];
 
             this.projection = new KrovakModifiedNorthOrientedProjection("EPSG::5225", " S-JTSK/05 (Ferro) / Modified Krovak East North", parameters, ellipsoid, areaOfUse);
         }

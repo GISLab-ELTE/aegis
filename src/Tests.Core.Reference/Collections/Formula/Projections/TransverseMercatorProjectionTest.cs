@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 0.9996012717);
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7001", "Airy 1830", 6377563.396, 6356256.910);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1264"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1264"];
 
             this.projection = new TransverseMercatorProjection("EPSG::19916", "British National Grid", parameters, ellipsoid, areaOfUse);
         }

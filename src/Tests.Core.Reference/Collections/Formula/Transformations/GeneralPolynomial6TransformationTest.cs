@@ -77,9 +77,9 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.Bu2v3, -284.294);
             parameters.Add(CoordinateOperationParameters.Bu3v3, -853.95);
 
-            CoordinateReferenceSystem source = TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4300"];
-            CoordinateReferenceSystem target = TestUtilities.ReferenceCollection.GeographicCoordinateReferenceSystems["EPSG::4258"];
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1305"];
+            CoordinateReferenceSystem source = TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4300"];
+            CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4258"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1305"];
 
             this.transformation = new GeneralPolynomial6Transformation("ESPG::1041", "TM75 to ETRS89 (1)", parameters, source, target, areaOfUse);
         }

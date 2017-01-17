@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(0));
 
             Ellipsoid ellipsoid = Ellipsoid.FromSphere(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, 6371007);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1262"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
             this.projection = new MercatorSphericalProjection(IdentifiedObject.UserDefinedIdentifier, "World Spherical Mercator", parameters, ellipsoid, areaOfUse);
         }

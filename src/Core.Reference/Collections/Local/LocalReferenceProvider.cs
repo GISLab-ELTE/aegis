@@ -1,4 +1,4 @@
-﻿// <copyright file="LocalReferenceCollectionContainer.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="LocalReferenceProvider.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -23,12 +23,12 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     /// <remarks>
     /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
     /// </remarks>
-    public class LocalReferenceCollectionContainer : ReferenceCollectionContainer
+    public class LocalReferenceProvider : ReferenceProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocalReferenceCollectionContainer" /> class.
+        /// Initializes a new instance of the <see cref="LocalReferenceProvider" /> class.
         /// </summary>
-        public LocalReferenceCollectionContainer()
+        public LocalReferenceProvider()
         {
             this.Container.RegisterSingleton<IReferenceCollection<AreaOfUse>, LocalAreaOfUseCollection>();
             this.Container.RegisterSingleton<IReferenceCollection<CompoundReferenceSystem>, LocalCompoundReferenceSystemCollection>();

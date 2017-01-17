@@ -44,7 +44,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(0));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::4326", "WGS 84", 6378137.0, 298.2572236);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1306"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1306"];
 
             this.projection = new OrthographicProjection("EPSG::4326", "WGS 84 / Orthographic", parameters, ellipsoid, areaOfUse);
         }

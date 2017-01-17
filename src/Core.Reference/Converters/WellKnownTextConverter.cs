@@ -22,8 +22,9 @@ namespace ELTE.AEGIS.Reference.Converters
     using System.Text.RegularExpressions;
     using ELTE.AEGIS.Geometries;
     using ELTE.AEGIS.Reference;
+    using ELTE.AEGIS.Reference.Collections;
+    using ELTE.AEGIS.Reference.Resources;
     using ELTE.AEGIS.Resources;
-    using Reference.Collections;
 
     /// <summary>
     /// Represents a converter for Well-known Text (WKT) representation.
@@ -271,19 +272,25 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to identified object.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted identified object.</returns>
-        /// <exception cref="System.ArgumentNullException">The source is null.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// The source is null.
+        /// or
+        /// The provider is null.
+        /// </exception>
         /// <exception cref="System.ArgumentException">The specified source is invalid.</exception>
-        public static IdentifiedObject ToIdentifiedObject(String source, IReferenceCollectionContainer container)
+        public static IdentifiedObject ToIdentifiedObject(String source, IReferenceProvider provider)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (String.IsNullOrEmpty(source))
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider), ReferenceMessages.ProviderIsNull);
 
-            //try
-            //{
+            try
+            {
                 Match match = Regex.Match(source, PatternGroupedIdentifiedObject, RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
                 String type = match.Groups["type"].Value;
@@ -292,24 +299,24 @@ namespace ELTE.AEGIS.Reference.Converters
                 switch (type)
                 {
                     case "GEOCCS":
-                        return ToGeocentricCoordinateReferenceSystem(content, container);
+                        return ToGeocentricCoordinateReferenceSystem(content, provider);
                     case "GEOGCS":
-                        return ToGeographicCoordinateReferenceSystem(content, container);
+                        return ToGeographicCoordinateReferenceSystem(content, provider);
                     case "PROJCS":
-                        return ToProjectedReferenceSystem(content, container);
+                        return ToProjectedReferenceSystem(content, provider);
                     case "DATUM":
-                        return ToGeodeticDatum(content, container.Meridians.FirstOrDefault(), container);
+                        return ToGeodeticDatum(content, provider.Meridians.FirstOrDefault(), provider);
                     case "SPHEROID":
                     case "ELLIPSOID":
-                        return ToEllipsoid(content, container);
+                        return ToEllipsoid(content, provider);
                     case "PRIMEM":
-                        return ToMeridian(content, UnitsOfMeasurement.Metre, container);
+                        return ToMeridian(content, UnitsOfMeasurement.Metre, provider);
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source), ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source), ex);
+            }
 
             throw new ArgumentException(CoreMessages.SourceIsNotSupported, nameof(source));
         }
@@ -318,11 +325,11 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a reference system.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted reference system.</returns>
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         /// <exception cref="System.ArgumentException">The specified source is invalid.</exception>
-        public static IReferenceSystem ToReferenceSystem(String source, IReferenceCollectionContainer container)
+        public static IReferenceSystem ToReferenceSystem(String source, IReferenceProvider provider)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
@@ -341,13 +348,13 @@ namespace ELTE.AEGIS.Reference.Converters
                 switch (type)
                 {
                     case "GEOCCS":
-                        result = ToGeocentricCoordinateReferenceSystem(content, container);
+                        result = ToGeocentricCoordinateReferenceSystem(content, provider);
                         break;
                     case "GEOGCS":
-                        result = ToGeographicCoordinateReferenceSystem(content, container);
+                        result = ToGeographicCoordinateReferenceSystem(content, provider);
                         break;
                     case "PROJCS":
-                        result = ToProjectedReferenceSystem(content, container);
+                        result = ToProjectedReferenceSystem(content, provider);
                         break;
                 }
 
@@ -533,9 +540,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a geocentric coordinate reference system.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted geocentric coordinate reference system.</returns>
-        private static GeocentricCoordinateReferenceSystem ToGeocentricCoordinateReferenceSystem(String source, IReferenceCollectionContainer container)
+        private static GeocentricCoordinateReferenceSystem ToGeocentricCoordinateReferenceSystem(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedGeodeticReferenceSystem);
 
@@ -547,18 +554,18 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                GeocentricCoordinateReferenceSystem referenceSystem = container.GeocentricCoordinateReferenceSystems[authorityName, code];
+                GeocentricCoordinateReferenceSystem referenceSystem = provider.GeocentricCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
                     return referenceSystem;
             }
 
             // convert content
-            UnitOfMeasurement unit = ToAngularUnit(match.Groups["unit"].Value, container);
-            Meridian meridian = ToMeridian(match.Groups["meridian"].Value, unit, container);
-            GeodeticDatum datum = ToGeodeticDatum(match.Groups["datum"].Value, meridian, container);
+            UnitOfMeasurement unit = ToAngularUnit(match.Groups["unit"].Value, provider);
+            Meridian meridian = ToMeridian(match.Groups["meridian"].Value, unit, provider);
+            GeodeticDatum datum = ToGeodeticDatum(match.Groups["datum"].Value, meridian, provider);
 
             // search by name
-            foreach (GeocentricCoordinateReferenceSystem referenceSystem in container.GeocentricCoordinateReferenceSystems.WithName(name))
+            foreach (GeocentricCoordinateReferenceSystem referenceSystem in provider.GeocentricCoordinateReferenceSystems.WithName(name))
             {
                 if (referenceSystem.Datum.Equals(datum))
                     return referenceSystem;
@@ -572,7 +579,7 @@ namespace ELTE.AEGIS.Reference.Converters
             CoordinateSystem coordinateSystem = null;
             if (axes.Length == 0)
             {
-                coordinateSystem = container.CoordinateSystems["EPSG", 6500];
+                coordinateSystem = provider.CoordinateSystems["EPSG", 6500];
             }
             else
             {
@@ -590,9 +597,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a geographic coordinate reference system.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted geographic coordinate reference system.</returns>
-        private static GeographicCoordinateReferenceSystem ToGeographicCoordinateReferenceSystem(String source, IReferenceCollectionContainer container)
+        private static GeographicCoordinateReferenceSystem ToGeographicCoordinateReferenceSystem(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedGeodeticReferenceSystem);
 
@@ -604,7 +611,7 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                GeographicCoordinateReferenceSystem referenceSystem = container.GeographicCoordinateReferenceSystems[authorityName, code];
+                GeographicCoordinateReferenceSystem referenceSystem = provider.GeographicCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
                     return referenceSystem;
             }
@@ -614,12 +621,12 @@ namespace ELTE.AEGIS.Reference.Converters
                 name = name.Substring(4);
 
             // convert content
-            UnitOfMeasurement unit = ToAngularUnit(match.Groups["unit"].Value, container);
-            Meridian meridian = ToMeridian(match.Groups["meridian"].Value, unit, container);
-            GeodeticDatum datum = ToGeodeticDatum(match.Groups["datum"].Value, meridian, container);
+            UnitOfMeasurement unit = ToAngularUnit(match.Groups["unit"].Value, provider);
+            Meridian meridian = ToMeridian(match.Groups["meridian"].Value, unit, provider);
+            GeodeticDatum datum = ToGeodeticDatum(match.Groups["datum"].Value, meridian, provider);
 
             // search by name
-            foreach (GeographicCoordinateReferenceSystem referenceSystem in container.GeographicCoordinateReferenceSystems.WithName(name))
+            foreach (GeographicCoordinateReferenceSystem referenceSystem in provider.GeographicCoordinateReferenceSystems.WithName(name))
             {
                 if (referenceSystem.Datum.Equals(datum))
                     return referenceSystem;
@@ -640,13 +647,13 @@ namespace ELTE.AEGIS.Reference.Converters
                 switch (unit.Code)
                 {
                     case 9102: // degree
-                        coordinateSystem = container.CoordinateSystems["EPSG", 6422];
+                        coordinateSystem = provider.CoordinateSystems["EPSG", 6422];
                         break;
                     case 9105: // grad
-                        coordinateSystem = container.CoordinateSystems["EPSG", 6403];
+                        coordinateSystem = provider.CoordinateSystems["EPSG", 6403];
                         break;
                     case 9101: // radian
-                        coordinateSystem = container.CoordinateSystems["EPSG", 6428];
+                        coordinateSystem = provider.CoordinateSystems["EPSG", 6428];
                         break;
                 }
             }
@@ -666,9 +673,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a projected coordinate reference system.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted projected coordinate reference system.</returns>
-        private static ProjectedCoordinateReferenceSystem ToProjectedReferenceSystem(String source, IReferenceCollectionContainer container)
+        private static ProjectedCoordinateReferenceSystem ToProjectedReferenceSystem(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedProjectedReferenceSystem);
 
@@ -680,35 +687,35 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                ProjectedCoordinateReferenceSystem referenceSystem = container.ProjectedCoordinateReferenceSystems[authorityName, code];
+                ProjectedCoordinateReferenceSystem referenceSystem = provider.ProjectedCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
                     return referenceSystem;
             }
 
             // convert content
-            GeographicCoordinateReferenceSystem geographicReferenceSystem = ToGeographicCoordinateReferenceSystem(match.Groups["geographicReferenceSystem"].Value, container);
+            GeographicCoordinateReferenceSystem geographicReferenceSystem = ToGeographicCoordinateReferenceSystem(match.Groups["geographicReferenceSystem"].Value, provider);
 
             Dictionary<CoordinateOperationParameter, Object> parameters = new Dictionary<CoordinateOperationParameter, Object>(match.Groups["parameter"].Captures.Count);
             foreach (Capture capture in match.Groups["parameter"].Captures)
             {
-                KeyValuePair<CoordinateOperationParameter, Double> parameter = ToCoordinateOperationParameter(capture.Value, container);
+                KeyValuePair<CoordinateOperationParameter, Double> parameter = ToCoordinateOperationParameter(capture.Value, provider);
                 parameters.Add(parameter.Key, parameter.Value);
             }
 
-            CoordinateOperationMethod method = ToCoordinateOperationMethod(match.Groups["projection"].Value, container);
+            CoordinateOperationMethod method = ToCoordinateOperationMethod(match.Groups["projection"].Value, provider);
 
             // in case the method is not supported
             if (method == null)
                 return null;
 
-            CoordinateProjection projection = container.CoordinateProjections.WithProperties(method, parameters, AreaOfUse.Undefined, geographicReferenceSystem.Datum.Ellipsoid).FirstOrDefault();
+            CoordinateProjection projection = provider.CoordinateProjections.WithProperties(method, parameters, AreaOfUse.Undefined, geographicReferenceSystem.Datum.Ellipsoid).FirstOrDefault();
 
             // in case the parameters are not matched
             if (projection == null)
                 return null;
 
             // search by name
-            foreach (ProjectedCoordinateReferenceSystem referenceSystem in container.ProjectedCoordinateReferenceSystems.WithName(name))
+            foreach (ProjectedCoordinateReferenceSystem referenceSystem in provider.ProjectedCoordinateReferenceSystems.WithName(name))
             {
                 if (referenceSystem.BaseReferenceSystem.Equals(geographicReferenceSystem) &&
                     referenceSystem.Projection.Equals(projection))
@@ -716,7 +723,7 @@ namespace ELTE.AEGIS.Reference.Converters
             }
 
             // convert coordinate system
-            UnitOfMeasurement unit = ToLinearUnit(match.Groups["unit"].Value, container);
+            UnitOfMeasurement unit = ToLinearUnit(match.Groups["unit"].Value, provider);
             CoordinateSystemAxis[] axes = new CoordinateSystemAxis[match.Groups["axis"].Captures.Count];
             foreach (Capture capture in match.Groups["axis"].Captures)
                 axes[capture.Index] = ToCoordinateSystemAxis(capture.Value, unit);
@@ -728,7 +735,7 @@ namespace ELTE.AEGIS.Reference.Converters
                 if (unit.Authority != "EPSG")
                     return null;
 
-                coordinateSystem = container.CoordinateSystems["EPSG", 4400];
+                coordinateSystem = provider.CoordinateSystems["EPSG", 4400];
             }
             else
             {
@@ -745,9 +752,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a coordinate operation method.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted coordinate operation method.</returns>
-        private static CoordinateOperationMethod ToCoordinateOperationMethod(String source, IReferenceCollectionContainer container)
+        private static CoordinateOperationMethod ToCoordinateOperationMethod(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedCoordinateOperationMethod);
 
@@ -761,13 +768,13 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                method = container.CoordinateOperationMethods[authorityName, code];
+                method = provider.CoordinateOperationMethods[authorityName, code];
                 if (method != null)
                     return method;
             }
 
             // search by name
-            method = container.CoordinateOperationMethods.WithName(name).FirstOrDefault();
+            method = provider.CoordinateOperationMethods.WithName(name).FirstOrDefault();
             if (method != null)
                 return method;
 
@@ -779,16 +786,16 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to a coordinate operation parameter.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted coordinate operation parameter and value.</returns>
-        private static KeyValuePair<CoordinateOperationParameter, Double> ToCoordinateOperationParameter(String source, IReferenceCollectionContainer container)
+        private static KeyValuePair<CoordinateOperationParameter, Double> ToCoordinateOperationParameter(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedCoordinateOperationParameter);
 
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String value = match.Groups["value"].Value;
 
-            CoordinateOperationParameter parameter = container.CoordinateOperationParameters.WithName(name).FirstOrDefault();
+            CoordinateOperationParameter parameter = provider.CoordinateOperationParameters.WithName(name).FirstOrDefault();
 
             return new KeyValuePair<CoordinateOperationParameter, Double>(parameter, Double.Parse(value, CultureInfo.InvariantCulture));
         }
@@ -813,22 +820,22 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to an angular unit of measurement.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted unit of measurement.</returns>
-        private static UnitOfMeasurement ToAngularUnit(String source, IReferenceCollectionContainer container)
+        private static UnitOfMeasurement ToAngularUnit(String source, IReferenceProvider provider)
         {
-            return ToUnitOfMeasurement(source, UnitQuantityType.Angle, container);
+            return ToUnitOfMeasurement(source, UnitQuantityType.Angle, provider);
         }
 
         /// <summary>
         /// Converts the specified Well-known Text (WKT) to a linear unit of measurement.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted unit of measurement.</returns>
-        private static UnitOfMeasurement ToLinearUnit(String source, IReferenceCollectionContainer container)
+        private static UnitOfMeasurement ToLinearUnit(String source, IReferenceProvider provider)
         {
-            return ToUnitOfMeasurement(source, UnitQuantityType.Length, container);
+            return ToUnitOfMeasurement(source, UnitQuantityType.Length, provider);
         }
 
         /// <summary>
@@ -836,9 +843,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// </summary>
         /// <param name="source">The source text.</param>
         /// <param name="unitQuantityType">The unit quantity type.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted unit of measurement.</returns>
-        private static UnitOfMeasurement ToUnitOfMeasurement(String source, UnitQuantityType unitQuantityType, IReferenceCollectionContainer container)
+        private static UnitOfMeasurement ToUnitOfMeasurement(String source, UnitQuantityType unitQuantityType, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedUnitOfMeasurement);
 
@@ -852,13 +859,13 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                unit = container.UnitsOfMeasurement[authorityName, code];
+                unit = provider.UnitsOfMeasurement[authorityName, code];
                 if (unit != null)
                     return unit;
             }
 
             // search by name
-            unit = container.UnitsOfMeasurement.WithName(name).FirstOrDefault();
+            unit = provider.UnitsOfMeasurement.WithName(name).FirstOrDefault();
             if (unit != null)
                 return unit;
 
@@ -878,9 +885,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// </summary>
         /// <param name="source">The source text.</param>
         /// <param name="unit">The unit of measurement.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted meridian.</returns>
-        private static Meridian ToMeridian(String source, UnitOfMeasurement unit, IReferenceCollectionContainer container)
+        private static Meridian ToMeridian(String source, UnitOfMeasurement unit, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedMeridian);
 
@@ -894,13 +901,13 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                meridian = container.Meridians[authorityName, code];
+                meridian = provider.Meridians[authorityName, code];
                 if (meridian != null)
                     return meridian;
             }
 
             // search by name
-            meridian = container.Meridians.WithName(name).FirstOrDefault();
+            meridian = provider.Meridians.WithName(name).FirstOrDefault();
             if (meridian != null)
                 return meridian;
 
@@ -920,9 +927,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// </summary>
         /// <param name="source">The source text.</param>
         /// <param name="primeMeridian">The prime meridian.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted geodetic datum.</returns>
-        private static GeodeticDatum ToGeodeticDatum(String source, Meridian primeMeridian, IReferenceCollectionContainer container)
+        private static GeodeticDatum ToGeodeticDatum(String source, Meridian primeMeridian, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedDatum);
 
@@ -934,7 +941,7 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                GeodeticDatum datum = container.GeodeticDatums[authorityName, code];
+                GeodeticDatum datum = provider.GeodeticDatums[authorityName, code];
                 if (datum != null)
                     return datum;
             }
@@ -944,10 +951,10 @@ namespace ELTE.AEGIS.Reference.Converters
                 name = name.Substring(2);
 
             // convert content
-            Ellipsoid ellipsoid = ToEllipsoid(match.Groups["ellipsoid"].Value, container);
+            Ellipsoid ellipsoid = ToEllipsoid(match.Groups["ellipsoid"].Value, provider);
 
             // search by name
-            foreach (GeodeticDatum datum in container.GeodeticDatums.WithName(name))
+            foreach (GeodeticDatum datum in provider.GeodeticDatums.WithName(name))
             {
                 if (datum.Ellipsoid.Equals(ellipsoid))
                     return datum;
@@ -964,9 +971,9 @@ namespace ELTE.AEGIS.Reference.Converters
         /// Converts the specified Well-known Text (WKT) to an ellipsoid.
         /// </summary>
         /// <param name="source">The source text.</param>
-        /// <param name="container">The reference collection container.</param>
+        /// <param name="provider">The reference provider.</param>
         /// <returns>The converted ellipsoid.</returns>
-        private static Ellipsoid ToEllipsoid(String source, IReferenceCollectionContainer container)
+        private static Ellipsoid ToEllipsoid(String source, IReferenceProvider provider)
         {
             Match match = Regex.Match(source, PatternGroupedEllipsoid);
 
@@ -980,13 +987,13 @@ namespace ELTE.AEGIS.Reference.Converters
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
             {
-                ellipsoid = container.Ellipsoids[authorityName, code];
+                ellipsoid = provider.Ellipsoids[authorityName, code];
                 if (ellipsoid != null)
                     return ellipsoid;
             }
 
             // search by name
-            ellipsoid = container.Ellipsoids.WithName(name).FirstOrDefault();
+            ellipsoid = provider.Ellipsoids.WithName(name).FirstOrDefault();
             if (ellipsoid != null)
                 return ellipsoid;
 

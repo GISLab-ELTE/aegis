@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ProjectionPlaneOriginHeight, 2550.000);
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::4019", "GRS 1980", 6378137.0, 298.2572221);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1264"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1264"];
 
             this.projection = new ColombiaUrbanProjection("EPSG::3116", "MAGNA-SIRGAS / Bogota urban grid", parameters, ellipsoid, areaOfUse);
         }

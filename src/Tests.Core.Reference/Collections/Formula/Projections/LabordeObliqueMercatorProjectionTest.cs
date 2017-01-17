@@ -47,7 +47,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(800000));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7022", "International 1924", 6378388, 297);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1149"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1149"];
 
             this.projection = new LabordeObliqueMercatorProjection("EPSG::19861", "Laborde Grid", parameters, ellipsoid, areaOfUse);
         }

@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.NorthingAtFalseOrigin, Length.FromMetre(200000));
 
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7022", "International 1924", 6378388, 297);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::2818"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::2818"];
 
             this.projection = new PolarStereographicCProjection("EPSG::19983", "Terre Adelie Polar Stereographic ", parameters, ellipsoid, areaOfUse);
         }

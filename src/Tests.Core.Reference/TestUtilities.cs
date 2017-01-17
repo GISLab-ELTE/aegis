@@ -24,14 +24,8 @@ namespace ELTE.AEGIS.Tests.Reference
     internal static class TestUtilities
     {
         /// <summary>
-        /// The reference collection container. This field is read-only.
+        /// The reference provider. This field is read-only.
         /// </summary>
-        private static readonly LocalReferenceCollectionContainer ReferenceCollectionContainer = new LocalReferenceCollectionContainer();
-
-        /// <summary>
-        /// Gets the container of reference collections.
-        /// </summary>
-        /// <value>The reference collection container.</value>
-        public static IReferenceCollectionContainer ReferenceCollection { get { return ReferenceCollectionContainer; } }
+        public static readonly LocalReferenceProvider ReferenceProvider = new LocalReferenceProvider();
     }
 }

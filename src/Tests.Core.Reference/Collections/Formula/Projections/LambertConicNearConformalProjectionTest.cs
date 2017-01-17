@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 0.99962560);
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7011", "Clarke 1880 (IGN)", 6378249.2, 6356515);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1623"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1623"];
 
             this.projectionLambertConicNearConformal = new LambertConicNearConformalProjection("EPSG::19940", "Levant Zone", parameters, ellipsoid, areaOfUse);
         }

@@ -45,7 +45,7 @@ namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.ScaleFactorAtNaturalOrigin, 1);
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::4326", "WGS 84", 6378137, 6356752.31424);
-            AreaOfUse areaOfUse = TestUtilities.ReferenceCollection.AreasOfUse["EPSG::1264"];
+            AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1264"];
 
             this.projection = new TransverseMercatorSouthProjection("EPSG::4148", "Hartebeesthoek94", parameters, ellipsoid, areaOfUse);
         }
