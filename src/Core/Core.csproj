@@ -73,6 +73,7 @@
     <Compile Include="Algorithms\WindingNumberAlgorithm.cs" />
     <Compile Include="Attributes\AttributeCollection.cs" />
     <Compile Include="Attributes\AttributeCollectionFactory.cs" />
+    <Compile Include="Converters\GeographyMarkupConverter.cs" />
     <Compile Include="Converters\WellKnownBinaryConverter.cs" />
     <Compile Include="Converters\WellKnownTextConverter.cs" />
     <Compile Include="GeometryComparer.cs" />

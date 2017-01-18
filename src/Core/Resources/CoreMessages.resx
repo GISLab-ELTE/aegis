@@ -405,4 +405,7 @@
   <data name="SecondGeometryIsNull" xml:space="preserve">
     <value>The second geometry is null.</value>
   </data>
+  <data name="ReferenceSystemFactoryIsNull" xml:space="preserve">
+    <value>The reference system factory is null.</value>
+  </data>
 </root>

@@ -746,6 +746,15 @@ namespace ELTE.AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The reference system factory is null..
+        /// </summary>
+        public static string ReferenceSystemFactoryIsNull {
+            get {
+                return ResourceManager.GetString("ReferenceSystemFactoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The scale is equal to or less than 0..
         /// </summary>
         public static string ScaleIsEqualToOrLessThan0 {
