@@ -1,5 +1,5 @@
 ﻿// <copyright file="WellKnownBinaryConverter.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -489,7 +489,6 @@ namespace ELTE.AEGIS.Converters
 
             throw new ArgumentException(CoreMessages.GeometryIsNotSupported, nameof(geometry));
         }
-
 
         /// <summary>
         /// Converts a Well-known Binary (WKB) to geometry.
