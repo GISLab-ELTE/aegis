@@ -128,6 +128,7 @@
     <Compile Include="IMultiPoint.cs" />
     <Compile Include="IMultiPolygon.cs" />
     <Compile Include="IMultiSurface.cs" />
+    <Compile Include="Indexes\ICoordinateIndex.cs" />
     <Compile Include="Indexes\ISpatialIndex.cs" />
     <Compile Include="Indexes\Rectangle\RStarTree.cs" />
     <Compile Include="Indexes\Rectangle\RTree.cs" />
