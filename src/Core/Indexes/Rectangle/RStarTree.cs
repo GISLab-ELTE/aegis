@@ -19,7 +19,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
     using System.Linq;
 
     /// <summary>
-    /// Represents a 3D R*-Tree, which contains a collection of <see cref="IGeometry" /> instances.
+    /// Represents a 3D R*-Tree, which contains a collection of <see cref="IBasicGeometry" /> instances.
     /// </summary>
     public class RStarTree : RTree
     {

@@ -20,7 +20,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
     using ELTE.AEGIS.Resources;
 
     /// <summary>
-    /// Represents a 3D R-Tree, which contains a collection of <see cref="IGeometry" /> instances.
+    /// Represents a 3D R-Tree, which contains a collection of <see cref="IBasicGeometry" /> instances.
     /// </summary>
     public class RTree : ISpatialIndex
     {
@@ -60,9 +60,9 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             /// <summary>
             /// Initializes a new instance of the <see cref="Node" /> class.
             /// </summary>
-            /// <param name="geometry">The <see cref="IGeometry" /> contained by the node.</param>
+            /// <param name="geometry">The <see cref="IBasicGeometry" /> contained by the node.</param>
             /// <param name="parent">The parent of the node.</param>
-            public Node(IGeometry geometry, Node parent = null)
+            public Node(IBasicGeometry geometry, Node parent = null)
                 : this(parent)
             {
                 this.Geometry = geometry;
@@ -97,7 +97,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             /// Gets the geometry contained in the node.
             /// </summary>
             /// <value>The geometry contained in the node if the node is a leaf node; otherwise, <c>null</c>.</value>
-            public IGeometry Geometry { get; private set; }
+            public IBasicGeometry Geometry { get; private set; }
 
             /// <summary>
             /// Gets the minimum bounding envelope of the node.
@@ -298,7 +298,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
-        public void Add(IGeometry geometry)
+        public void Add(IBasicGeometry geometry)
         {
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
@@ -312,12 +312,12 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="collection">The geometry collection.</param>
         /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
-        public void Add(IEnumerable<IGeometry> collection)
+        public void Add(IEnumerable<IBasicGeometry> collection)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
-            foreach (IGeometry geometry in collection)
+            foreach (IBasicGeometry geometry in collection)
             {
                 if (geometry != null)
                 {
@@ -333,7 +333,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="envelope">The envelope.</param>
         /// <returns>The collection of geometries located within the envelope.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public IEnumerable<IGeometry> Search(Envelope envelope)
+        public IEnumerable<IBasicGeometry> Search(Envelope envelope)
         {
             if (envelope == null)
                 throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
@@ -346,7 +346,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c> if the specified geometry is indexed; otherwise <c>false</c>.</returns>
-        public virtual Boolean Contains(IGeometry geometry)
+        public virtual Boolean Contains(IBasicGeometry geometry)
         {
             if (geometry == null)
                 return false;
@@ -360,7 +360,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c> if the geometry is indexed; otherwise <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
-        public virtual Boolean Remove(IGeometry geometry)
+        public virtual Boolean Remove(IBasicGeometry geometry)
         {
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
@@ -376,7 +376,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
         public Boolean Remove(Envelope envelope)
         {
-            List<IGeometry> geometries;
+            List<IBasicGeometry> geometries;
 
             return this.Remove(envelope, out geometries);
         }
@@ -388,7 +388,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="geometries">The list of geometries within the envelope.</param>
         /// <returns><c>true</c> if any geometries are within the envelope; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public Boolean Remove(Envelope envelope, out List<IGeometry> geometries)
+        public Boolean Remove(Envelope envelope, out List<IBasicGeometry> geometries)
         {
             if (envelope == null)
                 throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
@@ -398,7 +398,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
             if (!geometries.Any())
                 return false;
 
-            foreach (IGeometry geometry in geometries)
+            foreach (IBasicGeometry geometry in geometries)
             {
                 this.RemoveGeometry(geometry);
             }
@@ -449,7 +449,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="node">The root node of the subtree.</param>
         /// <param name="envelope">The envelope.</param>
         /// <returns>The collection of geometries which are inside the envelope.</returns>
-        protected IEnumerable<IGeometry> SearchNode(Node node, Envelope envelope)
+        protected IEnumerable<IBasicGeometry> SearchNode(Node node, Envelope envelope)
         {
             if (node.Children == null)
                 yield break;
@@ -468,7 +468,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
                 {
                     if (envelope.Intersects(child.Envelope))
                     {
-                        foreach (IGeometry geometry in this.SearchNode(child, envelope))
+                        foreach (IBasicGeometry geometry in this.SearchNode(child, envelope))
                             yield return geometry;
                     }
                 }
@@ -481,7 +481,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="geometry">The geometry.</param>
         /// <param name="node">The root node of the subtree.</param>
         /// <returns><c>true</c>, if the element contains the geometry, otherwise, <c>false</c>.</returns>
-        protected Boolean ContainsGeometry(IGeometry geometry, Node node)
+        protected Boolean ContainsGeometry(IBasicGeometry geometry, Node node)
         {
             if (node.IsLeafContainer && node.Children != null && node.Children.Any(x => x.Geometry == geometry))
                 return true;
@@ -504,7 +504,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c>, if the tree contains the geometry, otherwise, <c>false</c>.</returns>
-        protected virtual Boolean RemoveGeometry(IGeometry geometry)
+        protected virtual Boolean RemoveGeometry(IBasicGeometry geometry)
         {
             Node leafContainer = null;
             this.FindLeafContainer(geometry, this.Root, ref leafContainer);
@@ -799,7 +799,7 @@ namespace ELTE.AEGIS.Indexes.Rectangle
         /// <param name="geometry">The geometry.</param>
         /// <param name="node">The node where the search starts.</param>
         /// <param name="resultLeafContainer">The found leaf container.</param>
-        private void FindLeafContainer(IGeometry geometry, Node node, ref Node resultLeafContainer)
+        private void FindLeafContainer(IBasicGeometry geometry, Node node, ref Node resultLeafContainer)
         {
             if (!node.IsLeafContainer)
             {

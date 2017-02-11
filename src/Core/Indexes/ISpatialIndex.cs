@@ -40,15 +40,15 @@ namespace ELTE.AEGIS.Indexes
         /// <param name="geometry">The geometry.</param>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
         /// <exception cref="System.InvalidOperationException">The index is read-only.</exception>
-        void Add(IGeometry geometry);
+        void Add(IBasicGeometry geometry);
 
         /// <summary>
         /// Adds multiple geometries to the index.
         /// </summary>
-        /// <param name="collection">The geometry collection.</param>
+        /// <param name="geometries">The geometry collection.</param>
         /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
         /// <exception cref="System.InvalidOperationException">The index is read-only.</exception>
-        void Add(IEnumerable<IGeometry> collection);
+        void Add(IEnumerable<IBasicGeometry> geometries);
 
         /// <summary>
         /// Searches the index for any geometries contained within the specified envelope.
@@ -56,14 +56,14 @@ namespace ELTE.AEGIS.Indexes
         /// <param name="envelope">The envelope.</param>
         /// <returns>The collection of geometries located within the envelope.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        IEnumerable<IGeometry> Search(Envelope envelope);
+        IEnumerable<IBasicGeometry> Search(Envelope envelope);
 
         /// <summary>
         /// Determines whether the specified geometry is indexed.
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c> if the specified geometry is indexed; otherwise <c>false</c>.</returns>
-        Boolean Contains(IGeometry geometry);
+        Boolean Contains(IBasicGeometry geometry);
 
         /// <summary>
         /// Removes the specified geometry from the index.
@@ -72,7 +72,7 @@ namespace ELTE.AEGIS.Indexes
         /// <returns><c>true</c> if the geometry is indexed; otherwise <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
         /// <exception cref="System.InvalidOperationException">The index is read-only.</exception>
-        Boolean Remove(IGeometry geometry);
+        Boolean Remove(IBasicGeometry geometry);
 
         /// <summary>
         /// Removes all geometries from the index within the specified envelope.
@@ -91,7 +91,7 @@ namespace ELTE.AEGIS.Indexes
         /// <returns><c>true</c> if any geometries are within the envelope; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
         /// <exception cref="System.InvalidOperationException">The index is read-only.</exception>
-        Boolean Remove(Envelope envelope, out List<IGeometry> geometries);
+        Boolean Remove(Envelope envelope, out List<IBasicGeometry> geometries);
 
         /// <summary>
         /// Clears all geometries from the index.

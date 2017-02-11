@@ -239,7 +239,7 @@ namespace ELTE.AEGIS.Tests.Indexes.Rectangle
             this.tree.Remove(Envelope.Infinity).ShouldBeTrue();
 
             // remove envelope with results
-            List<IGeometry> geometries;
+            List<IBasicGeometry> geometries;
 
             this.tree.Remove(Envelope.Infinity, out geometries).ShouldBeFalse();
             geometries.Count.ShouldBe(0);
