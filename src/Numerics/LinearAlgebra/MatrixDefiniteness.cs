@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics.LinearAlgebra
+namespace AEGIS.Numerics.LinearAlgebra
 {
     /// <summary>
     /// Defines the possible definiteness states of matrices.

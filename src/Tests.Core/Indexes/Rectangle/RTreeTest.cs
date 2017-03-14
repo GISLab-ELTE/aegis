@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Indexes.Rectangle
+namespace AEGIS.Tests.Indexes.Rectangle
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Geometries;
-    using ELTE.AEGIS.Indexes.Rectangle;
+    using AEGIS.Geometries;
+    using AEGIS.Indexes.Rectangle;
     using NUnit.Framework;
     using Shouldly;
 

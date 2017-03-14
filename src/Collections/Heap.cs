@@ -1,5 +1,5 @@
 ﻿// <copyright file="Heap.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a heap data structure containing key/value pairs.
@@ -34,16 +34,10 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class Heap<TKey, TValue> : IHeap<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable
     {
-        
-
         /// <summary>
         /// The default capacity. This field is constant.
         /// </summary>
         private const Int32 DefaultCapacity = 4;
-
-        
-
-        
 
         /// <summary>
         /// The empty array. This field is read-only.
@@ -69,10 +63,6 @@ namespace ELTE.AEGIS.Collections
         /// The version of the heap.
         /// </summary>
         private Int32 version;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Heap{TKey, TValue}" /> class that is empty, has the default initial capacity, and uses the default comparer for the key type.
@@ -176,10 +166,6 @@ namespace ELTE.AEGIS.Collections
             this.comparer = comparer ?? Comparer<TKey>.Default;
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the number of elements actually contained in the heap.
         /// </summary>
@@ -239,19 +225,11 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the heap.
         /// </summary>
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current heap and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get { return this.comparer; } }
-
-        
-
-        
 
         /// <summary>
         /// Inserts the specified key and value to the heap.
@@ -350,10 +328,6 @@ namespace ELTE.AEGIS.Collections
             this.version++;
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -371,10 +345,6 @@ namespace ELTE.AEGIS.Collections
         {
             return this.GetEnumerator();
         }
-
-        
-
-        
 
         /// <summary>
         /// Ensures the capacity of the heap is at least the given minimum value.
@@ -406,10 +376,6 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Enumerates the elements of a heap.
         /// </summary>
@@ -418,8 +384,6 @@ namespace ELTE.AEGIS.Collections
         /// </remarks>
         public sealed class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IEnumerator, IDisposable
         {
-            
-
             /// <summary>
             /// The heap that is enumerated.
             /// </summary>
@@ -440,10 +404,6 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private KeyValuePair<TKey, TValue> current;
 
-            
-
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
             /// </summary>
@@ -460,10 +420,6 @@ namespace ELTE.AEGIS.Collections
                 this.position = -1;
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -482,10 +438,6 @@ namespace ELTE.AEGIS.Collections
             {
                 get { return this.current; }
             }
-
-            
-
-            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -525,20 +477,12 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            
-
-            
-
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {
             }
-
-            
         }
-
-        
     }
 }

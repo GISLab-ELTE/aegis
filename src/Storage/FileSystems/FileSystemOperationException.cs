@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Organization.FileSystems
+namespace AEGIS.Storage.Organization.FileSystems
 {
     using System;
     using System.Net;

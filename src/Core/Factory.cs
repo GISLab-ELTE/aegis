@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a base type for all factories.

@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.FileSystems
+namespace AEGIS.Storage.FileSystems
 {
     using System;
     using System.Runtime.Serialization;

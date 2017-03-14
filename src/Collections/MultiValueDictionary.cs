@@ -1,5 +1,5 @@
 ﻿// <copyright file="MultiValueDictionary.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a multi-value dictionary.
@@ -27,16 +27,10 @@ namespace ELTE.AEGIS.Collections
     /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     public sealed class MultiValueDictionary<TKey, TValue> : IDictionary<TKey, ICollection<TValue>>
     {
-        
-
         /// <summary>
         /// The underlying dictionary.
         /// </summary>
         private Dictionary<TKey, List<TValue>> dictionary;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue}" /> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
@@ -82,10 +76,6 @@ namespace ELTE.AEGIS.Collections
             this.dictionary = new Dictionary<TKey, List<TValue>>(dictionary.dictionary, comparer);
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the number of elements contained in the dictionary.
         /// </summary>
@@ -95,10 +85,6 @@ namespace ELTE.AEGIS.Collections
         /// Gets a value indicating whether the collection is read-only.
         /// </summary>
         public Boolean IsReadOnly { get { return false; } }
-
-        
-
-        
 
         /// <summary>
         /// Gets the keys currently present in the dictionary.
@@ -134,10 +120,6 @@ namespace ELTE.AEGIS.Collections
                 this.dictionary[key] = value.ToList<TValue>();
             }
         }
-
-        
-
-        
 
         /// <summary>
         /// Adds a key-value pair to the dictionary.
@@ -222,10 +204,6 @@ namespace ELTE.AEGIS.Collections
             return true;
         }
 
-        
-
-        
-
         /// <summary>
         /// Adds the specified key and value to the dictionary.
         /// </summary>
@@ -295,10 +273,6 @@ namespace ELTE.AEGIS.Collections
             return retValue;
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -317,10 +291,6 @@ namespace ELTE.AEGIS.Collections
         {
             return this.GetEnumerator();
         }
-
-        
-
-        
 
         /// <summary>
         /// Adds the specified key and value to the dictionary.
@@ -364,7 +334,5 @@ namespace ELTE.AEGIS.Collections
 
             return true;
         }
-
-        
     }
 }

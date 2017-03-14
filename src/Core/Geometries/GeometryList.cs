@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Geometries
+namespace AEGIS.Geometries
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a generic list of geometries in Cartesian coordinate space.
@@ -75,7 +75,7 @@ namespace ELTE.AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -118,7 +118,7 @@ namespace ELTE.AEGIS.Geometries
             : base(factory)
         {
             if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), ELTE.AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(capacity), AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
 
             this.items = new List<GeometryType>(capacity);
         }
@@ -459,11 +459,11 @@ namespace ELTE.AEGIS.Geometries
         public void CopyTo(GeometryType[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.CopyTo(array, arrayIndex);
         }

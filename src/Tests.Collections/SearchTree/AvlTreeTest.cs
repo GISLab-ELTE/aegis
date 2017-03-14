@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Collections.SearchTree
+namespace AEGIS.Tests.Collections.SearchTrees
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using AEGIS.Collections;
-    using ELTE.AEGIS.Collections.SearchTree;
+    using AEGIS.Collections.SearchTrees;
     using NUnit.Framework;
     using Shouldly;
 

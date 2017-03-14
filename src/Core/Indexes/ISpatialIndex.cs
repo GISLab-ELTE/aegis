@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Indexes
+namespace AEGIS.Indexes
 {
     using System;
     using System.Collections.Generic;

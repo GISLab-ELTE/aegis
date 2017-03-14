@@ -120,8 +120,23 @@
   <data name="AngleArrayIsNull" xml:space="preserve">
     <value>The array of angles is null.</value>
   </data>
+  <data name="AngleCollectionIsNull" xml:space="preserve">
+    <value>The collection of angles is null.</value>
+  </data>
+  <data name="AngularUnitOfMeasurementIsInvalid" xml:space="preserve">
+    <value>The angular unit of measurement is invalid.</value>
+  </data>
+  <data name="AngularUnitOfMeasurementIsNull" xml:space="preserve">
+    <value>The angular unit of measurement is null.</value>
+  </data>
+  <data name="AreaOfUseCollectionIsNull" xml:space="preserve">
+    <value>The area of use source is null.</value>
+  </data>
   <data name="AreaOfUseIsNull" xml:space="preserve">
     <value>The area of use is null.</value>
+  </data>
+  <data name="AxisCollectionIsNull" xml:space="preserve">
+    <value>The coordinate system axis collection is null.</value>
   </data>
   <data name="AxisNameIsInvalid" xml:space="preserve">
     <value>The coordinate system does not contain an axis with the specified name.</value>
@@ -129,23 +144,59 @@
   <data name="AxisNameIsNull" xml:space="preserve">
     <value>The axis name is null.</value>
   </data>
+  <data name="BaseMultipleIs0" xml:space="preserve">
+    <value>The base multiple is 0.</value>
+  </data>
+  <data name="BaseReferenceSystemCollectionsIsNull" xml:space="preserve">
+    <value>The base reference system collection is null.</value>
+  </data>
   <data name="BaseReferenceSystemIsNull" xml:space="preserve">
     <value>The base reference system is null.</value>
+  </data>
+  <data name="CollectionIsNull" xml:space="preserve">
+    <value>The collection is null.</value>
+  </data>
+  <data name="ConversionDoesNotExistBetweenReferenceSystems" xml:space="preserve">
+    <value>Conversion does not exist between the specified reference systems.</value>
+  </data>
+  <data name="ConversionIsNull" xml:space="preserve">
+    <value>The conversion is null.</value>
+  </data>
+  <data name="CoordinateIsNull" xml:space="preserve">
+    <value>The coordinate is null.</value>
+  </data>
+  <data name="CoordinateProjectionCollectionIsNull" xml:space="preserve">
+    <value>The coordinate projection collection is null.</value>
   </data>
   <data name="CoordinatesAreNull" xml:space="preserve">
     <value>No coordinates are specified.</value>
   </data>
+  <data name="CoordinateSystemCollectionIsNull" xml:space="preserve">
+    <value>The coordinate system collection is null.</value>
+  </data>
+  <data name="CoordinateSystemDimensionLessThanExpected" xml:space="preserve">
+    <value>The dimension of the coordinate system is less than expected.</value>
+  </data>
   <data name="CoordinateSystemIsNull" xml:space="preserve">
     <value>The coordinate system is null.</value>
   </data>
+  <data name="DatumCollectionIsNull" xml:space="preserve">
+    <value>The datum collection is null.</value>
+  </data>
   <data name="DatumIsNull" xml:space="preserve">
     <value>The datum is null.</value>
+  </data>
+  <data name="DestinationCoordinateIsNull" xml:space="preserve">
+    <value>The destination coordinate is null.</value>
   </data>
   <data name="EccentricityIsEqualToOrLessThan0" xml:space="preserve">
     <value>The eccentricity is equal to or less than 0.</value>
   </data>
   <data name="EccentricityIsGreaterThan1" xml:space="preserve">
     <value>The eccentricity greater than 1.</value>
+  </data>
+  <data name="EllipsoidCollectionIsNull" xml:space="preserve">
+    <value>The ellipsoid collection is null.</value>
   </data>
   <data name="EllipsoidIsNull" xml:space="preserve">
     <value>The ellipsoid is null.</value>
@@ -171,6 +222,18 @@
   <data name="LatitudeInvalid" xml:space="preserve">
     <value>The latitude is invalid.</value>
   </data>
+  <data name="LengthArrayIsNull" xml:space="preserve">
+    <value>The array of length values is null.</value>
+  </data>
+  <data name="LengthCollectionIsNull" xml:space="preserve">
+    <value>The collection of length values is null.</value>
+  </data>
+  <data name="LengthUnitOfMeasurementIsInvalid" xml:space="preserve">
+    <value>The length unit of measurement is invalid.</value>
+  </data>
+  <data name="LengthUnitOfMeasurementIsNull" xml:space="preserve">
+    <value>The length unit of measurement is null.</value>
+  </data>
   <data name="LongitudeOutOfRangeDegrees" xml:space="preserve">
     <value>Longitude value is not between -180 and 180 degrees.</value>
   </data>
@@ -179,6 +242,12 @@
   </data>
   <data name="MaximumIsEqualToOrLessThanMinimum" xml:space="preserve">
     <value>The maximum value is equal to or less than the minimum value.</value>
+  </data>
+  <data name="MeridianCollectionIsNull" xml:space="preserve">
+    <value>The meridian collection is null.</value>
+  </data>
+  <data name="MethodCollectionIsNull" xml:space="preserve">
+    <value>The coordinate operation method collection is null.</value>
   </data>
   <data name="MethodInternalsNot3" xml:space="preserve">
     <value>The specified method does not contain 3 internal methods.</value>
@@ -204,6 +273,12 @@
   <data name="OperationNotReversible" xml:space="preserve">
     <value>Coordinate operation is not reversible.</value>
   </data>
+  <data name="OtherEnvelopeIsNull" xml:space="preserve">
+    <value>The other envelope is null.</value>
+  </data>
+  <data name="ParameterCollectionIsNull" xml:space="preserve">
+    <value>The coordinate operation parameter collection is null.</value>
+  </data>
   <data name="PolynomialTransformationDegreeIsInvalid" xml:space="preserve">
     <value>No general polynomial transformation is available for the given degree.</value>
   </data>
@@ -212,6 +287,15 @@
   </data>
   <data name="ProjectionIsNull" xml:space="preserve">
     <value>The projection is null.</value>
+  </data>
+  <data name="ProviderIsNull" xml:space="preserve">
+    <value>The provider is null.</value>
+  </data>
+  <data name="ReferenceSystemCollectionIsNull" xml:space="preserve">
+    <value>The reference system collection is null.</value>
+  </data>
+  <data name="ReferenceSystemIsNull" xml:space="preserve">
+    <value>The reference system is null.</value>
   </data>
   <data name="SemiAxisIsEqualToOrLessThan0" xml:space="preserve">
     <value>The semi axis is equal to or less than 0.</value>
@@ -228,17 +312,32 @@
   <data name="SemiMinorAxisIsEqualToOrLessThan0" xml:space="preserve">
     <value>The semi-minor axis is equal to or less than 0.</value>
   </data>
+  <data name="SourceCoordinateIsNull" xml:space="preserve">
+    <value>The source coordinate is null.</value>
+  </data>
   <data name="SourceCoordinateReferenceSystemIsNull" xml:space="preserve">
     <value>The source coordinate reference system is null.</value>
   </data>
+  <data name="SourceReferenceSystemIsNull" xml:space="preserve">
+    <value>The source reference system is null.</value>
+  </data>
   <data name="TargetCoordinateReferenceSystemIsNull" xml:space="preserve">
     <value>The target coordinate reference system is null.</value>
+  </data>
+  <data name="TargetReferenceSystemIsNull" xml:space="preserve">
+    <value>The target reference system is null.</value>
+  </data>
+  <data name="TransformationIsNull" xml:space="preserve">
+    <value>The transformation is null.</value>
   </data>
   <data name="UnitIsNotLength" xml:space="preserve">
     <value>The unit of measurement is not a length measure.</value>
   </data>
   <data name="UnitIsNull" xml:space="preserve">
     <value>The unit of measurement is null.</value>
+  </data>
+  <data name="UnitOfMeasurementCollectionIsNull" xml:space="preserve">
+    <value>The unit of measurement collection is null.</value>
   </data>
   <data name="UnitOfMeasurementIsInvalid" xml:space="preserve">
     <value>The unit of measurement is invalid.</value>
@@ -249,106 +348,7 @@
   <data name="VectorComputationOnlySupportedOnSphere" xml:space="preserve">
     <value>Vector computation is only supported on sphere.</value>
   </data>
-  <data name="AngularUnitOfMeasurementIsInvalid" xml:space="preserve">
-    <value>The angular unit of measurement is invalid.</value>
-  </data>
-  <data name="AngularUnitOfMeasurementIsNull" xml:space="preserve">
-    <value>The angular unit of measurement is null.</value>
-  </data>
-  <data name="CoordinateIsNull" xml:space="preserve">
-    <value>The coordinate is null.</value>
-  </data>
-  <data name="LengthUnitOfMeasurementIsInvalid" xml:space="preserve">
-    <value>The length unit of measurement is invalid.</value>
-  </data>
-  <data name="LengthUnitOfMeasurementIsNull" xml:space="preserve">
-    <value>The length unit of measurement is null.</value>
-  </data>
-  <data name="OtherEnvelopeIsNull" xml:space="preserve">
-    <value>The other envelope is null.</value>
-  </data>
-  <data name="BaseMultipleIs0" xml:space="preserve">
-    <value>The base multiple is 0.</value>
-  </data>
-  <data name="LengthArrayIsNull" xml:space="preserve">
-    <value>The array of length values is null.</value>
-  </data>
-  <data name="DestinationCoordinateIsNull" xml:space="preserve">
-    <value>The destination coordinate is null.</value>
-  </data>
-  <data name="SourceCoordinateIsNull" xml:space="preserve">
-    <value>The source coordinate is null.</value>
-  </data>
   <data name="VectorIsNull" xml:space="preserve">
     <value>The vector is null.</value>
-  </data>
-  <data name="AngleCollectionIsNull" xml:space="preserve">
-    <value>The collection of angles is null.</value>
-  </data>
-  <data name="LengthCollectionIsNull" xml:space="preserve">
-    <value>The collection of length values is null.</value>
-  </data>
-  <data name="CollectionIsNull" xml:space="preserve">
-    <value>The collection is null.</value>
-  </data>
-  <data name="AreaOfUseCollectionIsNull" xml:space="preserve">
-    <value>The area of use source is null.</value>
-  </data>
-  <data name="AxisCollectionIsNull" xml:space="preserve">
-    <value>The coordinate system axis collection is null.</value>
-  </data>
-  <data name="BaseReferenceSystemCollectionsIsNull" xml:space="preserve">
-    <value>The base reference system collection is null.</value>
-  </data>
-  <data name="CoordinateProjectionCollectionIsNull" xml:space="preserve">
-    <value>The coordinate projection collection is null.</value>
-  </data>
-  <data name="CoordinateSystemCollectionIsNull" xml:space="preserve">
-    <value>The coordinate system collection is null.</value>
-  </data>
-  <data name="DatumCollectionIsNull" xml:space="preserve">
-    <value>The datum collection is null.</value>
-  </data>
-  <data name="EllipsoidCollectionIsNull" xml:space="preserve">
-    <value>The ellipsoid collection is null.</value>
-  </data>
-  <data name="ReferenceSystemCollectionIsNull" xml:space="preserve">
-    <value>The reference system collection is null.</value>
-  </data>
-  <data name="UnitOfMeasurementCollectionIsNull" xml:space="preserve">
-    <value>The unit of measurement collection is null.</value>
-  </data>
-  <data name="MeridianCollectionIsNull" xml:space="preserve">
-    <value>The meridian collection is null.</value>
-  </data>
-  <data name="MethodCollectionIsNull" xml:space="preserve">
-    <value>The coordinate operation method collection is null.</value>
-  </data>
-  <data name="ParameterCollectionIsNull" xml:space="preserve">
-    <value>The coordinate operation parameter collection is null.</value>
-  </data>
-  <data name="ConversionIsNull" xml:space="preserve">
-    <value>The conversion is null.</value>
-  </data>
-  <data name="ReferenceSystemIsNull" xml:space="preserve">
-    <value>The reference system is null.</value>
-  </data>
-  <data name="SourceReferenceSystemIsNull" xml:space="preserve">
-    <value>The source reference system is null.</value>
-  </data>
-  <data name="TargetReferenceSystemIsNull" xml:space="preserve">
-    <value>The target reference system is null.</value>
-  </data>
-  <data name="TransformationIsNull" xml:space="preserve">
-    <value>The transformation is null.</value>
-  </data>
-  <data name="CoordinateSystemDimensionLessThanExpected" xml:space="preserve">
-    <value>The dimension of the coordinate system is less than expected.</value>
-  </data>
-  <data name="ConversionDoesNotExistBetweenReferenceSystems" xml:space="preserve">
-    <value>Conversion does not exist between the specified reference systems.</value>
-  </data>
-  <data name="ProviderIsNull" xml:space="preserve">
-    <value>The provider is null.</value>
   </data>
 </root>

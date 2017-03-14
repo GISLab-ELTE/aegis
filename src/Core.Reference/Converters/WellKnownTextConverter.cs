@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Converters
+namespace AEGIS.Reference.Converters
 {
     using System;
     using System.Collections.Generic;
@@ -20,11 +20,11 @@ namespace ELTE.AEGIS.Reference.Converters
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using ELTE.AEGIS.Geometries;
-    using ELTE.AEGIS.Reference;
-    using ELTE.AEGIS.Reference.Collections;
-    using ELTE.AEGIS.Reference.Resources;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Geometries;
+    using AEGIS.Reference;
+    using AEGIS.Reference.Collections;
+    using AEGIS.Reference.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a converter for Well-known Text (WKT) representation.

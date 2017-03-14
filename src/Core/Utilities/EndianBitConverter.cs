@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Utilities
+namespace AEGIS.Utilities
 {
     using System;
-    using ELTE.AEGIS.Collections.Resources;
-    using ELTE.AEGIS.Numerics;
+    using AEGIS.Collections.Resources;
+    using AEGIS.Numerics;
     using Resources;
 
     /// <summary>
@@ -874,9 +874,9 @@ namespace ELTE.AEGIS.Utilities
             if (startIndex >= array.Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
             if (startIndex + dimension * sizeof(Double) > array.Length)
                 throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
@@ -937,9 +937,9 @@ namespace ELTE.AEGIS.Utilities
             if (startIndex >= array.Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsEqualToOrGraterThanArrayLength);
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
             if (startIndex + dimension * sizeof(Double) > array.Length)
                 throw new ArgumentException(CollectionMessages.ArraySizeLessThanRequired, nameof(array));
 
@@ -1272,9 +1272,9 @@ namespace ELTE.AEGIS.Utilities
         public static Byte[] GetBytes(Coordinate value, Int32 dimension)
         {
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
 
             Byte[] coordinateBytes = null;
             if (dimension == 3)
@@ -1321,9 +1321,9 @@ namespace ELTE.AEGIS.Utilities
         public static Byte[] GetBytes(Coordinate value, Int32 dimension, ByteOrder order)
         {
             if (dimension < 2)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsLessThan2);
             if (dimension > 3)
-                throw new ArgumentOutOfRangeException(nameof(dimension), ELTE.AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
+                throw new ArgumentOutOfRangeException(nameof(dimension), AEGIS.Resources.CoreMessages.DimensionIsGreaterThan3);
 
             Byte[] coordinateBytes = null;
             if (order != DefaultByteOrder)

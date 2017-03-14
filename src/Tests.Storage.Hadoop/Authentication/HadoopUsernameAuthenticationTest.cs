@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.IO.Storage.Authentication
+namespace AEGIS.Tests.IO.Storage.Authentication
 {
     using System;
-    using ELTE.AEGIS.Storage;
-    using ELTE.AEGIS.Storage.Authentication;
+    using AEGIS.Storage;
+    using AEGIS.Storage.Authentication;
     using NUnit.Framework;
     using Shouldly;
 

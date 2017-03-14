@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms
+namespace AEGIS.Algorithms
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents the Greiner-Hormann clipping algorithm for determining internal and external polygon segments of two subject polygons.

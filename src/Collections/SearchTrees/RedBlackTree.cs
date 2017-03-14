@@ -1,5 +1,5 @@
 ﻿// <copyright file="RedBlackTree.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections.SearchTree
+namespace AEGIS.Collections.SearchTrees
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a red-black tree.
@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class RedBlackTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
     {
-        
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RedBlackTree{TKey, TValue}" /> class.
         /// </summary>
@@ -43,10 +41,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             : base(comparer)
         {
         }
-
-        
-
-        
 
         /// <summary>
         /// Inserts the specified key/value pair to the tree.
@@ -139,10 +133,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.version++;
             return true;
         }
-
-        
-
-        
 
         /// <summary>
         /// Balances the tree after insertion.
@@ -285,10 +275,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             parent.Color = NodeColor.Black;
         }
 
-        
-
-        
-
         /// <summary>
         /// Defines the node colors.
         /// </summary>
@@ -310,16 +296,10 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </summary>
         private class RedBlackNode : Node
         {
-            
-
             /// <summary>
             /// The color of the node.
             /// </summary>
             public NodeColor Color;
-
-            
         }
-
-        
     }
 }

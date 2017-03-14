@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms.SweepLines
+namespace AEGIS.Algorithms.SweepLines
 {
     /// <summary>
     /// Defines the endpoint event types.

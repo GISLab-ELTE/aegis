@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Algorithms
+namespace AEGIS.Tests.Algorithms
 {
     using System;
-    using ELTE.AEGIS.Algorithms;
+    using AEGIS.Algorithms;
     using NUnit.Framework;
     using Shouldly;
 

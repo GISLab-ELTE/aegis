@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms
+namespace AEGIS.Algorithms
 {
     /// <summary>
     /// Defines the intersection types.

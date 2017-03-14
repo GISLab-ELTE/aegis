@@ -1,5 +1,5 @@
 ﻿// <copyright file="ReadOnlySet.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a read-only set of values.
@@ -25,16 +25,10 @@ namespace ELTE.AEGIS.Collections
     /// <typeparam name="T">The type of elements in the set.</typeparam>
     public sealed class ReadOnlySet<T> : ISet<T>, IReadOnlyCollection<T>
     {
-        
-
         /// <summary>
         /// The underlying set. This field is read-only.
         /// </summary>
         private readonly ISet<T> set;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadOnlySet{T}" /> class.
@@ -48,10 +42,6 @@ namespace ELTE.AEGIS.Collections
 
             this.set = set;
         }
-
-        
-
-        
 
         /// <summary>
         /// Gets the number of elements contained in the set.
@@ -70,10 +60,6 @@ namespace ELTE.AEGIS.Collections
         {
             get { return true; }
         }
-
-        
-
-        
 
         /// <summary>
         /// Determines whether a set is a subset of a specified collection.
@@ -141,7 +127,6 @@ namespace ELTE.AEGIS.Collections
             return this.set.SetEquals(other);
         }
 
-
         /// <summary>
         /// Modifies the current set so that it contains all elements that are present in both the current set and in the specified collection.
         /// </summary>
@@ -192,10 +177,6 @@ namespace ELTE.AEGIS.Collections
         {
             throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
-
-        
-
-        
 
         /// <summary>
         /// Determines whether the set contains a specific value.
@@ -255,10 +236,6 @@ namespace ELTE.AEGIS.Collections
             throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -276,7 +253,5 @@ namespace ELTE.AEGIS.Collections
         {
             return this.set.GetEnumerator();
         }
-
-        
     }
 }

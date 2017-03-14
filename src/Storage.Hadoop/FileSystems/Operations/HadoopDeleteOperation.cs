@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.FileSystems.Operations
+namespace AEGIS.Storage.FileSystems.Operations
 {
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using ELTE.AEGIS.Storage.Authentication;
+    using AEGIS.Storage.Authentication;
     using Newtonsoft.Json.Linq;
 
     /// <summary>

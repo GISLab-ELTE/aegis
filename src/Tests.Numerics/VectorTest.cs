@@ -12,15 +12,15 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Numerics
+namespace AEGIS.Tests.Numerics
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Numerics.LinearAlgebra;
+    using AEGIS.Numerics;
+    using AEGIS.Numerics.LinearAlgebra;
     using NUnit.Framework;
     using Shouldly;
 

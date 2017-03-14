@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections
+namespace AEGIS.Reference.Collections
 {
     using System;
     using System.Collections;
@@ -20,7 +20,7 @@ namespace ELTE.AEGIS.Reference.Collections
     using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Defines methods for querying reference collections.

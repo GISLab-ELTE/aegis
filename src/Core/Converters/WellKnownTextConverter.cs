@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Converters
+namespace AEGIS.Converters
 {
     using System;
     using System.Collections.Generic;
@@ -20,8 +20,8 @@ namespace ELTE.AEGIS.Converters
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using ELTE.AEGIS.Geometries;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Geometries;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a converter for Well-known Text (WKT) representation.

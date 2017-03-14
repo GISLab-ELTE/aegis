@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Geometries
+namespace AEGIS.Storage.Geometries
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a line geometry located in a store.

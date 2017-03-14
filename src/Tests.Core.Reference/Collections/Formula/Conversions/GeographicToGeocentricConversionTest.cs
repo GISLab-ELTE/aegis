@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Reference.Collections.Formula
+namespace AEGIS.Tests.Reference.Collections.Formula
 {
-    using ELTE.AEGIS;
-    using ELTE.AEGIS.Reference;
-    using ELTE.AEGIS.Reference.Collections.Formula;
+    using AEGIS;
+    using AEGIS.Reference;
+    using AEGIS.Reference.Collections.Formula;
     using NUnit.Framework;
     using Shouldly;
 

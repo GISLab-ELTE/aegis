@@ -12,10 +12,9 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage
+namespace AEGIS.Storage
 {
     using System;
-    using System.Runtime.Serialization;
 
     /// <summary>
     /// Represents the exception that is thrown in case of connection error.

@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Reference
+namespace AEGIS.Tests.Reference
 {
     using System;
-    using ELTE.AEGIS.Reference.Collections;
-    using ELTE.AEGIS.Reference.Collections.Local;
+    using AEGIS.Reference.Collections;
+    using AEGIS.Reference.Collections.Local;
 
     /// <summary>
     /// Utility type for performing tests.

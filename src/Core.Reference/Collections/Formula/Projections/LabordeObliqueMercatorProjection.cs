@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Formula
+namespace AEGIS.Reference.Collections.Formula
 {
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    using ELTE.AEGIS.Numerics;
+    using AEGIS.Numerics;
 
     /// <summary>
     /// Represents a Laborde Oblique Mercator projection.

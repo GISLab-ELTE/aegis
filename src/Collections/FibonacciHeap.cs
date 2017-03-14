@@ -1,5 +1,5 @@
 ﻿// <copyright file="FibonacciHeap.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a Fibonacci heap data structure containing key/value pairs.
@@ -34,8 +34,6 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public sealed class FibonacciHeap<TKey, TValue> : IHeap<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable
     {
-        
-
         /// <summary>
         /// The root list.
         /// </summary>
@@ -55,10 +53,6 @@ namespace ELTE.AEGIS.Collections
         /// The peek linked list node.
         /// </summary>
         private LinkedListNode<FibonacciHeapNode> peekLinkedListNode;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FibonacciHeap{TKey, TValue}" /> class.
@@ -110,10 +104,6 @@ namespace ELTE.AEGIS.Collections
             this.peekLinkedListNode = null;
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the number of elements actually contained in the heap.
         /// </summary>
@@ -142,19 +132,11 @@ namespace ELTE.AEGIS.Collections
         /// <value>The number of elements that the heap can contain before resizing is required.</value>
         Int32 IHeap<TKey, TValue>.Capacity { get { return Int32.MaxValue; } set { } }
 
-        
-
-        
-
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the heap.
         /// </summary>
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current heap and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get { return this.comparer; } }
-
-        
-
-        
 
         /// <summary>
         /// Inserts the specified key and value to the heap.
@@ -268,10 +250,6 @@ namespace ELTE.AEGIS.Collections
             this.rootList.Clear();
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -291,10 +269,6 @@ namespace ELTE.AEGIS.Collections
         {
             return this.GetEnumerator();
         }
-
-        
-
-        
 
         /// <summary>
         /// Flattens the specified node.
@@ -328,17 +302,11 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Represents a Fibonacci heap node.
         /// </summary>
         private class FibonacciHeapNode
         {
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="FibonacciHeapNode" /> class.
             /// </summary>
@@ -352,10 +320,6 @@ namespace ELTE.AEGIS.Collections
                 this.Value = value;
                 this.IsMarked = isMarked;
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets the key.
@@ -393,10 +357,6 @@ namespace ELTE.AEGIS.Collections
             /// <value>The rank.</value>
             public Int32 Rank { get { return this.Children.Count; } }
 
-            
-
-            
-
             /// <summary>
             /// Sets the parent node.
             /// </summary>
@@ -417,10 +377,6 @@ namespace ELTE.AEGIS.Collections
             {
                 this.Children.Add(child);
             }
-
-            
         }
-
-        
     }
 }

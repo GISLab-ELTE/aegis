@@ -1,5 +1,5 @@
 ﻿// <copyright file="Collection.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,30 +12,26 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Provides extensions to collections.
     /// </summary>
     public static class Collection
     {
-        
-
         /// <summary>
         /// Represents a proxy list for querying a range within a list.
         /// </summary>
         /// <typeparam name="T">The type of the objects within the list.</typeparam>
         private class ProxyRangeReadOnlyList<T> : IReadOnlyList<T>
         {
-            
-
             /// <summary>
             /// The source list.
             /// </summary>
@@ -51,10 +47,6 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private Int32 count;
 
-            
-
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyRangeReadOnlyList{T}" /> class.
             /// </summary>
@@ -67,10 +59,6 @@ namespace ELTE.AEGIS.Collections
                 this.startIndex = startIndex;
                 this.count = Math.Min(count, source.Count - startIndex);
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets or sets the element at the specified index.
@@ -108,10 +96,6 @@ namespace ELTE.AEGIS.Collections
                 }
             }
 
-            
-
-            
-
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
             /// </summary>
@@ -130,8 +114,6 @@ namespace ELTE.AEGIS.Collections
             {
                 return this.GetEnumerator();
             }
-
-            
         }
 
         /// <summary>
@@ -140,16 +122,10 @@ namespace ELTE.AEGIS.Collections
         /// <typeparam name="T">The type of the objects within the list.</typeparam>
         private class ProxyReverseReadOnlyList<T> : IReadOnlyList<T>
         {
-            
-
             /// <summary>
             /// The source list.
             /// </summary>
             private IReadOnlyList<T> source;
-
-            
-
-            
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyReverseReadOnlyList{T}" /> class.
@@ -159,10 +135,6 @@ namespace ELTE.AEGIS.Collections
             {
                 this.source = source;
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets or sets the element at the specified index.
@@ -195,10 +167,6 @@ namespace ELTE.AEGIS.Collections
                 }
             }
 
-            
-
-            
-
             /// <summary>
             /// Returns an enumerator that iterates through the collection.
             /// </summary>
@@ -217,13 +185,7 @@ namespace ELTE.AEGIS.Collections
             {
                 return this.GetEnumerator();
             }
-
-            
         }
-
-        
-
-        
 
         /// <summary>
         /// Generates a collection of numbers.
@@ -250,10 +212,6 @@ namespace ELTE.AEGIS.Collections
             for (Int32 index = 0; index < count; index++)
                 yield return Math.Min((Int32)Math.Round(firstBoundary + index * delta), secondBoundary);
         }
-
-        
-
-        
 
         /// <summary>
         /// Determines whether a sequence contains any non-null elements.
@@ -685,7 +643,5 @@ namespace ELTE.AEGIS.Collections
 
             return new ProxyRangeReadOnlyList<T>(collection, startIndex, count);
         }
-
-        
     }
 }

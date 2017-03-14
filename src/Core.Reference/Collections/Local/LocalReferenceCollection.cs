@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Local
+namespace AEGIS.Reference.Collections.Local
 {
     using System;
     using System.Collections;
@@ -21,7 +21,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     using System.Linq;
     using System.Reflection;
     using System.Text.RegularExpressions;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a collection of references.
@@ -46,7 +46,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
         /// <summary>
         /// The resource path. This field is constant.
         /// </summary>
-        private const String ResourcePath = "ELTE.AEGIS.Reference.Resources.{0}.txt";
+        private const String ResourcePath = "AEGIS.Reference.Resources.{0}.txt";
 
         /// <summary>
         /// The resource path to the name aliases. This field is constant.

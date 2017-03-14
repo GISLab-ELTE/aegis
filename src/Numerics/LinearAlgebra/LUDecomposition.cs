@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics.LinearAlgebra
+namespace AEGIS.Numerics.LinearAlgebra
 {
     using System;
     using System.Linq;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Represents a type performing the LU decomposition of <see cref="Matrix" /> instances.

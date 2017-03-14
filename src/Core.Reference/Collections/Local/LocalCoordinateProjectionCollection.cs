@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Local
+namespace AEGIS.Reference.Collections.Local
 {
     using System;
     using System.Collections;
@@ -21,7 +21,7 @@ namespace ELTE.AEGIS.Reference.Collections.Local
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a collection of <see cref="CoordinateProjection" /> instances.

@@ -12,9 +12,9 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Strategies
+namespace AEGIS.Reference.Strategies
 {
-    using ELTE.AEGIS.Reference;
+    using AEGIS.Reference;
 
     /// <summary>
     /// Defines behavior of coordinate operation strategies.

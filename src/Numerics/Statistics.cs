@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics
+namespace AEGIS.Numerics
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Defines basic statistical calculations.

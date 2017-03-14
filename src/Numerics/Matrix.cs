@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics
+namespace AEGIS.Numerics
 {
     using System;
     using System.Collections;
@@ -20,7 +20,7 @@ namespace ELTE.AEGIS.Numerics
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Represents a matrix in Euclidean space.

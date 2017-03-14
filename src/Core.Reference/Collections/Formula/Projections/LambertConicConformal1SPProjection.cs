@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Formula
+namespace AEGIS.Reference.Collections.Formula
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Numerics;
+    using AEGIS.Numerics;
 
     /// <summary>
     /// Represents a Lambert Conic Conformal Projection (with 1 Standard Parallel).

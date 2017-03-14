@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.FileSystems
+namespace AEGIS.Storage.FileSystems
 {
     using System;
     using System.Collections.Generic;
@@ -21,9 +21,9 @@ namespace ELTE.AEGIS.Storage.FileSystems
     using System.Net.Http;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using ELTE.AEGIS.Storage.Authentication;
-    using ELTE.AEGIS.Storage.FileSystems.Operations;
-    using ELTE.AEGIS.Storage.Resources;
+    using AEGIS.Storage.Authentication;
+    using AEGIS.Storage.FileSystems.Operations;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a Hadoop Distributed File System (HDFS).

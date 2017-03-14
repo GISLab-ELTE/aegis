@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests
+namespace AEGIS.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections;
+    using AEGIS.Collections;
     using NUnit.Framework;
     using Shouldly;
 

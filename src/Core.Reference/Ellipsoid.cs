@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Numerics;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents an ellipsoid used in planetary surface modeling.

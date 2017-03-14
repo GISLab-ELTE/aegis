@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Features
+namespace AEGIS.Features
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a collection of features.
@@ -206,11 +206,11 @@ namespace ELTE.AEGIS.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array), AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
-                throw new ArgumentException(ELTE.AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
+                throw new ArgumentException(AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
             this.items.Values.ToArray().CopyTo(array, arrayIndex);
         }

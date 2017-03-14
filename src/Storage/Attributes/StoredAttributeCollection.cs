@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Attributes
+namespace AEGIS.Storage.Attributes
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents an attribute collection located in a store.
@@ -269,9 +269,9 @@ namespace ELTE.AEGIS.Storage.Attributes
         public StoredAttributeCollection(IStoredAttributeCollectionFactory factory, String identifier)
         {
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), ELTE.AEGIS.Resources.CoreMessages.FactoryIsNull);
+                throw new ArgumentNullException(nameof(factory), AEGIS.Resources.CoreMessages.FactoryIsNull);
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ELTE.AEGIS.Resources.CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier), AEGIS.Resources.CoreMessages.IdentifierIsNull);
 
             this.Factory = factory;
             this.Identifier = identifier;

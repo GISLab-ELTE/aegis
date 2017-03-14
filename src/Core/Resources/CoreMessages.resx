@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AttributeCollectionIsNull" xml:space="preserve">
+    <value>The attribute collection is null.</value>
+  </data>
+  <data name="AttributeFactoryIsNull" xml:space="preserve">
+    <value>The attribute factory is null.</value>
+  </data>
   <data name="BufferIsNull" xml:space="preserve">
     <value>The buffer is null.</value>
+  </data>
+  <data name="ClippingWindowIsNull" xml:space="preserve">
+    <value>The clipping window is null.</value>
+  </data>
+  <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
+    <value>The collection contains one or more duplicate identifiers.</value>
+  </data>
+  <data name="CollectionIsNull" xml:space="preserve">
+    <value>The collection is null.</value>
+  </data>
+  <data name="ConvexityRatioGreaterThan1" xml:space="preserve">
+    <value>The convexity ratio is greater than 1.</value>
+  </data>
+  <data name="ConvexityRatioLessThan0" xml:space="preserve">
+    <value>The convexity ratio is less than 0.</value>
+  </data>
+  <data name="CoordinateCountLessThan3" xml:space="preserve">
+    <value>The number of coordinates is less than 3.</value>
   </data>
   <data name="CoordinateIsNull" xml:space="preserve">
     <value>The coordinate is null.</value>
@@ -132,11 +156,23 @@
   <data name="DeltaIsEqualToOrLessThan0" xml:space="preserve">
     <value>The delta is less than or equal to 0.</value>
   </data>
+  <data name="DimensionIsGreaterThan3" xml:space="preserve">
+    <value>The dimension is greater than 3.</value>
+  </data>
+  <data name="DimensionIsInvalid" xml:space="preserve">
+    <value>The specified dimension is invalid.</value>
+  </data>
+  <data name="DimensionIsLessThan2" xml:space="preserve">
+    <value>The dimension is less than 2.</value>
+  </data>
   <data name="EndPointIsNull" xml:space="preserve">
     <value>The end point is null.</value>
   </data>
   <data name="EnvelopeIsNull" xml:space="preserve">
     <value>The envelope is null.</value>
+  </data>
+  <data name="EnvelopeMinIsGreaterThanMax" xml:space="preserve">
+    <value>The envelope's minimum coordinate is greater than the maximum coordinate.</value>
   </data>
   <data name="EventEdgeIsGreaterThanNumberOfEdges" xml:space="preserve">
     <value>The edge of the event is greater than the number of edges in the source.</value>
@@ -162,8 +198,23 @@
   <data name="FactoryNotImplementingContract" xml:space="preserve">
     <value>The factory behavior does not implement the contract.</value>
   </data>
+  <data name="FeatureCollectionIsNull" xml:space="preserve">
+    <value>The feature collection is null.</value>
+  </data>
+  <data name="FeatureIsNull" xml:space="preserve">
+    <value>The feature is null.</value>
+  </data>
+  <data name="FirstCollectionIsNull" xml:space="preserve">
+    <value>The first collection is null.</value>
+  </data>
   <data name="FirstCoordinateIsNull" xml:space="preserve">
     <value>The first coordinate is null.</value>
+  </data>
+  <data name="FirstGeometryIsNull" xml:space="preserve">
+    <value>The first geometry is null.</value>
+  </data>
+  <data name="FirstLineStringIsNull" xml:space="preserve">
+    <value>The first line string is null.</value>
   </data>
   <data name="FirstPointIsNull" xml:space="preserve">
     <value>The first point is null.</value>
@@ -173,6 +224,21 @@
   </data>
   <data name="FirstVectorIsNull" xml:space="preserve">
     <value>The first vector is null.</value>
+  </data>
+  <data name="GeometryComparisonNotSupported" xml:space="preserve">
+    <value>Comparison of the specified geometries is not supported.</value>
+  </data>
+  <data name="GeometryFactoryIsNull" xml:space="preserve">
+    <value>The geometry factory is null.</value>
+  </data>
+  <data name="GeometryIsInvalid" xml:space="preserve">
+    <value>The specified geometry is invalid.</value>
+  </data>
+  <data name="GeometryIsNotSupported" xml:space="preserve">
+    <value>The specified geometry is not supported.</value>
+  </data>
+  <data name="GeometryIsNull" xml:space="preserve">
+    <value>The geometry is null.</value>
   </data>
   <data name="GeometryTypeNotSupported" xml:space="preserve">
     <value>The type of the geometry is not supported.</value>
@@ -198,11 +264,26 @@
   <data name="IntersectionEventIsNull" xml:space="preserve">
     <value>The intersection event is null.</value>
   </data>
+  <data name="ItemIdentifierExists" xml:space="preserve">
+    <value>An item with the same identifier already exists in the collection.</value>
+  </data>
+  <data name="ItemIsNull" xml:space="preserve">
+    <value>The item is null.</value>
+  </data>
   <data name="LineExtensionNotSupported" xml:space="preserve">
     <value>Extension of lines is not supported.</value>
   </data>
   <data name="LineReductionNotSupported" xml:space="preserve">
     <value>Reduction of lines is not supported.</value>
+  </data>
+  <data name="LineStringIsNull" xml:space="preserve">
+    <value>The line string is null.</value>
+  </data>
+  <data name="MaximumNumberOfChildNodesIsEqualToMinimum" xml:space="preserve">
+    <value>The maximum number of child nodes is equal to or less than the minimum number of child nodes.</value>
+  </data>
+  <data name="MinimumNumberOfChildNodesIsLessThan1" xml:space="preserve">
+    <value>The minimum number of child nodes is less than 1.</value>
   </data>
   <data name="ModelsArrayIsNull" xml:space="preserve">
     <value>The array of models is null.</value>
@@ -219,11 +300,17 @@
   <data name="OriginIsNull" xml:space="preserve">
     <value>The origin is null.</value>
   </data>
+  <data name="OtherFeatureIsNull" xml:space="preserve">
+    <value>The other feature is null.</value>
+  </data>
   <data name="OtherGeometryCollectionIsNull" xml:space="preserve">
     <value>The other geometry collection is null.</value>
   </data>
   <data name="OtherGeometryIsNull" xml:space="preserve">
     <value>The other geometry is null.</value>
+  </data>
+  <data name="OtherGeometryNotSupported" xml:space="preserve">
+    <value>The type of the other geometry is not supported.</value>
   </data>
   <data name="OtherLinearRingIsNull" xml:space="preserve">
     <value>The other linear ring is null.</value>
@@ -252,14 +339,29 @@
   <data name="OtherTriangleIsNull" xml:space="preserve">
     <value>The other triangle is null.</value>
   </data>
+  <data name="PointIsNull" xml:space="preserve">
+    <value>The point is null.</value>
+  </data>
   <data name="PolygonIsNull" xml:space="preserve">
     <value>The polygon is null.</value>
+  </data>
+  <data name="ReferenceSystemFactoryIsNull" xml:space="preserve">
+    <value>The reference system factory is null.</value>
   </data>
   <data name="ScaleIsEqualToOrLessThan0" xml:space="preserve">
     <value>The scale is equal to or less than 0.</value>
   </data>
+  <data name="SecondCollectionIsNull" xml:space="preserve">
+    <value>The second collection is null.</value>
+  </data>
   <data name="SecondCoordinateIsNull" xml:space="preserve">
     <value>The second Coordinate is null.</value>
+  </data>
+  <data name="SecondGeometryIsNull" xml:space="preserve">
+    <value>The second geometry is null.</value>
+  </data>
+  <data name="SecondLineStringIsNull" xml:space="preserve">
+    <value>The second line string is null.</value>
   </data>
   <data name="SecondPointIsNull" xml:space="preserve">
     <value>The second point is null.</value>
@@ -282,6 +384,12 @@
   <data name="ShellIsNull" xml:space="preserve">
     <value>The shell is null.</value>
   </data>
+  <data name="SourceIsInvalid" xml:space="preserve">
+    <value>The specified source is invalid.</value>
+  </data>
+  <data name="SourceIsNotSupported" xml:space="preserve">
+    <value>The specified source is not supported.</value>
+  </data>
   <data name="SourceIsNull" xml:space="preserve">
     <value>The source is null.</value>
   </data>
@@ -299,113 +407,5 @@
   </data>
   <data name="VectorIsNull" xml:space="preserve">
     <value>The vector is null.</value>
-  </data>
-  <data name="CollectionIsNull" xml:space="preserve">
-    <value>The collection is null.</value>
-  </data>
-  <data name="GeometryIsNull" xml:space="preserve">
-    <value>The geometry is null.</value>
-  </data>
-  <data name="MaximumNumberOfChildNodesIsEqualToMinimum" xml:space="preserve">
-    <value>The maximum number of child nodes is equal to or less than the minimum number of child nodes.</value>
-  </data>
-  <data name="MinimumNumberOfChildNodesIsLessThan1" xml:space="preserve">
-    <value>The minimum number of child nodes is less than 1.</value>
-  </data>
-  <data name="ClippingWindowIsNull" xml:space="preserve">
-    <value>The clipping window is null.</value>
-  </data>
-  <data name="ConvexityRatioGreaterThan1" xml:space="preserve">
-    <value>The convexity ratio is greater than 1.</value>
-  </data>
-  <data name="ConvexityRatioLessThan0" xml:space="preserve">
-    <value>The convexity ratio is less than 0.</value>
-  </data>
-  <data name="CoordinateCountLessThan3" xml:space="preserve">
-    <value>The number of coordinates is less than 3.</value>
-  </data>
-  <data name="EnvelopeMinIsGreaterThanMax" xml:space="preserve">
-    <value>The envelope's minimum coordinate is greater than the maximum coordinate.</value>
-  </data>
-  <data name="FirstCollectionIsNull" xml:space="preserve">
-    <value>The first collection is null.</value>
-  </data>
-  <data name="FirstLineStringIsNull" xml:space="preserve">
-    <value>The first line string is null.</value>
-  </data>
-  <data name="LineStringIsNull" xml:space="preserve">
-    <value>The line string is null.</value>
-  </data>
-  <data name="PointIsNull" xml:space="preserve">
-    <value>The point is null.</value>
-  </data>
-  <data name="SecondCollectionIsNull" xml:space="preserve">
-    <value>The second collection is null.</value>
-  </data>
-  <data name="SecondLineStringIsNull" xml:space="preserve">
-    <value>The second line string is null.</value>
-  </data>
-  <data name="AttributeCollectionIsNull" xml:space="preserve">
-    <value>The attribute collection is null.</value>
-  </data>
-  <data name="AttributeFactoryIsNull" xml:space="preserve">
-    <value>The attribute factory is null.</value>
-  </data>
-  <data name="FeatureCollectionIsNull" xml:space="preserve">
-    <value>The feature collection is null.</value>
-  </data>
-  <data name="FeatureIsNull" xml:space="preserve">
-    <value>The feature is null.</value>
-  </data>
-  <data name="GeometryFactoryIsNull" xml:space="preserve">
-    <value>The geometry factory is null.</value>
-  </data>
-  <data name="ItemIdentifierExists" xml:space="preserve">
-    <value>An item with the same identifier already exists in the collection.</value>
-  </data>
-  <data name="ItemIsNull" xml:space="preserve">
-    <value>The item is null.</value>
-  </data>
-  <data name="OtherFeatureIsNull" xml:space="preserve">
-    <value>The other feature is null.</value>
-  </data>
-  <data name="OtherGeometryNotSupported" xml:space="preserve">
-    <value>The type of the other geometry is not supported.</value>
-  </data>
-  <data name="CollectionContainsDuplicateIdentifiers" xml:space="preserve">
-    <value>The collection contains one or more duplicate identifiers.</value>
-  </data>
-  <data name="DimensionIsGreaterThan3" xml:space="preserve">
-    <value>The dimension is greater than 3.</value>
-  </data>
-  <data name="DimensionIsLessThan2" xml:space="preserve">
-    <value>The dimension is less than 2.</value>
-  </data>
-  <data name="DimensionIsInvalid" xml:space="preserve">
-    <value>The specified dimension is invalid.</value>
-  </data>
-  <data name="GeometryIsInvalid" xml:space="preserve">
-    <value>The specified geometry is invalid.</value>
-  </data>
-  <data name="GeometryIsNotSupported" xml:space="preserve">
-    <value>The specified geometry is not supported.</value>
-  </data>
-  <data name="SourceIsInvalid" xml:space="preserve">
-    <value>The specified source is invalid.</value>
-  </data>
-  <data name="SourceIsNotSupported" xml:space="preserve">
-    <value>The specified source is not supported.</value>
-  </data>
-  <data name="FirstGeometryIsNull" xml:space="preserve">
-    <value>The first geometry is null.</value>
-  </data>
-  <data name="GeometryComparisonNotSupported" xml:space="preserve">
-    <value>Comparison of the specified geometries is not supported.</value>
-  </data>
-  <data name="SecondGeometryIsNull" xml:space="preserve">
-    <value>The second geometry is null.</value>
-  </data>
-  <data name="ReferenceSystemFactoryIsNull" xml:space="preserve">
-    <value>The reference system factory is null.</value>
   </data>
 </root>

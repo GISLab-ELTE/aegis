@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Features
+namespace AEGIS.Features
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a factory for producing <see cref="Feature" /> instances.

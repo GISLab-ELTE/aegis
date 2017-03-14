@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents an identified object.

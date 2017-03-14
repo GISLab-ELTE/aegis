@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     /// <summary>
     /// Defines behavior for linear ring geometries.

@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics
+namespace AEGIS.Numerics
 {
     using System;
     using System.Globalization;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Represents a rational number.

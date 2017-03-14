@@ -22,9 +22,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AEGIS.Tests.Numerics")]
 [assembly: AssemblyDescription("NUnit tests library for AEGIS.Numerics.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Eötvös Loránd University (ELTE), Faculty of Informatics")]
+[assembly: AssemblyCompany("Eötvös Loránd University (ELTE)")]
 [assembly: AssemblyProduct("AEGIS.Tests.Numerics")]
-[assembly: AssemblyCopyright("Copyright © Roberto Giachetta 2016")]
+[assembly: AssemblyCopyright("Copyright Roberto Giachetta 2016-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

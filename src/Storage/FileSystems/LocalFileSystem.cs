@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.FileSystems
+namespace AEGIS.Storage.FileSystems
 {
     using System;
     using System.IO;
-    using Authentication;
-    using ELTE.AEGIS.Storage.Resources;
+    using AEGIS.Storage.Authentication;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents the local file system.

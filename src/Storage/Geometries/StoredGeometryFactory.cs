@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Geometries
+namespace AEGIS.Storage.Geometries
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Resources;
-    using ELTE.AEGIS.Storage.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Resources;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a factory producing <see cref="IGeometry" /> instances located in stores.

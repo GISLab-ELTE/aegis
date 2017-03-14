@@ -1,124 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{699D1891-D8BB-4F62-B33D-B52109BAC4CF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ELTE.AEGIS.Storage</RootNamespace>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <RootNamespace>AEGIS.Storage</RootNamespace>
+    <Authors>Roberto Giachetta et al.</Authors>
+    <Version>0.1.0</Version>
+    <Company>Eötvös Loránd University (ELTE)</Company>
+    <PackageId>AEGIS.Storage</PackageId>
     <AssemblyName>AEGIS.Storage</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <Product>AEGIS.Storage</Product>
+    <Description>Storage library of the AEGIS framework.</Description>
+    <Copyright>Copyright Roberto Giachetta 2016-2017</Copyright>
+    <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
+
     <CodeAnalysisRuleSet>..\analyzer.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\AEGIS.Storage.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\AEGIS.Storage.XML</DocumentationFile>
-  </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
-    <None Include="project.json" />
-    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Attributes\StoredAttributeCollection.cs" />
-    <Compile Include="Attributes\StoredAttributeCollectionFactory.cs" />
-    <Compile Include="Authentication\AnonymousStorageAuthentication.cs" />
-    <Compile Include="ConnectionException.cs" />
-    <Compile Include="DataHandling.cs" />
-    <Compile Include="DriverFormat.cs" />
-    <Compile Include="DriverOperation.cs" />
-    <Compile Include="DriverParameter.cs" />
-    <Compile Include="Features\StoredFeature.cs" />
-    <Compile Include="Features\StoredFeatureCollection.cs" />
-    <Compile Include="Features\StoredFeatureFactory.cs" />
-    <Compile Include="FileSystemEntry.cs" />
-    <Compile Include="FileSystemEntryType.cs" />
-    <Compile Include="FileSystems\FileSystemBase.cs" />
-    <Compile Include="FileSystems\FileSystemOperationException.cs" />
-    <Compile Include="FileSystems\FileSystemOperationResult.cs" />
-    <Compile Include="FileSystems\FileSystemOperationResultCode.cs" />
-    <Compile Include="FileSystems\LocalFileSystem.cs" />
-    <Compile Include="Geometries\StoredCurve.cs" />
-    <Compile Include="Geometries\StoredGeometry.cs" />
-    <Compile Include="Geometries\StoredGeometryCollection.cs" />
-    <Compile Include="Geometries\StoredGeometryFactory.cs" />
-    <Compile Include="Geometries\StoredLine.cs" />
-    <Compile Include="Geometries\StoredLinearRing.cs" />
-    <Compile Include="Geometries\StoredLineString.cs" />
-    <Compile Include="Geometries\StoredMultiLineString.cs" />
-    <Compile Include="Geometries\StoredMultiPoint.cs" />
-    <Compile Include="Geometries\StoredMultiPolygon.cs" />
-    <Compile Include="Geometries\StoredPoint.cs" />
-    <Compile Include="Geometries\StoredPolygon.cs" />
-    <Compile Include="Geometries\StoredSurface.cs" />
-    <Compile Include="Geometries\StoredTriangle.cs" />
-    <Compile Include="IAttributeDriver.cs" />
-    <Compile Include="IDriver.cs" />
-    <Compile Include="IFeatureDriver.cs" />
-    <Compile Include="IFileSystem.cs" />
-    <Compile Include="IGeometryDriver.cs" />
-    <Compile Include="IReferenceSystemDriver.cs" />
-    <Compile Include="IStorageAuthentication.cs" />
-    <Compile Include="IStoredAttributeCollection.cs" />
-    <Compile Include="IStoredAttributeCollectionFactory.cs" />
-    <Compile Include="IStoredFeature.cs" />
-    <Compile Include="IStoredFeatureCollection.cs" />
-    <Compile Include="IStoredFeatureFactory.cs" />
-    <Compile Include="IStoredGeometry.cs" />
-    <Compile Include="IStoredGeometryFactory.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\StorageMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <ProjectReference Include="..\Collections\Collections.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\StorageMessages.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>StorageMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="StorageAuthenticationType.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Collections\Collections.csproj">
-      <Project>{afda9cc1-b456-467b-b2bc-729c5498dd5f}</Project>
-      <Name>Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{ac1f78df-a627-46f0-bcdd-0521868beedf}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\StorageMessages.resx">
+    <EmbeddedResource Update="Resources\StorageMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StorageMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

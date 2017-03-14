@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Local
+namespace AEGIS.Reference.Collections.Local
 {
     using System;
     using System.Collections.Generic;

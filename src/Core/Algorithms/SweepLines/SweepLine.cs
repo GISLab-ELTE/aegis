@@ -12,15 +12,15 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms.SweepLines
+namespace AEGIS.Algorithms.SweepLines
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Algorithms;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Collections.SearchTree;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Algorithms;
+    using AEGIS.Collections;
+    using AEGIS.Collections.SearchTrees;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a sweep line.

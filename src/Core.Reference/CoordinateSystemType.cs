@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     /// <summary>
     /// Defines the types of coordinate systems.

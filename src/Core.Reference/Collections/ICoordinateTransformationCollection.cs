@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections
+namespace AEGIS.Reference.Collections
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Reference;
+    using AEGIS.Reference;
 
     /// <summary>
     /// Defines queries for <see cref="ICoordinateTransformationCollection{CoordinateType}" /> collections.

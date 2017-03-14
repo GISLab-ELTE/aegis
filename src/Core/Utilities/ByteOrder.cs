@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Utilities
+namespace AEGIS.Utilities
 {
     /// <summary>
     /// Defines byte-orders.

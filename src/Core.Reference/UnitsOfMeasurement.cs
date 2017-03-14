@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
-    using ELTE.AEGIS.Numerics;
+    using AEGIS.Numerics;
 
     /// <summary>
     /// Represents a collection of known <see cref="UnitOfMeasurement" /> instances.

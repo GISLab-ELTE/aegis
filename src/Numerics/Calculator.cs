@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics
+namespace AEGIS.Numerics
 {
     using System;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Defines basic mathematical calculations.

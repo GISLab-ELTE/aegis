@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms
+namespace AEGIS.Algorithms
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Numerics;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Contains algorithms for computing line properties.

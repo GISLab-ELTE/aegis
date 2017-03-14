@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Features
+namespace AEGIS.Storage.Features
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a feature located in a store.
@@ -38,7 +38,7 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeatureCollection(IFeatureDriver driver, String identifier)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 

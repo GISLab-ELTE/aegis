@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Features
+namespace AEGIS.Storage.Features
 {
     using System;
-    using ELTE.AEGIS.Resources;
-    using ELTE.AEGIS.Storage.Resources;
+    using AEGIS.Resources;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a feature located in a store.

@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Formula
+namespace AEGIS.Reference.Collections.Formula
 {
     using System;
     using System.Collections.Generic;
 
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a geographic to topocentric conversion.

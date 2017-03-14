@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics.Randomizers
+namespace AEGIS.Numerics.Randomizers
 {
     using System;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Represents a random number generator using a Gaussian (normal) distribution.

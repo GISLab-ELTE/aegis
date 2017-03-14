@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a coordinate transformation.

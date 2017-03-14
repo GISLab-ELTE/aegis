@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a generic coordinate operation between different coordinate types.

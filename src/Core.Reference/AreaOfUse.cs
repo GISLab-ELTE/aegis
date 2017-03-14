@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Algorithms;
-    using ELTE.AEGIS.Numerics;
+    using AEGIS.Algorithms;
+    using AEGIS.Numerics;
 
     /// <summary>
     /// Represents an area of use.

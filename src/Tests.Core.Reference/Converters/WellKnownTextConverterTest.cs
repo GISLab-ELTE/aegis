@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Reference.Converters
+namespace AEGIS.Tests.Reference.Converters
 {
     using System;
     using System.Linq;
+    using AEGIS.Geometries;
+    using AEGIS.Reference;
     using AEGIS.Reference.Converters;
     using AEGIS.Tests.Reference;
-    using ELTE.AEGIS.Geometries;
-    using ELTE.AEGIS.Reference;
     using NUnit.Framework;
 
     /// <summary>

@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Attributes
+namespace AEGIS.Storage.Attributes
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a factory producing <see cref="IAttributeCollection" /> instances located in stores.
@@ -32,7 +32,7 @@ namespace ELTE.AEGIS.Storage.Attributes
         public StoredAttributeCollectionFactory(IAttributeDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.Driver = driver;
         }

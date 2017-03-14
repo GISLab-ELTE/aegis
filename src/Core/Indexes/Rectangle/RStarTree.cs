@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Indexes.Rectangle
+namespace AEGIS.Indexes.Rectangle
 {
     using System;
     using System.Collections.Generic;

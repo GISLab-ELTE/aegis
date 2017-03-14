@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Authentication
+namespace AEGIS.Storage.Authentication
 {
     using System;
-    using ELTE.AEGIS.Storage;
+    using AEGIS.Storage;
 
     /// <summary>
     /// Represents an anonymous Hadoop file system authentication.

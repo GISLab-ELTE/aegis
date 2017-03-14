@@ -12,15 +12,15 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Geometries
+namespace AEGIS.Storage.Geometries
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using ELTE.AEGIS.Algorithms;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Algorithms;
+    using AEGIS.Collections;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a polygon geometry in Cartesian coordinate space.

@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Geometries
+namespace AEGIS.Storage.Geometries
 {
     using System;
     using System.Collections.Generic;
-    using Collections.Resources;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a linear ring geometry located in a store.

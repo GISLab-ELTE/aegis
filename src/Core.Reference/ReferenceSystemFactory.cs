@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Reference.Collections;
-    using ELTE.AEGIS.Reference.Collections.Local;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Reference.Collections;
+    using AEGIS.Reference.Collections.Local;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a factory for producing <see cref="ReferenceSystem" /> instances.

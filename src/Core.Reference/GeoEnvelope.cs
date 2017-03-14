@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference
+namespace AEGIS.Reference
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Reference.Resources;
+    using AEGIS.Numerics;
+    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a geographic envelope.

@@ -1,234 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE2D71C9-2638-4C9D-A179-F8DDE05B584B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ELTE.AEGIS.Reference</RootNamespace>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <RootNamespace>AEGIS.Reference</RootNamespace>
     <AssemblyName>AEGIS.Core.Reference</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
     <CodeAnalysisRuleSet>..\analyzer.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\AEGIS.Core.Reference.XML</DocumentationFile>
+
+    <Authors>Roberto Giachetta et al.</Authors>
+
+    <Version>0.1.0</Version>
+
+    <Company>Eötvös Loránd University (ELTE)</Company>
+
+    <Description>Implementation of OGC Spatial Referencing by Coordinates Starndard as part of the AEGIS framework.</Description>
+
+    <Copyright>Copyright Roberto Giachetta 2016-2017</Copyright>
+
+    <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
+
+    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\AEGIS.Core.Reference.XML</DocumentationFile>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Alias.txt" />
+    <None Remove="Resources\Area.txt" />
+    <None Remove="Resources\ConcatenatedCoordinateOperation.txt" />
+    <None Remove="Resources\CoordinateOperation.txt" />
+    <None Remove="Resources\CoordinateOperationParameterValue.txt" />
+    <None Remove="Resources\CoordinateReferenceSystem.txt" />
+    <None Remove="Resources\CoordinateSystem.txt" />
+    <None Remove="Resources\CoordinateSystemAxis.txt" />
+    <None Remove="Resources\CoordinateSystemAxisMapping.txt" />
+    <None Remove="Resources\Datum.txt" />
+    <None Remove="Resources\Ellipsoid.txt" />
+    <None Remove="Resources\PrimeMeridian.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Numerics\Numerics.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
-    <None Include="project.json" />
-    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Angle.cs" />
-    <Compile Include="Angles.cs" />
-    <Compile Include="AreaOfUse.cs" />
-    <Compile Include="AxisDirection.cs" />
-    <Compile Include="Collections\CoordinateOperationMethodCollection.cs" />
-    <Compile Include="Collections\CoordinateOperationParameterCollection.cs" />
-    <Compile Include="Collections\Formula\Conversions\GeocentricToTopocentricConversion.cs" />
-    <Compile Include="Collections\Formula\Conversions\Geographic3DTo2DConversion.cs" />
-    <Compile Include="Collections\Formula\Conversions\GeographicToGeocentricConversion.cs" />
-    <Compile Include="Collections\Formula\Conversions\GeographicToTopocentricConversion.cs" />
-    <Compile Include="Collections\Formula\CoordinateOperationMethods.cs" />
-    <Compile Include="Collections\Formula\CoordinateOperationParameters.cs" />
-    <Compile Include="Collections\Formula\Projections\AlbersEqualAreaProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\AmericanPolyconicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\BonneProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\BonneSouthOrientatedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\CassiniSoldnerProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\ColombiaUrbanProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\EquidistantCylindricalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\EquidistantCylindricalSphericalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\GnomonicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\GuamProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\HotineObliqueMercatorAProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\HotineObliqueMercatorBProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\HotineObliqueMercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\HyperbolicCassiniSoldnerProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\KrovakModifiedNorthOrientedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\KrovakModifiedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\KrovakNorthOrientedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\KrovakProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LabordeObliqueMercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertAzimuthalEqualAreaProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertAzimuthalEqualAreaSphericalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformal1SPProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformal1SPWestOrientatedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformal2SPBelgiumProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformal2SPMichiganProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformal2SPProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicConformalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertConicNearConformalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertCylindricalEqualAreaEllipsoidalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\LambertCylindricalEqualAreaSphericalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\MercatorAProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\MercatorBProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\MercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\MercatorSphericalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\ModifiedAzimuthalEquidistantProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\ObliqueMercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\ObliqueStereographicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\OrthographicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PolarStereographicAProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PolarStereographicBProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PolarStereographicCProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PolarStereographicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PopularVisualisationPseudoMercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\PseudoPlateCareeProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\SinusoidalProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\TransverseMercatorProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\TransverseMercatorSouthProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\TransverseMercatorZonedProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\VerticalPerspectiveOrthographicProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\VerticalPerspectiveProjection.cs" />
-    <Compile Include="Collections\Formula\Projections\WorldMillerCylindricalProjection.cs" />
-    <Compile Include="Collections\Formula\Transformations\AffineParametricTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\CoordinateFrameRotation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeneralPolynomial2Transformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeneralPolynomial3Transformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeneralPolynomial4Transformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeneralPolynomial6Transformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeneralPolynomialTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeocentricTranslation.cs" />
-    <Compile Include="Collections\Formula\Transformations\GeographicTranslation.cs" />
-    <Compile Include="Collections\Formula\Transformations\HelmertTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\MolodenskyBadekasTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\MolodenskyTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\P6LeftHandedSeismicBinGridTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\P6RightHandedSeismicBinGridTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\P6SeismicBinGridTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\PositionVectorTransformation.cs" />
-    <Compile Include="Collections\Formula\Transformations\SimilarityTransformation.cs" />
-    <Compile Include="Collections\ICoordinateProjectionCollection.cs" />
-    <Compile Include="Collections\ICoordinateSystemAxisCollection.cs" />
-    <Compile Include="Collections\ICoordinateTransformationCollection.cs" />
-    <Compile Include="Collections\IReferenceCollection.cs" />
-    <Compile Include="Collections\IReferenceProvider.cs" />
-    <Compile Include="Collections\Local\LocalCompoundReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalCoordinateProjectionCollection.cs" />
-    <Compile Include="Collections\Local\LocalCoordinateReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalCoordinateSystemAxisCollection.cs" />
-    <Compile Include="Collections\Local\LocalCoordinateSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalCoordinateTransformationCollection.cs" />
-    <Compile Include="Collections\Local\LocalDatumCollection.cs" />
-    <Compile Include="Collections\Local\LocalEllipsoidCollection.cs" />
-    <Compile Include="Collections\Local\LocalGeocentricCoordinateReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalGeodeticDatumCollection.cs" />
-    <Compile Include="Collections\Local\LocalGeographicCoordinateReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalAreaOfUseCollection.cs" />
-    <Compile Include="Collections\Local\LocalReferenceCollection.cs" />
-    <Compile Include="Collections\Local\LocalMeridianCollection.cs" />
-    <Compile Include="Collections\Local\LocalProjectedCoordinateReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalReferenceProvider.cs" />
-    <Compile Include="Collections\Local\LocalReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalVerticalCoordinateReferenceSystemCollection.cs" />
-    <Compile Include="Collections\Local\LocalVerticalDatumCollection.cs" />
-    <Compile Include="Collections\ReferenceProvider.cs" />
-    <Compile Include="Collections\ReferenceCollectionQueries.cs" />
-    <Compile Include="Collections\UnitOfMeasurementCollection.cs" />
-    <Compile Include="CompoundCoordinateOperationMethod.cs" />
-    <Compile Include="CompoundReferenceSystem.cs" />
-    <Compile Include="Converters\WellKnownTextConverter.cs" />
-    <Compile Include="CoordinateConversion.cs" />
-    <Compile Include="CoordinateOperation.cs" />
-    <Compile Include="CoordinateOperationMethod.cs" />
-    <Compile Include="CoordinateOperationParameter.cs" />
-    <Compile Include="CoordinateProjection.cs" />
-    <Compile Include="CoordinateReferenceSystem.cs" />
-    <Compile Include="CoordinateSystem.cs" />
-    <Compile Include="CoordinateSystemAxis.cs" />
-    <Compile Include="CoordinateSystemType.cs" />
-    <Compile Include="CoordinateTransformation.cs" />
-    <Compile Include="Datum.cs" />
-    <Compile Include="Ellipsoid.cs" />
-    <Compile Include="EllipsoidComputations.cs" />
-    <Compile Include="EllipsoidHemisphere.cs" />
-    <Compile Include="GeocentricCoordinateReferenceSystem.cs" />
-    <Compile Include="GeoCoordinate.cs" />
-    <Compile Include="GeodeticDatum.cs" />
-    <Compile Include="GeoEnvelope.cs" />
-    <Compile Include="GeographicCoordinateReferenceSystem.cs" />
-    <Compile Include="GeoVector.cs" />
-    <Compile Include="Length.cs" />
-    <Compile Include="Meridian.cs" />
-    <Compile Include="OperationAspect.cs" />
-    <Compile Include="ProjectedCoordinateReferenceSystem.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReferenceSystem.cs" />
-    <Compile Include="ReferenceSystemFactory.cs" />
-    <Compile Include="ReferenceSystemType.cs" />
-    <Compile Include="Resources\ReferenceMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReferenceMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Strategies\CompoundCoordinateConversionStrategy.cs" />
-    <Compile Include="Strategies\CoordinateConversionStrategy.cs" />
-    <Compile Include="Strategies\ForwardGeographicCoordinateTransformationStrategy.cs" />
-    <Compile Include="Strategies\ForwardLatLonCoordinateInterpretationStrategy.cs" />
-    <Compile Include="Strategies\ForwardLatLonHiCoordinateIntepretationStrategy.cs" />
-    <Compile Include="Strategies\ForwardLonLatCoordinateIntepretationStrategy.cs" />
-    <Compile Include="Strategies\ForwardLonLatHiCoordinateInterpretationStrategy.cs" />
-    <Compile Include="Strategies\ForwardCoordinateProjectionStrategy.cs" />
-    <Compile Include="Strategies\ICoordinateOperationStrategy.cs" />
-    <Compile Include="Strategies\ReverseGeographicCoordinateTransformationStrategy.cs" />
-    <Compile Include="Strategies\ReverseLatLonCoordinateInterpretationStrategy.cs" />
-    <Compile Include="Strategies\ReverseLatLonHiCoordinateInterpretationStrategy.cs" />
-    <Compile Include="Strategies\ReverseLonLatCoordinateIntepretationStrategy.cs" />
-    <Compile Include="Strategies\ReverseLonLatHiCoordinateInterpretationStrategy.cs" />
-    <Compile Include="Strategies\ReverseCoordinateProjectionStrategy.cs" />
-    <Compile Include="Strategies\CoordinateOperationStrategyFactory.cs" />
-    <Compile Include="UnitOfMeasurement.cs" />
-    <Compile Include="UnitQuantityType.cs" />
-    <Compile Include="UnitsOfMeasurement.cs" />
-    <Compile Include="VerticalCoordinateReferenceSystem.cs" />
-    <Compile Include="VerticalDatum.cs" />
-    <Compile Include="VerticalDatumType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Collections\Collections.csproj">
-      <Project>{afda9cc1-b456-467b-b2bc-729c5498dd5f}</Project>
-      <Name>Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{ac1f78df-a627-46f0-bcdd-0521868beedf}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Numerics\Numerics.csproj">
-      <Project>{1565f958-fc9d-4670-92e2-ca09025014cb}</Project>
-      <Name>Numerics</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ReferenceMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ReferenceMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources\Alias.txt" />
     <EmbeddedResource Include="Resources\Area.txt" />
@@ -243,12 +60,24 @@
     <EmbeddedResource Include="Resources\Ellipsoid.txt" />
     <EmbeddedResource Include="Resources\PrimeMeridian.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector" Version="3.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\ReferenceMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ReferenceMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ReferenceMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReferenceMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

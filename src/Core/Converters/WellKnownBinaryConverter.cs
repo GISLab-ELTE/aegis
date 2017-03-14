@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Converters
+namespace AEGIS.Converters
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Geometries;
-    using ELTE.AEGIS.Resources;
-    using ELTE.AEGIS.Utilities;
+    using AEGIS.Geometries;
+    using AEGIS.Resources;
+    using AEGIS.Utilities;
 
     /// <summary>
     /// Represents a converter for Well-known Binary (WKB) representation.

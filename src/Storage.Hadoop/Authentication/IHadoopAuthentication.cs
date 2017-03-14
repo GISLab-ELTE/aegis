@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Authentication
+namespace AEGIS.Storage.Authentication
 {
     using System;
 

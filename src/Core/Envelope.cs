@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents an envelope in Cartesian coordinate space.

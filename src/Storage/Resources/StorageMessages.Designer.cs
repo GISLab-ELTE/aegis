@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ELTE.AEGIS.Storage.Resources {
+namespace AEGIS.Storage.Resources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace ELTE.AEGIS.Storage.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ELTE.AEGIS.Storage.Resources.StorageMessages", typeof(StorageMessages).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AEGIS.Storage.Resources.StorageMessages", typeof(StorageMessages).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

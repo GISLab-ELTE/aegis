@@ -1,5 +1,5 @@
 ﻿// <copyright file="AvlTree.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections.SearchTree
+namespace AEGIS.Collections.SearchTrees
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents an AVL tree.
@@ -25,8 +25,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class AvlTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
     {
-        
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AvlTree{TKey, TValue}" /> class.
         /// </summary>
@@ -43,10 +41,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
         {
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the height of the search tree.
         /// </summary>
@@ -58,10 +52,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 return this.root == null ? -1 : (this.root as AvlNode).Height;
             }
         }
-
-        
-
-        
 
         /// <summary>
         /// Inserts the specified key/value pair to the tree.
@@ -101,10 +91,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.version++;
         }
 
-        
-
-        
-
         /// <summary>
         /// Removes a node that has no children.
         /// </summary>
@@ -135,10 +121,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
 
             this.Balance(node as AvlNode);
         }
-
-        
-
-        
 
         /// <summary>
         /// Balances a subtree to comply with AVL property.
@@ -212,10 +194,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the height of a node.
         /// </summary>
@@ -242,17 +220,11 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return rightHeight - leftHeight;
         }
 
-        
-
-        
-
         /// <summary>
         /// Represents a node of the AVL tree.
         /// </summary>
         protected class AvlNode : Node
         {
-            
-
             /// <summary>
             /// Gets or sets the height of the subtree starting with the node.
             /// </summary>
@@ -264,10 +236,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             /// <value>The balance of the node.</value>
             public Int32 Balance { get; set; }
-
-            
         }
-
-        
     }
 }

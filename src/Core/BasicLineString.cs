@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     using System;
     using System.Collections;
@@ -20,8 +20,8 @@ namespace ELTE.AEGIS
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using ELTE.AEGIS.Collections;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Collections;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a basic line string geometry in spatial coordinate space.

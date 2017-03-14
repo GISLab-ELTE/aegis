@@ -12,14 +12,14 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS
+namespace AEGIS
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Numerics;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a coordinate in Cartesian coordinate space.

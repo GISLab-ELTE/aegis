@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Geometries
+namespace AEGIS.Geometries
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Algorithms;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Algorithms;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a triangle geometry in Cartesian coordinate space.

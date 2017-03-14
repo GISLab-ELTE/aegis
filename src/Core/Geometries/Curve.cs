@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Geometries
+namespace AEGIS.Geometries
 {
     using System;
     using System.Collections.Generic;

@@ -12,11 +12,11 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Algorithms.SweepLines
+namespace AEGIS.Algorithms.SweepLines
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a presorted event queue used by Sweep lines.

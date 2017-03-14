@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Geometries
+namespace AEGIS.Geometries
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a general geometry in Cartesian coordinate space.

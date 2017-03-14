@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Indexes.Rectangle
+namespace AEGIS.Indexes.Rectangle
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Resources;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a 3D R-Tree, which contains a collection of <see cref="IBasicGeometry" /> instances.

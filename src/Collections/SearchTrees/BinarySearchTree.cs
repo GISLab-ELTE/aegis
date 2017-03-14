@@ -1,5 +1,5 @@
 ﻿// <copyright file="BinarySearchTree.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections.SearchTree
+namespace AEGIS.Collections.SearchTrees
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a binary search tree.
@@ -26,8 +26,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public class BinarySearchTree<TKey, TValue> : ISearchTree<TKey, TValue>
     {
-        
-
         /// <summary>
         /// The root node.
         /// </summary>
@@ -42,10 +40,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// The version of the tree.
         /// </summary>
         protected Int32 version;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTree{TKey, TValue}" /> class.
@@ -71,10 +65,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             this.Comparer = comparer ?? Comparer<TKey>.Default;
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the number of elements actually contained in the search tree.
         /// </summary>
@@ -87,19 +77,11 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// <value>The height of the search tree.</value>
         public virtual Int32 Height { get { return GetTreeHeight(this.root); } }
 
-        
-
-        
-
         /// <summary>
         /// Gets the <see cref="IComparer{T}" /> that is used to determine order of keys for the tree.
         /// </summary>
         /// <value>The <see cref="IComparer{T}" /> generic interface implementation that is used to determine order of keys for the current search tree and to provide hash values for the keys.</value>
         public IComparer<TKey> Comparer { get; private set; }
-
-        
-
-        
 
         /// <summary>
         /// Searches the search tree for the specified key.
@@ -231,10 +213,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return new SearchTreeEnumerator(this);
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -252,10 +230,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
         {
             return new Enumerator(this);
         }
-
-        
-
-        
 
         /// <summary>
         /// Searches the tree for an element with a specific key.
@@ -473,10 +447,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return leftChild;
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the height of the tree.
         /// </summary>
@@ -512,10 +482,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             return node.Parent.LeftChild;
         }
 
-        
-
-        
-
         /// <summary>
         /// Enumerates the elements of a search tree.
         /// </summary>
@@ -524,8 +490,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </remarks>
         public sealed class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IEnumerator, IDisposable
         {
-            
-
             /// <summary>
             /// The tree that is enumerated.
             /// </summary>
@@ -551,10 +515,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             private Node currentNode;
 
-            
-
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
             /// </summary>
@@ -572,10 +532,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.currentNode = tree.root;
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -598,10 +554,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             {
                 get { return this.current; }
             }
-
-            
-
-            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -645,18 +597,12 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            
-
-            
-
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {
             }
-
-            
         }
 
         /// <summary>
@@ -664,8 +610,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
         /// </summary>
         public sealed class SearchTreeEnumerator : ISearchTreeEnumerator<TKey, TValue>
         {
-            
-
             /// <summary>
             /// The tree that is enumerated.
             /// </summary>
@@ -686,10 +630,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             private Node currentNode;
 
-            
-
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="SearchTreeEnumerator" /> class.
             /// </summary>
@@ -705,10 +645,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.current = default(KeyValuePair<TKey, TValue>);
                 this.currentNode = null;
             }
-
-            
-
-            
 
             /// <summary>
             /// Gets the element at the current position of the enumerator.
@@ -731,10 +667,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             {
                 get { return this.current; }
             }
-
-            
-
-            
 
             /// <summary>
             /// Advances the enumerator to the previous element of the collection.
@@ -858,10 +790,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 return true;
             }
 
-            
-
-            
-
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
             /// </summary>
@@ -919,31 +847,19 @@ namespace ELTE.AEGIS.Collections.SearchTree
                 this.current = default(KeyValuePair<TKey, TValue>);
             }
 
-            
-
-            
-
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {
             }
-
-            
         }
-
-        
-
-        
 
         /// <summary>
         /// Represents a node of the search tree.
         /// </summary>
         protected class Node
         {
-            
-
             /// <summary>
             /// Gets or sets the key of the node.
             /// </summary>
@@ -973,10 +889,6 @@ namespace ELTE.AEGIS.Collections.SearchTree
             /// </summary>
             /// <value>The right child node.</value>
             public Node RightChild { get; set; }
-
-            
         }
-
-        
     }
 }

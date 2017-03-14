@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Attributes
+namespace AEGIS.Attributes
 {
     using System;
     using System.Collections.Generic;

@@ -1,5 +1,5 @@
 ﻿// <copyright file="DisjointSetForest.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
@@ -32,8 +32,6 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class DisjointSetForest<T> : IDisjointSet<T>, IEnumerable, IEnumerable<T>
     {
-        
-
         /// <summary>
         /// The parent of the element in the tree.
         /// </summary>
@@ -43,10 +41,6 @@ namespace ELTE.AEGIS.Collections
         /// The rank of the subset containing the element.
         /// </summary>
         private Dictionary<T, Int32> rank;
-
-        
-
-        
 
         /// <summary>
         /// Gets the number of elements in the disjoint-set forest.
@@ -63,10 +57,6 @@ namespace ELTE.AEGIS.Collections
         /// Gets the number of disjoint sets.
         /// </summary>
         public Int32 SetCount { get; private set; }
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DisjointSetForest{TElement}" /> class that is empty and has the default initial capacity.
@@ -111,10 +101,6 @@ namespace ELTE.AEGIS.Collections
                 this.MakeSet(element);
             }
         }
-
-        
-
-        
 
         /// <summary>
         /// Makes a set containing only the given element.
@@ -254,10 +240,6 @@ namespace ELTE.AEGIS.Collections
             this.SetCount = 0;
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection in subset order.
         /// </summary>
@@ -294,10 +276,6 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        
-
-        
-
         /// <summary>
         /// Joins two subsets into a single subset.
         /// </summary>
@@ -332,7 +310,5 @@ namespace ELTE.AEGIS.Collections
                 this.rank[xRoot]++;
             }
         }
-
-        
     }
 }

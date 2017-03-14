@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage
+namespace AEGIS.Storage
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using ELTE.AEGIS.Storage.Resources;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a parameter of a geometry stream format.

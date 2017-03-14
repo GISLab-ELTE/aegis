@@ -12,9 +12,9 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.IO.Storage
+namespace AEGIS.Tests.IO.Storage
 {
-    using ELTE.AEGIS.Storage.FileSystems;
+    using AEGIS.Storage.FileSystems;
     using NUnit.Framework;
     using Shouldly;
 

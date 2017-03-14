@@ -1,178 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC1F78DF-A627-46F0-BCDD-0521868BEEDF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ELTE.AEGIS</RootNamespace>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <RootNamespace>AEGIS</RootNamespace>
     <AssemblyName>AEGIS.Core</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <Version>0.1.0</Version>
+    <Authors>Roberto Giachetta et al.</Authors>
+    <Company>Eötvös Loránd University (ELTE)</Company>
+    <Description>Core library of the AEGIS framework.</Description>
+    <Copyright>Copyright Roberto Giachetta 2016-2017</Copyright>
+    <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
+
     <CodeAnalysisRuleSet>..\analyzer.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\AEGIS.Core.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet />
-    <DocumentationFile>bin\Release\AEGIS.Core.XML</DocumentationFile>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Collections\Collections.csproj" />
+    <ProjectReference Include="..\Numerics\Numerics.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
-    <None Include="project.json" />
-    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Algorithms\BentleyFaustPreparataAlgorithm.cs" />
-    <Compile Include="Algorithms\BentleyOttmannAlgorithm.cs" />
-    <Compile Include="Algorithms\CohenSutherlandAlgorithm.cs" />
-    <Compile Include="Algorithms\DouglasPeuckerAlgorithm.cs" />
-    <Compile Include="Algorithms\GeometryDistanceAlgorithm.cs" />
-    <Compile Include="Algorithms\GrahamScanAlgorithm.cs" />
-    <Compile Include="Algorithms\GreinerHormannAlgorithm.cs" />
-    <Compile Include="Algorithms\Intersection.cs" />
-    <Compile Include="Algorithms\IntersectionType.cs" />
-    <Compile Include="Algorithms\LiangBarskyAlgorithm.cs" />
-    <Compile Include="Algorithms\LineAlgorithms.cs" />
-    <Compile Include="Algorithms\MinkowskiSumAlgorithm.cs" />
-    <Compile Include="Algorithms\MonotoneSubdivisionAlgorithm.cs" />
-    <Compile Include="Algorithms\PolygonAlgorithms.cs" />
-    <Compile Include="Algorithms\PolygonCentroidAlgorithm.cs" />
-    <Compile Include="Algorithms\RandomPolygonGenerator.cs" />
-    <Compile Include="Algorithms\ShamosHoeyAlgorithm.cs" />
-    <Compile Include="Algorithms\SweepLines\EndPointEvent.cs" />
-    <Compile Include="Algorithms\SweepLines\Event.cs" />
-    <Compile Include="Algorithms\SweepLines\EventComparer.cs" />
-    <Compile Include="Algorithms\SweepLines\EventQueue.cs" />
-    <Compile Include="Algorithms\SweepLines\EventType.cs" />
-    <Compile Include="Algorithms\SweepLines\IntersectionEvent.cs" />
-    <Compile Include="Algorithms\SweepLines\PresortedEventQueue.cs" />
-    <Compile Include="Algorithms\SweepLines\SweepLine.cs" />
-    <Compile Include="Algorithms\SweepLines\SweepLineSegment.cs" />
-    <Compile Include="Algorithms\WindingNumberAlgorithm.cs" />
-    <Compile Include="Attributes\AttributeCollection.cs" />
-    <Compile Include="Attributes\AttributeCollectionFactory.cs" />
-    <Compile Include="Converters\GeographyMarkupConverter.cs" />
-    <Compile Include="Converters\WellKnownBinaryConverter.cs" />
-    <Compile Include="Converters\WellKnownTextConverter.cs" />
-    <Compile Include="GeometryComparer.cs" />
-    <Compile Include="IAttributeCollection.cs" />
-    <Compile Include="IAttributeCollectionFactory.cs" />
-    <Compile Include="IFeature.cs" />
-    <Compile Include="IFeatureCollection.cs" />
-    <Compile Include="IFeatureFactory.cs" />
-    <Compile Include="BasicLineString.cs" />
-    <Compile Include="BasicPoint.cs" />
-    <Compile Include="BasicPolygon.cs" />
-    <Compile Include="BasicProxyLineString.cs" />
-    <Compile Include="BasicProxyPolygon.cs" />
-    <Compile Include="Coordinate.cs" />
-    <Compile Include="CoordinateComparer.cs" />
-    <Compile Include="CoordinateVector.cs" />
-    <Compile Include="Envelope.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="Features\Feature.cs" />
-    <Compile Include="Features\FeatureCollection.cs" />
-    <Compile Include="Features\FeatureFactory.cs" />
-    <Compile Include="Geometries\Curve.cs" />
-    <Compile Include="Geometries\Geometry.cs" />
-    <Compile Include="Geometries\GeometryFactory.cs" />
-    <Compile Include="Geometries\GeometryList.cs" />
-    <Compile Include="Geometries\Line.cs" />
-    <Compile Include="Geometries\LinearRing.cs" />
-    <Compile Include="Geometries\LineString.cs" />
-    <Compile Include="Geometries\MultiLineString.cs" />
-    <Compile Include="Geometries\MultiPoint.cs" />
-    <Compile Include="Geometries\MultiPolygon.cs" />
-    <Compile Include="Geometries\Point.cs" />
-    <Compile Include="Geometries\Polygon.cs" />
-    <Compile Include="Geometries\Surface.cs" />
-    <Compile Include="Geometries\Triangle.cs" />
-    <Compile Include="IBasicGeometry.cs" />
-    <Compile Include="IBasicLineString.cs" />
-    <Compile Include="IBasicPoint.cs" />
-    <Compile Include="IBasicPolygon.cs" />
-    <Compile Include="ICurve.cs" />
-    <Compile Include="IdentifiedObject.cs" />
-    <Compile Include="IdentifiedObjectAttribute.cs" />
-    <Compile Include="IFactory.cs" />
-    <Compile Include="IGeometry.cs" />
-    <Compile Include="IGeometryCollection.cs" />
-    <Compile Include="IGeometryFactory.cs" />
-    <Compile Include="ILine.cs" />
-    <Compile Include="ILinearRing.cs" />
-    <Compile Include="ILineString.cs" />
-    <Compile Include="IMultiCurve.cs" />
-    <Compile Include="IMultiLineString.cs" />
-    <Compile Include="IMultiPoint.cs" />
-    <Compile Include="IMultiPolygon.cs" />
-    <Compile Include="IMultiSurface.cs" />
-    <Compile Include="Indexes\ICoordinateIndex.cs" />
-    <Compile Include="Indexes\ISpatialIndex.cs" />
-    <Compile Include="Indexes\Rectangle\RStarTree.cs" />
-    <Compile Include="Indexes\Rectangle\RTree.cs" />
-    <Compile Include="IPoint.cs" />
-    <Compile Include="IPolygon.cs" />
-    <Compile Include="IReferenceSystem.cs" />
-    <Compile Include="IReferenceSystemFactory.cs" />
-    <Compile Include="ISurface.cs" />
-    <Compile Include="ITriangle.cs" />
-    <Compile Include="Orientation.cs" />
-    <Compile Include="PrecisionModel.cs" />
-    <Compile Include="PrecisionModelType.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelativeLocation.cs" />
-    <Compile Include="Resources\CoreMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Resources\CoreMessages.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>CoreMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\ByteOrder.cs" />
-    <Compile Include="Utilities\EndianBitConverter.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Collections\Collections.csproj">
-      <Project>{afda9cc1-b456-467b-b2bc-729c5498dd5f}</Project>
-      <Name>Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Numerics\Numerics.csproj">
-      <Project>{1565f958-fc9d-4670-92e2-ca09025014cb}</Project>
-      <Name>Numerics</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\CoreMessages.resx">
+    <EmbeddedResource Update="Resources\CoreMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

@@ -12,12 +12,12 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Collections.Formula
+namespace AEGIS.Reference.Collections.Formula
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Numerics;
-    using ELTE.AEGIS.Numerics.Integral;
+    using AEGIS.Numerics;
+    using AEGIS.Numerics.Integral;
 
     /// <summary>
     /// Represents an Equidistant Cylindrical Projection.

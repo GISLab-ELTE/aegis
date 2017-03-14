@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Storage.Features
+namespace AEGIS.Storage.Features
 {
     using System;
     using System.Collections.Generic;
-    using ELTE.AEGIS.Resources;
-    using ELTE.AEGIS.Storage.Attributes;
-    using ELTE.AEGIS.Storage.Geometries;
+    using AEGIS.Resources;
+    using AEGIS.Storage.Attributes;
+    using AEGIS.Storage.Geometries;
 
     /// <summary>
     /// Represents a factory producing <see cref="IFeature" /> instances located in stores.
@@ -33,7 +33,7 @@ namespace ELTE.AEGIS.Storage.Features
         public StoredFeatureFactory(IFeatureDriver driver)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), ELTE.AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             this.Driver = driver;
 

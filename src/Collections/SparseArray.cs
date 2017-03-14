@@ -1,5 +1,5 @@
 ﻿// <copyright file="SparseArray.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -12,13 +12,13 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Collections
+namespace AEGIS.Collections
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using ELTE.AEGIS.Collections.Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a sparse array.
@@ -31,8 +31,6 @@ namespace ELTE.AEGIS.Collections
     /// </remarks>
     public class SparseArray<T> : IList<T>, IReadOnlyList<T>
     {
-        
-
         /// <summary>
         /// The items of the sparse array.
         /// </summary>
@@ -47,10 +45,6 @@ namespace ELTE.AEGIS.Collections
         /// The number of elements in the sparse array.
         /// </summary>
         private Int64 length;
-
-        
-
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SparseArray{T}" /> class.
@@ -108,10 +102,6 @@ namespace ELTE.AEGIS.Collections
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Gets the number of elements contained in the array.
         /// </summary>
@@ -165,10 +155,6 @@ namespace ELTE.AEGIS.Collections
                 this.version++;
             }
         }
-
-        
-
-        
 
         /// <summary>
         /// Gets the actual number of elements contained in the array.
@@ -239,10 +225,6 @@ namespace ELTE.AEGIS.Collections
                 this.version++;
             }
         }
-
-        
-
-        
 
         /// <summary>
         /// Determines the index of a specific item in the array.
@@ -327,10 +309,6 @@ namespace ELTE.AEGIS.Collections
             this.length--;
             this.version++;
         }
-
-        
-
-        
 
         /// <summary>
         /// Adds an item to the array.
@@ -462,10 +440,6 @@ namespace ELTE.AEGIS.Collections
             this.RemoveAt(index);
         }
 
-        
-
-        
-
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -484,10 +458,6 @@ namespace ELTE.AEGIS.Collections
             return this.GetEnumerator();
         }
 
-        
-
-        
-
         /// <summary>
         /// Updates the indexes of the array.
         /// </summary>
@@ -497,10 +467,6 @@ namespace ELTE.AEGIS.Collections
         {
             this.items = this.items.ToDictionary(pair => pair.Key < index ? pair.Key : pair.Key + offset, pair => pair.Value);
         }
-
-        
-
-        
 
         /// <summary>
         /// Determines whether the specified values are equal.
@@ -513,17 +479,11 @@ namespace ELTE.AEGIS.Collections
             return EqualityComparer<T>.Default.Equals(first, second);
         }
 
-        
-
-        
-
         /// <summary>
         /// Supports a simple iteration over a <see cref="SparseArray{T}" /> collection.
         /// </summary>
         public sealed class Enumerator : IEnumerator<T>
         {
-            
-
             /// <summary>
             /// The array that is enumerated.
             /// </summary>
@@ -549,10 +509,6 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             private IEnumerator<KeyValuePair<Int64, T>> innerEnumerator;
 
-            
-
-            
-
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.
             /// </summary>
@@ -570,10 +526,6 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(T);
             }
 
-            
-
-            
-
             /// <summary>
             /// Gets the element in the collection at the current position of the enumerator.
             /// </summary>
@@ -585,10 +537,6 @@ namespace ELTE.AEGIS.Collections
             /// </summary>
             /// <returns>The element in the collection at the current position of the enumerator.</returns>
             Object IEnumerator.Current { get { return this.current; } }
-
-            
-
-            
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -637,20 +585,12 @@ namespace ELTE.AEGIS.Collections
                 this.current = default(T);
             }
 
-            
-
-            
-
             /// <summary>
             /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {
             }
-
-            
         }
-
-        
     }
 }

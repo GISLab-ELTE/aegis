@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Strategies
+namespace AEGIS.Reference.Strategies
 {
     using System;
-    using ELTE.AEGIS.Reference;
+    using AEGIS.Reference;
 
     /// <summary>
     /// Represents a reverse coordinate interpretation for (latitude, longitude, height) representation.

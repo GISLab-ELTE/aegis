@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Tests.Numerics.Integral
+namespace AEGIS.Tests.Numerics.Integral
 {
     using System;
     using AEGIS.Numerics.Integral;

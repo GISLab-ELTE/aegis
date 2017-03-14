@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Reference.Strategies
+namespace AEGIS.Reference.Strategies
 {
     /// <summary>
     /// Represents a forward coordinate interpretation for (latitude, longitude, height) representation.

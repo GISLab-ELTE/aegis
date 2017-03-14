@@ -12,10 +12,10 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace ELTE.AEGIS.Numerics.LinearAlgebra
+namespace AEGIS.Numerics.LinearAlgebra
 {
     using System;
-    using ELTE.AEGIS.Numerics.Resources;
+    using AEGIS.Numerics.Resources;
 
     /// <summary>
     /// Defines methods for computing norms of vectors and matrices.
