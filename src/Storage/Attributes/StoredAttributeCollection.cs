@@ -268,13 +268,8 @@ namespace AEGIS.Storage.Attributes
         /// </exception>
         public StoredAttributeCollection(IStoredAttributeCollectionFactory factory, String identifier)
         {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), AEGIS.Resources.CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), AEGIS.Resources.CoreMessages.IdentifierIsNull);
-
-            this.Factory = factory;
-            this.Identifier = identifier;
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), AEGIS.Resources.CoreMessages.FactoryIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), AEGIS.Resources.CoreMessages.IdentifierIsNull);
         }
 
         /// <summary>
@@ -294,12 +289,6 @@ namespace AEGIS.Storage.Attributes
         /// </summary>
         /// <value>The factory the attribute collection was constructed by.</value>
         public IStoredAttributeCollectionFactory Factory { get; private set; }
-
-        /// <summary>
-        /// Gets the factory of the attribute collection.
-        /// </summary>
-        /// <value>The factory the attribute collection was constructed by.</value>
-        IAttributeCollectionFactory IAttributeCollection.Factory { get { return this.Factory; } }
 
         /// <summary>
         /// Gets the number of elements contained in the collection.

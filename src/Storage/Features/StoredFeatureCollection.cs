@@ -39,11 +39,8 @@ namespace AEGIS.Storage.Features
         {
             if (driver == null)
                 throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
             this.Factory = new StoredFeatureFactory(driver);
-            this.Identifier = identifier;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
         }
 
         /// <summary>
@@ -58,13 +55,8 @@ namespace AEGIS.Storage.Features
         /// </exception>
         public StoredFeatureCollection(IStoredFeatureFactory factory, String identifier)
         {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Factory = factory;
-            this.Identifier = identifier;
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
         }
 
         /// <summary>
@@ -96,12 +88,6 @@ namespace AEGIS.Storage.Features
         /// </summary>
         /// <value>The identifier of the feature.</value>
         public String Identifier { get; private set; }
-
-        /// <summary>
-        /// Gets the factory of the feature.
-        /// </summary>
-        /// <value>The factory implementation the feature was constructed by.</value>
-        IFeatureFactory IFeature.Factory { get { return this.Factory; } }
 
         /// <summary>
         /// Gets the feature identifiers within the collection.

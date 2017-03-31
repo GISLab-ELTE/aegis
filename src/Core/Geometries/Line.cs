@@ -41,18 +41,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Line" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the line.</param>
-        /// <param name="startCoordinate">The starting coordinate.</param>
-        /// <param name="endCoordinate">The ending coordinate.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public Line(IGeometryFactory factory, Coordinate startCoordinate, Coordinate endCoordinate)
-            : base(factory, new List<Coordinate> { startCoordinate, endCoordinate })
-        {
-        }
-
-        /// <summary>
         /// Gets a value indicating whether the current geometry is simple.
         /// </summary>
         /// <value><c>true</c>, as a line is always considered to be simple.</value>

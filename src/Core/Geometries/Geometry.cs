@@ -28,39 +28,31 @@ namespace AEGIS.Geometries
     public abstract class Geometry : IGeometry
     {
         /// <summary>
+        /// The precision model. This field is read-only.
+        /// </summary>
+        private readonly PrecisionModel precisionModel;
+
+        /// <summary>
+        /// The reference system. This field is read-only.
+        /// </summary>
+        private readonly IReferenceSystem referenceSystem;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Geometry" /> class.
         /// </summary>
         /// <param name="precisionModel">The precision model.</param>
         /// <param name="referenceSystem">The reference system.</param>
         protected Geometry(PrecisionModel precisionModel, IReferenceSystem referenceSystem)
         {
-            this.Factory = new GeometryFactory(precisionModel, referenceSystem);
+            this.precisionModel = precisionModel ?? PrecisionModel.Default;
+            this.referenceSystem = referenceSystem;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Geometry" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the geometry.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        protected Geometry(IGeometryFactory factory)
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-
-            this.Factory = factory;
-        }
-
-        /// <summary>
-        /// Gets the factory of the geometry.
-        /// </summary>
-        /// <value>The factory implementation the geometry was constructed by.</value>
-        public IGeometryFactory Factory { get; private set; }
 
         /// <summary>
         /// Gets the precision model of the geometry.
         /// </summary>
         /// <value>The precision model of the geometry.</value>
-        public PrecisionModel PrecisionModel { get { return this.Factory.PrecisionModel; } }
+        public PrecisionModel PrecisionModel { get { return this.precisionModel; } }
 
         /// <summary>
         /// Gets the inherent dimension of the geometry.
@@ -84,7 +76,7 @@ namespace AEGIS.Geometries
         /// Gets the reference system of the geometry.
         /// </summary>
         /// <value>The reference system of the geometry.</value>
-        public IReferenceSystem ReferenceSystem { get { return this.Factory.ReferenceSystem; } }
+        public IReferenceSystem ReferenceSystem { get { return this.referenceSystem; } }
 
         /// <summary>
         /// Gets the minimum bounding envelope of the geometry.

@@ -41,8 +41,8 @@ namespace AEGIS.Storage.Geometries
         /// or
         /// The identifier is null.
         /// </exception>
-        public StoredLinearRing(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
-            : base(precisionModel, driver, identifier, indexes)
+        public StoredLinearRing(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem, driver, identifier, indexes)
         {
         }
 

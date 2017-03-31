@@ -47,19 +47,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Triangle" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the triangle.</param>
-        /// <param name="first">The first coordinate.</param>
-        /// <param name="second">The second coordinate.</param>
-        /// <param name="third">The third coordinate.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public Triangle(IGeometryFactory factory, Coordinate first, Coordinate second, Coordinate third)
-            : base(factory, new Coordinate[] { first, second, third }, null)
-        {
-        }
-
-        /// <summary>
         /// Gets a value indicating whether the triangle is valid.
         /// </summary>
         /// <value><c>true</c> if the coordinates form a legitimate triangle; otherwise, <c>false</c>.</value>

@@ -44,37 +44,9 @@ namespace AEGIS.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
-            this.Factory = new FeatureFactory(geometry.Factory, attributes.Factory);
             this.Identifier = identifier;
             this.Geometry = geometry;
             this.Attributes = attributes;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Feature" /> class.
-        /// </summary>
-        /// <param name="factory">The factory is null.</param>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="geometry">The geometry.</param>
-        /// <param name="attributes">The attributes.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The identifier is null.
-        /// or
-        /// The geometry is null.
-        /// </exception>
-        public Feature(FeatureFactory factory, String identifier, IGeometry geometry, IAttributeCollection attributes)
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Factory = factory;
-            this.Identifier = identifier;
-            this.Geometry = (geometry == null) ? null : geometry.Factory.Equals(this.Factory.GeometryFactory) ? geometry : this.Factory.GeometryFactory.CreateGeometry(geometry);
-            this.Attributes = (attributes == null) ? null : attributes.Factory.Equals(this.Factory.AttributeCollectionFactory) ? attributes : this.Factory.AttributeCollectionFactory.CreateCollection(attributes);
         }
 
         /// <summary>
@@ -82,12 +54,6 @@ namespace AEGIS.Features
         /// </summary>
         /// <value>The collection of attribute.</value>
         public IAttributeCollection Attributes { get; private set; }
-
-        /// <summary>
-        /// Gets the factory of the feature.
-        /// </summary>
-        /// <value>The factory implementation the feature was constructed by.</value>
-        public IFeatureFactory Factory { get; private set; }
 
         /// <summary>
         /// Gets the geometry of the feature.

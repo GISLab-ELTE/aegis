@@ -51,31 +51,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiPoint" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi point.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public MultiPoint(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MultiPoint" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi point.</param>
-        /// <param name="source">The source of points.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public MultiPoint(IGeometryFactory factory, IEnumerable<IPoint> source)
-            : base(factory, source)
-        {
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the multi point.
         /// </summary>
         /// <value><c>0</c>, which is the defined dimension of a multi point.</value>

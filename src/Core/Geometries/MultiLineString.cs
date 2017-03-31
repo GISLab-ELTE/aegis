@@ -56,31 +56,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiLineString" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi line string.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public MultiLineString(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MultiLineString" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi line string.</param>
-        /// <param name="source">The source of line strings.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public MultiLineString(IGeometryFactory factory, IEnumerable<ILineString> source)
-            : base(factory, source)
-        {
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the multi line string.
         /// </summary>
         /// <value><c>1</c>, which is the defined dimension of a multi line string.</value>

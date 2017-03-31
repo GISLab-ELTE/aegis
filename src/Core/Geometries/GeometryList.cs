@@ -97,71 +97,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryList{GeometryType}" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the list.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public GeometryList(IGeometryFactory factory)
-            : base(factory)
-        {
-            this.items = new List<GeometryType>();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryList{GeometryType}" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the list.</param>
-        /// <param name="capacity">The number of elements that the list can initially store.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">The capacity is less than 0.</exception>
-        public GeometryList(IGeometryFactory factory, Int32 capacity)
-            : base(factory)
-        {
-            if (capacity < 0)
-                throw new ArgumentOutOfRangeException(nameof(capacity), AEGIS.Collections.Resources.CollectionMessages.CapacityLessThan0);
-
-            this.items = new List<GeometryType>(capacity);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryList{GeometryType}" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the list.</param>
-        /// <param name="source">The source of geometries.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public GeometryList(IGeometryFactory factory, IGeometryCollection source)
-            : base(factory)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.items = new List<GeometryType>(source.OfType<IGeometry>().Where(item => item is GeometryType).Select(item => (GeometryType)item));
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryList{GeometryType}" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the list.</param>
-        /// <param name="source">The source of geometries.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public GeometryList(IGeometryFactory factory, IEnumerable<GeometryType> source)
-            : base(factory)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.items = new List<GeometryType>(source);
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the geometry list.
         /// </summary>
         /// <value>The maximum inherent dimension of all geometries within the collection.</value>
@@ -204,9 +139,8 @@ namespace AEGIS.Geometries
                     if (geometry != null && !(geometry is IPoint))
                     {
                         // check whether the boundary contains multiple parts (e.g. polygon)
-                        IEnumerable<IGeometry> boundaryCollection = geometry.Boundary as IEnumerable<IGeometry>;
 
-                        if (boundaryCollection != null)
+                        if (geometry.Boundary is IEnumerable<IGeometry> boundaryCollection)
                         {
                             // only the parts should be added to the boundary (so that it is not recursive)
                             foreach (IGeometry boundaryPart in boundaryCollection)
@@ -224,7 +158,7 @@ namespace AEGIS.Geometries
                 if (boundaryList.Count == 1)
                     return boundaryList[0];
 
-                return this.Factory.CreateGeometryCollection(boundaryList);
+                return new GeometryList<IGeometry>(this.PrecisionModel, this.ReferenceSystem, boundaryList);
             }
         }
 
@@ -372,14 +306,7 @@ namespace AEGIS.Geometries
             if (index >= this.items.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
-            if (geometry == null || geometry.Factory.Equals(this.Factory))
-            {
-                this.items.Insert(index, geometry);
-            }
-            else
-            {
-                this.items.Insert(index, (GeometryType)this.Factory.CreateGeometry(geometry));
-            }
+            this.items.Insert(index, geometry);
         }
 
         /// <summary>
@@ -420,14 +347,7 @@ namespace AEGIS.Geometries
         /// <exception cref="System.ArgumentException">The reference system of the geometry does not match the reference system of the collection.</exception>
         public virtual void Add(GeometryType geometry)
         {
-            if (geometry == null || geometry.Factory.Equals(this.Factory))
-            {
-                this.items.Add(geometry);
-            }
-            else
-            {
-                this.items.Add((GeometryType)this.Factory.CreateGeometry(geometry));
-            }
+            this.items.Add(geometry);
         }
 
         /// <summary>

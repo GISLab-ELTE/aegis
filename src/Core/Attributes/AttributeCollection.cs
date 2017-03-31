@@ -27,7 +27,7 @@ namespace AEGIS.Attributes
         /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
         /// </summary>
         public AttributeCollection()
-            : this(new AttributeCollectionFactory())
+            : base()
         {
         }
 
@@ -37,7 +37,7 @@ namespace AEGIS.Attributes
         /// <param name="capacity">The initial number of elements that the <see cref="AttributeCollection" /> can contain.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">The capacity is less than 0.</exception>
         public AttributeCollection(Int32 capacity)
-            : this(new AttributeCollectionFactory(), capacity)
+            : base(capacity)
         {
         }
 
@@ -46,91 +46,8 @@ namespace AEGIS.Attributes
         /// </summary>
         /// <param name="source">The <see cref="IDictionary{String, Object}" /> whose elements are copied to the new <see cref="AttributeCollection" />.</param>
         public AttributeCollection(IDictionary<String, Object> source)
-            : this(new AttributeCollectionFactory(), source)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
-        /// </summary>
-        /// <param name="source">The <see cref="IAttributeCollection" /> whose elements are copied to the new <see cref="AttributeCollection" />.</param>
-        public AttributeCollection(IAttributeCollection source)
-            : this(new AttributeCollectionFactory(), source)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the collection.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public AttributeCollection(AttributeCollectionFactory factory)
-            : base()
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-
-            this.Factory = factory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the collection.</param>
-        /// <param name="capacity">The initial number of elements that the <see cref="AttributeCollection" /> can contain.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">The capacity is less than 0.</exception>
-        public AttributeCollection(AttributeCollectionFactory factory, Int32 capacity)
-            : base(capacity)
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-
-            this.Factory = factory;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the collection.</param>
-        /// <param name="source">The <see cref="IDictionary{String, Object}" /> whose elements are copied to the new <see cref="AttributeCollection" />.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public AttributeCollection(AttributeCollectionFactory factory, IDictionary<String, Object> source)
             : base(source)
         {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-
-            this.Factory = factory;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AttributeCollection" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the collection.</param>
-        /// <param name="source">The <see cref="IAttributeCollection" /> whose elements are copied to the new <see cref="AttributeCollection" />.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public AttributeCollection(AttributeCollectionFactory factory, IAttributeCollection source)
-            : base(source)
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-
-            this.Factory = factory;
-        }
-
-        /// <summary>
-        /// Gets the factory of the attribute collection.
-        /// </summary>
-        /// <value>The factory implementation the attribute collection was constructed by.</value>
-        public IAttributeCollectionFactory Factory { get; private set; }
     }
 }

@@ -33,16 +33,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Surface" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the surface.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        protected Surface(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the surface.
         /// </summary>
         /// <value><c>2</c>, which is the defined dimension of a surface.</value>

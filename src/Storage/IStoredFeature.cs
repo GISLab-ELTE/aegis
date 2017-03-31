@@ -24,11 +24,5 @@ namespace AEGIS.Storage
         /// </summary>
         /// <value>The driver the feature.</value>
         IFeatureDriver Driver { get; }
-
-        /// <summary>
-        /// Gets the factory of the feature.
-        /// </summary>
-        /// <value>The factory implementation the feature was constructed by.</value>
-        new IStoredFeatureFactory Factory { get; }
     }
 }

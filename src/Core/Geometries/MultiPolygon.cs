@@ -51,31 +51,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiPolygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi polygon.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public MultiPolygon(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MultiPolygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the multi polygon.</param>
-        /// <param name="source">The source of polygons.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The source is null.
-        /// </exception>
-        public MultiPolygon(IGeometryFactory factory, IEnumerable<IPolygon> source)
-            : base(factory, source)
-        {
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the multi polygon.
         /// </summary>
         /// <value><c>2</c>, which is the defined dimension of a multi polygon.</value>

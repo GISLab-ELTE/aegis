@@ -85,35 +85,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LineString" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the line string.</param>
-        public LineString(IGeometryFactory factory)
-            : base(factory)
-        {
-            this.coordinates = new List<Coordinate>();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LineString" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the line string.</param>
-        /// <param name="source">The source coordinates.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The source is null.
-        /// or
-        /// The factory is null.
-        /// </exception>
-        public LineString(IGeometryFactory factory, IEnumerable<Coordinate> source)
-            : base(factory)
-        {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.coordinates = new List<Coordinate>(source.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate)));
-        }
-
-        /// <summary>
         /// Gets the minimum bounding envelope of the geometry.
         /// </summary>
         /// <value>The minimum bounding envelope of the geometry.</value>
@@ -136,10 +107,10 @@ namespace AEGIS.Geometries
                 }
                 else
                 {
-                    return this.Factory.CreateMultiPoint(new IPoint[]
+                    return new MultiPoint(this.PrecisionModel, this.ReferenceSystem, new Point[]
                     {
-                        this.Factory.CreatePoint(this.StartCoordinate),
-                        this.Factory.CreatePoint(this.EndCoordinate)
+                        new Point(this.PrecisionModel, this.ReferenceSystem, this.StartCoordinate),
+                        new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate)
                     });
                 }
             }
@@ -209,7 +180,7 @@ namespace AEGIS.Geometries
             {
                 if (this.Count == 0)
                     return null;
-                return this.Factory.CreatePoint(this.StartCoordinate);
+                return new Point(this.PrecisionModel, this.ReferenceSystem, this.StartCoordinate);
             }
         }
 
@@ -223,7 +194,7 @@ namespace AEGIS.Geometries
             {
                 if (this.Count == 0)
                     return null;
-                return this.Factory.CreatePoint(this.coordinates[this.coordinates.Count - 1]);
+                return new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate);
             }
         }
 

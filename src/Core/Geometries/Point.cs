@@ -38,27 +38,11 @@ namespace AEGIS.Geometries
         /// </summary>
         /// <param name="precisionModel">The precision model.</param>
         /// <param name="referenceSystem">The reference system.</param>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        /// <param name="z">The Z coordinate.</param>
-        public Point(PrecisionModel precisionModel, IReferenceSystem referenceSystem, Double x, Double y, Double z)
+        /// <param name="coordinate">The coordinate.</param>
+        public Point(PrecisionModel precisionModel, IReferenceSystem referenceSystem, Coordinate coordinate)
             : base(precisionModel, referenceSystem)
         {
-            this.coordinate = new Coordinate(this.PrecisionModel.MakePrecise(x), this.PrecisionModel.MakePrecise(y), this.PrecisionModel.MakePrecise(z));
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Point" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the point.</param>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
-        /// <param name="z">The Z coordinate.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public Point(IGeometryFactory factory, Double x, Double y, Double z)
-            : base(factory)
-        {
-            this.coordinate = new Coordinate(this.PrecisionModel.MakePrecise(x), this.PrecisionModel.MakePrecise(y), this.PrecisionModel.MakePrecise(z));
+            this.coordinate = this.PrecisionModel.MakePrecise(coordinate);
         }
 
         /// <summary>

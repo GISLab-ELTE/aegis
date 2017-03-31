@@ -22,10 +22,5 @@ namespace AEGIS
     /// </summary>
     public interface IAttributeCollection : IDictionary<String, Object>
     {
-        /// <summary>
-        /// Gets the factory of the attribute collection.
-        /// </summary>
-        /// <value>The factory implementation the attribute collection was constructed by.</value>
-        IAttributeCollectionFactory Factory { get; }
     }
 }

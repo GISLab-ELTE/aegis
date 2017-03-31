@@ -42,8 +42,8 @@ namespace AEGIS.Storage.Geometries
         /// or
         /// The identifier is null.
         /// </exception>
-        public StoredTriangle(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
-            : base(precisionModel, driver, identifier, indexes)
+        public StoredTriangle(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem, driver, identifier, indexes)
         {
         }
 

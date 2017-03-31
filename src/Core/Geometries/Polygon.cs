@@ -59,7 +59,7 @@ namespace AEGIS.Geometries
         /// <summary>
         /// The holes of the polygon.
         /// </summary>
-        private readonly List<ILinearRing> holes;
+        private readonly List<LinearRing> holes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Polygon" /> class.
@@ -69,8 +69,8 @@ namespace AEGIS.Geometries
         public Polygon(PrecisionModel precisionModel, IReferenceSystem referenceSystem)
             : base(precisionModel, referenceSystem)
         {
-            this.Shell = this.Factory.CreateLinearRing();
-            this.holes = new List<ILinearRing>();
+            this.Shell = new LinearRing(precisionModel, referenceSystem);
+            this.holes = new List<LinearRing>();
         }
 
         /// <summary>
@@ -81,31 +81,22 @@ namespace AEGIS.Geometries
         /// <param name="shell">The shell.</param>
         /// <param name="holes">The collection of holes.</param>
         /// <exception cref="System.ArgumentNullException">The shell is null.</exception>
-        public Polygon(PrecisionModel precisionModel, IReferenceSystem referenceSystem, ILinearRing shell, IEnumerable<ILinearRing> holes)
+        public Polygon(PrecisionModel precisionModel, IReferenceSystem referenceSystem, LinearRing shell, IEnumerable<LinearRing> holes)
             : base(precisionModel, referenceSystem)
         {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
             // initialize shell
-            if (shell.Factory.Equals(this.Factory))
-                this.Shell = shell;
-            else
-                this.Shell = this.Factory.CreateLinearRing(shell);
+            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             // initialize holes
-            this.holes = new List<ILinearRing>();
+            this.holes = new List<LinearRing>();
             if (holes != null)
             {
-                foreach (ILinearRing hole in holes)
+                foreach (LinearRing hole in holes)
                 {
                     if (hole == null)
                         continue;
 
-                    if (hole.Factory.Equals(this.Factory))
-                        this.holes.Add(hole);
-                    else
-                        this.holes.Add(this.Factory.CreateLinearRing(hole));
+                    this.holes.Add(hole);
                 }
             }
         }
@@ -126,104 +117,18 @@ namespace AEGIS.Geometries
                 throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
 
             // initialize shell
-            this.Shell = this.Factory.CreateLinearRing(shell);
+            this.Shell = new LinearRing(precisionModel, referenceSystem, shell);
 
             // initialize holes
-            this.holes = new List<ILinearRing>();
+            this.holes = new List<LinearRing>();
             if (holes != null)
             {
-                foreach (IEnumerable<Coordinate> coordinates in holes)
-                {
-                    if (coordinates == null)
-                        continue;
-
-                    this.holes.Add(this.Factory.CreateLinearRing(coordinates));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Polygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the polygon.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public Polygon(IGeometryFactory factory)
-            : base(factory)
-        {
-            this.Shell = this.Factory.CreateLinearRing();
-            this.holes = new List<ILinearRing>();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Polygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the polygon.</param>
-        /// <param name="shell">The shell.</param>
-        /// <param name="holes">The collection of holes.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The shell is null.
-        /// or
-        /// The factory is null.
-        /// </exception>
-        public Polygon(IGeometryFactory factory, ILinearRing shell, IEnumerable<ILinearRing> holes)
-            : base(factory)
-        {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
-            // initialize shell
-            if (shell.Factory.Equals(this.Factory))
-                this.Shell = shell;
-            else
-                this.Shell = this.Factory.CreateLinearRing(shell);
-
-            // initialize holes
-            this.holes = new List<ILinearRing>();
-            if (holes != null)
-            {
-                foreach (ILinearRing hole in holes)
+                foreach (IEnumerable<Coordinate> hole in holes)
                 {
                     if (hole == null)
                         continue;
 
-                    if (hole.Factory.Equals(this.Factory))
-                        this.holes.Add(hole);
-                    else
-                        this.holes.Add(this.Factory.CreateLinearRing(hole));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Polygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the polygon.</param>
-        /// <param name="shell">The coordinates of the shell.</param>
-        /// <param name="holes">The coordinates of the holes.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The shell is null.
-        /// or
-        /// The factory is null.
-        /// </exception>
-        public Polygon(IGeometryFactory factory, IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes)
-            : base(factory)
-        {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
-            // initialize shell
-            this.Shell = this.Factory.CreateLinearRing(shell);
-
-            // initialize holes
-            this.holes = new List<ILinearRing>();
-            if (holes != null)
-            {
-                foreach (IEnumerable<Coordinate> coordinates in holes)
-                {
-                    if (coordinates == null)
-                        continue;
-
-                    this.holes.Add(this.Factory.CreateLinearRing(coordinates));
+                    this.holes.Add(new LinearRing(precisionModel, referenceSystem, hole));
                 }
             }
         }
@@ -248,10 +153,10 @@ namespace AEGIS.Geometries
         {
             get
             {
-                List<ILinearRing> boundary = new List<ILinearRing>() { this.Factory.CreateLinearRing(this.Shell) };
-                boundary.AddRange(this.holes.Select(hole => this.Factory.CreateLinearRing(hole)));
+                List<LinearRing> boundary = new List<LinearRing>() { new LinearRing(this.PrecisionModel, this.ReferenceSystem, this.Shell) };
+                boundary.AddRange(this.holes.Select(hole => new LinearRing(this.PrecisionModel, this.ReferenceSystem, hole)));
 
-                return this.Factory.CreateMultiLineString(boundary);
+                return new MultiLineString(this.PrecisionModel, this.ReferenceSystem, boundary);
             }
         }
 
@@ -387,10 +292,10 @@ namespace AEGIS.Geometries
             if (hole == null)
                 throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
 
-            if (hole.Factory.Equals(this.Factory))
-                this.holes.Add(hole);
+            if (hole is LinearRing holeImplementation)
+                this.holes.Add(holeImplementation);
             else
-                this.holes.Add(this.Factory.CreateLinearRing(hole));
+                this.holes.Add(new LinearRing(this.PrecisionModel, this.ReferenceSystem, hole));
         }
 
         /// <summary>
@@ -403,7 +308,7 @@ namespace AEGIS.Geometries
             if (hole == null)
                 throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
 
-            this.holes.Add(this.Factory.CreateLinearRing(hole.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate))));
+            this.holes.Add(new LinearRing(this.PrecisionModel, this.ReferenceSystem, hole));
         }
 
         /// <summary>

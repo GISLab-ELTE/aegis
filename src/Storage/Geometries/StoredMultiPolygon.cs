@@ -40,8 +40,8 @@ namespace AEGIS.Storage.Geometries
         /// or
         /// The identifier is null.
         /// </exception>
-        public StoredMultiPolygon(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
-            : base(precisionModel, driver, identifier, indexes)
+        public StoredMultiPolygon(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem, driver, identifier, indexes)
         {
         }
 

@@ -22,18 +22,6 @@ namespace AEGIS.Storage
     public interface IStoredFeatureFactory : IFeatureFactory
     {
         /// <summary>
-        /// Gets the attribute collection factory.
-        /// </summary>
-        /// <value>The attribute collection factory.</value>
-        new IStoredAttributeCollectionFactory AttributeCollectionFactory { get; }
-
-        /// <summary>
-        /// Gets the geometry factory.
-        /// </summary>
-        /// <value>The geometry factory.</value>
-        new IStoredGeometryFactory GeometryFactory { get; }
-
-        /// <summary>
         /// Gets the feature driver of the factory.
         /// </summary>
         /// <value>The feature driver of the factory.</value>

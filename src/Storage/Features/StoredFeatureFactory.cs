@@ -32,10 +32,7 @@ namespace AEGIS.Storage.Features
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
         public StoredFeatureFactory(IFeatureDriver driver)
         {
-            if (driver == null)
-                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
-
-            this.Driver = driver;
+            this.Driver = driver ?? throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
 
             StoredAttributeCollectionFactory attributeFactory = new StoredAttributeCollectionFactory(driver.AttributeDriver);
             StoredGeometryFactory geometryFactory = new StoredGeometryFactory(driver.GeometryDriver);
@@ -45,18 +42,6 @@ namespace AEGIS.Storage.Features
             this.EnsureFactory<IGeometryFactory>(geometryFactory);
             this.EnsureFactory<IStoredGeometryFactory>(geometryFactory);
         }
-
-        /// <summary>
-        /// Gets the attribute collection factory.
-        /// </summary>
-        /// <value>The attribute collection factory.</value>
-        IAttributeCollectionFactory IFeatureFactory.AttributeCollectionFactory { get { return this.GetFactory<IAttributeCollectionFactory>(); } }
-
-        /// <summary>
-        /// Gets the geometry factory.
-        /// </summary>
-        /// <value>The geometry factory.</value>
-        IGeometryFactory IFeatureFactory.GeometryFactory { get { return this.GetFactory<IGeometryFactory>(); } }
 
         /// <summary>
         /// Gets the attribute collection factory.

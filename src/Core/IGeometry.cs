@@ -26,12 +26,6 @@ namespace AEGIS
     public interface IGeometry : IBasicGeometry
     {
         /// <summary>
-        /// Gets the factory of the geometry.
-        /// </summary>
-        /// <value>The factory implementation the geometry was constructed by.</value>
-        IGeometryFactory Factory { get; }
-
-        /// <summary>
         /// Gets the precision model of the geometry.
         /// </summary>
         /// <value>The precision model of the geometry.</value>
