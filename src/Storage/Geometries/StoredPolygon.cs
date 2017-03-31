@@ -61,6 +61,7 @@ namespace AEGIS.Storage.Geometries
         /// Initializes a new instance of the <see cref="StoredPolygon" /> class.
         /// </summary>
         /// <param name="precisionModel">The precision model.</param>
+        /// <param name="referenceSystem">The reference system.</param>
         /// <param name="driver">The geometry driver.</param>
         /// <param name="identifier">The feature identifier.</param>
         /// <param name="indexes">The indexes of the geometry within the feature.</param>
@@ -69,24 +70,8 @@ namespace AEGIS.Storage.Geometries
         /// or
         /// The identifier is null.
         /// </exception>
-        public StoredPolygon(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
-            : base(precisionModel, driver, identifier, indexes)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StoredPolygon" /> class.
-        /// </summary>
-        /// <param name="factory">The factory.</param>
-        /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indexes">The indexes of the geometry within the feature.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The identifier is null.
-        /// </exception>
-        public StoredPolygon(StoredGeometryFactory factory, String identifier, IEnumerable<Int32> indexes)
-            : base(factory, identifier, indexes)
+        public StoredPolygon(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem, driver, identifier, indexes)
         {
         }
 
@@ -98,7 +83,7 @@ namespace AEGIS.Storage.Geometries
         {
             get
             {
-                return (this.Factory as StoredGeometryFactory).CreateMultiLineString(this.Identifier);
+                return new StoredMultiLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes);
             }
         }
 
@@ -199,7 +184,7 @@ namespace AEGIS.Storage.Geometries
         /// Gets the shell of the polygon.
         /// </summary>
         /// <value>The <see cref="ILinearRing" /> representing the shell of the polygon.</value>
-        public ILinearRing Shell { get { return (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, 0); } }
+        public ILinearRing Shell { get { return new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes); } }
 
         /// <summary>
         /// Gets the number of holes of the polygon.
@@ -210,8 +195,14 @@ namespace AEGIS.Storage.Geometries
         /// <summary>
         /// Gets the holes of the polygon.
         /// </summary>
-        /// <value>The <see cref="IList{LinearRing}" /> containing the holes of the polygon.</value>
-        public IReadOnlyList<ILinearRing> Holes { get { return Enumerable.Range(1, this.HoleCount).Select(holeIndex => (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, holeIndex)).ToList(); } }
+        /// <value>The read-only list containing the holes of the polygon.</value>
+        public IReadOnlyList<ILinearRing> Holes
+        {
+            get
+            {
+                return Enumerable.Range(1, this.HoleCount).Select(index => this.GetHole(index)).ToArray();
+            }
+        }
 
         /// <summary>
         /// Gets a hole at the specified index.
@@ -270,7 +261,7 @@ namespace AEGIS.Storage.Geometries
             if (index >= this.HoleCount)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
-            return (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, this.Indexes.Append(index + 1));
+            return new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes.Append(index + 1));
         }
 
         /// <summary>

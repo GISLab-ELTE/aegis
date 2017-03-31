@@ -23,18 +23,6 @@ namespace AEGIS
     public interface IFeatureFactory : IFactory
     {
         /// <summary>
-        /// Gets the attribute collection factory.
-        /// </summary>
-        /// <value>The attribute collection factory.</value>
-        IAttributeCollectionFactory AttributeCollectionFactory { get; }
-
-        /// <summary>
-        /// Gets the geometry factory.
-        /// </summary>
-        /// <value>The geometry factory.</value>
-        IGeometryFactory GeometryFactory { get; }
-
-        /// <summary>
         /// Creates a feature.
         /// </summary>
         /// <param name="identifier">The unique identifier of the feature.</param>

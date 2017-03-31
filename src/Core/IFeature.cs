@@ -31,12 +31,6 @@ namespace AEGIS
         IAttributeCollection Attributes { get; }
 
         /// <summary>
-        /// Gets the factory of the feature.
-        /// </summary>
-        /// <value>The factory implementation the feature was constructed by.</value>
-        IFeatureFactory Factory { get; }
-
-        /// <summary>
         /// Gets the geometry of the feature.
         /// </summary>
         /// <value>The geometry of the feature.</value>

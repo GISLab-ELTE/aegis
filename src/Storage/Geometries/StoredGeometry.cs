@@ -19,13 +19,14 @@ namespace AEGIS.Storage.Geometries
     using System.Globalization;
     using System.Linq;
     using AEGIS.Collections;
+    using AEGIS.Geometries;
     using AEGIS.Resources;
     using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents a geometry located in a store.
     /// </summary>
-    public abstract class StoredGeometry : IStoredGeometry
+    public abstract class StoredGeometry : Geometry, IStoredGeometry
     {
         /// <summary>
         /// The empty array of indexes. This field is read-only.
@@ -33,37 +34,20 @@ namespace AEGIS.Storage.Geometries
         private static readonly Int32[] EmptyIndexes = new Int32[0];
 
         /// <summary>
-        /// The array of indexes.
+        /// The geometry driver. This field is read-only.
         /// </summary>
-        private Int32[] indexes;
+        private readonly IGeometryDriver driver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StoredGeometry" /> class.
+        /// The array of indexes. This field is read-only.
         /// </summary>
-        /// <param name="factory">The factory.</param>
-        /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indexes">The indexes of the geometry within the feature.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The identifier is null.
-        /// </exception>
-        protected StoredGeometry(StoredGeometryFactory factory, String identifier, IEnumerable<Int32> indexes)
-        {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Factory = factory;
-            this.Identifier = identifier;
-            this.indexes = indexes == null ? EmptyIndexes : indexes.ToArray();
-        }
+        private readonly Int32[] indexes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredGeometry" /> class.
         /// </summary>
         /// <param name="precisionModel">The precision model.</param>
+        /// <param name="referenceSystem">The reference system driver.</param>
         /// <param name="driver">The geometry driver.</param>
         /// <param name="identifier">The feature identifier.</param>
         /// <param name="indexes">The indexes of the geometry within the feature.</param>
@@ -72,95 +56,25 @@ namespace AEGIS.Storage.Geometries
         /// or
         /// The identifier is null.
         /// </exception>
-        protected StoredGeometry(PrecisionModel precisionModel, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+        protected StoredGeometry(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem)
         {
-            if (driver == null)
-                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Factory = new StoredGeometryFactory(driver, precisionModel);
-            this.Identifier = identifier;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.driver = driver ?? throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
             this.indexes = indexes == null ? EmptyIndexes : indexes.ToArray();
         }
-
-        /// <summary>
-        /// Gets the factory of the geometry.
-        /// </summary>
-        /// <value>The factory implementation the geometry was constructed by.</value>
-        IGeometryFactory IGeometry.Factory { get { return this.Factory; } }
-
-        /// <summary>
-        /// Gets the precision model of the geometry.
-        /// </summary>
-        /// <value>The precision model of the geometry.</value>
-        public PrecisionModel PrecisionModel { get { return this.Factory.PrecisionModel; } }
-
-        /// <summary>
-        /// Gets the inherent dimension of the geometry.
-        /// </summary>
-        /// <value>The inherent dimension of the geometry.</value>
-        public abstract Int32 Dimension { get; }
-
-        /// <summary>
-        /// Gets the coordinate dimension of the geometry.
-        /// </summary>
-        /// <value>The coordinate dimension of the geometry. The coordinate dimension is equal to the dimension of the reference system, if provided.</value>
-        public virtual Int32 CoordinateDimension { get { return (this.ReferenceSystem != null) ? this.ReferenceSystem.Dimension : this.SpatialDimension; } }
-
-        /// <summary>
-        /// Gets the spatial dimension of the geometry.
-        /// </summary>
-        /// <value>The spatial dimension of the geometry. The spatial dimension is always less than or equal to the coordinate dimension.</value>
-        public virtual Int32 SpatialDimension { get { return (this.Envelope.Minimum.Z != 0 || this.Envelope.Maximum.Z != 0) ? 3 : 2; } }
-
-        /// <summary>
-        /// Gets the reference system of the geometry.
-        /// </summary>
-        /// <value>The reference system of the geometry.</value>
-        public IReferenceSystem ReferenceSystem { get { return this.Factory.ReferenceSystem; } }
 
         /// <summary>
         /// Gets the minimum bounding envelope of the geometry.
         /// </summary>
         /// <value>The minimum bounding box of the geometry.</value>
-        public Envelope Envelope
+        public override Envelope Envelope
         {
             get
             {
                 return this.indexes.Length == 0 ? this.Driver.ReadEnvelope(this.Identifier) : this.Driver.ReadEnvelope(this.Identifier, this.indexes);
             }
         }
-
-        /// <summary>
-        /// Gets the bounding geometry.
-        /// </summary>
-        /// <value>The boundary of the geometry.</value>
-        public abstract IGeometry Boundary { get; }
-
-        /// <summary>
-        /// Gets the centroid of the geometry.
-        /// </summary>
-        /// <value>The centroid of the geometry.</value>
-        public abstract Coordinate Centroid { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether the geometry is empty.
-        /// </summary>
-        /// <value><c>true</c> if the geometry is considered to be empty; otherwise, <c>false</c>.</value>
-        public abstract Boolean IsEmpty { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether the geometry is simple.
-        /// </summary>
-        /// <value><c>true</c> if the geometry is considered to be simple; otherwise, <c>false</c>.</value>
-        public abstract Boolean IsSimple { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether the geometry is valid.
-        /// </summary>
-        /// <value><c>true</c> if the geometry is considered to be valid; otherwise, <c>false</c>.</value>
-        public abstract Boolean IsValid { get; }
 
         /// <summary>
         /// Gets the feature identifier.
@@ -178,29 +92,7 @@ namespace AEGIS.Storage.Geometries
         /// Gets the driver of the geometry.
         /// </summary>
         /// <value>The driver of the geometry.</value>
-        public IGeometryDriver Driver { get { return this.Factory.Driver; } }
-
-        /// <summary>
-        /// Gets the factory of the geometry.
-        /// </summary>
-        /// <value>The factory implementation the geometry was constructed by.</value>
-        public IStoredGeometryFactory Factory { get; private set; }
-
-        /// <summary>
-        /// Returns the <see cref="System.String" /> equivalent of the instance.
-        /// </summary>
-        /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
-        public override sealed String ToString()
-        {
-            return this.ToString(CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        /// Returns the <see cref="System.String" /> equivalent of the instance.
-        /// </summary>
-        /// <param name="provider">An object that supplies culture-specific formatting information.</param>
-        /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
-        public abstract String ToString(IFormatProvider provider);
+        public IGeometryDriver Driver { get { return this.driver; } }
 
         /// <summary>
         /// Creates a coordinate for the specified geometry.

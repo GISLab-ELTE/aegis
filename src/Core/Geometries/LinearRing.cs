@@ -54,38 +54,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LinearRing" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the linear ring.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        public LinearRing(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LinearRing" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the linear ring.</param>
-        /// <param name="source">The source coordinates.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The source is null.
-        /// or
-        /// The factory is null.
-        /// </exception>
-        /// <exception cref="System.ArgumentException">
-        /// The source is empty.
-        /// or
-        /// The specified factory is invalid.
-        /// </exception>
-        public LinearRing(IGeometryFactory factory, IEnumerable<Coordinate> source)
-            : base(factory, source)
-        {
-            if (this.Count > 0 && this.StartCoordinate != this.EndCoordinate)
-                base.Add(this.StartCoordinate);
-        }
-
-        /// <summary>
         /// Gets a value indicating whether the linear ring is valid.
         /// </summary>
         /// <value><c>true</c> if the linear ring is simple and all coordinates of the linear ring are valid; otherwise, <c>false</c>.</value>

@@ -32,11 +32,5 @@ namespace AEGIS.Storage
         /// </summary>
         /// <value>The driver the attribute collection.</value>
         IAttributeDriver Driver { get; }
-
-        /// <summary>
-        /// Gets the factory of the attribute collection.
-        /// </summary>
-        /// <value>The factory implementation the attribute collection was constructed by.</value>
-        new IStoredAttributeCollectionFactory Factory { get; }
     }
 }

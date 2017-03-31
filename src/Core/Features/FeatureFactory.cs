@@ -44,18 +44,6 @@ namespace AEGIS.Features
         }
 
         /// <summary>
-        /// Gets the attribute collection factory.
-        /// </summary>
-        /// <value>The attribute collection factory.</value>
-        public IAttributeCollectionFactory AttributeCollectionFactory { get { return this.GetFactory<IAttributeCollectionFactory>(); } }
-
-        /// <summary>
-        /// Gets the geometry factory.
-        /// </summary>
-        /// <value>The geometry factory.</value>
-        public IGeometryFactory GeometryFactory { get { return this.GetFactory<IGeometryFactory>(); } }
-
-        /// <summary>
         /// Creates a feature.
         /// </summary>
         /// <param name="identifier">The unique identifier of the feature.</param>
@@ -66,7 +54,7 @@ namespace AEGIS.Features
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
 
-            return new Feature(this, identifier, null, null);
+            return new Feature(identifier, null, null);
         }
 
         /// <summary>
@@ -87,7 +75,7 @@ namespace AEGIS.Features
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
 
-            return new Feature(this, identifier, geometry, null);
+            return new Feature(identifier, geometry, null);
         }
 
         /// <summary>
@@ -113,7 +101,7 @@ namespace AEGIS.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
-            return new Feature(this, identifier, geometry, attributes);
+            return new Feature(identifier, geometry, attributes);
         }
 
         /// <summary>
@@ -134,7 +122,7 @@ namespace AEGIS.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
 
-            return new Feature(this, identifier, null, attributes);
+            return new Feature(identifier, null, attributes);
         }
 
         /// <summary>
@@ -148,7 +136,7 @@ namespace AEGIS.Features
             if (other == null)
                 throw new ArgumentNullException(nameof(other), CoreMessages.FeatureIsNull);
 
-            return new Feature(this, other.Identifier, other.Geometry, other.Attributes);
+            return new Feature(other.Identifier, other.Geometry, other.Attributes);
         }
 
         /// <summary>

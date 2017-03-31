@@ -23,12 +23,6 @@ namespace AEGIS.Storage
     public interface IStoredGeometry : IGeometry
     {
         /// <summary>
-        /// Gets the factory of the geometry.
-        /// </summary>
-        /// <value>The factory implementation the geometry was constructed by.</value>
-        new IStoredGeometryFactory Factory { get; }
-
-        /// <summary>
         /// Gets the feature identifier.
         /// </summary>
         /// <value>The unique feature identifier within the store.</value>

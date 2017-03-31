@@ -33,16 +33,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Curve" /> class.
-        /// </summary>
-        /// <param name="factory">The factory of the curve.</param>
-        /// <exception cref="System.ArgumentNullException">The factory is null.</exception>
-        protected Curve(IGeometryFactory factory)
-            : base(factory)
-        {
-        }
-
-        /// <summary>
         /// Gets the inherent dimension of the curve.
         /// </summary>
         /// <value><c>1</c>, which is the defined dimension of a curve.</value>

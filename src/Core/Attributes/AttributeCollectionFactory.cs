@@ -31,7 +31,7 @@ namespace AEGIS.Attributes
         /// Creates an attribute collection.
         /// </summary>
         /// <returns>The produced attribute collection.</returns>
-        public virtual IAttributeCollection CreateCollection() { return new AttributeCollection(this); }
+        public virtual IAttributeCollection CreateCollection() { return new AttributeCollection(); }
 
         /// <summary>
         /// Creates an attribute collection.
@@ -42,7 +42,8 @@ namespace AEGIS.Attributes
         {
             if (source == null)
                 return null;
-            return new AttributeCollection(this, source);
+
+            return new AttributeCollection(source);
         }
 
         /// <summary>
@@ -54,7 +55,8 @@ namespace AEGIS.Attributes
         {
             if (source == null)
                 return null;
-            return new AttributeCollection(this, source);
+
+            return new AttributeCollection(source);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace AEGIS.Features
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using AEGIS.Geometries;
     using AEGIS.Resources;
 
     /// <summary>
@@ -43,14 +44,9 @@ namespace AEGIS.Features
         /// </exception>
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes)
         {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Factory = factory;
-            this.Identifier = identifier;
-            this.Attributes = (attributes == null) ? null : attributes.Factory.Equals(this.Factory.AttributeCollectionFactory) ? attributes : this.Factory.AttributeCollectionFactory.CreateCollection(attributes);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Attributes = attributes;
             this.items = new Dictionary<String, IFeature>();
         }
 
@@ -71,16 +67,12 @@ namespace AEGIS.Features
         /// <exception cref="System.ArgumentException">The collection contains one or more duplicate identifiers.</exception>
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
-            if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
 
-            this.Factory = factory;
-            this.Identifier = identifier;
-            this.Attributes = (attributes == null) ? null : attributes.Factory.Equals(this.Factory.AttributeCollectionFactory) ? attributes : this.Factory.AttributeCollectionFactory.CreateCollection(attributes);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Attributes = attributes;
 
             this.items = new Dictionary<String, IFeature>();
             foreach (IFeature feature in collection)
@@ -91,7 +83,7 @@ namespace AEGIS.Features
                 if (this.items.ContainsKey(feature.Identifier))
                     throw new ArgumentException(nameof(collection), CoreMessages.CollectionContainsDuplicateIdentifiers);
 
-               this.items.Add(feature.Identifier, feature.Factory.Equals(this.Factory) ? feature : this.Factory.CreateFeature(feature));
+               this.items.Add(feature.Identifier, feature);
             }
         }
 
@@ -111,7 +103,7 @@ namespace AEGIS.Features
         /// Gets the geometry of the feature.
         /// </summary>
         /// <value>The geometry of the feature.</value>
-        public IGeometry Geometry { get { return this.Factory.GeometryFactory.CreateGeometryCollection(this.items.Values.Select(feature => feature.Geometry)); } }
+        public IGeometry Geometry { get { return null; } }
 
         /// <summary>
         /// Gets the unique identifier of the feature collection.
@@ -149,8 +141,7 @@ namespace AEGIS.Features
                 if (identifier == null)
                     return null;
 
-                IFeature feature = null;
-                if (!this.items.TryGetValue(identifier, out feature))
+                if (!this.items.TryGetValue(identifier, out IFeature feature))
                     return null;
 
                 return feature;
