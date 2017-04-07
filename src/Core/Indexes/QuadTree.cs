@@ -46,7 +46,7 @@ namespace AEGIS.Indexes
             /// <summary>
             /// Initializes a new instance of the <see cref="QuadTreeNode"/> class.
             /// </summary>
-            /// <param name="envelope">The region of the node.</param>
+            /// <param name="envelope">The envelope of the node.</param>
             public QuadTreeNode(Envelope envelope)
             {
                 this.envelope = envelope;
@@ -55,9 +55,9 @@ namespace AEGIS.Indexes
             }
 
             /// <summary>
-            /// Gets the region of the node.
+            /// Gets the envelope of the node.
             /// </summary>
-            /// <value>The region of the node.</value>
+            /// <value>The envelope of the node.</value>
             public Envelope Envelope
             {
                 get
@@ -67,10 +67,22 @@ namespace AEGIS.Indexes
             }
 
             /// <summary>
+            /// Gets the children of the node.
+            /// </summary>
+            /// /// <value>The children of the node.</value>
+            public List<QuadTreeNode> Children
+            {
+                get
+                {
+                    return this.children;
+                }
+            }
+
+            /// <summary>
             /// Gets a value indicating whether the node is a leaf node.
             /// </summary>
             /// <value><c>true</c> if the node is a leaf node, otherwise <c>false</c>.</value>
-            public Boolean IsLeaf { get { return this.children.Count == 0; } }
+            public Boolean IsLeaf { get { return this.Children.Count == 0; } }
 
             /// <summary>
             /// Gets a value indicating whether the node is empty or not.
@@ -98,7 +110,7 @@ namespace AEGIS.Indexes
                 get
                 {
                     int count = 0;
-                    foreach (QuadTreeNode node in this.children)
+                    foreach (QuadTreeNode node in this.Children)
                         count += node.NumberOfGeometries;
 
                     count += this.contents.Count;
@@ -116,7 +128,7 @@ namespace AEGIS.Indexes
                 List<IBasicGeometry> result = new List<IBasicGeometry>();
 
                 // Recursively call Search for children whose bound intersects with the envelope.
-                foreach (QuadTreeNode child in this.children)
+                foreach (QuadTreeNode child in this.Children)
                 {
                     if (child.IsEmpty)
                         continue;
@@ -149,14 +161,14 @@ namespace AEGIS.Indexes
                 }
 
                 // If this is a leaf node with contents, create children and subdivide current contents between the children
-                if (this.children.Count == 0)
+                if (this.Children.Count == 0)
                 {
                     this.CreateChildren();
                     this.SubdivideContents();
                 }
 
                 // Find child which has an envelope that contains current geometry, and recursively call Add on that child, then return
-                foreach (QuadTreeNode child in this.children)
+                foreach (QuadTreeNode child in this.Children)
                 {
                     if (child.envelope.Contains(geometry.Envelope))
                     {
@@ -165,7 +177,7 @@ namespace AEGIS.Indexes
                     }
                 }
 
-                // If we got here it means that no this node's envelope contains geometry, but no child's envelope does. Add geometry to this node.
+                // If we got here it means that this node's envelope contains the geometry, but no child's envelope does. Therefore add geometry to this node.
                 this.contents.Add(geometry);
             }
 
@@ -179,7 +191,7 @@ namespace AEGIS.Indexes
                 if (this.Contents.Remove(geometry))
                     return true;
 
-                foreach (QuadTreeNode child in this.children)
+                foreach (QuadTreeNode child in this.Children)
                 {
                     if (child.envelope.Contains(geometry.Envelope))
                     {
@@ -193,13 +205,13 @@ namespace AEGIS.Indexes
             /// <summary>
             /// Subdivides a nodes geometries between its children.
             /// </summary>
-            private void SubdivideContents()
+            protected void SubdivideContents()
             {
                 List<IBasicGeometry> markedForRemove = new List<IBasicGeometry>();
 
                 foreach (IBasicGeometry geometry in this.contents)
                 {
-                    foreach (QuadTreeNode child in this.children)
+                    foreach (QuadTreeNode child in this.Children)
                     {
                         if (child.Envelope.Contains(geometry.Envelope))
                         {
@@ -216,15 +228,15 @@ namespace AEGIS.Indexes
             /// <summary>
             /// Creates the children nodes of a node.
             /// </summary>
-            private void CreateChildren()
+            protected void CreateChildren()
             {
                 double midX = this.envelope.MinX + (this.envelope.MaxX - this.envelope.MinX) / 2;
                 double midY = this.envelope.MinY + (this.envelope.MaxY - this.envelope.MinY) / 2;
 
-                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, this.envelope.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, this.envelope.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, midY, this.envelope.MaxY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, midY, this.envelope.MaxY)));
+                this.Children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, this.envelope.MinY, midY)));
+                this.Children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, this.envelope.MinY, midY)));
+                this.Children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, midY, this.envelope.MaxY)));
+                this.Children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, midY, this.envelope.MaxY)));
             }
         }
 
@@ -260,10 +272,10 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Initializes a new instance of the <see cref="QuadTree" /> class.
         /// </summary>
-        /// <param name="bound">The maximum indexed region.</param>
-        public QuadTree(Envelope bound)
+        /// <param name="envelope">The maximum indexed region.</param>
+        public QuadTree(Envelope envelope)
         {
-            this.root = new QuadTreeNode(bound);
+            this.root = new QuadTreeNode(envelope);
         }
 
         /// <summary>
@@ -272,8 +284,8 @@ namespace AEGIS.Indexes
         /// <param name="geometries">The geometries to add to the tree.</param>
         public QuadTree(IEnumerable<IBasicGeometry> geometries)
         {
-            Envelope bound = Envelope.FromEnvelopes(geometries.Select(geometry => geometry.Envelope));
-            this.root = new QuadTreeNode(bound);
+            Envelope maxEnvelope = Envelope.FromEnvelopes(geometries.Select(geometry => geometry.Envelope));
+            this.root = new QuadTreeNode(maxEnvelope);
 
             this.Add(geometries);
         }
