@@ -4,43 +4,51 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Represents a 2D Quad-tree, which contains a collection of <see cref="IBasicGeometry" /> instances.
+    /// </summary>
     public class QuadTree : ISpatialIndex
     {
+        /// <summary>
+        /// Represents a node of the Quad-tree.
+        /// </summary>
         protected class QuadTreeNode
         {
             /// <summary>
-            /// The region of the node.
+            /// The envelope of the node.
             /// </summary>
-            private Envelope bound;
+            private readonly Envelope envelope;
 
             /// <summary>
             /// The children nodes of this node. Each internal node must always have 4 children.
             /// </summary>
-            private List<QuadTreeNode> children = new List<QuadTreeNode>(4);
+            private readonly List<QuadTreeNode> children;
 
             /// <summary>
             /// The geometries stored in this node.
             /// </summary>
-            private List<IBasicGeometry> contents = new List<IBasicGeometry>();
+            private readonly List<IBasicGeometry> contents;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="QuadTreeNode"/> class.
             /// </summary>
-            /// <param name="bound">The region of the node.</param>
-            public QuadTreeNode(Envelope bound)
+            /// <param name="envelope">The region of the node.</param>
+            public QuadTreeNode(Envelope envelope)
             {
-                this.bound = bound;
+                this.envelope = envelope;
+                this.children = new List<QuadTreeNode>(4);
+                this.contents = new List<IBasicGeometry>();
             }
 
             /// <summary>
             /// Gets the region of the node.
             /// </summary>
-            /// <value> The region of the node.</value>
+            /// <value>The region of the node.</value>
             public Envelope Envelope
             {
                 get
                 {
-                    return this.bound;
+                    return this.envelope;
                 }
             }
 
@@ -65,7 +73,7 @@
             /// <summary>
             /// Gets the contents of this node.
             /// </summary>
-            /// <value> The geometries stored in this node.</value>
+            /// <value>The geometries stored in this node.</value>
             public List<IBasicGeometry> Contents { get { return this.contents; } }
 
             /// <summary>
@@ -87,8 +95,8 @@
             /// <summary>
             /// Searches this subtree for geometries contained in the envelope.
             /// </summary>
-            /// <param name="envelope"> The envelope which has to contain the geometries.</param>
-            /// <returns> A list of geometries from the tree which are inside the envelope. </returns>
+            /// <param name="envelope">The envelope which has to contain the geometries.</param>
+            /// <returns>A list of geometries from the tree which are inside the envelope.</returns>
             public IEnumerable<IBasicGeometry> Search(Envelope envelope)
             {
                 List<IBasicGeometry> result = new List<IBasicGeometry>();
@@ -99,7 +107,7 @@
                     if (child.IsEmpty)
                         continue;
 
-                    if (envelope.Intersects(child.bound))
+                    if (envelope.Intersects(child.envelope))
                         result.AddRange(child.Search(envelope));
                 }
 
@@ -116,7 +124,7 @@
             /// <summary>
             /// Adds a geometry to this subtree.
             /// </summary>
-            /// <param name="geometry"> The geometry to be added. </param>
+            /// <param name="geometry">The geometry to be added.</param>
             public void Add(IBasicGeometry geometry)
             {
                 // If this is a leaf node without contents, add geometry to this node and return
@@ -136,7 +144,7 @@
                 // Find child which has an envelope that contains current geometry, and recursively call Add on that child, then return
                 foreach (QuadTreeNode child in this.children)
                 {
-                    if (child.bound.Contains(geometry.Envelope))
+                    if (child.envelope.Contains(geometry.Envelope))
                     {
                         child.Add(geometry);
                         return;
@@ -150,7 +158,7 @@
             /// <summary>
             /// Removes a geometry from the tree.
             /// </summary>
-            /// <param name="geometry"> The geometry to be removed. </param>
+            /// <param name="geometry">The geometry to be removed.</param>
             /// <returns><c>true</c> if the removal was successful, otherwise <c>false</c>.</returns>
             public Boolean Remove(IBasicGeometry geometry)
             {
@@ -159,7 +167,7 @@
 
                 foreach (QuadTreeNode child in this.children)
                 {
-                    if (child.bound.Contains(geometry.Envelope))
+                    if (child.envelope.Contains(geometry.Envelope))
                     {
                         return child.Remove(geometry);
                     }
@@ -196,15 +204,13 @@
             /// </summary>
             private void CreateChildren()
             {
-                this.children = new List<QuadTreeNode>();
+                double midX = this.envelope.MinX + (this.envelope.MaxX - this.envelope.MinX) / 2;
+                double midY = this.envelope.MinY + (this.envelope.MaxY - this.envelope.MinY) / 2;
 
-                double midX = this.bound.MinX + (this.bound.MaxX - this.bound.MinX) / 2;
-                double midY = this.bound.MinY + (this.bound.MaxY - this.bound.MinY) / 2;
-
-                this.children.Add(new QuadTreeNode(new Envelope(this.bound.MinX, midX, this.bound.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.bound.MaxX, this.bound.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(this.bound.MinX, midX, midY, this.bound.MaxY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.bound.MaxX, midY, this.bound.MaxY)));
+                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, this.envelope.MinY, midY)));
+                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, this.envelope.MinY, midY)));
+                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, midY, this.envelope.MaxY)));
+                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, midY, this.envelope.MaxY)));
             }
         }
 
@@ -217,18 +223,30 @@
         /// Gets a value indicating whether the index is read-only.
         /// </summary>
         /// <value><c>true</c> if the index is read-only; otherwise, <c>false</c>.</value>
-        public Boolean IsReadOnly => false;
+        public Boolean IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Gets the number of indexed geometries.
         /// </summary>
         /// <value>The number of indexed geometries.</value>
-        public int NumberOfGeometries => this.root.NumberOfGeometries;
+        public int NumberOfGeometries
+        {
+            get
+            {
+                return this.root.NumberOfGeometries;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QuadTree" /> class.
         /// </summary>
-        /// <param name="bound"> The maximum indexed region. </param>
+        /// <param name="bound">The maximum indexed region.</param>
         public QuadTree(Envelope bound)
         {
             this.root = new QuadTreeNode(bound);
@@ -237,16 +255,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="QuadTree" /> class.
         /// </summary>
-        /// <param name="geometries"> The geometries to add to the tree. </param>
+        /// <param name="geometries">The geometries to add to the tree.</param>
         public QuadTree(IEnumerable<IBasicGeometry> geometries)
         {
-            List<Envelope> envelopes = new List<Envelope>();
-            foreach (IBasicGeometry geometry in geometries)
-            {
-                envelopes.Add(geometry.Envelope);
-            }
-
-            Envelope bound = Envelope.FromEnvelopes(envelopes);
+            Envelope bound = Envelope.FromEnvelopes(geometries.Select(geometry => geometry.Envelope));
             this.root = new QuadTreeNode(bound);
 
             this.Add(geometries);
@@ -275,7 +287,7 @@
         /// <summary>
         /// Adds multiple geometries to the index.
         /// </summary>
-        /// <param name="collection">The geometry collection.</param>
+        /// <param name="geometries">The geometry collection.</param>
         /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
         public void Add(IEnumerable<IBasicGeometry> geometries)
         {
@@ -388,7 +400,7 @@
         /// <summary>
         /// Creates a new tree based on an unindexed geometry.
         /// </summary>
-        /// <param name="geometry"> The geometry.</param>
+        /// <param name="geometry">The geometry.</param>
         private void CreateNew(IBasicGeometry geometry)
         {
             IEnumerable<IBasicGeometry> allGeometries = this.Search(this.root.Envelope);
