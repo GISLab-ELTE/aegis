@@ -25,9 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Indexes\QuadTree.cs">
-      <ExcludedFromBuild>false</ExcludedFromBuild>
-    </Compile>
     <Compile Update="Resources\CoreMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

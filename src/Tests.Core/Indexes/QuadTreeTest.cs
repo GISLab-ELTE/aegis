@@ -1,4 +1,18 @@
-﻿namespace AEGIS.Tests.Indexes
+﻿// <copyright file="QuadTreeTest.cs" company="Eötvös Loránd University (ELTE)">
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Educational Community License, Version 2.0 (the "License"); you may
+//     not use this file except in compliance with the License. You may
+//     obtain a copy of the License at
+//     http://opensource.org/licenses/ECL-2.0
+//
+//     Unless required by applicable law or agreed to in writing,
+//     software distributed under the License is distributed on an "AS IS"
+//     BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+//     or implied. See the License for the specific language governing
+//     permissions and limitations under the License.
+// </copyright>
+
+namespace AEGIS.Tests.Indexes
 {
     using System;
     using System.Collections.Generic;
@@ -66,9 +80,11 @@
             this.tree.NumberOfGeometries.ShouldBe(3);
 
             // Should add all geometries from geometry list
-            List<IBasicGeometry> geometries = new List<IBasicGeometry>();
-            geometries.Add(this.factory.CreatePoint(65, 65));
-            geometries.Add(this.factory.CreatePolygon(new Coordinate(3, 3), new Coordinate(4, 4), new Coordinate(5, 5)));
+            List<IBasicGeometry> geometries = new List<IBasicGeometry>
+            {
+                this.factory.CreatePoint(65, 65),
+                this.factory.CreatePolygon(new Coordinate(3, 3), new Coordinate(4, 4), new Coordinate(5, 5))
+            };
             this.tree.Add(geometries);
             this.tree.NumberOfGeometries.ShouldBe(5);
 
@@ -188,9 +204,8 @@
             this.tree.NumberOfGeometries.ShouldBe(0);
 
             // Should remove based on envelope with results
-            List<IBasicGeometry> geometries;
 
-            this.tree.Remove(Envelope.Infinity, out geometries).ShouldBeFalse();
+            this.tree.Remove(Envelope.Infinity, out List<IBasicGeometry> geometries).ShouldBeFalse();
             geometries.Count.ShouldBe(0);
 
             this.tree.Add(points);
