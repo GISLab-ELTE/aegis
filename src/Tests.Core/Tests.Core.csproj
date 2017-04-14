@@ -73,6 +73,7 @@
     <Compile Include="Converters\WellKnownTextConverterTest.cs" />
     <Compile Include="CoordinateTest.cs" />
     <Compile Include="EnvelopeTest.cs" />
+    <Compile Include="Indexes\KDTreeTest.cs" />
     <Compile Include="Indexes\QuadTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RTreeTest.cs" />
