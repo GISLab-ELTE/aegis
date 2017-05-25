@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/rrtileuce7uo8je6/branch/master?svg=true)](https://ci.appveyor.com/project/robertogiachetta/aegis/branch/master)
+
 # AEGIS geospatial framework
 
 The AEGIS framework is a geospatial toolkit developed on the [.NET runtime](https://github.com/dotnet) facilitating creation of GIS applications.
