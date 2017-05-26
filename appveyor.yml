@@ -1,0 +1,33 @@
+# Version format
+version: 1.0.{build}
+
+# Build worker image
+image: Visual Studio 2017
+
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+# Build platform
+platform: Any CPU
+
+# Build Configuration
+configuration: Debug
+
+# MSBuild settings
+build:
+  project: src\AEGIS.sln
+  verbosity: quiet
+
+# Execute script before build
+before_build:
+ - nuget restore src\AEGIS.sln
+
+# Execute test script 
+test_script:
+ - src\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"src\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"src\Tests.Collections\bin\Debug\AEGIS.Tests.Collections.dll src\Tests.Core\bin\Debug\AEGIS.Tests.Core.dll src\Tests.Core.Reference\bin\Debug\AEGIS.Tests.Core.Reference.dll src\Tests.Numerics\bin\Debug\AEGIS.Tests.Numerics.dll src\Tests.Numerics\bin\Debug\AEGIS.Tests.Numerics.dll" -output:".\coverage.xml" -filter:"+[AEGIS*]* -[AEGIS.Tests*]* -[*.Designer.*]*"
+
+# Execute script after tests
+after_test:
+ - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+ - pip install codecov
+ - codecov -f "coverage.xml"
