@@ -1,13 +1,31 @@
-﻿namespace AEGIS.Indexes
+﻿// <copyright file="KDTree.cs" company="Eötvös Loránd University (ELTE)">
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Educational Community License, Version 2.0 (the "License"); you may
+//     not use this file except in compliance with the License. You may
+//     obtain a copy of the License at
+//     http://opensource.org/licenses/ECL-2.0
+//
+//     Unless required by applicable law or agreed to in writing,
+//     software distributed under the License is distributed on an "AS IS"
+//     BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+//     or implied. See the License for the specific language governing
+//     permissions and limitations under the License.
+// </copyright>
+
+namespace AEGIS.Indexes
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a KDTree coordinate index.
-    /// The tree is balanced when created, but adding or removing elements might leave it unbalanced. Perform the <see cref="KDTree.RebalanceTree"/> operation to rebalance the tree.
     /// </summary>
+    /// <remarks>
+    /// The tree is balanced when created, but adding or removing elements might leave it unbalanced.
+    /// Perform the <see cref="KDTree.RebalanceTree"/> operation to rebalance the tree.
+    /// </remarks>
     public class KDTree : ICoordinateIndex
     {
         /// <summary>
@@ -18,12 +36,7 @@
             /// <summary>
             /// The splitting dimension of this node.
             /// </summary>
-            private readonly int splitDimension;
-
-            /// <summary>
-            /// The coordinate stored in this node.
-            /// </summary>
-            private Coordinate point;
+            private readonly Int32 splitDimension;
 
             /// <summary>
             /// The left child of this node.
@@ -38,33 +51,30 @@
             /// <summary>
             /// Initializes a new instance of the <see cref="KDTreeNode"/> class.
             /// </summary>
-            /// <param name="point">The point to be stored in this node.</param>
+            /// <param name="coordinate">The coordinate to be stored in this node.</param>
             /// <param name="splitDimension">The splitting dimension of this node.</param>
-            /// <param name="totalDimensions">The total number of dimensions of the tree.</param>
-            public KDTreeNode(Coordinate point, int splitDimension, int totalDimensions)
+            /// <param name="numberOfDimensions">The total number of dimensions of the tree.</param>
+            public KDTreeNode(Coordinate coordinate, Int32 splitDimension, Int32 numberOfDimensions)
             {
-                this.point = point;
+                this.Coordinate = coordinate;
                 this.leftChild = null;
                 this.rightChild = null;
                 this.splitDimension = splitDimension;
-                this.TotalDimensions = totalDimensions;
+                this.NumberOfDimensions = numberOfDimensions;
             }
 
             /// <summary>
-            /// Gets the point stored in this node.
+            /// Gets the coordinate stored in this node.
             /// </summary>
-            public Coordinate Point
-            {
-                get
-                {
-                    return this.point;
-                }
-            }
+            public Coordinate Coordinate { get; private set; }
 
             /// <summary>
-            /// Gets or sets the total dimensions of the tree.
+            /// Gets or sets the number of dimensions of the tree.
             /// </summary>
-            public int TotalDimensions { get; set; }
+            /// <remarks>
+            /// Represents the number of dimensions (K) of the KD-Tree.
+            /// </remarks>
+            public Int32 NumberOfDimensions { get; set; }
 
             /// <summary>
             /// Gets a value indicating whether this node has a left child.
@@ -77,36 +87,17 @@
             public Boolean RightChildExists { get { return this.rightChild != null; } }
 
             /// <summary>
-            /// Gets the number of geometries stored in this node and all its descendants.
-            /// </summary>
-            public int NumberOfGeometries
-            {
-                get
-                {
-                    int count = 0;
-
-                    if (this.LeftChildExists)
-                        count += this.leftChild.NumberOfGeometries;
-                    if (this.RightChildExists)
-                        count += this.rightChild.NumberOfGeometries;
-
-                    count += 1;
-                    return count;
-                }
-            }
-
-            /// <summary>
             /// Adds a coordinate to the subtree of this node.
             /// </summary>
             /// <param name="coordinate">The coordinate to be added.</param>
             public void Add(Coordinate coordinate)
             {
-                if (coordinate.Equals(this.Point))
-                    throw new ArgumentException("Cannot add the same point twice.", "coordinate");
+                if (coordinate.Equals(this.Coordinate))
+                    throw new ArgumentException(CoreMessages.CollectionContainsDuplicateIdentifiers, nameof(coordinate));
 
                 // Determining whether the coordinate should be in the left or the right subtree of this node.
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(coordinate, this.point);
+                int comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
 
                 if (comparisonResult < 0)
                 {
@@ -114,7 +105,7 @@
                     if (this.LeftChildExists)
                         this.leftChild.Add(coordinate);
                     else
-                        this.leftChild = new KDTreeNode(coordinate, this.splitDimension % this.TotalDimensions + 1, this.TotalDimensions);
+                        this.leftChild = new KDTreeNode(coordinate, this.splitDimension % this.NumberOfDimensions + 1, this.NumberOfDimensions);
                 }
                 else
                 {
@@ -122,7 +113,7 @@
                     if (this.RightChildExists)
                         this.rightChild.Add(coordinate);
                     else
-                        this.rightChild = new KDTreeNode(coordinate, this.splitDimension % this.TotalDimensions + 1, this.TotalDimensions);
+                        this.rightChild = new KDTreeNode(coordinate, this.splitDimension % this.NumberOfDimensions + 1, this.NumberOfDimensions);
                 }
             }
 
@@ -133,11 +124,11 @@
             /// <returns>A value indicating whether this node's subtree contains the coordinate.</returns>
             public bool Contains(Coordinate coordinate)
             {
-                if (coordinate.Equals(this.Point))
+                if (coordinate.Equals(this.Coordinate))
                     return true;
 
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(coordinate, this.point);
+                int comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
 
                 if (comparisonResult < 0 && this.LeftChildExists)
                     return this.leftChild.Contains(coordinate);
@@ -155,17 +146,18 @@
             public bool Remove(Coordinate coordinate)
             {
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(coordinate, this.point);
+                int comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
+                List<Coordinate> pointsToRecreate = new List<Coordinate>();
 
                 if (comparisonResult < 0)
                 {
                     if (this.leftChild == null)
                         return false;
 
-                    if (this.leftChild.Point.Equals(coordinate))
+                    if (this.leftChild.Coordinate.Equals(coordinate))
                     {
                         // If we are removing the left child, we need to recreate the left subtree to ensure that the tree's constraints are still true after the remove.
-                        List<Coordinate> pointsToRecreate = this.leftChild.AllCoordinatesFromSubTree();
+                        this.leftChild.AllCoordinatesFromSubTree(pointsToRecreate);
                         pointsToRecreate.Remove(coordinate);
                         this.InitializeLeftSubTree(pointsToRecreate);
 
@@ -181,10 +173,10 @@
                     if (this.rightChild == null)
                         return false;
 
-                    if (this.rightChild.Point.Equals(coordinate))
+                    if (this.rightChild.Coordinate.Equals(coordinate))
                     {
                         // If we are removing the right child, we need to recreate the left subtree to ensure that the tree's constraints are still true after the remove.
-                        List<Coordinate> pointsToRecreate = this.rightChild.AllCoordinatesFromSubTree();
+                        this.rightChild.AllCoordinatesFromSubTree(pointsToRecreate);
                         pointsToRecreate.Remove(coordinate);
                         this.InitializeRightSubTree(pointsToRecreate);
 
@@ -211,8 +203,8 @@
                 if (this.RightChildShouldBeSearched(envelope))
                     results.AddRange(this.rightChild.Search(envelope));
 
-                if (envelope.Contains(this.Point))
-                    results.Add(this.Point);
+                if (envelope.Contains(this.Coordinate))
+                    results.Add(this.Coordinate);
 
                 return results;
             }
@@ -220,19 +212,15 @@
             /// <summary>
             /// Gets all coordinates stored in the subtree rooted at this node.
             /// </summary>
-            /// <returns>All coordinates stored in the subtree rooted at this node.</returns>
-            public List<Coordinate> AllCoordinatesFromSubTree()
+            /// <param name="coordinates">The list of coordinates to which the method will add its results.</param>
+            public void AllCoordinatesFromSubTree(List<Coordinate> coordinates)
             {
-                List<Coordinate> coordinates = new List<Coordinate>();
-
                 if (this.LeftChildExists)
-                    coordinates.AddRange(this.leftChild.AllCoordinatesFromSubTree());
+                    this.leftChild.AllCoordinatesFromSubTree(coordinates);
                 if (this.RightChildExists)
-                    coordinates.AddRange(this.rightChild.AllCoordinatesFromSubTree());
+                    this.rightChild.AllCoordinatesFromSubTree(coordinates);
 
-                coordinates.Add(this.Point);
-
-                return coordinates;
+                coordinates.Add(this.Coordinate);
             }
 
             /// <summary>
@@ -254,7 +242,7 @@
             public Coordinate NearestNeighbourSearch(Coordinate searchPoint)
             {
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(searchPoint, this.point);
+                int comparisonResult = splitDimensionComparison(searchPoint, this.Coordinate);
                 Coordinate currentBest;
 
                 // We recurse down in the tree to the first leaf, always going left or right based on the comparison by the split dimension of the current node.
@@ -263,22 +251,22 @@
                     if (this.LeftChildExists)
                         currentBest = this.leftChild.NearestNeighbourSearch(searchPoint);
                     else
-                        return this.Point;
+                        return this.Coordinate;
                 }
                 else
                 {
                     if (this.RightChildExists)
                         currentBest = this.rightChild.NearestNeighbourSearch(searchPoint);
                     else
-                        return this.Point;
+                        return this.Coordinate;
                 }
 
                 // When we recurse up the tree we check whether the coordinate stored in this node is closer than the best we have found so far.
-                if (Coordinate.Distance(this.Point, searchPoint) < Coordinate.Distance(currentBest, searchPoint))
-                    currentBest = this.Point;
+                if (Coordinate.Distance(this.Coordinate, searchPoint) < Coordinate.Distance(currentBest, searchPoint))
+                    currentBest = this.Coordinate;
 
                 // We check whether the OTHER subtree of this node (which we did NOT use to recurse down to the leaf nodes) could contain a node closer than the current best.
-                if (this.DistanceInDimension(searchPoint, this.Point, this.splitDimension) < Coordinate.Distance(searchPoint, currentBest))
+                if (this.DistanceInDimension(searchPoint, this.Coordinate, this.splitDimension) < Coordinate.Distance(searchPoint, currentBest))
                 {
                     Coordinate otherSubTreesBest = null;
 
@@ -311,27 +299,12 @@
                     return false;
 
                 if (this.splitDimension == 1)
-                {
-                    return this.leftChild.Point.X < envelope.MinX
-                                    ? false
-                                    : true;
-                }
+                    return this.leftChild.Coordinate.X >= envelope.MinX;
 
                 if (this.splitDimension == 2)
-                {
-                    return this.leftChild.Point.Y < envelope.MinY
-                                    ? false
-                                    : true;
-                }
+                    return this.leftChild.Coordinate.Y >= envelope.MinY;
 
-                if (this.splitDimension == 3)
-                {
-                    return this.leftChild.Point.Z < envelope.MinZ
-                                    ? false
-                                    : true;
-                }
-
-                return true;
+                return this.leftChild.Coordinate.Z >= envelope.MinZ;
             }
 
             /// <summary>
@@ -345,27 +318,12 @@
                     return false;
 
                 if (this.splitDimension == 1)
-                {
-                    return this.rightChild.Point.X > envelope.MaxX
-                                    ? false
-                                    : true;
-                }
+                    return this.rightChild.Coordinate.X <= envelope.MaxX;
 
                 if (this.splitDimension == 2)
-                {
-                    return this.rightChild.Point.Y > envelope.MaxY
-                                    ? false
-                                    : true;
-                }
+                    return this.rightChild.Coordinate.Y <= envelope.MaxY;
 
-                if (this.splitDimension == 3)
-                {
-                    return this.rightChild.Point.Z > envelope.MaxZ
-                                    ? false
-                                    : true;
-                }
-
-                return true;
+                return this.rightChild.Coordinate.Z <= envelope.MaxZ;
             }
 
             /// <summary>
@@ -380,12 +338,12 @@
                     return;
                 }
 
-                int nextSplitDimension = this.splitDimension % this.TotalDimensions + 1;
+                int nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
                 Comparison<Coordinate> coordinateComparison = this.GetComparisonForDimension(nextSplitDimension);
                 coordinates.Sort(coordinateComparison);
 
                 Coordinate median = coordinates[coordinates.Count / 2];
-                this.leftChild = new KDTreeNode(median, nextSplitDimension, this.TotalDimensions);
+                this.leftChild = new KDTreeNode(median, nextSplitDimension, this.NumberOfDimensions);
 
                 List<Coordinate> leftCoordinatesOfChild = coordinates.GetRange(0, coordinates.Count / 2);
                 List<Coordinate> rightCoordinatesOfChild = coordinates.GetRange(coordinates.Count / 2 + 1, (int)Math.Ceiling(coordinates.Count / 2.0) - 1);
@@ -404,12 +362,12 @@
                     return;
                 }
 
-                int nextSplitDimension = this.splitDimension % this.TotalDimensions + 1;
+                int nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
                 Comparison<Coordinate> coordinateComparison = this.GetComparisonForDimension(nextSplitDimension);
                 coordinates.Sort(coordinateComparison);
 
                 Coordinate median = coordinates[coordinates.Count / 2];
-                this.rightChild = new KDTreeNode(median, nextSplitDimension, this.TotalDimensions);
+                this.rightChild = new KDTreeNode(median, nextSplitDimension, this.NumberOfDimensions);
 
                 List<Coordinate> leftCoordinatesOfChild = coordinates.GetRange(0, coordinates.Count / 2);
                 List<Coordinate> rightCoordinatesOfChild = coordinates.GetRange(coordinates.Count / 2 + 1, (int)Math.Ceiling(coordinates.Count / 2.0) - 1);
@@ -424,17 +382,12 @@
             /// <exception cref="System.ArgumentOutOfRangeException">The dimension is not 1, 2 or 3.</exception>
             private Comparison<Coordinate> GetComparisonForDimension(int dimension)
             {
-                switch (dimension)
-                {
-                    case 1:
-                        return (p1, p2) => p1.X.CompareTo(p2.X);
-                    case 2:
-                        return (p1, p2) => p1.Y.CompareTo(p2.Y);
-                    case 3:
-                        return (p1, p2) => p1.Z.CompareTo(p2.Z);
-                    default:
-                        throw new ArgumentOutOfRangeException("dimension", "The dimension must be between 1 and 3");
-                }
+                if (dimension == 1)
+                    return (p1, p2) => p1.X.CompareTo(p2.X);
+                if (dimension == 2)
+                    return (p1, p2) => p1.Y.CompareTo(p2.Y);
+
+                return (p1, p2) => p1.Z.CompareTo(p2.Z);
             }
 
             /// <summary>
@@ -447,24 +400,14 @@
             /// <exception cref="System.ArgumentOutOfRangeException">The dimension is not 1, 2 or 3.</exception>
             private double DistanceInDimension(Coordinate first, Coordinate second, int dimension)
             {
-                switch (dimension)
-                {
-                    case 1:
-                        return Math.Abs(first.X - second.X);
-                    case 2:
-                        return Math.Abs(first.Y - second.Y);
-                    case 3:
-                        return Math.Abs(first.Z - second.Z);
-                    default:
-                        throw new ArgumentOutOfRangeException("dimension", "The dimension must be between 1 and 3");
-                }
+                if (dimension == 1)
+                    return Math.Abs(first.X - second.X);
+                if (dimension == 2)
+                    return Math.Abs(first.Y - second.Y);
+
+                return Math.Abs(first.Z - second.Z);
             }
         }
-
-        /// <summary>
-        /// The number of dimensions of the tree.
-        /// </summary>
-        private readonly int treeDimensions;
 
         /// <summary>
         /// The root of the tree.
@@ -474,21 +417,23 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="KDTree"/> class.
         /// </summary>
-        /// <param name="points">The points to create the tree from.</param>
+        /// <param name="coordinates">The points to create the tree from.</param>
         /// <param name="treeDimensions">The dimensions of the tree.</param>
         /// <exception cref="System.ArgumentNullException">The points are null.</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">The treeDimensions is not 2 or 3.</exception>
-        public KDTree(IEnumerable<Coordinate> points, int treeDimensions)
+        public KDTree(IEnumerable<Coordinate> coordinates, Int32 treeDimensions)
         {
-            if (points == null)
-                throw new ArgumentNullException("coordinates", "The coordinates must not be null.");
+            if (coordinates == null)
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CollectionIsNull);
 
-            if (treeDimensions != 2 && treeDimensions != 3)
-                throw new ArgumentOutOfRangeException("treeDimensions", "The tree's dimensions must be 2 or 3.");
+            if (treeDimensions > 3)
+                throw new ArgumentOutOfRangeException(nameof(treeDimensions), CoreMessages.DimensionIsGreaterThan3);
+            if (treeDimensions < 2)
+                throw new ArgumentOutOfRangeException(nameof(treeDimensions), CoreMessages.DimensionIsLessThan2);
 
-            this.treeDimensions = treeDimensions;
+            this.TreeDimension = treeDimensions;
 
-            this.InitializeTree(points.ToList());
+            this.InitializeTree(coordinates.ToList());
         }
 
         /// <summary>
@@ -497,6 +442,8 @@
         /// <param name="coordinates">The list of coordinates to create the tree from.</param>
         private void InitializeTree(List<Coordinate> coordinates)
         {
+            this.NumberOfGeometries = coordinates.Count;
+
             // If there are no coordinates specified, leave the tree empty.
             if (coordinates.Count == 0)
                 return;
@@ -513,19 +460,26 @@
         }
 
         /// <summary>
-        /// Gets the tree's dimension.
+        /// Gets the dimension of the tree.
         /// </summary>
-        public int TreeDimension { get { return this.treeDimensions; } }
+        /// <remarks>
+        /// This is the total number of dimensions on which the tree iterates from level to level,
+        /// which ideally corresponds to the dimension of Coordinates we wish to add to the tree.
+        /// In the current implementation the possible values are 2 and 3.
+        /// </remarks>
+        public Int32 TreeDimension { get; private set; }
+
+        public Int32 NumberOfGeometries { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the tree is empty.
         /// </summary>
-        public bool IsEmpty { get { return this.root == null; } }
+        public Boolean IsEmpty { get { return this.root == null; } }
 
         /// <summary>
         /// Gets a value indicating whether the tree is readonly.
         /// </summary>
-        public bool IsReadOnly
+        public Boolean IsReadOnly
         {
             get
             {
@@ -534,29 +488,17 @@
         }
 
         /// <summary>
-        /// Gets the number of geometries stored in the tree.
-        /// </summary>
-        public int NumberOfGeometries
-        {
-            get
-            {
-                return this.IsEmpty ? 0 : this.root.NumberOfGeometries;
-            }
-        }
-
-        /// <summary>
         /// Adds a coordinate to the tree.
         /// </summary>
         /// <param name="coordinate">The coordinate to be added.</param>
         /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
-        /// <exception cref="System.InvalidOperationException">The tree is read-only.</exception>
         /// <exception cref="System.ArgumentException">The coordinate is already in the tree.</exception>
         public void Add(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException("coordinate", "The coordinate is null.");
-            if (this.IsReadOnly)
-                throw new InvalidOperationException("The tree is read-only. Adding is not allowed.");
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+
+            this.NumberOfGeometries++;
 
             if (this.IsEmpty)
             {
@@ -573,22 +515,22 @@
         /// </summary>
         /// <param name="coordinates">The coordinates to be added.</param>
         /// <exception cref="System.ArgumentNullException">The coordinates is null, or it contains a null element.</exception>
-        /// <exception cref="System.InvalidOperationException">The tree is read-only.</exception>
         /// <exception cref="System.ArgumentException">A coordinate in coordinates is already in the tree.</exception>
         public void Add(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException("coordinates", "The coordinates are null.");
+                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CollectionIsNull);
 
             foreach (Coordinate coordinate in coordinates)
                 this.Add(coordinate);
         }
 
+        /// <summary>
+        /// Clears all stored elements from the index, resulting in an empty tree.
+        /// </summary>
         public void Clear()
         {
-            if (this.IsReadOnly)
-                throw new InvalidOperationException("The tree is read-only. Clearing is not allowed.");
-
+            this.NumberOfGeometries = 0;
             this.root = null;
         }
 
@@ -596,8 +538,8 @@
         /// Returns a value indicating whether the tree contains the coordinate.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
-        /// <returns>True if the tree contains the coordinate, false otherwise.</returns>
-        public bool Contains(Coordinate coordinate)
+        /// <returns><c>true</c> if the tree contains the coordinate, <c>false</c> otherwise.</returns>
+        public Boolean Contains(Coordinate coordinate)
         {
             return coordinate == null || this.IsEmpty
                     ? false
@@ -610,15 +552,17 @@
         /// <param name="coordinate">The coordinate to be removed.</param>
         /// <returns>A value indicating whether the remove was successful.</returns>
         /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
-        public bool Remove(Coordinate coordinate)
+        public Boolean Remove(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException("coordinate", "The coordinate is null.");
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
 
             if (this.IsEmpty)
                 return false;
 
-            if (this.root.Point.Equals(coordinate))
+            Boolean removeSuccessful = false;
+
+            if (this.root.Coordinate.Equals(coordinate))
             {
                 if (this.NumberOfGeometries == 1)
                 {
@@ -626,14 +570,24 @@
                     return true;
                 }
 
-                List<Coordinate> points = this.root.AllCoordinatesFromSubTree();
-                points.Remove(coordinate);
-                this.Clear();
-                this.InitializeTree(points);
-                return true;
+                List<Coordinate> allPoints = new List<Coordinate>(this.NumberOfGeometries);
+                this.root.AllCoordinatesFromSubTree(allPoints);
+                removeSuccessful = allPoints.Remove(coordinate);
+                if (removeSuccessful)
+                {
+                    this.Clear();
+                    this.InitializeTree(allPoints);
+                }
+
+                return removeSuccessful;
             }
 
-            return this.root.Remove(coordinate);
+            removeSuccessful = this.root.Remove(coordinate);
+
+            if (removeSuccessful)
+                this.NumberOfGeometries--;
+
+            return removeSuccessful;
         }
 
         /// <summary>
@@ -642,9 +596,9 @@
         /// <param name="envelope">The envelope.</param>
         /// <returns>A value indicating whether any coordinates were removed.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public bool Remove(Envelope envelope)
+        public Boolean Remove(Envelope envelope)
         {
-            bool result = false;
+            Boolean result = false;
             IEnumerable<Coordinate> coordinates = this.Search(envelope);
             foreach (Coordinate coordinate in coordinates)
             {
@@ -662,9 +616,9 @@
         /// <param name="coordinates">The coordinates which were removed.</param>
         /// <returns>A value indicating whether any coordinates were removed.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public bool Remove(Envelope envelope, out List<Coordinate> coordinates)
+        public Boolean Remove(Envelope envelope, out List<Coordinate> coordinates)
         {
-            bool result = false;
+            Boolean result = false;
             coordinates = this.Search(envelope).ToList();
             foreach (Coordinate coordinate in coordinates)
             {
@@ -684,7 +638,7 @@
         public IEnumerable<Coordinate> Search(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException("envelope", "The envelope is null.");
+                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
 
             if (this.IsEmpty)
                 return new List<Coordinate>();
@@ -702,7 +656,7 @@
         public Coordinate NearestNeighbourSearch(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException("coordinate", "The coordinate is null.");
+                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
             if (this.IsEmpty)
                 throw new InvalidOperationException("Cannot perform nearest neighbour search on an empty tree.");
 
@@ -710,13 +664,17 @@
         }
 
         /// <summary>
-        /// Rebalances the tree. The tree is balanced when created, but adding or removing elements might leave it unbalanced.
-        /// The rebalancing requires the complete reconstruction of the tree, therefore it can be a costly operation.
-        /// Because of this cost, it is not automatically done after each add or remove, but can be rebalanced at any time if required.
+        /// Rebalances the tree.
         /// </summary>
+        /// <remarks>
+        /// The tree is balanced when created, but adding or removing elements might leave it unbalanced.
+        /// The rebalancing requires the complete reconstruction of the tree, therefore it can be a costly operation.
+        /// Because of this cost, it is not automatically done after each add or remove, but can be rebalanced at any time when needed.
+        /// </remarks>
         public void RebalanceTree()
         {
-            List<Coordinate> allCoordinates = this.root.AllCoordinatesFromSubTree();
+            List<Coordinate> allCoordinates = new List<Coordinate>(this.NumberOfGeometries);
+            this.root.AllCoordinatesFromSubTree(allCoordinates);
             this.Clear();
             this.InitializeTree(allCoordinates);
         }
