@@ -62,11 +62,29 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not an integer..
+        /// </summary>
+        public static string ArgIsNotAnInteger {
+            get {
+                return ResourceManager.GetString("ArgIsNotAnInteger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The buffer is null..
         /// </summary>
         public static string BufferIsNull {
             get {
                 return ResourceManager.GetString("BufferIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value cannot be approximated..
+        /// </summary>
+        public static string CannotApproximateValue {
+            get {
+                return ResourceManager.GetString("CannotApproximateValue", resourceCulture);
             }
         }
         
@@ -85,6 +103,15 @@ namespace AEGIS.Numerics.Resources {
         public static string DenomatorIs0 {
             get {
                 return ResourceManager.GetString("DenomatorIs0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The denominator is too large to evaluate..
+        /// </summary>
+        public static string DenominatorTooLargeToEvaluate {
+            get {
+                return ResourceManager.GetString("DenominatorTooLargeToEvaluate", resourceCulture);
             }
         }
         
@@ -148,6 +175,24 @@ namespace AEGIS.Numerics.Resources {
         public static string IntervalsNotPositiveEven {
             get {
                 return ResourceManager.GetString("IntervalsNotPositiveEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is {1}.
+        /// </summary>
+        public static string IsArgs {
+            get {
+                return ResourceManager.GetString("IsArgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The iteration limit is less than 1..
+        /// </summary>
+        public static string IterationLimitIsLessThan1 {
+            get {
+                return ResourceManager.GetString("IterationLimitIsLessThan1", resourceCulture);
             }
         }
         
@@ -305,6 +350,15 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The numerator is too large to evaluate..
+        /// </summary>
+        public static string NumeratorTooLargeToEvaluate {
+            get {
+                return ResourceManager.GetString("NumeratorTooLargeToEvaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The object is not comparable with a rational number..
         /// </summary>
         public static string ObjectIsNotComparableWithRational {
@@ -346,6 +400,15 @@ namespace AEGIS.Numerics.Resources {
         public static string PIsLessThan1 {
             get {
                 return ResourceManager.GetString("PIsLessThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The precision is less than or equal to 0..
+        /// </summary>
+        public static string PrecisionIsLessThanOrEqualTo0 {
+            get {
+                return ResourceManager.GetString("PrecisionIsLessThanOrEqualTo0", resourceCulture);
             }
         }
         
@@ -467,11 +530,29 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The value is greater then {0}..
+        /// </summary>
+        public static string ValueIsGreaterThanArg {
+            get {
+                return ResourceManager.GetString("ValueIsGreaterThanArg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value is less than 0..
         /// </summary>
         public static string ValueIsLessThan0 {
             get {
                 return ResourceManager.GetString("ValueIsLessThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value is less then {0}..
+        /// </summary>
+        public static string ValueIsLessThanArg {
+            get {
+                return ResourceManager.GetString("ValueIsLessThanArg", resourceCulture);
             }
         }
         

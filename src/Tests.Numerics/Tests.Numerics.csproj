@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Approximation\ContinuedFractionApproximatorTest.cs" />
     <Compile Include="CalculatorTest.cs" />
     <Compile Include="Integral\SimpsonsMethodTest.cs" />
     <Compile Include="LinearAlgebra\CholeskyDecompositionTest.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizers\GaussianRandomGeneratorTest.cs" />
     <Compile Include="Randomizers\MersenneTwisterRandomGeneratorTest.cs" />
+    <Compile Include="RationalTest.cs" />
     <Compile Include="StatisticsTest.cs" />
     <Compile Include="VectorTest.cs" />
   </ItemGroup>

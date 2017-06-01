@@ -15,6 +15,7 @@
 namespace AEGIS.Numerics
 {
     using System;
+    using System.Numerics;
     using AEGIS.Numerics.Resources;
 
     /// <summary>
@@ -69,33 +70,51 @@ namespace AEGIS.Numerics
         }
 
         /// <summary>
-        /// Computes the greatest common divisor of two numbers.
+        /// Returns the order of magnitude of the specified value.
         /// </summary>
-        /// <param name="x">The first number.</param>
-        /// <param name="y">The second number.</param>
-        /// <returns>The greatest common divisor of the two specified numbers.</returns>
-        /// <remarks>
-        /// This method uses the Euclidean algorithm for computing the GCD.
-        /// </remarks>
-        public static Int32 GreatestCommonDivisor(Int32 x, Int32 y)
+        /// <param name="value">The value.</param>
+        /// <returns>The logarithm (base 10) of <paramref name="value" /> rounded to a whole number.</returns>
+        public static Int32 OrderOfMagnitude(Int64 value)
         {
-            if (x == 0)
-                return y;
-            if (y == 0)
-                return x;
+            // special case for the OverflowException of Math.Abs
+            if (value == Int64.MinValue)
+                return 18;
 
-            x = Math.Abs(x);
-            y = Math.Abs(y);
+            return (value != 0) ? (Int32)Math.Floor(Math.Log10(Math.Abs(value))) : 0;
+        }
 
-            Int32 result = 1;
-            while (y != 0)
+        /// <summary>
+        /// Returns the order of magnitude of the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The logarithm (base 10) of <paramref name="value" /> rounded to a whole number.</returns>
+        public static Int32 OrderOfMagnitude(UInt64 value)
+        {
+            return (value != 0) ? (Int32)Math.Floor(Math.Log10(value)) : 0;
+        }
+
+        /// <summary>
+        /// Returns the order of magnitude of the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The logarithm (base 10) of <paramref name="value" /> rounded to a whole number.</returns>
+        public static Int32 OrderOfMagnitude(Rational value)
+        {
+            if (value.Denominator == 0 || value.Numerator == 0)
+                return 0;
+
+            Int32 numeratorOrder = OrderOfMagnitude(value.Numerator);
+            Int32 denominatorOrder = OrderOfMagnitude(value.Denominator);
+
+            if (denominatorOrder == 0)
+                return numeratorOrder;
+
+            if (Math.Abs(value.Numerator / Math.Pow(10, numeratorOrder)) < value.Denominator / Math.Pow(10, denominatorOrder))
             {
-                result = y;
-                y = x % y;
-                x = result;
+                return numeratorOrder - denominatorOrder - 1;
             }
 
-            return result;
+            return numeratorOrder - denominatorOrder;
         }
 
         /// <summary>
@@ -107,17 +126,106 @@ namespace AEGIS.Numerics
         /// <remarks>
         /// This method uses the Euclidean algorithm for computing the GCD.
         /// </remarks>
-        public static Int64 GreatestCommonDivisor(Int64 x, Int64 y)
+        public static UInt32 GreatestCommonDivisor(Int32 x, Int32 y)
+        {
+            return (UInt32)GreatestCommonDivisor((Int64)x, y);
+        }
+
+        /// <summary>
+        /// Computes the greatest common divisor of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
+        public static UInt32 GreatestCommonDivisor(UInt32 x, UInt32 y)
+        {
+            return (UInt32)GreatestCommonDivisor((UInt64)Math.Abs(x), (UInt64)Math.Abs(y));
+        }
+
+        /// <summary>
+        /// Computes the greatest common divisor of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
+        public static UInt64 GreatestCommonDivisor(Int64 x, Int64 y)
+        {
+            // workaround, as the Math.Abs method does not support Int64.MinValue
+            if (x == Int64.MinValue && y == Int64.MinValue)
+                return unchecked((UInt64)Int64.MinValue);
+
+            if (x == Int64.MinValue)
+            {
+                if (y % 2 == 0)
+                    return GreatestCommonDivisor(x / 2, y / 2) * 2;
+                else
+                    return 1;
+            }
+
+            if (y == Int64.MinValue)
+            {
+                if (x % 2 == 0)
+                    return GreatestCommonDivisor(x / 2, y / 2) * 2;
+                else
+                    return 1;
+            }
+
+            return GreatestCommonDivisor((UInt64)Math.Abs(x), (UInt64)Math.Abs(y));
+        }
+
+        /// <summary>
+        /// Computes the greatest common divisor of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
+        public static UInt64 GreatestCommonDivisor(UInt64 x, UInt64 y)
         {
             if (x == 0)
                 return y;
             if (y == 0)
                 return x;
 
-            x = Math.Abs(x);
-            y = Math.Abs(y);
+            UInt64 result = 1;
+            while (y != 0)
+            {
+                result = y;
+                y = x % y;
+                x = result;
+            }
 
-            Int64 result = 1;
+            return result;
+        }
+
+        /// <summary>
+        /// Computes the greatest common divisor of two decimals.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The greatest common divisor of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the GCD.
+        /// </remarks>
+        public static BigInteger GreatestCommonDivisor(BigInteger x, BigInteger y)
+        {
+            if (x == 0)
+                return y;
+            if (y == 0)
+                return x;
+
+            x = BigInteger.Abs(x);
+            y = BigInteger.Abs(y);
+
+            BigInteger result = 1;
             while (y != 0)
             {
                 result = y;
@@ -151,13 +259,38 @@ namespace AEGIS.Numerics
         /// <remarks>
         /// This method uses the Euclidean algorithm for computing the LCM.
         /// </remarks>
-        public static Int64 LeastCommonMultiple(Int64 x, Int64 y)
+        public static Double LeastCommonMultiple(UInt32 x, UInt32 y)
+        {
+            return LeastCommonMultiple((UInt64)x, y);
+        }
+
+        /// <summary>
+        /// Computes the least common multiple (LCM) of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The least common multiple of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the LCM.
+        /// </remarks>
+        public static Double LeastCommonMultiple(Int64 x, Int64 y)
+        {
+            return LeastCommonMultiple((UInt64)Math.Abs(x), (UInt64)Math.Abs(y));
+        }
+
+        /// <summary>
+        /// Computes the least common multiple (LCM) of two numbers.
+        /// </summary>
+        /// <param name="x">The first number.</param>
+        /// <param name="y">The second number.</param>
+        /// <returns>The least common multiple of the two specified numbers.</returns>
+        /// <remarks>
+        /// This method uses the Euclidean algorithm for computing the LCM.
+        /// </remarks>
+        public static Double LeastCommonMultiple(UInt64 x, UInt64 y)
         {
             if (x == 0 || y == 0)
                 return 0;
-
-            x = Math.Abs(x);
-            y = Math.Abs(y);
 
             return x * y / GreatestCommonDivisor(x, y);
         }
@@ -1248,12 +1381,7 @@ namespace AEGIS.Numerics
         /// <returns>The secant of the value.</returns>
         public static Double Sec(Double value)
         {
-            Double cos = Math.Cos(value);
-
-            if (cos == 0)
-                return Double.NaN;
-
-            return 1 / cos;
+            return 1 / Math.Cos(value);
         }
 
         /// <summary>

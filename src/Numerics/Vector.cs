@@ -88,7 +88,7 @@ namespace AEGIS.Numerics
         /// <summary>
         /// Gets the size of the vector.
         /// </summary>
-        /// <value>The size of the vector.</value>
+        /// <value>The number of values in the vector.</value>
         public Int32 Size { get { return this.values.Length; } }
 
         /// <summary>
@@ -534,7 +534,11 @@ namespace AEGIS.Numerics
         /// <returns>The normalized vector.</returns>
         public static Vector Normalize(Vector vector)
         {
-            return new Vector(vector.Select(value => value /= vector.Length).ToArray());
+            Double length = vector.Length;
+            if (length == 0 || length == 1)
+                return vector;
+
+            return new Vector(vector.Select(value => value /= vector.Length));
         }
 
         /// <summary>

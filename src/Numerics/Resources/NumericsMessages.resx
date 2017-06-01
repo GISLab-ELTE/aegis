@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArgIsNotAnInteger" xml:space="preserve">
+    <value>{0} is not an integer.</value>
+  </data>
   <data name="BufferIsNull" xml:space="preserve">
     <value>The buffer is null.</value>
+  </data>
+  <data name="CannotApproximateValue" xml:space="preserve">
+    <value>The value cannot be approximated.</value>
   </data>
   <data name="ColumnIndexOutsideMatrixBounds" xml:space="preserve">
     <value>Column index is outside the bounds of the matrix.</value>
   </data>
   <data name="DenomatorIs0" xml:space="preserve">
     <value>The denominator is 0.</value>
+  </data>
+  <data name="DenominatorTooLargeToEvaluate" xml:space="preserve">
+    <value>The denominator is too large to evaluate.</value>
   </data>
   <data name="FirstCoefficientIsLessThan0" xml:space="preserve">
     <value>The first coefficient is less than 0.</value>
@@ -146,6 +155,12 @@
   </data>
   <data name="IntervalsNotPositiveEven" xml:space="preserve">
     <value>The number of intervals is not positive even.</value>
+  </data>
+  <data name="IsArgs" xml:space="preserve">
+    <value>{0} is {1}</value>
+  </data>
+  <data name="IterationLimitIsLessThan1" xml:space="preserve">
+    <value>The iteration limit is less than 1.</value>
   </data>
   <data name="MatrixIsEmpty" xml:space="preserve">
     <value>The matrix is empty.</value>
@@ -198,6 +213,9 @@
   <data name="NumberOfValuesIsNotSquare" xml:space="preserve">
     <value>The number of values is not a square number.</value>
   </data>
+  <data name="NumeratorTooLargeToEvaluate" xml:space="preserve">
+    <value>The numerator is too large to evaluate.</value>
+  </data>
   <data name="ObjectIsNotComparableWithRational" xml:space="preserve">
     <value>The object is not comparable with a rational number.</value>
   </data>
@@ -212,6 +230,9 @@
   </data>
   <data name="PIsLessThan1" xml:space="preserve">
     <value>The value of p is less than 1.</value>
+  </data>
+  <data name="PrecisionIsLessThanOrEqualTo0" xml:space="preserve">
+    <value>The precision is less than or equal to 0.</value>
   </data>
   <data name="RandomIsNull" xml:space="preserve">
     <value>The random generator is null.</value>
@@ -252,8 +273,14 @@
   <data name="ValueCollectionIsNull" xml:space="preserve">
     <value>The collection of values is null.</value>
   </data>
+  <data name="ValueIsGreaterThanArg" xml:space="preserve">
+    <value>The value is greater then {0}.</value>
+  </data>
   <data name="ValueIsLessThan0" xml:space="preserve">
     <value>The value is less than 0.</value>
+  </data>
+  <data name="ValueIsLessThanArg" xml:space="preserve">
+    <value>The value is less then {0}.</value>
   </data>
   <data name="ValueIsLessThanOrEqualTo0" xml:space="preserve">
     <value>The value is less than or equal to 0.</value>

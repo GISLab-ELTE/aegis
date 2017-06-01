@@ -15,10 +15,9 @@
 namespace AEGIS.Tests.Numerics
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using AEGIS.Numerics;
     using AEGIS.Numerics.LinearAlgebra;
     using NUnit.Framework;
@@ -70,22 +69,49 @@ namespace AEGIS.Tests.Numerics
         [Test]
         public void VectorConstructorTest()
         {
-            Vector result = new Vector(0);
-            result.Size.ShouldBe(0);
+            Vector vector = new Vector(0);
+            vector.Size.ShouldBe(0);
 
-            result = new Vector(10);
-            result.Size.ShouldBe(10);
-            result.ShouldAllBe(value => value == 0);
+            vector = new Vector(10);
+            vector.Size.ShouldBe(10);
+            vector.ShouldAllBe(value => value == 0);
 
-            result = new Vector(1, 1, 1, 1);
-            result.Size.ShouldBe(4);
-            result.ShouldAllBe(value => value == 1);
+            vector = new Vector(1, 1, 1, 1);
+            vector.Size.ShouldBe(4);
+            vector.ShouldAllBe(value => value == 1);
 
-            result = new Vector(this.testValues);
-            result.ShouldBe(this.testValues);
+            vector = new Vector(this.testValues);
+            vector.ShouldBe(this.testValues);
+
+            vector = new Vector((IEnumerable<Double>)this.testValues);
+            vector.ShouldBe(this.testValues);
+
+            Vector copy = new Vector(vector);
+            copy.ShouldBe(vector);
 
             Should.Throw<ArgumentOutOfRangeException>(() => new Vector(-3));
             Should.Throw<ArgumentNullException>(() => new Vector((Double[])null));
+            Should.Throw<ArgumentNullException>(() => new Vector((IEnumerable<Double>)null));
+            Should.Throw<ArgumentNullException>(() => new Vector((Vector)null));
+        }
+
+        /// <summary>
+        /// Tests item properties of the <see cref="Vector" /> class.
+        /// </summary>
+        [Test]
+        public void VectorItemTest()
+        {
+            this.vectors[2][0].ShouldBe(3);
+            this.vectors[2][3].ShouldBe(32);
+
+            this.vectors[2][0] = Math.PI;
+            this.vectors[2][0].ShouldBe(Math.PI);
+            this.vectors[2][3] = 2 * Math.PI;
+            this.vectors[2][3].ShouldBe(2 * Math.PI);
+
+            Double value = 0;
+            Should.Throw<ArgumentOutOfRangeException>(() => value = this.vectors[0][-1]);
+            Should.Throw<ArgumentOutOfRangeException>(() => this.vectors[0][-1] = value);
         }
 
         /// <summary>
@@ -128,6 +154,7 @@ namespace AEGIS.Tests.Numerics
             Vector.AreEqual(new Vector(), new Vector(4)).ShouldBeFalse();
             Vector.AreEqual(this.nullVector, new Vector(4)).ShouldBeFalse();
             Vector.AreEqual(this.nullVector, null).ShouldBeTrue();
+            Vector.AreEqual(this.vectors[0], this.vectors[0]).ShouldBeTrue();
         }
 
         /// <summary>
@@ -136,9 +163,9 @@ namespace AEGIS.Tests.Numerics
         [Test]
         public void VectorIsZeroTest()
         {
-            for (Int32 index = 1; index < this.vectors.Length; index++)
+            for (Int32 i = 1; i < this.vectors.Length; i++)
             {
-                Vector.IsZero(this.vectors[index]).ShouldBeFalse();
+                Vector.IsZero(this.vectors[i]).ShouldBeFalse();
             }
 
             Vector.IsZero(this.vectors[0]).ShouldBeTrue();
@@ -152,14 +179,14 @@ namespace AEGIS.Tests.Numerics
         [Test]
         public void VectorIsValidTest()
         {
-            for (Int32 index = 1; index < this.vectors.Length; index++)
+            for (Int32 i = 1; i < this.vectors.Length; i++)
             {
-                Vector.IsValid(this.vectors[index]).ShouldBeTrue();
+                Vector.IsValid(this.vectors[i]).ShouldBeTrue();
             }
 
             Vector.IsValid(new Vector(3, Double.NaN)).ShouldBeFalse();
 
-            Should.Throw<ArgumentNullException>(() => Vector.IsZero(this.nullVector));
+            Should.Throw<ArgumentNullException>(() => Vector.IsValid(this.nullVector));
         }
 
         /// <summary>
@@ -217,13 +244,13 @@ namespace AEGIS.Tests.Numerics
         [Test]
         public void VectorNegationTest()
         {
-            for (Int32 vectorIndex = 0; vectorIndex < this.vectors.Length; vectorIndex++)
+            for (Int32 i = 0; i < this.vectors.Length; i++)
             {
-                Vector result = -this.vectors[vectorIndex];
+                Vector result = -this.vectors[i];
 
-                for (Int32 index = 0; index < 4; index++)
+                for (Int32 j = 0; j < 4; j++)
                 {
-                    result[index].ShouldBe(-this.vectors[vectorIndex][index]);
+                    result[j].ShouldBe(-this.vectors[i][j]);
                 }
             }
 
@@ -267,6 +294,8 @@ namespace AEGIS.Tests.Numerics
             Should.Throw<ArgumentException>(() => result = this.vectors[1] + new Vector(3));
             Should.Throw<ArgumentNullException>(() => result = this.vectors[1] + (Double[])null);
             Should.Throw<ArgumentNullException>(() => result = (Double[])null + this.vectors[1]);
+            Should.Throw<ArgumentNullException>(() => result = this.nullVector + new Double[] { 1, 2, 3 });
+            Should.Throw<ArgumentNullException>(() => result = new Double[] { 1, 2, 3 } + this.nullVector);
             Should.Throw<ArgumentException>(() => result = this.vectors[1] + new Double[] { 1, 2, 3 });
             Should.Throw<ArgumentException>(() => result = new Double[] { 1, 2, 3 } + this.vectors[1]);
         }
@@ -298,22 +327,22 @@ namespace AEGIS.Tests.Numerics
         public void VectorMultiplicationTest()
         {
             // scalar
-            for (Int32 arrayIndex = 0; arrayIndex < this.vectors.Length; arrayIndex++)
+            for (Int32 i = 0; i < this.vectors.Length; i++)
             {
                 Vector[] results = new Vector[]
                 {
-                    -5 * this.vectors[arrayIndex],
-                    3.567 * this.vectors[arrayIndex],
-                    this.vectors[arrayIndex] * -5,
-                    this.vectors[arrayIndex] * 3.567
+                    -5 * this.vectors[i],
+                    3.567 * this.vectors[i],
+                    this.vectors[i] * -5,
+                    this.vectors[i] * 3.567
                 };
 
-                for (Int32 index = 0; index < this.vectors[arrayIndex].Size; index++)
+                for (Int32 j = 0; j < this.vectors[i].Size; j++)
                 {
-                    results[0][index].ShouldBe(-5 * this.vectors[arrayIndex][index]);
-                    results[1][index].ShouldBe(3.567 * this.vectors[arrayIndex][index]);
-                    results[2][index].ShouldBe(-5 * this.vectors[arrayIndex][index]);
-                    results[3][index].ShouldBe(3.567 * this.vectors[arrayIndex][index]);
+                    results[0][j].ShouldBe(-5 * this.vectors[i][j]);
+                    results[1][j].ShouldBe(3.567 * this.vectors[i][j]);
+                    results[2][j].ShouldBe(-5 * this.vectors[i][j]);
+                    results[3][j].ShouldBe(3.567 * this.vectors[i][j]);
                 }
             }
 
@@ -371,20 +400,40 @@ namespace AEGIS.Tests.Numerics
         public void VectorDivisionTest()
         {
             // scalar
-            for (Int32 arrayIndex = 0; arrayIndex < this.vectors.Length; arrayIndex++)
+            for (Int32 i = 0; i < this.vectors.Length; i++)
             {
-                for (Int32 index = 0; index < this.vectors[arrayIndex].Size; index++)
+                for (Int32 j = 0; j < this.vectors[i].Size; j++)
                 {
-                    Vector result = this.vectors[arrayIndex] / -5;
-                    result[index].ShouldBe(this.vectors[arrayIndex][index] / -5, 0.001);
-                    result = this.vectors[arrayIndex] / 3.456;
-                    result[index].ShouldBe(this.vectors[arrayIndex][index] / 3.456, 0.001);
+                    Vector result = this.vectors[i] / -5;
+                    result[j].ShouldBe(this.vectors[i][j] / -5, 0.001);
+                    result = this.vectors[i] / 3.456;
+                    result[j].ShouldBe(this.vectors[i][j] / 3.456, 0.001);
                 }
             }
 
             // exceptions
             Vector vector;
             Should.Throw<ArgumentNullException>(() => vector = this.nullVector / 1);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Vector.Normalize(Vector)"/> method.
+        /// </summary>
+        [Test]
+        public void VectorNormalizeTest()
+        {
+            Vector[] normalizedVectors = new Vector[]
+            {
+                new Vector(4),
+                new Vector(0.5, 0.5, 0.5, 0.5),
+                new Vector(3 / Math.Sqrt(4013), 8 / Math.Sqrt(4013), 54 / Math.Sqrt(4013), 32 / Math.Sqrt(4013)),
+                new Vector(0.0675403, 0.326445, 0.419651, 0.844254)
+            };
+
+            for (Int32 i = 0; i < normalizedVectors.Length; i++)
+            {
+                Vector.Normalize(this.vectors[i]).ShouldBe(normalizedVectors[i], 0.000001);
+            }
         }
 
         /// <summary>
@@ -399,13 +448,32 @@ namespace AEGIS.Tests.Numerics
             result.NumberOfColumns.ShouldBe(1);
             result.NumberOfRows.ShouldBe(4);
 
-            for (Int32 index = 0; index < vector.Size; index++)
+            for (Int32 i = 0; i < vector.Size; i++)
             {
-                result[index, 0].ShouldBe(vector[index]);
+                result[i, 0].ShouldBe(vector[i]);
             }
 
             // exceptions
             Should.Throw<ArgumentNullException>(() => result = (Matrix)this.nullVector);
+        }
+
+        /// <summary>
+        /// Tests enumeration of the <see cref="Vector" /> class.
+        /// </summary>
+        [Test]
+        public void VectorEnumeratorTest()
+        {
+            Double[] expected = new[] { 1.2, 5.8, 7.456, 15 };
+            IEnumerator<Double> genericEnumerator = this.vectors[3].GetEnumerator();
+            IEnumerator enumerator = (this.vectors[3] as IEnumerable).GetEnumerator();
+
+            foreach (Double exp in expected)
+            {
+                enumerator.MoveNext().ShouldBeTrue();
+                genericEnumerator.MoveNext().ShouldBeTrue();
+                enumerator.Current.ShouldBe(exp);
+                genericEnumerator.Current.ShouldBe(exp);
+            }
         }
     }
 }
