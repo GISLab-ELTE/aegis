@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace AEGIS.Tests.IO.Storage.Authentication
+namespace AEGIS.Tests.Storage.Authentication
 {
     using System;
     using AEGIS.Storage;
