@@ -74,15 +74,10 @@ namespace AEGIS.Reference
         /// The projection is null.
         /// </exception>
         public ProjectedCoordinateReferenceSystem(String identifier, String name, String remarks, String[] aliases, String scope, GeographicCoordinateReferenceSystem baseReferenceSystem, CoordinateSystem coordinateSystem, AreaOfUse areaOfUse, CoordinateProjection projection)
-            : base(identifier, name, remarks, aliases, scope, coordinateSystem, baseReferenceSystem != null ? baseReferenceSystem.Datum : null, areaOfUse)
+            : base(identifier, name, remarks, aliases, scope, coordinateSystem, baseReferenceSystem?.Datum, areaOfUse)
         {
-            if (baseReferenceSystem == null)
-                throw new ArgumentNullException(nameof(baseReferenceSystem), ReferenceMessages.BaseReferenceSystemIsNull);
-            if (projection == null)
-                throw new ArgumentNullException(nameof(projection), ReferenceMessages.ProjectionIsNull);
-
-            this.BaseReferenceSystem = baseReferenceSystem;
-            this.Projection = projection;
+            this.BaseReferenceSystem = baseReferenceSystem ?? throw new ArgumentNullException(nameof(baseReferenceSystem));
+            this.Projection = projection ?? throw new ArgumentNullException(nameof(projection));
         }
 
         /// <summary>

@@ -40,10 +40,7 @@ namespace AEGIS
         /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public BasicPoint(Coordinate coordinate)
         {
-            if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
-
-            this.Coordinate = coordinate;
+            this.Coordinate = coordinate ?? throw new ArgumentNullException(nameof(coordinate));
         }
 
         /// <summary>

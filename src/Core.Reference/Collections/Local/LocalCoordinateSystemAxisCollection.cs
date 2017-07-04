@@ -192,9 +192,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithIdentifier(String identifier, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit));
 
             return this.dataCollection.WithIdentifier(identifier).Select(data => this.Convert(data, direction, unit));
         }
@@ -225,9 +225,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithName(String name, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit));
 
             return this.dataCollection.WithName(name).Select(data => this.Convert(data, direction, unit));
         }
@@ -258,9 +258,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithMatchingIdentifier(String identifier, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit));
 
             return this.dataCollection.WithMatchingIdentifier(identifier).Select(data => this.Convert(data, direction, unit));
         }
@@ -291,9 +291,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateSystemAxis> WithMatchingName(String name, AxisDirection direction, UnitOfMeasurement unit)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unit));
 
             return this.dataCollection.WithMatchingName(name).Select(data => this.Convert(data, direction, unit));
         }

@@ -39,9 +39,9 @@ namespace AEGIS.Reference
         public static Ellipsoid ToUnit(this Ellipsoid ellipsoid, UnitOfMeasurement unitOfMeasurement)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
             if (unitOfMeasurement == null)
-                throw new ArgumentNullException(nameof(unitOfMeasurement), ReferenceMessages.UnitIsNull);
+                throw new ArgumentNullException(nameof(unitOfMeasurement));
             if (unitOfMeasurement.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitIsNotLength, nameof(unitOfMeasurement));
 
@@ -82,7 +82,7 @@ namespace AEGIS.Reference
         public static Double GetGeocentricLatitude(this Ellipsoid ellipsoid, Double geodeticLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             if (geodeticLatitude > Math.PI / 2 || geodeticLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -113,7 +113,7 @@ namespace AEGIS.Reference
         public static Double GetReducedLatitude(this Ellipsoid ellipsoid, Double geodeticLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             if (geodeticLatitude > Math.PI / 2 || geodeticLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -147,7 +147,7 @@ namespace AEGIS.Reference
         public static Double DistanceOfParalellCurvature(this Ellipsoid ellipsoid, Double latitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             if (latitude > Math.PI / 2 || latitude < -Math.PI / 2)
                 return Double.NaN;
@@ -187,7 +187,7 @@ namespace AEGIS.Reference
         public static Double LengthOfVerticalCurvature(this Ellipsoid ellipsoid, Double startingLatitude, Double endingLatitude)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             if (startingLatitude > Math.PI / 2 || startingLatitude < -Math.PI / 2 || endingLatitude > Math.PI / 2 || endingLatitude < -Math.PI / 2)
                 return Double.NaN;
@@ -223,7 +223,7 @@ namespace AEGIS.Reference
         public static Length LengthOfParalellCurvature(this Ellipsoid ellipsoid, Angle latitude, Angle longitudeDifference)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             return ellipsoid.RadiusOfParalellCurvature(latitude) * longitudeDifference.BaseValue;
         }
@@ -253,7 +253,7 @@ namespace AEGIS.Reference
         public static Double LengthOfParalellCurvature(this Ellipsoid ellipsoid, Double latitude, Double longitudeDifference)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             return ellipsoid.RadiusOfParalellCurvature(latitude) * longitudeDifference;
         }
@@ -275,11 +275,11 @@ namespace AEGIS.Reference
         public static GeoCoordinate GetCoordinate(this Ellipsoid ellipsoid, GeoCoordinate sourceCoordinate, GeoVector vector)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
             if (sourceCoordinate == null)
-                throw new ArgumentNullException(nameof(sourceCoordinate), ReferenceMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(sourceCoordinate));
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), ReferenceMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             if (!vector.IsValid)
                 return GeoCoordinate.Undefined;
@@ -386,11 +386,11 @@ namespace AEGIS.Reference
         public static GeoVector GetVector(this Ellipsoid ellipsoid, GeoCoordinate source, GeoCoordinate destination)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
             if (source == null)
-                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (destination == null)
-                throw new ArgumentNullException(nameof(destination), ReferenceMessages.DestinationCoordinateIsNull);
+                throw new ArgumentNullException(nameof(destination));
 
             if (ellipsoid.IsSphere)
                 throw new NotSupportedException(ReferenceMessages.VectorComputationOnlySupportedOnSphere);

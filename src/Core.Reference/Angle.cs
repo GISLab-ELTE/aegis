@@ -115,7 +115,7 @@ namespace AEGIS.Reference
         public Double GetValue(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -135,7 +135,7 @@ namespace AEGIS.Reference
         public String ToString(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -159,7 +159,7 @@ namespace AEGIS.Reference
         public Angle ToUnit(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -532,7 +532,7 @@ namespace AEGIS.Reference
         public static Angle Max(params Angle[] angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles));
             if (angles.Length == 0)
                 return Angle.Undefined;
 
@@ -548,7 +548,7 @@ namespace AEGIS.Reference
         public static Angle Max(IEnumerable<Angle> angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleCollectionIsNull);
+                throw new ArgumentNullException(nameof(angles));
             if (!angles.Any())
                 return Angle.Undefined;
 
@@ -564,7 +564,7 @@ namespace AEGIS.Reference
         public static Angle Min(params Angle[] angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles));
             if (angles.Length == 0)
                 return Angle.Undefined;
 
@@ -580,7 +580,7 @@ namespace AEGIS.Reference
         public static Angle Min(IEnumerable<Angle> angles)
         {
             if (angles == null)
-                throw new ArgumentNullException(nameof(angles), ReferenceMessages.AngleArrayIsNull);
+                throw new ArgumentNullException(nameof(angles));
             if (!angles.Any())
                 return Angle.Undefined;
 

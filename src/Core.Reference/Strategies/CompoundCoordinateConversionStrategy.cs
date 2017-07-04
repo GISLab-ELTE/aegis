@@ -54,15 +54,12 @@ namespace AEGIS.Reference.Strategies
         public CompoundCoordinateConversionStrategy(ICoordinateOperationStrategy<Coordinate, GeoCoordinate> conversionToGeographic, ICoordinateOperationStrategy<GeoCoordinate, GeoCoordinate> geographicTransformation, ICoordinateOperationStrategy<GeoCoordinate, Coordinate> conversionFromGeographic)
         {
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionToGeographic), ReferenceMessages.ConversionIsNull);
+                throw new ArgumentNullException(nameof(conversionToGeographic));
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(geographicTransformation), ReferenceMessages.TransformationIsNull);
-            if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionFromGeographic), ReferenceMessages.ConversionIsNull);
-
+                throw new ArgumentNullException(nameof(geographicTransformation));
             this.conversionFromGeographic = conversionFromGeographic;
             this.geographicTransformation = geographicTransformation;
-            this.conversionToGeographic = conversionToGeographic;
+            this.conversionToGeographic = conversionToGeographic ?? throw new ArgumentNullException(nameof(conversionFromGeographic));
         }
 
         /// <summary>

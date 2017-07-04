@@ -51,7 +51,7 @@ namespace AEGIS.Numerics.Integral
         public static Double ComputeIntegral(Func<Double, Double> function, Double intervalStart, Double intervalEnd, Int32 numberOfIntervals)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function));
 
             if (numberOfIntervals < 2 || numberOfIntervals % 2 == 1)
                 throw new ArgumentException(NumericsMessages.IntervalsNotPositiveEven, nameof(numberOfIntervals));

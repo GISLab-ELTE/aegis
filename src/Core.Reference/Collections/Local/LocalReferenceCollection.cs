@@ -140,7 +140,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -166,7 +166,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -190,7 +190,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureAliases();
             this.EnsureReferences();
@@ -211,7 +211,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ReferenceType> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureAliases();
             this.EnsureReferences();

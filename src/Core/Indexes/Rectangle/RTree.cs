@@ -301,7 +301,7 @@ namespace AEGIS.Indexes.Rectangle
         public void Add(IBasicGeometry geometry)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
 
             this.AddNode(new Node(geometry));
             this.NumberOfGeometries++;
@@ -315,7 +315,7 @@ namespace AEGIS.Indexes.Rectangle
         public void Add(IEnumerable<IBasicGeometry> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             foreach (IBasicGeometry geometry in collection)
             {
@@ -336,7 +336,7 @@ namespace AEGIS.Indexes.Rectangle
         public IEnumerable<IBasicGeometry> Search(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return this.SearchNode(this.Root, envelope);
         }
@@ -363,7 +363,7 @@ namespace AEGIS.Indexes.Rectangle
         public virtual Boolean Remove(IBasicGeometry geometry)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
 
             return this.RemoveGeometry(geometry);
         }
@@ -391,7 +391,7 @@ namespace AEGIS.Indexes.Rectangle
         public Boolean Remove(Envelope envelope, out List<IBasicGeometry> geometries)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             geometries = this.SearchNode(this.Root, envelope).ToList();
 

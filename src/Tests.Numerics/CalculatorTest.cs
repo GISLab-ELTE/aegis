@@ -15,10 +15,10 @@
 namespace AEGIS.Tests.Numerics
 {
     using System;
+    using System.Numerics;
     using AEGIS.Numerics;
     using NUnit.Framework;
     using Shouldly;
-    using System.Numerics;
 
     /// <summary>
     /// Test fixture for the <see cref="Calculator" /> class.

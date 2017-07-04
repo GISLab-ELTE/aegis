@@ -38,9 +38,9 @@ namespace AEGIS.Features
             : base(geometryFactory, attributeFactory)
         {
             if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(geometryFactory));
             if (attributeFactory == null)
-                throw new ArgumentNullException(nameof(attributeFactory), CoreMessages.AttributeFactoryIsNull);
+                throw new ArgumentNullException(nameof(attributeFactory));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace AEGIS.Features
         public IFeature CreateFeature(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return new Feature(identifier, null, null);
         }
@@ -71,9 +71,9 @@ namespace AEGIS.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
 
             return new Feature(identifier, geometry, null);
         }
@@ -95,11 +95,11 @@ namespace AEGIS.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             return new Feature(identifier, geometry, attributes);
         }
@@ -118,9 +118,9 @@ namespace AEGIS.Features
         public IFeature CreateFeature(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             return new Feature(identifier, null, attributes);
         }
@@ -134,7 +134,7 @@ namespace AEGIS.Features
         public IFeature CreateFeature(IFeature other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.FeatureIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new Feature(other.Identifier, other.Geometry, other.Attributes);
         }
@@ -148,7 +148,7 @@ namespace AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return new FeatureCollection(this, identifier, null);
         }
@@ -167,9 +167,9 @@ namespace AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             return new FeatureCollection(this, identifier, attributes);
         }
@@ -191,11 +191,11 @@ namespace AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return new FeatureCollection(this, identifier, attributes, collection);
         }
@@ -214,9 +214,9 @@ namespace AEGIS.Features
         public IFeatureCollection CreateCollection(String identifier, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return new FeatureCollection(this, identifier, null, collection);
         }
@@ -230,7 +230,7 @@ namespace AEGIS.Features
         public IFeatureCollection CreateCollection(IFeatureCollection other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.FeatureCollectionIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new FeatureCollection(this, other.Identifier, null, other);
         }

@@ -38,9 +38,9 @@ namespace AEGIS.Numerics
         public static Double Correlation(IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -62,7 +62,7 @@ namespace AEGIS.Numerics
         public static Double Correlation(this IEnumerable<Tuple<Double, Double>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs));
 
             return Correlation(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -81,9 +81,9 @@ namespace AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (!first.Any() || !second.Any())
                 return 0;
@@ -114,7 +114,7 @@ namespace AEGIS.Numerics
         public static Double Covariance(this IEnumerable<Tuple<Double, Double>> valuePairs)
         {
             if (valuePairs == null)
-                throw new ArgumentNullException(nameof(valuePairs), NumericsMessages.ValuePairCollectionIsNull);
+                throw new ArgumentNullException(nameof(valuePairs));
 
             return Covariance(valuePairs.Select(value => value.Item1), valuePairs.Select(value => value.Item2));
         }
@@ -128,7 +128,7 @@ namespace AEGIS.Numerics
         public static Double Mean(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -167,7 +167,7 @@ namespace AEGIS.Numerics
         public static Double Median(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             if (!values.Any())
                 throw new ArgumentException(NumericsMessages.ValueCollectionIsEmpty, nameof(values));
@@ -202,7 +202,7 @@ namespace AEGIS.Numerics
         public static Double CorrectedStandardDeviation(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -249,7 +249,7 @@ namespace AEGIS.Numerics
         public static Double StandardDeviation(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             return Math.Sqrt(Variance(values));
         }
@@ -274,7 +274,7 @@ namespace AEGIS.Numerics
         public static Double StandardErrorOfMean(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             if (!values.Any())
                 return 0;
@@ -318,7 +318,7 @@ namespace AEGIS.Numerics
         public static Double OneSampleTTest(IEnumerable<Double> values, Double targetValue)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 
@@ -370,9 +370,9 @@ namespace AEGIS.Numerics
         public static Double TwoSampleTTest(IEnumerable<Double> first, IEnumerable<Double> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstCollectionIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondCollectionIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             IEnumerator<Double> firstEnumerator = first.GetEnumerator();
             IEnumerator<Double> secondEnumerator = second.GetEnumerator();
@@ -434,7 +434,7 @@ namespace AEGIS.Numerics
         public static Double Variance(this IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             IEnumerator<Double> enumerator = values.GetEnumerator();
 

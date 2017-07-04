@@ -39,13 +39,8 @@ namespace AEGIS.Storage
         /// </exception>
         public FileSystemEntry(String path, String name, FileSystemEntryType entryType, DateTime creationTime, DateTime lastAccessTime, DateTime lastModificationTime, Int64 length)
         {
-            if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
-            if (name == null)
-                throw new ArgumentNullException(nameof(name), StorageMessages.NameIsNull);
-
-            this.Path = path;
-            this.Name = name;
+            this.Path = path ?? throw new ArgumentNullException(nameof(path));
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
             this.Type = entryType;
             this.CreationTime = creationTime;
             this.LastAccessTime = lastAccessTime;

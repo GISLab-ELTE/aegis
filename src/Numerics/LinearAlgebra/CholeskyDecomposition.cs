@@ -49,7 +49,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public CholeskyDecomposition(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
             if (!MatrixComputations.IsSymmetric(matrix))
                 throw new ArgumentException(NumericsMessages.MatrixIsNotSymmetric, nameof(matrix));
 

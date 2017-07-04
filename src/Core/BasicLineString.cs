@@ -21,6 +21,7 @@ namespace AEGIS
     using System.Linq;
     using System.Text;
     using AEGIS.Collections;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -74,7 +75,7 @@ namespace AEGIS
         public BasicLineString(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.coordinates = new List<Coordinate>(source.Elements());
         }
@@ -179,7 +180,7 @@ namespace AEGIS
         public virtual Boolean Contains(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             return this.coordinates.Contains(coordinate);
         }
@@ -197,7 +198,7 @@ namespace AEGIS
         public virtual Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.coordinates.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 

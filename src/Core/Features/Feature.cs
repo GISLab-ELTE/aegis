@@ -37,16 +37,9 @@ namespace AEGIS.Features
         /// </exception>
         public Feature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-            if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
-            if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
-
-            this.Identifier = identifier;
-            this.Geometry = geometry;
-            this.Attributes = attributes;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
+            this.Geometry = geometry ?? throw new ArgumentNullException(nameof(geometry));
+            this.Attributes = attributes ?? throw new ArgumentNullException(nameof(attributes));
         }
 
         /// <summary>

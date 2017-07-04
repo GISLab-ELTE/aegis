@@ -53,7 +53,7 @@ namespace AEGIS.Storage.FileSystems.Operations
             : base(path, authentication)
         {
             if (destination == null)
-                throw new ArgumentNullException(nameof(destination), StorageMessages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destination));
             if (String.IsNullOrEmpty(destination))
                 throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destination));
 
@@ -93,7 +93,7 @@ namespace AEGIS.Storage.FileSystems.Operations
             : base(client, null, path, authentication)
         {
             if (destination == null)
-                throw new ArgumentNullException(nameof(destination), StorageMessages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destination));
             if (String.IsNullOrEmpty(destination))
                 throw new ArgumentException(StorageMessages.DestinationPathIsEmpty, nameof(destination));
 

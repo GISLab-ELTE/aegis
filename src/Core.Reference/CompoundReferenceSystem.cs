@@ -68,11 +68,8 @@ namespace AEGIS.Reference
         {
             if (components == null || components.Length == 0)
                 throw new ArgumentException(ReferenceMessages.NoComponentsAreSpecified, nameof(components));
-            if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
-
             this.components = components;
-            this.AreaOfUse = areaOfUse;
+            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
         }
 
         /// <summary>

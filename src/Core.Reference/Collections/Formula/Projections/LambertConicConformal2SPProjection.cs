@@ -158,9 +158,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double t = this.ComputeTValue(coordinate.Latitude.BaseValue);
             Double r = this.ComputeRValue(t);
             Double theta = this.n * (coordinate.Longitude.BaseValue - this.longitudeOfFalseOrigin);
-            Double easting, northing;
-
-            this.ComputeCoordinate(r, theta, out easting, out northing);
+            this.ComputeCoordinate(r, theta, out double easting, out double northing);
 
             return new Coordinate(easting, northing);
         }

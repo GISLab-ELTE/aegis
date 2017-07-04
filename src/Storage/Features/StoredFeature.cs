@@ -36,9 +36,9 @@ namespace AEGIS.Storage.Features
         public StoredFeature(IFeatureDriver driver, String identifier)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver));
             this.Factory = new StoredFeatureFactory(driver);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace AEGIS.Storage.Features
         /// </exception>
         public StoredFeature(IStoredFeatureFactory factory, String identifier)
         {
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
         }
 
         /// <summary>

@@ -106,10 +106,7 @@ namespace AEGIS.Reference.Collections.Formula
                                            CoordinateReferenceSystem source, CoordinateReferenceSystem target, Ellipsoid ellipsoid, AreaOfUse areaOfUse)
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.MolodenskyTransformation, parameters, source, target, areaOfUse)
         {
-            if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
-
-            this.Ellipsoid = ellipsoid;
+            this.Ellipsoid = ellipsoid ?? throw new ArgumentNullException(nameof(ellipsoid));
             this.xAxisTranslation = this.GetParameterValue(CoordinateOperationParameters.XAxisTranslation);
             this.yAxisTranslation = this.GetParameterValue(CoordinateOperationParameters.YAxisTranslation);
             this.zAxisTranslation = this.GetParameterValue(CoordinateOperationParameters.ZAxisTranslation);

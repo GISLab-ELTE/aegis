@@ -61,11 +61,8 @@ namespace AEGIS.Storage.Geometries
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
         public StoredGeometryFactory(IGeometryDriver driver, PrecisionModel precisionModel, IReferenceSystem referenceSystem)
         {
-            if (driver == null)
-                throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
-
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
-            this.Driver = driver;
+            this.Driver = driver ?? throw new ArgumentNullException(nameof(driver));
             this.referenceSystem = referenceSystem;
         }
 
@@ -103,9 +100,10 @@ namespace AEGIS.Storage.Geometries
         /// <returns>The point with the specified X, Y coordinates.</returns>
         public IPoint CreatePoint(Double x, Double y)
         {
-            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            point.Coordinate = new Coordinate(x, y);
-
+            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                Coordinate = new Coordinate(x, y)
+            };
             return point;
         }
 
@@ -118,9 +116,10 @@ namespace AEGIS.Storage.Geometries
         /// <returns>The point with the specified X, Y, Z coordinates.</returns>
         public IPoint CreatePoint(Double x, Double y, Double z)
         {
-            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            point.Coordinate = new Coordinate(x, y, z);
-
+            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                Coordinate = new Coordinate(x, y, z)
+            };
             return point;
         }
 
@@ -131,9 +130,10 @@ namespace AEGIS.Storage.Geometries
         /// <returns>The point with the specified coordinate.</returns>
         public IPoint CreatePoint(Coordinate coordinate)
         {
-            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            point.Coordinate = coordinate;
-
+            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                Coordinate = coordinate
+            };
             return point;
         }
 
@@ -166,7 +166,7 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(params Coordinate[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -184,7 +184,7 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -202,7 +202,7 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -220,7 +220,7 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             if (source != null)
@@ -269,9 +269,9 @@ namespace AEGIS.Storage.Geometries
         public ILine CreateLine(IPoint start, IPoint end)
         {
             if (start == null)
-                throw new ArgumentNullException(nameof(start), CoreMessages.StartPointIsNull);
+                throw new ArgumentNullException(nameof(start));
             if (end == null)
-                throw new ArgumentNullException(nameof(end), CoreMessages.EndPointIsNull);
+                throw new ArgumentNullException(nameof(end));
 
             StoredLine line = new StoredLine(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             line.SetCoordinate(0, start.Coordinate);
@@ -309,11 +309,12 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(params Coordinate[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
-            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            ring.Add(source);
-
+            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                source
+            };
             return ring;
         }
 
@@ -326,11 +327,12 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
-            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            ring.Add(source.Where(point => point != null).Select(point => point.Coordinate));
-
+            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                source.Where(point => point != null).Select(point => point.Coordinate)
+            };
             return ring;
         }
 
@@ -343,11 +345,12 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
-            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            ring.Add(source);
-
+            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                source
+            };
             return ring;
         }
 
@@ -360,11 +363,12 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
-            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            ring.Add(source.Where(point => point != null).Select(point => point.Coordinate));
-
+            StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
+            {
+                source.Where(point => point != null).Select(point => point.Coordinate)
+            };
             return ring;
         }
 
@@ -397,7 +401,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(params Coordinate[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLineString).Add(shell);
@@ -414,7 +418,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(params IPoint[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLineString).Add(shell.Where(point => point != null).Select(point => point.Coordinate));
@@ -431,7 +435,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell);
@@ -448,7 +452,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<IPoint> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell.Elements().Select(point => point.Coordinate));
@@ -466,7 +470,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell);
@@ -493,7 +497,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IEnumerable<IPoint> shell, IEnumerable<IEnumerable<IPoint>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             (polygon.Shell as StoredLinearRing).Add(shell.Elements().Select(point => point.Coordinate));
@@ -555,11 +559,11 @@ namespace AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(IPoint first, IPoint second, IPoint third)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (third == null)
-                throw new ArgumentNullException(nameof(third), CoreMessages.ThirdPointIsNull);
+                throw new ArgumentNullException(nameof(third));
 
             StoredTriangle triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
             triangle.Shell.Add(first.Coordinate);
@@ -633,7 +637,7 @@ namespace AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredGeometryCollection<GeometryType> collection = new StoredGeometryCollection<GeometryType>(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
 
@@ -678,7 +682,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredMultiPoint multiPoint = new StoredMultiPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
 
@@ -701,7 +705,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredMultiPoint multiPoint = new StoredMultiPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
 
@@ -744,7 +748,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(IEnumerable<ILineString> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredMultiLineString multiLineString = new StoredMultiLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
 
@@ -787,7 +791,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(IEnumerable<IPolygon> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredMultiPolygon multiPolygon = new StoredMultiPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
 
@@ -907,11 +911,12 @@ namespace AEGIS.Storage.Geometries
         public IPoint CreatePoint(String identifier, IPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
-            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
-            point.Coordinate = other.Coordinate;
-
+            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
+            {
+                Coordinate = other.Coordinate
+            };
             return point;
         }
 
@@ -934,9 +939,10 @@ namespace AEGIS.Storage.Geometries
         /// <returns>The point created by the factory.</returns>
         public IPoint CreatePoint(Coordinate coordinate, IEnumerable<Int32> indexes)
         {
-            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
-            point.Coordinate = coordinate;
-
+            StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
+            {
+                Coordinate = coordinate
+            };
             return point;
         }
 
@@ -962,7 +968,7 @@ namespace AEGIS.Storage.Geometries
         public IPoint CreatePoint(IPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredPoint point;
             if (other is IStoredGeometry)
@@ -971,8 +977,10 @@ namespace AEGIS.Storage.Geometries
             }
             else
             {
-                point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
-                point.Coordinate = other.Coordinate;
+                point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
+                {
+                    Coordinate = other.Coordinate
+                };
             }
 
             return point;
@@ -1061,11 +1069,12 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(String identifier, ILineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentException(nameof(other), CoreMessages.OtherLineStringIsNull);
+                throw new ArgumentException(nameof(other));
 
-            StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
-            lineString.Add(other);
-
+            StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
+            {
+                other
+            };
             return lineString;
         }
 
@@ -1091,7 +1100,7 @@ namespace AEGIS.Storage.Geometries
         public ILineString CreateLineString(ILineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentException(nameof(other), CoreMessages.OtherLineStringIsNull);
+                throw new ArgumentException(nameof(other));
 
             StoredLineString lineString;
             if (other is IStoredGeometry)
@@ -1100,8 +1109,10 @@ namespace AEGIS.Storage.Geometries
             }
             else
             {
-                lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
-                lineString.Add(other);
+                lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
+                {
+                    other
+                };
             }
 
             return lineString;
@@ -1186,7 +1197,7 @@ namespace AEGIS.Storage.Geometries
         public ILine CreateLine(String identifier, ILine other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredLine line = new StoredLine(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
             line.SetCoordinate(0, other.StartCoordinate);
@@ -1217,7 +1228,7 @@ namespace AEGIS.Storage.Geometries
         public ILine CreateLine(ILine other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredLine line;
             if (other is IStoredGeometry)
@@ -1313,11 +1324,12 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(String identifier, ILinearRing other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other));
 
-            StoredLinearRing linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
-            linearRing.Add(other);
-
+            StoredLinearRing linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
+            {
+                other
+            };
             return linearRing;
         }
 
@@ -1343,7 +1355,7 @@ namespace AEGIS.Storage.Geometries
         public ILinearRing CreateLinearRing(ILinearRing other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredLinearRing linearRing;
             if (other is IStoredGeometry)
@@ -1352,8 +1364,10 @@ namespace AEGIS.Storage.Geometries
             }
             else
             {
-                linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
-                linearRing.Add(other);
+                linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
+                {
+                    other
+                };
             }
 
             return linearRing;
@@ -1438,7 +1452,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(String identifier, IPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredPolygon polygon = new StoredPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
             (polygon.Shell as StoredLinearRing).Add(other.Shell);
@@ -1468,7 +1482,7 @@ namespace AEGIS.Storage.Geometries
         public IPolygon CreatePolygon(IPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredPolygon polygon;
             if (other is IStoredGeometry)
@@ -1569,7 +1583,7 @@ namespace AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(String identifier, ITriangle other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredTriangle triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
 
@@ -1603,7 +1617,7 @@ namespace AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(ITriangle other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             IReadOnlyList<Coordinate> coordinates = other.Shell;
 
@@ -1819,7 +1833,7 @@ namespace AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredGeometryCollection<GeometryType> collection = new StoredGeometryCollection<GeometryType>(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
             Int32 index = 0;
@@ -1858,7 +1872,7 @@ namespace AEGIS.Storage.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredGeometryCollection<GeometryType> collection;
             if (other is IStoredGeometry)
@@ -1958,7 +1972,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(String identifier, IMultiPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiPoint collection = new StoredMultiPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
             Int32 index = 0;
@@ -1993,7 +2007,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPoint CreateMultiPoint(IMultiPoint other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiPoint collection;
             if (other is IStoredGeometry)
@@ -2093,7 +2107,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(String identifier, IMultiLineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiLineString collection = new StoredMultiLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
             Int32 index = 0;
@@ -2128,7 +2142,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiLineString CreateMultiLineString(IMultiLineString other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiLineString collection;
             if (other is IStoredGeometry)
@@ -2228,7 +2242,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(String identifier, IMultiPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiPolygon collection = new StoredMultiPolygon(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
             Int32 index = 0;
@@ -2263,7 +2277,7 @@ namespace AEGIS.Storage.Geometries
         public IMultiPolygon CreateMultiPolygon(IMultiPolygon other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             StoredMultiPolygon collection;
             if (other is IStoredGeometry)
@@ -2335,7 +2349,7 @@ namespace AEGIS.Storage.Geometries
         public IGeometry CreateGeometry(String identifier, IGeometry other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             if (other is IPoint)
                 return this.CreatePoint(identifier, other as IPoint, indexes);
@@ -2385,7 +2399,7 @@ namespace AEGIS.Storage.Geometries
         public IGeometry CreateGeometry(IGeometry other, IEnumerable<Int32> indexes)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             if (other is IPoint)
                 return this.CreatePoint(other as IPoint, indexes);

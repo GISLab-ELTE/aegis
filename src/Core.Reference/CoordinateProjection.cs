@@ -48,11 +48,7 @@ namespace AEGIS.Reference
             : base(identifier, name, remarks, aliases, method, parameters)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
-
-            if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
-
+                throw new ArgumentNullException(nameof(ellipsoid));
             CoordinateOperationParameter[] parameterArray = this.Parameters.Keys.ToArray();
 
             // remeasure all length parameters to ellipsoid unit
@@ -62,7 +58,7 @@ namespace AEGIS.Reference
                     this.SetParameterValue(parameter, ((Length)this.Parameters[parameter]).ToUnit(ellipsoid.SemiMajorAxis.Unit));
             }
 
-            this.AreaOfUse = areaOfUse;
+            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
             this.Ellipsoid = ellipsoid;
         }
 

@@ -62,24 +62,6 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not an integer..
-        /// </summary>
-        public static string ArgIsNotAnInteger {
-            get {
-                return ResourceManager.GetString("ArgIsNotAnInteger", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The buffer is null..
-        /// </summary>
-        public static string BufferIsNull {
-            get {
-                return ResourceManager.GetString("BufferIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The value cannot be approximated..
         /// </summary>
         public static string CannotApproximateValue {
@@ -98,11 +80,11 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The denominator is 0..
+        ///   Looks up a localized string similar to The denominator is -9223372036854775808..
         /// </summary>
-        public static string DenomatorIs0 {
+        public static string DenominatorIsInt64Min {
             get {
-                return ResourceManager.GetString("DenomatorIs0", resourceCulture);
+                return ResourceManager.GetString("DenominatorIsInt64Min", resourceCulture);
             }
         }
         
@@ -125,42 +107,6 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The first collection is null..
-        /// </summary>
-        public static string FirstCollectionIsNull {
-            get {
-                return ResourceManager.GetString("FirstCollectionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The first matrix is null..
-        /// </summary>
-        public static string FirstMatrixIsNull {
-            get {
-                return ResourceManager.GetString("FirstMatrixIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The first vector is null..
-        /// </summary>
-        public static string FirstVectorIsNull {
-            get {
-                return ResourceManager.GetString("FirstVectorIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The function is null..
-        /// </summary>
-        public static string FunctionIsNull {
-            get {
-                return ResourceManager.GetString("FunctionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Index is outside the bounds of the vector..
         /// </summary>
         public static string IndexIsOutsideVectorBounds {
@@ -175,15 +121,6 @@ namespace AEGIS.Numerics.Resources {
         public static string IntervalsNotPositiveEven {
             get {
                 return ResourceManager.GetString("IntervalsNotPositiveEven", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is {1}.
-        /// </summary>
-        public static string IsArgs {
-            get {
-                return ResourceManager.GetString("IsArgs", resourceCulture);
             }
         }
         
@@ -229,15 +166,6 @@ namespace AEGIS.Numerics.Resources {
         public static string MatrixIsNotSymmetric {
             get {
                 return ResourceManager.GetString("MatrixIsNotSymmetric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The matrix is null..
-        /// </summary>
-        public static string MatrixIsNull {
-            get {
-                return ResourceManager.GetString("MatrixIsNull", resourceCulture);
             }
         }
         
@@ -368,33 +296,6 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object is null..
-        /// </summary>
-        public static string ObjectIsNull {
-            get {
-                return ResourceManager.GetString("ObjectIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The other matrix is null..
-        /// </summary>
-        public static string OtherMatrixIsNull {
-            get {
-                return ResourceManager.GetString("OtherMatrixIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The other vector is null..
-        /// </summary>
-        public static string OtherVectorIsNull {
-            get {
-                return ResourceManager.GetString("OtherVectorIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The value of p is less than 1..
         /// </summary>
         public static string PIsLessThan1 {
@@ -409,15 +310,6 @@ namespace AEGIS.Numerics.Resources {
         public static string PrecisionIsLessThanOrEqualTo0 {
             get {
                 return ResourceManager.GetString("PrecisionIsLessThanOrEqualTo0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The random generator is null..
-        /// </summary>
-        public static string RandomIsNull {
-            get {
-                return ResourceManager.GetString("RandomIsNull", resourceCulture);
             }
         }
         
@@ -449,47 +341,11 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The second collection is null..
-        /// </summary>
-        public static string SecondCollectionIsNull {
-            get {
-                return ResourceManager.GetString("SecondCollectionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The second matrix is null..
-        /// </summary>
-        public static string SecondMatrixIsNull {
-            get {
-                return ResourceManager.GetString("SecondMatrixIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The second vector is null..
-        /// </summary>
-        public static string SecondVectorIsNull {
-            get {
-                return ResourceManager.GetString("SecondVectorIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The size is less than 0..
         /// </summary>
         public static string SizeIsLessThan0 {
             get {
                 return ResourceManager.GetString("SizeIsLessThan0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The source is null..
-        /// </summary>
-        public static string SourceIsNull {
-            get {
-                return ResourceManager.GetString("SourceIsNull", resourceCulture);
             }
         }
         
@@ -521,15 +377,6 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The collection of values is null..
-        /// </summary>
-        public static string ValueCollectionIsNull {
-            get {
-                return ResourceManager.GetString("ValueCollectionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The value is greater then {0}..
         /// </summary>
         public static string ValueIsGreaterThanArg {
@@ -539,16 +386,7 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value is less than 0..
-        /// </summary>
-        public static string ValueIsLessThan0 {
-            get {
-                return ResourceManager.GetString("ValueIsLessThan0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The value is less then {0}..
+        ///   Looks up a localized string similar to The value is less than {0}..
         /// </summary>
         public static string ValueIsLessThanArg {
             get {
@@ -557,29 +395,11 @@ namespace AEGIS.Numerics.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value is less than or equal to 0..
+        ///   Looks up a localized string similar to The value is less than or equal to {0}..
         /// </summary>
-        public static string ValueIsLessThanOrEqualTo0 {
+        public static string ValueIsLessThanOrEqualToArg {
             get {
-                return ResourceManager.GetString("ValueIsLessThanOrEqualTo0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The collection of value pairs is null..
-        /// </summary>
-        public static string ValuePairCollectionIsNull {
-            get {
-                return ResourceManager.GetString("ValuePairCollectionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The values are not specified..
-        /// </summary>
-        public static string ValuesIsNull {
-            get {
-                return ResourceManager.GetString("ValuesIsNull", resourceCulture);
+                return ResourceManager.GetString("ValueIsLessThanOrEqualToArg", resourceCulture);
             }
         }
         
@@ -589,15 +409,6 @@ namespace AEGIS.Numerics.Resources {
         public static string VectorDimensionsAreDifferent {
             get {
                 return ResourceManager.GetString("VectorDimensionsAreDifferent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The vector is null..
-        /// </summary>
-        public static string VectorIsNull {
-            get {
-                return ResourceManager.GetString("VectorIsNull", resourceCulture);
             }
         }
     }

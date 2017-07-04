@@ -71,10 +71,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         /// <exception cref="System.ArgumentNullException">The matrix is null.</exception>
         public QRDecomposition(Matrix matrix)
         {
-            if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
-
-            this.source = matrix;
+            this.source = matrix ?? throw new ArgumentNullException(nameof(matrix));
         }
 
         /// <summary>

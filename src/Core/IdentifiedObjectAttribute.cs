@@ -31,10 +31,7 @@ namespace AEGIS
         /// <exception cref="System.ArgumentNullException">The identifier is null.</exception>
         public IdentifiedObjectAttribute(String identifier, String name)
         {
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Identifier = identifier;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
             this.Name = name ?? String.Empty;
         }
 

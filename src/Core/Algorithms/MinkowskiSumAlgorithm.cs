@@ -81,9 +81,9 @@ namespace AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IBasicPoint source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.sourceShellCoordinates = new Coordinate[] { source.Coordinate };
@@ -111,9 +111,9 @@ namespace AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IBasicPolygon source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.sourceShellCoordinates = source.Shell;
@@ -141,9 +141,9 @@ namespace AEGIS.Algorithms
         public MinkowskiSumAlgorithm(IReadOnlyList<Coordinate> source, IReadOnlyList<Coordinate> buffer, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
 
@@ -253,7 +253,7 @@ namespace AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPoint source, IBasicPolygon buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, null).Result;
         }
@@ -273,7 +273,7 @@ namespace AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPoint source, IBasicPolygon buffer, PrecisionModel precisionModel)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, precisionModel).Result;
         }
@@ -346,7 +346,7 @@ namespace AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPolygon source, IBasicPolygon buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, null).Result;
         }
@@ -366,7 +366,7 @@ namespace AEGIS.Algorithms
         public static IBasicPolygon Buffer(IBasicPolygon source, IBasicPolygon buffer, PrecisionModel precisionModel)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), CoreMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             return new MinkowskiSumAlgorithm(source, buffer.Shell, precisionModel).Result;
         }

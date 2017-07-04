@@ -55,7 +55,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Boolean IsSymmetric(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (!matrix.IsSquare)
                 return false;
@@ -81,7 +81,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Boolean IsUpperTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfColumns != matrix.NumberOfRows)
                 return false;
@@ -107,7 +107,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Boolean IsLowerTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfColumns != matrix.NumberOfRows)
                 return false;
@@ -133,7 +133,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Boolean IsTriangular(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             return MatrixComputations.IsUpperTriangular(matrix) || MatrixComputations.IsLowerTriangular(matrix);
         }
@@ -147,7 +147,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Boolean IsDiagonal(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             return MatrixComputations.IsUpperTriangular(matrix) && MatrixComputations.IsLowerTriangular(matrix);
         }
@@ -162,7 +162,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Double Determinant(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
             if (matrix.NumberOfRows != matrix.NumberOfColumns)
                 throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(matrix));
 
@@ -192,7 +192,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static MatrixDefiniteness Definiteness(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfRows == 0 && matrix.NumberOfColumns == 0)
                 throw new ArgumentException(NumericsMessages.MatrixIsEmpty, nameof(matrix));
@@ -272,7 +272,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Matrix Transpose(this Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             Matrix result = new Matrix(matrix.NumberOfColumns, matrix.NumberOfRows);
 
@@ -296,7 +296,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Matrix Transpose(this Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             Matrix matrix = new Matrix(1, vector.Size);
             for (Int32 index = 0; index < vector.Size; index++)

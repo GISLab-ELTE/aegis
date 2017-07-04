@@ -31,10 +31,7 @@ namespace AEGIS.Storage.Attributes
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
         public StoredAttributeCollectionFactory(IAttributeDriver driver)
         {
-            if (driver == null)
-                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
-
-            this.Driver = driver;
+            this.Driver = driver ?? throw new ArgumentNullException(nameof(driver));
         }
 
         /// <summary>
@@ -61,7 +58,7 @@ namespace AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(IDictionary<String, Object> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredAttributeCollection collection = new StoredAttributeCollection(this, this.Driver.CreateIdentifier());
             foreach (String key in source.Keys)
@@ -81,7 +78,7 @@ namespace AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(IAttributeCollection source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             if (source is IStoredAttributeCollection)
             {
@@ -118,7 +115,7 @@ namespace AEGIS.Storage.Attributes
         public IAttributeCollection CreateCollection(String identifier, IAttributeCollection source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             StoredAttributeCollection collection = new StoredAttributeCollection(this, identifier);
 

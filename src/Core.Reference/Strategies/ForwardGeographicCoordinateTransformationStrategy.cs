@@ -52,16 +52,9 @@ namespace AEGIS.Reference.Strategies
         /// </exception>
         public ForwardGeographicCoordinateTransformationStrategy(GeographicCoordinateReferenceSystem source, GeographicCoordinateReferenceSystem target, CoordinateTransformation<GeoCoordinate> transformation)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceReferenceSystemIsNull);
-            if (target == null)
-                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetReferenceSystemIsNull);
-            if (transformation == null)
-                throw new ArgumentNullException(nameof(transformation), ReferenceMessages.TransformationIsNull);
-
-            this.source = source;
-            this.target = target;
-            this.transformation = transformation;
+            this.source = source ?? throw new ArgumentNullException(nameof(source));
+            this.target = target ?? throw new ArgumentNullException(nameof(target));
+            this.transformation = transformation ?? throw new ArgumentNullException(nameof(transformation));
         }
 
         /// <summary>

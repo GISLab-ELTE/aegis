@@ -59,8 +59,8 @@ namespace AEGIS.Storage.Geometries
         protected StoredGeometry(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
             : base(precisionModel, referenceSystem)
         {
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-            this.driver = driver ?? throw new ArgumentNullException(nameof(driver), StorageMessages.DriverIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
+            this.driver = driver ?? throw new ArgumentNullException(nameof(driver));
             this.indexes = indexes == null ? EmptyIndexes : indexes.ToArray();
         }
 

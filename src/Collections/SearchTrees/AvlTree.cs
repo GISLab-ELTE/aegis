@@ -63,7 +63,7 @@ namespace AEGIS.Collections.SearchTrees
         public override void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (this.root == null)
             {

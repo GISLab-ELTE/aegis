@@ -31,7 +31,7 @@ namespace AEGIS.Storage.Authentication
         public HadoopUsernameAuthentication(String username)
         {
             if (username == null)
-                throw new ArgumentNullException(nameof(username), StorageMessages.UsernameIsNull);
+                throw new ArgumentNullException(nameof(username));
             if (String.IsNullOrEmpty(username))
                 throw new ArgumentException(StorageMessages.UsernameIsEmpty, nameof(username));
 

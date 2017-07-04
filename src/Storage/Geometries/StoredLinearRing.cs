@@ -106,7 +106,7 @@ namespace AEGIS.Storage.Geometries
         public override void Add(IEnumerable<Coordinate> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             if (this.Count == 0)
             {

@@ -38,9 +38,9 @@ namespace AEGIS.Storage.Features
         public StoredFeatureCollection(IFeatureDriver driver, String identifier)
         {
             if (driver == null)
-                throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+                throw new ArgumentNullException(nameof(driver));
             this.Factory = new StoredFeatureFactory(driver);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace AEGIS.Storage.Features
         /// </exception>
         public StoredFeatureCollection(IStoredFeatureFactory factory, String identifier)
         {
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace AEGIS.Storage.Features
         public void Add(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
             if (this.Driver.ContainsIdentifier(item.Identifier))
                 throw new ArgumentException(CoreMessages.ItemIdentifierExists, nameof(item));
 
@@ -160,7 +160,7 @@ namespace AEGIS.Storage.Features
         public Boolean Contains(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             return this.Driver.ContainsIdentifier(item.Identifier);
         }
@@ -176,7 +176,7 @@ namespace AEGIS.Storage.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.Count > array.Length)
@@ -198,7 +198,7 @@ namespace AEGIS.Storage.Features
         public Boolean Remove(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             if (!this.Driver.ContainsIdentifier(item.Identifier))
                 return false;

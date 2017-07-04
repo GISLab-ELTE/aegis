@@ -60,13 +60,8 @@ namespace AEGIS.Reference.Collections.Local
         public LocalCompoundReferenceSystemCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<ReferenceSystem> referenceSystemCollection)
             : base(ResourceName, AliasTypeName)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (referenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(referenceSystemCollection), ReferenceMessages.ReferenceSystemCollectionIsNull);
-
-            this.areaOfUseCollection = areaOfUseCollection;
-            this.referenceSystemCollection = referenceSystemCollection;
+            this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
+            this.referenceSystemCollection = referenceSystemCollection ?? throw new ArgumentNullException(nameof(referenceSystemCollection));
         }
 
         /// <summary>

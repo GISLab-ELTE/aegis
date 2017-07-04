@@ -93,7 +93,7 @@ namespace AEGIS.Numerics
         /// </summary>
         /// <param name="numerator">The numerator.</param>
         /// <param name="denominator">The denominator.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="denominator"/> is <see cref="Int64.MinValue"/>.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The denominator is -9223372036854775808.</exception>
         public Rational(Int64 numerator, Int64 denominator)
         {
             if (denominator == 0)
@@ -117,7 +117,7 @@ namespace AEGIS.Numerics
             }
 
             if (denominator == Int64.MinValue)
-                throw new ArgumentOutOfRangeException(nameof(denominator), String.Format(NumericsMessages.IsArgs, nameof(denominator), Int64.MinValue));
+                throw new ArgumentOutOfRangeException(nameof(denominator), NumericsMessages.DenominatorIsInt64Min);
 
             if (denominator < 0)
             {

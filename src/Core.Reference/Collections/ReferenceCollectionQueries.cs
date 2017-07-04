@@ -43,9 +43,9 @@ namespace AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return collection.Where(item => item.Identifier.IndexOf(identifier, StringComparison.OrdinalIgnoreCase) >= 0);
         }
@@ -66,9 +66,9 @@ namespace AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             return collection.Where(item => item.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0 || item.Aliases.Any(alias => alias.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0));
         }
@@ -89,9 +89,9 @@ namespace AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             Regex identifierRegex = new Regex(identifier, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
@@ -114,9 +114,9 @@ namespace AEGIS.Reference.Collections
             where ReferenceType : IdentifiedObject
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             Regex nameRegex = new Regex(name, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
@@ -136,7 +136,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<AreaOfUse> WithArea(this IEnumerable<AreaOfUse> collection, Angle south, Angle west, Angle north, Angle east)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.South.Equals(south) && item.East.Equals(east) && item.North.Equals(north) && item.West.Equals(west));
         }
@@ -154,7 +154,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<AreaOfUse> WithinArea(this IEnumerable<AreaOfUse> collection, Angle south, Angle west, Angle north, Angle east)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Within(south, west, north, east));
         }
@@ -173,9 +173,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CompoundReferenceSystem> WithAreaOfUse(this IEnumerable<CompoundReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -194,9 +194,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CompoundReferenceSystem> WithinAreaOfUse(this IEnumerable<CompoundReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -226,9 +226,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithAreaOfUse(this IEnumerable<CoordinateReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -247,9 +247,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithinAreaOfUse(this IEnumerable<CoordinateReferenceSystem> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -268,9 +268,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithCoordinateSystem(this IEnumerable<CoordinateReferenceSystem> collection, CoordinateSystem coordinateSystem)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem));
 
             return collection.Where(item => item.CoordinateSystem.Equals(coordinateSystem));
         }
@@ -289,9 +289,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateReferenceSystem> WithDatum(this IEnumerable<CoordinateReferenceSystem> collection, GeodeticDatum datum)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum));
 
             return collection.Where(item => item.Datum.Equals(datum));
         }
@@ -306,7 +306,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateSystem> WithDimension(this IEnumerable<CoordinateSystem> collection, Int32 dimension)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Dimension == dimension);
         }
@@ -321,7 +321,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<CoordinateSystem> WithType(this IEnumerable<CoordinateSystem> collection, CoordinateSystemType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Type == type);
         }
@@ -340,9 +340,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithArea(this IEnumerable<GeodeticDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -361,9 +361,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithinArea(this IEnumerable<GeodeticDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -382,9 +382,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithEllipsoid(this IEnumerable<GeodeticDatum> collection, Ellipsoid ellipsoid)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             return collection.Where(item => item.Ellipsoid.Equals(ellipsoid));
         }
@@ -403,9 +403,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<GeodeticDatum> WithPrimeMeridian(this IEnumerable<GeodeticDatum> collection, Meridian primeMeridian)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (primeMeridian == null)
-                throw new ArgumentNullException(nameof(primeMeridian), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(primeMeridian));
 
             return collection.Where(item => item.PrimeMeridian.Equals(primeMeridian));
         }
@@ -420,7 +420,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<Meridian> WithLongitude(this IEnumerable<Meridian> collection, Angle longitude)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Longitude.Equals(longitude));
         }
@@ -439,7 +439,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<ProjectedCoordinateReferenceSystem> WithProjection(this IEnumerable<ProjectedCoordinateReferenceSystem> collection,  CoordinateProjection projection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Projection.Equals(projection));
         }
@@ -454,7 +454,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<ReferenceSystem> WithDimension(this IEnumerable<ReferenceSystem> collection, Int32 dimension)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Dimension == dimension);
         }
@@ -469,7 +469,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<ReferenceSystem> WithType(this IEnumerable<ReferenceSystem> collection, ReferenceSystemType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Type == type);
         }
@@ -488,9 +488,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithArea(this IEnumerable<VerticalDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Equals(area));
         }
@@ -509,9 +509,9 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithinArea(this IEnumerable<VerticalDatum> collection, AreaOfUse area)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return collection.Where(item => item.AreaOfUse.Within(area));
         }
@@ -526,7 +526,7 @@ namespace AEGIS.Reference.Collections
         public static IEnumerable<VerticalDatum> WithType(this IEnumerable<VerticalDatum> collection, VerticalDatumType type)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), ReferenceMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             return collection.Where(item => item.Type.Equals(type));
         }

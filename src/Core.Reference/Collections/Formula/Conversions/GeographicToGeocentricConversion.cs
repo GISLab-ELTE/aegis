@@ -57,10 +57,7 @@ namespace AEGIS.Reference.Collections.Formula
         public GeographicToGeocentricConversion(String identifier, String name, String remarks, String[] aliases, Ellipsoid ellipsoid)
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeographicToGeocentricConversion, null)
         {
-            if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
-
-            this.Ellipsoid = ellipsoid;
+            this.Ellipsoid = ellipsoid ?? throw new ArgumentNullException(nameof(ellipsoid));
         }
 
         /// <summary>

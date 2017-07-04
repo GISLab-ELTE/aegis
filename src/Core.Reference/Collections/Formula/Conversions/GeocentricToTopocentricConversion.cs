@@ -95,7 +95,7 @@ namespace AEGIS.Reference.Collections.Formula
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeocentricToTopocentricConversion, parameters)
         {
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             this.geocentricXOfTopocentricOrigin = this.GetParameterValue(CoordinateOperationParameters.GeocenticXOfTopocentricOrigin);
             this.geocentricYOfTopocentricOrigin = this.GetParameterValue(CoordinateOperationParameters.GeocenticYOfTopocentricOrigin);

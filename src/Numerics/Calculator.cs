@@ -1180,11 +1180,11 @@ namespace AEGIS.Numerics
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The factorial of <paramref name="value" />.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">The value is less than 0.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="value"/> is less than 0.</exception>
         public static Double Factorial(Int32 value)
         {
             if (value < 0)
-                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.ValueIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(value), String.Format(NumericsMessages.ValueIsLessThanArg, 0));
 
             if (value > 170)
                 return Double.PositiveInfinity;
@@ -1218,7 +1218,7 @@ namespace AEGIS.Numerics
         public static Double Gamma(Double value)
         {
             if (value <= 0 && Math.Ceiling(value) == Math.Floor(value))
-                throw new ArgumentOutOfRangeException(nameof(value), NumericsMessages.ValueIsLessThanOrEqualTo0);
+                throw new ArgumentOutOfRangeException(String.Format(NumericsMessages.ValueIsLessThanOrEqualToArg, 0));
 
             Double[] p =
             {
@@ -1282,7 +1282,7 @@ namespace AEGIS.Numerics
         public static Int32 Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Int32> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function));
 
             Int32 sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1301,7 +1301,7 @@ namespace AEGIS.Numerics
         public static Int64 Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Int64> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function));
 
             Int64 sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1320,7 +1320,7 @@ namespace AEGIS.Numerics
         public static Single Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Single> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function));
 
             Single sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1339,7 +1339,7 @@ namespace AEGIS.Numerics
         public static Double Sum(Int32 intervalStart, Int32 intervalEnd, Func<Int32, Double> function)
         {
             if (function == null)
-                throw new ArgumentNullException(nameof(function), NumericsMessages.FunctionIsNull);
+                throw new ArgumentNullException(nameof(function));
 
             Double sum = 0;
             for (Int32 value = intervalStart; value <= intervalEnd; value++)
@@ -1617,7 +1617,7 @@ namespace AEGIS.Numerics
             if (n < 0)
                 throw new ArgumentOutOfRangeException(nameof(n), NumericsMessages.FirstCoefficientIsLessThan0);
             if (k < 0)
-                throw new ArgumentOutOfRangeException(nameof(n), NumericsMessages.SecondCoefficientIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(k), NumericsMessages.SecondCoefficientIsLessThan0);
 
             Double result;
 

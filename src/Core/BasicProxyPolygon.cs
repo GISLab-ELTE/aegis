@@ -20,6 +20,7 @@ namespace AEGIS
     using System.Linq;
     using System.Text;
     using AEGIS.Algorithms;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -76,7 +77,7 @@ namespace AEGIS
         public BasicProxyPolygon(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             this.Shell = new BasicProxyLineString(shell, true);
 
@@ -151,7 +152,7 @@ namespace AEGIS
             if (this.holes.Count == 0)
                 throw new InvalidOperationException(CoreMessages.NoHolesInPolygon);
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.holes.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 

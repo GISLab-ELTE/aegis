@@ -105,7 +105,7 @@ namespace AEGIS.Reference
         public Double GetValue(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -125,7 +125,7 @@ namespace AEGIS.Reference
         public String ToString(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -149,7 +149,7 @@ namespace AEGIS.Reference
         public Length ToUnit(UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
             if (unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
@@ -856,7 +856,7 @@ namespace AEGIS.Reference
         public static Length Convert(Length length, UnitOfMeasurement unit)
         {
             if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(unit));
 
             if (unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
@@ -886,7 +886,7 @@ namespace AEGIS.Reference
         public static Length Max(params Length[] lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthArrayIsNull);
+                throw new ArgumentNullException(nameof(lengths));
             if (lengths.Length == 0)
                 return Length.Undefined;
 
@@ -902,7 +902,7 @@ namespace AEGIS.Reference
         public static Length Max(IEnumerable<Length> lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthCollectionIsNull);
+                throw new ArgumentNullException(nameof(lengths));
             if (!lengths.Any())
                 return Length.Undefined;
 
@@ -918,7 +918,7 @@ namespace AEGIS.Reference
         public static Length Min(params Length[] lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthArrayIsNull);
+                throw new ArgumentNullException(nameof(lengths));
             if (lengths.Length == 0)
                 return Length.Undefined;
 
@@ -934,7 +934,7 @@ namespace AEGIS.Reference
         public static Length Min(IEnumerable<Length> lengths)
         {
             if (lengths == null)
-                throw new ArgumentNullException(nameof(lengths), ReferenceMessages.LengthCollectionIsNull);
+                throw new ArgumentNullException(nameof(lengths));
             if (!lengths.Any())
                 return Length.Undefined;
 

@@ -65,10 +65,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         /// <exception cref="System.ArgumentNullException">The matrix is null.</exception>
         public LUDecomposition(Matrix matrix)
         {
-            if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
-
-            this.matrix = matrix;
+            this.matrix = matrix ?? throw new ArgumentNullException(nameof(matrix));
             this.determinant = null;
         }
 
@@ -201,7 +198,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Matrix Invert(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.All(value => value == 0))
                 throw new ArgumentException(NumericsMessages.MatrixIsNotInvertible, nameof(matrix));
@@ -247,9 +244,9 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Vector SolveEquation(Matrix a, Vector b)
         {
             if (a == null)
-                throw new ArgumentNullException(nameof(a), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(a));
             if (b == null)
-                throw new ArgumentNullException(nameof(b), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(b));
             if (!a.IsSquare)
                 throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(a));
             if (a.NumberOfRows != b.Size)

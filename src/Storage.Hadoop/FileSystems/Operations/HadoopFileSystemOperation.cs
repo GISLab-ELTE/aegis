@@ -98,14 +98,11 @@ namespace AEGIS.Storage.FileSystems.Operations
             : this()
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrEmpty(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
-            if (authentication == null)
-                throw new ArgumentNullException(nameof(authentication), StorageMessages.AuthenticationIsNull);
-
             this.Path = path;
-            this.Authentication = authentication;
+            this.Authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
         }
 
         /// <summary>
@@ -116,10 +113,7 @@ namespace AEGIS.Storage.FileSystems.Operations
         /// <exception cref="System.ArgumentNullException">The client is null.</exception>
         protected HadoopFileSystemOperation(HttpClient client, HttpContent content)
         {
-            if (client == null)
-                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
-
-            this.client = client;
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
             this.content = content;
             this.disposeClient = false;
             this.disposed = false;
@@ -144,14 +138,11 @@ namespace AEGIS.Storage.FileSystems.Operations
             : this(client, content)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrEmpty(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
-            if (authentication == null)
-                throw new ArgumentNullException(nameof(authentication), StorageMessages.AuthenticationIsNull);
-
             this.Path = path;
-            this.Authentication = authentication;
+            this.Authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
         }
 
         /// <summary>

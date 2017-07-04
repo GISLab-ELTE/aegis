@@ -109,14 +109,11 @@ namespace AEGIS.Reference.Collections.Formula
         public GeographicToTopocentricConversion(String identifier, String name, String remarks, String[] aliases, IDictionary<CoordinateOperationParameter, Object> parameters, Ellipsoid ellipsoid)
             : base(identifier, name, remarks, aliases, CoordinateOperationMethods.GeographicToTopocentricConversion, parameters)
         {
-            if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
-
             this.latitudeOfTopocentricOrigin = this.GetParameterBaseValue(CoordinateOperationParameters.LatitudeOfTopocentricOrigin);
             this.longitudeOfTopocentricOrigin = this.GetParameterBaseValue(CoordinateOperationParameters.LongitudeOfTopocentricOrigin);
             this.ellipsoidalHeightOfTopocentricOrigin = this.GetParameterValue(CoordinateOperationParameters.EllipsoidalHeightOfTopocentricOrigin);
 
-            this.Ellipsoid = ellipsoid;
+            this.Ellipsoid = ellipsoid ?? throw new ArgumentNullException(nameof(ellipsoid));
 
             this.originRadiousOfPrimeVerticalCurvature = this.Ellipsoid.RadiusOfPrimeVerticalCurvature(this.latitudeOfTopocentricOrigin);
 

@@ -32,10 +32,7 @@ namespace AEGIS.Storage.FileSystems
         /// <param name="authentication">The authentication used by the file system.</param>
         protected FileSystemBase(Uri location, IStorageAuthentication authentication)
         {
-            if (location == null)
-                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
-
-            this.Location = location;
+            this.Location = location ?? throw new ArgumentNullException(nameof(location));
             this.Authentication = authentication;
         }
 

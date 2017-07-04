@@ -57,10 +57,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         /// <exception cref="ArgumentNullException">The matrix is null.</exception>
         public QRAlgorithm(Matrix matrix)
         {
-            if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
-
-            this.source = matrix;
+            this.source = matrix ?? throw new ArgumentNullException(nameof(matrix));
         }
 
         /// <summary>

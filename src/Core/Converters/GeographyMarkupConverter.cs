@@ -141,7 +141,7 @@ namespace AEGIS.Converters
         public static XElement ToGeographyMarkupElement(this IGeometry geometry, String identifier)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
 
             try
             {
@@ -186,11 +186,11 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this XElement source, IGeometryFactory geometryFactory, IReferenceSystemFactory referenceSystemFactory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(geometryFactory));
             if (referenceSystemFactory == null)
-                throw new ArgumentNullException(nameof(referenceSystemFactory), CoreMessages.ReferenceSystemFactoryIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemFactory));
 
             IReferenceSystem referenceSystem = GetReferenceSystem(source.Attribute("srsName"), referenceSystemFactory);
 
@@ -212,9 +212,9 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this XElement source, IGeometryFactory factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(factory));
 
             IGeometry resultGeometry = null;
 
@@ -273,11 +273,11 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this IEnumerable<XElement> source, IGeometryFactory geometryFactory, IReferenceSystemFactory referenceSystemFactory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(geometryFactory));
             if (referenceSystemFactory == null)
-                throw new ArgumentNullException(nameof(referenceSystemFactory), CoreMessages.ReferenceSystemFactoryIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemFactory));
 
             try
             {
@@ -326,9 +326,9 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this IEnumerable<XElement> source, IGeometryFactory factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(factory));
 
             try
             {
@@ -380,11 +380,11 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this String source, IGeometryFactory geometryFactory, IReferenceSystemFactory referenceSystemFactory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(geometryFactory));
             if (referenceSystemFactory == null)
-                throw new ArgumentNullException(nameof(referenceSystemFactory), CoreMessages.ReferenceSystemFactoryIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemFactory));
 
             try
             {
@@ -413,9 +413,9 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(this String source, IGeometryFactory factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(factory));
 
             try
             {

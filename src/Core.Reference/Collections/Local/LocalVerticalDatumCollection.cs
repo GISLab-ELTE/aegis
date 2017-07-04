@@ -46,10 +46,7 @@ namespace AEGIS.Reference.Collections.Local
         public LocalVerticalDatumCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection)
             : base(ResourceName, ResourceName)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-
-            this.areaOfUseCollection = areaOfUseCollection;
+            this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<VerticalDatum> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return this.GetReferences().Where(datum => datum.AreaOfUse.Within(area));
         }

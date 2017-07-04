@@ -46,10 +46,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         public MonotoneSubdivisionAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.Source = source;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
             if (this.Source.First() != this.Source.Last())
                 this.Source = this.Source.Append(this.Source.First());
 

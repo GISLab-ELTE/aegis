@@ -55,7 +55,7 @@ namespace AEGIS.Algorithms
         public PolygonCentroidAlgorithm(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             this.Shell = polygon.Shell;
             this.Holes = polygon.Holes;
@@ -69,10 +69,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The shell is null.</exception>
         public PolygonCentroidAlgorithm(IEnumerable<Coordinate> shell)
         {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
-            this.Shell = shell;
+            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell));
             this.Holes = null;
             this.hasResult = false;
         }
@@ -85,10 +82,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The shell is null.</exception>
         public PolygonCentroidAlgorithm(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes)
         {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
-            this.Shell = shell;
+            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell));
             this.Holes = holes;
             this.hasResult = false;
         }

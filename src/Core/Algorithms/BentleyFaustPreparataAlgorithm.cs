@@ -65,10 +65,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         public BentleyFaustPreparataAlgorithm(IReadOnlyList<Coordinate> source, PrecisionModel precisionModel)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.Source = source;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
@@ -289,7 +286,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IBasicPolygon source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new BentleyFaustPreparataAlgorithm(source.Shell, PrecisionModel.Default).Result;
         }
@@ -304,7 +301,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IBasicPolygon source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new BentleyFaustPreparataAlgorithm(source.Shell, precisionModel).Result;
         }
@@ -318,7 +315,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new BentleyFaustPreparataAlgorithm(new List<Coordinate>(source), PrecisionModel.Default).Result;
         }
@@ -333,7 +330,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ApproximateConvexHull(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new BentleyFaustPreparataAlgorithm(new List<Coordinate>(source), precisionModel).Result;
         }

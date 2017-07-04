@@ -57,7 +57,7 @@ namespace AEGIS.Collections
         public MultiValueDictionary(MultiValueDictionary<TKey, TValue> dictionary)
         {
             if (dictionary == null)
-                throw new ArgumentNullException(nameof(dictionary), CollectionMessages.DictionaryIsNull);
+                throw new ArgumentNullException(nameof(dictionary));
 
             this.dictionary = new Dictionary<TKey, List<TValue>>(dictionary.dictionary);
         }
@@ -71,7 +71,7 @@ namespace AEGIS.Collections
         public MultiValueDictionary(MultiValueDictionary<TKey, TValue> dictionary, IEqualityComparer<TKey> comparer)
         {
             if (dictionary == null)
-                throw new ArgumentNullException(nameof(dictionary), CollectionMessages.DictionaryIsNull);
+                throw new ArgumentNullException(nameof(dictionary));
 
             this.dictionary = new Dictionary<TKey, List<TValue>>(dictionary.dictionary, comparer);
         }
@@ -107,7 +107,7 @@ namespace AEGIS.Collections
             get
             {
                 if (key == null)
-                    throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                    throw new ArgumentNullException(nameof(key));
 
                 return this.dictionary[key];
             }
@@ -115,7 +115,7 @@ namespace AEGIS.Collections
             set
             {
                 if (key == null)
-                    throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                    throw new ArgumentNullException(nameof(key));
 
                 this.dictionary[key] = value.ToList<TValue>();
             }
@@ -168,7 +168,7 @@ namespace AEGIS.Collections
         void ICollection<KeyValuePair<TKey, ICollection<TValue>>>.CopyTo(KeyValuePair<TKey, ICollection<TValue>>[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.ArrayIndexIsLessThan0);
             if (array.Length - arrayIndex < this.Count)
@@ -213,7 +213,7 @@ namespace AEGIS.Collections
         public void Add(TKey key, ICollection<TValue> value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (this.dictionary.ContainsKey(key))
             {
@@ -234,7 +234,7 @@ namespace AEGIS.Collections
         public Boolean ContainsKey(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             return this.dictionary.ContainsKey(key);
         }
@@ -248,7 +248,7 @@ namespace AEGIS.Collections
         public Boolean Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             return this.dictionary.Remove(key);
         }
@@ -263,7 +263,7 @@ namespace AEGIS.Collections
         public Boolean TryGetValue(TKey key, out ICollection<TValue> value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             List<TValue> outValue;
             Boolean retValue = this.dictionary.TryGetValue(key, out outValue);
@@ -301,7 +301,7 @@ namespace AEGIS.Collections
         public void Add(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (!this.dictionary.ContainsKey(key))
                 this.dictionary[key] = new List<TValue>();
@@ -319,7 +319,7 @@ namespace AEGIS.Collections
         public Boolean Remove(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (!this.ContainsKey(key))
                 return false;

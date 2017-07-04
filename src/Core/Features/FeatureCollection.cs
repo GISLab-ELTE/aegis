@@ -18,6 +18,7 @@ namespace AEGIS.Features
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using AEGIS.Collections.Resources;
     using AEGIS.Geometries;
     using AEGIS.Resources;
 
@@ -44,8 +45,8 @@ namespace AEGIS.Features
         /// </exception>
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes)
         {
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
             this.Attributes = attributes;
             this.items = new Dictionary<String, IFeature>();
         }
@@ -68,10 +69,10 @@ namespace AEGIS.Features
         public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
             this.Attributes = attributes;
 
             this.items = new Dictionary<String, IFeature>();
@@ -157,7 +158,7 @@ namespace AEGIS.Features
         public void Add(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
             if (this.items.ContainsKey(item.Identifier))
                 throw new ArgumentException(CoreMessages.ItemIdentifierExists, nameof(item));
 
@@ -181,7 +182,7 @@ namespace AEGIS.Features
         public Boolean Contains(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             return this.items.ContainsKey(item.Identifier) && this.items[item.Identifier].Equals(item);
         }
@@ -197,9 +198,9 @@ namespace AEGIS.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
                 throw new ArgumentException(AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
@@ -215,7 +216,7 @@ namespace AEGIS.Features
         public Boolean Remove(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             if (!this.items.ContainsKey(item.Identifier) || !this.items[item.Identifier].Equals(item))
                 return false;

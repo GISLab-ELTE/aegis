@@ -19,6 +19,7 @@ namespace AEGIS.Geometries
     using System.Linq;
     using System.Text;
     using AEGIS.Algorithms;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -85,7 +86,7 @@ namespace AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             // initialize shell
-            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell));
 
             // initialize holes
             this.holes = new List<LinearRing>();
@@ -114,7 +115,7 @@ namespace AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             // initialize shell
             this.Shell = new LinearRing(precisionModel, referenceSystem, shell);
@@ -290,7 +291,7 @@ namespace AEGIS.Geometries
         public virtual void AddHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             if (hole is LinearRing holeImplementation)
                 this.holes.Add(holeImplementation);
@@ -306,7 +307,7 @@ namespace AEGIS.Geometries
         public virtual void AddHole(IEnumerable<Coordinate> hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             this.holes.Add(new LinearRing(this.PrecisionModel, this.ReferenceSystem, hole));
         }
@@ -327,7 +328,7 @@ namespace AEGIS.Geometries
             if (this.holes.Count == 0)
                 throw new InvalidOperationException(CoreMessages.NoHolesInPolygon);
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.holes.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
@@ -344,7 +345,7 @@ namespace AEGIS.Geometries
         public virtual Boolean RemoveHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             if (this.holes.Count == 0)
                 return false;
@@ -374,7 +375,7 @@ namespace AEGIS.Geometries
         public virtual void RemoveHoleAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.holes.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 

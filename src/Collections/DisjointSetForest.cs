@@ -91,7 +91,7 @@ namespace AEGIS.Collections
         public DisjointSetForest(IEnumerable<T> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.parent = new Dictionary<T, T>();
             this.rank = new Dictionary<T, Int32>();
@@ -113,7 +113,7 @@ namespace AEGIS.Collections
         public void MakeSet(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             if (!this.parent.ContainsKey(item))
             {
@@ -133,7 +133,7 @@ namespace AEGIS.Collections
         public T FindSet(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             T representative;
 
@@ -152,7 +152,7 @@ namespace AEGIS.Collections
         public Boolean TryFindSet(T item, out T representative)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CollectionMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             representative = default(T);
 
@@ -190,9 +190,9 @@ namespace AEGIS.Collections
         public void JoinSets(T first, T second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CollectionMessages.FirstItemIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CollectionMessages.SecondItemIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (!this.parent.ContainsKey(first))
                 throw new ArgumentException(CollectionMessages.FirstItemIsNotPresentInAnySet, nameof(first));
             if (!this.parent.ContainsKey(second))
@@ -218,9 +218,9 @@ namespace AEGIS.Collections
         public Boolean TryJoinSets(T first, T second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CollectionMessages.FirstItemIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CollectionMessages.SecondItemIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (!this.parent.ContainsKey(first))
                 return false;
             if (!this.parent.ContainsKey(second))
