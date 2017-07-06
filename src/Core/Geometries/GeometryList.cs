@@ -94,6 +94,7 @@ namespace AEGIS.Geometries
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
+            // FIXME: source geometries may have different precision and reference system, thus this breaks consistency
             this.items = new List<GeometryType>(source);
         }
 

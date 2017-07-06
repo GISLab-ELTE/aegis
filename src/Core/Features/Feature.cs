@@ -15,6 +15,7 @@
 namespace AEGIS.Features
 {
     using System;
+    using AEGIS.Attributes;
     using AEGIS.Resources;
 
     /// <summary>
@@ -38,8 +39,8 @@ namespace AEGIS.Features
         public Feature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
-            this.Geometry = geometry ?? throw new ArgumentNullException(nameof(geometry));
-            this.Attributes = attributes ?? throw new ArgumentNullException(nameof(attributes));
+            this.Geometry = geometry;
+            this.Attributes = attributes ?? new AttributeCollection();
         }
 
         /// <summary>

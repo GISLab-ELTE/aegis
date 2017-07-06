@@ -27,20 +27,9 @@ namespace AEGIS.Features
         /// <summary>
         /// Initializes a new instance of the <see cref="FeatureFactory" /> class.
         /// </summary>
-        /// <param name="geometryFactory">The geometry factory.</param>
-        /// <param name="attributeFactory">The attribute factory.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The geometry factory is null.
-        /// or
-        /// The attribute factory is null.
-        /// </exception>
-        public FeatureFactory(IGeometryFactory geometryFactory, IAttributeCollectionFactory attributeFactory)
-            : base(geometryFactory, attributeFactory)
+        public FeatureFactory()
+            : base()
         {
-            if (geometryFactory == null)
-                throw new ArgumentNullException(nameof(geometryFactory));
-            if (attributeFactory == null)
-                throw new ArgumentNullException(nameof(attributeFactory));
         }
 
         /// <summary>
@@ -150,7 +139,7 @@ namespace AEGIS.Features
             if (identifier == null)
                 throw new ArgumentNullException(nameof(identifier));
 
-            return new FeatureCollection(this, identifier, null);
+            return new FeatureCollection(identifier, null);
         }
 
         /// <summary>
@@ -171,7 +160,7 @@ namespace AEGIS.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes));
 
-            return new FeatureCollection(this, identifier, attributes);
+            return new FeatureCollection(identifier, attributes);
         }
 
         /// <summary>
@@ -197,7 +186,7 @@ namespace AEGIS.Features
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            return new FeatureCollection(this, identifier, attributes, collection);
+            return new FeatureCollection(identifier, attributes, collection);
         }
 
         /// <summary>
@@ -218,7 +207,7 @@ namespace AEGIS.Features
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            return new FeatureCollection(this, identifier, null, collection);
+            return new FeatureCollection(identifier, null, collection);
         }
 
         /// <summary>
@@ -232,7 +221,7 @@ namespace AEGIS.Features
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
 
-            return new FeatureCollection(this, other.Identifier, null, other);
+            return new FeatureCollection(other.Identifier, other.Attributes, other);
         }
     }
 }
