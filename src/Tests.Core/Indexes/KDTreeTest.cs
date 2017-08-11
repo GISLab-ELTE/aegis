@@ -23,28 +23,28 @@ namespace AEGIS.Tests.Indexes
     using Shouldly;
 
     /// <summary>
-    /// Test fixture for the <see cref="QuadTree" /> class.
+    /// Test fixture for the <see cref="KDTree" /> class.
     /// </summary>
     [TestFixture]
     public class KDTreeTest
     {
         /// <summary>
-        /// A list of 2-dimensional Coordinates.
+        /// A list of 2-dimensional coordinates.
         /// </summary>
-        private List<Coordinate> points2D;
+        private List<Coordinate> coords2D;
 
         /// <summary>
-        /// A list of 3-dimensional Coordinates.
+        /// A list of 3-dimensional coordinates.
         /// </summary>
-        private List<Coordinate> points3D;
+        private List<Coordinate> coords3D;
 
         /// <summary>
-        /// A 2 dimensional KDTree.
+        /// A 2 dimensional k-d tree.
         /// </summary>
         private KDTree tree2D;
 
         /// <summary>
-        /// A 3 dimensional KDTree.
+        /// A 3 dimensional k-d tree.
         /// </summary>
         private KDTree tree3D;
 
@@ -54,10 +54,8 @@ namespace AEGIS.Tests.Indexes
         [SetUp]
         public void SetUp()
         {
-            this.points2D = new List<Coordinate>(Enumerable.Range(1, 100).Select(value => new Coordinate(value, value)));
-            this.points3D = new List<Coordinate>(Enumerable.Range(1, 100).Select(value => new Coordinate(value, value, value)));
-            this.tree2D = new KDTree(this.points2D, 2);
-            this.tree3D = new KDTree(this.points3D, 3);
+            this.coords2D = new List<Coordinate>(Enumerable.Range(1, 100).Select(value => new Coordinate(value, value)));
+            this.coords3D = new List<Coordinate>(Enumerable.Range(1, 100).Select(value => new Coordinate(value, value, value)));
         }
 
         /// <summary>
@@ -67,8 +65,11 @@ namespace AEGIS.Tests.Indexes
         public void KDTreeConstructorTest()
         {
             // Regular cases
+            this.tree2D = new KDTree(this.coords2D, 2);
             this.tree2D.NumberOfGeometries.ShouldBe(100);
             this.tree2D.IsReadOnly.ShouldBeFalse();
+
+            this.tree3D = new KDTree(this.coords3D, 3);
             this.tree3D.NumberOfGeometries.ShouldBe(100);
             this.tree3D.IsReadOnly.ShouldBeFalse();
 
@@ -83,43 +84,54 @@ namespace AEGIS.Tests.Indexes
         }
 
         /// <summary>
-        /// Tests the <see cref="KDTree.Add" /> method.
+        /// Tests the <see cref="KDTree.Add(Coordinate)" /> method.
         /// </summary>
         [Test]
-        public void KDTreeAddTest()
+        public void KDTreeAddCoordinateTest()
         {
-            // Should add single points
+            this.tree2D = new KDTree(this.coords2D, 2);
             this.tree2D.Add(new Coordinate(101, 101));
             this.tree2D.NumberOfGeometries.ShouldBe(101);
+
+            this.tree3D = new KDTree(this.coords3D, 3);
             this.tree3D.Add(new Coordinate(101, 101, 101));
             this.tree3D.Add(new Coordinate(101, 101));
             this.tree3D.NumberOfGeometries.ShouldBe(102);
 
-            // Should add multiple points at once
-            List<Coordinate> morePoints2D = new List<Coordinate>() { new Coordinate(102, 102), new Coordinate(103, 103) };
-            List<Coordinate> morePoints3D = new List<Coordinate>() { new Coordinate(102, 102, 102), new Coordinate(103, 103, 103) };
-            this.tree2D.Add(morePoints2D);
-            this.tree2D.NumberOfGeometries.ShouldBe(103);
-            this.tree3D.Add(morePoints3D);
-            this.tree3D.NumberOfGeometries.ShouldBe(104);
-
-            // Error cases - adding null
             Should.Throw<ArgumentNullException>(() => this.tree2D.Add((Coordinate)null));
-            Should.Throw<ArgumentNullException>(() => this.tree2D.Add((List<Coordinate>)null));
             Should.Throw<ArgumentNullException>(() => this.tree3D.Add((Coordinate)null));
-            Should.Throw<ArgumentNullException>(() => this.tree3D.Add((List<Coordinate>)null));
-
-            // Error cases - adding the same point again
-            Should.Throw<ArgumentException>(() => this.tree2D.Add(new Coordinate(1, 1)));
-            Should.Throw<ArgumentException>(() => this.tree3D.Add(new Coordinate(1, 1, 1)));
         }
 
         /// <summary>
-        /// Tests the <see cref="KDTree.Contains" /> method.
+        /// Tests the <see cref="KDTree.Add(IEnumerable{Coordinate})" /> method.
+        /// </summary>
+        [Test]
+        public void KDTreeAddCollectionTest()
+        {
+            List<Coordinate> moreCoords2D = new List<Coordinate>() { new Coordinate(102, 102), new Coordinate(103, 103) };
+            List<Coordinate> moreCoords3D = new List<Coordinate>() { new Coordinate(102, 102, 102), new Coordinate(103, 103, 103) };
+
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree2D.Add(moreCoords2D);
+            this.tree2D.NumberOfGeometries.ShouldBe(102);
+
+            this.tree3D = new KDTree(this.coords3D, 3);
+            this.tree3D.Add(moreCoords3D);
+            this.tree3D.NumberOfGeometries.ShouldBe(102);
+
+            Should.Throw<ArgumentNullException>(() => this.tree2D.Add((List<Coordinate>)null));
+            Should.Throw<ArgumentNullException>(() => this.tree3D.Add((List<Coordinate>)null));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="KDTree.Contains(Coordinate)" /> method.
         /// </summary>
         [Test]
         public void KDTreeContainsTest()
         {
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree3D = new KDTree(this.coords3D, 3);
+
             // Null cases
             this.tree2D.Contains(null).ShouldBeFalse();
             this.tree3D.Contains(null).ShouldBeFalse();
@@ -133,18 +145,21 @@ namespace AEGIS.Tests.Indexes
             this.tree2D.Contains(new Coordinate(1, 1, 1)).ShouldBeFalse();
 
             // Regular contains cases
-            foreach (Coordinate point in this.points2D)
+            foreach (Coordinate point in this.coords2D)
                 this.tree2D.Contains(point).ShouldBeTrue();
-            foreach (Coordinate point in this.points3D)
+            foreach (Coordinate point in this.coords3D)
                 this.tree3D.Contains(point).ShouldBeTrue();
         }
 
         /// <summary>
-        /// Tests the <see cref="KDTree.Search" /> methods.
+        /// Tests the <see cref="KDTree.Search(Envelope)" /> method.
         /// </summary>
         [Test]
         public void KDTreeSearchTest()
         {
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree3D = new KDTree(this.coords3D, 3);
+
             // Should be empty for undefined envelope
             this.tree2D.Search(Envelope.Undefined).ShouldBeEmpty();
             this.tree3D.Search(Envelope.Undefined).ShouldBeEmpty();
@@ -157,9 +172,9 @@ namespace AEGIS.Tests.Indexes
 
             // Should find all geometries as results for these searches
             this.tree2D.Search(Envelope.Infinity).Count().ShouldBe(this.tree2D.NumberOfGeometries);
-            this.tree2D.Search(Envelope.FromCoordinates(this.points2D)).Count().ShouldBe(this.tree2D.NumberOfGeometries);
+            this.tree2D.Search(Envelope.FromCoordinates(this.coords2D)).Count().ShouldBe(this.tree2D.NumberOfGeometries);
             this.tree3D.Search(Envelope.Infinity).Count().ShouldBe(this.tree3D.NumberOfGeometries);
-            this.tree3D.Search(Envelope.FromCoordinates(this.points3D)).Count().ShouldBe(this.tree3D.NumberOfGeometries);
+            this.tree3D.Search(Envelope.FromCoordinates(this.coords3D)).Count().ShouldBe(this.tree3D.NumberOfGeometries);
 
             // Should find correct results for some concrete examples
             this.tree2D.Search(Envelope.FromCoordinates(new Coordinate(0, 0), new Coordinate(10, 10))).Count().ShouldBe(10);
@@ -171,79 +186,107 @@ namespace AEGIS.Tests.Indexes
         }
 
         /// <summary>
-        /// Tests the <see cref="KDTree.Remove" /> method.
+        /// Tests the <see cref="KDTree.Remove(Coordinate)" /> method.
         /// </summary>
         [Test]
-        public void KDTreeRemoveTest()
+        public void KDTreeRemoveCoordinateTest()
         {
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree3D = new KDTree(this.coords3D, 3);
+
             // Should not remove when coordinate is not in the tree
             this.tree2D.Remove(new Coordinate(101, 101)).ShouldBeFalse();
             this.tree3D.Remove(new Coordinate(101, 101, 101)).ShouldBeFalse();
             this.tree2D.Remove(Coordinate.Undefined).ShouldBeFalse();
             this.tree3D.Remove(Coordinate.Undefined).ShouldBeFalse();
 
-            // Should not remove when envelope does not contain any point from tree
-            this.tree2D.Remove(new Envelope(101, 102, 101, 102)).ShouldBeFalse();
-            this.tree3D.Remove(new Envelope(101, 102, 101, 102, 101, 102)).ShouldBeFalse();
-
             // Should remove geometries that are in the tree
-            foreach (Coordinate point in this.points2D)
+            foreach (Coordinate point in this.coords2D)
                 this.tree2D.Remove(point).ShouldBeTrue();
 
             this.tree2D.NumberOfGeometries.ShouldBe(0);
 
-            foreach (Coordinate point in this.points3D)
+            foreach (Coordinate point in this.coords3D)
                 this.tree3D.Remove(point).ShouldBeTrue();
 
             this.tree3D.NumberOfGeometries.ShouldBe(0);
 
-            // Should remove correctly based on envelope
-            this.tree2D.Add(this.points2D);
-            this.tree2D.Remove(new Envelope(0, 49, 0, 49)).ShouldBeTrue();
-            this.tree2D.NumberOfGeometries.ShouldBe(51);
-            this.tree2D.Remove(new Envelope(0, 100, 0, 100)).ShouldBeTrue();
-            this.tree2D.NumberOfGeometries.ShouldBe(0);
-
-            this.tree3D.Add(this.points3D);
-            this.tree3D.Remove(new Envelope(0, 49, 0, 49, 0, 49)).ShouldBeTrue();
-            this.tree3D.NumberOfGeometries.ShouldBe(51);
-            this.tree3D.Remove(new Envelope(0, 100, 0, 100, 0, 100)).ShouldBeTrue();
-            this.tree3D.NumberOfGeometries.ShouldBe(0);
-
-            // Should remove based on envelope with results
-            List<Coordinate> points = new List<Coordinate>();
-            this.tree2D.Remove(new Envelope(0, 100, 0, 100), out points).ShouldBeFalse();
-            points.Count.ShouldBe(0);
-
-            this.tree2D.Add(this.points2D);
-
-            this.tree2D.Remove(new Envelope(0, 100, 0, 100), out points).ShouldBeTrue();
-            points.Count.ShouldBe(this.points2D.Count);
-
             // Should throw exception when removing with null
-            Should.Throw<ArgumentNullException>(() => this.tree2D.Remove((Envelope)null));
             Should.Throw<ArgumentNullException>(() => this.tree2D.Remove((Coordinate)null));
         }
 
         /// <summary>
-        /// Tests the <see cref="KDTree.NearestNeighbourSearch(Coordinate)" /> method.
+        /// Tests the <see cref="KDTree.Remove(Coordinate)" /> method.
         /// </summary>
         [Test]
-        public void KDTreeNearestNeighbourSearchTest()
+        public void KDTreeRemoveEnvelopeTest()
         {
-            // Regular cases
-            this.tree2D.NearestNeighbourSearch(new Coordinate(0, 0)).ShouldBe(new Coordinate(1, 1));
-            this.tree2D.NearestNeighbourSearch(new Coordinate(1, 1)).ShouldBe(new Coordinate(1, 1));
-            this.tree2D.NearestNeighbourSearch(new Coordinate(50.6, 50.6)).ShouldBe(new Coordinate(51, 51));
-            this.tree2D.NearestNeighbourSearch(new Coordinate(50.4, 50.4)).ShouldBe(new Coordinate(50, 50));
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree3D = new KDTree(this.coords3D, 3);
 
-            this.tree3D.NearestNeighbourSearch(new Coordinate(0, 0, 0)).ShouldBe(new Coordinate(1, 1, 1));
-            this.tree3D.NearestNeighbourSearch(new Coordinate(1, 1, 1)).ShouldBe(new Coordinate(1, 1, 1));
-            this.tree3D.NearestNeighbourSearch(new Coordinate(50.6, 50.6, 50.6)).ShouldBe(new Coordinate(51, 51, 51));
-            this.tree3D.NearestNeighbourSearch(new Coordinate(50.4, 50.4, 50.4)).ShouldBe(new Coordinate(50, 50, 50));
+            // Should not remove when envelope does not contain any point from tree
+            this.tree2D.Remove(new Envelope(101, 102, 101, 102)).ShouldBeFalse();
+            this.tree3D.Remove(new Envelope(101, 102, 101, 102, 101, 102)).ShouldBeFalse();
+
+            // Should remove correctly based on envelope
+            this.tree2D.Add(this.coords2D);
+            this.tree2D.Remove(new Envelope(0, 49, 0, 49)).ShouldBeTrue();
+            this.tree2D.NumberOfGeometries.ShouldBe(152);
+            this.tree2D.Remove(new Envelope(0, 100, 0, 100)).ShouldBeTrue();
+            this.tree2D.NumberOfGeometries.ShouldBe(0);
+
+            this.tree3D.Add(this.coords3D);
+            this.tree3D.Remove(new Envelope(0, 49, 0, 49, 0, 49)).ShouldBeTrue();
+            this.tree3D.NumberOfGeometries.ShouldBe(152);
+            this.tree3D.Remove(new Envelope(0, 100, 0, 100, 0, 100)).ShouldBeTrue();
+            this.tree3D.NumberOfGeometries.ShouldBe(0);
+
+            // Should throw exception when removing with null
+            Should.Throw<ArgumentNullException>(() => this.tree2D.Remove((Envelope)null));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="KDTree.Remove(Envelope, out List{Coordinate})" /> method.
+        /// </summary>
+        [Test]
+        public void KDTreeRemoveEnvelopeWithResultTest()
+        {
+            List<Coordinate> coordinates = new List<Coordinate>();
+
+            // Should remove based on envelope with results
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree2D.Remove(new Envelope(0, 100, 0, 100), out coordinates).ShouldBeTrue();
+            coordinates.Count.ShouldBe(this.coords2D.Count);
+
+            this.tree2D.Remove(new Envelope(0, 100, 0, 100), out coordinates).ShouldBeFalse();
+            coordinates.Count.ShouldBe(0);
+
+            // Should throw exception when removing with null
+            Should.Throw<ArgumentNullException>(() => this.tree2D.Remove(null, out coordinates));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="KDTree.SearchNearest(Coordinate)" /> method.
+        /// </summary>
+        [Test]
+        public void KDTreeSearchNearestTest()
+        {
+            this.tree2D = new KDTree(this.coords2D, 2);
+            this.tree3D = new KDTree(this.coords3D, 3);
+
+            // Regular cases
+            this.tree2D.SearchNearest(new Coordinate(0, 0)).ShouldBe(new Coordinate(1, 1));
+            this.tree2D.SearchNearest(new Coordinate(1, 1)).ShouldBe(new Coordinate(1, 1));
+            this.tree2D.SearchNearest(new Coordinate(50.6, 50.6)).ShouldBe(new Coordinate(51, 51));
+            this.tree2D.SearchNearest(new Coordinate(50.4, 50.4)).ShouldBe(new Coordinate(50, 50));
+
+            this.tree3D.SearchNearest(new Coordinate(0, 0, 0)).ShouldBe(new Coordinate(1, 1, 1));
+            this.tree3D.SearchNearest(new Coordinate(1, 1, 1)).ShouldBe(new Coordinate(1, 1, 1));
+            this.tree3D.SearchNearest(new Coordinate(50.6, 50.6, 50.6)).ShouldBe(new Coordinate(51, 51, 51));
+            this.tree3D.SearchNearest(new Coordinate(50.4, 50.4, 50.4)).ShouldBe(new Coordinate(50, 50, 50));
 
             // Error cases
-            Should.Throw<ArgumentNullException>(() => this.tree2D.NearestNeighbourSearch(null));
+            Should.Throw<ArgumentNullException>(() => this.tree2D.SearchNearest(null));
         }
 
         /// <summary>
@@ -252,6 +295,7 @@ namespace AEGIS.Tests.Indexes
         [Test]
         public void KDTreeClearTest()
         {
+            this.tree2D = new KDTree(this.coords2D, 2);
             this.tree2D.Clear();
             this.tree2D.NumberOfGeometries.ShouldBe(0);
         }

@@ -20,9 +20,10 @@ namespace AEGIS.Indexes
     using AEGIS.Resources;
 
     /// <summary>
-    /// Represents a KDTree coordinate index.
+    /// Represents a a-d tree coordinate index.
     /// </summary>
     /// <remarks>
+    /// A k-d tree (short for k-dimensional tree) is a space-partitioning data structure for organizing coordinates in a k-dimensional space.
     /// The tree is balanced when created, but adding or removing elements might leave it unbalanced.
     /// Perform the <see cref="KDTree.RebalanceTree"/> operation to rebalance the tree.
     /// </remarks>
@@ -90,10 +91,11 @@ namespace AEGIS.Indexes
             /// Adds a coordinate to the subtree of this node.
             /// </summary>
             /// <param name="coordinate">The coordinate to be added.</param>
-            public void Add(Coordinate coordinate)
+            /// <returns><c>true</c> if the coordinate could be soccessfully inserted; otherwise, <c>false</c>.</returns>
+            public Boolean Add(Coordinate coordinate)
             {
                 if (coordinate.Equals(this.Coordinate))
-                    throw new ArgumentException(CoreMessages.CollectionContainsDuplicateIdentifiers, nameof(coordinate));
+                    return false;
 
                 // Determining whether the coordinate should be in the left or the right subtree of this node.
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
@@ -115,6 +117,8 @@ namespace AEGIS.Indexes
                     else
                         this.rightChild = new KDTreeNode(coordinate, this.splitDimension % this.NumberOfDimensions + 1, this.NumberOfDimensions);
                 }
+
+                return true;
             }
 
             /// <summary>
@@ -122,13 +126,13 @@ namespace AEGIS.Indexes
             /// </summary>
             /// <param name="coordinate">The coordinate we are looking for.</param>
             /// <returns>A value indicating whether this node's subtree contains the coordinate.</returns>
-            public bool Contains(Coordinate coordinate)
+            public Boolean Contains(Coordinate coordinate)
             {
                 if (coordinate.Equals(this.Coordinate))
                     return true;
 
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
+                Int32 comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
 
                 if (comparisonResult < 0 && this.LeftChildExists)
                     return this.leftChild.Contains(coordinate);
@@ -146,8 +150,8 @@ namespace AEGIS.Indexes
             public bool Remove(Coordinate coordinate)
             {
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
-                List<Coordinate> pointsToRecreate = new List<Coordinate>();
+                Int32 comparisonResult = splitDimensionComparison(coordinate, this.Coordinate);
+                List<Coordinate> coordinatesToRecreate = new List<Coordinate>();
 
                 if (comparisonResult < 0)
                 {
@@ -157,9 +161,9 @@ namespace AEGIS.Indexes
                     if (this.leftChild.Coordinate.Equals(coordinate))
                     {
                         // If we are removing the left child, we need to recreate the left subtree to ensure that the tree's constraints are still true after the remove.
-                        this.leftChild.AllCoordinatesFromSubTree(pointsToRecreate);
-                        pointsToRecreate.Remove(coordinate);
-                        this.InitializeLeftSubTree(pointsToRecreate);
+                        this.leftChild.AllCoordinatesFromSubTree(coordinatesToRecreate);
+                        coordinatesToRecreate.Remove(coordinate);
+                        this.InitializeLeftSubTree(coordinatesToRecreate);
 
                         return true;
                     }
@@ -176,9 +180,9 @@ namespace AEGIS.Indexes
                     if (this.rightChild.Coordinate.Equals(coordinate))
                     {
                         // If we are removing the right child, we need to recreate the left subtree to ensure that the tree's constraints are still true after the remove.
-                        this.rightChild.AllCoordinatesFromSubTree(pointsToRecreate);
-                        pointsToRecreate.Remove(coordinate);
-                        this.InitializeRightSubTree(pointsToRecreate);
+                        this.rightChild.AllCoordinatesFromSubTree(coordinatesToRecreate);
+                        coordinatesToRecreate.Remove(coordinate);
+                        this.InitializeRightSubTree(coordinatesToRecreate);
 
                         return true;
                     }
@@ -226,60 +230,60 @@ namespace AEGIS.Indexes
             /// <summary>
             /// Initializes the subtrees of this node.
             /// </summary>
-            /// <param name="leftPoints">The coordinates to be stored in the left subtree of this node.</param>
-            /// <param name="rightPoints">The coordinates to be stored in the right subtree of this node</param>
-            public void InitializeSubTree(List<Coordinate> leftPoints, List<Coordinate> rightPoints)
+            /// <param name="leftCoordinates">The coordinates to be stored in the left subtree of this node.</param>
+            /// <param name="rightCoordinates">The coordinates to be stored in the right subtree of this node.</param>
+            public void InitializeSubTree(List<Coordinate> leftCoordinates, List<Coordinate> rightCoordinates)
             {
-                this.InitializeLeftSubTree(leftPoints);
-                this.InitializeRightSubTree(rightPoints);
+                this.InitializeLeftSubTree(leftCoordinates);
+                this.InitializeRightSubTree(rightCoordinates);
             }
 
             /// <summary>
             /// Performs a search for a nearest neighbour in the subtree rooted at this node.
             /// </summary>
-            /// <param name="searchPoint">The point whose nearest neghbour is searched for.</param>
+            /// <param name="searchCoordinate">The coordinate whose nearest neghbour is searched for.</param>
             /// <returns>The nearest neighbour of the specified coordinate.</returns>
-            public Coordinate NearestNeighbourSearch(Coordinate searchPoint)
+            public Coordinate NearestNeighbourSearch(Coordinate searchCoordinate)
             {
                 Comparison<Coordinate> splitDimensionComparison = this.GetComparisonForDimension(this.splitDimension);
-                int comparisonResult = splitDimensionComparison(searchPoint, this.Coordinate);
+                Int32 comparisonResult = splitDimensionComparison(searchCoordinate, this.Coordinate);
                 Coordinate currentBest;
 
                 // We recurse down in the tree to the first leaf, always going left or right based on the comparison by the split dimension of the current node.
                 if (comparisonResult < 0)
                 {
                     if (this.LeftChildExists)
-                        currentBest = this.leftChild.NearestNeighbourSearch(searchPoint);
+                        currentBest = this.leftChild.NearestNeighbourSearch(searchCoordinate);
                     else
                         return this.Coordinate;
                 }
                 else
                 {
                     if (this.RightChildExists)
-                        currentBest = this.rightChild.NearestNeighbourSearch(searchPoint);
+                        currentBest = this.rightChild.NearestNeighbourSearch(searchCoordinate);
                     else
                         return this.Coordinate;
                 }
 
                 // When we recurse up the tree we check whether the coordinate stored in this node is closer than the best we have found so far.
-                if (Coordinate.Distance(this.Coordinate, searchPoint) < Coordinate.Distance(currentBest, searchPoint))
+                if (Coordinate.Distance(this.Coordinate, searchCoordinate) < Coordinate.Distance(currentBest, searchCoordinate))
                     currentBest = this.Coordinate;
 
                 // We check whether the OTHER subtree of this node (which we did NOT use to recurse down to the leaf nodes) could contain a node closer than the current best.
-                if (this.DistanceInDimension(searchPoint, this.Coordinate, this.splitDimension) < Coordinate.Distance(searchPoint, currentBest))
+                if (this.DistanceInDimension(searchCoordinate, this.Coordinate, this.splitDimension) < Coordinate.Distance(searchCoordinate, currentBest))
                 {
                     Coordinate otherSubTreesBest = null;
 
                     // If the other subtree could contain a closer coordinate, we perform the same search on the other subtree.
                     if (comparisonResult < 0 && this.RightChildExists)
-                        otherSubTreesBest = this.rightChild.NearestNeighbourSearch(searchPoint);
+                        otherSubTreesBest = this.rightChild.NearestNeighbourSearch(searchCoordinate);
                     if (comparisonResult > 0 && this.LeftChildExists)
-                        otherSubTreesBest = this.leftChild.NearestNeighbourSearch(searchPoint);
+                        otherSubTreesBest = this.leftChild.NearestNeighbourSearch(searchCoordinate);
 
                     // If we performed the search of the other subtree, we check if the result from that subtree is better than the one we have already found.
                     if (otherSubTreesBest != null)
                     {
-                        currentBest = Coordinate.Distance(currentBest, searchPoint) < Coordinate.Distance(otherSubTreesBest, searchPoint)
+                        currentBest = Coordinate.Distance(currentBest, searchCoordinate) < Coordinate.Distance(otherSubTreesBest, searchCoordinate)
                             ? currentBest
                             : otherSubTreesBest;
                     }
@@ -338,7 +342,7 @@ namespace AEGIS.Indexes
                     return;
                 }
 
-                int nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
+                Int32 nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
                 Comparison<Coordinate> coordinateComparison = this.GetComparisonForDimension(nextSplitDimension);
                 coordinates.Sort(coordinateComparison);
 
@@ -362,7 +366,7 @@ namespace AEGIS.Indexes
                     return;
                 }
 
-                int nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
+                Int32 nextSplitDimension = this.splitDimension % this.NumberOfDimensions + 1;
                 Comparison<Coordinate> coordinateComparison = this.GetComparisonForDimension(nextSplitDimension);
                 coordinates.Sort(coordinateComparison);
 
@@ -417,14 +421,14 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Initializes a new instance of the <see cref="KDTree"/> class.
         /// </summary>
-        /// <param name="coordinates">The points to create the tree from.</param>
+        /// <param name="coordinates">The coordinates to create the tree from.</param>
         /// <param name="treeDimensions">The dimensions of the tree.</param>
-        /// <exception cref="System.ArgumentNullException">The points are null.</exception>
-        /// <exception cref="System.ArgumentOutOfRangeException">The treeDimensions is not 2 or 3.</exception>
+        /// <exception cref="System.ArgumentNullException">The collection of coordinates is null.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The tree dimensions is not 2 or 3.</exception>
         public KDTree(IEnumerable<Coordinate> coordinates, Int32 treeDimensions)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (treeDimensions > 3)
                 throw new ArgumentOutOfRangeException(nameof(treeDimensions), CoreMessages.DimensionIsGreaterThan3);
@@ -437,29 +441,6 @@ namespace AEGIS.Indexes
         }
 
         /// <summary>
-        /// Initializes the tree.
-        /// </summary>
-        /// <param name="coordinates">The list of coordinates to create the tree from.</param>
-        private void InitializeTree(List<Coordinate> coordinates)
-        {
-            this.NumberOfGeometries = coordinates.Count;
-
-            // If there are no coordinates specified, leave the tree empty.
-            if (coordinates.Count == 0)
-                return;
-
-            // Sorting the input points by the X coordinate
-            coordinates.Sort((p1, p2) => p1.X.CompareTo(p2.X));
-
-            // Setting up the root to be the median by the X coordinate
-            Coordinate median = coordinates[coordinates.Count / 2];
-            this.root = new KDTreeNode(median, 1, this.TreeDimension);
-
-            // Add all input points to the tree
-            this.root.InitializeSubTree(coordinates.GetRange(0, coordinates.Count / 2), coordinates.GetRange(coordinates.Count / 2 + 1, (int)Math.Ceiling(coordinates.Count / 2.0) - 1));
-        }
-
-        /// <summary>
         /// Gets the dimension of the tree.
         /// </summary>
         /// <remarks>
@@ -469,6 +450,10 @@ namespace AEGIS.Indexes
         /// </remarks>
         public Int32 TreeDimension { get; private set; }
 
+        /// <summary>
+        /// Gets the number of indexed geometries.
+        /// </summary>
+        /// <value>The number of indexed geometries.</value>
         public Int32 NumberOfGeometries { get; private set; }
 
         /// <summary>
@@ -479,24 +464,17 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Gets a value indicating whether the tree is readonly.
         /// </summary>
-        public Boolean IsReadOnly
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public Boolean IsReadOnly { get { return false; } }
 
         /// <summary>
         /// Adds a coordinate to the tree.
         /// </summary>
         /// <param name="coordinate">The coordinate to be added.</param>
         /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
-        /// <exception cref="System.ArgumentException">The coordinate is already in the tree.</exception>
         public void Add(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             this.NumberOfGeometries++;
 
@@ -519,7 +497,7 @@ namespace AEGIS.Indexes
         public void Add(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             foreach (Coordinate coordinate in coordinates)
                 this.Add(coordinate);
@@ -538,7 +516,7 @@ namespace AEGIS.Indexes
         /// Returns a value indicating whether the tree contains the coordinate.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if the tree contains the coordinate, <c>false</c> otherwise.</returns>
+        /// <returns><c>true</c> if the specified coordinate is indexed; otherwise <c>false</c>.</returns>
         public Boolean Contains(Coordinate coordinate)
         {
             return coordinate == null || this.IsEmpty
@@ -555,7 +533,7 @@ namespace AEGIS.Indexes
         public Boolean Remove(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             if (this.IsEmpty)
                 return false;
@@ -570,13 +548,13 @@ namespace AEGIS.Indexes
                     return true;
                 }
 
-                List<Coordinate> allPoints = new List<Coordinate>(this.NumberOfGeometries);
-                this.root.AllCoordinatesFromSubTree(allPoints);
-                removeSuccessful = allPoints.Remove(coordinate);
+                List<Coordinate> allCoordiantes = new List<Coordinate>(this.NumberOfGeometries);
+                this.root.AllCoordinatesFromSubTree(allCoordiantes);
+                removeSuccessful = allCoordiantes.Remove(coordinate);
                 if (removeSuccessful)
                 {
                     this.Clear();
-                    this.InitializeTree(allPoints);
+                    this.InitializeTree(allCoordiantes);
                 }
 
                 return removeSuccessful;
@@ -638,7 +616,7 @@ namespace AEGIS.Indexes
         public IEnumerable<Coordinate> Search(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             if (this.IsEmpty)
                 return new List<Coordinate>();
@@ -650,15 +628,14 @@ namespace AEGIS.Indexes
         /// Searches the tree for the nearest neighbour of the specified coordinate.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
-        /// <returns>The nearest neighbour of the specified coordinate.</returns>
+        /// <returns>The nearest neighbour of the specified coordinate, or <c>null</c> if the tree is empty.</returns>
         /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
-        /// <exception cref="System.InvalidOperationException">The tree is empty.</exception>
-        public Coordinate NearestNeighbourSearch(Coordinate coordinate)
+        public Coordinate SearchNearest(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
             if (this.IsEmpty)
-                throw new InvalidOperationException("Cannot perform nearest neighbour search on an empty tree.");
+                return null;
 
             return this.root.NearestNeighbourSearch(coordinate);
         }
@@ -677,6 +654,29 @@ namespace AEGIS.Indexes
             this.root.AllCoordinatesFromSubTree(allCoordinates);
             this.Clear();
             this.InitializeTree(allCoordinates);
+        }
+
+        /// <summary>
+        /// Initializes the tree.
+        /// </summary>
+        /// <param name="coordinates">The list of coordinates to create the tree from.</param>
+        private void InitializeTree(List<Coordinate> coordinates)
+        {
+            this.NumberOfGeometries = coordinates.Count;
+
+            // If there are no coordinates specified, leave the tree empty.
+            if (coordinates.Count == 0)
+                return;
+
+            // Sorting the input coordinates by the X coordinate
+            coordinates.Sort((p1, p2) => p1.X.CompareTo(p2.X));
+
+            // Setting up the root to be the median by the X coordinate
+            Coordinate median = coordinates[coordinates.Count / 2];
+            this.root = new KDTreeNode(median, 1, this.TreeDimension);
+
+            // Add all input coordinates to the tree
+            this.root.InitializeSubTree(coordinates.GetRange(0, coordinates.Count / 2), coordinates.GetRange(coordinates.Count / 2 + 1, (int)Math.Ceiling(coordinates.Count / 2.0) - 1));
         }
     }
 }
