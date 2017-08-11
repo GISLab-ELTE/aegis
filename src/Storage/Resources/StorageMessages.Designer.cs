@@ -71,24 +71,6 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The authentication is null..
-        /// </summary>
-        public static string AuthenticationIsNull {
-            get {
-                return ResourceManager.GetString("AuthenticationIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The HTTP client is null..
-        /// </summary>
-        public static string ClientIsNull {
-            get {
-                return ResourceManager.GetString("ClientIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The destination path already exists..
         /// </summary>
         public static string DestinationPathExists {
@@ -116,24 +98,6 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The destination path is null..
-        /// </summary>
-        public static string DestinationPathIsNull {
-            get {
-                return ResourceManager.GetString("DestinationPathIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The driver is null..
-        /// </summary>
-        public static string DriverIsNull {
-            get {
-                return ResourceManager.GetString("DriverIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The operation is not supported by the file system..
         /// </summary>
         public static string FileSystemOperationNotSupported {
@@ -157,15 +121,6 @@ namespace AEGIS.Storage.Resources {
         public static string HostnameIsInvalid {
             get {
                 return ResourceManager.GetString("HostnameIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The hostname is null..
-        /// </summary>
-        public static string HostnameIsNull {
-            get {
-                return ResourceManager.GetString("HostnameIsNull", resourceCulture);
             }
         }
         
@@ -215,29 +170,20 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The key is null..
+        /// </summary>
+        public static string KeyIsNull {
+            get {
+                return ResourceManager.GetString("KeyIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The length is less than 0..
         /// </summary>
         public static string LengthIsLessThan0 {
             get {
                 return ResourceManager.GetString("LengthIsLessThan0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The location is null..
-        /// </summary>
-        public static string LocationIsNull {
-            get {
-                return ResourceManager.GetString("LocationIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The name is null..
-        /// </summary>
-        public static string NameIsNull {
-            get {
-                return ResourceManager.GetString("NameIsNull", resourceCulture);
             }
         }
         
@@ -341,15 +287,6 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The path is null..
-        /// </summary>
-        public static string PathIsNull {
-            get {
-                return ResourceManager.GetString("PathIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file on path is read-only..
         /// </summary>
         public static string PathIsReadOnly {
@@ -431,29 +368,11 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The source path is null..
-        /// </summary>
-        public static string SourcePathIsNull {
-            get {
-                return ResourceManager.GetString("SourcePathIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The path exceeds the maximum length supported by the file system..
         /// </summary>
         public static string SourcePathTooLong {
             get {
                 return ResourceManager.GetString("SourcePathTooLong", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The type is null..
-        /// </summary>
-        public static string TypeIsNull {
-            get {
-                return ResourceManager.GetString("TypeIsNull", resourceCulture);
             }
         }
         
@@ -467,29 +386,11 @@ namespace AEGIS.Storage.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The URI scheme is null..
-        /// </summary>
-        public static string UriSchemeIsNull {
-            get {
-                return ResourceManager.GetString("UriSchemeIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The username is empty..
         /// </summary>
         public static string UsernameIsEmpty {
             get {
                 return ResourceManager.GetString("UsernameIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The username is null..
-        /// </summary>
-        public static string UsernameIsNull {
-            get {
-                return ResourceManager.GetString("UsernameIsNull", resourceCulture);
             }
         }
     }

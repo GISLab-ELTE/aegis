@@ -112,7 +112,7 @@ namespace AEGIS.Collections
         public Heap(IEnumerable<KeyValuePair<TKey, TValue>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.size = 0;
             this.version = 0;
@@ -134,7 +134,7 @@ namespace AEGIS.Collections
         public Heap(IEnumerable<KeyValuePair<TKey, TValue>> source, IComparer<TKey> comparer)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.items = EmptyArray;
             this.size = 0;
@@ -240,7 +240,7 @@ namespace AEGIS.Collections
         public void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (this.size == this.items.Length)
                 this.EnsureCapacity(this.size + 1);
@@ -411,10 +411,7 @@ namespace AEGIS.Collections
             /// <exception cref="System.ArgumentNullException">The heap is null.</exception>
             internal Enumerator(Heap<TKey, TValue> heap)
             {
-                if (heap == null)
-                    throw new ArgumentNullException(nameof(heap), CollectionMessages.HeapIsNull);
-
-                this.localHeap = heap;
+                this.localHeap = heap ?? throw new ArgumentNullException(nameof(heap));
                 this.localVersion = heap.version;
 
                 this.position = -1;

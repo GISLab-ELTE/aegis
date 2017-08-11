@@ -58,12 +58,10 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentOutOfRangeException">The delta is less than or equal to 0.</exception>
         public DouglasPeuckerAlgorithm(IReadOnlyList<Coordinate> source, Double delta, PrecisionModel precisionModel)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
             if (delta <= 0)
                 throw new ArgumentOutOfRangeException(nameof(delta), CoreMessages.DeltaIsEqualToOrLessThan0);
 
-            this.Source = source;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
             this.delta = delta;
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
@@ -121,7 +119,7 @@ namespace AEGIS.Algorithms
         public static IBasicLineString Simplify(IBasicLineString source, Double delta, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             DouglasPeuckerAlgorithm algorithm = new DouglasPeuckerAlgorithm(source, delta, precisionModel);
             algorithm.Compute();
@@ -153,7 +151,7 @@ namespace AEGIS.Algorithms
         public static IBasicPolygon Simplify(IBasicPolygon source, Double delta, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             DouglasPeuckerAlgorithm algorithm = new DouglasPeuckerAlgorithm(source.Shell, delta, precisionModel);
             algorithm.Compute();

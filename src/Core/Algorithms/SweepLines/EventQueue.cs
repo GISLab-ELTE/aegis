@@ -52,7 +52,7 @@ namespace AEGIS.Algorithms.SweepLines
             public void Insert(Event eventElement)
             {
                 if (eventElement == null)
-                    throw new ArgumentNullException(nameof(eventElement), CoreMessages.EventIsNull);
+                    throw new ArgumentNullException(nameof(eventElement));
 
                 this.Insert(eventElement, eventElement);
             }
@@ -91,7 +91,7 @@ namespace AEGIS.Algorithms.SweepLines
         public EventQueue(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.comparer = new CoordinateComparer();
             this.coordinateCount = 0;
@@ -108,7 +108,7 @@ namespace AEGIS.Algorithms.SweepLines
         public EventQueue(IEnumerable<IEnumerable<Coordinate>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.comparer = new CoordinateComparer();
             this.coordinateCount = 0;
@@ -137,7 +137,7 @@ namespace AEGIS.Algorithms.SweepLines
         public void Add(IntersectionEvent intersectionEvent)
         {
             if (intersectionEvent == null)
-                throw new ArgumentNullException(nameof(intersectionEvent), CoreMessages.IntersectionEventIsNull);
+                throw new ArgumentNullException(nameof(intersectionEvent));
 
             this.eventHeap.Insert(intersectionEvent);
         }
@@ -161,7 +161,7 @@ namespace AEGIS.Algorithms.SweepLines
         public Boolean Contains(IntersectionEvent intersectionEvent)
         {
             if (intersectionEvent == null)
-                throw new ArgumentNullException(nameof(intersectionEvent), CoreMessages.IntersectionEventIsNull);
+                throw new ArgumentNullException(nameof(intersectionEvent));
 
             return this.eventHeap.Contains(intersectionEvent);
         }

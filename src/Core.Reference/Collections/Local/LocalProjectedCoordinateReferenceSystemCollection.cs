@@ -80,19 +80,10 @@ namespace AEGIS.Reference.Collections.Local
                                                             IReferenceCollection<CoordinateSystem> coordinateSystemCollection, IReferenceCollection<GeographicCoordinateReferenceSystem> baseReferenceSystemCollection)
             : base(ResourceName, AliasTypeName)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (coordinateProjectionCollection == null)
-                throw new ArgumentNullException(nameof(coordinateProjectionCollection), ReferenceMessages.CoordinateProjectionCollectionIsNull);
-            if (coordinateSystemCollection == null)
-                throw new ArgumentNullException(nameof(coordinateSystemCollection), ReferenceMessages.CoordinateSystemCollectionIsNull);
-            if (baseReferenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(baseReferenceSystemCollection), ReferenceMessages.BaseReferenceSystemCollectionsIsNull);
-
-            this.areaOfUseCollection = areaOfUseCollection;
-            this.coordinateProjectionCollection = coordinateProjectionCollection;
-            this.coordinateSystemCollection = coordinateSystemCollection;
-            this.baseCoordinateReferenceSystemCollection = baseReferenceSystemCollection;
+            this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
+            this.coordinateProjectionCollection = coordinateProjectionCollection ?? throw new ArgumentNullException(nameof(coordinateProjectionCollection));
+            this.coordinateSystemCollection = coordinateSystemCollection ?? throw new ArgumentNullException(nameof(coordinateSystemCollection));
+            this.baseCoordinateReferenceSystemCollection = baseReferenceSystemCollection ?? throw new ArgumentNullException(nameof(baseReferenceSystemCollection));
         }
 
         /// <summary>
@@ -104,7 +95,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Equals(area));
         }
@@ -118,7 +109,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Within(area));
         }
@@ -132,7 +123,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
+                throw new ArgumentNullException(nameof(coordinateSystem));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.CoordinateSystem.Equals(coordinateSystem));
         }
@@ -146,7 +137,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithDatum(GeodeticDatum datum)
         {
             if (datum == null)
-                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
+                throw new ArgumentNullException(nameof(datum));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.Datum.Equals(datum));
         }
@@ -160,7 +151,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<ProjectedCoordinateReferenceSystem> WithProjection(CoordinateProjection projection)
         {
             if (projection == null)
-                throw new ArgumentNullException(nameof(projection), ReferenceMessages.ProjectionIsNull);
+                throw new ArgumentNullException(nameof(projection));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.Projection.Equals(projection));
         }

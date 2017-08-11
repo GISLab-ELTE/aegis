@@ -50,10 +50,7 @@ namespace AEGIS.Reference.Collections.Local
         public LocalMeridianCollection(IReferenceCollection<UnitOfMeasurement> unitCollection)
             : base(ResourceName, AliasName)
         {
-            if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
-
-            this.unitCollection = unitCollection;
+            this.unitCollection = unitCollection ?? throw new ArgumentNullException(nameof(unitCollection));
         }
 
         /// <summary>

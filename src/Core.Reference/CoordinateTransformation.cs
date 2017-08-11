@@ -58,16 +58,9 @@ namespace AEGIS.Reference
                                            CoordinateReferenceSystem source, CoordinateReferenceSystem target, AreaOfUse areaOfUse)
             : base(identifier, name, remarks, aliases, method, parameters)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateReferenceSystemIsNull);
-            if (target == null)
-                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetCoordinateReferenceSystemIsNull);
-            if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
-
-            this.Source = source;
-            this.Target = target;
-            this.AreaOfUse = areaOfUse;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
+            this.Target = target ?? throw new ArgumentNullException(nameof(target));
+            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
         }
 
         /// <summary>

@@ -235,7 +235,7 @@ namespace AEGIS
         public IReadOnlyList<Coordinate> MakePrecise(IReadOnlyList<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return coordinates;
@@ -279,7 +279,7 @@ namespace AEGIS
         public IEnumerable<Coordinate> MakePrecise(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return coordinates;
@@ -307,7 +307,7 @@ namespace AEGIS
         public IReadOnlyList<CoordinateVector> MakePrecise(IReadOnlyList<CoordinateVector> vectors)
         {
             if (vectors == null)
-                throw new ArgumentNullException(nameof(vectors), CoreMessages.VectorCollectionIsNull);
+                throw new ArgumentNullException(nameof(vectors));
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return vectors;
@@ -351,7 +351,7 @@ namespace AEGIS
         public IEnumerable<CoordinateVector> MakePrecise(IEnumerable<CoordinateVector> vectors)
         {
             if (vectors == null)
-                throw new ArgumentNullException(nameof(vectors), CoreMessages.VectorCollectionIsNull);
+                throw new ArgumentNullException(nameof(vectors));
 
             if (this.ModelType == PrecisionModelType.Floating)
                 return vectors;
@@ -583,7 +583,7 @@ namespace AEGIS
         public static PrecisionModel LeastPrecise(params PrecisionModel[] models)
         {
             if (models == null)
-                throw new ArgumentNullException(nameof(models), CoreMessages.ModelsArrayIsNull);
+                throw new ArgumentNullException(nameof(models));
             if (models.Length == 0)
                 throw new ArgumentException(CoreMessages.NoModelsSpecified, nameof(models));
 
@@ -608,7 +608,7 @@ namespace AEGIS
         public static PrecisionModel MostPrecise(params PrecisionModel[] models)
         {
             if (models == null)
-                throw new ArgumentNullException(nameof(models), CoreMessages.ModelsArrayIsNull);
+                throw new ArgumentNullException(nameof(models));
             if (models.Length == 0)
                 throw new ArgumentException(CoreMessages.NoModelsSpecified, nameof(models));
 

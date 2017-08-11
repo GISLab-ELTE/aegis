@@ -272,13 +272,8 @@ namespace AEGIS.Algorithms
         /// </exception>
         public GreinerHormannAlgorithm(IBasicPolygon polygonA, IBasicPolygon polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
-            if (polygonA == null)
-                throw new ArgumentNullException(nameof(polygonA), CoreMessages.FirstPolygonIsNull);
-            if (polygonB == null)
-                throw new ArgumentNullException(nameof(polygonB), CoreMessages.SecondPolygonIsNull);
-
-            this.polygonA = polygonA;
-            this.polygonB = polygonB;
+            this.polygonA = polygonA ?? throw new ArgumentNullException(nameof(polygonA));
+            this.polygonB = polygonB ?? throw new ArgumentNullException(nameof(polygonB));
             this.computeExternalClips = computeExternalClips;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.hasResult = false;
@@ -304,9 +299,9 @@ namespace AEGIS.Algorithms
         public GreinerHormannAlgorithm(IReadOnlyList<Coordinate> polygonA, IReadOnlyList<Coordinate> polygonB, Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (polygonA == null)
-                throw new ArgumentNullException(nameof(polygonA), CoreMessages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonA));
             if (polygonB == null)
-                throw new ArgumentNullException(nameof(polygonB), CoreMessages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonB));
 
             this.polygonA = new BasicProxyPolygon(polygonA);
             this.polygonB = new BasicProxyPolygon(polygonB);
@@ -335,9 +330,9 @@ namespace AEGIS.Algorithms
                                        Boolean computeExternalClips, PrecisionModel precisionModel)
         {
             if (polygonAShell == null)
-                throw new ArgumentNullException(nameof(polygonAShell), CoreMessages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonAShell));
             if (polygonBShell == null)
-                throw new ArgumentNullException(nameof(polygonBShell), CoreMessages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(polygonBShell));
 
             this.polygonA = new BasicProxyPolygon(polygonAShell, polygonAHoles);
             this.polygonB = new BasicProxyPolygon(polygonBShell, polygonBHoles);

@@ -32,7 +32,7 @@ namespace AEGIS.Storage.Features
         /// <exception cref="System.ArgumentNullException">The driver is null.</exception>
         public StoredFeatureFactory(IFeatureDriver driver)
         {
-            this.Driver = driver ?? throw new ArgumentNullException(nameof(driver), AEGIS.Storage.Resources.StorageMessages.DriverIsNull);
+            this.Driver = driver ?? throw new ArgumentNullException(nameof(driver));
 
             StoredAttributeCollectionFactory attributeFactory = new StoredAttributeCollectionFactory(driver.AttributeDriver);
             StoredGeometryFactory geometryFactory = new StoredGeometryFactory(driver.GeometryDriver);
@@ -107,11 +107,11 @@ namespace AEGIS.Storage.Features
         public IFeature CreateFeature(String identifier, IGeometry geometry, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
             (this.GeometryFactory as IStoredGeometryFactory).CreateGeometry(identifier, geometry);
@@ -133,9 +133,9 @@ namespace AEGIS.Storage.Features
         public IFeature CreateFeature(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -151,7 +151,7 @@ namespace AEGIS.Storage.Features
         public IFeature CreateFeature(IFeature other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherFeatureIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             if (other is IStoredFeature)
             {
@@ -191,9 +191,9 @@ namespace AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -218,11 +218,11 @@ namespace AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (attributes == null)
-                throw new ArgumentNullException(nameof(attributes), CoreMessages.AttributeCollectionIsNull);
+                throw new ArgumentNullException(nameof(attributes));
             if (collection == null)
-                throw new ArgumentNullException(CoreMessages.CollectionIsNull, nameof(collection));
+                throw new ArgumentNullException(nameof(collection));
 
             (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
 
@@ -259,9 +259,9 @@ namespace AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(String identifier, IEnumerable<IFeature> collection)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             StoredFeatureCollection featureCollection = new StoredFeatureCollection(this, identifier);
             List<String> storedIdentifiers = new List<String>();
@@ -290,7 +290,7 @@ namespace AEGIS.Storage.Features
         public IFeatureCollection CreateCollection(IFeatureCollection other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return this.CreateCollection(other.Identifier, other.Attributes, other);
         }

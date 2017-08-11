@@ -98,10 +98,7 @@ namespace AEGIS
         /// <exception cref="System.ArgumentNullException">The identifier is null.</exception>
         protected IdentifiedObject(String identifier, String name, String remarks, String[] aliases)
         {
-            if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-
-            this.Identifier = identifier;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
             this.Name = name ?? String.Empty;
             this.Remarks = remarks ?? String.Empty;
             this.Aliases = aliases ?? new String[0];
@@ -202,7 +199,7 @@ namespace AEGIS
         public static String GetAuthority(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return identifier.Contains(Separator) ? identifier.Substring(0, identifier.IndexOf(Separator, StringComparison.Ordinal)) : String.Empty;
         }
@@ -216,7 +213,7 @@ namespace AEGIS
         public static Int32 GetCode(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             String codeString = identifier.Contains(Separator) ? identifier.Substring(identifier.LastIndexOf(Separator, StringComparison.Ordinal) + Separator.Length) : identifier;
             Int32 code;

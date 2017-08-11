@@ -218,9 +218,9 @@ namespace AEGIS
         public static CoordinateVector operator +(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return new CoordinateVector(first.x + second.x, first.y + second.y, first.z + second.z);
         }
@@ -239,9 +239,9 @@ namespace AEGIS
         public static CoordinateVector operator -(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return new CoordinateVector(first.x - second.x, first.y - second.y, first.z - second.z);
         }
@@ -256,7 +256,7 @@ namespace AEGIS
         public static CoordinateVector operator *(Double scalar, CoordinateVector vector)
         {
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
         }
@@ -271,7 +271,7 @@ namespace AEGIS
         public static CoordinateVector operator *(CoordinateVector vector, Double scalar)
         {
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
         }
@@ -290,9 +290,9 @@ namespace AEGIS
         public static Double operator *(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return first.x * second.x + first.y * second.y + first.z * second.z;
         }
@@ -368,9 +368,9 @@ namespace AEGIS
         public static Boolean IsParallel(CoordinateVector first, CoordinateVector second, PrecisionModel precision)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (precision == null)
                 precision = PrecisionModel.Default;
@@ -410,9 +410,9 @@ namespace AEGIS
         public static Boolean IsPerpendicular(CoordinateVector first, CoordinateVector second, PrecisionModel precision)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (precision == null)
                 precision = PrecisionModel.Default;
@@ -469,9 +469,9 @@ namespace AEGIS
         public static Double Distance(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             Double x = first.x - second.x;
             Double y = first.y - second.y;
@@ -522,9 +522,9 @@ namespace AEGIS
         public static Double DotProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return first.x * second.x + first.y * second.y + first.z * second.z;
         }
@@ -556,9 +556,9 @@ namespace AEGIS
         public static Double PerpDotProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return first.x * second.y - first.y * second.x;
         }
@@ -592,9 +592,9 @@ namespace AEGIS
         public static CoordinateVector CrossProduct(CoordinateVector first, CoordinateVector second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return new CoordinateVector(first.y * second.z - first.z * second.y, first.z * second.x - first.x * second.z, first.x * second.y - first.y * second.x);
         }

@@ -20,7 +20,7 @@ namespace AEGIS
     /// <summary>
     /// Defines properties of geographic feature collections.
     /// </summary>
-    public interface IFeatureCollection : IFeature, ICollection<IFeature>, IReadOnlyCollection<IFeature>
+    public interface IFeatureCollection : IFeature, ICollection<IFeature>
     {
         /// <summary>
         /// Gets the feature identifiers within the collection.

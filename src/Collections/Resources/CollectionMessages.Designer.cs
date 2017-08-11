@@ -80,15 +80,6 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The array is null..
-        /// </summary>
-        public static string ArrayIsNull {
-            get {
-                return ResourceManager.GetString("ArrayIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The number of bytes in the array is less than required..
         /// </summary>
         public static string ArraySizeLessThanRequired {
@@ -125,15 +116,6 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The collection is null..
-        /// </summary>
-        public static string CollectionIsNull {
-            get {
-                return ResourceManager.GetString("CollectionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The collection is read-only..
         /// </summary>
         public static string CollectionIsReadOnly {
@@ -161,15 +143,6 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dictionary is null..
-        /// </summary>
-        public static string DictionaryIsNull {
-            get {
-                return ResourceManager.GetString("DictionaryIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The first item is not present in any set..
         /// </summary>
         public static string FirstItemIsNotPresentInAnySet {
@@ -179,29 +152,11 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The first item is null..
-        /// </summary>
-        public static string FirstItemIsNull {
-            get {
-                return ResourceManager.GetString("FirstItemIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The heap is empty..
         /// </summary>
         public static string HeapIsEmpty {
             get {
                 return ResourceManager.GetString("HeapIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The heap is null..
-        /// </summary>
-        public static string HeapIsNull {
-            get {
-                return ResourceManager.GetString("HeapIsNull", resourceCulture);
             }
         }
         
@@ -242,15 +197,6 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The item is null..
-        /// </summary>
-        public static string ItemIsNull {
-            get {
-                return ResourceManager.GetString("ItemIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An element with the same key already exists in the collection..
         /// </summary>
         public static string KeyAlreadyExistsInTheCollection {
@@ -265,15 +211,6 @@ namespace AEGIS.Collections.Resources {
         public static string KeyExists {
             get {
                 return ResourceManager.GetString("KeyExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The key is null..
-        /// </summary>
-        public static string KeyIsNull {
-            get {
-                return ResourceManager.GetString("KeyIsNull", resourceCulture);
             }
         }
         
@@ -296,15 +233,6 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The predicate is null..
-        /// </summary>
-        public static string PredicateIsNull {
-            get {
-                return ResourceManager.GetString("PredicateIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The second item is not present in any set..
         /// </summary>
         public static string SecondItemIsNotPresentInAnySet {
@@ -314,47 +242,11 @@ namespace AEGIS.Collections.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The second item is null..
-        /// </summary>
-        public static string SecondItemIsNull {
-            get {
-                return ResourceManager.GetString("SecondItemIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The selector is null..
-        /// </summary>
-        public static string SelectorIsNull {
-            get {
-                return ResourceManager.GetString("SelectorIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The set is null..
-        /// </summary>
-        public static string SetIsNull {
-            get {
-                return ResourceManager.GetString("SetIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The set is read-only..
         /// </summary>
         public static string SetIsReadOnly {
             get {
                 return ResourceManager.GetString("SetIsReadOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The source is null..
-        /// </summary>
-        public static string SourceIsNull {
-            get {
-                return ResourceManager.GetString("SourceIsNull", resourceCulture);
             }
         }
         
@@ -382,15 +274,6 @@ namespace AEGIS.Collections.Resources {
         public static string TooManyElementsInArray {
             get {
                 return ResourceManager.GetString("TooManyElementsInArray", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The tree is null..
-        /// </summary>
-        public static string TreeIsNull {
-            get {
-                return ResourceManager.GetString("TreeIsNull", resourceCulture);
             }
         }
     }

@@ -32,6 +32,7 @@ namespace AEGIS.Storage.Geometries
         /// Initializes a new instance of the <see cref="StoredMultiLineString" /> class.
         /// </summary>
         /// <param name="precisionModel">The precision model.</param>
+        /// <param name="referenceSystem">The reference system.</param>
         /// <param name="driver">The geometry driver.</param>
         /// <param name="identifier">The feature identifier.</param>
         /// <param name="indexes">The indexes of the geometry within the feature.</param>
@@ -42,22 +43,6 @@ namespace AEGIS.Storage.Geometries
         /// </exception>
         public StoredMultiLineString(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
             : base(precisionModel, referenceSystem, driver, identifier, indexes)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StoredMultiLineString" /> class.
-        /// </summary>
-        /// <param name="factory">The factory.</param>
-        /// <param name="identifier">The feature identifier.</param>
-        /// <param name="indexes">The indexes of the geometry within the feature.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// The factory is null.
-        /// or
-        /// The identifier is null.
-        /// </exception>
-        public StoredMultiLineString(StoredGeometryFactory factory, String identifier, IEnumerable<Int32> indexes)
-            : base(factory, identifier, indexes)
         {
         }
 

@@ -191,7 +191,7 @@ namespace AEGIS
         public Boolean Contains(Coordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             return this.minimum.X <= coordinate.X && coordinate.X <= this.maximum.X &&
                    this.minimum.Y <= coordinate.Y && coordinate.Y <= this.maximum.Y &&
@@ -207,7 +207,7 @@ namespace AEGIS
         public Boolean Contains(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return this.minimum.X <= envelope.minimum.X && envelope.maximum.X <= this.maximum.X &&
                    this.minimum.Y <= envelope.minimum.Y && envelope.maximum.Y <= this.maximum.Y &&
@@ -223,7 +223,7 @@ namespace AEGIS
         public Boolean Crosses(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return !this.Disjoint(envelope) && !this.Equals(envelope);
         }
@@ -237,7 +237,7 @@ namespace AEGIS
         public Boolean Disjoint(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return this.maximum.X < envelope.minimum.X || this.minimum.X > envelope.maximum.X ||
                    this.maximum.Y < envelope.minimum.Y || this.minimum.Y > envelope.maximum.Y ||
@@ -253,7 +253,7 @@ namespace AEGIS
         public Boolean Intersects(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return !this.Disjoint(envelope);
         }
@@ -267,7 +267,7 @@ namespace AEGIS
         public Boolean Overlaps(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return !this.Disjoint(envelope) && !this.Equals(envelope);
         }
@@ -281,7 +281,7 @@ namespace AEGIS
         public Boolean Touches(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return !this.Disjoint(envelope) && (this.minimum.X == envelope.maximum.X || this.maximum.X == envelope.minimum.X ||
                                         this.minimum.Y == envelope.maximum.Y || this.maximum.Y == envelope.minimum.Y ||
@@ -297,7 +297,7 @@ namespace AEGIS
         public Boolean Within(Envelope envelope)
         {
             if (envelope == null)
-                throw new ArgumentNullException(nameof(envelope), CoreMessages.EnvelopeIsNull);
+                throw new ArgumentNullException(nameof(envelope));
 
             return envelope.Contains(this);
         }

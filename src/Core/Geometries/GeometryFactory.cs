@@ -110,7 +110,7 @@ namespace AEGIS.Geometries
         public virtual IPoint CreatePoint(IPoint other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new Point(this.PrecisionModel, this.ReferenceSystem, other.Coordinate);
         }
@@ -179,7 +179,7 @@ namespace AEGIS.Geometries
         public virtual ILineString CreateLineString(ILineString other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineStringIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new LineString(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -209,9 +209,9 @@ namespace AEGIS.Geometries
         public virtual ILine CreateLine(IPoint start, IPoint end)
         {
             if (start == null)
-                throw new ArgumentNullException(nameof(start), CoreMessages.StartPointIsNull);
+                throw new ArgumentNullException(nameof(start));
             if (end == null)
-                throw new ArgumentNullException(nameof(end), CoreMessages.EndPointIsNull);
+                throw new ArgumentNullException(nameof(end));
 
             return new Line(this.PrecisionModel, this.ReferenceSystem, start.Coordinate, end.Coordinate);
         }
@@ -225,7 +225,7 @@ namespace AEGIS.Geometries
         public virtual ILine CreateLine(ILine other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLineIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new Line(this.PrecisionModel, this.ReferenceSystem, other.StartCoordinate, other.EndCoordinate);
         }
@@ -259,7 +259,7 @@ namespace AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(params IPoint[] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new LinearRing(this.PrecisionModel, this.ReferenceSystem, source.Select(point => point.Coordinate));
         }
@@ -284,7 +284,7 @@ namespace AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(IEnumerable<IPoint> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new LinearRing(this.PrecisionModel, this.ReferenceSystem, source.Select(point => point.Coordinate));
         }
@@ -298,7 +298,7 @@ namespace AEGIS.Geometries
         public virtual ILinearRing CreateLinearRing(ILinearRing other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherLinearRingIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new LinearRing(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -323,7 +323,7 @@ namespace AEGIS.Geometries
         public virtual IPolygon CreatePolygon(params IPoint[] shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return new Polygon(this.PrecisionModel, this.ReferenceSystem, shell.Select(point => point.Coordinate), null);
         }
@@ -361,7 +361,7 @@ namespace AEGIS.Geometries
         public virtual IPolygon CreatePolygon(IPolygon other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new Polygon(this.PrecisionModel, this.ReferenceSystem, other.Shell, other.Holes);
         }
@@ -395,11 +395,11 @@ namespace AEGIS.Geometries
         public virtual ITriangle CreateTriangle(IPoint first, IPoint second, IPoint third)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (third == null)
-                throw new ArgumentNullException(nameof(third), CoreMessages.ThirdPointIsNull);
+                throw new ArgumentNullException(nameof(third));
 
             return new Triangle(this.PrecisionModel, this.ReferenceSystem, first.Coordinate, second.Coordinate, third.Coordinate);
         }
@@ -413,7 +413,7 @@ namespace AEGIS.Geometries
         public virtual ITriangle CreateTriangle(ITriangle other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherTriangleIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new Triangle(this.PrecisionModel, this.ReferenceSystem, other.Shell[0], other.Shell[1], other.Shell[2]);
         }
@@ -482,7 +482,7 @@ namespace AEGIS.Geometries
             where GeometryType : IGeometry
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryCollectionIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new GeometryList<GeometryType>(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -525,7 +525,7 @@ namespace AEGIS.Geometries
         public virtual IMultiPoint CreateMultiPoint(IMultiPoint other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPointIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new MultiPoint(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -558,7 +558,7 @@ namespace AEGIS.Geometries
         public virtual IMultiLineString CreateMultiLineString(IMultiLineString other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiLineStringIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new MultiLineString(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -591,7 +591,7 @@ namespace AEGIS.Geometries
         public virtual IMultiPolygon CreateMultiPolygon(IMultiPolygon other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherMultiPolygonIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return new MultiPolygon(this.PrecisionModel, this.ReferenceSystem, other);
         }
@@ -606,7 +606,7 @@ namespace AEGIS.Geometries
         public IGeometry CreateGeometry(IGeometry other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), CoreMessages.OtherGeometryIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             if (other is IPoint)
                 return this.CreatePoint(other as IPoint);

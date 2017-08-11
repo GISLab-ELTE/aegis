@@ -151,7 +151,7 @@ namespace AEGIS.Storage.Geometries
             {
                 if (this.Count == 0)
                     return null;
-                return new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes.First());
+                return new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes);
             }
         }
 
@@ -165,7 +165,7 @@ namespace AEGIS.Storage.Geometries
             {
                 if (this.Count == 0)
                     return null;
-                return new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes.Last());
+                return new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes);
             }
         }
 
@@ -306,7 +306,7 @@ namespace AEGIS.Storage.Geometries
         public virtual void Add(IEnumerable<Coordinate> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(collection).ToList());
         }
@@ -349,7 +349,7 @@ namespace AEGIS.Storage.Geometries
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             // TODO: enhance performance with insert options in the driver
             List<Coordinate> coordinates = this.ReadCoordinates().ToList();

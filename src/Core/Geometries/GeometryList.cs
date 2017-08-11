@@ -19,6 +19,7 @@ namespace AEGIS.Geometries
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -91,8 +92,9 @@ namespace AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
+            // FIXME: source geometries may have different precision and reference system, thus this breaks consistency
             this.items = new List<GeometryType>(source);
         }
 
@@ -229,7 +231,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
                     throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -252,7 +254,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
                     throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
                 return this.items[index];
@@ -261,7 +263,7 @@ namespace AEGIS.Geometries
             set
             {
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                    throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
                 if (index >= this.items.Count)
                     throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -302,7 +304,7 @@ namespace AEGIS.Geometries
         public virtual void Insert(Int32 index, GeometryType geometry)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.items.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -321,7 +323,7 @@ namespace AEGIS.Geometries
         public virtual void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.items.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -379,9 +381,9 @@ namespace AEGIS.Geometries
         public void CopyTo(GeometryType[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
                 throw new ArgumentException(AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 

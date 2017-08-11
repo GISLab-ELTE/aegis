@@ -171,13 +171,13 @@ namespace AEGIS.Reference
         public String ToString(UnitOfMeasurement angularUnit, UnitOfMeasurement lengthUnit)
         {
             if (angularUnit == null)
-                throw new ArgumentNullException(nameof(angularUnit), ReferenceMessages.AngularUnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(angularUnit));
 
             if (angularUnit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.AngularUnitOfMeasurementIsInvalid, nameof(angularUnit));
 
             if (lengthUnit == null)
-                throw new ArgumentNullException(nameof(lengthUnit), ReferenceMessages.LengthUnitOfMeasurementIsNull);
+                throw new ArgumentNullException(nameof(lengthUnit));
 
             if (lengthUnit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.LengthUnitOfMeasurementIsInvalid, nameof(lengthUnit));
@@ -276,7 +276,7 @@ namespace AEGIS.Reference
         public static explicit operator Coordinate(GeoCoordinate coordinate)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             return new Coordinate(coordinate.latitude.Value, coordinate.Longitude.Value, coordinate.Height.Value);
         }

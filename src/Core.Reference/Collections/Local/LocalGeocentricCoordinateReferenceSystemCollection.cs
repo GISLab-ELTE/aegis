@@ -68,16 +68,9 @@ namespace AEGIS.Reference.Collections.Local
         public LocalGeocentricCoordinateReferenceSystemCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<CoordinateSystem> coordinateSystemCollection, IReferenceCollection<GeodeticDatum> geodeticDatumCollection)
             : base(ResourceName, AliasTypeName)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (coordinateSystemCollection == null)
-                throw new ArgumentNullException(nameof(coordinateSystemCollection), ReferenceMessages.CoordinateSystemIsNull);
-            if (geodeticDatumCollection == null)
-                throw new ArgumentNullException(nameof(geodeticDatumCollection), ReferenceMessages.DatumCollectionIsNull);
-
-            this.areaOfUseCollection = areaOfUseCollection;
-            this.coordinateSystemCollection = coordinateSystemCollection;
-            this.geodeticDatumCollection = geodeticDatumCollection;
+            this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
+            this.coordinateSystemCollection = coordinateSystemCollection ?? throw new ArgumentNullException(nameof(coordinateSystemCollection));
+            this.geodeticDatumCollection = geodeticDatumCollection ?? throw new ArgumentNullException(nameof(geodeticDatumCollection));
         }
 
         /// <summary>

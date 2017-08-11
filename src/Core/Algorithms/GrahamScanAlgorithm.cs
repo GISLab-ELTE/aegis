@@ -98,10 +98,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         protected GrahamScanAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.Source = source;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
             this.hasResult = false;
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
         }
@@ -141,7 +138,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ComputeConvexHull(IBasicPolygon source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new GrahamScanAlgorithm(source.Shell, PrecisionModel.Default).Result;
         }
@@ -156,7 +153,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<Coordinate> ComputeConvexHull(IBasicPolygon source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new GrahamScanAlgorithm(source.Shell, precisionModel).Result;
         }

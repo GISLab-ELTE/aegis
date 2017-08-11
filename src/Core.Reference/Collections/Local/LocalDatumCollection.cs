@@ -56,16 +56,9 @@ namespace AEGIS.Reference.Collections.Local
         /// </exception>
         public LocalDatumCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<Ellipsoid> ellipsoidCollection, IReferenceCollection<Meridian> meridianCollection)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (ellipsoidCollection == null)
-                throw new ArgumentNullException(nameof(ellipsoidCollection), ReferenceMessages.EllipsoidCollectionIsNull);
-            if (meridianCollection == null)
-                throw new ArgumentNullException(nameof(meridianCollection), ReferenceMessages.MeridianCollectionIsNull);
-
-            this.areaOfUseCollection = areaOfUseCollection;
-            this.ellipsoidCollection = ellipsoidCollection;
-            this.meridianCollection = meridianCollection;
+            this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
+            this.ellipsoidCollection = ellipsoidCollection ?? throw new ArgumentNullException(nameof(ellipsoidCollection));
+            this.meridianCollection = meridianCollection ?? throw new ArgumentNullException(nameof(meridianCollection));
         }
 
         /// <summary>

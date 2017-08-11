@@ -162,7 +162,7 @@ namespace AEGIS.Reference
         public CoordinateSystemAxis GetAxis(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.AxisNameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             CoordinateSystemAxis axis = this.axes.Where(ax => ax.Name == name).FirstOrDefault();
             if (axis != null)

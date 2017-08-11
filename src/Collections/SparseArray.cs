@@ -69,7 +69,7 @@ namespace AEGIS.Collections
         public SparseArray(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             this.items = new Dictionary<Int64, T>();
             this.version = 0;
@@ -355,7 +355,7 @@ namespace AEGIS.Collections
         public void CopyTo(T[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.ArrayIndexIsLessThan0);
             if (array.Length - arrayIndex < this.length)
@@ -517,7 +517,7 @@ namespace AEGIS.Collections
             internal Enumerator(SparseArray<T> array)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array));
 
                 this.localVersion = array.version;
                 this.localArray = array;

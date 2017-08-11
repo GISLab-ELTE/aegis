@@ -45,16 +45,9 @@ namespace AEGIS.Reference
         protected CoordinateReferenceSystem(String identifier, String name, String remarks, String[] aliases, String scope, CoordinateSystem coordinateSystem, Datum datum, AreaOfUse areaOfUse)
             : base(identifier, name, remarks, aliases, scope)
         {
-            if (coordinateSystem == null)
-                throw new ArgumentNullException(nameof(coordinateSystem), ReferenceMessages.CoordinateSystemIsNull);
-            if (datum == null)
-                throw new ArgumentNullException(nameof(datum), ReferenceMessages.DatumIsNull);
-            if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
-
-            this.CoordinateSystem = coordinateSystem;
-            this.Datum = datum;
-            this.AreaOfUse = areaOfUse;
+            this.CoordinateSystem = coordinateSystem ?? throw new ArgumentNullException(nameof(coordinateSystem));
+            this.Datum = datum ?? throw new ArgumentNullException(nameof(datum));
+            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
         }
 
         /// <summary>

@@ -58,14 +58,9 @@ namespace AEGIS.Algorithms
         /// </exception>
         public GeometryDistanceAlgorithm(IEnumerable<Coordinate> first, IEnumerable<Coordinate> second, PrecisionModel precisionModel)
         {
-            if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCollectionIsNull);
-            if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCollectionIsNull);
-
             this.hasResult = false;
-            this.First = first;
-            this.Second = second;
+            this.First = first ?? throw new ArgumentNullException(nameof(first));
+            this.Second = second ?? throw new ArgumentNullException(nameof(second));
             this.precisionModel = precisionModel ?? PrecisionModel.Default;
         }
 
@@ -109,9 +104,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPoint first, IBasicPoint second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return Coordinate.Distance(first.Coordinate, second.Coordinate);
         }
@@ -131,9 +126,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPoint first, IBasicPoint second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPointIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPointIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (precisionModel == null)
                 return Coordinate.Distance(first.Coordinate, second.Coordinate);
@@ -155,9 +150,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicLineString lineString)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
+                throw new ArgumentNullException(nameof(point));
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString));
 
             return new GeometryDistanceAlgorithm(new[] { point.Coordinate }, lineString, PrecisionModel.Default).Result;
         }
@@ -177,9 +172,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicLineString lineString, PrecisionModel precisionModel)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
+                throw new ArgumentNullException(nameof(point));
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString));
 
             return new GeometryDistanceAlgorithm(new[] { point.Coordinate }, lineString, precisionModel).Result;
         }
@@ -215,9 +210,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPoint point, IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (point == null)
-                throw new ArgumentNullException(nameof(point), CoreMessages.PointIsNull);
+                throw new ArgumentNullException(nameof(point));
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             if (!WindingNumberAlgorithm.InExterior(polygon, point.Coordinate))
                 return 0;
@@ -294,9 +289,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicLineString first, IBasicLineString second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstLineStringIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondLineStringIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return new GeometryDistanceAlgorithm(first, second, precisionModel).Result;
         }
@@ -332,9 +327,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicLineString lineString, IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (lineString == null)
-                throw new ArgumentNullException(nameof(lineString), CoreMessages.LineStringIsNull);
+                throw new ArgumentNullException(nameof(lineString));
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             if (WindingNumberAlgorithm.InExterior(polygon, lineString[0]))
                 return 0;
@@ -444,9 +439,9 @@ namespace AEGIS.Algorithms
         public static Double Distance(IBasicPolygon first, IBasicPolygon second, PrecisionModel precisionModel)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstPolygonIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondPolygonIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (WindingNumberAlgorithm.InExterior(first, second.Shell[0]))
                 return 0;

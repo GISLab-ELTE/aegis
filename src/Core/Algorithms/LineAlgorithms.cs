@@ -63,7 +63,7 @@ namespace AEGIS.Algorithms
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             // simple cases
             IEnumerator<Coordinate> coordinateEnumerator = coordinates.Elements().GetEnumerator();
@@ -108,7 +108,7 @@ namespace AEGIS.Algorithms
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates, PrecisionModel precisionModel)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (precisionModel == null)
                 precisionModel = PrecisionModel.Default;
@@ -403,7 +403,7 @@ namespace AEGIS.Algorithms
         public static Double Length(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             IEnumerator<Coordinate> enumerator = coordinates.Elements().GetEnumerator();
             if (!enumerator.MoveNext())

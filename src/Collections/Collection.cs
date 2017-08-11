@@ -223,7 +223,7 @@ namespace AEGIS.Collections
         public static Boolean AnyElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -248,7 +248,7 @@ namespace AEGIS.Collections
         public static T FirstElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -272,7 +272,7 @@ namespace AEGIS.Collections
         public static T FirstOrDefaultElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -297,7 +297,7 @@ namespace AEGIS.Collections
         public static T LastElement<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             T last = default(T);
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
@@ -325,7 +325,7 @@ namespace AEGIS.Collections
         public static IEnumerable<T> Elements<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -347,7 +347,7 @@ namespace AEGIS.Collections
         public static Int32 ElementCount<T>(this IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             Int32 count = 0;
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
@@ -372,7 +372,7 @@ namespace AEGIS.Collections
         public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, T item)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             using (IEnumerator<T> enumerator = collection.GetEnumerator())
             {
@@ -395,7 +395,7 @@ namespace AEGIS.Collections
         public static IReadOnlyList<T> AsReadOnly<T>(this IList<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             IReadOnlyList<T> readOnlyCollection = collection as IReadOnlyList<T>;
             if (readOnlyCollection != null)
@@ -415,7 +415,7 @@ namespace AEGIS.Collections
         public static IReadOnlyDictionary<TKey, TValue> AsReadOnly<TKey, TValue>(this IDictionary<TKey, TValue> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             IReadOnlyDictionary<TKey, TValue> readOnlyDictionary = collection as IReadOnlyDictionary<TKey, TValue>;
             if (readOnlyDictionary != null)
@@ -434,7 +434,7 @@ namespace AEGIS.Collections
         public static ISet<T> AsReadOnly<T>(this ISet<T> set)
         {
             if (set == null)
-                throw new ArgumentNullException(nameof(set), CollectionMessages.SetIsNull);
+                throw new ArgumentNullException(nameof(set));
 
             if (set.IsReadOnly)
                 return set;
@@ -457,9 +457,9 @@ namespace AEGIS.Collections
         public static Int32 IndexOf<T>(this IEnumerable<T> collection, Predicate<T> match)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (match == null)
-                throw new ArgumentNullException(nameof(match), CollectionMessages.PredicateIsNull);
+                throw new ArgumentNullException(nameof(match));
 
             Int32 index = 0;
             foreach (T item in collection)
@@ -487,9 +487,9 @@ namespace AEGIS.Collections
         public static IEnumerable<Int32> IndexesOf<T>(this IEnumerable<T> collection, Predicate<T> match)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (match == null)
-                throw new ArgumentNullException(nameof(match), CollectionMessages.PredicateIsNull);
+                throw new ArgumentNullException(nameof(match));
 
             Int32 index = 0;
             foreach (T item in collection)
@@ -518,9 +518,9 @@ namespace AEGIS.Collections
             where TResult : IComparable<TResult>
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (selector == null)
-                throw new ArgumentNullException(nameof(selector), CollectionMessages.SelectorIsNull);
+                throw new ArgumentNullException(nameof(selector));
 
             IEnumerator<TSource> enumerator = collection.GetEnumerator();
 
@@ -563,9 +563,9 @@ namespace AEGIS.Collections
             where TResult : IComparable<TResult>
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (selector == null)
-                throw new ArgumentNullException(nameof(selector), CollectionMessages.SelectorIsNull);
+                throw new ArgumentNullException(nameof(selector));
 
             IEnumerator<TSource> enumerator = collection.GetEnumerator();
 
@@ -600,7 +600,7 @@ namespace AEGIS.Collections
         public static IReadOnlyList<T> Reverse<T>(this IReadOnlyList<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             return new ProxyReverseReadOnlyList<T>(collection);
         }
 
@@ -635,7 +635,7 @@ namespace AEGIS.Collections
         public static IReadOnlyList<T> GetRange<T>(this IReadOnlyList<T> collection, Int32 startIndex, Int32 count)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
             if (startIndex > collection.Count)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.IndexIsEqualToOrGreaterThanCount);
             if (count < 1)

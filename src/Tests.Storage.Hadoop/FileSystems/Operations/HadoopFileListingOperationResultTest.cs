@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace AEGIS.Tests.IO.Storage.Operation
+namespace AEGIS.Tests.Storage.FileSystems.Operation
 {
     using AEGIS.Storage.FileSystems.Operations;
     using NUnit.Framework;

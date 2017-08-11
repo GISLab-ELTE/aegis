@@ -152,9 +152,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double t = this.ComputeTValue(coordinate.Latitude.BaseValue);
             Double r = this.Ellipsoid.SemiMajorAxis.Value * this.f * Math.Pow(t, this.n) * this.scaleFactorAtNaturalOrigin;
             Double theta = this.n * (coordinate.Longitude.BaseValue - this.longitudeOfNaturalOrigin);
-            Double easting, northing;
-
-            this.ComputeCoordinate(r, theta, out easting, out northing);
+            this.ComputeCoordinate(r, theta, out double easting, out double northing);
 
             return new Coordinate(easting, northing);
         }
@@ -166,8 +164,7 @@ namespace AEGIS.Reference.Collections.Formula
         /// <returns>The transformed coordinate.</returns>
         protected override GeoCoordinate ComputeReverse(Coordinate coordinate)
         {
-            Double r, theta;
-            this.ComputeParams(coordinate.X, coordinate.Y, out r, out theta);
+            this.ComputeParams(coordinate.X, coordinate.Y, out double r, out double theta);
 
             Double t = Math.Pow(r / (this.Ellipsoid.SemiMajorAxis.Value * this.scaleFactorAtNaturalOrigin * this.f), 1 / this.n);
 

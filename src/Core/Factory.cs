@@ -86,7 +86,7 @@ namespace AEGIS
         public Boolean ContainsFactory(Type factoryContract)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract));
 
             return this.GetFactoryInternal(factoryContract, new HashSet<Type>()) != null;
         }
@@ -121,9 +121,9 @@ namespace AEGIS
         public void EnsureFactory(Type factoryContract, IFactory factory)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract));
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryBehaviorIsNull);
+                throw new ArgumentNullException(nameof(factory));
             if (!factory.GetType().GetTypeInfo().ImplementedInterfaces.Contains(factoryContract))
                 throw new ArgumentException(CoreMessages.FactoryNotImplementingContract, nameof(factory));
 
@@ -157,7 +157,7 @@ namespace AEGIS
         public IFactory GetFactory(Type factoryContract)
         {
             if (factoryContract == null)
-                throw new ArgumentNullException(nameof(factoryContract), CoreMessages.FactoryContractIsNull);
+                throw new ArgumentNullException(nameof(factoryContract));
 
             return this.GetFactoryInternal(factoryContract, new HashSet<Type>());
         }

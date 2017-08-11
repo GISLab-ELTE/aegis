@@ -46,7 +46,7 @@ namespace AEGIS.Reference.Strategies
         public ForwardLonLatCoordinateIntepretationStrategy(CoordinateReferenceSystem referenceSystem)
         {
             if (referenceSystem == null)
-                throw new ArgumentNullException(nameof(referenceSystem), ReferenceMessages.ReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(referenceSystem));
             if (referenceSystem.CoordinateSystem.Dimension < 2)
                 throw new ArgumentException(ReferenceMessages.CoordinateSystemDimensionLessThanExpected, nameof(referenceSystem));
 

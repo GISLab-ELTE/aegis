@@ -40,10 +40,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         /// <exception cref="System.ArgumentNullException">The vector is null.</exception>
         public HouseholderTransformation(Double[] vector)
         {
-            if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
-
-            this.vector = vector;
+            this.vector = vector ?? throw new ArgumentNullException(nameof(vector));
         }
 
         /// <summary>
@@ -54,7 +51,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public HouseholderTransformation(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             this.vector = vector.ToArray();
         }
@@ -113,7 +110,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Matrix Tridiagonalize(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
             if (!matrix.IsSquare)
                 throw new ArgumentException(NumericsMessages.MatrixIsNotSquare, nameof(matrix));
             if (!MatrixComputations.IsSymmetric(matrix))

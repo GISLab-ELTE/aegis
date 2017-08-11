@@ -69,7 +69,7 @@ namespace AEGIS.Collections
             : this(Comparer<TKey>.Default)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CollectionMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
             foreach (KeyValuePair<TKey, TValue> element in collection)
                 this.Insert(element.Key, element.Value);
@@ -85,7 +85,7 @@ namespace AEGIS.Collections
             : this(comparer)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CollectionMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             foreach (KeyValuePair<TKey, TValue> element in source)
                 this.Insert(element.Key, element.Value);
@@ -147,7 +147,7 @@ namespace AEGIS.Collections
         public void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             this.size++;
 

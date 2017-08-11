@@ -20,6 +20,7 @@ namespace AEGIS
     using System.Globalization;
     using System.Linq;
     using System.Text;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -70,10 +71,7 @@ namespace AEGIS
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         public BasicProxyLineString(IReadOnlyList<Coordinate> source, Boolean isClosed)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.coordinates = source;
+            this.coordinates = source ?? throw new ArgumentNullException(nameof(source));
             this.isExplicitlyClosed = isClosed && this.coordinates.Count > 0 && this.coordinates[0] != this.coordinates[this.coordinates.Count - 1];
         }
 
@@ -200,7 +198,7 @@ namespace AEGIS
         public virtual Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 

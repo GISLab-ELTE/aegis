@@ -18,6 +18,8 @@ namespace AEGIS.Features
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using AEGIS.Attributes;
+    using AEGIS.Collections.Resources;
     using AEGIS.Geometries;
     using AEGIS.Resources;
 
@@ -34,7 +36,6 @@ namespace AEGIS.Features
         /// <summary>
         /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
         /// </summary>
-        /// <param name="factory">The factory.</param>
         /// <param name="identifier">The identifier.</param>
         /// <param name="attributes">The attribute collection.</param>
         /// <exception cref="System.ArgumentNullException">
@@ -42,18 +43,16 @@ namespace AEGIS.Features
         /// or
         /// The identifier is null.
         /// </exception>
-        public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes)
+        public FeatureCollection(String identifier, IAttributeCollection attributes)
         {
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-            this.Attributes = attributes;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
+            this.Attributes = attributes ?? new AttributeCollection();
             this.items = new Dictionary<String, IFeature>();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
         /// </summary>
-        /// <param name="factory">The factory.</param>
         /// <param name="identifier">The identifier.</param>
         /// <param name="attributes">The attribute collection.</param>
         /// <param name="collection">The collection of features.</param>
@@ -65,14 +64,13 @@ namespace AEGIS.Features
         /// The collection is null.
         /// </exception>
         /// <exception cref="System.ArgumentException">The collection contains one or more duplicate identifiers.</exception>
-        public FeatureCollection(FeatureFactory factory, String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
+        public FeatureCollection(String identifier, IAttributeCollection attributes, IEnumerable<IFeature> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException(nameof(collection), CoreMessages.CollectionIsNull);
+                throw new ArgumentNullException(nameof(collection));
 
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), CoreMessages.IdentifierIsNull);
-            this.Attributes = attributes;
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
+            this.Attributes = attributes ?? new AttributeCollection();
 
             this.items = new Dictionary<String, IFeature>();
             foreach (IFeature feature in collection)
@@ -94,16 +92,22 @@ namespace AEGIS.Features
         public IAttributeCollection Attributes { get; private set; }
 
         /// <summary>
-        /// Gets the factory of the feature collection.
-        /// </summary>
-        /// <value>The factory the feature collection was constructed by.</value>
-        public IFeatureFactory Factory { get; private set; }
-
-        /// <summary>
         /// Gets the geometry of the feature.
         /// </summary>
         /// <value>The geometry of the feature.</value>
-        public IGeometry Geometry { get { return null; } }
+        public IGeometry Geometry
+        {
+            get
+            {
+                if (this.items.Count == 0 || this.items.Values.All(feature => feature.Geometry == null))
+                    return null;
+
+                // FIXME: only valid if all geometries have the same precision and reference system
+                IGeometry sampleGeometry = this.items.Values.First(feature => feature.Geometry != null).Geometry;
+
+                return new GeometryList<IGeometry>(sampleGeometry.PrecisionModel, sampleGeometry.ReferenceSystem, this.items.Values.Select(feature => feature.Geometry));
+            }
+        }
 
         /// <summary>
         /// Gets the unique identifier of the feature collection.
@@ -157,7 +161,7 @@ namespace AEGIS.Features
         public void Add(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
             if (this.items.ContainsKey(item.Identifier))
                 throw new ArgumentException(CoreMessages.ItemIdentifierExists, nameof(item));
 
@@ -181,7 +185,7 @@ namespace AEGIS.Features
         public Boolean Contains(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             return this.items.ContainsKey(item.Identifier) && this.items[item.Identifier].Equals(item);
         }
@@ -197,13 +201,13 @@ namespace AEGIS.Features
         public void CopyTo(IFeature[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), AEGIS.Collections.Resources.CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.items.Count > array.Length)
                 throw new ArgumentException(AEGIS.Collections.Resources.CollectionMessages.ArrayIndexIsGreaterThanSpace, nameof(array));
 
-            this.items.Values.ToArray().CopyTo(array, arrayIndex);
+            this.items.Values.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -215,7 +219,7 @@ namespace AEGIS.Features
         public Boolean Remove(IFeature item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item), CoreMessages.ItemIsNull);
+                throw new ArgumentNullException(nameof(item));
 
             if (!this.items.ContainsKey(item.Identifier) || !this.items[item.Identifier].Equals(item))
                 return false;

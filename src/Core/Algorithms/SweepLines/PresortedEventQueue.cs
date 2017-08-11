@@ -51,7 +51,7 @@ namespace AEGIS.Algorithms.SweepLines
         public PresortedEventQueue(IEnumerable<Coordinate> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.comparer = new CoordinateComparer();
             this.edgeCount = 0;
@@ -71,7 +71,7 @@ namespace AEGIS.Algorithms.SweepLines
         public PresortedEventQueue(IEnumerable<IEnumerable<Coordinate>> source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.comparer = new CoordinateComparer();
             this.edgeCount = 0;

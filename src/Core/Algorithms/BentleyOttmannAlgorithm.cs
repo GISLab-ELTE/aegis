@@ -64,10 +64,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The source is null.</exception>
         public BentleyOttmannAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-
-            this.Source = source;
+            this.Source = source ?? throw new ArgumentNullException(nameof(source));
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.eventQueue = new EventQueue(source);
             this.sweepLine = new SweepLine(source, this.PrecisionModel);
@@ -83,7 +80,7 @@ namespace AEGIS.Algorithms
         public BentleyOttmannAlgorithm(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             List<Coordinate> coordinates = new List<Coordinate>();
             foreach (IEnumerable<Coordinate> linestring in source)

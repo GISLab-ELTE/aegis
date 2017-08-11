@@ -68,7 +68,7 @@ namespace AEGIS.Numerics
         public Matrix(Double[,] source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), NumericsMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.NumberOfRows = source.GetLength(0);
             this.NumberOfColumns = source.GetLength(1);
@@ -92,7 +92,7 @@ namespace AEGIS.Numerics
         public Matrix(Matrix other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), NumericsMessages.OtherMatrixIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             this.NumberOfRows = other.NumberOfRows;
             this.NumberOfColumns = other.NumberOfColumns;
@@ -200,9 +200,9 @@ namespace AEGIS.Numerics
         public static Matrix operator +(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.NumberOfRows != second.NumberOfRows)
                 throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatch, nameof(second));
@@ -241,9 +241,9 @@ namespace AEGIS.Numerics
         public static Matrix operator -(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.NumberOfRows != second.NumberOfRows)
                 throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatch, nameof(second));
@@ -272,7 +272,7 @@ namespace AEGIS.Numerics
         public static Matrix operator -(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             Matrix result = new Matrix(matrix.NumberOfRows, matrix.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -296,7 +296,7 @@ namespace AEGIS.Numerics
         public static Matrix operator *(Double scalar, Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             Matrix result = new Matrix(matrix.NumberOfRows, matrix.NumberOfColumns);
             for (Int32 rowIndex = 0; rowIndex < result.NumberOfRows; rowIndex++)
@@ -337,9 +337,9 @@ namespace AEGIS.Numerics
         public static Matrix operator *(Matrix first, Matrix second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstMatrixIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondMatrixIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.NumberOfColumns != second.NumberOfRows)
                 throw new ArgumentException(NumericsMessages.NumberOfRowsDoesNotMatchColumnsMatrix, nameof(second));
@@ -369,7 +369,7 @@ namespace AEGIS.Numerics
         public static explicit operator Vector(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfColumns != 1 && matrix.NumberOfRows != 1)
                 throw new ArgumentException(NumericsMessages.MatrixNotSingleColumnOrRow, nameof(matrix));
@@ -421,7 +421,7 @@ namespace AEGIS.Numerics
         public static Boolean IsZero(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfColumns == 0 && matrix.NumberOfRows == 0)
                 return true;
@@ -438,7 +438,7 @@ namespace AEGIS.Numerics
         public static Boolean IsValid(Matrix matrix)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfColumns == 0 && matrix.NumberOfRows == 0)
                 return true;
