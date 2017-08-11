@@ -140,9 +140,6 @@ namespace AEGIS.Storage.FileSystems
         public HadoopFileSystem(Uri location)
             : base(location, new HadoopAnonymousAuthentication())
         {
-            if (location == null)
-                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
-
             this.client = null;
         }
 
@@ -155,9 +152,6 @@ namespace AEGIS.Storage.FileSystems
         public HadoopFileSystem(Uri location, IHadoopAuthentication authentication)
             : base(location, authentication ?? new HadoopAnonymousAuthentication())
         {
-            if (location == null)
-                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
-
             this.client = null;
         }
 
@@ -175,12 +169,7 @@ namespace AEGIS.Storage.FileSystems
         public HadoopFileSystem(Uri location, IHadoopAuthentication authentication, HttpClient client)
             : base(location, authentication ?? new HadoopAnonymousAuthentication())
         {
-            if (location == null)
-                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
-            if (client == null)
-                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
-
-            this.client = client;
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
         /// <summary>
@@ -196,12 +185,7 @@ namespace AEGIS.Storage.FileSystems
         public HadoopFileSystem(Uri location, HttpClient client)
             : base(location, new HadoopAnonymousAuthentication())
         {
-            if (location == null)
-                throw new ArgumentNullException(nameof(location), StorageMessages.LocationIsNull);
-            if (client == null)
-                throw new ArgumentNullException(nameof(client), StorageMessages.ClientIsNull);
-
-            this.client = client;
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
         /// <summary>
@@ -290,7 +274,7 @@ namespace AEGIS.Storage.FileSystems
         public override void CreateDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -356,7 +340,7 @@ namespace AEGIS.Storage.FileSystems
         public override async void CreateDirectoryAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -453,7 +437,7 @@ namespace AEGIS.Storage.FileSystems
         public override Stream OpenFile(String path, FileMode mode, FileAccess access)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -536,7 +520,7 @@ namespace AEGIS.Storage.FileSystems
         public override async Task<Stream> OpenFileAsync(String path, FileMode mode, FileAccess access)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -603,7 +587,7 @@ namespace AEGIS.Storage.FileSystems
         public override void Delete(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -671,7 +655,7 @@ namespace AEGIS.Storage.FileSystems
         public async override void DeleteAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -750,9 +734,9 @@ namespace AEGIS.Storage.FileSystems
         public override void Move(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath));
             if (destinationPath == null)
-                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath));
             if (String.IsNullOrWhiteSpace(sourcePath))
                 throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
@@ -839,9 +823,9 @@ namespace AEGIS.Storage.FileSystems
         public async override void MoveAsync(String sourcePath, String destinationPath)
         {
             if (sourcePath == null)
-                throw new ArgumentNullException(nameof(sourcePath), StorageMessages.SourcePathIsNull);
+                throw new ArgumentNullException(nameof(sourcePath));
             if (destinationPath == null)
-                throw new ArgumentNullException(nameof(destinationPath), StorageMessages.DestinationPathIsNull);
+                throw new ArgumentNullException(nameof(destinationPath));
             if (String.IsNullOrWhiteSpace(sourcePath))
                 throw new ArgumentException(StorageMessages.SourcePathIsEmpty, nameof(sourcePath));
             if (String.IsNullOrWhiteSpace(destinationPath))
@@ -1189,7 +1173,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetDirectoryRoot(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1215,7 +1199,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetParent(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1278,7 +1262,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String> GetParentAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1341,7 +1325,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetDirectory(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1408,7 +1392,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String> GetDirectoryAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1472,7 +1456,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetFileName(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1530,7 +1514,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String> GetFileNameAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1583,7 +1567,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetFileNameWithoutExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1646,7 +1630,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String> GetFileNameWithoutExtensionAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1709,7 +1693,7 @@ namespace AEGIS.Storage.FileSystems
         public override String GetExtension(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1772,7 +1756,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String> GetExtensionAsync(String path)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1837,7 +1821,7 @@ namespace AEGIS.Storage.FileSystems
         public override String[] GetDirectories(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1904,7 +1888,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String[]> GetDirectoriesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -1970,7 +1954,7 @@ namespace AEGIS.Storage.FileSystems
         public override String[] GetFiles(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -2036,7 +2020,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<String[]> GetFilesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -2102,7 +2086,7 @@ namespace AEGIS.Storage.FileSystems
         public override FileSystemEntry[] GetFileSystemEntries(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -2167,7 +2151,7 @@ namespace AEGIS.Storage.FileSystems
         public async override Task<FileSystemEntry[]> GetFileSystemEntriesAsync(String path, String searchPattern, Boolean recursive)
         {
             if (path == null)
-                throw new ArgumentNullException(nameof(path), StorageMessages.PathIsNull);
+                throw new ArgumentNullException(nameof(path));
             if (String.IsNullOrWhiteSpace(path))
                 throw new ArgumentException(StorageMessages.PathIsEmpty, nameof(path));
 
@@ -2326,7 +2310,7 @@ namespace AEGIS.Storage.FileSystems
         private static Uri CreateLocation(String hostname, Int32 portNumber)
         {
             if (hostname == null)
-                throw new ArgumentNullException(nameof(hostname), StorageMessages.HostnameIsNull);
+                throw new ArgumentNullException(nameof(hostname));
             if (String.IsNullOrWhiteSpace(hostname))
                 throw new ArgumentException(StorageMessages.HostnameIsEmpty, nameof(hostname));
             if (portNumber < 1)

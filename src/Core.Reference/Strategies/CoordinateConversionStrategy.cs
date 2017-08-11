@@ -44,12 +44,9 @@ namespace AEGIS.Reference.Strategies
         public CoordinateConversionStrategy(ICoordinateOperationStrategy<Coordinate, GeoCoordinate> conversionToGeographic, ICoordinateOperationStrategy<GeoCoordinate, Coordinate> conversionFromGeographic)
         {
             if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionToGeographic), ReferenceMessages.ConversionIsNull);
-            if (conversionToGeographic == null)
-                throw new ArgumentNullException(nameof(conversionFromGeographic), ReferenceMessages.ConversionIsNull);
-
+                throw new ArgumentNullException(nameof(conversionToGeographic));
             this.conversionFromGeographic = conversionFromGeographic;
-            this.conversionToGeographic = conversionToGeographic;
+            this.conversionToGeographic = conversionToGeographic ?? throw new ArgumentNullException(nameof(conversionFromGeographic));
         }
 
         /// <summary>

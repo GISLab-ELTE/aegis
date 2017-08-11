@@ -37,10 +37,7 @@ namespace AEGIS.Collections
         /// <exception cref="System.ArgumentNullException">The set is null.</exception>
         public ReadOnlySet(ISet<T> set)
         {
-            if (set == null)
-                throw new ArgumentNullException(nameof(set), CollectionMessages.SetIsNull);
-
-            this.set = set;
+            this.set = set ?? throw new ArgumentNullException(nameof(set));
         }
 
         /// <summary>

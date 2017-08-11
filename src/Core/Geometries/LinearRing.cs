@@ -16,6 +16,7 @@ namespace AEGIS.Geometries
 {
     using System;
     using System.Collections.Generic;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -78,7 +79,7 @@ namespace AEGIS.Geometries
         public override sealed void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -127,7 +128,7 @@ namespace AEGIS.Geometries
         public override sealed void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -186,7 +187,7 @@ namespace AEGIS.Geometries
         public override sealed void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 

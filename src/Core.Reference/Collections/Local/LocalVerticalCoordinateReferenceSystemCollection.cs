@@ -69,16 +69,9 @@ namespace AEGIS.Reference.Collections.Local
         public LocalVerticalCoordinateReferenceSystemCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<CoordinateSystem> coordinateSystemCollection, IReferenceCollection<VerticalDatum> verticalDatumCollection)
             : base(ResourceName, AliasTypeName)
         {
-            if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (coordinateSystemCollection == null)
-                throw new ArgumentNullException(nameof(coordinateSystemCollection), ReferenceMessages.CoordinateSystemCollectionIsNull);
-            if (verticalDatumCollection == null)
-                throw new ArgumentNullException(nameof(verticalDatumCollection), ReferenceMessages.DatumCollectionIsNull);
-
-            this.areaOfUserCollection = areaOfUseCollection;
-            this.coordinateSystemCollection = coordinateSystemCollection;
-            this.verticalDatumCollection = verticalDatumCollection;
+            this.areaOfUserCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
+            this.coordinateSystemCollection = coordinateSystemCollection ?? throw new ArgumentNullException(nameof(coordinateSystemCollection));
+            this.verticalDatumCollection = verticalDatumCollection ?? throw new ArgumentNullException(nameof(verticalDatumCollection));
         }
 
         /// <summary>
@@ -102,7 +95,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<VerticalCoordinateReferenceSystem> WithinArea(AreaOfUse area)
         {
             if (area == null)
-                throw new ArgumentNullException(nameof(area), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(area));
 
             return this.GetReferences().Where(referenceSystem => referenceSystem.AreaOfUse.Within(area));
         }

@@ -123,9 +123,6 @@
   <data name="ArrayIndexIsLessThan0" xml:space="preserve">
     <value>The array index is less than 0.</value>
   </data>
-  <data name="ArrayIsNull" xml:space="preserve">
-    <value>The array is null.</value>
-  </data>
   <data name="ArraySizeLessThanRequired" xml:space="preserve">
     <value>The number of bytes in the array is less than required.</value>
   </data>
@@ -138,9 +135,6 @@
   <data name="CollectionIsEmpty" xml:space="preserve">
     <value>The collection is empty.</value>
   </data>
-  <data name="CollectionIsNull" xml:space="preserve">
-    <value>The collection is null.</value>
-  </data>
   <data name="CollectionIsReadOnly" xml:space="preserve">
     <value>The collection is read-only.</value>
   </data>
@@ -150,20 +144,11 @@
   <data name="CountIsLessThan1" xml:space="preserve">
     <value>The count is less than 1.</value>
   </data>
-  <data name="DictionaryIsNull" xml:space="preserve">
-    <value>The dictionary is null.</value>
-  </data>
   <data name="FirstItemIsNotPresentInAnySet" xml:space="preserve">
     <value>The first item is not present in any set.</value>
   </data>
-  <data name="FirstItemIsNull" xml:space="preserve">
-    <value>The first item is null.</value>
-  </data>
   <data name="HeapIsEmpty" xml:space="preserve">
     <value>The heap is empty.</value>
-  </data>
-  <data name="HeapIsNull" xml:space="preserve">
-    <value>The heap is null.</value>
   </data>
   <data name="IndexIsEqualToOrGreaterThanArraySize" xml:space="preserve">
     <value>The index is equal to or greater than the number of items in the array.</value>
@@ -177,17 +162,11 @@
   <data name="ItemIsNotPresentInAnySet" xml:space="preserve">
     <value>The item is not present in any set.</value>
   </data>
-  <data name="ItemIsNull" xml:space="preserve">
-    <value>The item is null.</value>
-  </data>
   <data name="KeyAlreadyExistsInTheCollection" xml:space="preserve">
     <value>An element with the same key already exists in the collection.</value>
   </data>
   <data name="KeyExists" xml:space="preserve">
     <value>An element with the same key already exists in the tree.</value>
-  </data>
-  <data name="KeyIsNull" xml:space="preserve">
-    <value>The key is null.</value>
   </data>
   <data name="KeyNotExists" xml:space="preserve">
     <value>The tree does not contain the specified key.</value>
@@ -195,26 +174,11 @@
   <data name="LengthIsLessThan0" xml:space="preserve">
     <value>The length is less than 0.</value>
   </data>
-  <data name="PredicateIsNull" xml:space="preserve">
-    <value>The predicate is null.</value>
-  </data>
   <data name="SecondItemIsNotPresentInAnySet" xml:space="preserve">
     <value>The second item is not present in any set.</value>
   </data>
-  <data name="SecondItemIsNull" xml:space="preserve">
-    <value>The second item is null.</value>
-  </data>
-  <data name="SelectorIsNull" xml:space="preserve">
-    <value>The selector is null.</value>
-  </data>
-  <data name="SetIsNull" xml:space="preserve">
-    <value>The set is null.</value>
-  </data>
   <data name="SetIsReadOnly" xml:space="preserve">
     <value>The set is read-only.</value>
-  </data>
-  <data name="SourceIsNull" xml:space="preserve">
-    <value>The source is null.</value>
   </data>
   <data name="StartingIndexIsEqualToOrGraterThanArrayLength" xml:space="preserve">
     <value>The starting index is equal to or greater than the length of the array.</value>
@@ -224,8 +188,5 @@
   </data>
   <data name="TooManyElementsInArray" xml:space="preserve">
     <value>The array contains more elements than the maximum value.</value>
-  </data>
-  <data name="TreeIsNull" xml:space="preserve">
-    <value>The tree is null.</value>
   </data>
 </root>

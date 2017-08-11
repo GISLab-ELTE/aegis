@@ -43,10 +43,7 @@ namespace AEGIS.Storage
         public DriverParameter(String identifier, String name, String remarks, String[] aliases, Type type, Boolean isOptional, Object defaultValue, params Predicate<Object>[] conditions)
             : base(identifier, name, remarks, aliases)
         {
-            if (type == null)
-                throw new ArgumentNullException(nameof(type), StorageMessages.TypeIsNull);
-
-            this.Type = type;
+            this.Type = type ?? throw new ArgumentNullException(nameof(type));
             this.IsOptional = isOptional;
             this.DefaultValue = defaultValue;
             this.Conditions = conditions;

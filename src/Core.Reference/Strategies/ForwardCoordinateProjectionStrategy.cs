@@ -34,10 +34,7 @@ namespace AEGIS.Reference.Strategies
         /// <exception cref="System.ArgumentNullException">The reference system is null.</exception>
         public ForwardCoordinateProjectionStrategy(ProjectedCoordinateReferenceSystem target)
         {
-            if (target == null)
-                throw new ArgumentNullException(nameof(target), ReferenceMessages.ReferenceSystemIsNull);
-
-            this.target = target;
+            this.target = target ?? throw new ArgumentNullException(nameof(target));
         }
 
         /// <summary>

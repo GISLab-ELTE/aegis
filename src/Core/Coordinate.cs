@@ -214,9 +214,9 @@ namespace AEGIS
         public static Coordinate operator +(Coordinate coordinate, CoordinateVector vector)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return new Coordinate(coordinate.X + vector.X, coordinate.Y + vector.Y, coordinate.Z + vector.Z);
         }
@@ -235,9 +235,9 @@ namespace AEGIS
         public static Coordinate operator -(Coordinate coordinate, CoordinateVector vector)
         {
             if (ReferenceEquals(coordinate, null))
-                throw new ArgumentNullException(nameof(coordinate), CoreMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
             if (ReferenceEquals(vector, null))
-                throw new ArgumentNullException(nameof(vector), CoreMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return new Coordinate(coordinate.X - vector.X, coordinate.Y - vector.Y, coordinate.Z - vector.Z);
         }
@@ -256,9 +256,9 @@ namespace AEGIS
         public static CoordinateVector operator -(Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             return new CoordinateVector(first.X - second.X, first.Y - second.Y, first.Z - second.Z);
         }
@@ -362,9 +362,9 @@ namespace AEGIS
         public static Double Distance(Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Equals(second))
                 return 0;
@@ -385,7 +385,7 @@ namespace AEGIS
         public static Coordinate Centroid(params Coordinate[] coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesArrayIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (coordinates.Length == 0)
                 return Coordinate.Undefined;
@@ -417,7 +417,7 @@ namespace AEGIS
         public static Coordinate Centroid(IEnumerable<Coordinate> coordinates)
         {
             if (coordinates == null)
-                throw new ArgumentNullException(nameof(coordinates), CoreMessages.CoordinatesCollectionIsNull);
+                throw new ArgumentNullException(nameof(coordinates));
 
             if (!coordinates.Any())
                 return Coordinate.Undefined;
@@ -486,11 +486,11 @@ namespace AEGIS
                 precisionModel = PrecisionModel.Default;
 
             if (ReferenceEquals(origin, null))
-                throw new ArgumentNullException(nameof(origin), CoreMessages.OriginIsNull);
+                throw new ArgumentNullException(nameof(origin));
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             Double det = (first.X - origin.X) * (second.Y - origin.Y) - (first.Y - origin.Y) * (second.X - origin.X);
 
@@ -523,11 +523,11 @@ namespace AEGIS
         public static Double Angle(Coordinate origin, Coordinate first, Coordinate second)
         {
             if (ReferenceEquals(origin, null))
-                throw new ArgumentNullException(nameof(origin), CoreMessages.OriginIsNull);
+                throw new ArgumentNullException(nameof(origin));
             if (ReferenceEquals(first, null))
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstCoordinateIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (ReferenceEquals(second, null))
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondCoordinateIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             Double distanceOriginFirst = Distance(origin, first);
             Double distanceOriginSecond = Distance(origin, second);

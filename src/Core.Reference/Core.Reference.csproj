@@ -22,6 +22,11 @@
     <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Remove="Resources\Alias.txt" />
     <None Remove="Resources\Area.txt" />
@@ -62,7 +67,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SimpleInjector" Version="3.3.2" />
+    <PackageReference Include="SimpleInjector" Version="4.0.7" />
   </ItemGroup>
 
   <ItemGroup>

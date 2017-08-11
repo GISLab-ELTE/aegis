@@ -63,9 +63,9 @@ namespace AEGIS
         public Int32 Compare(IGeometry first, IGeometry second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstGeometryIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondGeometryIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (ReferenceEquals(first, second))
                 return 0;
 
@@ -117,9 +117,9 @@ namespace AEGIS
         public Int32 Compare(IPoint first, IPoint second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstGeometryIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondGeometryIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (first == second)
                 return 0;
 
@@ -140,9 +140,9 @@ namespace AEGIS
         public Int32 Compare(ILineString first, ILineString second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstGeometryIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondGeometryIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (first == second)
                 return 0;
 
@@ -179,9 +179,9 @@ namespace AEGIS
         public Int32 Compare(IPolygon first, IPolygon second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstGeometryIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondGeometryIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (first == second)
                 return 0;
 
@@ -223,9 +223,9 @@ namespace AEGIS
         public Int32 Compare(IEnumerable<IGeometry> first, IEnumerable<IGeometry> second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), CoreMessages.FirstGeometryIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), CoreMessages.SecondGeometryIsNull);
+                throw new ArgumentNullException(nameof(second));
             if (first == second)
                 return 0;
 

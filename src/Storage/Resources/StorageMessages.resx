@@ -120,12 +120,6 @@
   <data name="AuthenticationIsNotSupported" xml:space="preserve">
     <value>The authentication is not supported.</value>
   </data>
-  <data name="AuthenticationIsNull" xml:space="preserve">
-    <value>The authentication is null.</value>
-  </data>
-  <data name="ClientIsNull" xml:space="preserve">
-    <value>The HTTP client is null.</value>
-  </data>
   <data name="DestinationPathExists" xml:space="preserve">
     <value>The destination path already exists.</value>
   </data>
@@ -135,12 +129,6 @@
   <data name="DestinationPathIsEmpty" xml:space="preserve">
     <value>The destination path is empty, or consists only of white space characters.</value>
   </data>
-  <data name="DestinationPathIsNull" xml:space="preserve">
-    <value>The destination path is null.</value>
-  </data>
-  <data name="DriverIsNull" xml:space="preserve">
-    <value>The driver is null.</value>
-  </data>
   <data name="FileSystemOperationNotSupported" xml:space="preserve">
     <value>The operation is not supported by the file system.</value>
   </data>
@@ -149,9 +137,6 @@
   </data>
   <data name="HostnameIsInvalid" xml:space="preserve">
     <value>The hostname is in an invalid format.</value>
-  </data>
-  <data name="HostnameIsNull" xml:space="preserve">
-    <value>The hostname is null.</value>
   </data>
   <data name="InvalidFileAccess" xml:space="preserve">
     <value>The file access is invalid.</value>
@@ -168,14 +153,11 @@
   <data name="InvalidSearchPattern" xml:space="preserve">
     <value>The search pattern is an invalid format.</value>
   </data>
+  <data name="KeyIsNull" xml:space="preserve">
+    <value>The key is null.</value>
+  </data>
   <data name="LengthIsLessThan0" xml:space="preserve">
     <value>The length is less than 0.</value>
-  </data>
-  <data name="LocationIsNull" xml:space="preserve">
-    <value>The location is null.</value>
-  </data>
-  <data name="NameIsNull" xml:space="preserve">
-    <value>The name is null.</value>
   </data>
   <data name="NoConnectionToFileSystem" xml:space="preserve">
     <value>No connection is available to the file system.</value>
@@ -210,9 +192,6 @@
   <data name="PathIsNotSupported" xml:space="preserve">
     <value>The path is not supported.</value>
   </data>
-  <data name="PathIsNull" xml:space="preserve">
-    <value>The path is null.</value>
-  </data>
   <data name="PathIsReadOnly" xml:space="preserve">
     <value>The file on path is read-only.</value>
   </data>
@@ -240,25 +219,13 @@
   <data name="SourcePathIsInInvalidFormat" xml:space="preserve">
     <value>The source path is in an invalid format.</value>
   </data>
-  <data name="SourcePathIsNull" xml:space="preserve">
-    <value>The source path is null.</value>
-  </data>
   <data name="SourcePathTooLong" xml:space="preserve">
     <value>The path exceeds the maximum length supported by the file system.</value>
-  </data>
-  <data name="TypeIsNull" xml:space="preserve">
-    <value>The type is null.</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>The caller does not have the required permission.</value>
   </data>
-  <data name="UriSchemeIsNull" xml:space="preserve">
-    <value>The URI scheme is null.</value>
-  </data>
   <data name="UsernameIsEmpty" xml:space="preserve">
     <value>The username is empty.</value>
-  </data>
-  <data name="UsernameIsNull" xml:space="preserve">
-    <value>The username is null.</value>
   </data>
 </root>

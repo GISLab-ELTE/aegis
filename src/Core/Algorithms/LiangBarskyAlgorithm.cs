@@ -65,13 +65,10 @@ namespace AEGIS.Algorithms
         public LiangBarskyAlgorithm(IReadOnlyList<Coordinate> source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-            if (window == null)
-                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
-
+                throw new ArgumentNullException(nameof(source));
             this.source = new List<IReadOnlyList<Coordinate>>();
             (this.source as List<IReadOnlyList<Coordinate>>).Add(source);
-            this.window = window;
+            this.window = window ?? throw new ArgumentNullException(nameof(window));
             this.hasResult = false;
         }
 
@@ -87,13 +84,8 @@ namespace AEGIS.Algorithms
         /// </exception>
         public LiangBarskyAlgorithm(IEnumerable<IReadOnlyList<Coordinate>> source, Envelope window)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
-            if (window == null)
-                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
-
-            this.source = source;
-            this.window = window;
+            this.source = source ?? throw new ArgumentNullException(nameof(source));
+            this.window = window ?? throw new ArgumentNullException(nameof(window));
             this.hasResult = false;
         }
 
@@ -141,7 +133,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IBasicLineString source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             return new LiangBarskyAlgorithm(source, window).Result;
         }
@@ -160,7 +152,7 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IBasicPolygon source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 
@@ -191,9 +183,9 @@ namespace AEGIS.Algorithms
         public static IReadOnlyList<IReadOnlyList<Coordinate>> Clip(IReadOnlyList<IBasicPolygon> source, Envelope window)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (window == null)
-                throw new ArgumentNullException(nameof(window), CoreMessages.ClippingWindowIsNull);
+                throw new ArgumentNullException(nameof(window));
 
             List<IReadOnlyList<Coordinate>> coordinates = new List<IReadOnlyList<Coordinate>>();
 

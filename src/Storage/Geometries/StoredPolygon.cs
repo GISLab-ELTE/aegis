@@ -20,6 +20,7 @@ namespace AEGIS.Storage.Geometries
     using System.Text;
     using AEGIS.Algorithms;
     using AEGIS.Collections;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -184,7 +185,7 @@ namespace AEGIS.Storage.Geometries
         /// Gets the shell of the polygon.
         /// </summary>
         /// <value>The <see cref="ILinearRing" /> representing the shell of the polygon.</value>
-        public ILinearRing Shell { get { return new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes.Take()); } }
+        public ILinearRing Shell { get { return new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes); } }
 
         /// <summary>
         /// Gets the number of holes of the polygon.
@@ -195,8 +196,14 @@ namespace AEGIS.Storage.Geometries
         /// <summary>
         /// Gets the holes of the polygon.
         /// </summary>
-        /// <value>The <see cref="IList{LinearRing}" /> containing the holes of the polygon.</value>
-        public IReadOnlyList<ILinearRing> Holes { get { return Enumerable.Range(1, this.HoleCount).Select(holeIndex => (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, holeIndex)).ToList(); } }
+        /// <value>The read-only list containing the holes of the polygon.</value>
+        public IReadOnlyList<ILinearRing> Holes
+        {
+            get
+            {
+                return Enumerable.Range(1, this.HoleCount).Select(index => this.GetHole(index)).ToArray();
+            }
+        }
 
         /// <summary>
         /// Gets a hole at the specified index.
@@ -217,7 +224,7 @@ namespace AEGIS.Storage.Geometries
         public virtual void AddHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(hole), this.HoleCount + 1);
         }
@@ -230,7 +237,7 @@ namespace AEGIS.Storage.Geometries
         public virtual void AddHole(IEnumerable<Coordinate> hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             this.CreateCoordinates(this.PrecisionModel.MakePrecise(hole).ToArray(), this.HoleCount + 1);
         }
@@ -251,11 +258,11 @@ namespace AEGIS.Storage.Geometries
             if (this.HoleCount == 0)
                 throw new InvalidOperationException(CoreMessages.NoHolesInPolygon);
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.HoleCount)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 
-            return (this.Factory as StoredGeometryFactory).CreateLinearRing(this.Identifier, this.Indexes.Append(index + 1));
+            return new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Identifier, this.Indexes.Append(index + 1));
         }
 
         /// <summary>
@@ -268,7 +275,7 @@ namespace AEGIS.Storage.Geometries
         public virtual Boolean RemoveHole(ILinearRing hole)
         {
             if (hole == null)
-                throw new ArgumentNullException(nameof(hole), CoreMessages.HoleIsNull);
+                throw new ArgumentNullException(nameof(hole));
 
             if (this.HoleCount == 0)
                 return false;
@@ -297,7 +304,7 @@ namespace AEGIS.Storage.Geometries
         public virtual void RemoveHoleAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.HoleCount)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanHoleCount);
 

@@ -57,13 +57,8 @@ namespace AEGIS.Reference.Collections.Local
         /// </exception>
         public LocalCoordinateSystemCollection(ICoordinateSystemAxisCollection axisCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
-            if (axisCollection == null)
-                throw new ArgumentNullException(nameof(axisCollection), ReferenceMessages.AxisCollectionIsNull);
-            if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
-
-            this.axisCollection = axisCollection;
-            this.unitCollection = unitCollection;
+            this.axisCollection = axisCollection ?? throw new ArgumentNullException(nameof(axisCollection));
+            this.unitCollection = unitCollection ?? throw new ArgumentNullException(nameof(unitCollection));
         }
 
         /// <summary>
@@ -91,9 +86,7 @@ namespace AEGIS.Reference.Collections.Local
 
             foreach (String[] axisMapping in this.GetAxisMapping(identifier))
             {
-                AxisDirection direction;
-
-                if (!Enum.TryParse<AxisDirection>(axisMapping[3], true, out direction) &&
+                if (!Enum.TryParse<AxisDirection>(axisMapping[3], true, out AxisDirection direction) &&
                     !Enum.TryParse<AxisDirection>(axisMapping[3].Replace("-", String.Empty), true, out direction) &&
                     !Enum.TryParse<AxisDirection>(axisMapping[3].Substring(0, axisMapping[3].IndexOf(' ')), true, out direction))
                 {

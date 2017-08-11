@@ -53,7 +53,7 @@ namespace AEGIS.Numerics
         public Vector(params Double[] values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             this.values = values.ToArray();
         }
@@ -66,7 +66,7 @@ namespace AEGIS.Numerics
         public Vector(IEnumerable<Double> values)
         {
             if (values == null)
-                throw new ArgumentNullException(nameof(values), NumericsMessages.ValueCollectionIsNull);
+                throw new ArgumentNullException(nameof(values));
 
             this.values = values.ToArray();
         }
@@ -79,7 +79,7 @@ namespace AEGIS.Numerics
         public Vector(Vector other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), NumericsMessages.OtherVectorIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             this.values = new Double[other.values.Length];
             Array.Copy(other.values, this.values, this.values.Length);
@@ -88,7 +88,7 @@ namespace AEGIS.Numerics
         /// <summary>
         /// Gets the size of the vector.
         /// </summary>
-        /// <value>The size of the vector.</value>
+        /// <value>The number of values in the vector.</value>
         public Int32 Size { get { return this.values.Length; } }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace AEGIS.Numerics
         public static explicit operator Matrix(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             Matrix matrix = new Matrix(vector.Size, 1);
             for (Int32 rowIndex = 0; rowIndex < vector.Size; rowIndex++)
@@ -152,7 +152,7 @@ namespace AEGIS.Numerics
         public static Vector operator -(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             Vector result = new Vector(vector.Size);
             for (Int32 valueIndex = 0; valueIndex < vector.Size; valueIndex++)
@@ -178,9 +178,9 @@ namespace AEGIS.Numerics
         public static Vector operator +(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Size != second.Size)
                 throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
@@ -209,9 +209,9 @@ namespace AEGIS.Numerics
         public static Vector operator +(Vector first, Double[] second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Size != second.Length)
                 throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
@@ -240,9 +240,9 @@ namespace AEGIS.Numerics
         public static Vector operator +(Double[] first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Length != second.Size)
                 throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
@@ -271,9 +271,9 @@ namespace AEGIS.Numerics
         public static Vector operator -(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Size != second.Size)
                 throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
@@ -297,7 +297,7 @@ namespace AEGIS.Numerics
         public static Vector operator *(Double scalar, Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             Vector result = new Vector(vector.Size);
             for (Int32 valueIndex = 0; valueIndex < result.Size; valueIndex++)
@@ -351,9 +351,9 @@ namespace AEGIS.Numerics
         public static Matrix operator *(Vector vector, Matrix matrix)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (matrix.NumberOfRows != 1)
                 throw new ArgumentException(NumericsMessages.MatrixRowsMoreThan1, nameof(matrix));
@@ -385,9 +385,9 @@ namespace AEGIS.Numerics
         public static Vector operator *(Matrix matrix, Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.MatrixIsNull);
+                throw new ArgumentNullException(nameof(matrix));
 
             if (vector.Size != matrix.NumberOfColumns)
                 throw new ArgumentException(NumericsMessages.MatrixSizeDoesNotMatchVector, nameof(vector));
@@ -446,7 +446,7 @@ namespace AEGIS.Numerics
         public static Boolean IsZero(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return vector.values.All(value => value == 0);
         }
@@ -460,7 +460,7 @@ namespace AEGIS.Numerics
         public static Boolean IsValid(Vector vector)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
 
             return vector.values.All(value => !Double.IsNaN(value));
         }
@@ -480,9 +480,9 @@ namespace AEGIS.Numerics
         public static Double InnerProduct(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             if (first.Size != second.Size)
                 throw new ArgumentException(NumericsMessages.VectorDimensionsAreDifferent, nameof(second));
@@ -511,9 +511,9 @@ namespace AEGIS.Numerics
         public static Matrix OuterProduct(Vector first, Vector second)
         {
             if (first == null)
-                throw new ArgumentNullException(nameof(first), NumericsMessages.FirstVectorIsNull);
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException(nameof(second), NumericsMessages.SecondVectorIsNull);
+                throw new ArgumentNullException(nameof(second));
 
             Matrix result = new Matrix(first.Size, second.Size);
             for (Int32 columnIndex = 0; columnIndex < result.NumberOfColumns; columnIndex++)
@@ -534,7 +534,11 @@ namespace AEGIS.Numerics
         /// <returns>The normalized vector.</returns>
         public static Vector Normalize(Vector vector)
         {
-            return new Vector(vector.Select(value => value /= vector.Length).ToArray());
+            Double length = vector.Length;
+            if (length == 0 || length == 1)
+                return vector;
+
+            return new Vector(vector.Select(value => value /= vector.Length));
         }
 
         /// <summary>

@@ -115,7 +115,7 @@ namespace AEGIS.Reference
         public Boolean Contains(GeoCoordinate coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             return this.minimum.Latitude <= coordinate.Latitude && coordinate.Latitude <= this.maximum.Latitude &&
                    this.minimum.Longitude <= coordinate.Longitude && coordinate.Longitude <= this.maximum.Longitude &&
@@ -131,7 +131,7 @@ namespace AEGIS.Reference
         public Boolean Contains(GeoEnvelope other)
         {
             if (other == null)
-                throw new ArgumentNullException(nameof(other), ReferenceMessages.OtherEnvelopeIsNull);
+                throw new ArgumentNullException(nameof(other));
 
             return this.minimum.Latitude <= other.minimum.Latitude && other.maximum.Latitude <= this.maximum.Latitude &&
                    this.minimum.Longitude <= other.minimum.Longitude && other.maximum.Longitude <= this.maximum.Longitude &&

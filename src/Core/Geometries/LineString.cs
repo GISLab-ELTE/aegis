@@ -20,6 +20,7 @@ namespace AEGIS.Geometries
     using System.Linq;
     using System.Text;
     using AEGIS.Algorithms;
+    using AEGIS.Collections.Resources;
     using AEGIS.Resources;
 
     /// <summary>
@@ -79,7 +80,7 @@ namespace AEGIS.Geometries
             : base(precisionModel, referenceSystem)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.coordinates = new List<Coordinate>(source.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate)));
         }
@@ -274,7 +275,7 @@ namespace AEGIS.Geometries
         public virtual Coordinate GetCoordinate(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -294,7 +295,7 @@ namespace AEGIS.Geometries
         public virtual void SetCoordinate(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -326,7 +327,7 @@ namespace AEGIS.Geometries
         public virtual void Insert(Int32 index, Coordinate coordinate)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
@@ -357,7 +358,7 @@ namespace AEGIS.Geometries
         public virtual void RemoveAt(Int32 index)
         {
             if (index < 0)
-                throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsLessThan0);
+                throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 

@@ -33,7 +33,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(Double[] vector, Int32 p)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
             if (p < 1)
                 throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 
@@ -54,7 +54,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(this Vector vector, Int32 p)
         {
             if (vector == null)
-                throw new ArgumentNullException(nameof(vector), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(vector));
             if (p < 1)
                 throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 
@@ -75,7 +75,7 @@ namespace AEGIS.Numerics.LinearAlgebra
         public static Double ComputePNorm(this Matrix matrix, Int32 p)
         {
             if (matrix == null)
-                throw new ArgumentNullException(nameof(matrix), NumericsMessages.VectorIsNull);
+                throw new ArgumentNullException(nameof(matrix));
             if (p < 1)
                 throw new ArgumentOutOfRangeException(nameof(p), NumericsMessages.PIsLessThan1);
 

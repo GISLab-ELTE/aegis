@@ -284,13 +284,13 @@ namespace AEGIS.Reference.Collections.Local
         public LocalCoordinateTransformationCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<CoordinateOperationMethod> methodCollection, IReferenceCollection<CoordinateOperationParameter> parameterCollection, IReferenceCollection<CoordinateReferenceSystem> referenceSystemCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection));
             if (methodCollection == null)
-                throw new ArgumentNullException(nameof(methodCollection), ReferenceMessages.MethodCollectionIsNull);
+                throw new ArgumentNullException(nameof(methodCollection));
             if (parameterCollection == null)
-                throw new ArgumentNullException(nameof(parameterCollection), ReferenceMessages.ParameterCollectionIsNull);
+                throw new ArgumentNullException(nameof(parameterCollection));
             if (referenceSystemCollection == null)
-                throw new ArgumentNullException(nameof(referenceSystemCollection), ReferenceMessages.ReferenceSystemCollectionIsNull);
+                throw new ArgumentNullException(nameof(referenceSystemCollection));
 
             this.dataCollection = new CoordinateTransformationDataCollection(areaOfUseCollection, methodCollection, parameterCollection, referenceSystemCollection, unitCollection);
         }
@@ -353,7 +353,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureOperationTypes();
 
@@ -369,7 +369,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureOperationTypes();
 
@@ -385,7 +385,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureOperationTypes();
 
@@ -401,7 +401,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureOperationTypes();
 
@@ -422,9 +422,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateReferenceSystem source, CoordinateReferenceSystem target)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (target == null)
-                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(target));
 
             this.EnsureOperationTypes();
 
@@ -446,9 +446,9 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, AreaOfUse areaOfUse)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method));
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse));
 
             this.EnsureOperationTypes();
 
@@ -476,13 +476,13 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateTransformation<CoordinateType>> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, CoordinateReferenceSystem source, CoordinateReferenceSystem target, AreaOfUse areaOfUse)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method));
             if (source == null)
-                throw new ArgumentNullException(nameof(source), ReferenceMessages.SourceCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (target == null)
-                throw new ArgumentNullException(nameof(target), ReferenceMessages.TargetCoordinateReferenceSystemIsNull);
+                throw new ArgumentNullException(nameof(target));
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse));
 
             this.EnsureOperationTypes();
 

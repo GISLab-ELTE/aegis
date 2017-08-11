@@ -47,10 +47,7 @@ namespace AEGIS.Reference.Strategies
         /// <exception cref="System.ArgumentNullException">The provider is null.</exception>
         public CoordinateOperationStrategyFactory(IReferenceProvider provider)
         {
-            if (provider == null)
-                throw new ArgumentNullException(nameof(provider), ReferenceMessages.ProviderIsNull);
-
-            this.provider = provider;
+            this.provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
         /// <summary>

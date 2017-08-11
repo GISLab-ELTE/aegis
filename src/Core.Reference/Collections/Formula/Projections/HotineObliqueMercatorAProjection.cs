@@ -93,8 +93,7 @@ namespace AEGIS.Reference.Collections.Formula
         /// <returns>The transformed coordinate.</returns>
         protected override Coordinate ComputeForward(GeoCoordinate coordinate)
         {
-            Double u, v;
-            this.ComputeUV(coordinate.Latitude.BaseValue, coordinate.Longitude.BaseValue, out u, out v);
+            this.ComputeUV(coordinate.Latitude.BaseValue, coordinate.Longitude.BaseValue, out double u, out double v);
 
             Double easting = v * Math.Cos(this.angleFromRectifiedToSkewGrid) + u * Math.Sin(this.angleFromRectifiedToSkewGrid) + this.falseEasting;
             Double northing = u * Math.Cos(this.angleFromRectifiedToSkewGrid) - v * Math.Sin(this.angleFromRectifiedToSkewGrid) + this.falseNorthing;
@@ -111,9 +110,7 @@ namespace AEGIS.Reference.Collections.Formula
         {
             Double v = (coordinate.X - this.falseEasting) * Math.Cos(this.angleFromRectifiedToSkewGrid) - (coordinate.Y - this.falseNorthing) * Math.Sin(this.angleFromRectifiedToSkewGrid);
             Double u = (coordinate.Y - this.falseNorthing) * Math.Cos(this.angleFromRectifiedToSkewGrid) + (coordinate.X - this.falseEasting) * Math.Sin(this.angleFromRectifiedToSkewGrid);
-            Double latitude, longitude;
-
-            this.ComputeLatitudeLongitude(u, v, out latitude, out longitude);
+            this.ComputeLatitudeLongitude(u, v, out double latitude, out double longitude);
 
             return new GeoCoordinate(latitude, longitude);
         }

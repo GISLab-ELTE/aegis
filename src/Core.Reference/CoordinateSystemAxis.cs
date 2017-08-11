@@ -100,14 +100,12 @@ namespace AEGIS.Reference
         public CoordinateSystemAxis(String identifier, String name, String remarks, String[] aliases, String description, AxisDirection direction, UnitOfMeasurement unit, Double minimum, Double maximum)
             : base(identifier, name, remarks, aliases)
         {
-            if (unit == null)
-                throw new ArgumentNullException(nameof(unit), ReferenceMessages.UnitIsNull);
             if (maximum <= minimum)
                 throw new ArgumentException(ReferenceMessages.MaximumIsEqualToOrLessThanMinimum, nameof(maximum));
 
             this.Description = description ?? String.Empty;
             this.Direction = direction;
-            this.Unit = unit;
+            this.Unit = unit ?? throw new ArgumentNullException(nameof(unit));
             this.Minimum = minimum;
             this.Maximum = maximum;
         }

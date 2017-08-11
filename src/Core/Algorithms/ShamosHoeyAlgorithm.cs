@@ -77,7 +77,7 @@ namespace AEGIS.Algorithms
         public ShamosHoeyAlgorithm(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.eventQueue = new PresortedEventQueue(source);
@@ -94,7 +94,7 @@ namespace AEGIS.Algorithms
         public ShamosHoeyAlgorithm(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.PrecisionModel = precisionModel ?? PrecisionModel.Default;
             this.eventQueue = new PresortedEventQueue(source);

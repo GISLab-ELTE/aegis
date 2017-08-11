@@ -95,7 +95,7 @@ namespace AEGIS.Converters
         public static String ToWellKnownText(this IGeometry geometry, Int32 dimension)
         {
             if (geometry == null)
-                throw new ArgumentNullException(nameof(geometry), CoreMessages.GeometryIsNull);
+                throw new ArgumentNullException(nameof(geometry));
 
             if (dimension < 2 || dimension > 3)
                 throw new ArgumentException(CoreMessages.DimensionIsInvalid, nameof(dimension));
@@ -156,11 +156,11 @@ namespace AEGIS.Converters
         public static IGeometry ToGeometry(String source, IGeometryFactory factory)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (String.IsNullOrEmpty(source))
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
             if (factory == null)
-                throw new ArgumentNullException(nameof(factory), CoreMessages.GeometryFactoryIsNull);
+                throw new ArgumentNullException(nameof(factory));
 
             IGeometry resultGeometry = null;
 

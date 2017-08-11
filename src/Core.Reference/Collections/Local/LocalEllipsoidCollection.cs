@@ -39,10 +39,7 @@ namespace AEGIS.Reference.Collections.Local
         /// <exception cref="System.ArgumentNullException">The unit of measurement collection is null.</exception>
         public LocalEllipsoidCollection(IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
-            if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
-
-            this.unitCollection = unitCollection;
+            this.unitCollection = unitCollection ?? throw new ArgumentNullException(nameof(unitCollection));
         }
 
         /// <summary>

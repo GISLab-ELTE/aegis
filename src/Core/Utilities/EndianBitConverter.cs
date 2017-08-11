@@ -58,7 +58,7 @@ namespace AEGIS.Utilities
         public static Int16 ToInt16(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -99,7 +99,7 @@ namespace AEGIS.Utilities
         public static Int16 ToInt16(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -147,7 +147,7 @@ namespace AEGIS.Utilities
         public static Int32 ToInt32(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -188,7 +188,7 @@ namespace AEGIS.Utilities
         public static Int32 ToInt32(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -236,7 +236,7 @@ namespace AEGIS.Utilities
         public static Int64 ToInt64(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -277,7 +277,7 @@ namespace AEGIS.Utilities
         public static Int64 ToInt64(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -325,7 +325,7 @@ namespace AEGIS.Utilities
         public static UInt16 ToUInt16(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -366,7 +366,7 @@ namespace AEGIS.Utilities
         public static UInt16 ToUInt16(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -414,7 +414,7 @@ namespace AEGIS.Utilities
         public static UInt32 ToUInt32(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -455,7 +455,7 @@ namespace AEGIS.Utilities
         public static UInt32 ToUInt32(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -503,7 +503,7 @@ namespace AEGIS.Utilities
         public static UInt64 ToUInt64(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -544,7 +544,7 @@ namespace AEGIS.Utilities
         public static UInt64 ToUInt64(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -592,7 +592,7 @@ namespace AEGIS.Utilities
         public static Single ToSingle(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -633,7 +633,7 @@ namespace AEGIS.Utilities
         public static Single ToSingle(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -681,7 +681,7 @@ namespace AEGIS.Utilities
         public static Double ToDouble(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -722,7 +722,7 @@ namespace AEGIS.Utilities
         public static Double ToDouble(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -770,7 +770,7 @@ namespace AEGIS.Utilities
         public static Rational ToRational(Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -810,7 +810,7 @@ namespace AEGIS.Utilities
         public static Rational ToRational(Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -868,7 +868,7 @@ namespace AEGIS.Utilities
         public static Coordinate ToCoordinate(Byte[] array, Int32 startIndex, Int32 dimension)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -931,7 +931,7 @@ namespace AEGIS.Utilities
         public static Coordinate ToCoordinate(Byte[] array, Int32 startIndex, Int32 dimension, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1408,7 +1408,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int16 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1438,7 +1438,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int16 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1470,7 +1470,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int32 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1500,7 +1500,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int32 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1532,7 +1532,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int64 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1562,7 +1562,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Int64 value, Byte[] array, Int32 startIndex, ByteOrder order = ByteOrder.LittleEndian)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1594,7 +1594,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt16 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1624,7 +1624,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt16 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1656,7 +1656,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt32 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1686,7 +1686,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt32 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1718,7 +1718,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt64 value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1748,7 +1748,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(UInt64 value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1780,7 +1780,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Single value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1810,7 +1810,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Single value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1842,7 +1842,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Double value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1872,7 +1872,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Double value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1904,7 +1904,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Rational value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1938,7 +1938,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Rational value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -1977,7 +1977,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Char value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -2007,7 +2007,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(Char value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -2039,7 +2039,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(String value, Byte[] array, Int32 startIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)
@@ -2071,7 +2071,7 @@ namespace AEGIS.Utilities
         public static void CopyBytes(String value, Byte[] array, Int32 startIndex, ByteOrder order)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (startIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(startIndex), CollectionMessages.StartingIndexIsLessThan0);
             if (startIndex >= array.Length)

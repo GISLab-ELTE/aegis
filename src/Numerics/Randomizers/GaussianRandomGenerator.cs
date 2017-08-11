@@ -56,10 +56,7 @@ namespace AEGIS.Numerics.Randomizers
         /// <exception cref="System.ArgumentNullException">The random generator is null.</exception>
         public GaussianRandomGenerator(Random random)
         {
-            if (random == null)
-                throw new ArgumentNullException(nameof(random), NumericsMessages.RandomIsNull);
-
-            this.random = random;
+            this.random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
         /// <summary>
@@ -101,7 +98,7 @@ namespace AEGIS.Numerics.Randomizers
         public override void NextBytes(Byte[] buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), NumericsMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             for (Int32 i = 0; i < buffer.Length; i++)
             {

@@ -51,14 +51,14 @@ namespace AEGIS.Storage.Geometries
         /// <param name="referenceSystem">The reference system.</param>
         /// <param name="driver">The geometry driver.</param>
         /// <param name="identifier">The feature identifier.</param>
-        /// <param name="index">The index of the geometry within the feature.</param>
+        /// <param name="indexes">The indexes of the geometry within the feature.</param>
         /// <exception cref="System.ArgumentNullException">
         /// The driver is null.
         /// or
         /// The identifier is null.
         /// </exception>
-        public StoredPoint(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, Int32 index)
-            : base(precisionModel, referenceSystem, driver, identifier, new Int32[] { index })
+        public StoredPoint(PrecisionModel precisionModel, IReferenceSystem referenceSystem, IGeometryDriver driver, String identifier, IEnumerable<Int32> indexes)
+            : base(precisionModel, referenceSystem, driver, identifier, indexes)
         {
         }
 

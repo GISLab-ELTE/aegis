@@ -60,10 +60,7 @@ namespace AEGIS.Algorithms
         /// <exception cref="System.ArgumentNullException">The shell is null.</exception>
         public WindingNumberAlgorithm(IEnumerable<Coordinate> shell, Coordinate coordinate, PrecisionModel precisionModel)
         {
-            if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
-
-            this.Shell = shell;
+            this.Shell = shell ?? throw new ArgumentNullException(nameof(shell));
             this.PrecisionModel = precisionModel;
             this.coordinate = coordinate;
             this.hasResult = false;
@@ -127,7 +124,7 @@ namespace AEGIS.Algorithms
         public static RelativeLocation Location(IReadOnlyList<Coordinate> shell, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, null, coordinate, null);
         }
@@ -143,7 +140,7 @@ namespace AEGIS.Algorithms
         public static RelativeLocation Location(IReadOnlyList<Coordinate> shell, Coordinate coordinate, PrecisionModel precision)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, null, coordinate, precision);
         }
@@ -158,7 +155,7 @@ namespace AEGIS.Algorithms
         public static RelativeLocation Location(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return ComputeLocation(polygon.Shell, polygon.Holes, coordinate, null);
         }
@@ -174,7 +171,7 @@ namespace AEGIS.Algorithms
         public static RelativeLocation Location(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precision)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return ComputeLocation(polygon.Shell, polygon.Holes, coordinate, precision);
         }
@@ -216,7 +213,7 @@ namespace AEGIS.Algorithms
         public static Boolean OnBoundary(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             if (ComputeOnBoundary(shell, coordinate, PrecisionModel.Default))
                 return true;
@@ -246,7 +243,7 @@ namespace AEGIS.Algorithms
         public static Boolean OnBoundary(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             if (ComputeOnBoundary(shell, coordinate, precisionModel))
                 return true;
@@ -276,7 +273,7 @@ namespace AEGIS.Algorithms
         public static Boolean InInterior(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return InInterior(polygon.Shell, polygon.Holes, coordinate, PrecisionModel.Default);
         }
@@ -295,7 +292,7 @@ namespace AEGIS.Algorithms
         public static Boolean InInterior(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precision)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return InInterior(polygon.Shell, polygon.Holes, coordinate, precision);
         }
@@ -346,7 +343,7 @@ namespace AEGIS.Algorithms
         public static Boolean InInterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, holes, coordinate, PrecisionModel.Default) == RelativeLocation.Interior;
         }
@@ -367,7 +364,7 @@ namespace AEGIS.Algorithms
         public static Boolean InInterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, holes, coordinate, precisionModel) == RelativeLocation.Interior;
         }
@@ -385,7 +382,7 @@ namespace AEGIS.Algorithms
         public static Boolean InExterior(IBasicPolygon polygon, Coordinate coordinate)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return InExterior(polygon.Shell, polygon.Holes, coordinate, PrecisionModel.Default);
         }
@@ -404,7 +401,7 @@ namespace AEGIS.Algorithms
         public static Boolean InExterior(IBasicPolygon polygon, Coordinate coordinate, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return InExterior(polygon.Shell, polygon.Holes, coordinate, precisionModel);
         }
@@ -454,7 +451,7 @@ namespace AEGIS.Algorithms
         public static Boolean InExterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, holes, coordinate, PrecisionModel.Default) == RelativeLocation.Exterior;
         }
@@ -474,7 +471,7 @@ namespace AEGIS.Algorithms
         public static Boolean InExterior(IReadOnlyList<Coordinate> shell, IEnumerable<IReadOnlyList<Coordinate>> holes, Coordinate coordinate, PrecisionModel precision)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             return ComputeLocation(shell, holes, coordinate, precision) == RelativeLocation.Exterior;
         }

@@ -231,7 +231,7 @@ namespace AEGIS.Algorithms.SweepLines
             public void Insert(SweepLineSegment segment)
             {
                 if (segment == null)
-                    throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
+                    throw new ArgumentNullException(nameof(segment));
 
                 if (this.root == null)
                 {
@@ -272,7 +272,7 @@ namespace AEGIS.Algorithms.SweepLines
             public void SetCurrent(SweepLineSegment segment)
             {
                 if (segment == null)
-                    throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
+                    throw new ArgumentNullException(nameof(segment));
 
                 this.currentNode = this.SearchNode(segment);
             }
@@ -381,7 +381,7 @@ namespace AEGIS.Algorithms.SweepLines
         public SweepLine(IEnumerable<Coordinate> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             this.source = new List<Coordinate>(source.Elements());
             this.tree = new SweepLineTree(precisionModel ?? PrecisionModel.Default);
@@ -400,7 +400,7 @@ namespace AEGIS.Algorithms.SweepLines
         public SweepLine(IEnumerable<IEnumerable<Coordinate>> source, PrecisionModel precisionModel)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             List<Coordinate> sourceList = new List<Coordinate>();
 
@@ -451,7 +451,7 @@ namespace AEGIS.Algorithms.SweepLines
         public SweepLineSegment Add(EndPointEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
+                throw new ArgumentNullException(nameof(e));
             if (e.Edge < 0)
                 throw new ArgumentException(CoreMessages.EventEdgeIsLessThan0, nameof(e));
             if (e.Edge >= this.source.Count - 1)
@@ -503,7 +503,7 @@ namespace AEGIS.Algorithms.SweepLines
         public Boolean Add(IntersectionEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
+                throw new ArgumentNullException(nameof(e));
 
             return this.Intersect(e.Below, e.Above);
         }
@@ -522,7 +522,7 @@ namespace AEGIS.Algorithms.SweepLines
         public SweepLineSegment Search(EndPointEvent e)
         {
             if (e == null)
-                throw new ArgumentNullException(nameof(e), CoreMessages.EventIsNull);
+                throw new ArgumentNullException(nameof(e));
             if (e.Edge < 0)
                 throw new ArgumentException(CoreMessages.EventEdgeIsLessThan0, nameof(e));
             if (e.Edge >= this.source.Count - 1)
@@ -556,7 +556,7 @@ namespace AEGIS.Algorithms.SweepLines
         public void Remove(SweepLineSegment segment)
         {
             if (segment == null)
-                throw new ArgumentNullException(nameof(segment), CoreMessages.SegmentIsNull);
+                throw new ArgumentNullException(nameof(segment));
 
             this.tree.SetCurrent(segment);
             if (this.tree.Current == null)

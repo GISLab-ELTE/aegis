@@ -15,6 +15,7 @@
 namespace AEGIS.Tests.Numerics
 {
     using System;
+    using System.Numerics;
     using AEGIS.Numerics;
     using NUnit.Framework;
     using Shouldly;
@@ -51,6 +52,70 @@ namespace AEGIS.Tests.Numerics
             Calculator.Fraction(-7.0).ShouldBe(0.00, 1e-10);
             Calculator.Fraction(-1.55).ShouldBe(-0.55, 1e-10);
             Calculator.Fraction(-0.01).ShouldBe(-0.01, 1e-10);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.OrderOfMagnitude(Int64)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorOrderOfMagnitudeInt64Test()
+        {
+            Calculator.OrderOfMagnitude(0).ShouldBe(0);
+            Calculator.OrderOfMagnitude(1).ShouldBe(0);
+            Calculator.OrderOfMagnitude(-1).ShouldBe(0);
+            Calculator.OrderOfMagnitude(100).ShouldBe(2);
+            Calculator.OrderOfMagnitude(-100).ShouldBe(2);
+            Calculator.OrderOfMagnitude(999).ShouldBe(2);
+            Calculator.OrderOfMagnitude(-999).ShouldBe(2);
+            Calculator.OrderOfMagnitude(1000).ShouldBe(3);
+            Calculator.OrderOfMagnitude(-1000).ShouldBe(3);
+            Calculator.OrderOfMagnitude(Int64.MaxValue).ShouldBe(18);
+            Calculator.OrderOfMagnitude(Int64.MinValue).ShouldBe(18);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.OrderOfMagnitude(UInt64)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorOrderOfMagnitudeUInt64Test()
+        {
+            Calculator.OrderOfMagnitude(0UL).ShouldBe(0);
+            Calculator.OrderOfMagnitude(1UL).ShouldBe(0);
+            Calculator.OrderOfMagnitude(100UL).ShouldBe(2);
+            Calculator.OrderOfMagnitude(999UL).ShouldBe(2);
+            Calculator.OrderOfMagnitude(1000UL).ShouldBe(3);
+            Calculator.OrderOfMagnitude(UInt64.MaxValue).ShouldBe(19);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.OrderOfMagnitude(Rational)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorOrderOfMagnitudeRationalTest()
+        {
+            Calculator.OrderOfMagnitude(Rational.Zero).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(1, 1)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(100, 1)).ShouldBe(2);
+            Calculator.OrderOfMagnitude(new Rational(99, 1)).ShouldBe(1);
+            Calculator.OrderOfMagnitude(new Rational(100, 10)).ShouldBe(1);
+            Calculator.OrderOfMagnitude(new Rational(100, 11)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(99, 10)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(1, 10)).ShouldBe(-1);
+            Calculator.OrderOfMagnitude(new Rational(1, 10000)).ShouldBe(-4);
+            Calculator.OrderOfMagnitude(new Rational(-1, 1)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(-100, 1)).ShouldBe(2);
+            Calculator.OrderOfMagnitude(new Rational(-99, 1)).ShouldBe(1);
+            Calculator.OrderOfMagnitude(new Rational(-100, 10)).ShouldBe(1);
+            Calculator.OrderOfMagnitude(new Rational(-100, 11)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(-99, 10)).ShouldBe(0);
+            Calculator.OrderOfMagnitude(new Rational(-1, 10)).ShouldBe(-1);
+            Calculator.OrderOfMagnitude(new Rational(-1, 10000)).ShouldBe(-4);
+            Calculator.OrderOfMagnitude(Rational.MaxValue).ShouldBe(18);
+            Calculator.OrderOfMagnitude(Rational.MinValue).ShouldBe(18);
+
+            Calculator.OrderOfMagnitude(Rational.NaN).ShouldBe(0);
+            Calculator.OrderOfMagnitude(Rational.PositiveInfinity).ShouldBe(0);
+            Calculator.OrderOfMagnitude(Rational.NegativeInfinity).ShouldBe(0);
         }
 
         /// <summary>
@@ -103,7 +168,7 @@ namespace AEGIS.Tests.Numerics
         /// Tests the <see cref="Calculator.Gamma(Double)" /> method.
         /// </summary>
         [Test]
-        public void CalcaultorGammaTest()
+        public void CalculatorGammaTest()
         {
             Calculator.Gamma(5.6).ShouldBe(61.5539150062892670342628016328, 0.0000000000001);
             Calculator.Gamma(4).ShouldBe(6, 0.00000000000001);
@@ -210,6 +275,19 @@ namespace AEGIS.Tests.Numerics
         }
 
         /// <summary>
+        /// Tests the <see cref="Calculator.Hypot(Double, Double)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorHypotTest()
+        {
+            Calculator.Hypot(1, 1).ShouldBe(Math.Sqrt(2));
+            Calculator.Hypot(3, 4).ShouldBe(5);
+            Calculator.Hypot(0, 0).ShouldBe(0);
+            Calculator.Hypot(0, 3).ShouldBe(3);
+            Calculator.Hypot(3, 0).ShouldBe(3);
+        }
+
+        /// <summary>
         /// Tests the <see cref="Calculator.Sec(Double)" /> method.
         /// </summary>
         [Test]
@@ -285,6 +363,7 @@ namespace AEGIS.Tests.Numerics
             Calculator.Atanh(-0.9).ShouldBe(-1.4722194895, 1e-10);
             Calculator.Atanh(-1).ShouldBe(Double.NegativeInfinity);
             Calculator.Atanh(1).ShouldBe(Double.PositiveInfinity);
+            Calculator.Atanh(-15).ShouldBe(Double.NaN);
             Calculator.Atanh(15).ShouldBe(Double.NaN);
         }
 
@@ -456,32 +535,167 @@ namespace AEGIS.Tests.Numerics
         /// Tests the <see cref="Calculator.GreatestCommonDivisor(Int32, Int32)" /> method.
         /// </summary>
         [Test]
-        public void CalculatorGreatestCommonDivisorTest()
+        public void CalculatorGreatestCommonDivisorInt32Test()
         {
             // one or both arguments is 1
-            Calculator.GreatestCommonDivisor(1, 1).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(1, 10).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(18, 1).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(-5, 1).ShouldBe(1);
+            Calculator.GreatestCommonDivisor(1, 1).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(1, 10).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(18, 1).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(-5, 1).ShouldBe(1U);
 
             // exactly one argument is 0
-            Calculator.GreatestCommonDivisor(1, 0).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(0, 8).ShouldBe(8);
+            Calculator.GreatestCommonDivisor(1, 0).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(0, 8).ShouldBe(8U);
 
             // both arguments are 0
-            Calculator.GreatestCommonDivisor(0, 0).ShouldBe(0);
+            Calculator.GreatestCommonDivisor(0, 0).ShouldBe(0U);
 
             // regular cases
-            Calculator.GreatestCommonDivisor(5, 5).ShouldBe(5);
-            Calculator.GreatestCommonDivisor(15, 33).ShouldBe(3);
-            Calculator.GreatestCommonDivisor(25, 7).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(250, 15).ShouldBe(5);
+            Calculator.GreatestCommonDivisor(5, 5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor(15, 33).ShouldBe(3U);
+            Calculator.GreatestCommonDivisor(25, 7).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(250, 15).ShouldBe(5U);
 
             // one or both arguments are negative
-            Calculator.GreatestCommonDivisor(5, -5).ShouldBe(5);
-            Calculator.GreatestCommonDivisor(15, -5).ShouldBe(5);
-            Calculator.GreatestCommonDivisor(-7, -5).ShouldBe(1);
-            Calculator.GreatestCommonDivisor(35, -7).ShouldBe(7);
+            Calculator.GreatestCommonDivisor(5, -5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor(15, -5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor(-7, -5).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(35, -7).ShouldBe(7U);
+
+            // maximum/minimum value
+            Calculator.GreatestCommonDivisor(Int32.MaxValue, Int32.MaxValue).ShouldBe((UInt32)Int32.MaxValue);
+            Calculator.GreatestCommonDivisor(Int32.MinValue, Int32.MinValue).ShouldBe(unchecked((UInt32)Int32.MinValue));
+            Calculator.GreatestCommonDivisor(Int32.MaxValue, Int32.MinValue).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(Int32.MinValue, Int32.MaxValue).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(Int32.MinValue, 2).ShouldBe(2U);
+            Calculator.GreatestCommonDivisor(2, Int32.MinValue).ShouldBe(2U);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.GreatestCommonDivisor(UInt32, UInt32)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorGreatestCommonDivisorUInt32Test()
+        {
+            // one or both arguments is 1
+            Calculator.GreatestCommonDivisor(1U, 1U).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(1U, 10U).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(18U, 1U).ShouldBe(1U);
+
+            // exactly one argument is 0
+            Calculator.GreatestCommonDivisor(1U, 0U).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(0U, 8U).ShouldBe(8U);
+
+            // both arguments are 0
+            Calculator.GreatestCommonDivisor(0U, 0U).ShouldBe(0U);
+
+            // regular cases
+            Calculator.GreatestCommonDivisor(5U, 5U).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor(15U, 33U).ShouldBe(3U);
+            Calculator.GreatestCommonDivisor(25U, 7U).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(250U, 15U).ShouldBe(5U);
+
+            // maximum value
+            Calculator.GreatestCommonDivisor(UInt32.MaxValue, UInt32.MaxValue).ShouldBe(UInt32.MaxValue);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.GreatestCommonDivisor(Int64, Int64)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorGreatestCommonDivisorInt64Test()
+        {
+            // one or both arguments is 1
+            Calculator.GreatestCommonDivisor(1L, 1L).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(1L, 10L).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(18L, 1L).ShouldBe(1UL);
+
+            // exactly one argument is 0
+            Calculator.GreatestCommonDivisor(1L, 0L).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(0L, 8L).ShouldBe(8UL);
+
+            // both arguments are 0
+            Calculator.GreatestCommonDivisor(0L, 0L).ShouldBe(0UL);
+
+            // regular cases
+            Calculator.GreatestCommonDivisor(5L, 5L).ShouldBe(5UL);
+            Calculator.GreatestCommonDivisor(15L, 33L).ShouldBe(3UL);
+            Calculator.GreatestCommonDivisor(25L, 7L).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(250L, 15L).ShouldBe(5UL);
+
+            // one or both arguments are negative
+            Calculator.GreatestCommonDivisor(5L, -5L).ShouldBe(5UL);
+            Calculator.GreatestCommonDivisor(15L, -5L).ShouldBe(5UL);
+            Calculator.GreatestCommonDivisor(-7L, -5L).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(35L, -7L).ShouldBe(7UL);
+
+            // maximum/minimum value
+            Calculator.GreatestCommonDivisor(Int64.MaxValue, Int64.MaxValue).ShouldBe((UInt64)Int64.MaxValue);
+            Calculator.GreatestCommonDivisor(Int64.MinValue, Int64.MinValue).ShouldBe(unchecked((UInt64)Int64.MinValue));
+            Calculator.GreatestCommonDivisor(Int64.MaxValue, Int64.MinValue).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(Int64.MinValue, Int64.MaxValue).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(Int64.MinValue, 2).ShouldBe(2UL);
+            Calculator.GreatestCommonDivisor(2, Int64.MinValue).ShouldBe(2UL);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.GreatestCommonDivisor(UInt64, UInt64)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorGreatestCommonDivisorUInt64Test()
+        {
+            // one or both arguments is 1
+            Calculator.GreatestCommonDivisor(1UL, 1UL).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(1UL, 10UL).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(18UL, 1UL).ShouldBe(1UL);
+
+            // exactly one argument is 0
+            Calculator.GreatestCommonDivisor(1UL, 0UL).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(0UL, 8UL).ShouldBe(8UL);
+
+            // both arguments are 0
+            Calculator.GreatestCommonDivisor(0UL, 0UL).ShouldBe(0UL);
+
+            // regular cases
+            Calculator.GreatestCommonDivisor(5UL, 5UL).ShouldBe(5UL);
+            Calculator.GreatestCommonDivisor(15UL, 33UL).ShouldBe(3UL);
+            Calculator.GreatestCommonDivisor(25UL, 7UL).ShouldBe(1UL);
+            Calculator.GreatestCommonDivisor(250UL, 15UL).ShouldBe(5UL);
+
+            // maximum value
+            Calculator.GreatestCommonDivisor(UInt64.MaxValue, UInt64.MaxValue).ShouldBe(UInt64.MaxValue);
+        }
+
+        /// <summary>
+        /// Tests the <see cref="Calculator.GreatestCommonDivisor(BigInteger, BigInteger)" /> method.
+        /// </summary>
+        [Test]
+        public void CalculatorGreatestCommonDivisorBigIntegerTest()
+        {
+            // one or both arguments is 1
+            Calculator.GreatestCommonDivisor((BigInteger)1, 1).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor((BigInteger)1, 10).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor((BigInteger)18, 1).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor(-5, (BigInteger)1).ShouldBe(1U);
+
+            // exactly one argument is 0
+            Calculator.GreatestCommonDivisor((BigInteger)1, 0).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor((BigInteger)0, 8).ShouldBe(8U);
+
+            // both arguments are 0
+            Calculator.GreatestCommonDivisor((BigInteger)0, 0).ShouldBe(0U);
+
+            // regular cases
+            Calculator.GreatestCommonDivisor((BigInteger)5, 5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor((BigInteger)15, 33).ShouldBe(3U);
+            Calculator.GreatestCommonDivisor((BigInteger)25, 7).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor((BigInteger)250, 15).ShouldBe(5U);
+
+            // one or both arguments are negative
+            Calculator.GreatestCommonDivisor((BigInteger)5, -5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor((BigInteger)15, -5).ShouldBe(5U);
+            Calculator.GreatestCommonDivisor((BigInteger)(-7), -5).ShouldBe(1U);
+            Calculator.GreatestCommonDivisor((BigInteger)35, -7).ShouldBe(7U);
         }
 
         /// <summary>

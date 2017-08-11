@@ -18,6 +18,7 @@ namespace AEGIS.Storage.Attributes
     using System.Collections;
     using System.Collections.Generic;
     using AEGIS.Collections.Resources;
+    using AEGIS.Storage.Resources;
 
     /// <summary>
     /// Represents an attribute collection located in a store.
@@ -104,7 +105,7 @@ namespace AEGIS.Storage.Attributes
             public void CopyTo(String[] array, Int32 arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array));
                 if (arrayIndex < 0)
                     throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
                 if (arrayIndex + this.collection.Driver.ReadAttributeCount(this.collection.Identifier) > array.Length)
@@ -223,7 +224,7 @@ namespace AEGIS.Storage.Attributes
             public void CopyTo(Object[] array, Int32 arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                    throw new ArgumentNullException(nameof(array));
                 if (arrayIndex < 0)
                     throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
                 if (arrayIndex + this.collection.Driver.ReadAttributeCount(this.collection.Identifier) > array.Length)
@@ -268,8 +269,8 @@ namespace AEGIS.Storage.Attributes
         /// </exception>
         public StoredAttributeCollection(IStoredAttributeCollectionFactory factory, String identifier)
         {
-            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory), AEGIS.Resources.CoreMessages.FactoryIsNull);
-            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier), AEGIS.Resources.CoreMessages.IdentifierIsNull);
+            this.Factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
         }
 
         /// <summary>
@@ -349,7 +350,7 @@ namespace AEGIS.Storage.Attributes
                 throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (this.Driver.ContainsAttribute(this.Identifier, key))
                 throw new ArgumentException(CollectionMessages.KeyAlreadyExistsInTheCollection);
@@ -373,7 +374,7 @@ namespace AEGIS.Storage.Attributes
                 throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (item.Key == null)
-                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
+                throw new ArgumentException(StorageMessages.KeyIsNull, nameof(item));
 
             if (this.Driver.ContainsAttribute(this.Identifier, item.Key))
                 throw new ArgumentException(CollectionMessages.KeyAlreadyExistsInTheCollection);
@@ -390,7 +391,7 @@ namespace AEGIS.Storage.Attributes
         public Boolean ContainsKey(String key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             return this.Driver.ContainsAttribute(this.Identifier, key);
         }
@@ -404,7 +405,7 @@ namespace AEGIS.Storage.Attributes
         Boolean ICollection<KeyValuePair<String, Object>>.Contains(KeyValuePair<String, Object> item)
         {
             if (item.Key == null)
-                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
+                throw new ArgumentException(StorageMessages.KeyIsNull, nameof(item));
 
             if (!this.Driver.ContainsAttribute(this.Identifier, item.Key))
                 return false;
@@ -427,7 +428,7 @@ namespace AEGIS.Storage.Attributes
                 throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (!this.Driver.ContainsAttribute(this.Identifier, key))
                 return false;
@@ -449,7 +450,7 @@ namespace AEGIS.Storage.Attributes
                 throw new NotSupportedException(CollectionMessages.CollectionIsReadOnly);
 
             if (item.Key == null)
-                throw new ArgumentException(CollectionMessages.KeyIsNull, nameof(item));
+                throw new ArgumentException(StorageMessages.KeyIsNull, nameof(item));
 
             if (!this.Driver.ContainsAttribute(this.Identifier, item.Key))
                 return false;
@@ -473,7 +474,7 @@ namespace AEGIS.Storage.Attributes
         public Boolean TryGetValue(String key, out Object value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             value = null;
             if (!this.Driver.ContainsAttribute(this.Identifier, key))
@@ -506,7 +507,7 @@ namespace AEGIS.Storage.Attributes
         public void CopyTo(KeyValuePair<String, Object>[] array, Int32 arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array), CollectionMessages.ArrayIsNull);
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), CollectionMessages.IndexIsLessThan0);
             if (arrayIndex + this.Driver.ReadAttributeCount(this.Identifier) > array.Length)

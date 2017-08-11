@@ -57,10 +57,7 @@ namespace AEGIS.Reference
         protected CoordinateOperation(String identifier, String name, String remarks, String[] aliases, CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters)
             : base(identifier, name, remarks, aliases)
         {
-            if (method == null)
-                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
-
-            this.Method = method;
+            this.Method = method ?? throw new ArgumentNullException(nameof(method));
 
             if (parameters != null)
             {
@@ -106,7 +103,7 @@ namespace AEGIS.Reference
         public ResultType Forward(SourceType coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             return this.ComputeForward(coordinate);
         }
@@ -163,7 +160,7 @@ namespace AEGIS.Reference
         public SourceType Reverse(ResultType coordinate)
         {
             if (coordinate == null)
-                throw new ArgumentNullException(nameof(coordinate), ReferenceMessages.CoordinateIsNull);
+                throw new ArgumentNullException(nameof(coordinate));
 
             if (!this.Method.IsReversible)
                 throw new NotSupportedException(ReferenceMessages.OperationNotReversible);

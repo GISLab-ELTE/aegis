@@ -19,6 +19,7 @@ namespace AEGIS.Storage.Geometries
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AEGIS.Geometries;
 
     /// <summary>
     /// Represents a geometry collection located in a store.
@@ -121,7 +122,7 @@ namespace AEGIS.Storage.Geometries
                 if (boundaryList.Count == 1)
                     return boundaryList[0];
 
-                return this.Factory.CreateGeometryCollection(boundaryList);
+                return new GeometryList<IGeometry>(this.PrecisionModel, this.ReferenceSystem, boundaryList);
             }
         }
 

@@ -277,18 +277,16 @@ namespace AEGIS.Reference.Collections.Local
         public LocalCoordinateProjectionCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<Ellipsoid> ellpsoidCollection, IReferenceCollection<CoordinateOperationMethod> methodCollection, IReferenceCollection<CoordinateOperationParameter> parameterCollection, IReferenceCollection<UnitOfMeasurement> unitCollection)
         {
             if (areaOfUseCollection == null)
-                throw new ArgumentNullException(nameof(areaOfUseCollection), ReferenceMessages.AreaOfUseCollectionIsNull);
-            if (ellpsoidCollection == null)
-                throw new ArgumentNullException(nameof(ellpsoidCollection), ReferenceMessages.EllipsoidCollectionIsNull);
+                throw new ArgumentNullException(nameof(areaOfUseCollection));
             if (methodCollection == null)
-                throw new ArgumentNullException(nameof(methodCollection), ReferenceMessages.MethodCollectionIsNull);
+                throw new ArgumentNullException(nameof(methodCollection));
             if (parameterCollection == null)
-                throw new ArgumentNullException(nameof(parameterCollection), ReferenceMessages.ParameterCollectionIsNull);
+                throw new ArgumentNullException(nameof(parameterCollection));
             if (unitCollection == null)
-                throw new ArgumentNullException(nameof(unitCollection), ReferenceMessages.UnitOfMeasurementCollectionIsNull);
+                throw new ArgumentNullException(nameof(unitCollection));
 
             this.dataCollection = new CoordinateProjectionDataCollection(areaOfUseCollection, methodCollection, parameterCollection, unitCollection);
-            this.ellipsoidCollection = ellpsoidCollection;
+            this.ellipsoidCollection = ellpsoidCollection ?? throw new ArgumentNullException(nameof(ellpsoidCollection));
             this.unitCollection = unitCollection;
         }
 
@@ -405,7 +403,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureOperationTypes();
 
@@ -423,7 +421,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureOperationTypes();
 
@@ -439,7 +437,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             this.EnsureOperationTypes();
 
@@ -455,7 +453,7 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             this.EnsureOperationTypes();
 
@@ -480,11 +478,11 @@ namespace AEGIS.Reference.Collections.Local
         public IEnumerable<CoordinateProjection> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, AreaOfUse areaOfUse, Ellipsoid ellipsoid)
         {
             if (method == null)
-                throw new ArgumentNullException(nameof(method), ReferenceMessages.MethodIsNull);
+                throw new ArgumentNullException(nameof(method));
             if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse), ReferenceMessages.AreaOfUseIsNull);
+                throw new ArgumentNullException(nameof(areaOfUse));
             if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid), ReferenceMessages.EllipsoidIsNull);
+                throw new ArgumentNullException(nameof(ellipsoid));
 
             this.EnsureOperationTypes();
 

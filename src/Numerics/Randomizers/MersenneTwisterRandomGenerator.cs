@@ -199,7 +199,7 @@ namespace AEGIS.Numerics.Randomizers
         public override void NextBytes(Byte[] buffer)
         {
             if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer), NumericsMessages.BufferIsNull);
+                throw new ArgumentNullException(nameof(buffer));
 
             for (Int32 i = 0; i < buffer.Length; i++)
             {

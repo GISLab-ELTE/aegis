@@ -209,7 +209,7 @@ namespace AEGIS.Reference.Converters
         public static String ToWellKnownText(IdentifiedObject source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             try
             {
@@ -249,7 +249,7 @@ namespace AEGIS.Reference.Converters
         public static String ToWellKnownText(IReferenceSystem source)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
 
             try
             {
@@ -283,11 +283,11 @@ namespace AEGIS.Reference.Converters
         public static IdentifiedObject ToIdentifiedObject(String source, IReferenceProvider provider)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (String.IsNullOrEmpty(source))
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
             if (provider == null)
-                throw new ArgumentNullException(nameof(provider), ReferenceMessages.ProviderIsNull);
+                throw new ArgumentNullException(nameof(provider));
 
             try
             {
@@ -332,7 +332,7 @@ namespace AEGIS.Reference.Converters
         public static IReferenceSystem ToReferenceSystem(String source, IReferenceProvider provider)
         {
             if (source == null)
-                throw new ArgumentNullException(nameof(source), CoreMessages.SourceIsNull);
+                throw new ArgumentNullException(nameof(source));
             if (String.IsNullOrEmpty(source))
                 throw new ArgumentException(CoreMessages.SourceIsInvalid, nameof(source));
 
@@ -549,10 +549,9 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ').Replace("GCS_", String.Empty);
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 GeocentricCoordinateReferenceSystem referenceSystem = provider.GeocentricCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
@@ -606,10 +605,9 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ').Replace("GCS_", String.Empty);
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 GeographicCoordinateReferenceSystem referenceSystem = provider.GeographicCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
@@ -682,10 +680,9 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 ProjectedCoordinateReferenceSystem referenceSystem = provider.ProjectedCoordinateReferenceSystems[authorityName, code];
                 if (referenceSystem != null)
@@ -761,12 +758,11 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             CoordinateOperationMethod method;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 method = provider.CoordinateOperationMethods[authorityName, code];
                 if (method != null)
@@ -852,12 +848,11 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             UnitOfMeasurement unit;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 unit = provider.UnitsOfMeasurement[authorityName, code];
                 if (unit != null)
@@ -894,12 +889,11 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             Meridian meridian;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 meridian = provider.Meridians[authorityName, code];
                 if (meridian != null)
@@ -936,10 +930,9 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 GeodeticDatum datum = provider.GeodeticDatums[authorityName, code];
                 if (datum != null)
@@ -980,12 +973,11 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-            Int32 code;
 
             Ellipsoid ellipsoid = null;
 
             // search by identifier
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out code))
+            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))
             {
                 ellipsoid = provider.Ellipsoids[authorityName, code];
                 if (ellipsoid != null)

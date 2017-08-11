@@ -93,7 +93,7 @@ namespace AEGIS.Collections.SearchTrees
         public TValue Search(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -112,7 +112,7 @@ namespace AEGIS.Collections.SearchTrees
         public Boolean TrySearch(TKey key, out TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -134,7 +134,7 @@ namespace AEGIS.Collections.SearchTrees
         public Boolean Contains(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             return this.SearchNode(key) != null;
         }
@@ -149,7 +149,7 @@ namespace AEGIS.Collections.SearchTrees
         public virtual void Insert(TKey key, TValue value)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             if (this.root == null)
             {
@@ -181,7 +181,7 @@ namespace AEGIS.Collections.SearchTrees
         public virtual Boolean Remove(TKey key)
         {
             if (key == null)
-                throw new ArgumentNullException(nameof(key), CollectionMessages.KeyIsNull);
+                throw new ArgumentNullException(nameof(key));
 
             Node node = this.SearchNode(key);
             if (node == null)
@@ -522,10 +522,7 @@ namespace AEGIS.Collections.SearchTrees
             /// <exception cref="System.ArgumentNullException">The tree is null.</exception>
             internal Enumerator(BinarySearchTree<TKey, TValue> tree)
             {
-                if (tree == null)
-                    throw new ArgumentNullException(nameof(tree), CollectionMessages.TreeIsNull);
-
-                this.localTree = tree;
+                this.localTree = tree ?? throw new ArgumentNullException(nameof(tree));
                 this.localVersion = tree.version;
 
                 this.stack = new Stack<Node>();
@@ -637,10 +634,7 @@ namespace AEGIS.Collections.SearchTrees
             /// <exception cref="System.ArgumentNullException">The tree is null.</exception>
             internal SearchTreeEnumerator(BinarySearchTree<TKey, TValue> tree)
             {
-                if (tree == null)
-                    throw new ArgumentNullException(nameof(tree), CollectionMessages.TreeIsNull);
-
-                this.localTree = tree;
+                this.localTree = tree ?? throw new ArgumentNullException(nameof(tree));
                 this.localVersion = tree.version;
                 this.current = default(KeyValuePair<TKey, TValue>);
                 this.currentNode = null;

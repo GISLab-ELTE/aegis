@@ -35,7 +35,7 @@ namespace AEGIS.Algorithms
         public static Double Area(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return Math.Abs(SignedArea(polygon));
         }
@@ -72,7 +72,7 @@ namespace AEGIS.Algorithms
         public static Double SignedArea(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return SignedArea(polygon.Shell, polygon.Holes);
         }
@@ -86,7 +86,7 @@ namespace AEGIS.Algorithms
         public static Double SignedArea(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             IEnumerator<Coordinate> enumerator = shell.Elements().GetEnumerator();
             if (!enumerator.MoveNext())
@@ -142,7 +142,7 @@ namespace AEGIS.Algorithms
         public static Boolean IsConvex(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             if (polygon.HoleCount > 0)
                 return false;
@@ -159,7 +159,7 @@ namespace AEGIS.Algorithms
         public static Boolean IsConvex(IEnumerable<Coordinate> shell)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             IEnumerator<Coordinate> enumerator = shell.Elements().GetEnumerator();
             if (!enumerator.MoveNext())
@@ -206,7 +206,7 @@ namespace AEGIS.Algorithms
         public static Boolean IsValid(IBasicPolygon polygon)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return IsValid(polygon.Shell, polygon.Holes, true, null);
         }
@@ -221,7 +221,7 @@ namespace AEGIS.Algorithms
         public static Boolean IsValid(IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return IsValid(polygon.Shell, polygon.Holes, true, precisionModel);
         }
@@ -299,7 +299,7 @@ namespace AEGIS.Algorithms
         public static Boolean IsValid(IEnumerable<Coordinate> shell, IEnumerable<IEnumerable<Coordinate>> holes, Boolean validateIntersections, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             if (precisionModel == null)
                 precisionModel = PrecisionModel.Default;
@@ -400,7 +400,7 @@ namespace AEGIS.Algorithms
         public static Orientation Orientation(IBasicPolygon polygon, PrecisionModel precisionModel)
         {
             if (polygon == null)
-                throw new ArgumentNullException(nameof(polygon), CoreMessages.PolygonIsNull);
+                throw new ArgumentNullException(nameof(polygon));
 
             return Orientation(polygon.Shell, precisionModel);
         }
@@ -426,7 +426,7 @@ namespace AEGIS.Algorithms
         public static Orientation Orientation(IEnumerable<Coordinate> shell, PrecisionModel precisionModel)
         {
             if (shell == null)
-                throw new ArgumentNullException(nameof(shell), CoreMessages.ShellIsNull);
+                throw new ArgumentNullException(nameof(shell));
 
             // check for polygon properties
             IEnumerator<Coordinate> enumerator = shell.GetEnumerator();

@@ -90,7 +90,7 @@ namespace AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationMethod> WithIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return this.collection.Values.WithIdentifier(identifier);
         }
@@ -104,7 +104,7 @@ namespace AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationMethod> WithName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             return this.collection.Values.WithName(name);
         }
@@ -118,7 +118,7 @@ namespace AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationMethod> WithMatchingIdentifier(String identifier)
         {
             if (identifier == null)
-                throw new ArgumentNullException(nameof(identifier), ReferenceMessages.IdentifierIsNull);
+                throw new ArgumentNullException(nameof(identifier));
 
             return this.collection.Values.WithMatchingIdentifier(identifier);
         }
@@ -132,7 +132,7 @@ namespace AEGIS.Reference.Collections
         public IEnumerable<CoordinateOperationMethod> WithMatchingName(String name)
         {
             if (name == null)
-                throw new ArgumentNullException(nameof(name), ReferenceMessages.NameIsNull);
+                throw new ArgumentNullException(nameof(name));
 
             return this.collection.Values.WithMatchingName(name);
         }

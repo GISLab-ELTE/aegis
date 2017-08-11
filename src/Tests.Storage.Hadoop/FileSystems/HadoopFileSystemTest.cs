@@ -12,7 +12,7 @@
 //     permissions and limitations under the License.
 // </copyright>
 
-namespace AEGIS.Tests.IO.Storage
+namespace AEGIS.Tests.Storage.FileSystems
 {
     using System;
     using System.IO;
@@ -27,6 +27,7 @@ namespace AEGIS.Tests.IO.Storage
     /// Test fixture for the <see cref="HadoopFileSystem" /> class.
     /// </summary>
     [TestFixture]
+    [Ignore("Requires proper test server configuration.")]
     public class HadoopFileSystemTest
     {
         /// <summary>
