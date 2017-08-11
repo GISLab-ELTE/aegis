@@ -1,4 +1,18 @@
-﻿namespace AEGIS.Indexes
+﻿// <copyright file="Octree.cs" company="Eötvös Loránd University (ELTE)">
+//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Educational Community License, Version 2.0 (the "License"); you may
+//     not use this file except in compliance with the License. You may
+//     obtain a copy of the License at
+//     http://opensource.org/licenses/ECL-2.0
+//
+//     Unless required by applicable law or agreed to in writing,
+//     software distributed under the License is distributed on an "AS IS"
+//     BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+//     or implied. See the License for the specific language governing
+//     permissions and limitations under the License.
+// </copyright>
+
+namespace AEGIS.Indexes
 {
     using System;
     using System.Collections.Generic;
@@ -15,30 +29,12 @@
         protected class OctreeNode : QuadTreeNode
         {
             /// <summary>
-            /// The children nodes of this node. Each internal node must always have 8 children.
-            /// </summary>
-            private readonly List<OctreeNode> children;
-
-            /// <summary>
             /// Initializes a new instance of the <see cref="OctreeNode"/> class.
             /// </summary>
             /// <param name="envelope">The envelope of the node.</param>
             public OctreeNode(Envelope envelope)
                 : base(envelope)
             {
-                this.children = new List<OctreeNode>(8);
-            }
-
-            /// <summary>
-            /// Gets the children of the node.
-            /// </summary>
-            /// /// <value>The children of the node.</value>
-            public new List<OctreeNode> Children
-            {
-                get
-                {
-                    return this.children;
-                }
             }
 
             /// <summary>
@@ -46,40 +42,26 @@
             /// </summary>
             protected new void CreateChildren()
             {
-                double minX = this.Envelope.MinX;
-                double midX = this.Envelope.MinX + (this.Envelope.MaxX - this.Envelope.MinX) / 2;
-                double maxX = this.Envelope.MaxX;
+                Double minX = this.Envelope.MinX;
+                Double midX = this.Envelope.MinX + (this.Envelope.MaxX - this.Envelope.MinX) / 2;
+                Double maxX = this.Envelope.MaxX;
 
-                double minY = this.Envelope.MinY;
-                double midY = this.Envelope.MinY + (this.Envelope.MaxY - this.Envelope.MinY) / 2;
-                double maxY = this.Envelope.MaxY;
+                Double minY = this.Envelope.MinY;
+                Double midY = this.Envelope.MinY + (this.Envelope.MaxY - this.Envelope.MinY) / 2;
+                Double maxY = this.Envelope.MaxY;
 
-                double minZ = this.Envelope.MinZ;
-                double midZ = this.Envelope.MinZ + (this.Envelope.MaxZ - this.Envelope.MinZ) / 2;
-                double maxZ = this.Envelope.MaxZ;
+                Double minZ = this.Envelope.MinZ;
+                Double midZ = this.Envelope.MinZ + (this.Envelope.MaxZ - this.Envelope.MinZ) / 2;
+                Double maxZ = this.Envelope.MaxZ;
 
-                this.AddChild(minX, midX, minY, midY, minZ, midZ);
-                this.AddChild(minX, midX, minY, midY, midZ, maxZ);
-                this.AddChild(minX, midX, midY, maxY, minZ, midZ);
-                this.AddChild(minX, midX, midY, maxY, midZ, maxZ);
-                this.AddChild(midX, maxX, minY, midY, minZ, midZ);
-                this.AddChild(midX, maxX, minY, midY, midZ, maxZ);
-                this.AddChild(midX, maxX, midY, maxY, minZ, midZ);
-                this.AddChild(midX, maxX, midY, maxY, midZ, maxZ);
-            }
-
-            /// <summary>
-            /// Creates a child node for this node.
-            /// </summary>
-            /// <param name="x1">The first X coordinate of the child.</param>
-            /// <param name="x2">The second X coordinate of the child.</param>
-            /// <param name="y1">The first Y coordinate of the child.</param>
-            /// <param name="y2">The second Y coordinate of the child.</param>
-            /// <param name="z1">The first Z coordinate of the child.</param>
-            /// <param name="z2">The second Z coordinate of the child.</param>
-            private void AddChild(double x1, double x2, double y1, double y2, double z1, double z2)
-            {
-                this.Children.Add(new OctreeNode(new Envelope(x1, x2, y1, y2, z1, z2)));
+                this.children.Add(new OctreeNode(new Envelope(minX, midX, minY, midY, minZ, midZ)));
+                this.children.Add(new OctreeNode(new Envelope(minX, midX, minY, midY, midZ, maxZ)));
+                this.children.Add(new OctreeNode(new Envelope(minX, midX, midY, maxY, minZ, midZ)));
+                this.children.Add(new OctreeNode(new Envelope(minX, midX, midY, maxY, midZ, maxZ)));
+                this.children.Add(new OctreeNode(new Envelope(midX, maxX, minY, midY, minZ, midZ)));
+                this.children.Add(new OctreeNode(new Envelope(midX, maxX, minY, midY, midZ, maxZ)));
+                this.children.Add(new OctreeNode(new Envelope(midX, maxX, midY, maxY, minZ, midZ)));
+                this.children.Add(new OctreeNode(new Envelope(midX, maxX, midY, maxY, midZ, maxZ)));
             }
         }
 

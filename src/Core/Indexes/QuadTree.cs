@@ -29,14 +29,14 @@ namespace AEGIS.Indexes
         protected class QuadTreeNode
         {
             /// <summary>
+            /// The children nodes of this node. Each internal node must always have 4 children.
+            /// </summary>
+            protected readonly List<QuadTreeNode> children;
+
+            /// <summary>
             /// The envelope of the node.
             /// </summary>
             private readonly Envelope envelope;
-
-            /// <summary>
-            /// The children nodes of this node. Each internal node must always have 4 children.
-            /// </summary>
-            private readonly List<QuadTreeNode> children;
 
             /// <summary>
             /// The geometries stored in this node.
@@ -93,11 +93,11 @@ namespace AEGIS.Indexes
             /// <summary>
             /// Gets the number of geometries in this subtree.
             /// </summary>
-            public int NumberOfGeometries
+            public Int32 NumberOfGeometries
             {
                 get
                 {
-                    int count = 0;
+                    Int32 count = 0;
                     foreach (QuadTreeNode node in this.children)
                         count += node.NumberOfGeometries;
 
@@ -191,6 +191,20 @@ namespace AEGIS.Indexes
             }
 
             /// <summary>
+            /// Creates the children nodes of a node.
+            /// </summary>
+            protected virtual void CreateChildren()
+            {
+                Double midX = this.envelope.MinX + (this.envelope.MaxX - this.envelope.MinX) / 2;
+                Double midY = this.envelope.MinY + (this.envelope.MaxY - this.envelope.MinY) / 2;
+
+                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, this.envelope.MinY, midY)));
+                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, this.envelope.MinY, midY)));
+                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, midY, this.envelope.MaxY)));
+                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, midY, this.envelope.MaxY)));
+            }
+
+            /// <summary>
             /// Subdivides a nodes geometries between its children.
             /// </summary>
             private void SubdivideContents()
@@ -211,20 +225,6 @@ namespace AEGIS.Indexes
 
                 foreach (IBasicGeometry geometry in markedForRemove)
                     this.contents.Remove(geometry);
-            }
-
-            /// <summary>
-            /// Creates the children nodes of a node.
-            /// </summary>
-            private void CreateChildren()
-            {
-                double midX = this.envelope.MinX + (this.envelope.MaxX - this.envelope.MinX) / 2;
-                double midY = this.envelope.MinY + (this.envelope.MaxY - this.envelope.MinY) / 2;
-
-                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, this.envelope.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, this.envelope.MinY, midY)));
-                this.children.Add(new QuadTreeNode(new Envelope(this.envelope.MinX, midX, midY, this.envelope.MaxY)));
-                this.children.Add(new QuadTreeNode(new Envelope(midX, this.envelope.MaxX, midY, this.envelope.MaxY)));
             }
         }
 
@@ -249,7 +249,7 @@ namespace AEGIS.Indexes
         /// Gets the number of indexed geometries.
         /// </summary>
         /// <value>The number of indexed geometries.</value>
-        public int NumberOfGeometries
+        public Int32 NumberOfGeometries
         {
             get
             {
