@@ -49,12 +49,12 @@ namespace AEGIS.Converters
         /// or
         /// The specified geometry is not supported.
         /// </exception>
-        public static String ToGeographicMarkup(this IGeometry geometry)
+        public static String ToMarkup(this IGeometry geometry)
         {
-            XElement element = ToGeographyMarkupElement(geometry);
+            XElement element = ToMarkupElement(geometry);
             element.Add(new XAttribute(XNamespace.Xmlns + "gml", Namespace));
 
-            return element.ToString();
+            return element.ToString(SaveOptions.DisableFormatting | SaveOptions.OmitDuplicateNamespaces);
         }
 
         /// <summary>
@@ -69,45 +69,12 @@ namespace AEGIS.Converters
         /// or
         /// The specified geometry is not supported.
         /// </exception>
-        public static String ToGeographicMarkup(this IGeometry geometry, String identifier)
+        public static String ToMarkup(this IGeometry geometry, String identifier)
         {
-            XElement element = ToGeographyMarkupElement(geometry, identifier);
+            XElement element = ToMarkupElement(geometry, identifier);
             element.Add(new XAttribute(XNamespace.Xmlns + "gml", Namespace));
 
-            return element.ToString();
-        }
-
-        /// <summary>
-        /// Converts the geometry to <see cref="XDocument"/> in Geography Markup Language (GML) representation.
-        /// </summary>
-        /// <param name="geometry">The geometry.</param>
-        /// <returns>The converted geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
-        /// <exception cref="System.ArgumentException">
-        /// The specified geometry is invalid.
-        /// or
-        /// The specified geometry is not supported.
-        /// </exception>
-        public static XDocument ToGeographicMarkupDocument(this IGeometry geometry)
-        {
-            return new XDocument(new XAttribute(XNamespace.Xmlns + "gml", Namespace), ToGeographyMarkupElement(geometry));
-        }
-
-        /// <summary>
-        /// Converts the geometry to <see cref="XDocument"/> in Geography Markup Language (GML) representation.
-        /// </summary>
-        /// <param name="geometry">The geometry.</param>
-        /// <param name="identifier">The geometry identifier.</param>
-        /// <returns>The converted geometry.</returns>
-        /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
-        /// <exception cref="System.ArgumentException">
-        /// The specified geometry is invalid.
-        /// or
-        /// The specified geometry is not supported.
-        /// </exception>
-        public static XDocument ToGeographicMarkupDocument(this IGeometry geometry, String identifier)
-        {
-            return new XDocument(new XAttribute(XNamespace.Xmlns + "gml", Namespace), ToGeographyMarkupElement(geometry, identifier));
+            return element.ToString(SaveOptions.DisableFormatting | SaveOptions.OmitDuplicateNamespaces);
         }
 
         /// <summary>
@@ -121,9 +88,9 @@ namespace AEGIS.Converters
         /// or
         /// The specified geometry is not supported.
         /// </exception>
-        public static XElement ToGeographyMarkupElement(this IGeometry geometry)
+        public static XElement ToMarkupElement(this IGeometry geometry)
         {
-            return ToGeographyMarkupElement(geometry, null);
+            return ToMarkupElement(geometry, null);
         }
 
         /// <summary>
@@ -132,13 +99,17 @@ namespace AEGIS.Converters
         /// <param name="geometry">The geometry.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted geometry.</returns>
+        /// <remarks>
+        /// The <see cref="XElement" /> does not contain the namespace attribute for <code>gml</code>
+        /// (<code>xmlns:gml="http://www.opengis.net/gml/"</code>), which should be added to a parent node before usage.
+        /// </remarks>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
         /// <exception cref="System.ArgumentException">
         /// The specified geometry is invalid.
         /// or
         /// The specified geometry is not supported.
         /// </exception>
-        public static XElement ToGeographyMarkupElement(this IGeometry geometry, String identifier)
+        public static XElement ToMarkupElement(this IGeometry geometry, String identifier)
         {
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry));
@@ -146,19 +117,19 @@ namespace AEGIS.Converters
             try
             {
                 if (geometry is IPoint)
-                    return ToGeographyMarkup(geometry as IPoint, identifier);
+                    return ToMarkupInternal(geometry as IPoint, false, identifier);
                 if (geometry is ILinearRing)
-                    return ToGeographyMarkup(geometry as ILinearRing, identifier);
+                    return ToMarkupInternal(geometry as ILinearRing, false, identifier);
                 if (geometry is ILineString)
-                    return ToGeographyMarkup(geometry as ILineString, identifier);
+                    return ToMarkupInternal(geometry as ILineString, false, identifier);
                 if (geometry is IPolygon)
-                    return ToGeographyMarkup(geometry as IPolygon, identifier);
+                    return ToMarkupInternal(geometry as IPolygon, false, identifier);
                 if (geometry is IMultiPoint)
-                    return ToGeographyMarkup(geometry as IMultiPoint, identifier);
+                    return ToMarkupInternal(geometry as IMultiPoint, false, identifier);
                 if (geometry is IMultiLineString)
-                    return ToGeographyMarkup(geometry as IMultiLineString, identifier);
+                    return ToMarkupInternal(geometry as IMultiLineString, false, identifier);
                 if (geometry is IMultiPolygon)
-                    return ToGeographyMarkup(geometry as IMultiPolygon, identifier);
+                    return ToMarkupInternal(geometry as IMultiPolygon, false, identifier);
             }
             catch (Exception ex)
             {
@@ -175,6 +146,10 @@ namespace AEGIS.Converters
         /// <param name="geometryFactory">The geometry factory.</param>
         /// <param name="referenceSystemFactory">The reference system factory.</param>
         /// <returns>The converted geometry.</returns>
+        /// <remarks>
+        /// The <see cref="XElement" /> does not contain the namespace attribute for <code>gml</code>
+        /// (<code>xmlns:gml="http://www.opengis.net/gml/"</code>), which should be added to a parent node before usage.
+        /// </remarks>
         /// <exception cref="System.ArgumentNullException">
         /// The source is null.
         /// or
@@ -433,14 +408,17 @@ namespace AEGIS.Converters
         /// Converts the point to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="point">The point.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted point.</returns>
-        private static XElement ToGeographyMarkup(IPoint point, String identifier = null)
+        private static XElement ToMarkupInternal(IPoint point, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "Point");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, point.ReferenceSystem, point.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, point.ReferenceSystem, point.CoordinateDimension);
 
             if (point.CoordinateDimension == 3)
                 element.Add(new XElement(Namespace + "pos", point.X.ToString("G", CultureInfo.InvariantCulture) + " " + point.Y.ToString("G", CultureInfo.InvariantCulture) + " " + point.Z.ToString("G", CultureInfo.InvariantCulture)));
@@ -454,14 +432,18 @@ namespace AEGIS.Converters
         /// Converts the line string to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="lineString">The line string.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted line string.</returns>
-        private static XElement ToGeographyMarkup(ILineString lineString, String identifier = null)
+        private static XElement ToMarkupInternal(ILineString lineString, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "LineString");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, lineString.ReferenceSystem, lineString.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, lineString.ReferenceSystem, lineString.CoordinateDimension);
+
             ConvertCoordinates(element, lineString);
 
             return element;
@@ -471,14 +453,18 @@ namespace AEGIS.Converters
         /// Converts the linear ring to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="geometry">The linear ring.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted linear ring.</returns>
-        private static XElement ToGeographyMarkup(ILinearRing geometry, String identifier = null)
+        private static XElement ToMarkupInternal(ILinearRing geometry, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "LinearRing");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, geometry.ReferenceSystem, geometry.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, geometry.ReferenceSystem, geometry.CoordinateDimension);
+
             ConvertCoordinates(element, geometry);
 
             return element;
@@ -488,20 +474,23 @@ namespace AEGIS.Converters
         /// Converts the polygon to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="polygon">The polygon.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted polygon.</returns>
-        private static XElement ToGeographyMarkup(IPolygon polygon, String identifier = null)
+        private static XElement ToMarkupInternal(IPolygon polygon, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "Polygon");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, polygon.ReferenceSystem, polygon.CoordinateDimension);
 
-            element.Add(new XElement(Namespace + "outerBoundaryIs", ToGeographyMarkup(polygon.Shell)));
+            if (!partial)
+                ConvertReferenceSystem(element, polygon.ReferenceSystem, polygon.CoordinateDimension);
+
+            element.Add(new XElement(Namespace + "outerBoundaryIs", ToMarkupInternal(polygon.Shell, true)));
 
             foreach (ILinearRing hole in polygon.Holes)
             {
-                element.Add(new XElement(Namespace + "innerBoundaryIs", ToGeographyMarkup(hole)));
+                element.Add(new XElement(Namespace + "innerBoundaryIs", ToMarkupInternal(hole, true)));
             }
 
             return element;
@@ -511,14 +500,18 @@ namespace AEGIS.Converters
         /// Converts the multi point to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="multiPoint">The multi point.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted multi point.</returns>
-        private static XElement ToGeographyMarkup(IMultiPoint multiPoint, String identifier = null)
+        private static XElement ToMarkupInternal(IMultiPoint multiPoint, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "MultiPoint");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, multiPoint.ReferenceSystem, multiPoint.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, multiPoint.ReferenceSystem, multiPoint.CoordinateDimension);
+
             ConvertCoordinates(element, multiPoint.Select(point => point.Coordinate));
 
             return element;
@@ -528,18 +521,21 @@ namespace AEGIS.Converters
         /// Converts the multi line string to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="multiLineString">The multi line string.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted multi line string.</returns>
-        private static XElement ToGeographyMarkup(IMultiLineString multiLineString, String identifier = null)
+        private static XElement ToMarkupInternal(IMultiLineString multiLineString, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "MultiLineString");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, multiLineString.ReferenceSystem, multiLineString.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, multiLineString.ReferenceSystem, multiLineString.CoordinateDimension);
 
             foreach (ILineString lineString in multiLineString)
             {
-                element.Add(new XElement(Namespace + "LineStringMember", ToGeographyMarkup(lineString)));
+                element.Add(new XElement(Namespace + "LineStringMember", ToMarkupInternal(lineString, true)));
             }
 
             return element;
@@ -549,18 +545,21 @@ namespace AEGIS.Converters
         /// Converts the multi polygon to Geography Markup Language (GML) representation.
         /// </summary>
         /// <param name="multiPolygon">The multi polygon.</param>
+        /// <param name="partial">Indicates that the geometry is part of another.</param>
         /// <param name="identifier">The geometry identifier.</param>
         /// <returns>The converted multi polygon.</returns>
-        private static XElement ToGeographyMarkup(IMultiPolygon multiPolygon, String identifier = null)
+        private static XElement ToMarkupInternal(IMultiPolygon multiPolygon, Boolean partial, String identifier = null)
         {
             XElement element = new XElement(Namespace + "MultiPolygon");
 
             ConvertIdentifier(element, identifier);
-            ConvertReferenceSystem(element, multiPolygon.ReferenceSystem, multiPolygon.CoordinateDimension);
+
+            if (!partial)
+                ConvertReferenceSystem(element, multiPolygon.ReferenceSystem, multiPolygon.CoordinateDimension);
 
             foreach (IPolygon polygon in multiPolygon)
             {
-                element.Add(new XElement(Namespace + "PolygonMember", ToGeographyMarkup(polygon)));
+                element.Add(new XElement(Namespace + "PolygonMember", ToMarkupInternal(polygon, true)));
             }
 
             return element;
@@ -770,8 +769,8 @@ namespace AEGIS.Converters
             if (referenceSystem == null)
                 return;
 
-            element.Add(new XAttribute("srsDimension", dimension));
             element.Add(new XAttribute("srsName", ReferenceSystemUri + referenceSystem.Code));
+            element.Add(new XAttribute("srsDimension", dimension));
         }
 
         /// <summary>
@@ -904,7 +903,7 @@ namespace AEGIS.Converters
             if (!attribute.Value.Contains(ReferenceSystemUri))
                 return null;
 
-            return referenceSystemFactory.CreateReferenceSystemFromIdentifier("EPSG" + attribute.Value.Remove(0, ReferenceSystemUri.Length));
+            return referenceSystemFactory.CreateReferenceSystemFromIdentifier("EPSG::" + attribute.Value.Remove(0, ReferenceSystemUri.Length));
         }
 
         /// <summary>
