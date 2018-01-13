@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +88,7 @@
     <Compile Include="Indexes\KDTreeTest.cs" />
     <Compile Include="Indexes\OctreeTest.cs" />
     <Compile Include="Indexes\QuadTreeTest.cs" />
+    <Compile Include="Indexes\Rectangle\HilbertEncoderTest.cs" />
     <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RTreeTest.cs" />
     <Compile Include="PrecisionModelTest.cs" />
