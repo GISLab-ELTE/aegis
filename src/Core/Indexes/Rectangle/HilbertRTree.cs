@@ -293,8 +293,8 @@ namespace AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="minChildren">The minimum number of child nodes.</param>
         /// <param name="maxChildren">The maximum number of child nodes.</param>
-        public HilbertRTree(Int32 minChildren, Int32 maxChildren)
-            : this(minChildren, maxChildren, new HilbertEncoder()) { }
+        public HilbertRTree(Int32 maxChildren)
+            : this(maxChildren, new HilbertEncoder()) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HilbertRTree"/> class using
@@ -304,8 +304,8 @@ namespace AEGIS.Indexes.Rectangle
         /// <param name="minChildren">The minimum children.</param>
         /// <param name="maxChildren">The maximum children.</param>
         /// <param name="encoder">the space filling curve implementation used to encode coordinate values to one dimensional integers</param>
-        public HilbertRTree(Int32 minChildren, Int32 maxChildren, ISpaceFillingCurveEncoder encoder)
-            : base(minChildren, maxChildren)
+        public HilbertRTree(Int32 maxChildren, ISpaceFillingCurveEncoder encoder)
+            : base(maxChildren * 2 / 3, maxChildren)
         {
             this.encoder = encoder;
         }
@@ -315,25 +315,204 @@ namespace AEGIS.Indexes.Rectangle
             public HilbertNode(Int32 maxChildren)
                 : base(maxChildren)
             {
-                this.LargestHilbertValue = new BigInteger(0);
+                this.LargestHilbertValue = new BigInteger(-1);
             }
 
             public HilbertNode(HilbertNode parent)
-                : base(parent) { }
+                : base(parent)
+            {
+                this.LargestHilbertValue = new BigInteger(-1);
+            }
 
-            public HilbertNode(IBasicGeometry geometry, BigInteger largestHilbertValue, HilbertNode parent = null)
+            public HilbertNode(IBasicGeometry geometry, BigInteger hilbertValue, HilbertNode parent = null)
                 : base(geometry, parent)
             {
-                this.LargestHilbertValue = largestHilbertValue;
+                this.LargestHilbertValue = hilbertValue;
             }
 
             public BigInteger LargestHilbertValue { get; private set; }
 
+            /// <summary>
+            /// Adds a new child to the node.
+            /// </summary>
+            /// <param name="child">The child node.</param>
+            /// <exception cref="ArgumentException">If <code>child</code> is not an instance of <see cref="HilbertNode"/>.</exception>
+            public override void AddChild(Node child)
+            {
+                if (!(child is HilbertNode))
+                {
+                    throw new ArgumentException("Children of a HilbertNode shall also be instances of HilbertNode.");
+                }
+
+                // update parent, initialize Children list if necessary
+                child.Parent = this;
+                if (this.Children == null)
+                    this.Children = new List<Node>(this.MaxChildren);
+
+                // get the LHV of the child
+                BigInteger lhv = ((HilbertNode)child).LargestHilbertValue;
+
+                // insert the new child in a sorted manner (according to LHV values)
+                Int32 index = this.Children.FindIndex(c => ((HilbertNode)c).LargestHilbertValue > lhv);
+                if (index >= 0)
+                    this.Children.Insert(index, child);
+                else
+                    this.Children.Add(child);
+
+                // update LHV
+                if (lhv > this.LargestHilbertValue)
+                {
+                    this.LargestHilbertValue = lhv;
+                }
+
+                // update MBR
+                this.CorrectBounding(child.Envelope);
+            }
+
+            /// <summary>
+            /// Removes a child of the node.
+            /// </summary>
+            /// <param name="node">The node to be removed.</param>
+            /// <exception cref="ArgumentException">If <code>node</code> is not an instance of <see cref="HilbertNode"/>.</exception>
+            public override void RemoveChild(Node node)
+            {
+                if (!(node is HilbertNode))
+                {
+                    throw new ArgumentException("Children of a HilbertNode shall also be instances of HilbertNode.");
+                }
+
+                // remove the child, and update MBR
+                base.RemoveChild(node);
+
+                // update LHV
+                BigInteger lhv = ((HilbertNode)node).LargestHilbertValue;
+                if (this.LargestHilbertValue == lhv)
+                {
+                    this.LargestHilbertValue = this.ChildrenCount > 0 ?
+                        ((HilbertNode)this.Children[this.ChildrenCount - 1]).LargestHilbertValue :
+                        new BigInteger(-1);
+                }
+            }
+
+            /// <summary>
+            /// Clears all the children from this <see cref="HilbertNode"/>.
+            /// </summary>
+            public void ClearChildren()
+            {
+                this.Children = null;
+                this.CorrectBounding();
+                this.LargestHilbertValue = new BigInteger(-1);
+            }
+
+            /// <summary>
+            /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            /// </summary>
+            /// <param name="obj">An object to compare with this instance.</param>
+            /// <returns>
+            /// A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="obj" /> in the sort order. Zero This instance occurs in the same position in the sort order as <paramref name="obj" />. Greater than zero This instance follows <paramref name="obj" /> in the sort order.
+            /// </returns>
             public Int32 CompareTo(Object obj)
             {
                 HilbertNode other = (HilbertNode)obj;
                 return BigInteger.Compare(this.LargestHilbertValue, other.LargestHilbertValue);
             }
+        }
+
+        /// <summary>
+        /// Checks the children counts.
+        /// </summary>
+        /// <param name="minChildren">The minimum children.</param>
+        /// <param name="maxChildren">The maximum children.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <code>maxChildren</code> is not a positive integer which can be divided by 3
+        /// or
+        /// <code>minChildren</code> is different than the 2/3 of <code>maxChildren</code>
+        /// </exception>
+        protected override void CheckChildrenCounts(int minChildren, int maxChildren)
+        {
+            if (maxChildren < 3 || maxChildren % 3 != 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxChildren),
+                    "should be a positive integer which can be divided by 3");
+            }
+
+            if (minChildren != maxChildren * 2 / 3)
+            {
+                throw new ArgumentOutOfRangeException(nameof(minChildren),
+                    "should be equal to the 2/3 of " + nameof(maxChildren));
+            }
+        }
+
+        /// <summary>
+        /// Creates the root node (when initializing, or clearing the tree).
+        /// </summary>
+        /// <param name="maxChildren">The maximum number of children nodes for a node.</param>
+        protected override void CreateRootNode(int maxChildren)
+        {
+            this.Root = new HilbertNode(maxChildren);
+        }
+
+        /// <summary>
+        /// Adds a geometry by creating a new leaf node.
+        /// </summary>
+        /// <param name="geometry">The geometry to be added.</param>
+        protected override void AddGeometry(IBasicGeometry geometry)
+        {
+            HilbertNode leaf = new HilbertNode(geometry, this.GetHilbertValue(geometry));
+            HilbertNode leafContainer = this.ChooseLeafContainer(leaf);
+
+            if (!this.IsFull(leafContainer))
+            {
+                leafContainer.AddChild(leaf);
+                return;
+            }
+
+            HilbertNode newNode = this.HandleOverflow(leafContainer, leaf);
+            HilbertNode rightRoot = this.AdjustTree(leafContainer, newNode);
+            this.IncreaseHeight(rightRoot);
+        }
+
+        /// <summary>
+        /// Removes the specified geometry from the tree.
+        /// </summary>
+        /// <param name="geometry">The geometry.</param>
+        /// <returns>
+        ///   <c>true</c>, if the tree contains the geometry, otherwise, <c>false</c>.
+        /// </returns>
+        protected override Boolean RemoveGeometry(IBasicGeometry geometry)
+        {
+            // search for the leaf container which contains the specified geometry, if not found, return false
+            Node l = null;
+            this.FindLeafContainer(geometry, this.Root, ref l);
+            if (l == null)
+                return false;
+
+            // if found, remove the leaf with the specified geometry
+            HilbertNode leafContainer = (HilbertNode)l;
+            leafContainer.RemoveChild(
+                    leafContainer.Children.Find(child => child.Geometry == geometry));
+
+            // then check for a potential underflow
+            if (leafContainer.ChildrenCount < this.MinChildren)
+            {
+                // underflow happened
+                this.HandleUnderflow(leafContainer);
+            }
+
+            // adjust parents
+            this.AdjustTree(leafContainer);
+            return true;
+        }
+
+        private void IncreaseHeight(HilbertNode rightRoot)
+        {
+            if (rightRoot == null)
+                return;
+
+            HilbertNode newRoot = new HilbertNode(this.MaxChildren);
+            newRoot.AddChild(this.Root);
+            newRoot.AddChild(rightRoot);
+            this.Root = newRoot;
         }
 
         private HilbertNode ChooseLeafContainer(HilbertNode leaf)
@@ -354,31 +533,43 @@ namespace AEGIS.Indexes.Rectangle
 
         private HilbertNode ChooseSibling(HilbertNode node)
         {
-            if (node.Parent == null)
-                return null;
-            List<HilbertNode> siblings = new List<HilbertNode>(node.Parent.Children.Count);
-            node.Parent.Children.ForEach(child => siblings.Add((HilbertNode)child));
-            Int32 index = siblings.IndexOf(node);
-            HilbertNode chosenSibling = null;
-            if (index + 1 < siblings.Count)
-                chosenSibling = siblings[index + 1];
-            if ((chosenSibling == null || chosenSibling.IsFull) && index > 0)
-                chosenSibling = siblings[index - 1];
-            return chosenSibling;
+            Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
+            // prefer the sibling to the right side
+            return siblings.Item2.IsFull ? siblings.Item1 : siblings.Item2;
         }
 
+        private Tuple<HilbertNode, HilbertNode> ChooseSiblings(HilbertNode node)
+        {
+            if (node.Parent?.Children == null)
+                return Tuple.Create<HilbertNode, HilbertNode>(null, null);
+
+            List<Node> siblings = node.Parent.Children;
+            Int32 index = siblings.IndexOf(node);
+
+            HilbertNode left = null;
+            HilbertNode right = null;
+            if (index + 1 < siblings.Count)
+                right = (HilbertNode)siblings[index + 1];
+            if (index > 0)
+                left = (HilbertNode)siblings[index - 1];
+            return Tuple.Create<HilbertNode, HilbertNode>(left, right);
+        }
+
+        /// <summary>
+        /// Handles the scenario where an overflow happens (the chosen leaf container is full).
+        /// </summary>
+        /// <remarks>
+        /// It handles overflows by first trying to search for a suitable sibling under the same parent to insert the new leaf into.
+        /// If this fails (either because there are no siblings, or because they are all full), it will split the node (or two
+        /// nodes if there was at least one sibling) into 2 or 3 nodes, and distributes their children (and the new node) evenly amongst them.
+        /// </remarks>
+        /// <param name="node">The node where the overflow happened.</param>
+        /// <param name="leaf">The leaf (or any new node if this is an internal level) to be inserted.</param>
+        /// <returns>The newly created node if a split was inevitable.</returns>
         private HilbertNode HandleOverflow(HilbertNode node, HilbertNode leaf)
         {
             // check for a sibling node
             HilbertNode sibling = this.ChooseSibling(node);
-
-            // create a sorted list (based on Hilbert values) from all leaves of the original node and the sibling node,
-            // and of the new leaf element
-            List<HilbertNode> leaves = new List<HilbertNode>();
-            node.Children?.ForEach(child => leaves.Add((HilbertNode)child));
-            sibling?.Children?.ForEach(child => leaves.Add((HilbertNode)child));
-            leaves.Add(leaf);
-            leaves.Sort();
 
             // then we redistribute these children evenly across the 2 or 3 nodes:
             // - between the original and its sibling if there was one, and it was not full
@@ -399,10 +590,69 @@ namespace AEGIS.Indexes.Rectangle
                 distributionList.Insert(sibling.LargestHilbertValue < node.LargestHilbertValue ? 0 : 1, sibling);
             }
 
-            distributionList.ForEach(n => n.Children?.Clear());
-            Int32 distributionFactor = Convert.ToInt32((decimal)node.MaxChildren / distributionList.Count);
-            IEnumerator<HilbertNode> enumerator = leaves.GetEnumerator();
-            distributionList.ForEach(container =>
+            this.RedistributeChildrenEvenly(distributionList, leaf);
+
+            return newNode;
+        }
+
+        private void HandleUnderflow(HilbertNode node)
+        {
+            // check for sibling nodes
+            Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
+            if (this.HasSpareChild(siblings.Item1) || this.HasSpareChild(siblings.Item2))
+            {
+                // if there are at least one sibling with more than the minimum amount of children, we redistribute
+                List<HilbertNode> distributionList = new List<HilbertNode>();
+                if (siblings.Item1 != null)
+                    distributionList.Add(siblings.Item1);
+                distributionList.Add(node);
+                if (siblings.Item2 != null)
+                    distributionList.Add(siblings.Item2);
+                this.RedistributeChildrenEvenly(distributionList);
+            }
+            else if (siblings.Item1 != null && siblings.Item2 != null)
+            {
+                // if there are two siblings but both of the have the minimum number of children, we delete a node, then redistribute
+                List<HilbertNode> distributionList = new List<HilbertNode>();
+                distributionList.Add(siblings.Item1);
+                distributionList.Add(siblings.Item2);
+                List<HilbertNode> additionalChildren = new List<HilbertNode>();
+                node.Children.ForEach(child => additionalChildren.Add((HilbertNode)child));
+                node.Parent.RemoveChild(node);
+                this.RedistributeChildrenEvenly(distributionList, additionalChildren: additionalChildren);
+            }
+        }
+
+        private Boolean HasSpareChild(HilbertNode node)
+        {
+            return node != null && node.ChildrenCount > this.MinChildren;
+        }
+
+        private Boolean IsFull(HilbertNode node)
+        {
+            return node == this.Root ? node.ChildrenCount == this.MinChildren * 2 : node.IsFull;
+        }
+
+        private void RedistributeChildrenEvenly(List<HilbertNode> nodes, HilbertNode additionalChild = null, List<HilbertNode> additionalChildren = null)
+        {
+            List<HilbertNode> children = new List<HilbertNode>();
+            nodes.ForEach(node =>
+            {
+                node?.Children?.ForEach(child => children.Add((HilbertNode)child));
+            });
+
+            if (additionalChild != null)
+                children.Add(additionalChild);
+
+            if (additionalChildren != null)
+                children.AddRange(additionalChildren);
+
+            children.Sort();
+
+            nodes.ForEach(n => n.ClearChildren());
+            Int32 distributionFactor = Convert.ToInt32((decimal)this.MaxChildren / nodes.Count);
+            IEnumerator<HilbertNode> enumerator = children.GetEnumerator();
+            nodes.ForEach(container =>
             {
                 for (Int32 i = 0; i < distributionFactor; i++)
                 {
@@ -411,43 +661,41 @@ namespace AEGIS.Indexes.Rectangle
                     container.AddChild(enumerator.Current);
                 }
             });
-
-            return newNode;
         }
 
-        private void AdjustTree(ISet<HilbertNode> cooperatingNodes, HilbertNode node, HilbertNode newNode)
+        /// <summary>
+        /// Adjusts the tree ascending from the leaf level up to the root.
+        /// </summary>
+        /// <param name="node">The node where the overflow happened.</param>
+        /// <param name="newNode">The new node, if a split was inevitable in <see cref="HandleOverflow(HilbertNode, HilbertNode)"/>, otherwise it's <code>null</code>.</param>
+        /// <returns>The new <see cref="HilbertNode"/> on the root level, if the root node had to be split.</returns>
+        private HilbertNode AdjustTree(HilbertNode node, HilbertNode newNode = null)
         {
-            // TODO ezt a feltételt átgondolni (lehet hogy egy iterációval hamarabb áll meg mint kellene)
-            while (!cooperatingNodes.Contains((HilbertNode)this.Root))
+            while (node != this.Root)
             {
                 // propagate node split upward
                 HilbertNode nParent = (HilbertNode)node.Parent;
                 HilbertNode pParent = null;
                 if (newNode != null)
                 {
-                    if (nParent.IsFull)
-                    {
+                    if (this.IsFull(nParent))
                         pParent = this.HandleOverflow(nParent, newNode);
-                    }
                     else
-                    {
-                        // TODO insert newNode in nParent correctly
-                    }
+                        nParent.AddChild(newNode);
                 }
 
-                // adjust parent level
-                ISet<HilbertNode> parents = new HashSet<HilbertNode>();
-                foreach (HilbertNode cooperatingNode in cooperatingNodes)
-                {
-                    parents.Add((HilbertNode)cooperatingNode.Parent);
-                }
-                // TODO adjust MBRs and LHVs in parents
-
-                cooperatingNodes = parents;
+                node = nParent;
                 newNode = pParent;
             }
+
+            return newNode;
         }
 
+        /// <summary>
+        /// Gets the hilbert value of the specified geometry using the <see cref="ISpaceFillingCurveEncoder"/> specified at construction.
+        /// </summary>
+        /// <param name="geometry">The geometry of which Hilbert value shall be calculated.</param>
+        /// <returns>The Hilbert value of the geometry as calculated by the <see cref="ISpaceFillingCurveEncoder"/> specified at construction time.</returns>
         private BigInteger GetHilbertValue(IBasicGeometry geometry)
         {
             Coordinate coordinate;
