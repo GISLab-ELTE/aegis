@@ -650,7 +650,7 @@ namespace AEGIS.Indexes.Rectangle
             children.Sort();
 
             nodes.ForEach(n => n.ClearChildren());
-            Int32 distributionFactor = Convert.ToInt32((decimal)this.MaxChildren / nodes.Count);
+            Int32 distributionFactor = Convert.ToInt32((decimal)children.Count / nodes.Count);
             IEnumerator<HilbertNode> enumerator = children.GetEnumerator();
             nodes.ForEach(container =>
             {
