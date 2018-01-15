@@ -89,6 +89,7 @@
     <Compile Include="Indexes\OctreeTest.cs" />
     <Compile Include="Indexes\QuadTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\HilbertEncoderTest.cs" />
+    <Compile Include="Indexes\Rectangle\HilbertRTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RTreeTest.cs" />
     <Compile Include="PrecisionModelTest.cs" />

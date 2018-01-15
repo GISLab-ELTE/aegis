@@ -27,6 +27,11 @@ namespace AEGIS.Indexes.Rectangle
     public class HilbertRTree : RTree
     {
         /// <summary>
+        /// The default maximum children when using the default constructor.
+        /// </summary>
+        private const Int32 DefaultMaxChildren = 12;
+
+        /// <summary>
         /// Represents an encoder which can take a 2D or 3D <see cref="Coordinate"/> and encode it
         /// using a space filling curve into a one dimensional integer.
         /// </summary>
@@ -36,7 +41,7 @@ namespace AEGIS.Indexes.Rectangle
             /// Encode the <see cref="Coordinate"/> using a space filling curve.
             /// </summary>
             /// <param name="coordinate">the 2D or 3D coordinate to encode</param>
-            /// <returns>the sequence number of the curve in the point represented by <code>coordinate</code></returns>
+            /// <returns>the sequence number of the curve in the point represented by <c>coordinate</c></returns>
             BigInteger Encode(Coordinate coordinate);
         }
 
@@ -55,9 +60,27 @@ namespace AEGIS.Indexes.Rectangle
         /// </remarks>
         public class HilbertEncoder : ISpaceFillingCurveEncoder
         {
+            /// <summary>
+            /// The order of the Hilbert Curve. This implementation is based on 32 bit integer chunks, hence it only works
+            /// correctly with a Hilbert Curve of order 32.
+            /// </summary>
             private const Int32 HilbertCurveOrder = 32;
 
+            /// <summary>
+            /// The offset which shall be used for every coordinate. The coordinates are shifted using this number.
+            /// This allows us to support negative coordinates too.
+            /// </summary>
             private readonly UInt32 gridTransitionOffset;
+
+            /// <summary>
+            /// Indicates if the coordinates shall be treated as 3 dimensional coordinates.
+            /// </summary>
+            /// <remarks>
+            /// When <c>true</c> the coordinates are treated as 3 dimensional coordinates, which means that
+            /// <c>X</c>, <c>Y</c>, and <c>Z</c> coordinates are taken into account when calculating the Hilbert value.
+            /// When <c>false</c>, the coordinates will be treated as 2 dimensional coordinates, which means that
+            /// only the <c>X</c> and <c>Y</c> components are taken into account.
+            /// </remarks>
             private readonly Boolean is3D;
 
             /// <summary>
@@ -70,8 +93,8 @@ namespace AEGIS.Indexes.Rectangle
             /// <summary>
             /// Initializes a new instance of the <see cref="HilbertEncoder"/> class with the attributes specified by constructor parameters.
             /// </summary>
-            /// <param name="is3D">Set to <code>true</code> if you want to convert 3D data, or <code>false</code> if you want to convert 2D data.</param>
-            /// <param name="negativeValuesAllowed">Set to <code>true</code> if you want to allow negative values. In this case an offset will be used to map values to non-negative integers.</param>
+            /// <param name="is3D">Set to <c>true</c> if you want to convert 3D data, or <c>false</c> if you want to convert 2D data.</param>
+            /// <param name="negativeValuesAllowed">Set to <c>true</c> if you want to allow negative values. In this case an offset will be used to map values to non-negative integers.</param>
             public HilbertEncoder(Boolean is3D, Boolean negativeValuesAllowed)
             {
                 this.gridTransitionOffset = negativeValuesAllowed ? (UInt32.MaxValue / 2) : 0;
@@ -83,7 +106,7 @@ namespace AEGIS.Indexes.Rectangle
             /// </summary>
             /// <param name="coordinate">the 2D or 3D coordinate to encode</param>
             /// <returns>
-            /// the sequence number of the curve in the point represented by <code>coordinate</code>
+            /// the sequence number of the curve in the point represented by <c>coordinate</c>
             /// </returns>
             public BigInteger Encode(Coordinate coordinate)
             {
@@ -267,6 +290,14 @@ namespace AEGIS.Indexes.Rectangle
             }
         }
 
+        /// <summary>
+        /// The comparer for <see cref="HilbertNode"/>s.
+        /// </summary>
+        private readonly HilbertNodeComparer comparer = new HilbertNodeComparer();
+
+        /// <summary>
+        /// The encoder which is used to calculate the Hilbert values of <see cref="IBasicGeometry"/> instances.
+        /// </summary>
         private readonly ISpaceFillingCurveEncoder encoder;
 
         /// <summary>
@@ -274,7 +305,7 @@ namespace AEGIS.Indexes.Rectangle
         /// the default <see cref="HilbertEncoder"/> as a space filling curve.
         /// </summary>
         public HilbertRTree()
-            : this(new HilbertEncoder()) { }
+            : this(DefaultMaxChildren, new HilbertEncoder()) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HilbertRTree"/> class using
@@ -282,9 +313,7 @@ namespace AEGIS.Indexes.Rectangle
         /// </summary>
         /// <param name="encoder">the space filling curve implementation used to encode coordinate values to one dimensional integers</param>
         public HilbertRTree(ISpaceFillingCurveEncoder encoder)
-        {
-            this.encoder = encoder;
-        }
+            : this(DefaultMaxChildren, encoder) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HilbertRTree"/> class using
@@ -301,42 +330,75 @@ namespace AEGIS.Indexes.Rectangle
         /// the specified <see cref="ISpaceFillingCurveEncoder"/> as a space filling curve implementation
         /// and the specifield limits to children count.
         /// </summary>
-        /// <param name="minChildren">The minimum children.</param>
-        /// <param name="maxChildren">The maximum children.</param>
-        /// <param name="encoder">the space filling curve implementation used to encode coordinate values to one dimensional integers</param>
+        /// <param name="maxChildren">The maximum number of children. Shall be a positive integer which can be divided by 3.</param>
+        /// <param name="encoder">The space filling curve implementation used to encode coordinate values to one dimensional integers</param>
         public HilbertRTree(Int32 maxChildren, ISpaceFillingCurveEncoder encoder)
             : base(maxChildren * 2 / 3, maxChildren)
         {
-            this.encoder = encoder;
+            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder) + " cannot be null");
         }
 
-        protected class HilbertNode : Node, IComparable
+        /// <summary>
+        /// Represents a node with the <see cref="HilbertRTree"/>.
+        /// </summary>
+        /// <seealso cref="AEGIS.Indexes.Rectangle.RTree.Node" />
+        /// <seealso cref="System.IComparable" />
+        protected class HilbertNode : Node
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="HilbertNode"/> class.
+            /// This constructor creates a root node.
+            /// </summary>
+            /// <param name="maxChildren">
+            ///     The maximum number of entries that can be contained in a node within this tree.
+            ///     Note that the root node has a different maxChildren count. See <see cref="IsFull(HilbertNode)"/>.
+            /// </param>
             public HilbertNode(Int32 maxChildren)
                 : base(maxChildren)
             {
                 this.LargestHilbertValue = new BigInteger(-1);
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="HilbertNode"/> class.
+            /// This constructor creates a new internal node (non-root, and non-leaf).
+            /// </summary>
+            /// <param name="parent">The parent node of this node.</param>
             public HilbertNode(HilbertNode parent)
                 : base(parent)
             {
                 this.LargestHilbertValue = new BigInteger(-1);
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="HilbertNode"/> class.
+            /// This constructor creates a new leaf node.
+            /// </summary>
+            /// <param name="geometry">The geometry which shall be contained within this leaf.</param>
+            /// <param name="hilbertValue">The hilbert value of <c>geometry</c>.</param>
+            /// <param name="parent">
+            ///     The parent node of this node (in this case a leaf container).
+            ///     This is optional as the parent will be set when this node is added as a child to another <see cref="HilbertNode"/>.
+            /// </param>
             public HilbertNode(IBasicGeometry geometry, BigInteger hilbertValue, HilbertNode parent = null)
                 : base(geometry, parent)
             {
                 this.LargestHilbertValue = hilbertValue;
             }
 
-            public BigInteger LargestHilbertValue { get; private set; }
+            /// <summary>
+            /// Gets or sets gets the largest hilbert value of the children of this node.
+            /// </summary>
+            /// <value>
+            /// The largest hilbert value amongst the children of this node.
+            /// </value>
+            public BigInteger LargestHilbertValue { get; set; }
 
             /// <summary>
             /// Adds a new child to the node.
             /// </summary>
             /// <param name="child">The child node.</param>
-            /// <exception cref="ArgumentException">If <code>child</code> is not an instance of <see cref="HilbertNode"/>.</exception>
+            /// <exception cref="ArgumentException">If <c>child</c> is not an instance of <see cref="HilbertNode"/>.</exception>
             public override void AddChild(Node child)
             {
                 if (!(child is HilbertNode))
@@ -373,7 +435,7 @@ namespace AEGIS.Indexes.Rectangle
             /// Removes a child of the node.
             /// </summary>
             /// <param name="node">The node to be removed.</param>
-            /// <exception cref="ArgumentException">If <code>node</code> is not an instance of <see cref="HilbertNode"/>.</exception>
+            /// <exception cref="ArgumentException">If <c>node</c> is not an instance of <see cref="HilbertNode"/>.</exception>
             public override void RemoveChild(Node node)
             {
                 if (!(node is HilbertNode))
@@ -381,11 +443,12 @@ namespace AEGIS.Indexes.Rectangle
                     throw new ArgumentException("Children of a HilbertNode shall also be instances of HilbertNode.");
                 }
 
+                BigInteger lhv = ((HilbertNode)node).LargestHilbertValue;
+
                 // remove the child, and update MBR
                 base.RemoveChild(node);
 
                 // update LHV
-                BigInteger lhv = ((HilbertNode)node).LargestHilbertValue;
                 if (this.LargestHilbertValue == lhv)
                 {
                     this.LargestHilbertValue = this.ChildrenCount > 0 ?
@@ -403,18 +466,27 @@ namespace AEGIS.Indexes.Rectangle
                 this.CorrectBounding();
                 this.LargestHilbertValue = new BigInteger(-1);
             }
+        }
 
+        /// <summary>
+        /// Comparer for <see cref="HilbertNode"/>s.
+        /// </summary>
+        /// <seealso cref="System.Collections.Generic.IComparer{AEGIS.Indexes.Rectangle.RTree.Node}" />
+        protected class HilbertNodeComparer : IComparer<Node>
+        {
             /// <summary>
-            /// Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
             /// </summary>
-            /// <param name="obj">An object to compare with this instance.</param>
+            /// <param name="x">The first object to compare.</param>
+            /// <param name="y">The second object to compare.</param>
             /// <returns>
-            /// A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="obj" /> in the sort order. Zero This instance occurs in the same position in the sort order as <paramref name="obj" />. Greater than zero This instance follows <paramref name="obj" /> in the sort order.
+            /// A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />, as shown in the following table.Value Meaning Less than zero<paramref name="x" /> is less than <paramref name="y" />.Zero<paramref name="x" /> equals <paramref name="y" />.Greater than zero<paramref name="x" /> is greater than <paramref name="y" />.
             /// </returns>
-            public Int32 CompareTo(Object obj)
+            public int Compare(Node x, Node y)
             {
-                HilbertNode other = (HilbertNode)obj;
-                return BigInteger.Compare(this.LargestHilbertValue, other.LargestHilbertValue);
+                HilbertNode a = (HilbertNode)x;
+                HilbertNode b = (HilbertNode)y;
+                return BigInteger.Compare(a.LargestHilbertValue, b.LargestHilbertValue);
             }
         }
 
@@ -424,9 +496,9 @@ namespace AEGIS.Indexes.Rectangle
         /// <param name="minChildren">The minimum children.</param>
         /// <param name="maxChildren">The maximum children.</param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// <code>maxChildren</code> is not a positive integer which can be divided by 3
+        /// <c>maxChildren</c> is not a positive integer which can be divided by 3
         /// or
-        /// <code>minChildren</code> is different than the 2/3 of <code>maxChildren</code>
+        /// <c>minChildren</c> is different than the 2/3 of <c>maxChildren</c>
         /// </exception>
         protected override void CheckChildrenCounts(int minChildren, int maxChildren)
         {
@@ -461,13 +533,15 @@ namespace AEGIS.Indexes.Rectangle
             HilbertNode leaf = new HilbertNode(geometry, this.GetHilbertValue(geometry));
             HilbertNode leafContainer = this.ChooseLeafContainer(leaf);
 
-            if (!this.IsFull(leafContainer))
-            {
-                leafContainer.AddChild(leaf);
-                return;
-            }
+            if (leafContainer == this.Root && leafContainer.ChildrenCount == 0)
+                this.Height = 1;
 
-            HilbertNode newNode = this.HandleOverflow(leafContainer, leaf);
+            HilbertNode newNode = null;
+            if (!this.IsFull(leafContainer))
+                leafContainer.AddChild(leaf);
+            else
+                newNode = this.HandleOverflow(leafContainer, leaf);
+
             HilbertNode rightRoot = this.AdjustTree(leafContainer, newNode);
             this.IncreaseHeight(rightRoot);
         }
@@ -493,17 +567,17 @@ namespace AEGIS.Indexes.Rectangle
                     leafContainer.Children.Find(child => child.Geometry == geometry));
 
             // then check for a potential underflow
-            if (leafContainer.ChildrenCount < this.MinChildren)
-            {
-                // underflow happened
-                this.HandleUnderflow(leafContainer);
-            }
+            this.HandleUnderflow(leafContainer);
 
             // adjust parents
             this.AdjustTree(leafContainer);
             return true;
         }
 
+        /// <summary>
+        /// Increases the height when a split has propagated to the root node (in other words, the root node had to be split).
+        /// </summary>
+        /// <param name="rightRoot">The newly created sibling for the root node.</param>
         private void IncreaseHeight(HilbertNode rightRoot)
         {
             if (rightRoot == null)
@@ -513,8 +587,14 @@ namespace AEGIS.Indexes.Rectangle
             newRoot.AddChild(this.Root);
             newRoot.AddChild(rightRoot);
             this.Root = newRoot;
+            this.Height++;
         }
 
+        /// <summary>
+        /// Chooses the appropriate leaf container for a new leaf.
+        /// </summary>
+        /// <param name="leaf">The new leaf which shall be inserted to the tree.</param>
+        /// <returns>The appropriate leaf container in which the new leaf shall be inserted.</returns>
         private HilbertNode ChooseLeafContainer(HilbertNode leaf)
         {
             Node node = this.Root;
@@ -531,13 +611,23 @@ namespace AEGIS.Indexes.Rectangle
             return (HilbertNode)node;
         }
 
+        /// <summary>
+        /// Chooses one the sibling for a node.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>A sibling node of <c>node</c>.</returns>
         private HilbertNode ChooseSibling(HilbertNode node)
         {
             Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
             // prefer the sibling to the right side
-            return siblings.Item2.IsFull ? siblings.Item1 : siblings.Item2;
+            return siblings.Item2 == null || siblings.Item2.IsFull ? siblings.Item1 : siblings.Item2;
         }
 
+        /// <summary>
+        /// Chooses two siblings (left and right) for a node.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>A <see cref="Tuple"/> of two siblings (left and right) of <c>node</c>.</returns>
         private Tuple<HilbertNode, HilbertNode> ChooseSiblings(HilbertNode node)
         {
             if (node.Parent?.Children == null)
@@ -595,44 +685,87 @@ namespace AEGIS.Indexes.Rectangle
             return newNode;
         }
 
+        /// <summary>
+        /// Handles the scenario where underflow happens by trying to redistribute the children of the node
+        /// involved node between him and his siblings. If this fails, and the node has two siblings, it merges
+        /// the node with its two siblings. In other cases we must let the underflow to happen.
+        /// </summary>
+        /// <param name="node">The node.</param>
         private void HandleUnderflow(HilbertNode node)
         {
-            // check for sibling nodes
-            Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
-            if (this.HasSpareChild(siblings.Item1) || this.HasSpareChild(siblings.Item2))
+            if (node == this.Root)
+                return;
+
+            if (node.ChildrenCount == 0)
             {
-                // if there are at least one sibling with more than the minimum amount of children, we redistribute
-                List<HilbertNode> distributionList = new List<HilbertNode>();
-                if (siblings.Item1 != null)
-                    distributionList.Add(siblings.Item1);
-                distributionList.Add(node);
-                if (siblings.Item2 != null)
-                    distributionList.Add(siblings.Item2);
-                this.RedistributeChildrenEvenly(distributionList);
-            }
-            else if (siblings.Item1 != null && siblings.Item2 != null)
-            {
-                // if there are two siblings but both of the have the minimum number of children, we delete a node, then redistribute
-                List<HilbertNode> distributionList = new List<HilbertNode>();
-                distributionList.Add(siblings.Item1);
-                distributionList.Add(siblings.Item2);
-                List<HilbertNode> additionalChildren = new List<HilbertNode>();
-                node.Children.ForEach(child => additionalChildren.Add((HilbertNode)child));
                 node.Parent.RemoveChild(node);
-                this.RedistributeChildrenEvenly(distributionList, additionalChildren: additionalChildren);
+                this.HandleUnderflow((HilbertNode)node.Parent);
+                return;
+            }
+
+            if (node.ChildrenCount < this.MinChildren)
+            {
+                // check for sibling nodes
+                Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
+                if (this.HasSpareChild(siblings.Item1) || this.HasSpareChild(siblings.Item2))
+                {
+                    // if there are at least one sibling with more than the minimum amount of children, we redistribute
+                    List<HilbertNode> distributionList = new List<HilbertNode>();
+                    if (siblings.Item1 != null)
+                        distributionList.Add(siblings.Item1);
+                    distributionList.Add(node);
+                    if (siblings.Item2 != null)
+                        distributionList.Add(siblings.Item2);
+                    this.RedistributeChildrenEvenly(distributionList);
+                }
+                else if (siblings.Item1 != null && siblings.Item2 != null)
+                {
+                    // if there are two siblings but both of the have the minimum number of children, we delete a node, then redistribute
+                    List<HilbertNode> distributionList = new List<HilbertNode>();
+                    distributionList.Add(siblings.Item1);
+                    distributionList.Add(siblings.Item2);
+                    List<HilbertNode> additionalChildren = new List<HilbertNode>();
+                    node.Children.ForEach(child => additionalChildren.Add((HilbertNode)child));
+                    node.Parent.RemoveChild(node);
+                    this.RedistributeChildrenEvenly(distributionList, additionalChildren: additionalChildren);
+                }
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified node has a spare child, that is, whether or not it has more children than the minimum allowed.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified node has spare child, otherwise, <c>false</c>
+        /// </returns>
         private Boolean HasSpareChild(HilbertNode node)
         {
             return node != null && node.ChildrenCount > this.MinChildren;
         }
 
+        /// <summary>
+        /// Utility function which determines whether the specified node is full.
+        /// </summary>
+        /// <remarks>
+        /// It checks whether the node is the root node, because the root node can contain more children than all the other nodes.
+        /// If its not the root node it just returns <c>node.IsFull</c>.
+        /// </remarks>
+        /// <param name="node">The node to be checked.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified node is full; otherwise, <c>false</c>.
+        /// </returns>
         private Boolean IsFull(HilbertNode node)
         {
             return node == this.Root ? node.ChildrenCount == this.MinChildren * 2 : node.IsFull;
         }
 
+        /// <summary>
+        /// Redistributes the children of the nodes specified evenly.
+        /// </summary>
+        /// <param name="nodes">The nodes whose children shall be redistributed evenly.</param>
+        /// <param name="additionalChild">An optional additional child to be added.</param>
+        /// <param name="additionalChildren">Optional additional children to be added.</param>
         private void RedistributeChildrenEvenly(List<HilbertNode> nodes, HilbertNode additionalChild = null, List<HilbertNode> additionalChildren = null)
         {
             List<HilbertNode> children = new List<HilbertNode>();
@@ -647,7 +780,7 @@ namespace AEGIS.Indexes.Rectangle
             if (additionalChildren != null)
                 children.AddRange(additionalChildren);
 
-            children.Sort();
+            children.Sort(this.comparer);
 
             nodes.ForEach(n => n.ClearChildren());
             Int32 distributionFactor = Convert.ToInt32((decimal)children.Count / nodes.Count);
@@ -661,13 +794,15 @@ namespace AEGIS.Indexes.Rectangle
                     container.AddChild(enumerator.Current);
                 }
             });
+            if (enumerator.MoveNext())
+                nodes[nodes.Count - 1].AddChild(enumerator.Current);
         }
 
         /// <summary>
         /// Adjusts the tree ascending from the leaf level up to the root.
         /// </summary>
         /// <param name="node">The node where the overflow happened.</param>
-        /// <param name="newNode">The new node, if a split was inevitable in <see cref="HandleOverflow(HilbertNode, HilbertNode)"/>, otherwise it's <code>null</code>.</param>
+        /// <param name="newNode">The new node, if a split was inevitable in <see cref="HandleOverflow(HilbertNode, HilbertNode)"/>, otherwise it's <c>null</c>.</param>
         /// <returns>The new <see cref="HilbertNode"/> on the root level, if the root node had to be split.</returns>
         private HilbertNode AdjustTree(HilbertNode node, HilbertNode newNode = null)
         {
@@ -683,6 +818,13 @@ namespace AEGIS.Indexes.Rectangle
                     else
                         nParent.AddChild(newNode);
                 }
+
+                // update MBR and LHV in parent level
+                nParent.CorrectBounding();
+                nParent.Children?.Sort(this.comparer);
+                nParent.LargestHilbertValue =
+                    nParent.ChildrenCount == 0 ? new BigInteger(-1) :
+                    ((HilbertNode)nParent.Children[nParent.ChildrenCount - 1]).LargestHilbertValue;
 
                 node = nParent;
                 newNode = pParent;
