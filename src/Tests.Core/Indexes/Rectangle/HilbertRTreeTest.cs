@@ -23,7 +23,11 @@ namespace AEGIS.Tests.Indexes.Rectangle
     using NUnit.Framework;
     using Shouldly;
 
-    class HilbertRTreeTest
+    /// <summary>
+    /// Tests for the <see cref="HilbertRTree"/> class.
+    /// </summary>
+    [TestFixture]
+    public class HilbertRTreeTest
     {
         /// <summary>
         /// The geometry factory.
