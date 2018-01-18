@@ -20,7 +20,7 @@ namespace AEGIS.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class CoreMessages {
@@ -130,6 +130,15 @@ namespace AEGIS.Resources {
         public static string DimensionIsLessThan2 {
             get {
                 return ResourceManager.GetString("DimensionIsLessThan2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance metric is null. You must specify a distance metric..
+        /// </summary>
+        public static string DistanceMetricIsMissing {
+            get {
+                return ResourceManager.GetString("DistanceMetricIsMissing", resourceCulture);
             }
         }
         
@@ -251,6 +260,15 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified item was already in the tree..
+        /// </summary>
+        public static string ItemWasAlreadyInTree {
+            get {
+                return ResourceManager.GetString("ItemWasAlreadyInTree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extension of lines is not supported..
         /// </summary>
         public static string LineExtensionNotSupported {
@@ -323,6 +341,24 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Partition policy is null. You must specify a partition policy..
+        /// </summary>
+        public static string PartitionPolicyIsMissing {
+            get {
+                return ResourceManager.GetString("PartitionPolicyIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promote policy is null. You must specify a promote policy..
+        /// </summary>
+        public static string PromotePolicyIsMissing {
+            get {
+                return ResourceManager.GetString("PromotePolicyIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The scale is equal to or less than 0..
         /// </summary>
         public static string ScaleIsEqualToOrLessThan0 {
@@ -364,6 +400,15 @@ namespace AEGIS.Resources {
         public static string SourceIsNotSupported {
             get {
                 return ResourceManager.GetString("SourceIsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split policy is null. You must specify a split policy..
+        /// </summary>
+        public static string SplitPolicyIsMissing {
+            get {
+                return ResourceManager.GetString("SplitPolicyIsMissing", resourceCulture);
             }
         }
     }

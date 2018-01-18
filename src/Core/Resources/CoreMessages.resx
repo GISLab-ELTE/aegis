@@ -141,6 +141,9 @@
   <data name="DimensionIsLessThan2" xml:space="preserve">
     <value>The dimension is less than 2.</value>
   </data>
+  <data name="DistanceMetricIsMissing" xml:space="preserve">
+    <value>Distance metric is null. You must specify a distance metric.</value>
+  </data>
   <data name="EnvelopeMinIsGreaterThanMax" xml:space="preserve">
     <value>The envelope's minimum coordinate is greater than the maximum coordinate.</value>
   </data>
@@ -180,6 +183,9 @@
   <data name="ItemIdentifierExists" xml:space="preserve">
     <value>An item with the same identifier already exists in the collection.</value>
   </data>
+  <data name="ItemWasAlreadyInTree" xml:space="preserve">
+    <value>The specified item was already in the tree.</value>
+  </data>
   <data name="LineExtensionNotSupported" xml:space="preserve">
     <value>Extension of lines is not supported.</value>
   </data>
@@ -204,6 +210,12 @@
   <data name="OtherGeometryNotSupported" xml:space="preserve">
     <value>The type of the other geometry is not supported.</value>
   </data>
+  <data name="PartitionPolicyIsMissing" xml:space="preserve">
+    <value>Partition policy is null. You must specify a partition policy.</value>
+  </data>
+  <data name="PromotePolicyIsMissing" xml:space="preserve">
+    <value>Promote policy is null. You must specify a promote policy.</value>
+  </data>
   <data name="ScaleIsEqualToOrLessThan0" xml:space="preserve">
     <value>The scale is equal to or less than 0.</value>
   </data>
@@ -218,5 +230,8 @@
   </data>
   <data name="SourceIsNotSupported" xml:space="preserve">
     <value>The specified source is not supported.</value>
+  </data>
+  <data name="SplitPolicyIsMissing" xml:space="preserve">
+    <value>Split policy is null. You must specify a split policy.</value>
   </data>
 </root>
