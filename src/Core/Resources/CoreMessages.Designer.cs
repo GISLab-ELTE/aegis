@@ -134,15 +134,6 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Distance metric is null. You must specify a distance metric..
-        /// </summary>
-        public static string DistanceMetricIsMissing {
-            get {
-                return ResourceManager.GetString("DistanceMetricIsMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The envelope&apos;s minimum coordinate is greater than the maximum coordinate..
         /// </summary>
         public static string EnvelopeMinIsGreaterThanMax {
@@ -251,6 +242,15 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Equals() method for the given type returns false for the same instances..
+        /// </summary>
+        public static string InvalidObjectEquality {
+            get {
+                return ResourceManager.GetString("InvalidObjectEquality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An item with the same identifier already exists in the collection..
         /// </summary>
         public static string ItemIdentifierExists {
@@ -341,24 +341,6 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Partition policy is null. You must specify a partition policy..
-        /// </summary>
-        public static string PartitionPolicyIsMissing {
-            get {
-                return ResourceManager.GetString("PartitionPolicyIsMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Promote policy is null. You must specify a promote policy..
-        /// </summary>
-        public static string PromotePolicyIsMissing {
-            get {
-                return ResourceManager.GetString("PromotePolicyIsMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The scale is equal to or less than 0..
         /// </summary>
         public static string ScaleIsEqualToOrLessThan0 {
@@ -400,15 +382,6 @@ namespace AEGIS.Resources {
         public static string SourceIsNotSupported {
             get {
                 return ResourceManager.GetString("SourceIsNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Split policy is null. You must specify a split policy..
-        /// </summary>
-        public static string SplitPolicyIsMissing {
-            get {
-                return ResourceManager.GetString("SplitPolicyIsMissing", resourceCulture);
             }
         }
     }

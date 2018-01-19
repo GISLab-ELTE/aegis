@@ -15,100 +15,238 @@
 namespace AEGIS.Indexes.Metric
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Text;
+    using AEGIS.Indexes.Metric.SplitPolicy;
     using AEGIS.Resources;
 
+    /// <summary>
+    /// Represents an arbitrary dimensional M-Tree which can hold any type of data with a distance metric defined.
+    /// </summary>
+    /// <typeparam name="T">type of data to be indexed</typeparam>
     public class MTree<T>
-    { 
-
-        public delegate Double DistanceMetric<in DATA>(DATA a, DATA b);
-
-        public interface ISplitPolicy<DATA> : IPromotePolicy<DATA>, IPartitionPolicy<DATA>
+    {
+        public class ResultItem<DATA>
         {
-        }
+            public Double Distance { get; private set; }
 
-        public interface IPromotePolicy<DATA>
-        {
-            Tuple<DATA, DATA> Promote(ICollection<DATA> dataSet, DistanceMetric<DATA> distanceMetric);
-        }
+            public DATA Item { get; private set; }
 
-        public interface IPartitionPolicy<DATA>
-        {
-            Tuple<ISet<DATA>, ISet<DATA>> Partition(Tuple<DATA, DATA> promoted, ICollection<DATA> dataSet, DistanceMetric<DATA> distanceMetric);
-        }
-
-        public class SplitPolicy<DATA> : ISplitPolicy<DATA>
-        {
-            private readonly IPromotePolicy<DATA> promotePolicy;
-            private readonly IPartitionPolicy<DATA> partitionPolicy;
-
-            public SplitPolicy(IPromotePolicy<DATA> promotePolicy, IPartitionPolicy<DATA> partitionPolicy)
+            public ResultItem(DATA item, Double distance)
             {
-                this.promotePolicy = promotePolicy ?? throw new ArgumentNullException(nameof(promotePolicy), CoreMessages.PromotePolicyIsMissing);
-                this.partitionPolicy = partitionPolicy ?? throw new ArgumentNullException(nameof(partitionPolicy), CoreMessages.PartitionPolicyIsMissing);
-            }
-
-            public Tuple<ISet<DATA>, ISet<DATA>> Partition(Tuple<DATA, DATA> promoted, ICollection<DATA> dataSet, DistanceMetric<DATA> distanceMetric)
-            {
-                return this.partitionPolicy.Partition(promoted, dataSet, distanceMetric);
-            }
-
-            public Tuple<DATA, DATA> Promote(ICollection<DATA> dataSet, DistanceMetric<DATA> distanceMetric)
-            {
-                return this.promotePolicy.Promote(dataSet, distanceMetric);
+                this.Item = item;
+                this.Distance = distance;
             }
         }
 
-        public class GeneralizedHyperplane<DATA> : IPartitionPolicy<DATA>
+        private class SearchQuery : IEnumerable<ResultItem<T>>
         {
-            public Tuple<ISet<DATA>, ISet<DATA>> Partition(Tuple<DATA, DATA> promoted, ICollection<DATA> dataSet, DistanceMetric<DATA> distanceMetric)
+            public SearchQuery(MTree<T> tree, T data, Double range, Int32 limit)
             {
-                ISet<DATA> first = new HashSet<DATA>();
-                ISet<DATA> second = new HashSet<DATA>();
+                this.tree = tree;
+                this.data = data;
+                this.range = range;
+                this.limit = limit;
+            }
 
-                foreach (DATA data in dataSet)
+            private readonly MTree<T> tree;
+            private readonly T data;
+            private readonly Double range;
+            private readonly Int32 limit;
+
+            private class ResultEnumerator : IEnumerator<ResultItem<T>>
+            {
+                private class ItemWithDistances : IComparable<ItemWithDistances>
                 {
-                    if (distanceMetric.Invoke(data, promoted.Item1) <= distanceMetric.Invoke(data, promoted.Item2))
-                        first.Add(data);
-                    else
-                        second.Add(data);
+                    public Node Item { get; private set; }
+
+                    public Double Distance { get; private set; }
+
+                    public Double MinDistance { get; private set; }
+
+                    public ItemWithDistances(Node item, Double distance, Double minDistance)
+                    {
+                        this.Item = item;
+                        this.Distance = distance;
+                        this.MinDistance = minDistance;
+                    }
+
+                    public Int32 CompareTo(ItemWithDistances other)
+                    {
+                        if (this.MinDistance < other.MinDistance)
+                            return -1;
+                        if (this.MinDistance > other.MinDistance)
+                            return 1;
+                        return 0;
+                    }
                 }
 
-                return new Tuple<ISet<DATA>, ISet<DATA>>(first, second);
+                private readonly SearchQuery searchQuery;
+
+                private ResultItem<T> nextResultItem;
+                private Boolean finished;
+                private SortedSet<ItemWithDistances> pendingSet;
+                private Double nextPendingMinDistance;
+                private SortedSet<ItemWithDistances> nearestSet;
+                private Int32 yieldedCount;
+
+                public ResultEnumerator(SearchQuery searchQuery)
+                {
+                    this.searchQuery = searchQuery;
+                    this.Reset();
+                }
+
+                public ResultItem<T> Current { get { return this.nextResultItem; } }
+
+                object IEnumerator.Current { get { return this.nextResultItem; } }
+
+                public void Dispose()
+                {
+                    // do nothing
+                }
+
+                public Boolean MoveNext()
+                {
+                    if (this.finished)
+                        return false;
+
+                    if (this.nextResultItem == null)
+                        this.FetchNext();
+
+                    if (this.nextResultItem == null)
+                    {
+                        this.finished = true;
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                public void Reset()
+                {
+                    this.nextResultItem = null;
+                    this.finished = false;
+                    this.pendingSet = new SortedSet<ItemWithDistances>();
+                    this.nearestSet = new SortedSet<ItemWithDistances>();
+                    this.yieldedCount = 0;
+
+                    if (this.searchQuery.tree.root == null)
+                    {
+                        this.finished = true;
+                        return;
+                    }
+
+                    Double distance = this.searchQuery.tree.distanceMetric.Invoke(this.searchQuery.data, this.searchQuery.tree.root.Data);
+                    Double minDistance = Math.Max(distance - this.searchQuery.tree.root.Radius, 0.0D);
+
+                    this.pendingSet.Add(new ItemWithDistances(this.searchQuery.tree.root, distance, minDistance));
+                    this.nextPendingMinDistance = minDistance;
+                }
+
+                private void FetchNext()
+                {
+                    if (this.finished || this.yieldedCount >= this.searchQuery.limit)
+                    {
+                        this.finished = true;
+                        return;
+                    }
+
+                    while (this.pendingSet.Count > 0 || this.nearestSet.Count > 0)
+                    {
+                        if (this.PrepareNextNearest())
+                        {
+                            return;
+                        }
+
+                        ItemWithDistances pending = this.pendingSet.Min;
+                        this.pendingSet.Remove(pending);
+                        Node node = pending.Item;
+
+                        foreach (Node child in node.Children.Values)
+                        {
+                            if (Math.Abs(pending.Distance - child.DistanceFromParent) - child.Radius <= this.searchQuery.range)
+                            {
+                                Double childDistance = this.searchQuery.tree.distanceMetric.Invoke(this.searchQuery.data, child.Data);
+                                Double childMinDistance = Math.Max(childDistance - child.Radius, 0.0D);
+                                if (childMinDistance <= this.searchQuery.range)
+                                {
+                                    if (child.IsEntry)
+                                        this.nearestSet.Add(new ItemWithDistances(child, childDistance, childMinDistance));
+                                    else
+                                        this.pendingSet.Add(new ItemWithDistances(child, childDistance, childMinDistance));
+                                }
+                            }
+                        }
+
+                        if (this.pendingSet.Count == 0)
+                            this.nextPendingMinDistance = Double.PositiveInfinity;
+                        else
+                            this.nextPendingMinDistance = this.pendingSet.Min.MinDistance;
+                    }
+
+                    this.finished = true;
+                }
+
+                private Boolean PrepareNextNearest()
+                {
+                    if (this.nearestSet.Count > 0)
+                    {
+                        ItemWithDistances nextNearest = this.nearestSet.Min;
+                        if (nextNearest.Distance <= this.nextPendingMinDistance)
+                        {
+                            this.nearestSet.Remove(nextNearest);
+                            this.nextResultItem = new ResultItem<T>(nextNearest.Item.Data, nextNearest.Distance);
+                            this.yieldedCount++;
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+            }
+
+            public IEnumerator<ResultItem<T>> GetEnumerator()
+            {
+                return new ResultEnumerator(this);
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return new ResultEnumerator(this);
+            }
+        }
+
+        private class SplitNodeReplacement : Exception
+        {
+            public Node[] NewNodes { get; private set; }
+
+            public SplitNodeReplacement(params Node[] newNodes)
+            {
+                this.NewNodes = newNodes;
+            }
+        }
+
+        private class RootNodeReplacement : Exception
+        {
+            public Node NewRoot { get; private set; }
+
+            public Boolean ItemRemoved { get; private set; }
+
+            public RootNodeReplacement() { }
+
+            public RootNodeReplacement(Node newRoot, Boolean itemRemoved)
+            {
+                this.NewRoot = newRoot;
+                this.ItemRemoved = itemRemoved;
             }
         }
 
         /// <summary>
         /// Represents a node of the M-tree.
         /// </summary>
-        protected class Node
+        private class Node
         {
-            protected class SplitNodeReplacement : Exception
-            {
-                public Node[] NewNodes { get; private set; }
-
-                public SplitNodeReplacement(params Node[] newNodes)
-                {
-                    this.NewNodes = newNodes;
-                }
-            }
-
-            protected class RootNodeReplacement : Exception
-            {
-                public Node NewRoot { get; private set; }
-
-                public Boolean ItemRemoved { get; private set; }
-
-                public RootNodeReplacement() { }
-
-                public RootNodeReplacement(Node newRoot, Boolean itemRemoved)
-                {
-                    this.NewRoot = newRoot;
-                    this.ItemRemoved = itemRemoved;
-                }
-            }
-
             protected class NodeUnderflow : Exception
             {
                 public Boolean ItemRemoved { get; private set; }
@@ -133,7 +271,6 @@ namespace AEGIS.Indexes.Metric
                     this.Distance = distance;
                     this.Metric = metric;
                 }
-
             }
 
             protected class ChildWithDistance
@@ -150,18 +287,19 @@ namespace AEGIS.Indexes.Metric
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Node" /> class.
+            /// Initializes a new instance of the <see cref="Node"/> class.
             /// </summary>
-            /// <param name="geometry">The data contained by the node.</param>
-            /// <param name="parent">The parent of the node.</param>
-            public Node(MTree<T> tree, T data)
+            /// <param name="tree">the tree which contains this <see cref="Node"/></param>
+            /// <param name="data">the data to be contained within this node (can be actual or routing object)</param>
+            /// <param name="isEntry"><c>true</c> if this <see cref="Node"/> holds an actual object (not a routing object)</param>
+            public Node(MTree<T> tree, T data, Boolean isEntry = false)
             {
                 this.Tree = tree;
                 this.Data = data;
                 this.DistanceFromParent = -1;
                 this.Radius = 0;
+                this.IsEntry = isEntry;
             }
-
 
             public T Data { get; private set; }
 
@@ -171,7 +309,10 @@ namespace AEGIS.Indexes.Metric
 
             public MTree<T> Tree { get; private set; }
 
-            public IDictionary<T, Node> Children {
+            public Boolean IsEntry { get; private set; }
+
+            public IDictionary<T, Node> Children
+            {
                 get
                 {
                     if (this.children == null)
@@ -192,6 +333,51 @@ namespace AEGIS.Indexes.Metric
             {
                 this.DoAddData(data, distance);
                 this.CheckMaxCapacity();
+            }
+
+            public virtual void AddChild(Node newChild, Double distance)
+            {
+                Stack<ChildWithDistance> newChildren = new Stack<ChildWithDistance>();
+                newChildren.Push(new ChildWithDistance(newChild, distance));
+
+                while (newChildren.Count > 0)
+                {
+                    ChildWithDistance cwd = newChildren.Pop();
+                    newChild = cwd.Child;
+                    distance = cwd.Distance;
+
+                    if (this.Children.ContainsKey(newChild.Data))
+                    {
+                        Node existingChild = this.Children[newChild.Data];
+
+                        foreach (Node grandChild in newChild.Children.Values)
+                        {
+                            existingChild.AddChild(grandChild, grandChild.DistanceFromParent);
+                        }
+
+                        newChild.Children.Clear();
+
+                        try
+                        {
+                            existingChild.CheckMaxCapacity();
+                        }
+                        catch (SplitNodeReplacement e)
+                        {
+                            this.Children.Remove(existingChild.Data);
+
+                            foreach (Node newNode in e.NewNodes)
+                            {
+                                distance = this.Tree.distanceMetric.Invoke(this.Data, newNode.Data);
+                                newChildren.Push(new ChildWithDistance(newNode, distance));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.Children.Add(newChild.Data, newChild);
+                        this.UpdateMetrics(newChild, distance);
+                    }
+                }
             }
 
             public Boolean RemoveData(T data, Double distance)
@@ -302,56 +488,11 @@ namespace AEGIS.Indexes.Metric
                 return new Node(this.Tree, data);
             }
 
-            protected virtual void AddChild(Node newChild, Double distance)
-            {
-                Stack<ChildWithDistance> newChildren = new Stack<ChildWithDistance>();
-                newChildren.Push(new ChildWithDistance(newChild, distance));
-
-                while(newChildren.Count > 0)
-                {
-                    ChildWithDistance cwd = newChildren.Pop();
-                    newChild = cwd.Child;
-                    distance = cwd.Distance;
-
-                    if(this.Children.ContainsKey(newChild.Data))
-                    {
-                        Node existingChild = this.Children[newChild.Data];
-
-                        foreach(Node grandChild in newChild.Children.Values)
-                        {
-                            existingChild.AddChild(grandChild, grandChild.DistanceFromParent);
-                        }
-
-                        newChild.Children.Clear();
-
-                        try
-                        {
-                            existingChild.CheckMaxCapacity();
-                        }
-                        catch(SplitNodeReplacement e)
-                        {
-                            this.Children.Remove(existingChild.Data);
-
-                            foreach(Node newNode in e.NewNodes)
-                            {
-                                distance = this.Tree.distanceMetric.Invoke(this.Data, newNode.Data);
-                                newChildren.Push(new ChildWithDistance(newNode, distance));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.Children.Add(newChild.Data, newChild);
-                        this.UpdateMetrics(newChild, distance);
-                    }
-                }
-            }
-
             protected Int32 GetMinCapacity()
             {
                 if (this.Tree.root == this)
                     return this is LeafNode ? 1 : 2;
-                return this.Tree.minChildren;
+                return this.Tree.MinChildren;
             }
 
             protected void UpdateMetrics(Node child, Double distance)
@@ -437,7 +578,8 @@ namespace AEGIS.Indexes.Metric
 
             private void CheckMaxCapacity()
             {
-                if(this.ChildrenCount > this.Tree.maxChildren)
+
+                if (this.ChildrenCount > this.Tree.MaxChildren)
                 {
                     DistanceMetric<T> distanceMetric = this.Tree.distanceMetric;
                     Tuple<T, T> promotions = this.Tree.splitPolicy.Promote(this.Children.Keys, distanceMetric);
@@ -466,12 +608,22 @@ namespace AEGIS.Indexes.Metric
             }
         }
 
-        protected class LeafNode : Node
+        /// <summary>
+        /// Represents a leaf node of the M-Tree.
+        /// </summary>
+        /// <remarks>
+        ///     Leaf nodes contain "entries".
+        ///     Entries are <see cref="Node"/> instances, and their only purpose is to hold data points which are injected by the user.
+        ///     The structure therefore is as follows: The bottom of the tree holds <c>Entries</c>. Entries are instances of <see cref="Node"/>.
+        ///     They can be distinguished from other types of nodes using the <see cref="Node.IsEntry"/> property.
+        ///     Entries are kept in <see cref="LeafNode"/>s. <see cref="LeafNode"/>s are kept in <see cref="Node"/>s which are not entries and not <see cref="LeafNode"/>s.
+        /// </remarks>
+        private class LeafNode : Node
         {
             public LeafNode(MTree<T> tree, T data)
                 : base(tree, data) { }
 
-            protected override void AddChild(Node child, double distance)
+            public override void AddChild(Node child, double distance)
             {
                 if (this.Children.ContainsKey(child.Data))
                     throw new ArgumentException(CoreMessages.ItemWasAlreadyInTree);
@@ -481,7 +633,7 @@ namespace AEGIS.Indexes.Metric
 
             protected override void DoAddData(T data, double distance)
             {
-                this.AddChild(new Node(this.Tree, data), distance);
+                this.AddChild(new Node(this.Tree, data, true), distance);
             }
 
             protected override Boolean DoRemoveData(T data, double distance)
@@ -504,6 +656,47 @@ namespace AEGIS.Indexes.Metric
 
         private const Int32 DefaultMinChildren = 50;
 
+        public MTree(DistanceMetric<T> distanceMetric)
+            : this(distanceMetric, SplitPolicies.SmartSplitPolicy<T>()) { }
+
+        public MTree(DistanceMetric<T> distanceMetric, ISplitPolicy<T> splitPolicy)
+            : this(DefaultMinChildren, 2 * DefaultMinChildren + 1, distanceMetric, splitPolicy) { }
+
+        public MTree(Int32 minChildren, Int32 maxChildren, DistanceMetric<T> distanceMetric)
+            : this(minChildren, maxChildren, distanceMetric, SplitPolicies.SmartSplitPolicy<T>()) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MTree{T}"/> class.
+        /// </summary>
+        /// <param name="minChildren">The minimum number of children nodes for a node.</param>
+        /// <param name="maxChildren">The maximum number of children nodes for a node.</param>
+        /// <param name="distanceMetric">
+        ///     The distance metric to be used to calculate distances between data points.
+        ///
+        ///     The distance metric must satisfy the following properties:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description><c>d(a,b) = d(b,a)</c> for every <c>a</c> and <c>b</c> points (symmetry)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,a) = 0</c> and <c>d(a,b) &gt; 0</c> for every <c>a != b</c> points (non-negativity)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,b) &lt;= d(a,c) + d(c,b)</c> for every <c>a</c>, <c>b</c> and <c>c</c> points (triangle inequality)</description>
+        ///         </item>
+        ///     </list>
+        /// </param>
+        /// <param name="splitPolicy">The split policy to use. It consist of a partition and a promotion policy. <see cref="SplitPolicy{DATA}"/></param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <c>minChildren</c> is less than 1
+        /// or
+        /// <c>maxChildren</c> is less than <c>minChildren</c>
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <c>distanceMetric</c> is missing
+        /// or
+        /// <c>splitPolicy</c> is missing
+        /// </exception>
         public MTree(
             Int32 minChildren,
             Int32 maxChildren,
@@ -514,16 +707,187 @@ namespace AEGIS.Indexes.Metric
                 throw new ArgumentOutOfRangeException(nameof(minChildren), CoreMessages.MinimumNumberOfChildNodesIsLessThan1);
             if (minChildren >= maxChildren)
                 throw new ArgumentOutOfRangeException(nameof(maxChildren), CoreMessages.MaximumNumberOfChildNodesIsEqualToMinimum);
-            this.minChildren = minChildren;
-            this.maxChildren = maxChildren;
-            this.distanceMetric = distanceMetric ?? throw new ArgumentNullException(nameof(distanceMetric), CoreMessages.DistanceMetricIsMissing);
-            this.splitPolicy = splitPolicy ?? throw new ArgumentNullException(nameof(splitPolicy), CoreMessages.SplitPolicyIsMissing);
+            this.MinChildren = minChildren;
+            this.MaxChildren = maxChildren;
+            this.distanceMetric = distanceMetric ?? throw new ArgumentNullException(nameof(distanceMetric));
+            this.splitPolicy = splitPolicy ?? throw new ArgumentNullException(nameof(splitPolicy));
+            this.NumberOfDataItems = 0;
         }
+
+        /// <summary>
+        /// Gets the minimum number of children for a node.
+        /// </summary>
+        /// <value>
+        /// The minimum number of children nodes for a node.
+        /// </value>
+        public Int32 MinChildren { get; private set; }
+
+        /// <summary>
+        /// Gets the maximum number of children for node.
+        /// </summary>
+        /// <value>
+        /// The maximum number of children for a node.
+        /// </value>
+        public Int32 MaxChildren { get; private set; }
+
+        /// <summary>
+        /// Gets the number of data items currently contained within the index.
+        /// </summary>
+        /// <value>
+        /// The number of data items currently contained within this index.
+        /// </value>
+        public Int32 NumberOfDataItems { get; private set; }
 
         private readonly DistanceMetric<T> distanceMetric;
         private readonly ISplitPolicy<T> splitPolicy;
-        private readonly Int32 minChildren;
-        private readonly Int32 maxChildren;
         private Node root;
+
+        /// <summary>
+        /// Adds a new data point to the index.
+        /// </summary>
+        /// <param name="data">The new data point to be added.</param>
+        /// <exception cref="System.ArgumentNullException">The <c>data</c> is null.</exception>
+        /// <exception cref="ArgumentException">The <c>data</c> was already indexed by the tree.</exception>
+        public void Add(T data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (this.root == null)
+            {
+                this.root = new LeafNode(this, data);
+                this.root.AddData(data, 0D);
+            }
+            else
+            {
+                Double distance = this.distanceMetric.Invoke(data, this.root.Data);
+                try
+                {
+                    this.root.AddData(data, distance);
+                }
+                catch (SplitNodeReplacement e)
+                {
+                    Node newRoot = new Node(this, data);
+                    this.root = newRoot;
+                    foreach (Node newNode in e.NewNodes)
+                    {
+                        distance = this.distanceMetric.Invoke(this.root.Data, newNode.Data);
+                        this.root.AddChild(newNode, distance);
+                    }
+                }
+            }
+
+            this.NumberOfDataItems++;
+        }
+
+        /// <summary>
+        /// Adds multiple data points to the index.
+        /// </summary>
+        /// <param name="collection">
+        ///     The collection of new data points to added.
+        ///     Only non-null items will be considered.
+        /// </param>
+        /// <exception cref="ArgumentNullException">The <c>collection</c> is null.</exception>
+        /// <exception cref="ArgumentException">One of the items in the <c>collection</c> was already indexed by the tree.</exception>
+        public void Add(IEnumerable<T> collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            foreach (T data in collection)
+            {
+                if (data != null)
+                {
+                    this.Add(data);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clears all data items from the index.
+        /// </summary>
+        public void Clear()
+        {
+            this.root = null;
+            this.NumberOfDataItems = 0;
+        }
+
+        /// <summary>
+        /// Remove a given data point from the index.
+        /// </summary>
+        /// <param name="data">The data point to be removed.</param>
+        /// <returns><c>true</c> if the data point has been successfully removed; otherwise <c>false</c></returns>
+        /// <exception cref="ArgumentNullException">The <c>data</c> is null.</exception>
+        public Boolean Remove(T data)
+        {
+            Boolean removed = false;
+
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            if (this.root == null)
+                return false;
+
+            Double distanceFromRoot = this.distanceMetric.Invoke(data, this.root.Data);
+            try
+            {
+                removed = this.root.RemoveData(data, distanceFromRoot);
+            }
+            catch (RootNodeReplacement e)
+            {
+                this.root = e.NewRoot;
+                removed = e.ItemRemoved;
+            }
+
+            if (removed)
+                this.NumberOfDataItems--;
+            return removed;
+        }
+
+        /// <summary>
+        /// Determines whether this index contains the specified data.
+        /// </summary>
+        /// <param name="data">The data to be checked.</param>
+        /// <returns>
+        ///   <c>true</c> if the index contains the specified data; otherwise, <c>false</c>
+        /// </returns>
+        public Boolean Contains(T data)
+        {
+            IEnumerator<ResultItem<T>> enumerator = this.Search(data, 0.0001D, 1).GetEnumerator();
+            return enumerator.MoveNext() && enumerator.Current.Item.Equals(data);
+        }
+
+        /// <summary>
+        /// Initiates a nerest neighbor search within this tree.
+        /// </summary>
+        /// <param name="queryData">
+        ///     The query data. This can be any data (it doesn't have to be present in the tree).
+        ///     The nearest neighbors of this data point will be looked up within the tree.
+        /// </param>
+        /// <param name="limit">(optional) The maximum number of data items returned.</param>
+        /// <returns>The search results.</returns>
+        public IEnumerable<ResultItem<T>> Search(T queryData, Int32 limit = Int32.MaxValue)
+        {
+            return this.Search(queryData, Double.PositiveInfinity, limit);
+        }
+
+        /// <summary>
+        /// Initiates a nerest neighbor search within this tree.
+        /// </summary>
+        /// <param name="queryData">
+        ///     The query data. This can be any data (it doesn't have to be present in the tree).
+        ///     The nearest neighbors of this data point will be looked up within the tree.
+        /// </param>
+        /// <param name="range">The range (radius) of the search. Data will be searched within this radius of <c>queryData</c>.</param>
+        /// <param name="limit">(optional) The maximum number of data items returned.</param>
+        /// <returns>The search results.</returns>
+        /// <exception cref="ArgumentNullException">If <c>queryData</c> is null.</exception>
+        public IEnumerable<ResultItem<T>> Search(T queryData, Double range, Int32 limit = Int32.MaxValue)
+        {
+            if (queryData == null)
+                throw new ArgumentNullException(nameof(queryData));
+
+            return new SearchQuery(this, queryData, range, limit);
+        }
     }
 }

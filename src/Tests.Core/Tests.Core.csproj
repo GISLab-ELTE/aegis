@@ -85,6 +85,7 @@
     <Compile Include="Features\FeatureFactoryTest.cs" />
     <Compile Include="Features\FeatureTest.cs" />
     <Compile Include="Indexes\KDTreeTest.cs" />
+    <Compile Include="Indexes\Metric\MTreeTest.cs" />
     <Compile Include="Indexes\OctreeTest.cs" />
     <Compile Include="Indexes\QuadTreeTest.cs" />
     <Compile Include="Indexes\Rectangle\RStarTreeTest.cs" />
