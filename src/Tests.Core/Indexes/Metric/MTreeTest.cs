@@ -24,16 +24,29 @@ namespace AEGIS.Tests.Indexes.Metric
     using AEGIS.Indexes.Metric.SplitPolicy;
     using NUnit.Framework;
     using Shouldly;
+    using static AEGIS.Indexes.Metric.MTree<IPoint>;
 
     [TestFixture]
     public class MTreeTest
     {
+        /// <summary>
+        /// The factory used to create geometries (test data).
+        /// </summary>
         private IGeometryFactory factory;
 
+        /// <summary>
+        /// The geometries (test data).
+        /// </summary>
         private List<IPoint> geometries;
 
+        /// <summary>
+        /// The M-tree under test.
+        /// </summary>
         private MTree<IPoint> tree;
 
+        /// <summary>
+        /// Test setup.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -44,6 +57,9 @@ namespace AEGIS.Tests.Indexes.Metric
             this.tree.Add(this.geometries);
         }
 
+        /// <summary>
+        /// Tests the constructors of <see cref="MTree{T}"/>.
+        /// </summary>
         [Test]
         public void MTreeConstructorTest()
         {
@@ -69,6 +85,9 @@ namespace AEGIS.Tests.Indexes.Metric
             Should.Throw<ArgumentNullException>(() => new MTree<IPoint>(3, 5, null));
         }
 
+        /// <summary>
+        /// Tests the <see cref="MTree{T}.Add(T)"/> and <see cref="MTree{T}.Add(IEnumerable{T})"/> methods.
+        /// </summary>
         [Test]
         public void MTreeAddTest()
         {
@@ -103,6 +122,9 @@ namespace AEGIS.Tests.Indexes.Metric
             Should.Throw<ArgumentException>(() => tree.Add(this.geometries[0]));
         }
 
+        /// <summary>
+        /// Tests the <see cref="MTree{T}.Contains(T)"/> method.
+        /// </summary>
         [Test]
         public void MTreeContainsTest()
         {
@@ -119,18 +141,77 @@ namespace AEGIS.Tests.Indexes.Metric
             Should.Throw<ArgumentNullException>(() => this.tree.Contains(null));
         }
 
+        /// <summary>
+        /// Tests the <see cref="MTree{T}.Search(T, int)"/> and <see cref="MTree{T}.Search(T, double, int)"/> methods.
+        /// </summary>
         [Test]
         public void MTreeSearchTest()
         {
-            // TODO
+            MTree<IPoint> tree = new MTree<IPoint>(2, 3, (x, y) => GeometryDistanceAlgorithm.Distance(x, y));
+
+            tree.Search(this.geometries[0]).ShouldBeEmpty();
+
+            IPoint[] points = new IPoint[9];
+
+            for (Int32 i = 0; i < 9; i++)
+            {
+                points[i] = this.factory.CreatePoint(i, 0);
+                tree.Add(points[i]);
+            }
+
+            // search without limits should return all items in the tree
+            tree.Search(this.factory.CreatePoint(2, 0)).Count().ShouldBe(9);
+
+            // search returns the correct data items in the correct order with correct distance information
+            List<ResultItem<IPoint>> results = new List<ResultItem<IPoint>>(tree.Search(this.factory.CreatePoint(8, 0)));
+            List<IPoint> expectedResults = new List<IPoint>(points.Reverse());
+
+            for (Int32 i = 0; i < points.Length; i++)
+            {
+                results[i].Item.ShouldBe(expectedResults[i]);
+                results[i].Distance.ShouldBe(i);
+            }
+
+            // search with a given radius should return only the elements within that radius
+            tree.Search(this.factory.CreatePoint(8, 0), 1.0D).Count().ShouldBe(2);
+            tree.Search(this.factory.CreatePoint(7, 0), 1.0D).Count().ShouldBe(3);
+            tree.Search(this.factory.CreatePoint(9, 0), 1.0D).Count().ShouldBe(1);
+            tree.Search(this.factory.CreatePoint(10, 0), 1.0D).Count().ShouldBe(0);
+
+            // search with a given limit should return only that amount of elements
+            tree.Search(this.factory.CreatePoint(2, 0), 0).Count().ShouldBe(0);
+            tree.Search(this.factory.CreatePoint(2, 0), 1).Count().ShouldBe(1);
+            tree.Search(this.factory.CreatePoint(2, 0), 5).Count().ShouldBe(5);
+            tree.Search(this.factory.CreatePoint(2, 0), 10).Count().ShouldBe(9);
+
+            // search with both radius and limit where radius contains less elements than limit
+            tree.Search(this.factory.CreatePoint(2, 0), 1.1D, 5).Count().ShouldBe(3);
+
+            // search with both radius and limit where radius contains more elements than limit
+            tree.Search(this.factory.CreatePoint(2, 0), 1.1D, 2).Count().ShouldBe(2);
+
+            // errors
+            Should.Throw<ArgumentNullException>(() => tree.Search(null));
         }
 
+        /// <summary>
+        /// Tests the <see cref="MTree{T}.Remove(T)"/> method.
+        /// </summary>
         [Test]
         public void MTreeRemoveTest()
         {
-            // TODO
+            this.tree.Remove(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
+            this.tree.Remove(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
+
+            this.geometries.Count(p => this.tree.Remove(p)).ShouldBe(this.geometries.Count);
+
+            // errors
+            Should.Throw<ArgumentNullException>(() => this.tree.Remove(null));
         }
 
+        /// <summary>
+        /// Tests the <see cref="MTree{T}.Clear"/> method.
+        /// </summary>
         [Test]
         public void MTreeClearTest()
         {

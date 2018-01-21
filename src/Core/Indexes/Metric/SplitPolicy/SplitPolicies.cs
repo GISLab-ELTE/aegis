@@ -21,18 +21,72 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
 
     public static class SplitPolicies
     {
+        /// <summary>
+        /// A partition policy which's main goal is to reduce the radiuses of the nodes.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is that the radius of a node will be the minimum possible, thus reducing the chance
+        /// of overlapping. The disadvantage is that it results in unbalanced splits, thus resulting in trees with bigger heights.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <returns>a partition policy with the aforementioned properties</returns>
         public static IPartitionPolicy<T> GeneralizedHyperplanePartition<T>() => new GeneralizedHyperplanePartitionPolicy<T>();
 
+        /// <summary>
+        /// A partition policy which prefers perfectly balanced nodes upon split.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is trivial: it results in perfectly balanced nodes. For that reason, the height of the tree
+        /// will be the minimum possible, which can decrease search time. There is a disadvantage though: when the density of the data points
+        /// is highly varying (the points are concentrated in particular areas, and sparse in others), it can happen that data points get
+        /// assigned to a node which's promoted item is far from the data points, thus resulting in bigger radiuses. This leads to a higher
+        /// chance of overlapping. When the density of data points is highly varying it is better to use a <see cref="GeneralizedHyperplanePartition{T}"/>.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <returns>a partition policy with the aforementioned properties</returns>
         public static IPartitionPolicy<T> BalancedPartition<T>() => new BalancedPartitionPolicy<T>();
 
+        /// <summary>
+        /// Chooses the two data points from the <c>dataSet</c> which are the farthest from each other.
+        /// </summary>
+        /// <typeparam name="T">the type of data points</typeparam>
+        /// <returns>a promote policy with the aforementioned properties</returns>
         public static IPromotePolicy<T> MaximumDistancePromote<T>() => new MaximumDistancePromotePolicy<T>();
 
-        public static IPromotePolicy<T> RandomPromote<T>() => new RandomPromotePolicy<T>();
+        /// <summary>
+        /// A split policy which's main goal is to reduce the radiuses of the nodes.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is that the radius of a node will be the minimum possible, thus reducing the chance
+        /// of overlapping. The disadvantage is that it results in unbalanced splits, thus resulting in trees with bigger heights.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <returns>A split policy instance with the aforementioned properties.</returns>
+        public static ISplitPolicy<T> MinimumRadiusSplitPolicy<T>() => new SplitPolicy<T>(MaximumDistancePromote<T>(), GeneralizedHyperplanePartition<T>());
 
-        public static ISplitPolicy<T> LowCostSplitPolicy<T>() => new SplitPolicy<T>(RandomPromote<T>(), GeneralizedHyperplanePartition<T>());
+        /// <summary>
+        /// A split policy which prefers perfectly balanced nodes upon split.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is trivial: it results in perfectly balanced nodes. For that reason, the height of the tree
+        /// will be the minimum possible, which can decrease search time. There is a disadvantage though: when the density of the data points
+        /// is highly varying (the points are concentrated in particular areas, and sparse in others), it can happen that data points get
+        /// assigned to a node which's promoted item is far from the data points, thus resulting in bigger radiuses. This leads to a higher
+        /// chance of overlapping. When the density of data points is highly varying it is better to use a <see cref="MinimumRadiusSplitPolicy{T}"/>.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <returns>A split policy instance with the aforementioned properties.</returns>
+        public static ISplitPolicy<T> BalancedSplitPolicy<T>() => new SplitPolicy<T>(MaximumDistancePromote<T>(), BalancedPartition<T>());
 
-        public static ISplitPolicy<T> SmartSplitPolicy<T>() => new SplitPolicy<T>(MaximumDistancePromote<T>(), BalancedPartition<T>());
-
+        /// <summary>
+        /// A partition policy which's main goal is to reduce the radiuses of the nodes.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is that the radius of a node will be the minimum possible, thus reducing the chance
+        /// of overlapping. The disadvantage is that it results in unbalanced splits, thus resulting in trees with bigger heights.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <seealso cref="AEGIS.Indexes.Metric.SplitPolicy.IPartitionPolicy{T}" />
         public class GeneralizedHyperplanePartitionPolicy<T> : IPartitionPolicy<T>
         {
             public Tuple<ISet<T>, ISet<T>> Partition(Tuple<T, T> promoted, ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
@@ -52,6 +106,18 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
             }
         }
 
+        /// <summary>
+        /// A partition policy which prefers perfectly balanced nodes upon split.
+        /// </summary>
+        /// <remarks>
+        /// The advantage of this policy is trivial: it results in perfectly balanced nodes. For that reason, the height of the tree
+        /// will be the minimum possible, which can decrease search time. There is a disadvantage though: when the density of the data points
+        /// is highly varying (the points are concentrated in particular areas, and sparse in others), it can happen that data points get
+        /// assigned to a node which's promoted item is far from the data points, thus resulting in bigger radiuses. This leads to a higher
+        /// chance of overlapping. When the density of data points is highly varying it is better to use a <see cref="GeneralizedHyperplanePartition{T}"/>.
+        /// </remarks>
+        /// <typeparam name="T">the type of the data points</typeparam>
+        /// <seealso cref="AEGIS.Indexes.Metric.SplitPolicy.IPartitionPolicy{T}" />
         public class BalancedPartitionPolicy<T> : IPartitionPolicy<T>
         {
             public Tuple<ISet<T>, ISet<T>> Partition(Tuple<T, T> promoted, ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
@@ -105,8 +171,21 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
             }
         }
 
+        /// <summary>
+        /// Chooses the two data points from the <c>dataSet</c> which are the farthest from each other.
+        /// </summary>
+        /// <typeparam name="T">the type of data points</typeparam>
+        /// <seealso cref="AEGIS.Indexes.Metric.SplitPolicy.IPromotePolicy{T}" />
         public class MaximumDistancePromotePolicy<T> : IPromotePolicy<T>
         {
+            /// <summary>
+            /// Chooses the two items from the <c>dataSet</c> which are the farthest from each other.
+            /// </summary>
+            /// <param name="dataSet">The data set.</param>
+            /// <param name="distanceMetric">The distance metric.</param>
+            /// <returns>
+            /// a pair of promoted items
+            /// </returns>
             public Tuple<T, T> Promote(ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
             {
                 T[] data = new T[dataSet.Count];
@@ -128,19 +207,6 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
                     }
                 }
 
-                return new Tuple<T, T>(first, second);
-            }
-        }
-
-        public class RandomPromotePolicy<T> : IPromotePolicy<T>
-        {
-            public Tuple<T, T> Promote(ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
-            {
-                IEnumerator<T> enumerator = dataSet.GetEnumerator();
-                enumerator.MoveNext();
-                T first = enumerator.Current;
-                enumerator.MoveNext();
-                T second = enumerator.Current;
                 return new Tuple<T, T>(first, second);
             }
         }

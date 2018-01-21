@@ -27,12 +27,33 @@ namespace AEGIS.Indexes.Metric
     /// <typeparam name="T">type of data to be indexed</typeparam>
     public class MTree<T>
     {
+        /// <summary>
+        /// Represents a result item from a search query.
+        /// </summary>
+        /// <typeparam name="DATA">The type of the data contained.</typeparam>
         public class ResultItem<DATA>
         {
+            /// <summary>
+            /// Gets the distance from the data point which was the query item during the search.
+            /// </summary>
+            /// <value>
+            /// The distance from the query item.
+            /// </value>
             public Double Distance { get; private set; }
 
+            /// <summary>
+            /// Gets the result item.
+            /// </summary>
+            /// <value>
+            /// The result item.
+            /// </value>
             public DATA Item { get; private set; }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ResultItem{DATA}"/> class.
+            /// </summary>
+            /// <param name="item">The item of the result (the data point in the tree).</param>
+            /// <param name="distance">The distance of <c>item</c> from the query item used in the search.</param>
             public ResultItem(DATA item, Double distance)
             {
                 this.Item = item;
@@ -40,6 +61,11 @@ namespace AEGIS.Indexes.Metric
             }
         }
 
+        /// <summary>
+        /// Implements a lazy loaded search query by implementing the <see cref="IEnumerable"/> interface.
+        ///
+        /// Results are loaded while iterating over an instance of this class.
+        /// </summary>
         private class SearchQuery : IEnumerable<ResultItem<T>>
         {
             public SearchQuery(MTree<T> tree, T data, Double range, Int32 limit)
@@ -86,9 +112,9 @@ namespace AEGIS.Indexes.Metric
 
                 private ResultItem<T> nextResultItem;
                 private Boolean finished;
-                private SortedSet<ItemWithDistances> pendingSet;
+                private List<ItemWithDistances> pendingList;
                 private Double nextPendingMinDistance;
-                private SortedSet<ItemWithDistances> nearestSet;
+                private List<ItemWithDistances> nearestList;
                 private Int32 yieldedCount;
 
                 public ResultEnumerator(SearchQuery searchQuery)
@@ -111,14 +137,10 @@ namespace AEGIS.Indexes.Metric
                     if (this.finished)
                         return false;
 
-                    if (this.nextResultItem == null)
-                        this.FetchNext();
+                    this.FetchNext();
 
-                    if (this.nextResultItem == null)
-                    {
-                        this.finished = true;
+                    if (this.finished)
                         return false;
-                    }
 
                     return true;
                 }
@@ -127,8 +149,8 @@ namespace AEGIS.Indexes.Metric
                 {
                     this.nextResultItem = null;
                     this.finished = false;
-                    this.pendingSet = new SortedSet<ItemWithDistances>();
-                    this.nearestSet = new SortedSet<ItemWithDistances>();
+                    this.pendingList = new List<ItemWithDistances>();
+                    this.nearestList = new List<ItemWithDistances>();
                     this.yieldedCount = 0;
 
                     if (this.searchQuery.tree.root == null)
@@ -140,7 +162,7 @@ namespace AEGIS.Indexes.Metric
                     Double distance = this.searchQuery.tree.distanceMetric.Invoke(this.searchQuery.data, this.searchQuery.tree.root.Data);
                     Double minDistance = Math.Max(distance - this.searchQuery.tree.root.Radius, 0.0D);
 
-                    this.pendingSet.Add(new ItemWithDistances(this.searchQuery.tree.root, distance, minDistance));
+                    this.pendingList.Add(new ItemWithDistances(this.searchQuery.tree.root, distance, minDistance));
                     this.nextPendingMinDistance = minDistance;
                 }
 
@@ -152,15 +174,15 @@ namespace AEGIS.Indexes.Metric
                         return;
                     }
 
-                    while (this.pendingSet.Count > 0 || this.nearestSet.Count > 0)
+                    while (this.pendingList.Count > 0 || this.nearestList.Count > 0)
                     {
                         if (this.PrepareNextNearest())
                         {
                             return;
                         }
 
-                        ItemWithDistances pending = this.pendingSet.Min;
-                        this.pendingSet.Remove(pending);
+                        ItemWithDistances pending = this.pendingList[0];
+                        this.pendingList.RemoveAt(0);
                         Node node = pending.Item;
 
                         foreach (Node child in node.Children.Values)
@@ -172,30 +194,39 @@ namespace AEGIS.Indexes.Metric
                                 if (childMinDistance <= this.searchQuery.range)
                                 {
                                     if (child.IsEntry)
-                                        this.nearestSet.Add(new ItemWithDistances(child, childDistance, childMinDistance));
+                                        this.AddToListInOrder(this.nearestList, new ItemWithDistances(child, childDistance, childMinDistance));
                                     else
-                                        this.pendingSet.Add(new ItemWithDistances(child, childDistance, childMinDistance));
+                                        this.AddToListInOrder(this.pendingList, new ItemWithDistances(child, childDistance, childMinDistance));
                                 }
                             }
                         }
 
-                        if (this.pendingSet.Count == 0)
+                        if (this.pendingList.Count == 0)
                             this.nextPendingMinDistance = Double.PositiveInfinity;
                         else
-                            this.nextPendingMinDistance = this.pendingSet.Min.MinDistance;
+                            this.nextPendingMinDistance = this.pendingList[0].MinDistance;
                     }
 
                     this.finished = true;
                 }
 
+                private void AddToListInOrder(List<ItemWithDistances> list, ItemWithDistances newItem)
+                {
+                    Int32 index = list.FindIndex(item => item.MinDistance > newItem.MinDistance);
+                    if (index >= 0)
+                        list.Insert(index, newItem);
+                    else
+                        list.Add(newItem);
+                }
+
                 private Boolean PrepareNextNearest()
                 {
-                    if (this.nearestSet.Count > 0)
+                    if (this.nearestList.Count > 0)
                     {
-                        ItemWithDistances nextNearest = this.nearestSet.Min;
+                        ItemWithDistances nextNearest = this.nearestList[0];
                         if (nextNearest.Distance <= this.nextPendingMinDistance)
                         {
-                            this.nearestSet.Remove(nextNearest);
+                            this.nearestList.RemoveAt(0);
                             this.nextResultItem = new ResultItem<T>(nextNearest.Item.Data, nextNearest.Distance);
                             this.yieldedCount++;
                             return true;
@@ -217,6 +248,9 @@ namespace AEGIS.Indexes.Metric
             }
         }
 
+        /// <summary>
+        /// Thrown when a node overflows during adding a child node.
+        /// </summary>
         private class SplitNodeReplacement : Exception
         {
             public Node[] NewNodes { get; private set; }
@@ -227,13 +261,17 @@ namespace AEGIS.Indexes.Metric
             }
         }
 
+        /// <summary>
+        /// Thorwn when the root node needs to be replaced because of an underflow propagated to the root item.
+        /// </summary>
         private class RootNodeReplacement : Exception
         {
             public Node NewRoot { get; private set; }
 
             public Boolean ItemRemoved { get; private set; }
 
-            public RootNodeReplacement() { }
+            public RootNodeReplacement(Boolean itemRemoved)
+                : this(null, itemRemoved) { }
 
             public RootNodeReplacement(Node newRoot, Boolean itemRemoved)
             {
@@ -578,7 +616,6 @@ namespace AEGIS.Indexes.Metric
 
             private void CheckMaxCapacity()
             {
-
                 if (this.ChildrenCount > this.Tree.MaxChildren)
                 {
                     DistanceMetric<T> distanceMetric = this.Tree.distanceMetric;
@@ -642,7 +679,7 @@ namespace AEGIS.Indexes.Metric
 
                 if (this.Tree.root == this && this.ChildrenCount < this.GetMinCapacity())
                 {
-                    throw new RootNodeReplacement();
+                    throw new RootNodeReplacement(removed);
                 }
 
                 return removed;
@@ -656,14 +693,90 @@ namespace AEGIS.Indexes.Metric
 
         private const Int32 DefaultMinChildren = 50;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MTree{T}"/> class.
+        /// </summary>
+        /// <param name="distanceMetric">
+        ///     The distance metric to be used to calculate distances between data points.
+        ///
+        ///     The distance metric must satisfy the following properties:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description><c>d(a,b) = d(b,a)</c> for every <c>a</c> and <c>b</c> points (symmetry)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,a) = 0</c> and <c>d(a,b) &gt; 0</c> for every <c>a != b</c> points (non-negativity)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,b) &lt;= d(a,c) + d(c,b)</c> for every <c>a</c>, <c>b</c> and <c>c</c> points (triangle inequality)</description>
+        ///         </item>
+        ///     </list>
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <c>distanceMetric</c> is missing
+        /// </exception>
         public MTree(DistanceMetric<T> distanceMetric)
-            : this(distanceMetric, SplitPolicies.SmartSplitPolicy<T>()) { }
+            : this(distanceMetric, SplitPolicies.BalancedSplitPolicy<T>()) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MTree{T}"/> class.
+        /// </summary>
+        /// <param name="distanceMetric">
+        ///     The distance metric to be used to calculate distances between data points.
+        ///
+        ///     The distance metric must satisfy the following properties:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description><c>d(a,b) = d(b,a)</c> for every <c>a</c> and <c>b</c> points (symmetry)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,a) = 0</c> and <c>d(a,b) &gt; 0</c> for every <c>a != b</c> points (non-negativity)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,b) &lt;= d(a,c) + d(c,b)</c> for every <c>a</c>, <c>b</c> and <c>c</c> points (triangle inequality)</description>
+        ///         </item>
+        ///     </list>
+        /// </param>
+        /// <param name="splitPolicy">The split policy to use. It consist of a partition and a promotion policy. <see cref="SplitPolicy{DATA}"/></param>
+        /// <exception cref="ArgumentNullException">
+        /// <c>distanceMetric</c> is missing
+        /// or
+        /// <c>splitPolicy</c> is missing
+        /// </exception>
         public MTree(DistanceMetric<T> distanceMetric, ISplitPolicy<T> splitPolicy)
             : this(DefaultMinChildren, 2 * DefaultMinChildren + 1, distanceMetric, splitPolicy) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MTree{T}"/> class.
+        /// </summary>
+        /// <param name="minChildren">The minimum number of children nodes for a node.</param>
+        /// <param name="maxChildren">The maximum number of children nodes for a node.</param>
+        /// <param name="distanceMetric">
+        ///     The distance metric to be used to calculate distances between data points.
+        ///
+        ///     The distance metric must satisfy the following properties:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description><c>d(a,b) = d(b,a)</c> for every <c>a</c> and <c>b</c> points (symmetry)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,a) = 0</c> and <c>d(a,b) &gt; 0</c> for every <c>a != b</c> points (non-negativity)</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><c>d(a,b) &lt;= d(a,c) + d(c,b)</c> for every <c>a</c>, <c>b</c> and <c>c</c> points (triangle inequality)</description>
+        ///         </item>
+        ///     </list>
+        /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <c>minChildren</c> is less than 1
+        /// or
+        /// <c>maxChildren</c> is less than <c>minChildren</c>
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <c>distanceMetric</c> is missing
+        /// </exception>
         public MTree(Int32 minChildren, Int32 maxChildren, DistanceMetric<T> distanceMetric)
-            : this(minChildren, maxChildren, distanceMetric, SplitPolicies.SmartSplitPolicy<T>()) { }
+            : this(minChildren, maxChildren, distanceMetric, SplitPolicies.BalancedSplitPolicy<T>()) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MTree{T}"/> class.
@@ -865,7 +978,7 @@ namespace AEGIS.Indexes.Metric
         ///     The nearest neighbors of this data point will be looked up within the tree.
         /// </param>
         /// <param name="limit">(optional) The maximum number of data items returned.</param>
-        /// <returns>The search results.</returns>
+        /// <returns>The search results. Results are loaded just-in-time while traversing the enumerator.</returns>
         public IEnumerable<ResultItem<T>> Search(T queryData, Int32 limit = Int32.MaxValue)
         {
             return this.Search(queryData, Double.PositiveInfinity, limit);
@@ -880,7 +993,7 @@ namespace AEGIS.Indexes.Metric
         /// </param>
         /// <param name="range">The range (radius) of the search. Data will be searched within this radius of <c>queryData</c>.</param>
         /// <param name="limit">(optional) The maximum number of data items returned.</param>
-        /// <returns>The search results.</returns>
+        /// <returns>The search results. Results are loaded just-in-time while traversing the enumerator.</returns>
         /// <exception cref="ArgumentNullException">If <c>queryData</c> is null.</exception>
         public IEnumerable<ResultItem<T>> Search(T queryData, Double range, Int32 limit = Int32.MaxValue)
         {
