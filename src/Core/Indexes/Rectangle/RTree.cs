@@ -91,7 +91,7 @@ namespace AEGIS.Indexes.Rectangle
             /// Gets the child nodes.
             /// </summary>
             /// <value>The list of child nodes.</value>
-            public List<Node> Children { get; private set; }
+            public List<Node> Children { get; protected set; }
 
             /// <summary>
             /// Gets the geometry contained in the node.
@@ -157,7 +157,7 @@ namespace AEGIS.Indexes.Rectangle
             /// Adds a new child to the node.
             /// </summary>
             /// <param name="child">The child node.</param>
-            public void AddChild(Node child)
+            public virtual void AddChild(Node child)
             {
                 if (child == null)
                     return;
@@ -174,7 +174,7 @@ namespace AEGIS.Indexes.Rectangle
             /// Removes a child of the node.
             /// </summary>
             /// <param name="node">The node to be removed.</param>
-            public void RemoveChild(Node node)
+            public virtual void RemoveChild(Node node)
             {
                 this.Children.Remove(node);
 
@@ -247,12 +247,8 @@ namespace AEGIS.Indexes.Rectangle
         /// </exception>
         public RTree(Int32 minChildren, Int32 maxChildren)
         {
-            if (minChildren < 1)
-                throw new ArgumentOutOfRangeException(nameof(minChildren), CoreMessages.MinimumNumberOfChildNodesIsLessThan1);
-            if (minChildren >= maxChildren)
-                throw new ArgumentOutOfRangeException(nameof(maxChildren), CoreMessages.MaximumNumberOfChildNodesIsEqualToMinimum);
-
-            this.Root = new Node(maxChildren);
+            this.CheckChildrenCounts(minChildren, maxChildren);
+            this.CreateRootNode(maxChildren);
             this.NumberOfGeometries = 0;
             this.Height = 0;
             this.MinChildren = minChildren;
@@ -303,7 +299,7 @@ namespace AEGIS.Indexes.Rectangle
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry));
 
-            this.AddNode(new Node(geometry));
+            this.AddGeometry(geometry);
             this.NumberOfGeometries++;
         }
 
@@ -321,7 +317,7 @@ namespace AEGIS.Indexes.Rectangle
             {
                 if (geometry != null)
                 {
-                    this.AddNode(new Node(geometry));
+                    this.AddGeometry(geometry);
                     this.NumberOfGeometries++;
                 }
             }
@@ -411,9 +407,43 @@ namespace AEGIS.Indexes.Rectangle
         /// </summary>
         public void Clear()
         {
-            this.Root = new Node(this.Root.MaxChildren);
+            this.CreateRootNode(this.Root.MaxChildren);
             this.Height = 0;
             this.NumberOfGeometries = 0;
+        }
+
+        /// <summary>
+        /// Creates the root node (when initializing, or clearing the tree).
+        /// </summary>
+        /// <param name="maxChildren">The maximum number of children nodes for a node.</param>
+        protected virtual void CreateRootNode(Int32 maxChildren)
+        {
+            this.Root = new Node(maxChildren);
+        }
+
+        /// <summary>
+        /// Checks the children counts.
+        /// </summary>
+        /// <param name="minChildren">The minimum children.</param>
+        /// <param name="maxChildren">The maximum children.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// when minChildren or maxChildren is not valid for the given tree type
+        /// </exception>
+        protected virtual void CheckChildrenCounts(Int32 minChildren, Int32 maxChildren)
+        {
+            if (minChildren < 1)
+                throw new ArgumentOutOfRangeException(nameof(minChildren), CoreMessages.MinimumNumberOfChildNodesIsLessThan1);
+            if (minChildren >= maxChildren)
+                throw new ArgumentOutOfRangeException(nameof(maxChildren), CoreMessages.MaximumNumberOfChildNodesIsEqualToMinimum);
+        }
+
+        /// <summary>
+        /// Adds a geometry by creating a new leaf node.
+        /// </summary>
+        /// <param name="geometry">The geometry to be added.</param>
+        protected virtual void AddGeometry(IBasicGeometry geometry)
+        {
+            this.AddNode(new Node(geometry));
         }
 
         /// <summary>
@@ -799,7 +829,7 @@ namespace AEGIS.Indexes.Rectangle
         /// <param name="geometry">The geometry.</param>
         /// <param name="node">The node where the search starts.</param>
         /// <param name="resultLeafContainer">The found leaf container.</param>
-        private void FindLeafContainer(IBasicGeometry geometry, Node node, ref Node resultLeafContainer)
+        protected void FindLeafContainer(IBasicGeometry geometry, Node node, ref Node resultLeafContainer)
         {
             if (!node.IsLeafContainer)
             {
