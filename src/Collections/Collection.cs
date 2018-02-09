@@ -362,30 +362,6 @@ namespace AEGIS.Collections
         }
 
         /// <summary>
-        /// Appends an item to the specified collection.
-        /// </summary>
-        /// <typeparam name="T">The type of the objects within the collection.</typeparam>
-        /// <param name="collection">The collection.</param>
-        /// <param name="item">The item which is appended to the collection.</param>
-        /// <returns>The collection with contains the additional item.</returns>
-        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, T item)
-        {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-
-            using (IEnumerator<T> enumerator = collection.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    yield return enumerator.Current;
-                }
-            }
-
-            yield return item;
-        }
-
-        /// <summary>
         /// Returns a read-only list wrapper for the current collection.
         /// </summary>
         /// <typeparam name="T">The type of the value.</typeparam>

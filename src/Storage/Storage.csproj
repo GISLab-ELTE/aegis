@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>AEGIS.Storage</RootNamespace>
     <Authors>Roberto Giachetta et al.</Authors>
     <Version>0.1.0</Version>
