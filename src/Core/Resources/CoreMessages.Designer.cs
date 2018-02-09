@@ -20,7 +20,7 @@ namespace AEGIS.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class CoreMessages {
@@ -242,11 +242,29 @@ namespace AEGIS.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Equals() method for the given type returns false for the same instances..
+        /// </summary>
+        public static string InvalidObjectEquality {
+            get {
+                return ResourceManager.GetString("InvalidObjectEquality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An item with the same identifier already exists in the collection..
         /// </summary>
         public static string ItemIdentifierExists {
             get {
                 return ResourceManager.GetString("ItemIdentifierExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified item was already in the tree..
+        /// </summary>
+        public static string ItemWasAlreadyInTree {
+            get {
+                return ResourceManager.GetString("ItemWasAlreadyInTree", resourceCulture);
             }
         }
         

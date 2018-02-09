@@ -177,8 +177,14 @@
   <data name="IndexIsEqualToOrGreaterThanNumberOfCoordinates" xml:space="preserve">
     <value>The index is equal to or greater than the number of coordinates.</value>
   </data>
+  <data name="InvalidObjectEquality" xml:space="preserve">
+    <value>The Equals() method for the given type returns false for the same instances.</value>
+  </data>
   <data name="ItemIdentifierExists" xml:space="preserve">
     <value>An item with the same identifier already exists in the collection.</value>
+  </data>
+  <data name="ItemWasAlreadyInTree" xml:space="preserve">
+    <value>The specified item was already in the tree.</value>
   </data>
   <data name="LineExtensionNotSupported" xml:space="preserve">
     <value>Extension of lines is not supported.</value>
