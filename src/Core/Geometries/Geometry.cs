@@ -129,5 +129,15 @@ namespace AEGIS.Geometries
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
         public abstract String ToString(IFormatProvider provider);
+
+        /// <summary>
+        /// Corrects the specified coordinate to fit properties of the geometry.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <returns>The corrected coordinate with fitting precision and dimension.</returns>
+        protected Coordinate Correct(Coordinate coordinate)
+        {
+            return Coordinate.WithDimension(this.precisionModel.MakePrecise(coordinate), this.referenceSystem);
+        }
     }
 }

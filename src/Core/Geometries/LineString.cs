@@ -82,7 +82,7 @@ namespace AEGIS.Geometries
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            this.coordinates = new List<Coordinate>(source.Select(coordinate => this.PrecisionModel.MakePrecise(coordinate)));
+            this.coordinates = new List<Coordinate>(source.Select(coordinate => this.Correct(coordinate)));
         }
 
         /// <summary>
@@ -102,18 +102,17 @@ namespace AEGIS.Geometries
         {
             get
             {
-                if (this.IsClosed)
-                {
+                if (this.Count == 0)
                     return null;
-                }
-                else
+
+                if (this.IsClosed)
+                    return null;
+
+                return new MultiPoint(this.PrecisionModel, this.ReferenceSystem, new Point[]
                 {
-                    return new MultiPoint(this.PrecisionModel, this.ReferenceSystem, new Point[]
-                    {
-                        new Point(this.PrecisionModel, this.ReferenceSystem, this.StartCoordinate),
-                        new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate)
-                    });
-                }
+                    new Point(this.PrecisionModel, this.ReferenceSystem, this.StartCoordinate),
+                    new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate)
+                });
             }
         }
 
@@ -214,7 +213,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (this.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
                 return this.coordinates[0];
             }
         }
@@ -228,7 +227,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (this.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
                 return this.coordinates[this.coordinates.Count - 1];
             }
         }
@@ -248,7 +247,10 @@ namespace AEGIS.Geometries
         {
             get
             {
-                return this.GetCoordinate(index);
+                if (index < 0 || index >= this.Count)
+                    return null;
+
+                return this.coordinates[index];
             }
         }
 
@@ -257,8 +259,12 @@ namespace AEGIS.Geometries
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns><c>true</c> if the line string contains the specified coordinate within its coordinates; otherwise, <c>false</c>.</returns>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public virtual Boolean Contains(Coordinate coordinate)
         {
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
             return this.coordinates.Contains(coordinate);
         }
 
@@ -292,25 +298,30 @@ namespace AEGIS.Geometries
         /// or
         /// The index is equal to or greater than the number of coordinates.
         /// </exception>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public virtual void SetCoordinate(Int32 index, Coordinate coordinate)
         {
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
-
-            this.coordinates[index] = coordinate;
+            this.coordinates[index] = this.Correct(coordinate);
         }
 
         /// <summary>
         /// Adds a coordinate to the end of the line string.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public virtual void Add(Coordinate coordinate)
         {
-            this.coordinates.Add(this.PrecisionModel.MakePrecise(coordinate));
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
+            this.coordinates.Add(this.Correct(coordinate));
         }
 
         /// <summary>
@@ -323,15 +334,17 @@ namespace AEGIS.Geometries
         /// or
         /// The index is equal to or greater than the number of coordinates.
         /// </exception>
-        /// <exception cref="System.ArgumentException">The coordinate is not valid.</exception>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public virtual void Insert(Int32 index, Coordinate coordinate)
         {
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
-            this.coordinates.Insert(index, this.PrecisionModel.MakePrecise(coordinate));
+            this.coordinates.Insert(index, this.Correct(coordinate));
         }
 
         /// <summary>
@@ -339,9 +352,13 @@ namespace AEGIS.Geometries
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns><c>true</c> if the coordinate was removed; otherwise, <c>false</c>.</returns>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public virtual Boolean Remove(Coordinate coordinate)
         {
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
+            coordinate = this.Correct(coordinate);
 
             return this.coordinates.Remove(coordinate);
         }

@@ -151,9 +151,6 @@ namespace AEGIS.Tests.Indexes.Rectangle
         public void RTreeSearchTest()
         {
             // empty results
-
-            this.tree.Search(Envelope.Undefined).ShouldBeEmpty();
-
             for (Int32 value = 0; value < 1000; value++)
                 this.tree.Search(new Envelope(value, value, value, value, 0, 0)).ShouldBeEmpty();
 

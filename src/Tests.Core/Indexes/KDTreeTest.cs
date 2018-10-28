@@ -160,10 +160,6 @@ namespace AEGIS.Tests.Indexes
             this.tree2D = new KDTree(this.coords2D, 2);
             this.tree3D = new KDTree(this.coords3D, 3);
 
-            // Should be empty for undefined envelope
-            this.tree2D.Search(Envelope.Undefined).ShouldBeEmpty();
-            this.tree3D.Search(Envelope.Undefined).ShouldBeEmpty();
-
             // Should be empty for envelopes that do not contain any of the coordinates
             this.tree2D.Search(new Envelope(0.5, 0.6, 0.5, 0.6)).ShouldBeEmpty();
             this.tree2D.Search(new Envelope(200, 210, 200, 210)).ShouldBeEmpty();

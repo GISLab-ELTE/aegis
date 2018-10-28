@@ -35,9 +35,18 @@ namespace AEGIS.Geometries
         /// <param name="referenceSystem">The reference system.</param>
         /// <param name="startCoordinate">The starting coordinate.</param>
         /// <param name="endCoordinate">The ending coordinate.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// The start coordinate is null.
+        /// or
+        /// The end coordinate is null.
+        /// </exception>
         public Line(PrecisionModel precisionModel, IReferenceSystem referenceSystem, Coordinate startCoordinate, Coordinate endCoordinate)
             : base(precisionModel, referenceSystem, new List<Coordinate> { startCoordinate, endCoordinate })
         {
+            if (startCoordinate == null)
+                throw new ArgumentNullException(nameof(startCoordinate));
+            if (endCoordinate == null)
+                throw new ArgumentNullException(nameof(endCoordinate));
         }
 
         /// <summary>

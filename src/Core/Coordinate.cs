@@ -123,7 +123,7 @@ namespace AEGIS
         /// <returns><c>true</c> if <paramref name="other" /> and this instance represent the same value; otherwise, <c>false</c>.</returns>
         public Boolean Equals(Coordinate other)
         {
-            if (ReferenceEquals(other, null))
+            if (other is null)
                 return false;
             if (ReferenceEquals(this, other))
                 return true;
@@ -138,7 +138,7 @@ namespace AEGIS
         /// <returns><c>true</c> if <paramref name="other" /> and this instance represent the same value; otherwise, <c>false</c>.</returns>
         public Boolean Equals(CoordinateVector other)
         {
-            if (ReferenceEquals(other, null))
+            if (other is null)
                 return false;
 
             return this.x == other.X && this.y == other.Y && this.z == other.Z;
@@ -151,19 +151,15 @@ namespace AEGIS
         /// <returns><c>true</c> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <c>false</c>.</returns>
         public override Boolean Equals(Object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (obj is null)
                 return false;
             if (ReferenceEquals(this, obj))
                 return true;
 
-            Coordinate otherCoordinate = obj as Coordinate;
-
-            if (otherCoordinate != null)
+            if (obj is Coordinate otherCoordinate)
                 return this.x == otherCoordinate.x && this.y == otherCoordinate.y && this.z == otherCoordinate.z;
 
-            CoordinateVector otherVector = obj as CoordinateVector;
-
-            if (otherVector != null)
+            if (obj is CoordinateVector otherVector)
                 return this.x == otherVector.X && this.y == otherVector.Y && this.z == otherVector.Z;
 
             return false;
@@ -213,9 +209,9 @@ namespace AEGIS
         /// </exception>
         public static Coordinate operator +(Coordinate coordinate, CoordinateVector vector)
         {
-            if (ReferenceEquals(coordinate, null))
+            if (coordinate is null)
                 throw new ArgumentNullException(nameof(coordinate));
-            if (ReferenceEquals(vector, null))
+            if (vector is null)
                 throw new ArgumentNullException(nameof(vector));
 
             return new Coordinate(coordinate.X + vector.X, coordinate.Y + vector.Y, coordinate.Z + vector.Z);
@@ -234,9 +230,9 @@ namespace AEGIS
         /// </exception>
         public static Coordinate operator -(Coordinate coordinate, CoordinateVector vector)
         {
-            if (ReferenceEquals(coordinate, null))
+            if (coordinate is null)
                 throw new ArgumentNullException(nameof(coordinate));
-            if (ReferenceEquals(vector, null))
+            if (vector is null)
                 throw new ArgumentNullException(nameof(vector));
 
             return new Coordinate(coordinate.X - vector.X, coordinate.Y - vector.Y, coordinate.Z - vector.Z);
@@ -255,9 +251,9 @@ namespace AEGIS
         /// </exception>
         public static CoordinateVector operator -(Coordinate first, Coordinate second)
         {
-            if (ReferenceEquals(first, null))
+            if (first is null)
                 throw new ArgumentNullException(nameof(first));
-            if (ReferenceEquals(second, null))
+            if (second is null)
                 throw new ArgumentNullException(nameof(second));
 
             return new CoordinateVector(first.X - second.X, first.Y - second.Y, first.Z - second.Z);
@@ -276,9 +272,9 @@ namespace AEGIS
         /// </exception>
         public static Boolean operator ==(Coordinate first, Coordinate second)
         {
-            if (ReferenceEquals(second, null))
-                return ReferenceEquals(first, null);
-            if (ReferenceEquals(first, null))
+            if (second is null)
+                return first is null;
+            if (first is null)
                 return false;
 
             return first.x == second.x && first.y == second.y && first.z == second.z;
@@ -316,41 +312,6 @@ namespace AEGIS
         /// <summary>
         /// Computes the distance between the two coordinates.
         /// </summary>
-        /// <param name="firstX">The X value of the first coordinate.</param>
-        /// <param name="firstY">The Y value of the first coordinate.</param>
-        /// <param name="secondX">The X value of the second coordinate.</param>
-        /// <param name="secondY">The Y value of the second coordinate.</param>
-        /// <returns>The distance between the two coordinates.</returns>
-        public static Double Distance(Double firstX, Double firstY, Double secondX, Double secondY)
-        {
-            Double x = firstX - secondX;
-            Double y = firstY - secondY;
-
-            return Math.Sqrt(x * x + y * y);
-        }
-
-        /// <summary>
-        /// Computes the distance between the two coordinates.
-        /// </summary>
-        /// <param name="firstX">The X value of the first coordinate.</param>
-        /// <param name="firstY">The Y value of the first coordinate.</param>
-        /// <param name="firstZ">The Z value of the first coordinate.</param>
-        /// <param name="secondX">The X value of the second coordinate.</param>
-        /// <param name="secondY">The Y value of the second coordinate.</param>
-        /// <param name="secondZ">The Z value of the second coordinate.</param>
-        /// <returns>The distance between the two coordinates.</returns>
-        public static Double Distance(Double firstX, Double firstY, Double firstZ, Double secondX, Double secondY, Double secondZ)
-        {
-            Double x = firstX - secondX;
-            Double y = firstY - secondY;
-            Double z = firstZ - secondZ;
-
-            return Math.Sqrt(x * x + y * y + z * z);
-        }
-
-        /// <summary>
-        /// Computes the distance between the two coordinates.
-        /// </summary>
         /// <param name="first">The first coordinate.</param>
         /// <param name="second">The second coordinate.</param>
         /// <returns>The distance between the two <see cref="Coordinate" /> instances.</returns>
@@ -361,9 +322,9 @@ namespace AEGIS
         /// </exception>
         public static Double Distance(Coordinate first, Coordinate second)
         {
-            if (ReferenceEquals(first, null))
+            if (first is null)
                 throw new ArgumentNullException(nameof(first));
-            if (ReferenceEquals(second, null))
+            if (second is null)
                 throw new ArgumentNullException(nameof(second));
 
             if (first.Equals(second))
@@ -393,7 +354,7 @@ namespace AEGIS
             Double sumX = 0, sumY = 0, sumZ = 0;
             for (Int32 coordinateIndex = 0; coordinateIndex < coordinates.Length; coordinateIndex++)
             {
-                if (ReferenceEquals(coordinates[coordinateIndex], null))
+                if (coordinates[coordinateIndex] is null)
                     continue;
 
                 sumX += coordinates[coordinateIndex].X;
@@ -426,7 +387,7 @@ namespace AEGIS
             Int32 count = 0;
             foreach (Coordinate coordinate in coordinates)
             {
-                if (ReferenceEquals(coordinate, null))
+                if (coordinate is null)
                     continue;
 
                 sumX += coordinate.X;
@@ -485,11 +446,11 @@ namespace AEGIS
             if (precisionModel == null)
                 precisionModel = PrecisionModel.Default;
 
-            if (ReferenceEquals(origin, null))
+            if (origin is null)
                 throw new ArgumentNullException(nameof(origin));
-            if (ReferenceEquals(first, null))
+            if (first is null)
                 throw new ArgumentNullException(nameof(first));
-            if (ReferenceEquals(second, null))
+            if (second is null)
                 throw new ArgumentNullException(nameof(second));
 
             Double det = (first.X - origin.X) * (second.Y - origin.Y) - (first.Y - origin.Y) * (second.X - origin.X);
@@ -522,11 +483,11 @@ namespace AEGIS
         /// </exception>
         public static Double Angle(Coordinate origin, Coordinate first, Coordinate second)
         {
-            if (ReferenceEquals(origin, null))
+            if (origin is null)
                 throw new ArgumentNullException(nameof(origin));
-            if (ReferenceEquals(first, null))
+            if (first is null)
                 throw new ArgumentNullException(nameof(first));
-            if (ReferenceEquals(second, null))
+            if (second is null)
                 throw new ArgumentNullException(nameof(second));
 
             Double distanceOriginFirst = Distance(origin, first);
@@ -534,6 +495,52 @@ namespace AEGIS
             Double distanceFirstSecond = Distance(first, second);
 
             return Math.Acos((distanceOriginFirst * distanceOriginFirst + distanceOriginSecond * distanceOriginSecond - distanceFirstSecond * distanceFirstSecond) / (2 * distanceOriginFirst * distanceOriginSecond));
+        }
+
+        /// <summary>
+        /// Returns the coordinate matching the dimension of the specified reference system.
+        /// </summary>
+        /// <param name="coordinate">The coordinate.</param>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <returns>The coordinate matching the dimension of the specified reference system.</returns>
+        public static Coordinate WithDimension(Coordinate coordinate, IReferenceSystem referenceSystem)
+        {
+            if (referenceSystem == null || referenceSystem.Dimension >= 3)
+                return coordinate;
+
+            switch (referenceSystem.Dimension)
+            {
+                case 2:
+                    return new Coordinate(coordinate.x, coordinate.y);
+                case 1:
+                    return new Coordinate(coordinate.x, 0);
+                default:
+                    return Coordinate.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Returns the coordinate matching the dimension of the specified reference system.
+        /// </summary>
+        /// <param name="x">The X component.</param>
+        /// <param name="y">The Y component.</param>
+        /// <param name="z">The Z component.</param>
+        /// <param name="referenceSystem">The reference system.</param>
+        /// <returns>The coordinate matching the dimension of the specified reference system.</returns>
+        public static Coordinate WithDimension(Double x, Double y, Double z, IReferenceSystem referenceSystem)
+        {
+            if (referenceSystem == null || referenceSystem.Dimension >= 3)
+                return new Coordinate(x, y, z);
+
+            switch (referenceSystem.Dimension)
+            {
+                case 2:
+                    return new Coordinate(x, y);
+                case 1:
+                    return new Coordinate(x, 0);
+                default:
+                    return Coordinate.Empty;
+            }
         }
     }
 }

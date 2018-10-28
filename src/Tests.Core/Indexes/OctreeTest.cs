@@ -134,9 +134,6 @@ namespace AEGIS.Tests.Indexes
             List<IPoint> points = new List<IPoint>(Enumerable.Range(1, 99).Select(value => this.factory.CreatePoint(value, value, value)));
             this.tree.Add(points);
 
-            // Should be empty for undefined envelope
-            this.tree.Search(Envelope.Undefined).ShouldBeEmpty();
-
             // Should be empty for envelopes that do not contain any of the geometries
             this.tree.Search(new Envelope(0.5, 0.6, 0.5, 0.6, 0.5, 0.6));
             this.tree.Search(new Envelope(100, 100, 100, 100, 100, 100));

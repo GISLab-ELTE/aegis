@@ -309,7 +309,7 @@ namespace AEGIS.Algorithms
             if (!shellEnumerator.MoveNext())
             {
                 // shell has no coordinates
-                if (holes == null)
+                if (holes == null || !holes.AnyElement())
                     return true;
 
                 return holes.Any(hole => holes.AnyElement());

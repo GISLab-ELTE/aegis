@@ -58,6 +58,11 @@ namespace AEGIS.Geometries
         private const String PolygonName = "POLYGON";
 
         /// <summary>
+        /// The string for empty polygon. This field is constant.
+        /// </summary>
+        private const String PolygonEmptyString = " EMPTY";
+
+        /// <summary>
         /// The holes of the polygon.
         /// </summary>
         private readonly List<LinearRing> holes;
@@ -94,7 +99,7 @@ namespace AEGIS.Geometries
             {
                 foreach (LinearRing hole in holes)
                 {
-                    if (hole == null)
+                    if (hole == null || hole.Count == 0)
                         continue;
 
                     this.holes.Add(hole);
@@ -126,7 +131,7 @@ namespace AEGIS.Geometries
             {
                 foreach (IEnumerable<Coordinate> hole in holes)
                 {
-                    if (hole == null)
+                    if (hole == null || !hole.Any())
                         continue;
 
                     this.holes.Add(new LinearRing(precisionModel, referenceSystem, hole));
@@ -293,6 +298,9 @@ namespace AEGIS.Geometries
             if (hole == null)
                 throw new ArgumentNullException(nameof(hole));
 
+            if (hole.Count == 0)
+                return;
+
             if (hole is LinearRing holeImplementation)
                 this.holes.Add(holeImplementation);
             else
@@ -308,6 +316,9 @@ namespace AEGIS.Geometries
         {
             if (hole == null)
                 throw new ArgumentNullException(nameof(hole));
+
+            if (!hole.Any())
+                return;
 
             this.holes.Add(new LinearRing(this.PrecisionModel, this.ReferenceSystem, hole));
         }
@@ -408,6 +419,9 @@ namespace AEGIS.Geometries
         /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
         protected String ToString(IFormatProvider provider, String name)
         {
+            if (this.IsEmpty)
+                return name + PolygonEmptyString;
+
             StringBuilder builder = new StringBuilder();
 
             StringBuilder partBuilder = new StringBuilder();

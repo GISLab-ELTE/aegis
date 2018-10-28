@@ -15,8 +15,7 @@
 namespace AEGIS.Geometries
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using AEGIS.Resources;
 
     /// <summary>
     /// Represents a point geometry in Cartesian coordinate space.
@@ -39,10 +38,14 @@ namespace AEGIS.Geometries
         /// <param name="precisionModel">The precision model.</param>
         /// <param name="referenceSystem">The reference system.</param>
         /// <param name="coordinate">The coordinate.</param>
+        /// <exception cref="ArgumentNullException">The coordinate is null.</exception>
         public Point(PrecisionModel precisionModel, IReferenceSystem referenceSystem, Coordinate coordinate)
             : base(precisionModel, referenceSystem)
         {
-            this.coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
+            this.coordinate = this.Correct(coordinate ?? Coordinate.Empty);
         }
 
         /// <summary>
@@ -115,7 +118,7 @@ namespace AEGIS.Geometries
                 Double preciseValue = this.PrecisionModel.MakePrecise(value);
                 if (this.coordinate.X != preciseValue)
                 {
-                    this.coordinate = new Coordinate(preciseValue, this.coordinate.Y, this.coordinate.Z);
+                    this.coordinate = Coordinate.WithDimension(preciseValue, this.coordinate.Y, this.coordinate.Z, this.ReferenceSystem);
                 }
             }
         }
@@ -136,7 +139,7 @@ namespace AEGIS.Geometries
                 Double preciseValue = this.PrecisionModel.MakePrecise(value);
                 if (this.coordinate.Y != preciseValue)
                 {
-                    this.coordinate = new Coordinate(this.coordinate.X, preciseValue, this.coordinate.Z);
+                    this.coordinate = Coordinate.WithDimension(this.coordinate.X, preciseValue, this.coordinate.Z, this.ReferenceSystem);
                 }
             }
         }
@@ -157,7 +160,7 @@ namespace AEGIS.Geometries
                 Double preciseValue = this.PrecisionModel.MakePrecise(value);
                 if (this.coordinate.Z != preciseValue)
                 {
-                    this.coordinate = new Coordinate(this.coordinate.X, this.coordinate.Y, preciseValue);
+                    this.coordinate = Coordinate.WithDimension(this.coordinate.X, this.coordinate.Y, preciseValue, this.ReferenceSystem);
                 }
             }
         }
@@ -175,7 +178,10 @@ namespace AEGIS.Geometries
 
             set
             {
-                Coordinate preciseValue = this.PrecisionModel.MakePrecise(value);
+                if (value == null)
+                    return;
+
+                Coordinate preciseValue = this.Correct(value);
                 if (!this.coordinate.Equals(preciseValue))
                 {
                     this.coordinate = preciseValue;

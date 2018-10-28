@@ -93,17 +93,6 @@ namespace AEGIS.Geometries
         }
 
         /// <summary>
-        /// Gets a hole at the specified index.
-        /// </summary>
-        /// <param name="index">The zero-based index of the hole to get.</param>
-        /// <returns>The hole at the specified index.</returns>
-        /// <exception cref="System.NotSupportedException">Holes are not supported in the triangle.</exception>
-        public override ILinearRing GetHole(Int32 index)
-        {
-            throw new NotSupportedException(CoreMessages.HolesNotSupportedInTriangle);
-        }
-
-        /// <summary>
         /// Removes a hole from the triangle.
         /// </summary>
         /// <param name="hole">The hole.</param>

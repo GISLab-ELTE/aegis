@@ -70,12 +70,6 @@ namespace AEGIS.Tests
             // empty envelope
             new Envelope(0, 0, 0, 0, 0, 0).ToString().ShouldBe("EMPTY (0 0 0)");
             new Envelope(0, 0, 10, 10, 100, 100).ToString().ShouldBe("EMPTY (0 10 100)");
-
-            // undefined envelope
-            Envelope nanEnvelope = new Envelope(Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN);
-
-            nanEnvelope.GetHashCode().ShouldBe(Envelope.Undefined.GetHashCode());
-            nanEnvelope.ToString().ShouldBe(Envelope.Undefined.ToString());
         }
 
         /// <summary>
@@ -88,10 +82,6 @@ namespace AEGIS.Tests
             Envelope.Infinity.IsEmpty.ShouldBeFalse();
             Envelope.Infinity.IsPlanar.ShouldBeFalse();
             Envelope.Infinity.IsValid.ShouldBeTrue();
-
-            Envelope.Undefined.IsEmpty.ShouldBeFalse();
-            Envelope.Undefined.IsPlanar.ShouldBeFalse();
-            Envelope.Undefined.IsValid.ShouldBeFalse();
 
             // empty instance
             Envelope envelope = new Envelope(10, 10, 10, 10, 10, 10);
@@ -147,7 +137,6 @@ namespace AEGIS.Tests
             first.Equals(null).ShouldBeFalse();
             first.Equals(first).ShouldBeTrue();
             first.Equals(second).ShouldBeTrue();
-            first.Equals(Envelope.Undefined).ShouldBeFalse();
 
             foreach (Envelope envelope in others)
                 first.Equals(envelope).ShouldBeFalse();
@@ -180,15 +169,11 @@ namespace AEGIS.Tests
             first.Contains(Coordinate.Empty).ShouldBeFalse();
             first.Contains(Coordinate.Undefined).ShouldBeFalse();
             first.Contains(new Coordinate(15, 150, 1500)).ShouldBeTrue();
-            Envelope.Undefined.Contains(Coordinate.Empty).ShouldBeFalse();
-            Envelope.Undefined.Contains(Coordinate.Undefined).ShouldBeFalse();
 
             // coordinate containment, static method
             Envelope.Contains(first.Minimum, first.Maximum, Coordinate.Empty).ShouldBeFalse();
             Envelope.Contains(first.Minimum, first.Maximum, Coordinate.Undefined).ShouldBeFalse();
             Envelope.Contains(first.Minimum, first.Maximum, new Coordinate(15, 150, 1500)).ShouldBeTrue();
-            Envelope.Contains(Envelope.Undefined.Minimum, Envelope.Undefined.Maximum, Coordinate.Empty).ShouldBeFalse();
-            Envelope.Contains(Envelope.Undefined.Minimum, Envelope.Undefined.Maximum, Coordinate.Undefined).ShouldBeFalse();
 
             // envelope containment, false cases
             Envelope[] others = new Envelope[]
@@ -574,9 +559,9 @@ namespace AEGIS.Tests
         [Test]
         public void EnvelopeFromCoordinatesTest()
         {
-            Envelope.FromCoordinates(null).IsValid.ShouldBeFalse();
-            Envelope.FromCoordinates((IEnumerable<Coordinate>)null).IsValid.ShouldBeFalse();
-            Envelope.FromCoordinates(new Coordinate[0]).IsValid.ShouldBeFalse();
+            Envelope.FromCoordinates(null).ShouldBeNull();
+            Envelope.FromCoordinates((IEnumerable<Coordinate>)null).ShouldBeNull();
+            Envelope.FromCoordinates(new Coordinate[0]).ShouldBeNull();
 
             Coordinate[] source = Enumerable.Range(0, 11).Select(value => new Coordinate(value, value, value)).ToArray();
             Envelope.FromCoordinates(source).ShouldBe(new Envelope(0, 10, 0, 10, 0, 10));
@@ -597,9 +582,9 @@ namespace AEGIS.Tests
         [Test]
         public void EnvelopeFromEnvelopesTest()
         {
-            Envelope.FromEnvelopes(null).IsValid.ShouldBeFalse();
-            Envelope.FromEnvelopes((IEnumerable<Envelope>)null).IsValid.ShouldBeFalse();
-            Envelope.FromEnvelopes(new Envelope[0]).IsValid.ShouldBeFalse();
+            Envelope.FromEnvelopes(null).ShouldBeNull();
+            Envelope.FromEnvelopes((IEnumerable<Envelope>)null).ShouldBeNull();
+            Envelope.FromEnvelopes(new Envelope[0]).ShouldBeNull();
 
             Envelope[] source = Enumerable.Range(0, 11).Select(value => new Envelope(value, value, value, value, value, value)).ToArray();
 

@@ -158,7 +158,7 @@ namespace AEGIS.Algorithms
         /// </summary>
         public void Compute()
         {
-            if (this.Shell == null)
+            if (this.Shell == null || !this.Shell.Any())
                 return;
 
             Double resultX = 0, resultY = 0;

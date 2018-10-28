@@ -24,7 +24,6 @@ namespace AEGIS.Tests.Indexes.Rectangle
     [TestFixture]
     public class HilbertEncoderTest
     {
-
         [Test]
         public void EncodeInteger2DPositivePointOnHilbertCurveTest()
         {

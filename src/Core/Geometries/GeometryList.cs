@@ -113,7 +113,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (this.items.Count == 0)
-                    return Envelope.Undefined;
+                    return null;
                 else if (this.items.Count == 1)
                     return this.items[0].Envelope;
                 else

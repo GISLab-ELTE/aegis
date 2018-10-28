@@ -27,11 +27,6 @@ namespace AEGIS
     public class Envelope : IEquatable<Envelope>
     {
         /// <summary>
-        /// Represents the undefined <see cref="Envelope" /> value. This field is read-only.
-        /// </summary>
-        public static readonly Envelope Undefined = new Envelope(Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN);
-
-        /// <summary>
         /// Represents the infinite <see cref="Envelope" /> value. This field is read-only.
         /// </summary>
         public static readonly Envelope Infinity = new Envelope(Double.NegativeInfinity, Double.PositiveInfinity, Double.PositiveInfinity, Double.NegativeInfinity, Double.NegativeInfinity, Double.PositiveInfinity);
@@ -366,7 +361,7 @@ namespace AEGIS
         public static Envelope FromCoordinates(params Coordinate[] coordinates)
         {
             if (coordinates == null || !coordinates.AnyElement())
-                return Envelope.Undefined;
+                return null;
 
             Double minX = Double.MaxValue, minY = Double.MaxValue, minZ = Double.MaxValue, maxX = Double.MinValue, maxY = Double.MinValue, maxZ = Double.MinValue;
             foreach (Coordinate coordinate in coordinates)
@@ -387,9 +382,6 @@ namespace AEGIS
                 if (coordinate.Z > maxZ)
                     maxZ = coordinate.Z;
             }
-
-            if (minX > maxX)
-                return Envelope.Undefined;
 
             return new Envelope(minX, maxX, minY, maxY, minZ, maxZ);
         }
@@ -401,8 +393,8 @@ namespace AEGIS
         /// <returns>The <see cref="Envelope" /> created from the coordinates.</returns>
         public static Envelope FromCoordinates(IEnumerable<Coordinate> coordinates)
         {
-            if (coordinates == null)
-                return Envelope.Undefined;
+            if (coordinates == null || !coordinates.AnyElement())
+                return null;
 
             Double minX = Double.MaxValue, minY = Double.MaxValue, minZ = Double.MaxValue, maxX = Double.MinValue, maxY = Double.MinValue, maxZ = Double.MinValue;
             foreach (Coordinate coordinate in coordinates)
@@ -423,9 +415,6 @@ namespace AEGIS
                 if (coordinate.Z > maxZ)
                     maxZ = coordinate.Z;
             }
-
-            if (minX > maxX)
-                return Envelope.Undefined;
 
             return new Envelope(minX, maxX, minY, maxY, minZ, maxZ);
         }
@@ -438,7 +427,7 @@ namespace AEGIS
         public static Envelope FromEnvelopes(params Envelope[] envelopes)
         {
             if (envelopes == null || !envelopes.AnyElement())
-                return Envelope.Undefined;
+                return null;
 
             return new Envelope(envelopes.Min(envelope => envelope.minimum.X), envelopes.Max(envelope => envelope.maximum.X),
                                 envelopes.Min(envelope => envelope.minimum.Y), envelopes.Max(envelope => envelope.maximum.Y),
@@ -453,7 +442,7 @@ namespace AEGIS
         public static Envelope FromEnvelopes(IEnumerable<Envelope> envelopes)
         {
             if (envelopes == null || !envelopes.AnyElement())
-                return Envelope.Undefined;
+                return null;
 
             return new Envelope(envelopes.Min(envelope => envelope.minimum.X), envelopes.Max(envelope => envelope.maximum.X),
                                 envelopes.Min(envelope => envelope.minimum.Y), envelopes.Max(envelope => envelope.maximum.Y),

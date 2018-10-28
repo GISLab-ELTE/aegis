@@ -317,11 +317,9 @@ namespace AEGIS.Indexes
         /// </summary>
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c> if the specified geometry is indexed; otherwise <c>false</c>.</returns>
-        public bool Contains(IBasicGeometry geometry)
+        public Boolean Contains(IBasicGeometry geometry)
         {
-            if (geometry == null)
-                return false;
-            if (geometry.Envelope.Equals(Envelope.Undefined))
+            if (geometry == null || geometry.Envelope == null)
                 return false;
 
             foreach (IBasicGeometry foundGeometry in this.Search(geometry.Envelope))
@@ -339,7 +337,7 @@ namespace AEGIS.Indexes
         /// <param name="geometry">The geometry.</param>
         /// <returns><c>true</c> if the geometry is indexed; otherwise <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The geometry is null.</exception>
-        public bool Remove(IBasicGeometry geometry)
+        public Boolean Remove(IBasicGeometry geometry)
         {
             if (geometry == null)
                 throw new ArgumentNullException("geometry", "Geometry to remove must not be null.");
@@ -353,7 +351,7 @@ namespace AEGIS.Indexes
         /// <param name="envelope">The envelope.</param>
         /// <returns><c>true</c> if any geometries are within the envelope; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public bool Remove(Envelope envelope)
+        public Boolean Remove(Envelope envelope)
         {
             if (envelope == null)
                 throw new ArgumentNullException("envelope", "Envelope to remove must not be null.");
@@ -375,7 +373,7 @@ namespace AEGIS.Indexes
         /// <param name="geometries">The list of geometries within the envelope.</param>
         /// <returns><c>true</c> if any geometries are within the envelope; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException">The envelope is null.</exception>
-        public bool Remove(Envelope envelope, out List<IBasicGeometry> geometries)
+        public Boolean Remove(Envelope envelope, out List<IBasicGeometry> geometries)
         {
             if (envelope == null)
                 throw new ArgumentNullException("envelope", "Envelope to remove must not be null.");

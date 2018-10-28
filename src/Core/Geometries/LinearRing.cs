@@ -76,14 +76,17 @@ namespace AEGIS.Geometries
         /// or
         /// The index is equal to or greater than the number of coordinates.
         /// </exception>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public override sealed void SetCoordinate(Int32 index, Coordinate coordinate)
         {
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            coordinate = this.Correct(coordinate);
 
             if (index == 0 || index == this.Count - 1)
             {
@@ -100,9 +103,13 @@ namespace AEGIS.Geometries
         /// Adds a coordinate to the end of the linear ring.
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public override sealed void Add(Coordinate coordinate)
         {
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
+            coordinate = this.Correct(coordinate);
 
             if (this.Count == 0)
             {
@@ -125,14 +132,18 @@ namespace AEGIS.Geometries
         /// or
         /// Index is greater than the number of coordinates.
         /// </exception>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public override sealed void Insert(Int32 index, Coordinate coordinate)
         {
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsLessThan0);
             if (index >= this.Count)
                 throw new ArgumentOutOfRangeException(nameof(index), CoreMessages.IndexIsEqualToOrGreaterThanNumberOfCoordinates);
 
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            coordinate = this.Correct(coordinate);
 
             if (index == 0 || index == this.Count - 1)
             {
@@ -150,10 +161,13 @@ namespace AEGIS.Geometries
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns><c>true</c> if the coordinate was removed; otherwise, <c>false</c>.</returns>
-        /// <exception cref="System.InvalidOperationException">A linear ring must contain at least two coordinates.</exception>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         public override sealed Boolean Remove(Coordinate coordinate)
         {
-            coordinate = this.PrecisionModel.MakePrecise(coordinate);
+            if (coordinate == null)
+                throw new ArgumentNullException(nameof(coordinate));
+
+            coordinate = this.Correct(coordinate);
 
             if (coordinate == this.StartCoordinate)
             {
