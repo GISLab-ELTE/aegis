@@ -1,5 +1,5 @@
 ﻿// <copyright file="HilbertRTree.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -17,7 +17,6 @@ namespace AEGIS.Indexes.Rectangle
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    using System.Text;
     using AEGIS.Numerics;
     using AEGIS.Utilities;
 
@@ -110,19 +109,20 @@ namespace AEGIS.Indexes.Rectangle
             /// </returns>
             public BigInteger Encode(Coordinate coordinate)
             {
-                UInt32[] hilbertCode = is3D ?
-                    GetHilbertCode(Gridify(coordinate.X), Gridify(coordinate.Y), Gridify(coordinate.Z)) :
-                    GetHilbertCode(Gridify(coordinate.X), Gridify(coordinate.Y));
-                return Pack(hilbertCode);
+                UInt32[] hilbertCode = this.is3D ?
+                    this.GetHilbertCode(this.Gridify(coordinate.X), this.Gridify(coordinate.Y), this.Gridify(coordinate.Z)) :
+                    this.GetHilbertCode(this.Gridify(coordinate.X), this.Gridify(coordinate.Y));
+                return this.Pack(hilbertCode);
             }
 
             private UInt32 Gridify(Double a)
             {
-                if(gridTransitionOffset == 0 && a < 0.0D)
+                if (this.gridTransitionOffset == 0 && a < 0.0D)
                 {
                     throw new ArgumentException("This HilbertEncoder can only handle positive coordinates.");
                 }
-                return Convert.ToUInt32(a + gridTransitionOffset);
+
+                return Convert.ToUInt32(a + this.gridTransitionOffset);
             }
 
             private BigInteger Pack(UInt32[] hilbertCode)
@@ -149,108 +149,103 @@ namespace AEGIS.Indexes.Rectangle
                 return this.GetHilbertCode(new UInt32[] { x, y, z }, new UInt32[] { 4U, 2U, 1U });
             }
 
-            private UInt32[] GetHilbertCode(UInt32[] indexes, UInt32[] g_mask)
+            private UInt32[] GetHilbertCode(UInt32[] indexes, UInt32[] gMask)
             {
                 // implementation based on the following article:
                 // J. K. Lawder: Calculation of Mappings Between One and n-dimensional Values Using the Hilbert Space-filling Curve
-                if (indexes.Length < 2 || indexes.Length > 3)
-                {
-                    throw new ArgumentException("Hilbert Code calculation only works on geometries with 2 or 3 dimension coordinates.");
-                }
-
                 Int32 dim = indexes.Length;
                 UInt32 mask = 1U << (HilbertCurveOrder - 1);
-                UInt32 element, A = 0U, W = 0U, S, tS, T, tT, J, P = 0U, xJ;
+                UInt32 element, capA = 0U, capW = 0U, capS, tS, capT, tT, capJ, capP = 0U, xJ;
                 UInt32[] h = new UInt32[dim];
                 Int32 i = HilbertCurveOrder * dim - dim, j;
                 for (j = 0; j < dim; j++)
                 {
                     if ((indexes[j] & mask) != 0U)
                     {
-                        A |= g_mask[j];
+                        capA |= gMask[j];
                     }
                 }
 
-                S = tS = A;
-                P = Calc_P2(S, dim, g_mask);
+                capS = tS = capA;
+                capP = this.CalcP2(capS, dim, gMask);
 
                 // add in DIM bits to hilbert code
                 element = (UInt32)(i / HilbertCurveOrder);
                 if (i % HilbertCurveOrder > HilbertCurveOrder - dim)
                 {
-                    h[element] |= P << i % HilbertCurveOrder;
-                    h[element + 1] |= P >> HilbertCurveOrder - i % HilbertCurveOrder;
+                    h[element] |= capP << i % HilbertCurveOrder;
+                    h[element + 1] |= capP >> HilbertCurveOrder - i % HilbertCurveOrder;
                 }
                 else
                 {
-                    h[element] |= P << (Int32)(i - element * HilbertCurveOrder);
+                    h[element] |= capP << (Int32)(i - element * HilbertCurveOrder);
                 }
 
-                J = Calc_J(P, dim);
-                xJ = J - 1;
-                T = Calc_T(P);
-                tT = T;
+                capJ = this.CalcJ(capP, dim);
+                xJ = capJ - 1;
+                capT = this.CalcT(capP);
+                tT = capT;
                 for (i -= dim, mask >>= 1; i >= 0; i -= dim, mask >>= 1)
                 {
-                    A = 0U;
+                    capA = 0U;
                     for (j = 0; j < dim; j++)
                     {
                         if ((indexes[j] & mask) != 0U)
                         {
-                            A |= g_mask[j];
+                            capA |= gMask[j];
                         }
                     }
 
-                    W ^= tT;
-                    tS = A ^ W;
-                    S = Calc_tS_tT(xJ, tS, dim);
-                    P = Calc_P2(S, dim, g_mask);
+                    capW ^= tT;
+                    tS = capA ^ capW;
+                    capS = this.CalcStT(xJ, tS, dim);
+                    capP = this.CalcP2(capS, dim, gMask);
 
                     // add in DIM bits to hcode
                     element = (UInt32)(i / HilbertCurveOrder);
                     if (i % HilbertCurveOrder > HilbertCurveOrder - dim)
                     {
-                        h[element] |= P << i % HilbertCurveOrder;
-                        h[element + 1] |= P >> HilbertCurveOrder - i % HilbertCurveOrder;
+                        h[element] |= capP << i % HilbertCurveOrder;
+                        h[element + 1] |= capP >> HilbertCurveOrder - i % HilbertCurveOrder;
                     }
                     else
                     {
-                        h[element] |= P << (Int32)(i - element * HilbertCurveOrder);
+                        h[element] |= capP << (Int32)(i - element * HilbertCurveOrder);
                     }
 
                     if (i > 0)
                     {
-                        T = Calc_T(P);
-                        tT = Calc_tS_tT(xJ, T, dim);
-                        J = Calc_J(P, dim);
-                        xJ += J - 1;
+                        capT = this.CalcT(capP);
+                        tT = this.CalcStT(xJ, capT, dim);
+                        capJ = this.CalcJ(capP, dim);
+                        xJ += capJ - 1;
                     }
                 }
 
                 return h;
             }
 
-            private UInt32 Calc_P2(UInt32 S, Int32 dim, UInt32[] g_mask)
+            private UInt32 CalcP2(UInt32 capS, Int32 dim, UInt32[] gMask)
             {
                 Int32 i;
                 UInt32 p;
-                p = S & g_mask[0];
+                p = capS & gMask[0];
                 for (i = 1; i < dim; i++)
                 {
-                    if ((S & g_mask[i] ^ (p >> 1) & g_mask[i]) != 0)
-                        p |= g_mask[i];
+                    if ((capS & gMask[i] ^ (p >> 1) & gMask[i]) != 0)
+                        p |= gMask[i];
                 }
 
                 return p;
             }
 
-            private UInt32 Calc_J(UInt32 P, Int32 dim)
+            private UInt32 CalcJ(UInt32 capP, Int32 dim)
             {
                 Int32 i;
                 UInt32 j = (UInt32)dim;
                 for (i = 1; i < dim; i++)
                 {
-                    if ((P >> i & 1) == (P & 1))
+                    if ((capP >> i & 1) == (capP & 1))
                     {
                         continue;
                     }
@@ -265,28 +260,28 @@ namespace AEGIS.Indexes.Rectangle
                 return j;
             }
 
-            private UInt32 Calc_T(UInt32 P)
+            private UInt32 CalcT(UInt32 capP)
             {
-                if (P < 3)
+                if (capP < 3)
                     return 0;
-                if (P % 2 != 0)
-                    return (P - 1) ^ (P - 1) / 2;
-                return (P - 2) ^ (P - 2) / 2;
+                if (capP % 2 != 0)
+                    return (capP - 1) ^ (capP - 1) / 2;
+                return (capP - 2) ^ (capP - 2) / 2;
             }
 
-            private UInt32 Calc_tS_tT(UInt32 xJ, UInt32 val, Int32 dim)
+            private UInt32 CalcStT(UInt32 xJ, UInt32 val, Int32 dim)
             {
-                UInt32 retval, temp1, temp2;
-                retval = val;
+                UInt32 result, temp1, temp2;
+                result = val;
                 if (xJ % dim != 0)
                 {
                     temp1 = val >> (Int32)(xJ % dim);
                     temp2 = val << (Int32)(dim - xJ % dim);
-                    retval = temp1 | temp2;
-                    retval &= ((UInt32)1 << dim) - 1;
+                    result = temp1 | temp2;
+                    result &= ((UInt32)1 << dim) - 1;
                 }
 
-                return retval;
+                return result;
             }
         }
 
@@ -335,7 +330,7 @@ namespace AEGIS.Indexes.Rectangle
         public HilbertRTree(Int32 maxChildren, ISpaceFillingCurveEncoder encoder)
             : base(maxChildren * 2 / 3, maxChildren)
         {
-            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder) + " cannot be null");
+            this.encoder = encoder ?? throw new ArgumentNullException(nameof(encoder));
         }
 
         /// <summary>
@@ -602,6 +597,7 @@ namespace AEGIS.Indexes.Rectangle
             while (!node.IsLeafContainer)
             {
                 HilbertNode lastChild = (HilbertNode)node.Children[node.ChildrenCount - 1];
+
                 // select the child with the minimum LHV which is greater than "value"
                 // if there are no such children, select the last child (the one with the greatest LHV)
                 node = lastChild.LargestHilbertValue <= leaf.LargestHilbertValue ? lastChild :
@@ -619,6 +615,7 @@ namespace AEGIS.Indexes.Rectangle
         private HilbertNode ChooseSibling(HilbertNode node)
         {
             Tuple<HilbertNode, HilbertNode> siblings = this.ChooseSiblings(node);
+
             // prefer the sibling to the right side
             return siblings.Item2 == null || siblings.Item2.IsFull ? siblings.Item1 : siblings.Item2;
         }
@@ -721,9 +718,11 @@ namespace AEGIS.Indexes.Rectangle
                 else if (siblings.Item1 != null && siblings.Item2 != null)
                 {
                     // if there are two siblings but both of the have the minimum number of children, we delete a node, then redistribute
-                    List<HilbertNode> distributionList = new List<HilbertNode>();
-                    distributionList.Add(siblings.Item1);
-                    distributionList.Add(siblings.Item2);
+                    List<HilbertNode> distributionList = new List<HilbertNode>
+                    {
+                        siblings.Item1,
+                        siblings.Item2
+                    };
                     List<HilbertNode> additionalChildren = new List<HilbertNode>();
                     node.Children.ForEach(child => additionalChildren.Add((HilbertNode)child));
                     node.Parent.RemoveChild(node);
@@ -845,7 +844,8 @@ namespace AEGIS.Indexes.Rectangle
             if (geometry is IBasicPoint)
             {
                 coordinate = ((IBasicPoint)geometry).Coordinate;
-            } else
+            }
+            else
             {
                 coordinate = geometry.Envelope.Center;
             }

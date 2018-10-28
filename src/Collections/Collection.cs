@@ -1,5 +1,5 @@
 ﻿// <copyright file="Collection.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -35,17 +35,17 @@ namespace AEGIS.Collections
             /// <summary>
             /// The source list.
             /// </summary>
-            private IReadOnlyList<T> source;
+            private readonly IReadOnlyList<T> source;
 
             /// <summary>
             /// The starting index for taking elements in the source.
             /// </summary>
-            private Int32 startIndex;
+            private readonly Int32 startIndex;
 
             /// <summary>
             /// The number of elements taken from the source.
             /// </summary>
-            private Int32 count;
+            private readonly Int32 count;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyRangeReadOnlyList{T}" /> class.
@@ -125,7 +125,7 @@ namespace AEGIS.Collections
             /// <summary>
             /// The source list.
             /// </summary>
-            private IReadOnlyList<T> source;
+            private readonly IReadOnlyList<T> source;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ProxyReverseReadOnlyList{T}" /> class.
@@ -373,8 +373,7 @@ namespace AEGIS.Collections
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            IReadOnlyList<T> readOnlyCollection = collection as IReadOnlyList<T>;
-            if (readOnlyCollection != null)
+            if (collection is IReadOnlyList<T> readOnlyCollection)
                 return readOnlyCollection;
 
             return new ReadOnlyCollection<T>(collection);
@@ -393,8 +392,7 @@ namespace AEGIS.Collections
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            IReadOnlyDictionary<TKey, TValue> readOnlyDictionary = collection as IReadOnlyDictionary<TKey, TValue>;
-            if (readOnlyDictionary != null)
+            if (collection is IReadOnlyDictionary<TKey, TValue> readOnlyDictionary)
                 return readOnlyDictionary;
 
             return new ReadOnlyDictionary<TKey, TValue>(collection);
@@ -407,14 +405,10 @@ namespace AEGIS.Collections
         /// <param name="set">The set.</param>
         /// <returns>A <see cref="ReadOnlySet{T}" /> that acts as a read-only wrapper around the current <see cref="ISet{T}" />.</returns>
         /// <exception cref="System.ArgumentNullException">The set is null.</exception>
-        public static ISet<T> AsReadOnly<T>(this ISet<T> set)
+        public static IReadOnlySet<T> AsReadOnly<T>(this ISet<T> set)
         {
             if (set == null)
                 throw new ArgumentNullException(nameof(set));
-
-            if (set.IsReadOnly)
-                return set;
-
             return new ReadOnlySet<T>(set);
         }
 

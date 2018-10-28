@@ -1,5 +1,5 @@
 ﻿// <copyright file="IdentifiedObject.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -216,9 +216,8 @@ namespace AEGIS
                 throw new ArgumentNullException(nameof(identifier));
 
             String codeString = identifier.Contains(Separator) ? identifier.Substring(identifier.LastIndexOf(Separator, StringComparison.Ordinal) + Separator.Length) : identifier;
-            Int32 code;
 
-            return Int32.TryParse(codeString, out code) ? code : 0;
+            return Int32.TryParse(codeString, out Int32 code) ? code : 0;
         }
 
         /// <summary>

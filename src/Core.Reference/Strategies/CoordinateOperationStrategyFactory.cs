@@ -1,5 +1,5 @@
 ﻿// <copyright file="CoordinateOperationStrategyFactory.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -86,11 +86,11 @@ namespace AEGIS.Reference.Strategies
             }
 
             // if no transformation is needed
-            if (conversionFromGeographic.TargetReferenceSystem.Equals(conversionToGeographic.SourceReferenceSystem))
+            if (conversionFromGeographic.Target.Equals(conversionToGeographic.Source))
                 return new CoordinateConversionStrategy(conversionToGeographic, conversionFromGeographic);
 
-            GeographicCoordinateReferenceSystem conversionTargetReferenceSystem = conversionToGeographic.TargetReferenceSystem as GeographicCoordinateReferenceSystem;
-            GeographicCoordinateReferenceSystem conversionSourceReferenceSystem = conversionFromGeographic.SourceReferenceSystem as GeographicCoordinateReferenceSystem;
+            GeographicCoordinateReferenceSystem conversionTargetReferenceSystem = conversionToGeographic.Target as GeographicCoordinateReferenceSystem;
+            GeographicCoordinateReferenceSystem conversionSourceReferenceSystem = conversionFromGeographic.Source as GeographicCoordinateReferenceSystem;
 
             // load matching forward transformation
             IEnumerable<CoordinateTransformation<GeoCoordinate>> transformations = this.provider.GeoCoordinateTransformations.WithProperties(conversionTargetReferenceSystem, conversionSourceReferenceSystem);

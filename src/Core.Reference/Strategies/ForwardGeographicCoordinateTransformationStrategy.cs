@@ -1,5 +1,5 @@
 ﻿// <copyright file="ForwardGeographicCoordinateTransformationStrategy.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016-2017 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -61,13 +61,13 @@ namespace AEGIS.Reference.Strategies
         /// Gets the source reference system.
         /// </summary>
         /// <value>The source reference system.</value>
-        public ReferenceSystem SourceReferenceSystem { get { return this.source; } }
+        public ReferenceSystem Source { get { return this.source; } }
 
         /// <summary>
         /// Gets the target reference system.
         /// </summary>
         /// <value>The target reference system.</value>
-        public ReferenceSystem TargetReferenceSystem { get { return this.target; } }
+        public ReferenceSystem Target { get { return this.target; } }
 
         /// <summary>
         /// Applies the strategy on the specified coordinate.

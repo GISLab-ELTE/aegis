@@ -1,5 +1,5 @@
 ﻿// <copyright file="DisjointSetForestTest.cs" company="Eötvös Loránd University (ELTE)">
-//     Copyright 2016 Roberto Giachetta. Licensed under the
+//     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
 //     obtain a copy of the License at
@@ -28,16 +28,10 @@ namespace AEGIS.Tests.Collections
     [TestFixture]
     public class DisjointSetForestTest
     {
-        
-
         /// <summary>
         /// The array of values that are inserted into the DisjointSetForest.
         /// </summary>
         private Int32[] values;
-
-        
-
-        
 
         /// <summary>
         /// Test setup.
@@ -47,10 +41,6 @@ namespace AEGIS.Tests.Collections
         {
             this.values = Collection.GenerateNumbers(1000, -1000, 20).ToArray();
         }
-
-        
-
-        
 
         /// <summary>
         /// Tests the constructor of the <see cref="DisjointSetForest{T}" /> class.
@@ -249,7 +239,5 @@ namespace AEGIS.Tests.Collections
                 disjointSetEnumerator.Current.ShouldBe(enumerator.Current);
             }
         }
-
-        
     }
 }
