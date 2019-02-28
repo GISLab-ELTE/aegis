@@ -101,25 +101,6 @@ namespace AEGIS.Tests.Collections
         }
 
         /// <summary>
-        /// Tests unsupported interface methods of the <see cref="ReadOnlySet{T}" /> class.
-        /// </summary>
-        [Test]
-        public void ReadOnlySetNotSupportedMethodsTest()
-        {
-            ISet<Int32> readOnlySet = new ReadOnlySet<Int32>(this.innerSets[0]);
-
-            Should.Throw<NotSupportedException>(() => readOnlySet.Add(0));
-            Should.Throw<NotSupportedException>(() => (readOnlySet as ICollection<Int32>).Add(0));
-            Should.Throw<NotSupportedException>(() => readOnlySet.Remove(0));
-            Should.Throw<NotSupportedException>(() => readOnlySet.Clear());
-            Should.Throw<NotSupportedException>(() => readOnlySet.UnionWith(this.innerSets[1]));
-            Should.Throw<NotSupportedException>(() => readOnlySet.IntersectWith(this.innerSets[1]));
-            Should.Throw<NotSupportedException>(() => readOnlySet.ExceptWith(this.innerSets[1]));
-            Should.Throw<NotSupportedException>(() => readOnlySet.SymmetricExceptWith(this.innerSets[1]));
-            Should.Throw<NotSupportedException>(() => readOnlySet.UnionWith(this.innerSets[1]));
-        }
-
-        /// <summary>
         /// Tests the enumerator of the <see cref="ReadOnlySet{T}" /> class.
         /// </summary>
         [Test]

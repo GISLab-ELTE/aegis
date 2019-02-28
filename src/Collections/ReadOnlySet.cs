@@ -23,7 +23,7 @@ namespace AEGIS.Collections
     /// Represents a read-only set of values.
     /// </summary>
     /// <typeparam name="T">The type of elements in the set.</typeparam>
-    public sealed class ReadOnlySet<T> : ISet<T>, IReadOnlyCollection<T>
+    public sealed class ReadOnlySet<T> : IReadOnlySet<T>, IReadOnlyCollection<T>
     {
         /// <summary>
         /// The underlying set. This field is read-only.
@@ -125,57 +125,6 @@ namespace AEGIS.Collections
         }
 
         /// <summary>
-        /// Modifies the current set so that it contains all elements that are present in both the current set and in the specified collection.
-        /// </summary>
-        /// <param name="other">The collection to compare to the current set.</param>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ISet<T>.UnionWith(IEnumerable<T> other)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Modifies the current set so that it contains only elements that are also in a specified collection.
-        /// </summary>
-        /// <param name="other">The collection to compare to the current set.</param>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ISet<T>.IntersectWith(IEnumerable<T> other)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Removes all elements in the specified collection from the current set.
-        /// </summary>
-        /// <param name="other">The collection of items to remove from the set.</param>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ISet<T>.ExceptWith(IEnumerable<T> other)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Modifies the current set so that it contains only elements that are present either in the current set or in the specified collection, but not both.
-        /// </summary>
-        /// <param name="other">The collection to compare to the current set.</param>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ISet<T>.SymmetricExceptWith(IEnumerable<T> other)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Adds an element to the current set and returns a value to indicate if the element was successfully added.
-        /// </summary>
-        /// <param name="item">The element to add to the set.</param>
-        /// <returns><c>true</c> if the element is added to the set; <c>false</c> if the element is already in the set.</returns>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        Boolean ISet<T>.Add(T item)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
         /// Determines whether the set contains a specific value.
         /// </summary>
         /// <returns><c>true</c> if <paramref name="item" /> is found in the set; otherwise, <c>false</c>.</returns>
@@ -202,35 +151,6 @@ namespace AEGIS.Collections
         public void CopyTo(T[] array, Int32 arrayIndex)
         {
             this.set.CopyTo(array, arrayIndex);
-        }
-
-        /// <summary>
-        /// Adds an item to the set.
-        /// </summary>
-        /// <param name="item">The object to add to the set.</param>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ICollection<T>.Add(T item)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Removes all items from the <see cref="System.Collections.Generic.ICollection`1" />.
-        /// </summary>
-        /// <exception cref="System.NotSupportedException">The set is read-only.</exception>
-        void ICollection<T>.Clear()
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
-        }
-
-        /// <summary>
-        /// Removes the first occurrence of a specific object from the set.
-        /// </summary>
-        /// <returns><c>true</c> if <paramref name="item" /> was successfully removed from the set; otherwise, <c>false</c>.</returns>
-        /// <param name="item">The object to remove from the set.</param>
-        Boolean ICollection<T>.Remove(T item)
-        {
-            throw new NotSupportedException(CollectionMessages.SetIsReadOnly);
         }
 
         /// <summary>
