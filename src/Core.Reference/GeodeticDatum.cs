@@ -74,7 +74,7 @@ namespace AEGIS.Reference
         public GeodeticDatum(String identifier, String name, String remarks, String[] aliases, String anchorPoint, String realizationEpoch, String scope, AreaOfUse areaOfUse, Ellipsoid ellipsoid, Meridian primeMeridian)
             : base(identifier, name, remarks, aliases, anchorPoint, realizationEpoch, scope)
         {
-            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
+            this.AreaOfUse = areaOfUse;
             this.Ellipsoid = ellipsoid ?? throw new ArgumentNullException(nameof(ellipsoid));
             this.PrimeMeridian = primeMeridian ?? throw new ArgumentNullException(nameof(primeMeridian));
         }

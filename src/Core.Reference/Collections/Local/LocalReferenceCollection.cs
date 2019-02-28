@@ -85,11 +85,11 @@ namespace AEGIS.Reference.Collections.Local
         /// Initializes a new instance of the <see cref="LocalReferenceCollection{ReferenceType}" /> class.
         /// </summary>
         /// <param name="resourceName">The name of the resource.</param>
-        /// <param name="sliasName">The name of the alias type.</param>
-        protected LocalReferenceCollection(String resourceName, String sliasName)
+        /// <param name="aliasName">The name of the alias type.</param>
+        protected LocalReferenceCollection(String resourceName, String aliasName)
         {
             this.resourceName = resourceName ?? typeof(ReferenceType).Name;
-            this.aliasName = sliasName ?? typeof(ReferenceType).Name;
+            this.aliasName = aliasName ?? typeof(ReferenceType).Name;
         }
 
         /// <summary>

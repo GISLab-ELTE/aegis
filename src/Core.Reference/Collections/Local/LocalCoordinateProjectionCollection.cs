@@ -186,10 +186,6 @@ namespace AEGIS.Reference.Collections.Local
 
                         CoordinateOperationParameter parameter = this.parameterCollection.WithIdentifier(IdentifiedObject.GetIdentifier(Authority, content[2])).FirstOrDefault();
 
-                        // TODO: remove condition, once all parameters are implemented
-                        if (parameter == null)
-                            continue;
-
                         if (!String.IsNullOrEmpty(content[3]))
                         {
                             // the parameter is a value
@@ -384,7 +380,8 @@ namespace AEGIS.Reference.Collections.Local
                 if (ellipsoid == null)
                     return null;
 
-                CoordinateProjectionData matchingData = this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code)).FirstOrDefault(data => data.Method.Equals(method) && (areaOfUse.Equals(AreaOfUse.Undefined) || data.AreaOfUse.Equals(areaOfUse)) && this.IsMatching(data.Parameters, parameters));
+                CoordinateProjectionData matchingData = this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code))
+                    .FirstOrDefault(data => data.Method.Equals(method) && data.AreaOfUse.Equals(areaOfUse) && this.IsMatching(data.Parameters, parameters));
 
                 // no matching projection is available
                 if (matchingData == null)
@@ -409,7 +406,9 @@ namespace AEGIS.Reference.Collections.Local
 
             Ellipsoid ellipsoid = this.ellipsoidCollection.WithIdentifier(DefaultEllipsoidIdentifier).FirstOrDefault();
 
-            return this.dataCollection.WithIdentifier(identifier).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, ellipsoid));
+            return this.dataCollection.WithIdentifier(identifier)
+                .Where(data => this.projectionTypes.ContainsKey(data.Method.Code))
+                .Select(data => this.CreateProjection(data, ellipsoid));
         }
 
         /// <summary>
@@ -425,7 +424,8 @@ namespace AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
+            return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code))
+                .Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 
         /// <summary>
@@ -441,7 +441,8 @@ namespace AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            return this.dataCollection.WithMatchingIdentifier(identifier).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
+            return this.dataCollection.WithMatchingIdentifier(identifier).Where(data => this.projectionTypes.ContainsKey(data.Method.Code))
+                .Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 
         /// <summary>
@@ -457,7 +458,8 @@ namespace AEGIS.Reference.Collections.Local
 
             this.EnsureOperationTypes();
 
-            return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code)).Select(data => this.CreateProjection(data, this.defaultEllipsoid));
+            return this.dataCollection.WithName(name).Where(data => this.projectionTypes.ContainsKey(data.Method.Code))
+                .Select(data => this.CreateProjection(data, this.defaultEllipsoid));
         }
 
         /// <summary>
@@ -477,16 +479,11 @@ namespace AEGIS.Reference.Collections.Local
         /// </exception>
         public IEnumerable<CoordinateProjection> WithProperties(CoordinateOperationMethod method, IDictionary<CoordinateOperationParameter, Object> parameters, AreaOfUse areaOfUse, Ellipsoid ellipsoid)
         {
-            if (method == null)
-                throw new ArgumentNullException(nameof(method));
-            if (areaOfUse == null)
-                throw new ArgumentNullException(nameof(areaOfUse));
-            if (ellipsoid == null)
-                throw new ArgumentNullException(nameof(ellipsoid));
-
             this.EnsureOperationTypes();
 
-            return this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code)).Where(data => data.Method.Equals(method) && (areaOfUse.Equals(AreaOfUse.Undefined) || data.AreaOfUse.Equals(areaOfUse)) && this.IsMatching(data.Parameters, parameters)).Select(data => this.CreateProjection(data, ellipsoid));
+            return this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code))
+                .Where(data => (method == null || data.Method.Equals(method)) && (areaOfUse == null || data.AreaOfUse.Equals(areaOfUse)) && (parameters == null || this.IsMatching(data.Parameters, parameters)))
+                .Select(data => this.CreateProjection(data, ellipsoid));
         }
 
         /// <summary>

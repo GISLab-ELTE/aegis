@@ -47,7 +47,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
             CoordinateReferenceSystem target = TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4230"];
             AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
-            this.transformation = new GeocentricTranslation(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, source, target, areaOfUse);
+            this.transformation = new GeocentricTranslation(String.Empty, String.Empty, parameters, source, target, areaOfUse);
         }
 
         /// <summary>

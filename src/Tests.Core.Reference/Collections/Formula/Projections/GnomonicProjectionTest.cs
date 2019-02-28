@@ -47,7 +47,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7030", "WGS 1984", 6378137, 6356752.314);
 
-            this.projection = new GnomonicProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, AreaOfUse.Undefined);
+            this.projection = new GnomonicProjection(String.Empty, String.Empty, parameters, ellipsoid, null);
         }
 
         /// <summary>

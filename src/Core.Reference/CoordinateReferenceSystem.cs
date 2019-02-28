@@ -47,7 +47,7 @@ namespace AEGIS.Reference
         {
             this.CoordinateSystem = coordinateSystem ?? throw new ArgumentNullException(nameof(coordinateSystem));
             this.Datum = datum ?? throw new ArgumentNullException(nameof(datum));
-            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
+            this.AreaOfUse = areaOfUse;
         }
 
         /// <summary>

@@ -582,14 +582,11 @@ namespace AEGIS.Reference.Converters
             }
             else
             {
-                coordinateSystem = new CoordinateSystem(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, CoordinateSystemType.Ellipsoidal, axes);
+                coordinateSystem = new CoordinateSystem(String.Empty, String.Empty, CoordinateSystemType.Ellipsoidal, axes);
             }
 
             // user defined
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                return new GeocentricCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, coordinateSystem, datum, AreaOfUse.Undefined);
-            else
-                return new GeocentricCoordinateReferenceSystem(UnitOfMeasurement.UserDefinedIdentifier, name, coordinateSystem, datum, AreaOfUse.Undefined);
+            return new GeocentricCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, coordinateSystem, datum, null);
         }
 
         /// <summary>
@@ -657,14 +654,11 @@ namespace AEGIS.Reference.Converters
             }
             else
             {
-                coordinateSystem = new CoordinateSystem(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, CoordinateSystemType.Ellipsoidal, axes);
+                coordinateSystem = new CoordinateSystem(String.Empty, String.Empty, CoordinateSystemType.Ellipsoidal, axes);
             }
 
             // user defined
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                return new GeographicCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, coordinateSystem, datum, AreaOfUse.Undefined);
-            else
-                return new GeographicCoordinateReferenceSystem(UnitOfMeasurement.UserDefinedIdentifier, name, coordinateSystem, datum, AreaOfUse.Undefined);
+            return new GeographicCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, coordinateSystem, datum, null);
         }
 
         /// <summary>
@@ -705,7 +699,7 @@ namespace AEGIS.Reference.Converters
             if (method == null)
                 return null;
 
-            CoordinateProjection projection = provider.CoordinateProjections.WithProperties(method, parameters, AreaOfUse.Undefined, geographicReferenceSystem.Datum.Ellipsoid).FirstOrDefault();
+            CoordinateProjection projection = provider.CoordinateProjections.WithProperties(method, parameters, null, geographicReferenceSystem.Datum.Ellipsoid).FirstOrDefault();
 
             // in case the parameters are not matched
             if (projection == null)
@@ -736,13 +730,10 @@ namespace AEGIS.Reference.Converters
             }
             else
             {
-                coordinateSystem = new CoordinateSystem(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, CoordinateSystemType.Ellipsoidal, axes);
+                coordinateSystem = new CoordinateSystem(String.Empty, String.Empty, CoordinateSystemType.Ellipsoidal, axes);
             }
 
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                return new ProjectedCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, geographicReferenceSystem, coordinateSystem, projection.AreaOfUse, projection);
-            else
-                return new ProjectedCoordinateReferenceSystem(UnitOfMeasurement.UserDefinedIdentifier, name, geographicReferenceSystem, coordinateSystem, projection.AreaOfUse, projection);
+           return new ProjectedCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, geographicReferenceSystem, coordinateSystem, projection.AreaOfUse, projection);
         }
 
         /// <summary>
@@ -809,7 +800,7 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String direction = match.Groups["direction"].Value.Replace('_', ' ');
 
-            return new CoordinateSystemAxis(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, (AxisDirection)Enum.Parse(typeof(AxisDirection), direction, true), unit);
+            return new CoordinateSystemAxis(String.Empty, String.Empty, (AxisDirection)Enum.Parse(typeof(AxisDirection), direction, true), unit);
         }
 
         /// <summary>
@@ -867,12 +858,7 @@ namespace AEGIS.Reference.Converters
             // user defined
             Double baseMultiple = Double.Parse(match.Groups["baseMultiple"].Value, CultureInfo.InvariantCulture);
 
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                unit = new UnitOfMeasurement(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, null, baseMultiple, unitQuantityType);
-            else
-                unit = new UnitOfMeasurement(UnitOfMeasurement.UserDefinedIdentifier, name, null, baseMultiple, unitQuantityType);
-
-            return unit;
+            return new UnitOfMeasurement(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, null, baseMultiple, unitQuantityType);
         }
 
         /// <summary>
@@ -908,12 +894,7 @@ namespace AEGIS.Reference.Converters
             // user defined
             Double longitude = Double.Parse(match.Groups["longitude"].Value, CultureInfo.InvariantCulture);
 
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                meridian = new Meridian(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, new Angle(longitude, unit));
-            else
-                meridian = new Meridian(UnitOfMeasurement.UserDefinedIdentifier, name, new Angle(longitude, unit));
-
-            return meridian;
+            return new Meridian(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, new Angle(longitude, unit));
         }
 
         /// <summary>
@@ -954,10 +935,7 @@ namespace AEGIS.Reference.Converters
             }
 
             // user defined
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                return new GeodeticDatum(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, null, null, AreaOfUse.Undefined, ellipsoid, primeMeridian);
-            else
-                return new GeodeticDatum(GeodeticDatum.UserDefinedIdentifier, name, null, null, AreaOfUse.Undefined, ellipsoid, primeMeridian);
+            return new GeodeticDatum(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, null, null, null, ellipsoid, primeMeridian);
         }
 
         /// <summary>
@@ -993,12 +971,7 @@ namespace AEGIS.Reference.Converters
             Double semiMajorAxis = Double.Parse(match.Groups["semiMajorAxis"].Value, CultureInfo.InvariantCulture);
             Double inverseFlattening = Double.Parse(match.Groups["inverseFlattening"].Value, CultureInfo.InvariantCulture);
 
-            if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode))
-                ellipsoid = Ellipsoid.FromInverseFlattening(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, semiMajorAxis, inverseFlattening);
-            else
-                ellipsoid = Ellipsoid.FromInverseFlattening(IdentifiedObject.UserDefinedIdentifier, name, semiMajorAxis, inverseFlattening);
-
-            return ellipsoid;
+            return Ellipsoid.FromInverseFlattening(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, semiMajorAxis, inverseFlattening);
         }
 
         /// <summary>

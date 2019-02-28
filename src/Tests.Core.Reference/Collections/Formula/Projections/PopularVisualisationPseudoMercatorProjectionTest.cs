@@ -44,10 +44,10 @@ namespace AEGIS.Tests.Reference.Collections.Formula
             parameters.Add(CoordinateOperationParameters.FalseEasting, Length.FromMetre(0));
             parameters.Add(CoordinateOperationParameters.FalseNorthing, Length.FromMetre(0));
 
-            Ellipsoid ellipsoid = Ellipsoid.FromSphere(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, 6378137);
+            Ellipsoid ellipsoid = Ellipsoid.FromSphere(String.Empty, String.Empty, 6378137);
             AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
-            this.projection = new PopularVisualisationPseudoMercatorProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, areaOfUse);
+            this.projection = new PopularVisualisationPseudoMercatorProjection(String.Empty, String.Empty, parameters, ellipsoid, areaOfUse);
         }
 
         /// <summary>

@@ -45,7 +45,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7030", "WGS 1984", 6378137, 6356752.314);
             AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
-            this.projection = new VerticalPerspectiveOrthographicProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, areaOfUse);
+            this.projection = new VerticalPerspectiveOrthographicProjection(String.Empty, String.Empty, parameters, ellipsoid, areaOfUse);
         }
 
         /// <summary>

@@ -26,11 +26,6 @@ namespace AEGIS.Reference
     public class AreaOfUse : IdentifiedObject
     {
         /// <summary>
-        /// The undefined area of use. This field is read-only.
-        /// </summary>
-        public static readonly AreaOfUse Undefined = new AreaOfUse(UndefinedIdentifier, UndefinedName, Angle.Undefined, Angle.Undefined, Angle.Undefined, Angle.Undefined);
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="AreaOfUse" /> class.
         /// </summary>
         /// <param name="identifier">The identifier.</param>

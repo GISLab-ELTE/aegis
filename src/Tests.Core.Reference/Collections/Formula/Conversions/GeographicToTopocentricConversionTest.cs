@@ -45,7 +45,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7030", "WGS 1984", 6378137, 6356752.314);
 
-            this.conversion = new GeographicToTopocentricConversion(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid);
+            this.conversion = new GeographicToTopocentricConversion(String.Empty, String.Empty, parameters, ellipsoid);
         }
 
         /// <summary>

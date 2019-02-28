@@ -56,7 +56,7 @@ namespace AEGIS.Tests.Reference.Converters
                 TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4326"],
                 TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
                 TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
-                new GeographicCoordinateReferenceSystem(IdentifiedObject.UserDefinedIdentifier, "Unknown", CoordinateSystem.Undefined, new GeodeticDatum(IdentifiedObject.UserDefinedIdentifier, "Unknown", null, null, AreaOfUse.Undefined, TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceProvider.Meridians["EPSG::8901"]), AreaOfUse.Undefined)
+                new GeographicCoordinateReferenceSystem("::", "Unknown", new CoordinateSystem("::", "Unknown", CoordinateSystemType.Unknown), new GeodeticDatum("::", "Unknown", null, null, null, TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceProvider.Meridians["EPSG::8901"]), null)
             };
 
             this.identifiedObjectsText = new String[]

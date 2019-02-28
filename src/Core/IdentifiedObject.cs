@@ -25,41 +25,6 @@ namespace AEGIS
     public abstract class IdentifiedObject : IEquatable<IdentifiedObject>
     {
         /// <summary>
-        /// The user-defined identifier. This field is constant.
-        /// </summary>
-        public const String UserDefinedIdentifier = DefaultAuthority + Separator + UserDefinedCode;
-
-        /// <summary>
-        /// The user-defined name. This field is constant.
-        /// </summary>
-        public const String UserDefinedName = "User-defined";
-
-        /// <summary>
-        /// The undefined identifier. This field is constant.
-        /// </summary>
-        protected const String UndefinedIdentifier = DefaultAuthority + Separator + UndefinedCode;
-
-        /// <summary>
-        /// The undefined name. This field is constant.
-        /// </summary>
-        protected const String UndefinedName = "Undefined";
-
-        /// <summary>
-        /// The default authority. This field is constant.
-        /// </summary>
-        private const String DefaultAuthority = "AEGIS";
-
-        /// <summary>
-        /// The code for the user-defined identifier. This field is constant.
-        /// </summary>
-        private const String UserDefinedCode = "999999";
-
-        /// <summary>
-        /// The code for the undefined identifier. This field is constant.
-        /// </summary>
-        private const String UndefinedCode = "000000";
-
-        /// <summary>
         /// The separator between authority and code. This field is constant.
         /// </summary>
         private const String Separator = "::";
@@ -68,14 +33,6 @@ namespace AEGIS
         /// The string format of the identified object. This field is constant.
         /// </summary>
         private const String StringFormat = "[{0}] {1}";
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IdentifiedObject" /> class.
-        /// </summary>
-        protected IdentifiedObject()
-            : this(UndefinedIdentifier, UndefinedName)
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentifiedObject" /> class.
@@ -101,7 +58,7 @@ namespace AEGIS
             this.Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
             this.Name = name ?? String.Empty;
             this.Remarks = remarks ?? String.Empty;
-            this.Aliases = aliases ?? new String[0];
+            this.Aliases = aliases ?? Array.Empty<String>();
         }
 
         /// <summary>
@@ -226,10 +183,11 @@ namespace AEGIS
         /// <param name="authority">The authority.</param>
         /// <param name="code">The code.</param>
         /// <returns>The identifier.</returns>
+        /// <exception cref="System.ArgumentNullException">The authority is null.</exception>
         public static String GetIdentifier(String authority, Int32 code)
         {
             if (authority == null)
-                authority = DefaultAuthority;
+                throw new ArgumentNullException(authority);
 
             return authority + Separator + code;
         }
@@ -240,12 +198,17 @@ namespace AEGIS
         /// <param name="authority">The authority.</param>
         /// <param name="code">The code.</param>
         /// <returns>The identifier.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// The authority is null.
+        /// or
+        /// The code is null.
+        /// </exception>
         public static String GetIdentifier(String authority, String code)
         {
             if (authority == null)
-                authority = DefaultAuthority;
+                throw new ArgumentNullException(authority);
             if (code == null)
-                code = UndefinedCode;
+                throw new ArgumentNullException(code);
 
             return authority + Separator + code;
         }

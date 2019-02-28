@@ -46,7 +46,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
             Ellipsoid ellipsoid = Ellipsoid.FromInverseFlattening("EPSG::7008", "Clarke 1866", 6378206.4, 294.9786982);
             AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
-            this.projection = new LambertCylindricalEqualAreaEllipsoidalProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, areaOfUse);
+            this.projection = new LambertCylindricalEqualAreaEllipsoidalProjection(String.Empty, String.Empty, parameters, ellipsoid, areaOfUse);
         }
 
         /// <summary>

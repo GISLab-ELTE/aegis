@@ -30,11 +30,6 @@ namespace AEGIS.Reference
     public class CoordinateSystem : IdentifiedObject
     {
         /// <summary>
-        /// The undefined coordinate system. This field is read-only.
-        /// </summary>
-        public static readonly CoordinateSystem Undefined = new CoordinateSystem(UndefinedIdentifier, UndefinedName);
-
-        /// <summary>
         /// The array of coordinate system axes.
         /// </summary>
         private readonly CoordinateSystemAxis[] axes;
@@ -51,10 +46,7 @@ namespace AEGIS.Reference
         public CoordinateSystem(String identifier, String name, CoordinateSystemType type, params CoordinateSystemAxis[] axes)
             : base(identifier, name)
         {
-            if (axes == null || axes.Length == 0)
-                throw new ArgumentException(ReferenceMessages.NoAxisSpecified, nameof(axes));
-
-            this.axes = axes;
+            this.axes = axes ?? Array.Empty<CoordinateSystemAxis>();
             this.Type = type;
         }
 
@@ -72,23 +64,8 @@ namespace AEGIS.Reference
         public CoordinateSystem(String identifier, String name, String remarks, String[] aliases, CoordinateSystemType type, params CoordinateSystemAxis[] axes)
             : base(identifier, name)
         {
-            if (axes == null || axes.Length == 0)
-                throw new ArgumentException(ReferenceMessages.NoAxisSpecified, nameof(axes));
-
-            this.axes = axes;
+            this.axes = axes ?? Array.Empty<CoordinateSystemAxis>();
             this.Type = type;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CoordinateSystem" /> class.
-        /// </summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="name">The name.</param>
-        private CoordinateSystem(String identifier, String name)
-            : base(identifier, name)
-        {
-            this.axes = new CoordinateSystemAxis[0];
-            this.Type = CoordinateSystemType.Unknown;
         }
 
         /// <summary>

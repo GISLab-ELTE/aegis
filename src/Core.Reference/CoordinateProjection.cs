@@ -58,7 +58,7 @@ namespace AEGIS.Reference
                     this.SetParameterValue(parameter, ((Length)this.Parameters[parameter]).ToUnit(ellipsoid.SemiMajorAxis.Unit));
             }
 
-            this.AreaOfUse = areaOfUse ?? throw new ArgumentNullException(nameof(areaOfUse));
+            this.AreaOfUse = areaOfUse;
             this.Ellipsoid = ellipsoid;
         }
 

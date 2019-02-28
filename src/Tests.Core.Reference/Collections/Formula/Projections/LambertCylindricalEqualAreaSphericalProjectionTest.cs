@@ -47,7 +47,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
             Ellipsoid ellipsoid = Ellipsoid.FromSphere("EPSG::7052", "Clarke 1866 Authalic Sphere", 6370997);
             AreaOfUse areaOfUse = TestUtilities.ReferenceProvider.AreasOfUse["EPSG::1262"];
 
-            this.projection = new LambertCylindricalEqualAreaSphericalProjection(IdentifiedObject.UserDefinedIdentifier, IdentifiedObject.UserDefinedName, parameters, ellipsoid, areaOfUse);
+            this.projection = new LambertCylindricalEqualAreaSphericalProjection(String.Empty, String.Empty, parameters, ellipsoid, areaOfUse);
         }
 
         /// <summary>
