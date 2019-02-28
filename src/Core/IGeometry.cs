@@ -21,7 +21,7 @@ namespace AEGIS
     /// Defines behavior for geometries in coordinate space.
     /// </summary>
     /// <remarks>
-    /// Geometries are the fundamental building blocks geographic data storage as described by the Open Geospatial Consortium (OGC) Simple feature access (SFA) standard.
+    /// Geometries are the fundamental building blocks for geographic data storage as described by the Open Geospatial Consortium (OGC) Simple Feature Access (SFA) standard.
     /// </remarks>
     public interface IGeometry : IBasicGeometry
     {

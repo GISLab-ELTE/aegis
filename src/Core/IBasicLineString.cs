@@ -49,6 +49,7 @@ namespace AEGIS
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns><c>true</c> if the line string contains the specified coordinate within its coordinates; otherwise, <c>false</c>.</returns>
+        /// <exception cref="System.ArgumentNullException">The coordinate is null.</exception>
         Boolean Contains(Coordinate coordinate);
 
         /// <summary>

@@ -20,8 +20,9 @@ namespace AEGIS
     /// Defines properties of basic geometries.
     /// </summary>
     /// <remarks>
-    /// A basic geometry is a simplification of the general geometries described by the Open Geospatial Consortium (OGC) Simple feature access (SFA) standard.
+    /// A basic geometry is a simplification of the general geometries described by the Open Geospatial Consortium (OGC) Simple Feature Access (SFA) standard.
     /// Basic geometries serve as lightweight, read-only objects, which define basic properties used by geometric algorithms.
+    /// <seealso cref="IGeometry"/>
     /// </remarks>
     public interface IBasicGeometry
     {

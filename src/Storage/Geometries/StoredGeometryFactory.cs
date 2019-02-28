@@ -535,9 +535,6 @@ namespace AEGIS.Storage.Geometries
         public ITriangle CreateTriangle(Coordinate first, Coordinate second, Coordinate third)
         {
             StoredTriangle triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            triangle.Shell.Add(first);
-            triangle.Shell.Add(second);
-            triangle.Shell.Add(third);
 
             return triangle;
         }
@@ -566,9 +563,6 @@ namespace AEGIS.Storage.Geometries
                 throw new ArgumentNullException(nameof(third));
 
             StoredTriangle triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null);
-            triangle.Shell.Add(first.Coordinate);
-            triangle.Shell.Add(second.Coordinate);
-            triangle.Shell.Add(third.Coordinate);
 
             return triangle;
         }
@@ -1588,10 +1582,6 @@ namespace AEGIS.Storage.Geometries
             StoredTriangle triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes);
 
             IReadOnlyList<Coordinate> coordinates = other.Shell;
-            triangle.Shell.Add(coordinates.Count > 0 ? coordinates[0] : Coordinate.Undefined);
-            triangle.Shell.Add(coordinates.Count > 1 ? coordinates[1] : Coordinate.Undefined);
-            triangle.Shell.Add(coordinates.Count > 2 ? coordinates[2] : Coordinate.Undefined);
-
             return triangle;
         }
 
@@ -1629,9 +1619,6 @@ namespace AEGIS.Storage.Geometries
             else
             {
                 triangle = new StoredTriangle(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes);
-                triangle.Shell.Add(coordinates.Count > 0 ? coordinates[0] : Coordinate.Undefined);
-                triangle.Shell.Add(coordinates.Count > 1 ? coordinates[1] : Coordinate.Undefined);
-                triangle.Shell.Add(coordinates.Count > 2 ? coordinates[2] : Coordinate.Undefined);
             }
 
             return triangle;

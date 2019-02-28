@@ -29,59 +29,5 @@ namespace AEGIS
         /// </summary>
         /// <value><c>true</c> if the starting and ending coordinates are equal; otherwise, <c>false</c>.</value>
         new Boolean IsClosed { get; }
-
-        /// <summary>
-        /// Sets the coordinate at the specified index.
-        /// </summary>
-        /// <param name="index">The zero-based index of the coordinate to set.</param>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Index is less than 0.
-        /// or
-        /// The index is equal to or greater than the number of coordinates.
-        /// </exception>
-        void SetCoordinate(Int32 index, Coordinate coordinate);
-
-        /// <summary>
-        /// Adds a coordinate to the end of the line string.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        void Add(Coordinate coordinate);
-
-        /// <summary>
-        /// Inserts a coordinate into the line string at the specified index.
-        /// </summary>
-        /// <param name="index">The zero-based index at which the coordinate should be inserted.</param>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Index is less than 0.
-        /// or
-        /// The index is equal to or greater than the number of coordinates.
-        /// </exception>
-        /// <exception cref="System.ArgumentException">The coordinate is not valid.</exception>
-        void Insert(Int32 index, Coordinate coordinate);
-
-        /// <summary>
-        /// Removes the first occurrence of the specified coordinate from the line string.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns><c>true</c> if the coordinate was removed; otherwise, <c>false</c>.</returns>
-        Boolean Remove(Coordinate coordinate);
-
-        /// <summary>
-        /// Removes the coordinate at the specified index from the line string.
-        /// </summary>
-        /// <param name="index">The zero-based index of the coordinate to remove.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Index is less than 0.
-        /// or
-        /// The index is equal to or greater than the number of coordinates.
-        /// </exception>
-        void RemoveAt(Int32 index);
-
-        /// <summary>
-        /// Removes all coordinates from the line string.
-        /// </summary>
-        void Clear();
     }
 }
