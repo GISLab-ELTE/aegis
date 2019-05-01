@@ -28,7 +28,7 @@ namespace AEGIS.Reference.Collections.Local
     /// </summary>
     /// <typeparam name="CoordinateType">The type of the coordinate.</typeparam>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalCoordinateTransformationCollection<CoordinateType> : ICoordinateTransformationCollection<CoordinateType>
     {
@@ -76,31 +76,31 @@ namespace AEGIS.Reference.Collections.Local
             /// Gets the area of use.
             /// </summary>
             /// <value>The area of use.</value>
-            public AreaOfUse AreaOfUse { get; private set; }
+            public AreaOfUse AreaOfUse { get; }
 
             /// <summary>
             /// Gets the coordinate operation method.
             /// </summary>
             /// <value>The coordinate operation method.</value>
-            public CoordinateOperationMethod Method { get; private set; }
+            public CoordinateOperationMethod Method { get; }
 
             /// <summary>
             /// Gets the coordinate operation parameters.
             /// </summary>
             /// <value>The coordinate operation parameters.</value>
-            public Dictionary<CoordinateOperationParameter, Object> Parameters { get; private set; }
+            public Dictionary<CoordinateOperationParameter, Object> Parameters { get; }
 
             /// <summary>
             /// Gets the source coordinate reference system.
             /// </summary>
             /// <value>The source coordinate reference system.</value>
-            public CoordinateReferenceSystem Collection { get; private set; }
+            public CoordinateReferenceSystem Collection { get; }
 
             /// <summary>
             /// Gets the target coordinate reference system.
             /// </summary>
             /// <value>The target coordinate reference system.</value>
-            public CoordinateReferenceSystem Target { get; private set; }
+            public CoordinateReferenceSystem Target { get; }
         }
 
         /// <summary>
@@ -224,21 +224,20 @@ namespace AEGIS.Reference.Collections.Local
                                 switch (unit.Type)
                                 {
                                     case UnitQuantityType.Angle:
-                                        this.transformationParameters[code].Add(parameter, new Angle(Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat), unit));
+                                        this.transformationParameters[code].Add(parameter, new Angle(Double.Parse(content[3], CultureInfo.InvariantCulture), unit));
                                         break;
                                     case UnitQuantityType.Length:
-                                        this.transformationParameters[code].Add(parameter, new Length(Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat), unit));
+                                        this.transformationParameters[code].Add(parameter, new Length(Double.Parse(content[3], CultureInfo.InvariantCulture), unit));
                                         break;
                                     case UnitQuantityType.Scale:
-                                        this.transformationParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat));
+                                        this.transformationParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture));
                                         break;
                                 }
                             }
                             else
                             {
                                 // the parameter is scalar
-
-                                this.transformationParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat));
+                                this.transformationParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture));
                             }
                         }
 

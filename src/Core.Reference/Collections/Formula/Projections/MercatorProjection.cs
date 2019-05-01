@@ -100,7 +100,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double easting, northing;
 
             if (coordinate.Latitude.BaseValue > 3.07)
-                return Coordinate.Undefined;
+                return null;
 
             if (this.Ellipsoid.IsSphere)
             {

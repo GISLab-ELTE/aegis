@@ -16,6 +16,7 @@ namespace AEGIS.Reference.Collections.Local
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using AEGIS.Reference.Resources;
 
@@ -23,7 +24,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="Meridian" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalMeridianCollection : LocalReferenceCollection<Meridian>
     {
@@ -72,7 +73,7 @@ namespace AEGIS.Reference.Collections.Local
         {
             return new Meridian(IdentifiedObject.GetIdentifier(Authority, content[0]), content[1],
                                 content[4], this.GetAliases(Int32.Parse(content[0])),
-                                new Angle(Double.Parse(content[2]), this.unitCollection[Authority, Int32.Parse(content[3])]));
+                                new Angle(Double.Parse(content[2], CultureInfo.InvariantCulture), this.unitCollection[Authority, Int32.Parse(content[3])]));
         }
     }
 }

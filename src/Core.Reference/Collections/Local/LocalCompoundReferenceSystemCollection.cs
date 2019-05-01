@@ -23,7 +23,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="CompoundReferenceSystem" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalCompoundReferenceSystemCollection : LocalReferenceCollection<CompoundReferenceSystem>
     {

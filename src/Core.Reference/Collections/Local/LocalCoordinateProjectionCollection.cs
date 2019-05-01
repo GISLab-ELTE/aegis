@@ -27,7 +27,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="CoordinateProjection" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalCoordinateProjectionCollection : ICoordinateProjectionCollection
     {
@@ -78,19 +78,19 @@ namespace AEGIS.Reference.Collections.Local
             /// Gets the area of use.
             /// </summary>
             /// <value>The area of use.</value>
-            public AreaOfUse AreaOfUse { get; private set; }
+            public AreaOfUse AreaOfUse { get; }
 
             /// <summary>
             /// Gets the coordinate operation method.
             /// </summary>
             /// <value>The coordinate operation method.</value>
-            public CoordinateOperationMethod Method { get; private set; }
+            public CoordinateOperationMethod Method { get; }
 
             /// <summary>
             /// Gets the coordinate operation parameters.
             /// </summary>
             /// <value>The coordinate operation parameters.</value>
-            public Dictionary<CoordinateOperationParameter, Object> Parameters { get; private set; }
+            public Dictionary<CoordinateOperationParameter, Object> Parameters { get; }
         }
 
         /// <summary>
@@ -198,13 +198,13 @@ namespace AEGIS.Reference.Collections.Local
                                 switch (unit.Type)
                                 {
                                     case UnitQuantityType.Angle:
-                                        this.projectionParameters[code].Add(parameter, new Angle(Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat), unit));
+                                        this.projectionParameters[code].Add(parameter, new Angle(Double.Parse(content[3], CultureInfo.InvariantCulture), unit));
                                         break;
                                     case UnitQuantityType.Length:
-                                        this.projectionParameters[code].Add(parameter, new Length(Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat), unit));
+                                        this.projectionParameters[code].Add(parameter, new Length(Double.Parse(content[3], CultureInfo.InvariantCulture), unit));
                                         break;
                                     case UnitQuantityType.Scale:
-                                        this.projectionParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat));
+                                        this.projectionParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture));
                                         break;
                                 }
                             }
@@ -212,7 +212,7 @@ namespace AEGIS.Reference.Collections.Local
                             {
                                 // the parameter is scalar
 
-                                this.projectionParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture.NumberFormat));
+                                this.projectionParameters[code].Add(parameter, Double.Parse(content[3], CultureInfo.InvariantCulture));
                             }
                         }
 
@@ -381,7 +381,7 @@ namespace AEGIS.Reference.Collections.Local
                     return null;
 
                 CoordinateProjectionData matchingData = this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code))
-                    .FirstOrDefault(data => data.Method.Equals(method) && data.AreaOfUse.Equals(areaOfUse) && this.IsMatching(data.Parameters, parameters));
+                    .FirstOrDefault(data => data.Method.Equals(method) && data.AreaOfUse.Equals(areaOfUse) && IsMatching(data.Parameters, parameters));
 
                 // no matching projection is available
                 if (matchingData == null)
@@ -482,7 +482,7 @@ namespace AEGIS.Reference.Collections.Local
             this.EnsureOperationTypes();
 
             return this.dataCollection.Where(data => data != null && this.projectionTypes.ContainsKey(data.Method.Code))
-                .Where(data => (method == null || data.Method.Equals(method)) && (areaOfUse == null || data.AreaOfUse.Equals(areaOfUse)) && (parameters == null || this.IsMatching(data.Parameters, parameters)))
+                .Where(data => (method == null || data.Method.Equals(method)) && (areaOfUse == null || data.AreaOfUse.Equals(areaOfUse)) && (parameters == null || IsMatching(data.Parameters, parameters)))
                 .Select(data => this.CreateProjection(data, ellipsoid));
         }
 
@@ -547,7 +547,7 @@ namespace AEGIS.Reference.Collections.Local
         /// <param name="parameters">The parameters.</param>
         /// <param name="otherParameters">The other parameters.</param>
         /// <returns><c>true</c> if all parameters match; otherwise, <c>false</c>.</returns>
-        private Boolean IsMatching(IDictionary<CoordinateOperationParameter, Object> parameters, IDictionary<CoordinateOperationParameter, Object> otherParameters)
+        private static Boolean IsMatching(IDictionary<CoordinateOperationParameter, Object> parameters, IDictionary<CoordinateOperationParameter, Object> otherParameters)
         {
             if (parameters == null && otherParameters == null)
                 return true;
@@ -564,7 +564,7 @@ namespace AEGIS.Reference.Collections.Local
 
             foreach (CoordinateOperationParameter parameter in parameters.Keys)
             {
-                if (this.GetDouble(parameters[parameter]) != this.GetDouble(otherParameters[parameter]))
+                if (GetDouble(parameters[parameter]) != GetDouble(otherParameters[parameter]))
                     return false;
             }
 
@@ -576,7 +576,7 @@ namespace AEGIS.Reference.Collections.Local
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The converted value.</returns>
-        private Double GetDouble(Object value)
+        private static Double GetDouble(Object value)
         {
             if (value is Angle)
                 return ((Angle)value).Value;

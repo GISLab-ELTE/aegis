@@ -236,8 +236,8 @@ namespace AEGIS.Reference.Collections.Formula
         /// <returns>The transformed coordinate.</returns>
         protected override GeoCoordinate ComputeReverse(Coordinate coordinate)
         {
-            Double phi = 0, lambda = 0;
-
+            Double lambda = 0;
+            double phi;
             if (this.Ellipsoid.IsSphere)
             {
                 // source: Snyder, J. P.: Map Projections - A Working Manual, page 185

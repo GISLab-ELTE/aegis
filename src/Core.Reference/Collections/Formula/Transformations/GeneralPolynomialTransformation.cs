@@ -33,12 +33,12 @@ namespace AEGIS.Reference.Collections.Formula
             /// <summary>
             /// The U degree.
             /// </summary>
-            private Int32 u;
+            private readonly Int32 u;
 
             /// <summary>
             /// The V degree.
             /// </summary>
-            private Int32 v;
+            private readonly Int32 v;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Coefficient" /> struct.
@@ -203,7 +203,7 @@ namespace AEGIS.Reference.Collections.Formula
         /// Gets the degree of the polynomial.
         /// </summary>
         /// <value>The degree of the polynomial.</value>
-        public Int32 Degree { get; private set; }
+        public Int32 Degree { get; }
 
         /// <summary>
         /// Computes the forward transformation.
@@ -234,16 +234,6 @@ namespace AEGIS.Reference.Collections.Formula
         }
 
         /// <summary>
-        /// Computes the reverse transformation.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns>The transformed coordinate.</returns>
-        protected override Coordinate ComputeReverse(Coordinate coordinate)
-        {
-            return Coordinate.Undefined;
-        }
-
-        /// <summary>
         /// Gets the coordinate operation method.
         /// </summary>
         /// <param name="degree">The degree of the polynomial.</param>
@@ -251,11 +241,11 @@ namespace AEGIS.Reference.Collections.Formula
         /// <exception cref="System.ArgumentException">No general polynomial transformation is available for the given degree.</exception>
         private static CoordinateOperationMethod GetMethod(Int32 degree)
         {
-            PropertyInfo propertyInfo = typeof(CoordinateOperationMethods).GetRuntimeProperty("GeneralPolynomial" + degree);
-            if (propertyInfo == null)
+            FieldInfo fieldInfo = typeof(CoordinateOperationMethods).GetField("GeneralPolynomial" + degree);
+            if (fieldInfo == null)
                 throw new ArgumentException(ReferenceMessages.PolynomialTransformationDegreeIsInvalid, nameof(degree));
 
-            return propertyInfo.GetValue(null, null) as CoordinateOperationMethod;
+            return fieldInfo.GetValue(null) as CoordinateOperationMethod;
         }
     }
 }

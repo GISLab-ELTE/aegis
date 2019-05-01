@@ -16,6 +16,7 @@ namespace AEGIS.Reference.Collections.Local
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using AEGIS.Reference.Resources;
 
@@ -23,7 +24,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="Ellipsoid" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalEllipsoidCollection : LocalReferenceCollection<Ellipsoid>
     {
@@ -54,16 +55,16 @@ namespace AEGIS.Reference.Collections.Local
                 // inverse flattening is available
                 return Ellipsoid.FromInverseFlattening(IdentifiedObject.GetIdentifier(Authority, content[0]), content[1],
                                                        content[7], this.GetAliases(Int32.Parse(content[0])),
-                                                       new Length(Double.Parse(content[2]), this.unitCollection[Authority, Int32.Parse(content[3])]),
-                                                       Double.Parse(content[4]));
+                                                       new Length(Double.Parse(content[2], CultureInfo.InvariantCulture), this.unitCollection[Authority, Int32.Parse(content[3])]),
+                                                       Double.Parse(content[4], CultureInfo.InvariantCulture));
             }
             else
             {
                 // semi-major axis is available
                 return Ellipsoid.FromSemiMinorAxis(IdentifiedObject.GetIdentifier(Authority, content[0]), content[1],
                                                    content[7], this.GetAliases(Int32.Parse(content[0])),
-                                                   new Length(Double.Parse(content[2]), this.unitCollection[Authority, Int32.Parse(content[3])]),
-                                                   new Length(Double.Parse(content[5]), this.unitCollection[Authority, Int32.Parse(content[3])]));
+                                                   new Length(Double.Parse(content[2], CultureInfo.InvariantCulture), this.unitCollection[Authority, Int32.Parse(content[3])]),
+                                                   new Length(Double.Parse(content[5], CultureInfo.InvariantCulture), this.unitCollection[Authority, Int32.Parse(content[3])]));
             }
         }
     }

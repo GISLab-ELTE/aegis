@@ -289,6 +289,6 @@ namespace AEGIS.Reference.Collections
         /// <summary>
         /// Gets the underlying inversion of control container.
         /// </summary>
-        protected Container Container { get; private set; }
+        protected Container Container { get; }
     }
 }

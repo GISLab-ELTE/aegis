@@ -1,4 +1,4 @@
-﻿// <copyright file="WorldMillerCylindricalProjection.cs" company="Eötvös Loránd University (ELTE)">
+﻿// <copyright file="MillerCylindricalProjection.cs" company="Eötvös Loránd University (ELTE)">
 //     Copyright 2016-2019 Roberto Giachetta. Licensed under the
 //     Educational Community License, Version 2.0 (the "License"); you may
 //     not use this file except in compliance with the License. You may
@@ -22,7 +22,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// Represents a Miller Cylindrical Projection.
     /// </summary>
     [IdentifiedObject("ESRI::54002", "Miller Cylindrical Projection")]
-    public class WorldMillerCylindricalProjection : CoordinateProjection
+    public class MillerCylindricalProjection : CoordinateProjection
     {
         /// <summary>
         /// False easting.
@@ -45,7 +45,7 @@ namespace AEGIS.Reference.Collections.Formula
         private readonly Double sphereRadius;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorldMillerCylindricalProjection" /> class.
+        /// Initializes a new instance of the <see cref="MillerCylindricalProjection" /> class.
         /// </summary>
         /// <param name="identifier">The identifier of the operation.</param>
         /// <param name="name">The name of the operation.</param>
@@ -70,8 +70,8 @@ namespace AEGIS.Reference.Collections.Formula
         /// or
         /// The parameter does not have the same measurement unit as the ellipsoid.
         /// </exception>
-        public WorldMillerCylindricalProjection(String identifier, String name, IDictionary<CoordinateOperationParameter, Object> parameters, Ellipsoid ellipsoid, AreaOfUse areaOfUse)
-            : base(identifier, name, null, null, CoordinateOperationMethods.WorldMillerCylindricalProjection, parameters, ellipsoid, areaOfUse)
+        public MillerCylindricalProjection(String identifier, String name, IDictionary<CoordinateOperationParameter, Object> parameters, Ellipsoid ellipsoid, AreaOfUse areaOfUse)
+            : base(identifier, name, null, null, CoordinateOperationMethods.MillerCylindricalProjection, parameters, ellipsoid, areaOfUse)
         {
             this.falseNorthing = this.GetParameterValue(CoordinateOperationParameters.FalseNorthing);
             this.falseEasting = this.GetParameterValue(CoordinateOperationParameters.FalseEasting);

@@ -167,8 +167,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double qC = this.qP * Math.Sin(betaC);
 
             Double phiC = 0;
-            Double phi = 0;
-
+            double phi;
             do
             {
                 phi = phiC;

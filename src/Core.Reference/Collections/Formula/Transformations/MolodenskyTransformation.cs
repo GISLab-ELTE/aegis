@@ -17,7 +17,6 @@ namespace AEGIS.Reference.Collections.Formula
     using System;
     using System.Collections.Generic;
     using AEGIS.Numerics;
-    using AEGIS.Reference.Resources;
 
     /// <summary>
     /// Represents a Molodensky Transformation.
@@ -54,7 +53,7 @@ namespace AEGIS.Reference.Collections.Formula
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid model of Earth.</value>
-        public Ellipsoid Ellipsoid { get; private set; }
+        public Ellipsoid Ellipsoid { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MolodenskyTransformation" /> class.
@@ -127,16 +126,6 @@ namespace AEGIS.Reference.Collections.Formula
             Double deltaH = this.xAxisTranslation * Math.Cos(coordinate.Latitude.BaseValue) * Math.Cos(coordinate.Longitude.BaseValue) + this.yAxisTranslation * Math.Cos(coordinate.Latitude.BaseValue) * Math.Sin(coordinate.Longitude.BaseValue) + d * Calculator.Sin2(coordinate.Latitude.BaseValue) - this.semiMajorAxisLengthDifference;
 
             return new GeoCoordinate(coordinate.Latitude.BaseValue + deltaPhi, coordinate.Longitude.BaseValue + deltaLambda, coordinate.Height.BaseValue + deltaH);
-        }
-
-        /// <summary>
-        /// Computes the reverse transformation.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns>The transformed coordinate.</returns>
-        protected override GeoCoordinate ComputeReverse(GeoCoordinate coordinate)
-        {
-            return GeoCoordinate.Undefined;
         }
     }
 }

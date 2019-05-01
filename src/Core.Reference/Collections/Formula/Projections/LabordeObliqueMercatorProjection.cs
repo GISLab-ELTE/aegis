@@ -128,7 +128,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double d = Math.Sqrt(u * u + v * v);
 
             Double l2 = 0.0;
-            Double p2 = 0.0;
+            double p2;
             if (Math.Abs(d) > Epsilon)
             {
                 l2 = 2 * Math.Atan(v / (u + d));
@@ -173,9 +173,8 @@ namespace AEGIS.Reference.Collections.Formula
             Double v1 = Math.Sin(p1);
             Double w1 = Math.Cos(p1) * Math.Cos(l1) * Math.Sin(this.fiS) - Math.Cos(p1) * Math.Sin(l1) * Math.Cos(this.fiS);
             Double d = Math.Sqrt(u1 * u1 + v1 * v1);
-
-            Double l = 0;
-            Double p = 0;
+            double l;
+            double p;
             if (Math.Abs(d) > Epsilon)
             {
                 l = 2 * Math.Atan(v1 / (u1 + d));
@@ -191,8 +190,7 @@ namespace AEGIS.Reference.Collections.Formula
             Double q1 = (Math.Log(Math.Tan(Math.PI / 4 + p / 2)) - this.c) / this.b;
 
             Double phi = 2 * Math.Atan(Math.Pow(Math.E, q1)) - Math.PI / 2;
-            Double phiPre = 0f;
-
+            double phiPre;
             do
             {
                 phiPre = phi;

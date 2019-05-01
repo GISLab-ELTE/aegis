@@ -26,7 +26,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="CoordinateSystem" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalCoordinateSystemCollection : LocalReferenceCollection<CoordinateSystem>
     {
@@ -88,9 +88,9 @@ namespace AEGIS.Reference.Collections.Local
             {
                 if (!Enum.TryParse<AxisDirection>(axisMapping[3], true, out AxisDirection direction) &&
                     !Enum.TryParse<AxisDirection>(axisMapping[3].Replace("-", String.Empty), true, out direction) &&
-                    !Enum.TryParse<AxisDirection>(axisMapping[3].Substring(0, axisMapping[3].IndexOf(' ')), true, out direction))
+                    !(axisMapping[3].Contains(" ") && Enum.TryParse<AxisDirection>(axisMapping[3].Substring(0, axisMapping[3].IndexOf(' ')), true, out direction)))
                 {
-                    direction = AxisDirection.Undefined;
+                    direction = AxisDirection.Other;
                 }
 
                 axes.Add(this.axisCollection[axisMapping[2], direction, this.unitCollection[Authority, Int32.Parse(axisMapping[5])]]);

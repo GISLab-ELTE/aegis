@@ -23,15 +23,15 @@ namespace AEGIS.Tests.Reference.Collections.Formula
     using Shouldly;
 
     /// <summary>
-    /// Test fixture for the <see cref="WorldMillerCylindricalProjection" /> class.
+    /// Test fixture for the <see cref="MillerCylindricalProjection" /> class.
     /// </summary>
     [TestFixture]
-    public class WorldMillerCylindricalProjectionTest
+    public class MillerCylindricalProjectionTest
     {
         /// <summary>
         /// The projection.
         /// </summary>
-        private WorldMillerCylindricalProjection projection;
+        private MillerCylindricalProjection projection;
 
         /// <summary>
         /// Test setup.
@@ -46,7 +46,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
 
             Ellipsoid ellipsoid = Ellipsoid.FromSemiMinorAxis("EPSG::7030", "WGS 1984", 6378137, 6356752.314);
 
-            this.projection = new WorldMillerCylindricalProjection(String.Empty, String.Empty, parameters, ellipsoid, null);
+            this.projection = new MillerCylindricalProjection(String.Empty, String.Empty, parameters, ellipsoid, null);
         }
 
         /// <summary>

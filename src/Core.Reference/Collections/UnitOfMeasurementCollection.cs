@@ -38,7 +38,7 @@ namespace AEGIS.Reference.Collections
         {
             this.collection = new SortedDictionary<String, UnitOfMeasurement>();
 
-            foreach (UnitOfMeasurement unit in typeof(UnitsOfMeasurement).GetTypeInfo().DeclaredProperties.Where(property => property.Name != "All").Select(property => property.GetValue(null, null) as UnitOfMeasurement))
+            foreach (UnitOfMeasurement unit in typeof(UnitsOfMeasurement).GetFields().Select(field => field.GetValue(null) as UnitOfMeasurement))
             {
                 this.collection.Add(unit.Identifier, unit);
             }

@@ -153,15 +153,5 @@ namespace AEGIS.Reference.Collections.Formula
 
             return new Coordinate(x, y, z);
         }
-
-        /// <summary>
-        /// Computes the reverse transformation.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns>The transformed coordinate.</returns>
-        protected override Coordinate ComputeReverse(Coordinate coordinate)
-        {
-            return Coordinate.Undefined;
-        }
     }
 }

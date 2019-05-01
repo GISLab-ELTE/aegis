@@ -132,7 +132,7 @@ namespace AEGIS.Reference.Collections.Formula
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid used by the operation.</value>
-        public Ellipsoid Ellipsoid { get; private set; }
+        public Ellipsoid Ellipsoid { get; }
 
         /// <summary>
         /// Computes the forward transformation.

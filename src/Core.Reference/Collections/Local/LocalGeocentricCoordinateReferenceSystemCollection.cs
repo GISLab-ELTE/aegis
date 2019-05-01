@@ -23,7 +23,7 @@ namespace AEGIS.Reference.Collections.Local
     /// Represents a collection of <see cref="GeocentricCoordinateReferenceSystem" /> instances.
     /// </summary>
     /// <remarks>
-    /// This type queries references from local resources, which are specified according to the EPSG geodetic dataset format.
+    /// This type queries references from local resources, containing a subset of the <see cref="http://www.epsg.org/">EPSG Geodetic Parameter Dataset</see>.
     /// </remarks>
     public class LocalGeocentricCoordinateReferenceSystemCollection : LocalReferenceCollection<GeocentricCoordinateReferenceSystem>
     {
@@ -40,17 +40,17 @@ namespace AEGIS.Reference.Collections.Local
         /// <summary>
         /// The collection of  <see cref="AreaOfUse" /> instances.
         /// </summary>
-        private IReferenceCollection<AreaOfUse> areaOfUseCollection;
+        private readonly IReferenceCollection<AreaOfUse> areaOfUseCollection;
 
         /// <summary>
         /// The collection of  <see cref="CoordinateSystem" /> instances.
         /// </summary>
-        private IReferenceCollection<CoordinateSystem> coordinateSystemCollection;
+        private readonly IReferenceCollection<CoordinateSystem> coordinateSystemCollection;
 
         /// <summary>
         /// The collection of  <see cref="GeodeticDatum" /> instances.
         /// </summary>
-        private IReferenceCollection<GeodeticDatum> geodeticDatumCollection;
+        private readonly IReferenceCollection<GeodeticDatum> geodeticDatumCollection;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalGeocentricCoordinateReferenceSystemCollection" /> class.

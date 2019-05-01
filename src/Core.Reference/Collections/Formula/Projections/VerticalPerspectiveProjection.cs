@@ -118,15 +118,5 @@ namespace AEGIS.Reference.Collections.Formula
 
             return new Coordinate(easting, northing);
         }
-
-        /// <summary>
-        /// Computes the reverse transformation.
-        /// </summary>
-        /// <param name="coordinate">The coordinate.</param>
-        /// <returns>The transformed coordinate.</returns>
-        protected override GeoCoordinate ComputeReverse(Coordinate coordinate)
-        {
-            return GeoCoordinate.Undefined;
-        }
     }
 }

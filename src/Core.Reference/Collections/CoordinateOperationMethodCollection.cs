@@ -39,7 +39,7 @@ namespace AEGIS.Reference.Collections
         {
             this.collection = new SortedDictionary<String, CoordinateOperationMethod>();
 
-            foreach (CoordinateOperationMethod unit in typeof(CoordinateOperationMethods).GetRuntimeProperties().Select(property => property.GetValue(null, null) as CoordinateOperationMethod))
+            foreach (CoordinateOperationMethod unit in typeof(CoordinateOperationMethods).GetFields().Select(field => field.GetValue(null) as CoordinateOperationMethod))
             {
                 this.collection.Add(unit.Identifier, unit);
             }

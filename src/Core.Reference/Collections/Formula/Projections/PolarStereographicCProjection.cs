@@ -158,13 +158,10 @@ namespace AEGIS.Reference.Collections.Formula
         /// <returns>The transformed coordinate.</returns>
         protected override GeoCoordinate ComputeReverse(Coordinate coordinate)
         {
-            Double t = 0.00;
-
             Double ksi = 0, longitude = 0, latitude;
-            Double phi = 0;
-
             Double deltaX = coordinate.X - this.eastingAtFalseOrigin, deltaY;
-
+            double t;
+            double phi;
             switch (this.operationAspect)
             {
                 case OperationAspect.NorthPolar:

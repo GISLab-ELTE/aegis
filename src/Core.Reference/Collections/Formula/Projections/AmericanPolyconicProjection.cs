@@ -134,7 +134,7 @@ namespace AEGIS.Reference.Collections.Formula
         protected override Coordinate ComputeForward(GeoCoordinate coordinate)
         {
             if (Math.Abs(coordinate.Latitude.BaseValue - this.latitudeOfNaturalOrigin) > Math.PI / 2)
-                return Coordinate.Undefined;
+                return null;
 
             Double phi = coordinate.Latitude.BaseValue;
             Double lambda = coordinate.Longitude.BaseValue;
@@ -200,9 +200,8 @@ namespace AEGIS.Reference.Collections.Formula
                 }
                 while (iteration < IterationLimit && Math.Abs(phi2 - phi1) > 0.001);
 
-                // check for convergence
-                if (iteration == IterationLimit)
-                    return GeoCoordinate.Undefined;
+                if (Math.Abs(phi2 - phi1) > 0.001)
+                    return null;
 
                 phi = phi2;
                 lambda = this.longitudeOfNaturalOrigin + Math.Asin((coordinate.X - this.falseEasting) * bC / this.Ellipsoid.SemiMajorAxis.BaseValue) / Math.Sin(phi);
