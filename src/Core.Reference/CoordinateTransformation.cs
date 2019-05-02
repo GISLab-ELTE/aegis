@@ -67,18 +67,18 @@ namespace AEGIS.Reference
         /// Gets the source coordinate reference system.
         /// </summary>
         /// <value>The source coordinate reference system.</value>
-        public CoordinateReferenceSystem Source { get; private set; }
+        public CoordinateReferenceSystem Source { get; }
 
         /// <summary>
         /// Gets the target coordinate reference system.
         /// </summary>
         /// <value>The target coordinate reference system.</value>
-        public CoordinateReferenceSystem Target { get; private set; }
+        public CoordinateReferenceSystem Target { get; }
 
         /// <summary>
         /// Gets the area of use.
         /// </summary>
         /// <value>The area of use where the operation is applicable.</value>
-        public AreaOfUse AreaOfUse { get; private set; }
+        public AreaOfUse AreaOfUse { get; }
     }
 }

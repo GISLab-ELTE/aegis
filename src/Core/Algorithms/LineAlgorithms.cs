@@ -34,7 +34,7 @@ namespace AEGIS.Algorithms
         public static Coordinate Centroid(Coordinate lineStart, Coordinate lineEnd)
         {
             if (lineStart == null || lineEnd == null)
-                return Coordinate.Undefined;
+                return null;
 
             return new Coordinate((lineStart.X + lineEnd.X) / 2, (lineStart.Y + lineEnd.Y) / 2, (lineStart.Z + lineEnd.Z) / 2);
         }
@@ -69,7 +69,7 @@ namespace AEGIS.Algorithms
             IEnumerator<Coordinate> coordinateEnumerator = coordinates.Elements().GetEnumerator();
 
             if (!coordinateEnumerator.MoveNext())
-                return Coordinate.Undefined;
+                return null;
 
             Coordinate current = coordinateEnumerator.Current;
 
@@ -80,7 +80,7 @@ namespace AEGIS.Algorithms
             while (coordinateEnumerator.MoveNext())
             {
                 if (!coordinateEnumerator.Current.IsValid)
-                    return Coordinate.Undefined;
+                    return null;
 
                 Double length = Coordinate.Distance(current, coordinateEnumerator.Current);
                 totalLength += length;

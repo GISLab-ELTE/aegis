@@ -136,8 +136,6 @@ namespace AEGIS.Tests.Indexes.Metric
             pointNotPresentInTree = this.factory.CreatePoint(1.000001D, 1.000001D, 1.000001D);
             this.tree.Contains(pointNotPresentInTree).ShouldBeFalse();
 
-            this.tree.Contains(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
-
             Should.Throw<ArgumentNullException>(() => this.tree.Contains(null));
         }
 
@@ -201,7 +199,6 @@ namespace AEGIS.Tests.Indexes.Metric
         public void MTreeRemoveTest()
         {
             this.tree.Remove(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
-            this.tree.Remove(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
 
             this.geometries.Count(p => this.tree.Remove(p)).ShouldBe(this.geometries.Count);
 

@@ -27,11 +27,6 @@ namespace AEGIS.Reference
     public class GeoEnvelope : IEquatable<GeoEnvelope>
     {
         /// <summary>
-        /// Represents the undefined <see cref="GeoEnvelope" /> value. This field is read-only.
-        /// </summary>
-        public static readonly GeoEnvelope Undefined = new GeoEnvelope(Angle.Undefined, Angle.Undefined, Angle.Undefined, Angle.Undefined, Length.Undefined, Length.Undefined);
-
-        /// <summary>
         /// Represents the <see cref="GeoEnvelope" /> value for the globe. This field is read-only.
         /// </summary>
         public static readonly GeoEnvelope Globe = new GeoEnvelope(Angle.FromRadian(-Math.PI / 2), Angle.FromRadian(Math.PI / 2), Angle.FromRadian(-Math.PI), Angle.FromRadian(Math.PI), Length.NegativeInfinity, Length.PositiveInfinity);

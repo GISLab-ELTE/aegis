@@ -27,16 +27,6 @@ namespace AEGIS
     public class Coordinate : IEquatable<Coordinate>, IEquatable<CoordinateVector>
     {
         /// <summary>
-        /// Represents the empty <see cref="Coordinate" /> value. This field is read-only.
-        /// </summary>
-        public static readonly Coordinate Empty = new Coordinate(0, 0, 0);
-
-        /// <summary>
-        /// Represents the undefined <see cref="Coordinate" /> value. This field is read-only.
-        /// </summary>
-        public static readonly Coordinate Undefined = new Coordinate(Double.NaN, Double.NaN, Double.NaN);
-
-        /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
         private const String CoordinateStringFormat = "({0} {1} {2})";
@@ -47,30 +37,15 @@ namespace AEGIS
         private const String InvalidCoordinateString = "INVALID";
 
         /// <summary>
-        /// The X component.
-        /// </summary>
-        private readonly Double x;
-
-        /// <summary>
-        /// The Y component.
-        /// </summary>
-        private readonly Double y;
-
-        /// <summary>
-        /// The Z component.
-        /// </summary>
-        private readonly Double z;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Coordinate" /> class.
         /// </summary>
         /// <param name="x">The X component.</param>
         /// <param name="y">The Y component.</param>
         public Coordinate(Double x, Double y)
         {
-            this.x = x;
-            this.y = y;
-            this.z = 0;
+            this.X = x;
+            this.Y = y;
+            this.Z = 0;
         }
 
         /// <summary>
@@ -81,40 +56,40 @@ namespace AEGIS
         /// <param name="z">The Z component.</param>
         public Coordinate(Double x, Double y, Double z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
         }
 
         /// <summary>
         /// Gets the X component.
         /// </summary>
         /// <value>The X component.</value>
-        public Double X { get { return this.x; } }
+        public Double X { get; }
 
         /// <summary>
         /// Gets the Y component.
         /// </summary>
         /// <value>The Y component.</value>
-        public Double Y { get { return this.y; } }
+        public Double Y { get; }
 
         /// <summary>
         /// Gets the Z component.
         /// </summary>
         /// <value>The Z component.</value>
-        public Double Z { get { return this.z; } }
+        public Double Z { get; }
 
         /// <summary>
         /// Gets a value indicating whether the coordinate is empty.
         /// </summary>
         /// <value><c>true</c> if all component are <c>0</c>; otherwise, <c>false</c>.</value>
-        public Boolean IsEmpty { get { return this.z == 0 && this.y == 0 && this.x == 0; } }
+        public Boolean IsEmpty { get { return this.Z == 0 && this.Y == 0 && this.X == 0; } }
 
         /// <summary>
         /// Gets a value indicating whether the coordinate is valid.
         /// </summary>
         /// <value><c>true</c> if all component are numbers; otherwise, <c>false</c>.</value>
-        public Boolean IsValid { get { return !Double.IsNaN(this.x) && !Double.IsNaN(this.y) && !Double.IsNaN(this.z); } }
+        public Boolean IsValid { get { return !Double.IsNaN(this.X) && !Double.IsNaN(this.Y) && !Double.IsNaN(this.Z); } }
 
         /// <summary>
         /// Indicates whether this instance and a specified other <see cref="Coordinate" /> are equal.
@@ -128,7 +103,7 @@ namespace AEGIS
             if (ReferenceEquals(this, other))
                 return true;
 
-            return this.x == other.x && this.y == other.y && this.z == other.z;
+            return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
         }
 
         /// <summary>
@@ -141,7 +116,7 @@ namespace AEGIS
             if (other is null)
                 return false;
 
-            return this.x == other.X && this.y == other.Y && this.z == other.Z;
+            return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
         }
 
         /// <summary>
@@ -157,10 +132,10 @@ namespace AEGIS
                 return true;
 
             if (obj is Coordinate otherCoordinate)
-                return this.x == otherCoordinate.x && this.y == otherCoordinate.y && this.z == otherCoordinate.z;
+                return this.X == otherCoordinate.X && this.Y == otherCoordinate.Y && this.Z == otherCoordinate.Z;
 
             if (obj is CoordinateVector otherVector)
-                return this.x == otherVector.X && this.y == otherVector.Y && this.z == otherVector.Z;
+                return this.X == otherVector.X && this.Y == otherVector.Y && this.Z == otherVector.Z;
 
             return false;
         }
@@ -171,7 +146,7 @@ namespace AEGIS
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override Int32 GetHashCode()
         {
-            return (this.x.GetHashCode() >> 4) ^ (this.y.GetHashCode() >> 2) ^ this.z.GetHashCode() ^ 57600017;
+            return (this.X.GetHashCode() >> 4) ^ (this.Y.GetHashCode() >> 2) ^ this.Z.GetHashCode() ^ 57600017;
         }
 
         /// <summary>
@@ -193,7 +168,7 @@ namespace AEGIS
             if (!this.IsValid)
                 return InvalidCoordinateString;
 
-            return String.Format(provider, CoordinateStringFormat, this.x, this.y, this.z);
+            return String.Format(provider, CoordinateStringFormat, this.X, this.Y, this.Z);
         }
 
         /// <summary>
@@ -277,7 +252,7 @@ namespace AEGIS
             if (first is null)
                 return false;
 
-            return first.x == second.x && first.y == second.y && first.z == second.z;
+            return first.X == second.X && first.Y == second.Y && first.Z == second.Z;
         }
 
         /// <summary>
@@ -330,9 +305,9 @@ namespace AEGIS
             if (first.Equals(second))
                 return 0;
 
-            Double x = first.x - second.x;
-            Double y = first.y - second.y;
-            Double z = first.z - second.z;
+            Double x = first.X - second.X;
+            Double y = first.Y - second.Y;
+            Double z = first.Z - second.Z;
 
             return Math.Sqrt(x * x + y * y + z * z);
         }
@@ -349,7 +324,7 @@ namespace AEGIS
                 throw new ArgumentNullException(nameof(coordinates));
 
             if (coordinates.Length == 0)
-                return Coordinate.Undefined;
+                return null;
 
             Double sumX = 0, sumY = 0, sumZ = 0;
             for (Int32 coordinateIndex = 0; coordinateIndex < coordinates.Length; coordinateIndex++)
@@ -381,7 +356,7 @@ namespace AEGIS
                 throw new ArgumentNullException(nameof(coordinates));
 
             if (!coordinates.Any())
-                return Coordinate.Undefined;
+                return null;
 
             Double sumX = 0, sumY = 0, sumZ = 0;
             Int32 count = 0;
@@ -511,11 +486,11 @@ namespace AEGIS
             switch (referenceSystem.Dimension)
             {
                 case 2:
-                    return new Coordinate(coordinate.x, coordinate.y);
+                    return new Coordinate(coordinate.X, coordinate.Y);
                 case 1:
-                    return new Coordinate(coordinate.x, 0);
+                    return new Coordinate(coordinate.X, 0);
                 default:
-                    return Coordinate.Empty;
+                    return new Coordinate(0, 0);
             }
         }
 
@@ -539,7 +514,7 @@ namespace AEGIS
                 case 1:
                     return new Coordinate(x, 0);
                 default:
-                    return Coordinate.Empty;
+                    return new Coordinate(0, 0);
             }
         }
     }

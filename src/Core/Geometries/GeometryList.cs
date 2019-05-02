@@ -173,7 +173,7 @@ namespace AEGIS.Geometries
             get
             {
                 if (this.items.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
                 if (this.items.Count == 1)
                     return this.items[0].Centroid;
 

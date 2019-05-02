@@ -88,7 +88,7 @@ namespace AEGIS.Reference
         /// Gets the area of use.
         /// </summary>
         /// <value>The area of use where the reference system is applicable.</value>
-        public AreaOfUse AreaOfUse { get; private set; }
+        public AreaOfUse AreaOfUse { get; }
 
         /// <summary>
         /// Gets the components of the reference system.

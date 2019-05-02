@@ -97,26 +97,23 @@ namespace AEGIS.Tests
         [Test]
         public void CoordinateOrientationTest()
         {
-            Orientation orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), new Coordinate(1, 0));
+            Orientation orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(1, 0));
             orientation.ShouldBe(Orientation.Clockwise);
 
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), new Coordinate(0, 1));
+            orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(0, 1));
             orientation.ShouldBe(Orientation.Collinear);
 
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(1, 1), new Coordinate(10, 10));
+            orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(10, 10));
             orientation.ShouldBe(Orientation.Collinear);
 
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), new Coordinate(0, 10));
+            orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(0, 10));
             orientation.ShouldBe(Orientation.Collinear);
 
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), new Coordinate(0, -1));
+            orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(0, -1));
             orientation.ShouldBe(Orientation.Collinear);
 
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), new Coordinate(-1, 0));
+            orientation = Coordinate.Orientation(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(-1, 0));
             orientation.ShouldBe(Orientation.Counterclockwise);
-
-            orientation = Coordinate.Orientation(Coordinate.Empty, new Coordinate(0, 1), Coordinate.Undefined);
-            orientation.ShouldBe(Orientation.Undefined);
         }
     }
 }

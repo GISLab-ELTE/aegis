@@ -45,7 +45,7 @@ namespace AEGIS.Geometries
             if (coordinate == null)
                 throw new ArgumentNullException(nameof(coordinate));
 
-            this.coordinate = this.Correct(coordinate ?? Coordinate.Empty);
+            this.coordinate = this.Correct(coordinate);
         }
 
         /// <summary>

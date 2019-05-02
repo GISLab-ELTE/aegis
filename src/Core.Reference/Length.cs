@@ -56,16 +56,6 @@ namespace AEGIS.Reference
         private const String LengthStringFormat = "{0}{1}";
 
         /// <summary>
-        /// The value.
-        /// </summary>
-        private readonly Double value;
-
-        /// <summary>
-        /// The unit of measurement.
-        /// </summary>
-        private readonly UnitOfMeasurement unit;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Length" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -76,24 +66,24 @@ namespace AEGIS.Reference
             if (unit != null && unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            this.value = value;
-            this.unit = unit ?? UnitsOfMeasurement.Metre;
+            this.Value = value;
+            this.Unit = unit ?? UnitsOfMeasurement.Metre;
         }
 
         /// <summary>
         /// Gets the value of the length.
         /// </summary>
-        public Double Value { get { return this.value; } }
+        public Double Value { get; }
 
         /// <summary>
         /// Gets the base value (converted to radian) of the length.
         /// </summary>
-        public Double BaseValue { get { return this.value * this.unit.BaseMultiple; } }
+        public Double BaseValue { get { return this.Value * this.Unit.BaseMultiple; } }
 
         /// <summary>
         /// Gets the unit of measurement of the length.
         /// </summary>
-        public UnitOfMeasurement Unit { get { return this.unit; } }
+        public UnitOfMeasurement Unit { get; }
 
         /// <summary>
         /// Gets the value using the specified <see cref="UnitOfMeasurement" />.
@@ -109,8 +99,8 @@ namespace AEGIS.Reference
             if (unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            if (unit == this.unit)
-                return this.value;
+            if (unit == this.Unit)
+                return this.Value;
 
             return this.BaseValue / unit.BaseMultiple;
         }
@@ -153,7 +143,7 @@ namespace AEGIS.Reference
             if (unit.Type != UnitQuantityType.Length)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            if (unit == this.unit)
+            if (unit == this.Unit)
                 return this;
 
             return new Length(this.BaseValue / unit.BaseMultiple, unit);
@@ -874,7 +864,7 @@ namespace AEGIS.Reference
         /// <returns><c>true</c> if <paramref name="length" /> is not an unknown value; otherwise, <c>false</c>.</returns>
         public static Boolean IsValid(Length length)
         {
-            return !Double.IsNaN(length.value);
+            return !Double.IsNaN(length.Value);
         }
 
         /// <summary>

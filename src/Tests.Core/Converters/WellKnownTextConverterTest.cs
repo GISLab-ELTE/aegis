@@ -129,13 +129,13 @@ namespace AEGIS.Tests.Converters
             Assert.AreEqual(new Coordinate(1, 1, 1), point.Coordinate);
 
             point = WellKnownTextConverter.ToGeometry("POINT EMPTY", this.factory) as IPoint;
-            Assert.AreEqual(Coordinate.Empty, point.Coordinate);
+            Assert.AreEqual(new Coordinate(0, 0), point.Coordinate);
 
             point = WellKnownTextConverter.ToGeometry("POINT (0 0)", this.factory) as IPoint;
-            Assert.AreEqual(Coordinate.Empty, point.Coordinate);
+            Assert.AreEqual(new Coordinate(0, 0), point.Coordinate);
 
             point = WellKnownTextConverter.ToGeometry("POINT Z (0 0 0)", this.factory) as IPoint;
-            Assert.AreEqual(Coordinate.Empty, point.Coordinate);
+            Assert.AreEqual(new Coordinate(0, 0), point.Coordinate);
 
             Assert.Throws<ArgumentNullException>(() => WellKnownTextConverter.ToGeometry(null, this.factory));
             Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToGeometry(String.Empty, this.factory));
@@ -155,7 +155,7 @@ namespace AEGIS.Tests.Converters
             }
 
             Assert.Throws<ArgumentNullException>(() => WellKnownTextConverter.ToWellKnownText(null));
-            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToWellKnownText(this.factory.CreatePoint(Coordinate.Empty), 1));
+            Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToWellKnownText(this.factory.CreatePoint(new Coordinate(0, 0)), 1));
             Assert.Throws<ArgumentException>(() => WellKnownTextConverter.ToWellKnownText(this.factory.CreateGeometryCollection<IGeometry>()));
         }
     }

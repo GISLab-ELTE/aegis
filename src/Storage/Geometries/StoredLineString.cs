@@ -190,7 +190,7 @@ namespace AEGIS.Storage.Geometries
             get
             {
                 if (this.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
 
                 return this.ReadCoordinate(0);
             }
@@ -205,7 +205,7 @@ namespace AEGIS.Storage.Geometries
             get
             {
                 if (this.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
 
                 return this.ReadCoordinate(this.Count - 1);
             }

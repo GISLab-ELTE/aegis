@@ -60,18 +60,18 @@ namespace AEGIS.Reference
         /// Gets the coordinate system.
         /// </summary>
         /// <value>The coordinate system.</value>
-        public CoordinateSystem CoordinateSystem { get; private set; }
+        public CoordinateSystem CoordinateSystem { get; }
 
         /// <summary>
         /// Gets the datum of the coordinate reference system.
         /// </summary>
         /// <value>The datum of the coordinate reference system.</value>
-        public Datum Datum { get; private set; }
+        public Datum Datum { get; }
 
         /// <summary>
         /// Gets the area of use.
         /// </summary>
         /// <value>The area of use where the reference system is applicable.</value>
-        public AreaOfUse AreaOfUse { get; private set; }
+        public AreaOfUse AreaOfUse { get; }
     }
 }

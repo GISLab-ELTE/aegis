@@ -84,7 +84,7 @@ namespace AEGIS.Reference
         /// Gets the type of the coordinate system.
         /// </summary>
         /// <value>The type of the coordinate system.</value>
-        public CoordinateSystemType Type { get; private set; }
+        public CoordinateSystemType Type { get; }
 
         /// <summary>
         /// Gets the <see cref="CoordinateSystemAxis" /> at the specified index.

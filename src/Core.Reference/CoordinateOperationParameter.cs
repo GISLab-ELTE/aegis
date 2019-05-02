@@ -52,6 +52,6 @@ namespace AEGIS.Reference
         /// Gets the description of the parameter.
         /// </summary>
         /// <value>The description of the parameter.</value>
-        public String Description { get; private set; }
+        public String Description { get; }
     }
 }

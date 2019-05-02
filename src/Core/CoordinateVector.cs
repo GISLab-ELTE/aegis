@@ -26,11 +26,6 @@ namespace AEGIS
     public class CoordinateVector : IEquatable<Coordinate>, IEquatable<CoordinateVector>
     {
         /// <summary>
-        /// Represents the null <see cref="CoordinateVector" /> value. This field is constant.
-        /// </summary>
-        public static readonly CoordinateVector NullVector = new CoordinateVector(0, 0, 0);
-
-        /// <summary>
         /// Defines the string format for coordinate vectors. This field is constant.
         /// </summary>
         private const String CoordinateVectorStringFormat = "({0}, {1}, {2})";
@@ -46,30 +41,15 @@ namespace AEGIS
         private const String NullCoordinateVectorString = "NULL";
 
         /// <summary>
-        /// The X component.
-        /// </summary>
-        private readonly Double x;
-
-        /// <summary>
-        /// The Y component.
-        /// </summary>
-        private readonly Double y;
-
-        /// <summary>
-        /// The Z component.
-        /// </summary>
-        private readonly Double z;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CoordinateVector" /> class.
         /// </summary>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
         public CoordinateVector(Double x, Double y)
         {
-            this.x = x;
-            this.y = y;
-            this.z = 0;
+            this.X = x;
+            this.Y = y;
+            this.Z = 0;
         }
 
         /// <summary>
@@ -80,46 +60,46 @@ namespace AEGIS
         /// <param name="z">The Z component.</param>
         public CoordinateVector(Double x, Double y, Double z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
         }
 
         /// <summary>
         /// Gets the X component.
         /// </summary>
         /// <value>The X component.</value>
-        public Double X { get { return this.x; } }
+        public Double X { get; }
 
         /// <summary>
         /// Gets the Y component.
         /// </summary>
         /// <value>The Y component.</value>
-        public Double Y { get { return this.y; } }
+        public Double Y { get; }
 
         /// <summary>
         /// Gets the Z component.
         /// </summary>
         /// <value>The Z component.</value>
-        public Double Z { get { return this.z; } }
+        public Double Z { get; }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="CoordinateVector" /> is null.
         /// </summary>
         /// <value><c>true</c> if all component are 0; otherwise, <c>false</c>.</value>
-        public Boolean IsNull { get { return this.x == 0 && this.y == 0 && this.z == 0; } }
+        public Boolean IsNull { get { return this.X == 0 && this.Y == 0 && this.Z == 0; } }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="CoordinateVector" /> is valid.
         /// </summary>
         /// <value><c>true</c> if all component are numbers; otherwise, <c>false</c>.</value>
-        public Boolean IsValid { get { return !Double.IsNaN(this.x) && !Double.IsNaN(this.y) && !Double.IsNaN(this.z); } }
+        public Boolean IsValid { get { return !Double.IsNaN(this.X) && !Double.IsNaN(this.Y) && !Double.IsNaN(this.Z); } }
 
         /// <summary>
         /// Gets the length of the <see cref="CoordinateVector" />.
         /// </summary>
         /// <value>The length of the vector.</value>
-        public Double Length { get { return Math.Sqrt(this.x * this.x + this.y * this.y + this.z * this.z); } }
+        public Double Length { get { return Math.Sqrt(this.X * this.X + this.Y * this.Y + this.Z * this.Z); } }
 
         /// <summary>
         /// Normalizes the <see cref="CoordinateVector" /> instance.
@@ -128,7 +108,7 @@ namespace AEGIS
         public CoordinateVector Normalize()
         {
             Double length = this.Length;
-            return new CoordinateVector(this.x / length, this.y / length, this.z / length);
+            return new CoordinateVector(this.X / length, this.Y / length, this.Z / length);
         }
 
         /// <summary>
@@ -138,7 +118,7 @@ namespace AEGIS
         /// <returns><c>true</c> if <paramref name="other" /> and this instance represent the same value; otherwise, <c>false</c>.</returns>
         public Boolean Equals(Coordinate other)
         {
-            return this.x == other.X && this.y == other.Y && this.z == other.Z;
+            return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
         }
 
         /// <summary>
@@ -153,7 +133,7 @@ namespace AEGIS
             if (ReferenceEquals(this, other))
                 return true;
 
-            return this.x == other.x && this.y == other.y && this.z == other.z;
+            return this.X == other.X && this.Y == other.Y && this.Z == other.Z;
         }
 
         /// <summary>
@@ -171,12 +151,12 @@ namespace AEGIS
             Coordinate otherCoordinate = obj as Coordinate;
 
             if (otherCoordinate != null)
-                return this.x == otherCoordinate.X && this.y == otherCoordinate.Y && this.z == otherCoordinate.Z;
+                return this.X == otherCoordinate.X && this.Y == otherCoordinate.Y && this.Z == otherCoordinate.Z;
 
             CoordinateVector otherVector = obj as CoordinateVector;
 
             if (otherVector != null)
-                return this.x == otherVector.x && this.y == otherVector.y && this.z == otherVector.z;
+                return this.X == otherVector.X && this.Y == otherVector.Y && this.Z == otherVector.Z;
 
             return false;
         }
@@ -187,7 +167,7 @@ namespace AEGIS
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override Int32 GetHashCode()
         {
-            return (this.x.GetHashCode() >> 4) ^ (this.y.GetHashCode() >> 2) ^ this.z.GetHashCode() ^ 57600017;
+            return (this.X.GetHashCode() >> 4) ^ (this.Y.GetHashCode() >> 2) ^ this.Z.GetHashCode() ^ 57600017;
         }
 
         /// <summary>
@@ -201,7 +181,7 @@ namespace AEGIS
             if (!this.IsValid)
                 return InvalidCoordinateVectorString;
 
-            return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.x, this.y, this.z);
+            return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.X, this.Y, this.Z);
         }
 
         /// <summary>
@@ -222,7 +202,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return new CoordinateVector(first.x + second.x, first.y + second.y, first.z + second.z);
+            return new CoordinateVector(first.X + second.X, first.Y + second.Y, first.Z + second.Z);
         }
 
         /// <summary>
@@ -243,7 +223,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return new CoordinateVector(first.x - second.x, first.y - second.y, first.z - second.z);
+            return new CoordinateVector(first.X - second.X, first.Y - second.Y, first.Z - second.Z);
         }
 
         /// <summary>
@@ -258,7 +238,7 @@ namespace AEGIS
             if (ReferenceEquals(vector, null))
                 throw new ArgumentNullException(nameof(vector));
 
-            return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
+            return new CoordinateVector(scalar * vector.X, scalar * vector.Y, scalar * vector.Z);
         }
 
         /// <summary>
@@ -273,7 +253,7 @@ namespace AEGIS
             if (ReferenceEquals(vector, null))
                 throw new ArgumentNullException(nameof(vector));
 
-            return new CoordinateVector(scalar * vector.x, scalar * vector.y, scalar * vector.z);
+            return new CoordinateVector(scalar * vector.X, scalar * vector.Y, scalar * vector.Z);
         }
 
         /// <summary>
@@ -294,7 +274,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return first.x * second.x + first.y * second.y + first.z * second.z;
+            return first.X * second.X + first.Y * second.Y + first.Z * second.Z;
         }
 
         /// <summary>
@@ -310,7 +290,7 @@ namespace AEGIS
             if (ReferenceEquals(first, null))
                 return false;
 
-            return first.x == second.X && first.y == second.y && first.z == second.z;
+            return first.X == second.X && first.Y == second.Y && first.Z == second.Z;
         }
 
         /// <summary>
@@ -375,8 +355,8 @@ namespace AEGIS
             if (precision == null)
                 precision = PrecisionModel.Default;
 
-            return Math.Abs(first.x * second.y - first.y * second.x) <= precision.Tolerance(first, second) &&
-                   Math.Abs(first.x * second.z - first.z * second.z) <= precision.Tolerance(first, second);
+            return Math.Abs(first.X * second.Y - first.Y * second.X) <= precision.Tolerance(first, second) &&
+                   Math.Abs(first.X * second.Z - first.Z * second.Z) <= precision.Tolerance(first, second);
         }
 
         /// <summary>
@@ -417,7 +397,7 @@ namespace AEGIS
             if (precision == null)
                 precision = PrecisionModel.Default;
 
-            return first.x * second.x + first.y * second.y + first.z * second.z <= precision.Tolerance(first, second);
+            return first.X * second.X + first.Y * second.Y + first.Z * second.Z <= precision.Tolerance(first, second);
         }
 
         /// <summary>
@@ -473,9 +453,9 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            Double x = first.x - second.x;
-            Double y = first.y - second.y;
-            Double z = first.z - second.z;
+            Double x = first.X - second.X;
+            Double y = first.Y - second.Y;
+            Double z = first.Z - second.Z;
 
             return Math.Sqrt(x * x + y * y + z * z);
         }
@@ -526,7 +506,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return first.x * second.x + first.y * second.y + first.z * second.z;
+            return first.X * second.X + first.Y * second.Y + first.Z * second.Z;
         }
 
         /// <summary>
@@ -560,7 +540,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return first.x * second.y - first.y * second.x;
+            return first.X * second.Y - first.Y * second.X;
         }
 
         /// <summary>
@@ -596,7 +576,7 @@ namespace AEGIS
             if (ReferenceEquals(second, null))
                 throw new ArgumentNullException(nameof(second));
 
-            return new CoordinateVector(first.y * second.z - first.z * second.y, first.z * second.x - first.x * second.z, first.x * second.y - first.y * second.x);
+            return new CoordinateVector(first.Y * second.Z - first.Z * second.Y, first.Z * second.X - first.X * second.Z, first.X * second.Y - first.Y * second.X);
         }
     }
 }

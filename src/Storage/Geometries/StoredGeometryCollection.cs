@@ -136,7 +136,7 @@ namespace AEGIS.Storage.Geometries
             {
                 Int32 count = this.ReadCollectionCount();
                 if (count == 0)
-                    return Coordinate.Undefined;
+                    return null;
 
                 if (count == 1)
                     return this.ReadGeometry(0).Centroid;

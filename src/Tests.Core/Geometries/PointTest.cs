@@ -44,14 +44,14 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointConstructorTest()
         {
-            Point point = new Point(null, this.mockReferenceSystem.Object, Coordinate.Empty);
+            Point point = new Point(null, this.mockReferenceSystem.Object, new Coordinate(0, 0));
 
             point.PrecisionModel.ShouldBe(PrecisionModel.Default);
-            point.Coordinate.ShouldBe(Coordinate.Empty);
+            point.Coordinate.ShouldBe(new Coordinate(0, 0));
             point.Dimension.ShouldBe(0);
             point.ReferenceSystem.ShouldBe(this.mockReferenceSystem.Object);
             point.Boundary.ShouldBeNull();
-            point.Centroid.ShouldBe(Coordinate.Empty);
+            point.Centroid.ShouldBe(new Coordinate(0, 0));
             point.IsEmpty.ShouldBeTrue();
             point.IsSimple.ShouldBeTrue();
             point.ToString().ShouldBe("POINT (0 0 0)");
@@ -80,10 +80,10 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointCoordinatePropertiesTest()
         {
-            Point point = new Point(null, null, Coordinate.Empty);
-            point.X.ShouldBe(Coordinate.Empty.X);
-            point.Y.ShouldBe(Coordinate.Empty.Y);
-            point.Z.ShouldBe(Coordinate.Empty.Z);
+            Point point = new Point(null, null, new Coordinate(0, 0));
+            point.X.ShouldBe(new Coordinate(0, 0).X);
+            point.Y.ShouldBe(new Coordinate(0, 0).Y);
+            point.Z.ShouldBe(new Coordinate(0, 0).Z);
 
             Coordinate coordinate = new Coordinate(1, 2, 3);
             point = new Point(null, null, coordinate);
@@ -100,7 +100,7 @@ namespace AEGIS.Tests.Geometries
             point.Coordinate.ShouldBe(new Coordinate(1.5, 2.5, 3.5));
 
             this.mockReferenceSystem.Setup(mock => mock.Dimension).Returns(2);
-            point = new Point(null, this.mockReferenceSystem.Object, Coordinate.Empty);
+            point = new Point(null, this.mockReferenceSystem.Object, new Coordinate(0, 0));
 
             point.X = 1.5;
             point.Y = 2.5;
@@ -116,7 +116,7 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointCoordinateDimensionTest()
         {
-            Point point = new Point(null, this.mockReferenceSystem.Object, Coordinate.Empty);
+            Point point = new Point(null, this.mockReferenceSystem.Object, new Coordinate(0, 0));
 
             this.mockReferenceSystem.Setup(mock => mock.Dimension).Returns(3);
             point.CoordinateDimension.ShouldBe(3);
@@ -140,7 +140,7 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointSpatialDimensionTest()
         {
-            Point point = new Point(null, null, Coordinate.Empty);
+            Point point = new Point(null, null, new Coordinate(0, 0));
             point.SpatialDimension.ShouldBe(2);
 
             point = new Point(null, null, new Coordinate(1, 2, 3));
@@ -160,9 +160,9 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointCoordinateEnvelopeTest()
         {
-            Point point = new Point(null, this.mockReferenceSystem.Object, Coordinate.Empty);
-            point.Envelope.Minimum.ShouldBe(Coordinate.Empty);
-            point.Envelope.Maximum.ShouldBe(Coordinate.Empty);
+            Point point = new Point(null, this.mockReferenceSystem.Object, new Coordinate(0, 0));
+            point.Envelope.Minimum.ShouldBe(new Coordinate(0, 0));
+            point.Envelope.Maximum.ShouldBe(new Coordinate(0, 0));
 
             Coordinate coordinate = new Coordinate(1, 2);
             point = new Point(null, null, coordinate);
@@ -176,7 +176,7 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void PointCoordinateIsValidTest()
         {
-            Point point = new Point(null, this.mockReferenceSystem.Object, Coordinate.Empty);
+            Point point = new Point(null, this.mockReferenceSystem.Object, new Coordinate(0, 0));
             point.IsValid.ShouldBeTrue();
 
             point = new Point(null, null, new Coordinate(1, 2));

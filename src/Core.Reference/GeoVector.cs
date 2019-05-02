@@ -24,16 +24,6 @@ namespace AEGIS.Reference
     public class GeoVector : IEquatable<GeoVector>
     {
         /// <summary>
-        /// Represents the zero <see cref="GeoVector" /> value. This field is constant.
-        /// </summary>
-        public static readonly GeoVector ZeroVector = new GeoVector(Angle.FromRadian(0), Length.FromMetre(0));
-
-        /// <summary>
-        /// Represents the undefined <see cref="GeoVector" /> value. This field is constant.
-        /// </summary>
-        public static readonly GeoVector Undefined = new GeoVector(Angle.FromRadian(Double.NaN), Length.FromMetre(Double.NaN));
-
-        /// <summary>
         /// Defines the string format for coordinate vectors. This field is constant.
         /// </summary>
         private const String CoordinateVectorStringFormat = "({0}, {1})";
@@ -49,16 +39,6 @@ namespace AEGIS.Reference
         private const String NullCoordinateVectorString = "NULL";
 
         /// <summary>
-        /// The azimuth of the vector.
-        /// </summary>
-        private readonly Angle azimuth;
-
-        /// <summary>
-        /// The length of the vector.
-        /// </summary>
-        private readonly Length length;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GeoVector" /> class.
         /// </summary>
         /// <param name="azimuth">The azimuth.</param>
@@ -67,13 +47,13 @@ namespace AEGIS.Reference
         {
             if (length.Value < 0)
             {
-                this.azimuth = new Angle(-azimuth.Value % (2 * Math.PI / azimuth.Unit.BaseMultiple), azimuth.Unit);
-                this.length = -length;
+                this.Azimuth = new Angle(-azimuth.Value % (2 * Math.PI / azimuth.Unit.BaseMultiple), azimuth.Unit);
+                this.Distance = -length;
             }
             else
             {
-                this.azimuth = new Angle(azimuth.Value % (2 * Math.PI / azimuth.Unit.BaseMultiple), azimuth.Unit);
-                this.length = length;
+                this.Azimuth = new Angle(azimuth.Value % (2 * Math.PI / azimuth.Unit.BaseMultiple), azimuth.Unit);
+                this.Distance = length;
             }
         }
 
@@ -86,13 +66,13 @@ namespace AEGIS.Reference
         {
             if (length < 0)
             {
-                this.azimuth = Angle.FromRadian(-azimuth % (2 * Math.PI));
-                this.length = Length.FromMetre(-length);
+                this.Azimuth = Angle.FromRadian(-azimuth % (2 * Math.PI));
+                this.Distance = Length.FromMetre(-length);
             }
             else
             {
-                this.azimuth = Angle.FromRadian(azimuth % (2 * Math.PI));
-                this.length = Length.FromMetre(length);
+                this.Azimuth = Angle.FromRadian(azimuth % (2 * Math.PI));
+                this.Distance = Length.FromMetre(length);
             }
         }
 
@@ -100,25 +80,19 @@ namespace AEGIS.Reference
         /// Gets the azimuth of the vector.
         /// </summary>
         /// <value>The azimuth of a vector.</value>
-        public Angle Azimuth { get { return this.azimuth; } }
+        public Angle Azimuth { get; }
 
         /// <summary>
         /// Gets the distance of the vector.
         /// </summary>
         /// <value>The distance of a vector.</value>
-        public Length Distance { get { return this.length; } }
+        public Length Distance { get; }
 
         /// <summary>
         /// Gets a value indicating whether the geographic vector is null.
         /// </summary>
         /// <value><c>true</c> if the length of the vector are 0; otherwise, <c>false</c>.</value>
-        public Boolean IsNull { get { return this.length.Equals(Length.Zero); } }
-
-        /// <summary>
-        /// Gets a value indicating whether the geographic vector is valid.
-        /// </summary>
-        /// <value><c>true</c> if the azimuth and length are numbers; otherwise, <c>false</c>.</value>
-        public Boolean IsValid { get { return !Double.IsNaN(this.azimuth.Value) && !Double.IsNaN(this.length.Value); } }
+        public Boolean IsNull { get { return this.Distance.Equals(Length.Zero); } }
 
         /// <summary>
         /// Indicates whether this instance and a specified other geographic vector are equal.
@@ -132,7 +106,7 @@ namespace AEGIS.Reference
             if (ReferenceEquals(this, other))
                 return true;
 
-            return this.azimuth.Equals(other.azimuth) && this.length.Equals(other.length);
+            return this.Azimuth.Equals(other.Azimuth) && this.Distance.Equals(other.Distance);
         }
 
         /// <summary>
@@ -151,7 +125,7 @@ namespace AEGIS.Reference
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override Int32 GetHashCode()
         {
-            return (this.azimuth.GetHashCode() >> 2) ^ this.length.GetHashCode() ^ 57615137;
+            return (this.Azimuth.GetHashCode() >> 2) ^ this.Distance.GetHashCode() ^ 57615137;
         }
 
         /// <summary>
@@ -160,12 +134,12 @@ namespace AEGIS.Reference
         /// <returns>A <see cref="System.String" /> containing the coordinates in all dimensions.</returns>
         public override String ToString()
         {
-            if (!this.IsValid)
+            if (Double.IsNaN(this.Azimuth.Value) || Double.IsNaN(this.Distance.Value))
                 return InvalidCoordinateVectorString;
             if (this.IsNull)
                 return NullCoordinateVectorString;
 
-            return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.azimuth, this.length);
+            return String.Format(CultureInfo.InvariantCulture, CoordinateVectorStringFormat, this.Azimuth, this.Distance);
         }
 
         /// <summary>

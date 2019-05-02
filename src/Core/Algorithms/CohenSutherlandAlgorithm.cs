@@ -453,7 +453,7 @@ namespace AEGIS.Algorithms
                 return new Coordinate(window.MinX, first.Y + slopeX * (window.MinX - first.X));
             }
 
-            return Coordinate.Undefined;
+            return null;
         }
     }
 }

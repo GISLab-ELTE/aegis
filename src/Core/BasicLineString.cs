@@ -152,7 +152,7 @@ namespace AEGIS
             get
             {
                 if (this.coordinates.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
                 return this.coordinates[0];
             }
         }
@@ -166,7 +166,7 @@ namespace AEGIS
             get
             {
                 if (this.coordinates.Count == 0)
-                    return Coordinate.Undefined;
+                    return null;
                 return this.coordinates[this.coordinates.Count - 1];
             }
         }

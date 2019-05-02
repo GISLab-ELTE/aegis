@@ -22,71 +22,48 @@ namespace AEGIS.Reference
         /// <summary>
         /// The equator.
         /// </summary>
-        private static Angle? equator;
+        public static readonly Angle Equator = Angle.FromDegree(0);
 
         /// <summary>
         /// The north pole.
         /// </summary>
-        private static Angle? northPole;
+        public static readonly Angle NorthPole = Angle.FromDegree(90);
 
         /// <summary>
         /// The south pole.
         /// </summary>
-        private static Angle? southPole;
+        public static readonly Angle SouthPole = Angle.FromDegree(-90);
 
         /// <summary>
-        /// The arctic circle.
+        /// The Arctic Circle.
         /// </summary>
-        private static Angle? arcticCircle;
+        /// <remarks>
+        /// The position of the Arctic Circle is not fixed; as of 25 February 2019, it runs 66°33'47.5" north of the Equator.
+        /// </remarks>
+        public static readonly Angle ArcticCircle = Angle.FromDegree(66, 33, 47.5);
 
         /// <summary>
-        /// The antarctic circle.
+        /// The Antarctic Circle.
         /// </summary>
-        private static Angle? antarcticCircle;
+        /// <remarks>
+        /// The position of the Antarctic Circle is not fixed; as of 24 February 2019, it runs 66°33'47.5" south of the Equator.
+        /// </remarks>
+        public static readonly Angle AntarcticCircle = Angle.FromDegree(66, 33, 47.5);
 
         /// <summary>
-        /// The tropic of cancer.
+        /// The Tropic of Cancer.
         /// </summary>
-        private static Angle? tropicOfCancer;
+        /// <remarks>
+        /// The position of the Tropic of Cancer is not fixed; as of 26 February 2019, it runs 23°26'12.5" north of the Equator.
+        /// </remarks>
+        public static readonly Angle TropicOfCancer = Angle.FromDegree(23, 26, 12.5);
 
         /// <summary>
-        /// The tropic of Capricorn.
+        /// The Tropic of Capricorn.
         /// </summary>
-        private static Angle? tropicOfCapricorn;
-
-        /// <summary>
-        /// Gets the equator.
-        /// </summary>
-        public static Angle Equator { get { return (equator ?? (equator = Angle.FromDegree(0))).Value; } }
-
-        /// <summary>
-        /// Gets the north pole.
-        /// </summary>
-        public static Angle NorthPole { get { return (northPole ?? (northPole = Angle.FromDegree(90))).Value; } }
-
-        /// <summary>
-        /// Gets the south pole.
-        /// </summary>
-        public static Angle SouthPole { get { return (southPole ?? (southPole = Angle.FromDegree(-90))).Value; } }
-
-        /// <summary>
-        /// Gets the arctic circle.
-        /// </summary>
-        public static Angle ArcticCircle { get { return (arcticCircle ?? (arcticCircle = Angle.FromDegree(66.5622))).Value; } }
-
-        /// <summary>
-        /// Gets the antarctic circle.
-        /// </summary>
-        public static Angle AntarcticCircle { get { return (antarcticCircle ?? (antarcticCircle = Angle.FromDegree(-66.5622))).Value; } }
-
-        /// <summary>
-        /// Gets the tropic of cancer.
-        /// </summary>
-        public static Angle TropicOfCancer { get { return (tropicOfCancer ?? (tropicOfCancer = Angle.FromDegree(23.43777778))).Value; } }
-
-        /// <summary>
-        /// Gets the tropic of Capricorn.
-        /// </summary>
-        public static Angle TropicOfCapricorn { get { return (tropicOfCapricorn ?? (tropicOfCapricorn = Angle.FromDegree(-23.43777778))).Value; } }
+        /// <remarks>
+        /// The position of the Tropic of Capricorn is not fixed; as of 26 February 2019, it runs 23°26'12.5" south of the Equator.
+        /// </remarks>
+        public static readonly Angle TropicOfCapricorn = Angle.FromDegree(23, 26, 12.5);
     }
 }

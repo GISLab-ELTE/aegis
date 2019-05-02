@@ -574,8 +574,7 @@ namespace AEGIS.Reference.Converters
             CoordinateSystemAxis[] axes = new CoordinateSystemAxis[match.Groups["axis"].Captures.Count];
             foreach (Capture capture in match.Groups["axis"].Captures)
                 axes[capture.Index] = ToCoordinateSystemAxis(capture.Value, unit);
-
-            CoordinateSystem coordinateSystem = null;
+            CoordinateSystem coordinateSystem;
             if (axes.Length == 0)
             {
                 coordinateSystem = provider.CoordinateSystems["EPSG", 6500];
@@ -718,8 +717,7 @@ namespace AEGIS.Reference.Converters
             CoordinateSystemAxis[] axes = new CoordinateSystemAxis[match.Groups["axis"].Captures.Count];
             foreach (Capture capture in match.Groups["axis"].Captures)
                 axes[capture.Index] = ToCoordinateSystemAxis(capture.Value, unit);
-
-            CoordinateSystem coordinateSystem = null;
+            CoordinateSystem coordinateSystem;
             if (axes.Length == 0)
             {
                 // no axes are specified, querying default coordinate systems
@@ -951,8 +949,7 @@ namespace AEGIS.Reference.Converters
             String name = match.Groups["name"].Value.Replace('_', ' ');
             String authorityName = match.Groups["authorityName"].Value;
             String authorityCode = match.Groups["authorityCode"].Value;
-
-            Ellipsoid ellipsoid = null;
+            Ellipsoid ellipsoid;
 
             // search by identifier
             if (!String.IsNullOrEmpty(authorityName) && !String.IsNullOrEmpty(authorityCode) && Int32.TryParse(authorityCode, out int code))

@@ -99,7 +99,7 @@ namespace AEGIS.Tests.Geometries
             boundary[0].Coordinate.ShouldBe(start);
             boundary[1].Coordinate.ShouldBe(end);
 
-            line = new Line(null, null, Coordinate.Empty, Coordinate.Empty);
+            line = new Line(null, null, new Coordinate(0, 0), new Coordinate(0, 0));
             line.Boundary.ShouldBeNull();
         }
 
@@ -109,11 +109,11 @@ namespace AEGIS.Tests.Geometries
         [Test]
         public void LineUnsupportedMethodsTest()
         {
-            Line line = new Line(null, null, Coordinate.Empty, Coordinate.Empty);
+            Line line = new Line(null, null, new Coordinate(0, 0), new Coordinate(0, 0));
 
-            Should.Throw<NotSupportedException>(() => line.Add(Coordinate.Empty));
-            Should.Throw<NotSupportedException>(() => line.Insert(0, Coordinate.Empty));
-            Should.Throw<NotSupportedException>(() => line.Remove(Coordinate.Empty));
+            Should.Throw<NotSupportedException>(() => line.Add(new Coordinate(0, 0)));
+            Should.Throw<NotSupportedException>(() => line.Insert(0, new Coordinate(0, 0)));
+            Should.Throw<NotSupportedException>(() => line.Remove(new Coordinate(0, 0)));
             Should.Throw<NotSupportedException>(() => line.RemoveAt(0));
         }
     }

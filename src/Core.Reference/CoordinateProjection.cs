@@ -66,12 +66,12 @@ namespace AEGIS.Reference
         /// Gets the ellipsoid.
         /// </summary>
         /// <value>The ellipsoid used by the operation.</value>
-        public Ellipsoid Ellipsoid { get; private set; }
+        public Ellipsoid Ellipsoid { get; }
 
         /// <summary>
         /// Gets the area of use.
         /// </summary>
         /// <value>The area of use where the operation is applicable.</value>
-        public AreaOfUse AreaOfUse { get; private set; }
+        public AreaOfUse AreaOfUse { get; }
     }
 }

@@ -24,16 +24,6 @@ namespace AEGIS.Reference
     public class GeoCoordinate : IEquatable<GeoCoordinate>
     {
         /// <summary>
-        /// Represents the empty <see cref="GeoCoordinate" /> value. This field is constant.
-        /// </summary>
-        public static readonly GeoCoordinate Empty = new GeoCoordinate(0, 0, 0);
-
-        /// <summary>
-        /// Represents the undefined <see cref="GeoCoordinate" /> value. This field is constant.
-        /// </summary>
-        public static readonly GeoCoordinate Undefined = new GeoCoordinate(Double.NaN, Double.NaN, Double.NaN);
-
-        /// <summary>
         /// The string format for coordinates. This field is constant.
         /// </summary>
         private const String CoordinateStringFormat = "({0}, {1}, {2})";
@@ -49,30 +39,15 @@ namespace AEGIS.Reference
         private const String InvalidCoordinateString = "INVALID";
 
         /// <summary>
-        /// The latitude.
-        /// </summary>
-        private readonly Angle latitude;
-
-        /// <summary>
-        /// The longitude.
-        /// </summary>
-        private readonly Angle longitude;
-
-        /// <summary>
-        /// The height.
-        /// </summary>
-        private readonly Length height;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GeoCoordinate" /> class.
         /// </summary>
         /// <param name="latitude">The geographic latitude (in radians).</param>
         /// <param name="longitude">The geographic longitude (in radians).</param>
         public GeoCoordinate(Double latitude, Double longitude)
         {
-            this.latitude = new Angle(latitude, UnitsOfMeasurement.Radian);
-            this.longitude = new Angle(longitude, UnitsOfMeasurement.Radian);
-            this.height = Length.Zero;
+            this.Latitude = new Angle(latitude, UnitsOfMeasurement.Radian);
+            this.Longitude = new Angle(longitude, UnitsOfMeasurement.Radian);
+            this.Height = Length.Zero;
         }
 
         /// <summary>
@@ -83,9 +58,9 @@ namespace AEGIS.Reference
         /// <param name="height">The height (in meter).</param>
         public GeoCoordinate(Double latitude, Double longitude, Double height)
         {
-            this.latitude = new Angle(latitude, UnitsOfMeasurement.Radian);
-            this.longitude = new Angle(longitude, UnitsOfMeasurement.Radian);
-            this.height = new Length(height, UnitsOfMeasurement.Metre);
+            this.Latitude = new Angle(latitude, UnitsOfMeasurement.Radian);
+            this.Longitude = new Angle(longitude, UnitsOfMeasurement.Radian);
+            this.Height = new Length(height, UnitsOfMeasurement.Metre);
         }
 
         /// <summary>
@@ -95,9 +70,9 @@ namespace AEGIS.Reference
         /// <param name="longitude">The geographic longitude.</param>
         public GeoCoordinate(Angle latitude, Angle longitude)
         {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.height = Length.Zero;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Height = Length.Zero;
         }
 
         /// <summary>
@@ -108,40 +83,40 @@ namespace AEGIS.Reference
         /// <param name="height">The height.</param>
         public GeoCoordinate(Angle latitude, Angle longitude, Length height)
         {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.height = height;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+            this.Height = height;
         }
 
         /// <summary>
         /// Gets the geographic latitude.
         /// </summary>
         /// <value>The geographic latitude.</value>
-        public Angle Latitude { get { return this.latitude; } }
+        public Angle Latitude { get; }
 
         /// <summary>
         /// Gets the geographic longitude.
         /// </summary>
         /// <value>The geographic longitude.</value>
-        public Angle Longitude { get { return this.longitude; } }
+        public Angle Longitude { get; }
 
         /// <summary>
         /// Gets the geographic height.
         /// </summary>
         /// <value>The geographic height.</value>
-        public Length Height { get { return this.height; } }
+        public Length Height { get; }
 
         /// <summary>
         /// Gets a value indicating whether the geographic coordinate is empty.
         /// </summary>
         /// <value><c>true</c> if all coordinates are <c>0</c>; otherwise, <c>false</c>.</value>
-        public Boolean IsEmpty { get { return this.latitude.Equals(Angle.Zero) && this.longitude.Equals(Angle.Zero) && this.height.Equals(Length.Zero); } }
+        public Boolean IsEmpty { get { return this.Latitude.Equals(Angle.Zero) && this.Longitude.Equals(Angle.Zero) && this.Height.Equals(Length.Zero); } }
 
         /// <summary>
         /// Gets a value indicating whether the geographic coordinate is valid.
         /// </summary>
         /// <value><c>true</c> if all coordinates are numbers and within the globe; otherwise, <c>false</c>.</value>
-        public Boolean IsValid { get { return !Double.IsNaN(this.longitude.Value) && !Double.IsNaN(this.latitude.Value) && Math.Abs(this.longitude.BaseValue) <= Math.PI && Math.Abs(this.latitude.BaseValue) <= Math.PI / 2; } }
+        public Boolean IsValid { get { return Math.Abs(this.Longitude.BaseValue) <= Math.PI && Math.Abs(this.Latitude.BaseValue) <= Math.PI / 2; } }
 
         /// <summary>
         /// Converts the coordinate to a valid globe value.
@@ -149,7 +124,7 @@ namespace AEGIS.Reference
         /// <returns>The equivalent valid geographic coordinate.</returns>
         public GeoCoordinate ToGlobeValid()
         {
-            return new GeoCoordinate(this.latitude.BaseValue % Math.PI / 2, this.longitude.BaseValue % Math.PI, this.height.BaseValue);
+            return new GeoCoordinate(this.Latitude.BaseValue % Math.PI / 2, this.Longitude.BaseValue % Math.PI, this.Height.BaseValue);
         }
 
         /// <summary>
@@ -188,7 +163,7 @@ namespace AEGIS.Reference
             if (this.IsEmpty)
                 return EmptyCoordinateString;
 
-            return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.latitude.ToString(angularUnit), this.longitude.ToString(angularUnit), this.height.ToString(lengthUnit));
+            return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.Latitude.ToString(angularUnit), this.Longitude.ToString(angularUnit), this.Height.ToString(lengthUnit));
         }
 
         /// <summary>
@@ -203,7 +178,7 @@ namespace AEGIS.Reference
             if (ReferenceEquals(this, other))
                 return true;
 
-            return this.latitude.Equals(other.latitude) && this.longitude.Equals(other.longitude) && this.height.Equals(other.height);
+            return this.Latitude.Equals(other.Latitude) && this.Longitude.Equals(other.Longitude) && this.Height.Equals(other.Height);
         }
 
         /// <summary>
@@ -222,7 +197,7 @@ namespace AEGIS.Reference
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override Int32 GetHashCode()
         {
-            return (this.latitude.GetHashCode() / 94541) ^ (this.longitude.GetHashCode() / 5347) ^ this.height.GetHashCode();
+            return (this.Latitude.GetHashCode() / 94541) ^ (this.Longitude.GetHashCode() / 5347) ^ this.Height.GetHashCode();
         }
 
         /// <summary>
@@ -237,7 +212,7 @@ namespace AEGIS.Reference
             if (this.IsEmpty)
                 return EmptyCoordinateString;
 
-            return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.latitude, this.longitude, this.height);
+            return String.Format(CultureInfo.InvariantCulture, CoordinateStringFormat, this.Latitude, this.Longitude, this.Height);
         }
 
         /// <summary>
@@ -278,7 +253,7 @@ namespace AEGIS.Reference
             if (ReferenceEquals(coordinate, null))
                 throw new ArgumentNullException(nameof(coordinate));
 
-            return new Coordinate(coordinate.latitude.Value, coordinate.Longitude.Value, coordinate.Height.Value);
+            return new Coordinate(coordinate.Latitude.Value, coordinate.Longitude.Value, coordinate.Height.Value);
         }
     }
 }

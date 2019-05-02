@@ -157,7 +157,7 @@ namespace AEGIS.Tests.Geometries
         {
             // empty
             LinearRing lineString = new LinearRing(null, null);
-            lineString.Centroid.IsValid.ShouldBeFalse();
+            lineString.Centroid.ShouldBeNull();
 
             // zigzag
             lineString = new LinearRing(null, null, this.zigzag);
@@ -289,8 +289,8 @@ namespace AEGIS.Tests.Geometries
             lineString.GetCoordinate(this.zigzag.Count).ShouldBe(this.zigzag[0]);
 
             Should.Throw<ArgumentNullException>(() => lineString.SetCoordinate(0, null));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(-1, Coordinate.Empty));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(lineString.Count, Coordinate.Empty));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(-1, new Coordinate(0, 0)));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(lineString.Count, new Coordinate(0, 0)));
         }
 
         /// <summary>
@@ -347,8 +347,8 @@ namespace AEGIS.Tests.Geometries
                 lineString.GetCoordinate(i + this.rectangle.Count).ShouldBe(this.zigzag[i]);
             }
 
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(-1, Coordinate.Empty));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(lineString.Count, Coordinate.Empty));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(-1, new Coordinate(0, 0)));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(lineString.Count, new Coordinate(0, 0)));
             Should.Throw<ArgumentNullException>(() => lineString.Insert(0, null));
         }
 

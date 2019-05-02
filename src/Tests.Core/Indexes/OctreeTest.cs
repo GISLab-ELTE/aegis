@@ -119,7 +119,6 @@ namespace AEGIS.Tests.Indexes
 
             this.tree.Contains(null).ShouldBeFalse();
             this.tree.Contains(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
-            this.tree.Contains(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
 
             foreach (IPoint point in points)
                 this.tree.Contains(point).ShouldBeTrue();
@@ -197,7 +196,6 @@ namespace AEGIS.Tests.Indexes
 
             // Should not remove geometries that are not in the tree
             this.tree.Remove(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
-            this.tree.Remove(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
             this.tree.Remove(this.factory.CreatePoint(1.5, 1.5, 0)).ShouldBeFalse();
 
             // Should remove geometries that are in the tree

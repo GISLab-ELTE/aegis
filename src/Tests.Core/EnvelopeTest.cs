@@ -166,13 +166,11 @@ namespace AEGIS.Tests
             Envelope first = new Envelope(10, 20, 100, 200, 1000, 2000);
 
             // coordinate containment, object method
-            first.Contains(Coordinate.Empty).ShouldBeFalse();
-            first.Contains(Coordinate.Undefined).ShouldBeFalse();
+            first.Contains(new Coordinate(0, 0)).ShouldBeFalse();
             first.Contains(new Coordinate(15, 150, 1500)).ShouldBeTrue();
 
             // coordinate containment, static method
-            Envelope.Contains(first.Minimum, first.Maximum, Coordinate.Empty).ShouldBeFalse();
-            Envelope.Contains(first.Minimum, first.Maximum, Coordinate.Undefined).ShouldBeFalse();
+            Envelope.Contains(first.Minimum, first.Maximum, new Coordinate(0, 0)).ShouldBeFalse();
             Envelope.Contains(first.Minimum, first.Maximum, new Coordinate(15, 150, 1500)).ShouldBeTrue();
 
             // envelope containment, false cases

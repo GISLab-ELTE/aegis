@@ -80,7 +80,7 @@ namespace AEGIS.Reference
         /// Gets the method associated with the operation.
         /// </summary>
         /// <value>The associated coordinate operation method.</value>
-        public CoordinateOperationMethod Method { get; private set; }
+        public CoordinateOperationMethod Method { get; }
 
         /// <summary>
         /// Gets the parameters of the operation.
@@ -306,6 +306,9 @@ namespace AEGIS.Reference
         /// </summary>
         /// <param name="coordinate">The coordinate.</param>
         /// <returns>The transformed coordinate.</returns>
-        protected abstract SourceType ComputeReverse(ResultType coordinate);
+        protected virtual SourceType ComputeReverse(ResultType coordinate)
+        {
+            return default(SourceType);
+        }
     }
 }

@@ -103,37 +103,37 @@ namespace AEGIS.Reference
         /// Gets the south boundary.
         /// </summary>
         /// <value>The angle of the south boundary.</value>
-        public Angle South { get; private set; }
+        public Angle South { get; }
 
         /// <summary>
         /// Gets the west boundary.
         /// </summary>
         /// <value>The angle of the west boundary.</value>
-        public Angle West { get; private set; }
+        public Angle West { get; }
 
         /// <summary>
         /// Gets the north boundary.
         /// </summary>
         /// <value>The angle of the north boundary.</value>
-        public Angle North { get; private set; }
+        public Angle North { get; }
 
         /// <summary>
         /// Gets the east boundary.
         /// </summary>
         /// <value>The angle of the east boundary.</value>
-        public Angle East { get; private set; }
+        public Angle East { get; }
 
         /// <summary>
         /// Gets the collection of bounding coordinates.
         /// </summary>
         /// <value>The collection of bounding coordinates.</value>
-        public IEnumerable<GeoCoordinate> Boundary { get; private set; }
+        public IEnumerable<GeoCoordinate> Boundary { get; }
 
         /// <summary>
         /// Gets the description.
         /// </summary>
         /// <value>The description.</value>
-        public String Description { get; private set; }
+        public String Description { get; }
 
         /// <summary>
         /// Creates an area of use from boundaries given in degrees.

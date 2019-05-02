@@ -97,7 +97,7 @@ namespace AEGIS.Tests.Geometries
             lineString.IsEmpty.ShouldBeTrue();
             lineString.IsSimple.ShouldBeTrue();
             lineString.IsValid.ShouldBeTrue();
-            lineString.Centroid.IsValid.ShouldBeFalse();
+            lineString.Centroid.ShouldBeNull();
             lineString.Envelope.ShouldBeNull();
             lineString.Length.ShouldBe(0);
             lineString.Boundary.ShouldBeNull();
@@ -250,8 +250,8 @@ namespace AEGIS.Tests.Geometries
             }
 
             Should.Throw<ArgumentNullException>(() => lineString.SetCoordinate(0, null));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(-1, Coordinate.Empty));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(lineString.Count, Coordinate.Empty));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(-1, new Coordinate(0, 0)));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.SetCoordinate(lineString.Count, new Coordinate(0, 0)));
         }
 
         /// <summary>
@@ -306,8 +306,8 @@ namespace AEGIS.Tests.Geometries
                 lineString.GetCoordinate(i + this.rectangle.Count).ShouldBe(this.zigzag[i]);
             }
 
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(-1, Coordinate.Empty));
-            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(lineString.Count, Coordinate.Empty));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(-1, new Coordinate(0, 0)));
+            Should.Throw<ArgumentOutOfRangeException>(() => lineString.Insert(lineString.Count, new Coordinate(0, 0)));
             Should.Throw<ArgumentNullException>(() => lineString.Insert(0, null));
         }
 

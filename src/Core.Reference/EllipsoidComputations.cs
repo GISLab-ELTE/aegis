@@ -281,15 +281,12 @@ namespace AEGIS.Reference
             if (vector == null)
                 throw new ArgumentNullException(nameof(vector));
 
-            if (!vector.IsValid)
-                return GeoCoordinate.Undefined;
-
             if (vector.IsNull)
                 return sourceCoordinate;
 
             if (ellipsoid.IsSphere)
             {
-                Double phi, lambda = 0, deltaLambda = 0;
+                Double phi;
 
                 phi = Math.Asin(Math.Sin(sourceCoordinate.Latitude.BaseValue) * Math.Cos(vector.Distance.BaseValue / ellipsoid.SemiMajorAxis.Value) + Math.Cos(sourceCoordinate.Latitude.BaseValue) * Math.Sin(vector.Distance.BaseValue / ellipsoid.SemiMajorAxis.Value) * Math.Cos(vector.Azimuth.BaseValue));
 
@@ -298,6 +295,7 @@ namespace AEGIS.Reference
                     return new GeoCoordinate(Angles.NorthPole, Angle.Zero);
                 if (Math.Abs(phi - 3 * Math.PI / 2) <= 1E-10)
                     return new GeoCoordinate(Angles.SouthPole, Angle.Zero);
+                double deltaLambda;
 
                 // the vector is north or south oriented
                 if (Math.Abs(Math.Sin(vector.Azimuth.BaseValue)) <= 1E-10)
@@ -318,7 +316,7 @@ namespace AEGIS.Reference
                     deltaLambda = Math.Acos((Math.Cos(vector.Distance.BaseValue / ellipsoid.SemiMajorAxis.Value) - Math.Sin(sourceCoordinate.Latitude.BaseValue) * Math.Sin(phi)) / Math.Cos(sourceCoordinate.Latitude.BaseValue) / Math.Cos(phi)) * Math.Sin(deltaLambda) / Math.Abs(Math.Sin(deltaLambda));
                 }
 
-                lambda = (sourceCoordinate.Longitude.BaseValue + deltaLambda) % Math.PI;
+                double lambda = (sourceCoordinate.Longitude.BaseValue + deltaLambda) % Math.PI;
 
                 return new GeoCoordinate(phi, lambda);
             }
@@ -396,17 +394,16 @@ namespace AEGIS.Reference
                 throw new NotSupportedException(ReferenceMessages.VectorComputationOnlySupportedOnSphere);
 
             if (!source.IsValid || !destination.IsValid)
-                return GeoVector.Undefined;
+                return null;
 
             if (source.Equals(destination))
-                return GeoVector.ZeroVector;
+                return new GeoVector(Angle.Zero, Length.Zero);
 
             Double deltaLambda, omega, dist, azimuth;
 
             // case the destination is a pole
             if (Math.Abs(source.Latitude.BaseValue - Math.PI / 2) <= 1E-10)
             {
-                azimuth = Math.PI;
                 dist = LengthOfVerticalCurvature(ellipsoid, source.Latitude.BaseValue, destination.Latitude.BaseValue);
             }
 

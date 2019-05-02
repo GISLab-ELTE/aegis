@@ -31,7 +31,7 @@ namespace AEGIS.Reference
         public static readonly Angle Zero = Angle.FromRadian(0);
 
         /// <summary>
-        /// Represents the unknown <see cref="Angle" /> value. This field is read-only.
+        /// Represents the undefined <see cref="Angle" /> value. This field is read-only.
         /// </summary>
         public static readonly Angle Undefined = Angle.FromRadian(Double.NaN);
 
@@ -51,29 +51,9 @@ namespace AEGIS.Reference
         public static readonly Angle Epsilon = Angle.FromRadian(Double.Epsilon);
 
         /// <summary>
-        /// Represents the <see cref="Angle" /> value of a half circle. This field is read-only.
-        /// </summary>
-        public static readonly Angle HalfCircle = Angle.FromDegree(180);
-
-        /// <summary>
-        /// Represents the <see cref="Angle" /> value of a circle. This field is read-only.
-        /// </summary>
-        public static readonly Angle Circle = Angle.FromDegree(360);
-
-        /// <summary>
         /// The string format for angles. This field is constant.
         /// </summary>
         private const String AngleStringFormat = "{0}{1}";
-
-        /// <summary>
-        /// The value.
-        /// </summary>
-        private readonly Double value;
-
-        /// <summary>
-        /// The unit of measurement.
-        /// </summary>
-        private readonly UnitOfMeasurement unit;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Angle" /> struct.
@@ -86,24 +66,24 @@ namespace AEGIS.Reference
             if (unit != null && unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            this.value = value;
-            this.unit = unit ?? UnitsOfMeasurement.Radian;
+            this.Value = value;
+            this.Unit = unit ?? UnitsOfMeasurement.Radian;
         }
 
         /// <summary>
         /// Gets the value of the angle.
         /// </summary>
-        public Double Value { get { return this.value; } }
+        public Double Value { get; }
 
         /// <summary>
         /// Gets the base value (converted to radians) of the angle.
         /// </summary>
-        public Double BaseValue { get { return this.value * this.unit.BaseMultiple; } }
+        public Double BaseValue { get { return this.Value * this.Unit.BaseMultiple; } }
 
         /// <summary>
         /// Gets the unit of measurement of the angle.
         /// </summary>
-        public UnitOfMeasurement Unit { get { return this.unit; } }
+        public UnitOfMeasurement Unit { get; }
 
         /// <summary>
         /// Gets the value using the specified unit of measurement.
@@ -119,8 +99,8 @@ namespace AEGIS.Reference
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            if (unit == this.unit)
-                return this.value;
+            if (unit == this.Unit)
+                return this.Value;
 
             return this.BaseValue / unit.BaseMultiple;
         }
@@ -163,7 +143,7 @@ namespace AEGIS.Reference
             if (unit.Type != UnitQuantityType.Angle)
                 throw new ArgumentException(ReferenceMessages.UnitOfMeasurementIsInvalid, nameof(unit));
 
-            if (unit == this.unit)
+            if (unit == this.Unit)
                 return this;
 
             return new Angle(this.BaseValue / unit.BaseMultiple, unit);
@@ -520,7 +500,7 @@ namespace AEGIS.Reference
         /// <returns><c>true</c> if <paramref name="angle" /> is not an unknown value; otherwise, <c>false</c>.</returns>
         public static Boolean IsValid(Angle angle)
         {
-            return !Double.IsNaN(angle.value);
+            return !Double.IsNaN(angle.Value);
         }
 
         /// <summary>

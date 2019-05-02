@@ -114,30 +114,30 @@ namespace AEGIS.Reference
         /// Gets the description of the axis.
         /// </summary>
         /// <value>The description of the axis.</value>
-        public String Description { get; private set; }
+        public String Description { get; }
 
         /// <summary>
         /// Gets the direction of the axis.
         /// </summary>
         /// <value>Direction of this coordinate system axis (or in the case of Cartesian projected coordinates, the direction of this coordinate system axis locally).</value>
-        public AxisDirection Direction { get; private set; }
+        public AxisDirection Direction { get; }
 
         /// <summary>
         /// Gets the unit of measurement.
         /// </summary>
         /// <value>The unit of measurement.</value>
-        public UnitOfMeasurement Unit { get; private set; }
+        public UnitOfMeasurement Unit { get; }
 
         /// <summary>
         /// Gets the minimum value of the axis.
         /// </summary>
         /// <value>The minimum value normally allowed for this axis, in the unit for the axis.</value>
-        public Double Minimum { get; private set; }
+        public Double Minimum { get; }
 
         /// <summary>
         /// Gets the maximum value of the axis.
         /// </summary>
         /// <value>The maximum value normally allowed for this axis, in the unit for the axis.</value>
-        public Double Maximum { get; private set; }
+        public Double Maximum { get; }
     }
 }

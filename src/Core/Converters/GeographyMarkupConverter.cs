@@ -574,19 +574,19 @@ namespace AEGIS.Converters
         private static IPoint ToPoint(XElement element, IGeometryFactory factory)
         {
             if (element.Elements() == null)
-                return factory.CreatePoint(Coordinate.Undefined);
+                return null;
 
             foreach (XElement innerElement in element.Elements())
             {
                 if (innerElement.Name.LocalName == "coordinates")
-                    factory.CreatePoint(ConvertCoordinate(innerElement.Value.Split(',')));
+                    return factory.CreatePoint(ConvertCoordinate(innerElement.Value.Split(',')));
 
                 if (innerElement.Name.LocalName == "coord" ||
                     innerElement.Name.LocalName == "pos")
-                    factory.CreatePoint(ConvertCoordinate(innerElement.Value.Split(' ')));
+                    return factory.CreatePoint(ConvertCoordinate(innerElement.Value.Split(' ')));
             }
 
-            return factory.CreatePoint(Coordinate.Undefined);
+            return null;
         }
 
         /// <summary>
@@ -840,7 +840,7 @@ namespace AEGIS.Converters
             }
 
             if (coordX == null || coordY == null)
-                return Coordinate.Undefined;
+                return null;
 
             if (coordZ == null)
             {

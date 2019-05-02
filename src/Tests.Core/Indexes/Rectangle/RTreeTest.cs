@@ -211,7 +211,6 @@ namespace AEGIS.Tests.Indexes.Rectangle
         {
             this.tree.Contains(null).ShouldBeFalse();
             this.tree.Contains(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
-            this.tree.Contains(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
 
             foreach (IPoint geometry in this.geometries)
                 this.tree.Contains(geometry).ShouldBeTrue();
@@ -225,7 +224,6 @@ namespace AEGIS.Tests.Indexes.Rectangle
         {
             // remove geometry
             this.tree.Remove(this.factory.CreatePoint(1000, 1000, 1000)).ShouldBeFalse();
-            this.tree.Remove(this.factory.CreatePoint(Coordinate.Undefined)).ShouldBeFalse();
 
             foreach (IPoint geometry in this.geometries)
                 this.tree.Remove(geometry).ShouldBeTrue();

@@ -49,10 +49,6 @@ namespace AEGIS.Tests.Algorithms
             // same coordinate
             second = new BasicPoint(first.Coordinate);
             GeometryDistanceAlgorithm.Distance(first, second).ShouldBe(0);
-
-            // undefined coordinate
-            second = new BasicPoint(Coordinate.Undefined);
-            GeometryDistanceAlgorithm.Distance(first, second).ShouldBe(Double.NaN);
         }
 
         /// <summary>
@@ -112,10 +108,6 @@ namespace AEGIS.Tests.Algorithms
 
             firstLineString = new BasicLineString(new Coordinate[] { });
             secondLineString = new BasicLineString(new Coordinate[] { });
-            GeometryDistanceAlgorithm.Distance(firstLineString, secondLineString).ShouldBe(Double.MaxValue);
-
-            // invalid line
-            secondLineString = new BasicLineString(new Coordinate[] { new Coordinate(0, 0), Coordinate.Undefined });
             GeometryDistanceAlgorithm.Distance(firstLineString, secondLineString).ShouldBe(Double.MaxValue);
         }
 

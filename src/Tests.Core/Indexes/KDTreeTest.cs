@@ -193,8 +193,6 @@ namespace AEGIS.Tests.Indexes
             // Should not remove when coordinate is not in the tree
             this.tree2D.Remove(new Coordinate(101, 101)).ShouldBeFalse();
             this.tree3D.Remove(new Coordinate(101, 101, 101)).ShouldBeFalse();
-            this.tree2D.Remove(Coordinate.Undefined).ShouldBeFalse();
-            this.tree3D.Remove(Coordinate.Undefined).ShouldBeFalse();
 
             // Should remove geometries that are in the tree
             foreach (Coordinate point in this.coords2D)

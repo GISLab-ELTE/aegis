@@ -61,7 +61,7 @@ namespace AEGIS.Reference
         /// Gets a value indicating whether the operation is reversible.
         /// </summary>
         /// <value><c>true</c> if the operation is reversible; otherwise, <c>false</c>.</value>
-        public Boolean IsReversible { get; private set; }
+        public Boolean IsReversible { get; }
 
         /// <summary>
         /// Gets the parameters.

@@ -176,11 +176,11 @@ namespace AEGIS.Converters
                 {
                     case "POINT":
                     case "POINT M":
-                        resultGeometry = isEmpty ? factory.CreatePoint(Coordinate.Empty) : ToPoint(geometryContent, 2, factory);
+                        resultGeometry = isEmpty ? factory.CreatePoint(0, 0) : ToPoint(geometryContent, 2, factory);
                         break;
                     case "POINT Z":
                     case "POINT ZM":
-                        resultGeometry = isEmpty ? factory.CreatePoint(Coordinate.Empty) : ToPoint(geometryContent, 3, factory);
+                        resultGeometry = isEmpty ? factory.CreatePoint(0, 0) : ToPoint(geometryContent, 3, factory);
                         break;
                     case "LINESTRING":
                     case "LINESTRING M":
