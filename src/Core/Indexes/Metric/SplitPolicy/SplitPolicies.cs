@@ -19,6 +19,9 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
     using System.Text;
     using AEGIS.Resources;
 
+    /// <summary>
+    /// Contains a collection of partitioning policies.
+    /// </summary>
     public static class SplitPolicies
     {
         /// <summary>
@@ -89,6 +92,14 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
         /// <seealso cref="AEGIS.Indexes.Metric.SplitPolicy.IPartitionPolicy{T}" />
         public class GeneralizedHyperplanePartitionPolicy<T> : IPartitionPolicy<T>
         {
+            /// <summary>
+            /// Allocates all points of an old <c>Node</c> to one of the newly created clusters based
+            /// their designated promoted items (previously calculated by an <see cref="IPromotePolicy{DATA}"/>.
+            /// </summary>
+            /// <param name="promoted">The promoted items previously calculated.</param>
+            /// <param name="dataSet">The data set to be paritioned.</param>
+            /// <param name="distanceMetric">The distance metric to be used.</param>
+            /// <returns>the original data points partitioned into two new clusters of data points</returns>
             public Tuple<ISet<T>, ISet<T>> Partition(Tuple<T, T> promoted, ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
             {
                 ISet<T> first = new HashSet<T>();
@@ -120,6 +131,14 @@ namespace AEGIS.Indexes.Metric.SplitPolicy
         /// <seealso cref="AEGIS.Indexes.Metric.SplitPolicy.IPartitionPolicy{T}" />
         public class BalancedPartitionPolicy<T> : IPartitionPolicy<T>
         {
+            /// <summary>
+            /// Allocates all points of an old <c>Node</c> to one of the newly created clusters based
+            /// their designated promoted items (previously calculated by an <see cref="IPromotePolicy{DATA}"/>.
+            /// </summary>
+            /// <param name="promoted">The promoted items previously calculated.</param>
+            /// <param name="dataSet">The data set to be paritioned.</param>
+            /// <param name="distanceMetric">The distance metric to be used.</param>
+            /// <returns>the original data points partitioned into two new clusters of data points</returns>
             public Tuple<ISet<T>, ISet<T>> Partition(Tuple<T, T> promoted, ICollection<T> dataSet, DistanceMetric<T> distanceMetric)
             {
                 List<T> queue1 = new List<T>(dataSet);

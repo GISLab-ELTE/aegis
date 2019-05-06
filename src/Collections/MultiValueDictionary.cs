@@ -30,7 +30,7 @@ namespace AEGIS.Collections
         /// <summary>
         /// The underlying dictionary.
         /// </summary>
-        private Dictionary<TKey, List<TValue>> dictionary;
+        private readonly Dictionary<TKey, List<TValue>> dictionary;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue}" /> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
@@ -265,8 +265,7 @@ namespace AEGIS.Collections
             if (key == null)
                 throw new ArgumentNullException(nameof(key));
 
-            List<TValue> outValue;
-            Boolean retValue = this.dictionary.TryGetValue(key, out outValue);
+            Boolean retValue = this.dictionary.TryGetValue(key, out List<TValue> outValue);
 
             value = outValue;
 

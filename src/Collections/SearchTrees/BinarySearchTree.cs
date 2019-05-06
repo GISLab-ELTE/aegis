@@ -493,17 +493,17 @@ namespace AEGIS.Collections.SearchTrees
             /// <summary>
             /// The tree that is enumerated.
             /// </summary>
-            private BinarySearchTree<TKey, TValue> localTree;
+            private readonly BinarySearchTree<TKey, TValue> localTree;
 
             /// <summary>
             /// The version at which the enumerator was instantiated.
             /// </summary>
-            private Int32 localVersion;
+            private readonly Int32 localVersion;
 
             /// <summary>
             /// The stack containing cached nodes.
             /// </summary>
-            private Stack<Node> stack;
+            private readonly Stack<Node> stack;
 
             /// <summary>
             /// The current item.
@@ -533,9 +533,7 @@ namespace AEGIS.Collections.SearchTrees
             /// <summary>
             /// Gets the element at the current position of the enumerator.
             /// </summary>
-            /// <value>
-            /// The element at the current position of the enumerator.
-            /// </value>
+            /// <value>The element at the current position of the enumerator.</value>
             public KeyValuePair<TKey, TValue> Current
             {
                 get { return this.current; }
@@ -544,9 +542,7 @@ namespace AEGIS.Collections.SearchTrees
             /// <summary>
             /// Gets the element at the current position of the enumerator.
             /// </summary>
-            /// <value>
-            /// The element at the current position of the enumerator.-
-            /// </value>
+            /// <value>The element at the current position of the enumerator.</value>
             Object IEnumerator.Current
             {
                 get { return this.current; }
@@ -610,12 +606,12 @@ namespace AEGIS.Collections.SearchTrees
             /// <summary>
             /// The tree that is enumerated.
             /// </summary>
-            private BinarySearchTree<TKey, TValue> localTree;
+            private readonly BinarySearchTree<TKey, TValue> localTree;
 
             /// <summary>
             /// The version at which the enumerator was instantiated.
             /// </summary>
-            private Int32 localVersion;
+            private readonly Int32 localVersion;
 
             /// <summary>
             /// The current item.

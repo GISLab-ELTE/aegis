@@ -107,7 +107,7 @@ namespace AEGIS.Collections
         /// <summary>
         /// Gets the number of elements actually contained in the heap.
         /// </summary>
-        /// <value>The number of elements actually contained in the heap</value>
+        /// <value>The number of elements actually contained in the heap.</value>
         public Int32 Count { get { return this.size; } }
 
         /// <summary>

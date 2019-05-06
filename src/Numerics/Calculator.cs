@@ -1200,7 +1200,7 @@ namespace AEGIS.Numerics
             Double result = 1;
             for (int i = 1; i < 170; i++)
             {
-                result = result * i;
+                result *= i;
                 factorialCacheArray[i] = result;
             }
 
@@ -1224,7 +1224,7 @@ namespace AEGIS.Numerics
             {
                 0.99999999999980993, 676.5203681218851, -1259.1392167224028,
                 771.32342877765313, -176.61502916214059, 12.507343278686905,
-                -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
+                -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7,
             };
 
             const Int32 g = 7;
@@ -1232,7 +1232,7 @@ namespace AEGIS.Numerics
             if (value < 0.5)
                 return Math.PI / (Math.Sin(Math.PI * value) * Gamma(1 - value));
 
-            value = value - 1;
+            value -= 1;
 
             Double a = p[0];
             for (Int32 i = 1; i < n; i++)
@@ -1369,7 +1369,7 @@ namespace AEGIS.Numerics
             y = Math.Abs(y);
             t = Math.Min(x, y);
             x = Math.Max(x, y);
-            t = t / x;
+            t /= x;
 
             return x * Math.Sqrt(1 + t * t);
         }
@@ -1516,7 +1516,7 @@ namespace AEGIS.Numerics
         public static Double Sin4(Double value)
         {
             value = Math.Sin(value);
-            value = value * value;
+            value *= value;
             return value * value;
         }
 
@@ -1563,7 +1563,7 @@ namespace AEGIS.Numerics
         public static Double Cos4(Double value)
         {
             value = Math.Cos(value);
-            value = value * value;
+            value *= value;
             return value * value;
         }
 
@@ -1597,7 +1597,7 @@ namespace AEGIS.Numerics
         public static Double Tan4(Double value)
         {
             value = Math.Tan(value);
-            value = value * value;
+            value *= value;
             return value * value;
         }
 
@@ -1606,7 +1606,7 @@ namespace AEGIS.Numerics
         /// </summary>
         /// <param name="n">The first coefficient.</param>
         /// <param name="k">The second coefficient.</param>
-        /// <returns>The binomial coefficient indexed by the two specified nonnegative integers</returns>
+        /// <returns>The binomial coefficient indexed by the two specified nonnegative integers.</returns>
         /// <remarks>
         /// Binomial coefficients are a family of positive integers that occur as coefficients in the binomial theorem. They are indexed by two nonnegative integers; the binomial coefficient indexed by <paramref name="n" /> and <paramref name="k" />. The implementation uses the multiplicative formula, as it does not involve unnecessary computation, and can deal with a large range of integers.
         /// </remarks>

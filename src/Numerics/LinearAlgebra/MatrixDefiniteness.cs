@@ -42,6 +42,6 @@ namespace AEGIS.Numerics.LinearAlgebra
         /// <summary>
         /// Indefinite.
         /// </summary>
-        Indefinite
+        Indefinite,
     }
 }

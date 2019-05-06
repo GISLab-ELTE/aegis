@@ -469,7 +469,7 @@ namespace AEGIS.Numerics
         /// Calculates the inner product of two vectors.
         /// </summary>
         /// <param name="first">The first vector.</param>
-        /// <param name="second">The second vector</param>
+        /// <param name="second">The second vector.</param>
         /// <returns>The resulting scalars.</returns>
         /// <exception cref="System.ArgumentNullException">
         /// The first vector is null.
@@ -500,7 +500,7 @@ namespace AEGIS.Numerics
         /// Calculates the outer product (also known as direct product) of two vectors.
         /// </summary>
         /// <param name="first">The first vector.</param>
-        /// <param name="second">The second vector</param>
+        /// <param name="second">The second vector.</param>
         /// <returns>The resulting <see cref="Matrix" />.</returns>
         /// <exception cref="System.ArgumentNullException">
         /// The first vector is null.

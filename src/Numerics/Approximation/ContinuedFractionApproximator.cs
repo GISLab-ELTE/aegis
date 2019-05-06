@@ -26,7 +26,7 @@ namespace AEGIS.Numerics.Approximation
     /// its integer part and another reciprocal, and so on.
     /// The representation may be infinite (for irrational numbers), thus there is a limitation on the number of
     /// iterations made.
-    /// <see cref="http://en.wikipedia.org/wiki/Continued_fraction"/>
+    /// <see cref="http://en.wikipedia.org/wiki/Continued_fraction"/>.
     /// </remarks>
     public class ContinuedFractionApproximator
     {

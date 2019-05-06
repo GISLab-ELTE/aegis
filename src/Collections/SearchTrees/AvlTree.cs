@@ -73,8 +73,7 @@ namespace AEGIS.Collections.SearchTrees
                 return;
             }
 
-            AvlNode node = this.SearchNodeForInsertion(key) as AvlNode;
-            if (node == null)
+            if (!(this.SearchNodeForInsertion(key) is AvlNode node))
                 throw new ArgumentException(CollectionMessages.KeyExists, nameof(key));
 
             if (this.Comparer.Compare(key, node.Key) < 0)
@@ -100,11 +99,9 @@ namespace AEGIS.Collections.SearchTrees
             if (node == null)
                 return;
 
-            AvlNode parent = node.Parent as AvlNode;
-
             base.RemoveNodeWithNoChild(node);
 
-            if (parent != null)
+            if (node.Parent is AvlNode parent)
                 this.Balance(parent);
         }
 

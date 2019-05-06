@@ -18,7 +18,7 @@ namespace AEGIS.Collections
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Resources;
+    using AEGIS.Collections.Resources;
 
     /// <summary>
     /// Represents a disjoint-set data structure.
@@ -35,12 +35,12 @@ namespace AEGIS.Collections
         /// <summary>
         /// The parent of the element in the tree.
         /// </summary>
-        private Dictionary<T, T> parent;
+        private readonly Dictionary<T, T> parent;
 
         /// <summary>
         /// The rank of the subset containing the element.
         /// </summary>
-        private Dictionary<T, Int32> rank;
+        private readonly Dictionary<T, Int32> rank;
 
         /// <summary>
         /// Gets the number of elements in the disjoint-set forest.
@@ -135,9 +135,7 @@ namespace AEGIS.Collections
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
-            T representative;
-
-            if (!this.TryFindSet(item, out representative))
+            if (!this.TryFindSet(item, out T representative))
                 throw new ArgumentException(CollectionMessages.ItemIsNotPresentInAnySet, nameof(item));
 
             return representative;

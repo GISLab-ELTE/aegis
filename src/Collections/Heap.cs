@@ -387,12 +387,12 @@ namespace AEGIS.Collections
             /// <summary>
             /// The heap that is enumerated.
             /// </summary>
-            private Heap<TKey, TValue> localHeap;
+            private readonly Heap<TKey, TValue> localHeap;
 
             /// <summary>
             /// The version at which the enumerator was instantiated.
             /// </summary>
-            private Int32 localVersion;
+            private readonly Int32 localVersion;
 
             /// <summary>
             /// The position of the enumerator.
@@ -430,7 +430,7 @@ namespace AEGIS.Collections
             /// <summary>
             /// Gets the element at the current position of the enumerator.
             /// </summary>
-            /// <value>The element at the current position of the enumerator.-</value>
+            /// <value>The element at the current position of the enumerator.</value>
             Object IEnumerator.Current
             {
                 get { return this.current; }

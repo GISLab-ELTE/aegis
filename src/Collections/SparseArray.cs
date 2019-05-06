@@ -74,9 +74,7 @@ namespace AEGIS.Collections
             this.items = new Dictionary<Int64, T>();
             this.version = 0;
 
-            IList<T> collectionList = collection as IList<T>;
-
-            if (collectionList != null)
+            if (collection is IList<T> collectionList)
             {
                 this.length = collectionList.Count;
 
@@ -133,8 +131,7 @@ namespace AEGIS.Collections
                 if (index >= this.length)
                     throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
-                T value;
-                if (!this.items.TryGetValue(index, out value))
+                if (!this.items.TryGetValue(index, out T value))
                     return default(T);
 
                 return value;
@@ -203,8 +200,7 @@ namespace AEGIS.Collections
                 if (index >= this.length)
                     throw new ArgumentOutOfRangeException(nameof(index), CollectionMessages.IndexIsEqualToOrGreaterThanArraySize);
 
-                T value;
-                if (!this.items.TryGetValue(index, out value))
+                if (!this.items.TryGetValue(index, out T value))
                     return default(T);
 
                 return value;
@@ -485,14 +481,19 @@ namespace AEGIS.Collections
         public sealed class Enumerator : IEnumerator<T>
         {
             /// <summary>
+            /// The inner enumerator used for enumerating the items.
+            /// </summary>
+            private readonly IEnumerator<KeyValuePair<Int64, T>> innerEnumerator;
+
+            /// <summary>
             /// The array that is enumerated.
             /// </summary>
-            private SparseArray<T> localArray;
+            private readonly SparseArray<T> localArray;
 
             /// <summary>
             /// The version at which the enumerator was instantiated.
             /// </summary>
-            private Int32 localVersion;
+            private readonly Int32 localVersion;
 
             /// <summary>
             /// The position of the enumerator.
@@ -503,11 +504,6 @@ namespace AEGIS.Collections
             /// The current item.
             /// </summary>
             private T current;
-
-            /// <summary>
-            /// The inner enumerator used for enumerating the items.
-            /// </summary>
-            private IEnumerator<KeyValuePair<Int64, T>> innerEnumerator;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="Enumerator" /> class.

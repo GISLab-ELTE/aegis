@@ -477,7 +477,7 @@ namespace AEGIS.Collections
         /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector function.</param>
-        /// <returns>The index of the smallest item within the collection specified by the selector</returns>
+        /// <returns>The index of the smallest item within the collection specified by the selector.</returns>
         /// <exception cref="ArgumentNullException">
         /// The collection is null.
         /// or
@@ -522,7 +522,7 @@ namespace AEGIS.Collections
         /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector function.</param>
-        /// <returns>The index of the smallest item within the collection specified by the selector</returns>
+        /// <returns>The index of the smallest item within the collection specified by the selector.</returns>
         /// <exception cref="ArgumentNullException">
         /// The collection is null.
         /// or

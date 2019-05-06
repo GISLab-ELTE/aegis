@@ -144,11 +144,20 @@ namespace AEGIS.Numerics
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rational"/> struct.
+        /// </summary>
+        /// <param name="other">The other rational number.</param>
         public Rational(Rational other)
             : this(other.numerator, other.denominator)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rational"/> struct.
+        /// </summary>
+        /// <param name="numerator">The numerator.</param>
+        /// <param name="denominator">The denominator.</param>
         public Rational(Int64 numerator, Rational denominator)
             : this(numerator * denominator.denominator, denominator.numerator)
         {

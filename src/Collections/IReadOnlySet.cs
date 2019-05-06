@@ -27,7 +27,7 @@ namespace AEGIS.Collections
         /// Determines whether the current set is a proper (strict) subset of a specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set is a proper subset of other; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set is a proper subset of other; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool IsProperSubsetOf(IEnumerable<T> other);
 
@@ -35,7 +35,7 @@ namespace AEGIS.Collections
         /// Determines whether the current set is a proper (strict) superset of a specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set is a proper superset of other; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set is a proper superset of other; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool IsProperSupersetOf(IEnumerable<T> other);
 
@@ -43,7 +43,7 @@ namespace AEGIS.Collections
         /// Determines whether a set is a subset of a specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set is a subset of other; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set is a subset of other; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool IsSubsetOf(IEnumerable<T> other);
 
@@ -51,7 +51,7 @@ namespace AEGIS.Collections
         /// Determines whether the current set is a superset of a specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set is a superset of other; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set is a superset of other; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool IsSupersetOf(IEnumerable<T> other);
 
@@ -59,7 +59,7 @@ namespace AEGIS.Collections
         /// Determines whether the current set overlaps with the specified collection.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set and other share at least one common element; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set and other share at least one common element; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool Overlaps(IEnumerable<T> other);
 
@@ -67,7 +67,7 @@ namespace AEGIS.Collections
         /// Determines whether the current set and the specified collection contain the same elements.
         /// </summary>
         /// <param name="other">The collection to compare to the current set.</param>
-        /// <returns><c>true</c> if the current set is equal to other; otherwise, <c>false/c>.</returns>
+        /// <returns><c>true</c> if the current set is equal to other; otherwise, <c>false</c>.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="other"/> is null.</exception>
         bool SetEquals(IEnumerable<T> other);
     }

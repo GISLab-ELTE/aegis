@@ -155,7 +155,7 @@ namespace AEGIS.Indexes.Rectangle
                 // J. K. Lawder: Calculation of Mappings Between One and n-dimensional Values Using the Hilbert Space-filling Curve
                 Int32 dim = indexes.Length;
                 UInt32 mask = 1U << (HilbertCurveOrder - 1);
-                UInt32 element, capA = 0U, capW = 0U, capS, tS, capT, tT, capJ, capP = 0U, xJ;
+                UInt32 element, capA = 0U, capW = 0U, capS, tS, capT, tT, capJ, xJ;
                 UInt32[] h = new UInt32[dim];
                 Int32 i = HilbertCurveOrder * dim - dim, j;
                 for (j = 0; j < dim; j++)
@@ -166,8 +166,8 @@ namespace AEGIS.Indexes.Rectangle
                     }
                 }
 
-                capS = tS = capA;
-                capP = this.CalcP2(capS, dim, gMask);
+                capS = capA;
+                UInt32 capP = CalcP2(capS, dim, gMask);
 
                 // add in DIM bits to hilbert code
                 element = (UInt32)(i / HilbertCurveOrder);
@@ -315,7 +315,6 @@ namespace AEGIS.Indexes.Rectangle
         /// the default <see cref="HilbertEncoder"/> as a space filling curve and the
         /// specifield limits to children count.
         /// </summary>
-        /// <param name="minChildren">The minimum number of child nodes.</param>
         /// <param name="maxChildren">The maximum number of child nodes.</param>
         public HilbertRTree(Int32 maxChildren)
             : this(maxChildren, new HilbertEncoder()) { }

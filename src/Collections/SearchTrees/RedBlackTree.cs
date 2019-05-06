@@ -288,7 +288,7 @@ namespace AEGIS.Collections.SearchTrees
             /// <summary>
             /// Indicates that the node is marked black.
             /// </summary>
-            Black
+            Black,
         }
 
         /// <summary>
