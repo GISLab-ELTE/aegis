@@ -21,6 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>True</DebugSymbols>
+    <DocumentationFile>..\..\docs\AEGIS.Storage.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
