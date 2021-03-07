@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Lambert Azimuthal Equal Area Projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9820", "Lambert Azimuthal Equal Area Projection")]
+    [IdentifiedObject("EPSG::9820", "Lambert Azimuthal Equal Area Projection")]
     public class LambertAzimuthalEqualAreaProjection : CoordinateProjection
     {
         /// <summary>

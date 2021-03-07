@@ -20,7 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a similarity transformation.
     /// </summary>
-    [IdentifiedObject("AEGIS::9621", "Similarity Transformation")]
+    [IdentifiedObject("EPSG::9621", "Similarity Transformation")]
     public class SimilarityTransformation : CoordinateTransformation<Coordinate>
     {
         /// <summary>

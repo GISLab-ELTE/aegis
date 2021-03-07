@@ -20,7 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Lambert Conic Conformal (2SP Belgium) projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9803", "Lambert Conic Conformal (2SP Belgium)")]
+    [IdentifiedObject("EPSG::9803", "Lambert Conic Conformal (2SP Belgium)")]
     public class LambertConicConformal2SPBelgiumProjection : LambertConicConformal2SPProjection
     {
         /// <summary>

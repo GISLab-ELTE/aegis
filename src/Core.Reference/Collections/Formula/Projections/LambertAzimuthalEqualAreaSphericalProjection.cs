@@ -20,7 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Lambert Azimuthal Equal Area Spherical Projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::1027", "Lambert Azimuthal Equal Area (Spherical) Projection")]
+    [IdentifiedObject("EPSG::1027", "Lambert Azimuthal Equal Area (Spherical) Projection")]
     public class LambertAzimuthalEqualAreaSphericalProjection : LambertAzimuthalEqualAreaProjection
     {
         /// <summary>

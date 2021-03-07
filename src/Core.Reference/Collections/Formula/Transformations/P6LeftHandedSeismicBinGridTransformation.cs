@@ -20,7 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a P6 left handed seismic bin grid transformation.
     /// </summary>
-    [IdentifiedObject("AEGIS::1049", "P6 (I = J-90°) seismic bin grid transformation")]
+    [IdentifiedObject("EPSG::1049", "P6 (I = J-90°) seismic bin grid transformation")]
     public class P6LeftHandedSeismicBinGridTransformation : P6SeismicBinGridTransformation
     {
         /// <summary>
