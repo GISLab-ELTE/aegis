@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>AEGIS.Numerics</AssemblyName>
     <RootNamespace>AEGIS.Numerics</RootNamespace>
     <Authors>Roberto Giachetta et al.</Authors>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>AEGIS.Tests.Collections</AssemblyName>
     <RootNamespace>AEGIS.Tests.Collections</RootNamespace>
     <Authors>Roberto Giachetta et al.</Authors>
