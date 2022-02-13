@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Krovak Modified Projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::1042", "Krovak Modified Projection")]
+    [IdentifiedObject("EPSG::1042", "Krovak Modified Projection")]
     public class KrovakModifiedProjection : KrovakProjection
     {
         /// <summary>

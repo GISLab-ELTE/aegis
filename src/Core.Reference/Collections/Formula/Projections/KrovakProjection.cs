@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Krovak Projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9819", "Krovak Projection")]
+    [IdentifiedObject("EPSG::9819", "Krovak Projection")]
     public class KrovakProjection : CoordinateProjection
     {
         /// <summary>

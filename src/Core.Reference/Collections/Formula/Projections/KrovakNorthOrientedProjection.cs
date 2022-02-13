@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Krovak North Oriented Projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::1041", "Krovak North Oriented Projection")]
+    [IdentifiedObject("EPSG::1041", "Krovak North Oriented Projection")]
     public class KrovakNorthOrientedProjection : KrovakProjection
     {
         /// <summary>

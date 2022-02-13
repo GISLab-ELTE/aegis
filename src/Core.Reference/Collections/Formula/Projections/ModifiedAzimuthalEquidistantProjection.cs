@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Modified Azimuthal Equidistant projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9832", "Modified Azimuthal Equidistant Projection")]
+    [IdentifiedObject("EPSG::9832", "Modified Azimuthal Equidistant Projection")]
     public class ModifiedAzimuthalEquidistantProjection : CoordinateProjection
     {
         /// <summary>

@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Guam projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9831", "Guam Projection")]
+    [IdentifiedObject("EPSG::9831", "Guam Projection")]
     public class GuamProjection : CoordinateProjection
     {
         /// <summary>

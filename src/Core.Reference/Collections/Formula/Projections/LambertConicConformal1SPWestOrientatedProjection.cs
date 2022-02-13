@@ -21,7 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Lambert Conic Conformal (1SP West Orientated) projection.
     /// </summary>
-    [IdentifiedObject("AEGIS::9826", "Lambert Conic Conformal (West Orientated)")]
+    [IdentifiedObject("EPSG::9826", "Lambert Conic Conformal (West Orientated)")]
     public class LambertConicConformal1SPWestOrientatedProjection : LambertConicConformal1SPProjection
     {
         /// <summary>
