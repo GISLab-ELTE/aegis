@@ -1,0 +1,34 @@
+name: Build project
+
+on: [push, pull_request]
+
+env:
+  BUILD_CONFIGURATION: Release
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    # Required only for linux and macos
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+        
+    - run: dotnet --version
+
+    - name: Restore NuGet packages
+      run: dotnet restore src/AEGIS.sln
+
+    - name: Build the solution
+      run: dotnet build src/AEGIS.sln --configuration ${{env.BUILD_CONFIGURATION}}
+
+    - name: Run unit tests
+      run: dotnet test src/AEGIS.sln --collect="XPlat Code Coverage"
+      
+    - uses: codecov/codecov-action@v2
