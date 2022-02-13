@@ -125,6 +125,7 @@ namespace AEGIS.Collections.SearchTrees
         /// <param name="node">The root node of the subtree.</param>
         protected void Balance(AvlNode node)
         {
+            UpdateNode(node);
             while (node != null)
             {
                 node.Balance = GetBalance(node);
@@ -215,6 +216,22 @@ namespace AEGIS.Collections.SearchTrees
             Int32 rightHeight = (node.RightChild == null) ? -1 : (node.RightChild as AvlNode).Height;
 
             return rightHeight - leftHeight;
+        }
+
+        /// <summary>
+        /// Updates the height and balance for a node and its subtree.
+        /// </summary>
+        /// <param name="node">The AVL node.</param>
+        private static void UpdateNode(AvlNode node)
+        {
+            if (node.LeftChild != null)
+                UpdateNode(node.LeftChild as AvlNode);
+
+            if (node.RightChild != null)
+                UpdateNode(node.RightChild as AvlNode);
+
+            node.Height = GetHeight(node);
+            node.Balance = GetBalance(node);
         }
 
         /// <summary>
