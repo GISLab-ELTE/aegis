@@ -62,13 +62,13 @@ namespace AEGIS.Tests.Converters
                                        new Coordinate[][]
                                        {
                                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                                           Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                                           Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                                        }),
                 this.factory.CreateMultiPoint(Enumerable.Range(1, 4).Select(i => this.factory.CreatePoint(i / 2.0, i / 2.0))),
                 this.factory.CreateMultiLineString(new ILineString[]
                                                {
                                                    this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i, i))),
-                                                   this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
+                                                   this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
                                                }),
                 this.factory.CreateMultiPolygon(new IPolygon[]
                 {
@@ -76,10 +76,10 @@ namespace AEGIS.Tests.Converters
                                            new Coordinate[][]
                                            {
                                                Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                                               Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                                               Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                                            }),
-                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
-                })
+                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
+                }),
             };
 
             this.geometriesText = new String[]
@@ -89,7 +89,7 @@ namespace AEGIS.Tests.Converters
                 "POLYGON ((1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1))",
                 "MULTIPOINT (0.5 0.5, 1 1, 1.5 1.5, 2 2)",
                 "MULTILINESTRING ((1 1, 2 2, 3 3, 4 4), (0.5 0.5, 1 1, 1.5 1.5, 2 2))",
-                "MULTIPOLYGON (((1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1)), ((0.5 0.5, 1 1, 1.5 1.5, 2 2, 0.5 0.5)))"
+                "MULTIPOLYGON (((1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1), (1 1, 2 2, 3 3, 4 4, 1 1)), ((0.5 0.5, 1 1, 1.5 1.5, 2 2, 0.5 0.5)))",
             };
 
             this.geometryComparer = new GeometryComparer();

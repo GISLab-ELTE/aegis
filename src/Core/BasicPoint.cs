@@ -16,7 +16,6 @@ namespace AEGIS
 {
     using System;
     using System.Globalization;
-    using Resources;
 
     /// <summary>
     /// Represents a basic point geometry in spatial coordinate space.

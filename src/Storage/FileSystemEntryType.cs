@@ -32,6 +32,6 @@ namespace AEGIS.Storage
         /// <summary>
         /// Indicates that the entry is a link.
         /// </summary>
-        Link
+        Link,
     }
 }

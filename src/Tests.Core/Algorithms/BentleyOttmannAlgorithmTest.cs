@@ -37,7 +37,7 @@ namespace AEGIS.Tests.Algorithms
             IReadOnlyList<Coordinate> intersections = BentleyOttmannAlgorithm.Intersection(new[]
             {
                 new Coordinate(10, 10),
-                new Coordinate(20, 20)
+                new Coordinate(20, 20),
             });
 
             intersections.ShouldBeEmpty();
@@ -48,7 +48,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(10, 10),
                 new Coordinate(20, 20),
                 new Coordinate(15, 20),
-                new Coordinate(15, 10)
+                new Coordinate(15, 10),
             });
 
             intersections.ShouldBe(new[] { new Coordinate(15, 15) });
@@ -59,13 +59,13 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(10, 10),
-                    new Coordinate(20, 20)
+                    new Coordinate(20, 20),
                 },
                 new[]
                 {
                     new Coordinate(0, 0),
-                    new Coordinate(10, 0)
-                }
+                    new Coordinate(10, 0),
+                },
             });
 
             intersections.ShouldBeEmpty();
@@ -76,13 +76,13 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(10, 10),
-                    new Coordinate(20, 20)
+                    new Coordinate(20, 20),
                 },
                 new[]
                 {
                     new Coordinate(0, 0),
-                    new Coordinate(10, 10)
-                }
+                    new Coordinate(10, 10),
+                },
             });
 
             intersections.ShouldBe(new[] { new Coordinate(10, 10) });
@@ -93,13 +93,13 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(10, 10),
-                    new Coordinate(20, 20)
+                    new Coordinate(20, 20),
                 },
                 new[]
                 {
                     new Coordinate(15, 20),
-                    new Coordinate(15, 10)
-                }
+                    new Coordinate(15, 10),
+                },
             });
 
             intersections.ShouldBe(new[] { new Coordinate(15, 15) });
@@ -110,23 +110,23 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(-10, 0),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 },
                 new[]
                 {
                     new Coordinate(-10, -10),
-                    new Coordinate(10, 10)
+                    new Coordinate(10, 10),
                 },
                 new[]
                 {
                     new Coordinate(3, 5),
-                    new Coordinate(10, 5)
+                    new Coordinate(10, 5),
                 },
                 new[]
                 {
                     new Coordinate(4, 8),
-                    new Coordinate(10, 8)
-                }
+                    new Coordinate(10, 8),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -142,18 +142,18 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(-5, 0),
-                    new Coordinate(5, 0)
+                    new Coordinate(5, 0),
                 },
                 new[]
                 {
                     new Coordinate(0, -2),
-                    new Coordinate(8, 2)
+                    new Coordinate(8, 2),
                 },
                 new[]
                 {
                     new Coordinate(1, -3),
-                    new Coordinate(3, 3)
-                }
+                    new Coordinate(3, 3),
+                },
             });
 
             intersections.Count.ShouldBe(3);
@@ -170,18 +170,18 @@ namespace AEGIS.Tests.Algorithms
                 new[]
                 {
                     new Coordinate(-5, 0),
-                    new Coordinate(5, 0)
+                    new Coordinate(5, 0),
                 },
                 new[]
                 {
                     new Coordinate(0, 5),
-                    new Coordinate(5, 0)
+                    new Coordinate(5, 0),
                 },
                 new[]
                 {
                     new Coordinate(4, -1),
-                    new Coordinate(5, 0)
-                }
+                    new Coordinate(5, 0),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -198,14 +198,14 @@ namespace AEGIS.Tests.Algorithms
                 {
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
-                    new Coordinate(0, 10)
+                    new Coordinate(0, 10),
                 },
                 new[]
                 {
                     new Coordinate(10, 20),
                     new Coordinate(10, 10),
-                    new Coordinate(20, 10)
-                }
+                    new Coordinate(20, 10),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -232,7 +232,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(20, 10),
-                }
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -254,7 +254,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(10, 0),
                 new Coordinate(10, 10),
                 new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             });
 
             intersections.ShouldBeEmpty();
@@ -282,7 +282,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(4, 8),
                 new Coordinate(1, 8),
                 new Coordinate(-1, 6),
-                new Coordinate(-1, 1)
+                new Coordinate(-1, 1),
             });
 
             intersections.Select(this.RoundCoordinate).ShouldBe(new[]
@@ -292,7 +292,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(6, 6),
                 new Coordinate(6, 6),
                 new Coordinate(6, 6),
-                new Coordinate(6.33333, 5)
+                new Coordinate(6.33333, 5),
             });
 
             // multiple polygons, no intersection
@@ -304,7 +304,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -312,8 +312,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 0),
                     new Coordinate(20, 5),
                     new Coordinate(15, 5),
-                    new Coordinate(15, 0)
-                }
+                    new Coordinate(15, 0),
+                },
             });
 
             intersections.ShouldBeEmpty();
@@ -327,7 +327,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -335,8 +335,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 10),
                     new Coordinate(20, 20),
                     new Coordinate(10, 20),
-                    new Coordinate(10, 10)
-                }
+                    new Coordinate(10, 10),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -356,7 +356,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -364,8 +364,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(15, 5),
                     new Coordinate(15, 15),
                     new Coordinate(5, 15),
-                    new Coordinate(5, 5)
-                }
+                    new Coordinate(5, 5),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -383,15 +383,15 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
                     new Coordinate(-10, -5),
                     new Coordinate(10, -5),
                     new Coordinate(0, 5),
-                    new Coordinate(-10, -5)
-                }
+                    new Coordinate(-10, -5),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -411,7 +411,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 8),
                     new Coordinate(0, 8),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -419,8 +419,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(14, 0),
                     new Coordinate(14, 8),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 0)
-                }
+                    new Coordinate(8, 0),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -444,15 +444,15 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 8),
                     new Coordinate(0, 8),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
                     new Coordinate(8, 0),
                     new Coordinate(14, 0),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 0)
-                }
+                    new Coordinate(8, 0),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -476,22 +476,22 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 8),
                     new Coordinate(0, 8),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
                     new Coordinate(8, 0),
                     new Coordinate(14, 0),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 0)
+                    new Coordinate(8, 0),
                 },
                 new[]
                 {
                     new Coordinate(-2, 6),
                     new Coordinate(14, 6),
                     new Coordinate(4, 14),
-                    new Coordinate(-2, 6)
-                }
+                    new Coordinate(-2, 6),
+                },
             });
 
             intersections.ShouldBe(new[]
@@ -519,14 +519,14 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 8),
                     new Coordinate(0, 8),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
                     new Coordinate(8, 0),
                     new Coordinate(14, 0),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 0)
+                    new Coordinate(8, 0),
                 },
                 new[]
                 {
@@ -534,14 +534,14 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, -6),
                     new Coordinate(4, 2),
                     new Coordinate(-4, 2),
-                    new Coordinate(-4, -6)
+                    new Coordinate(-4, -6),
                 },
                 new[]
                 {
                     new Coordinate(-2, 6),
                     new Coordinate(14, 6),
                     new Coordinate(4, 14),
-                    new Coordinate(-2, 6)
+                    new Coordinate(-2, 6),
                 },
                 new[]
                 {
@@ -549,8 +549,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(6, 1),
                     new Coordinate(6, 13),
                     new Coordinate(2, 13),
-                    new Coordinate(2, 1)
-                }
+                    new Coordinate(2, 1),
+                },
             });
 
             intersections.Select(this.RoundCoordinate).ShouldBe(new[]

@@ -40,7 +40,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(1.0, 1.0, 0.0),
                 new Coordinate(2.0, 5.0, 0.0),
-                new Coordinate(5.0, 2.0, 0.0)
+                new Coordinate(5.0, 2.0, 0.0),
             });
 
             IReadOnlyList<Coordinate> result = DouglasPeuckerAlgorithm.Simplify(coordinates, delta);
@@ -62,7 +62,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1.5, 2.0, 0.0),
                 new Coordinate(2.5, 1.0, 0.0),
                 new Coordinate(3.7, 3.9, 0.0),
-                new Coordinate(5.0, 3.0, 0.0)
+                new Coordinate(5.0, 3.0, 0.0),
             });
 
             result = DouglasPeuckerAlgorithm.Simplify(coordinates, delta);
@@ -86,7 +86,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1.5, 2.0, 0.0),
                 new Coordinate(2.5, 1.0, 0.0),
                 new Coordinate(3.7, 3.9, 0.0),
-                new Coordinate(5.0, 3.0, 0.0)
+                new Coordinate(5.0, 3.0, 0.0),
             });
 
             result = DouglasPeuckerAlgorithm.Simplify(coordinates, delta);

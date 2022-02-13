@@ -360,7 +360,7 @@ namespace AEGIS.Reference
         /// <summary>
         /// Metres per second.
         /// </summary>
-        public static UnitOfMeasurement MetresPerSecond = new UnitOfMeasurement("EPSG::1026", "metres per second", "Length rate.", new[] { "meters per second", "m/s", }, "m/s", 3.1688765172731486E-8, UnitQuantityType.Length);
+        public static UnitOfMeasurement MetresPerSecond = new UnitOfMeasurement("EPSG::1026", "metres per second", "Length rate.", new[] { "meters per second", "m/s" }, "m/s", 3.1688765172731486E-8, UnitQuantityType.Length);
 
         /// <summary>
         /// Metres per year.

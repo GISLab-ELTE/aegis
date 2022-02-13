@@ -37,6 +37,6 @@ namespace AEGIS
         /// <summary>
         /// Indicates that the location cannot be determined.
         /// </summary>
-        Undefined
+        Undefined,
     }
 }

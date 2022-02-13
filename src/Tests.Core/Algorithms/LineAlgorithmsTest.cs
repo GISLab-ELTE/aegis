@@ -43,7 +43,7 @@ namespace AEGIS.Tests.Algorithms
             List<Coordinate> lineString = new List<Coordinate>
             {
                 new Coordinate(1, 1), new Coordinate(1, 3),
-                new Coordinate(1, 7)
+                new Coordinate(1, 7),
             };
             LineAlgorithms.Centroid(lineString).ShouldBe(new Coordinate(1, 4));
 

@@ -89,13 +89,13 @@ namespace AEGIS.Tests.Converters
                     new Coordinate[][]
                     {
                         Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                        Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                        Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                     }),
                 this.factory.CreateMultiPoint(Enumerable.Range(1, 4).Select(i => this.factory.CreatePoint(i / 2.0, i / 2.0))),
                 this.factory.CreateMultiLineString(new ILineString[]
                     {
                         this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i, i))),
-                        this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
+                        this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
                     }),
                 this.factory.CreateMultiPolygon(new IPolygon[]
                 {
@@ -103,10 +103,10 @@ namespace AEGIS.Tests.Converters
                         new Coordinate[][]
                         {
                             Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                         }),
-                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
-                })
+                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
+                }),
             };
 
             this.mockReferenceSystem = new Mock<IReferenceSystem>(MockBehavior.Strict);
@@ -126,13 +126,13 @@ namespace AEGIS.Tests.Converters
                     new Coordinate[][]
                     {
                         Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                        Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                        Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                     }),
                 factoryWithReference.CreateMultiPoint(Enumerable.Range(1, 4).Select(i => this.factory.CreatePoint(i / 2.0, i / 2.0))),
                 factoryWithReference.CreateMultiLineString(new ILineString[]
                     {
                         this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i, i))),
-                        this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
+                        this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
                     }),
                 factoryWithReference.CreateMultiPolygon(new IPolygon[]
                 {
@@ -140,10 +140,10 @@ namespace AEGIS.Tests.Converters
                         new Coordinate[][]
                         {
                             Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                         }),
-                    factoryWithReference.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
-                })
+                    factoryWithReference.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
+                }),
             };
 
             this.geometriesMarkup = new String[]
@@ -153,7 +153,7 @@ namespace AEGIS.Tests.Converters
                 "<gml:Polygon xmlns:gml=\"http://www.opengis.net/gml/\"><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon>",
                 "<gml:MultiPoint xmlns:gml=\"http://www.opengis.net/gml/\"><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:MultiPoint>",
                 "<gml:MultiLineString xmlns:gml=\"http://www.opengis.net/gml/\"><gml:LineStringMember><gml:LineString><gml:posList>1 1 2 2 3 3 4 4</gml:posList></gml:LineString></gml:LineStringMember><gml:LineStringMember><gml:LineString><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:LineString></gml:LineStringMember></gml:MultiLineString>",
-                "<gml:MultiPolygon xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>"
+                "<gml:MultiPolygon xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>",
             };
 
             this.identifier = "12345678";
@@ -165,7 +165,7 @@ namespace AEGIS.Tests.Converters
                 "<gml:Polygon gml:id=\"12345678\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon>",
                 "<gml:MultiPoint gml:id=\"12345678\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:MultiPoint>",
                 "<gml:MultiLineString gml:id=\"12345678\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:LineStringMember><gml:LineString><gml:posList>1 1 2 2 3 3 4 4</gml:posList></gml:LineString></gml:LineStringMember><gml:LineStringMember><gml:LineString><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:LineString></gml:LineStringMember></gml:MultiLineString>",
-                "<gml:MultiPolygon gml:id=\"12345678\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>"
+                "<gml:MultiPolygon gml:id=\"12345678\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>",
             };
 
             this.geometriesMarkupWithReference = new String[]
@@ -175,7 +175,7 @@ namespace AEGIS.Tests.Converters
                 "<gml:Polygon srsName=\"http://www.opengis.net/def/crs/EPSG/0/1000\" srsDimension=\"2\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon>",
                 "<gml:MultiPoint srsName=\"http://www.opengis.net/def/crs/EPSG/0/1000\" srsDimension=\"2\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:MultiPoint>",
                 "<gml:MultiLineString srsName=\"http://www.opengis.net/def/crs/EPSG/0/1000\" srsDimension=\"2\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:LineStringMember><gml:LineString><gml:posList>1 1 2 2 3 3 4 4</gml:posList></gml:LineString></gml:LineStringMember><gml:LineStringMember><gml:LineString><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2</gml:posList></gml:LineString></gml:LineStringMember></gml:MultiLineString>",
-                "<gml:MultiPolygon srsName=\"http://www.opengis.net/def/crs/EPSG/0/1000\" srsDimension=\"2\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>"
+                "<gml:MultiPolygon srsName=\"http://www.opengis.net/def/crs/EPSG/0/1000\" srsDimension=\"2\" xmlns:gml=\"http://www.opengis.net/gml/\"><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:outerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs><gml:innerBoundaryIs><gml:LinearRing><gml:posList>1 1 2 2 3 3 4 4 1 1</gml:posList></gml:LinearRing></gml:innerBoundaryIs></gml:Polygon></gml:PolygonMember><gml:PolygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:posList>0.5 0.5 1 1 1.5 1.5 2 2 0.5 0.5</gml:posList></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:PolygonMember></gml:MultiPolygon>",
             };
 
             this.geometryComparer = new GeometryComparer();

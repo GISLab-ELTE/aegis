@@ -167,7 +167,7 @@ namespace AEGIS.Indexes.Rectangle
                 }
 
                 capS = capA;
-                UInt32 capP = CalcP2(capS, dim, gMask);
+                UInt32 capP = this.CalcP2(capS, dim, gMask);
 
                 // add in DIM bits to hilbert code
                 element = (UInt32)(i / HilbertCurveOrder);
@@ -720,7 +720,7 @@ namespace AEGIS.Indexes.Rectangle
                     List<HilbertNode> distributionList = new List<HilbertNode>
                     {
                         siblings.Item1,
-                        siblings.Item2
+                        siblings.Item2,
                     };
                     List<HilbertNode> additionalChildren = new List<HilbertNode>();
                     node.Children.ForEach(child => additionalChildren.Add((HilbertNode)child));

@@ -32,6 +32,6 @@ namespace AEGIS.Algorithms
         /// <summary>
         /// Indicates intersection between two distinct coordinates.
         /// </summary>
-        Interval
+        Interval,
     }
 }

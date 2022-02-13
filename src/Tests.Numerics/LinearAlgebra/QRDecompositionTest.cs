@@ -50,19 +50,19 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
             this.matrices = new Matrix[]
             {
                 new Matrix(new[,] { { 6.0, -1 }, { 2, 3 } }),
-                new Matrix(new[,] { { 12.0, -51, 4 }, { 6, 167, -68 }, { -4, 24, -41 } })
+                new Matrix(new[,] { { 12.0, -51, 4 }, { 6, 167, -68 }, { -4, 24, -41 } }),
             };
 
             this.expectedQ = new Matrix[]
             {
                 new Matrix(new[,] { { -0.9487, 0.3162 }, { -0.3162, -0.9487 } }),
-                new Matrix(new[,] { { -0.8571, 0.3943, 0.3314 }, { -0.4286, -0.9029, -0.0343 }, { 0.2857, -0.1714, 0.9429 } })
+                new Matrix(new[,] { { -0.8571, 0.3943, 0.3314 }, { -0.4286, -0.9029, -0.0343 }, { 0.2857, -0.1714, 0.9429 } }),
             };
 
             this.expectedR = new Matrix[]
             {
                 new Matrix(new[,] { { -6.3246, 0 }, { 0, -3.1623 } }),
-                new Matrix(new[,] { { -14.0, -21, 14 }, { 0, -175, 70 }, { 0, 0, -35 } })
+                new Matrix(new[,] { { -14.0, -21, 14 }, { 0, -175, 70 }, { 0, 0, -35 } }),
             };
         }
 

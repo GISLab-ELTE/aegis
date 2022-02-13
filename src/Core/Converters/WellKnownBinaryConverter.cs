@@ -389,7 +389,7 @@ namespace AEGIS.Converters
             /// <summary>
             /// Indicates a measured 3D triangle.
             /// </summary>
-            TriangleZM = 3017
+            TriangleZM = 3017,
         }
 
         /// <summary>

@@ -47,7 +47,7 @@ namespace AEGIS.Tests.Numerics
                 new Matrix(new[,] { { 1.0, 3, 5 }, { 2, 4, 7 }, { 1, 1, 0 } }),
                 new Matrix(new[,] { { 11.0, 9, 24, 2 }, { 1, 5, 2, 6 }, { 3, 17, 18, 1 }, { 2, 5, 7, 1 } }),
                 new Matrix(new[,] { { 1, 3 }, { -1, 0.7 }, { 12, 0 } }),
-                new Matrix(new[,] { { 1, 3, 7 }, { 1.6, -12, 5 } })
+                new Matrix(new[,] { { 1, 3, 7 }, { 1.6, -12, 5 } }),
             };
         }
 
@@ -359,7 +359,7 @@ namespace AEGIS.Tests.Numerics
                 MatrixFactory.CreateSquare(206, 562, 728, 102,
                                            34, 98, 112, 40,
                                            106, 423, 437, 127,
-                                           50, 167, 191, 42)
+                                           50, 167, 191, 42),
             };
 
             for (Int32 i = 0; i < 4; i++)
@@ -449,7 +449,7 @@ namespace AEGIS.Tests.Numerics
                 "(1 3 5; 2 4 7; 1 1 0)",
                 "(11 9 24 2; 1 5 2 6; 3 17 18 1; 2 5 7 1)",
                 "(1 3; -1 0.7; 12 0)",
-                "(1 3 7; 1.6 -12 5)"
+                "(1 3 7; 1.6 -12 5)",
             };
 
             for (Int32 i = 0; i < this.matrices.Length; i++)

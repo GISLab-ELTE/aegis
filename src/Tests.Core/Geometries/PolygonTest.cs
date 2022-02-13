@@ -48,7 +48,7 @@ namespace AEGIS.Tests.Geometries
                 new Coordinate(10, 0),
                 new Coordinate(10, 10),
                 new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
             this.holeCoordinates = new Coordinate[][]
             {
@@ -58,10 +58,10 @@ namespace AEGIS.Tests.Geometries
                     new Coordinate(2, 8),
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
-                    new Coordinate(2, 2)
+                    new Coordinate(2, 2),
                 },
                 new Coordinate[0],
-                null
+                null,
             };
 
             this.shellRing = new LinearRing(null, this.mockReferenceSystem.Object, this.shellCoordinates);
@@ -69,7 +69,7 @@ namespace AEGIS.Tests.Geometries
             {
                 new LinearRing(null, this.mockReferenceSystem.Object, this.holeCoordinates[0]),
                 new LinearRing(null, this.mockReferenceSystem.Object),
-                null
+                null,
             };
         }
 

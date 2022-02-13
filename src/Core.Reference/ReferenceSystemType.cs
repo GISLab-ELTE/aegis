@@ -67,6 +67,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Vertical reference system.
         /// </summary>
-        Vertical
+        Vertical,
     }
 }

@@ -185,6 +185,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Undefined direction.
         /// </summary>
-        Undefined
+        Undefined,
     }
 }

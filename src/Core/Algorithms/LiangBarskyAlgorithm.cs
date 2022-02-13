@@ -310,7 +310,7 @@ namespace AEGIS.Algorithms
             return new Coordinate[]
             {
                 new Coordinate(first.X + minT * deltaX, first.Y + minT * deltaY),
-                new Coordinate(first.X + maxT * deltaX, first.Y + maxT * deltaY)
+                new Coordinate(first.X + maxT * deltaX, first.Y + maxT * deltaY),
             };
         }
     }

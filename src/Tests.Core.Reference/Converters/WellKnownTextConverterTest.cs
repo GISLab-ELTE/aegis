@@ -56,7 +56,7 @@ namespace AEGIS.Tests.Reference.Converters
                 TestUtilities.ReferenceProvider.GeographicCoordinateReferenceSystems["EPSG::4326"],
                 TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
                 TestUtilities.ReferenceProvider.ProjectedCoordinateReferenceSystems["EPSG::32633"],
-                new GeographicCoordinateReferenceSystem("::", "Unknown", new CoordinateSystem("::", "Unknown", CoordinateSystemType.Unknown), new GeodeticDatum("::", "Unknown", null, null, null, TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceProvider.Meridians["EPSG::8901"]), null)
+                new GeographicCoordinateReferenceSystem("::", "Unknown", new CoordinateSystem("::", "Unknown", CoordinateSystemType.Unknown), new GeodeticDatum("::", "Unknown", null, null, null, TestUtilities.ReferenceProvider.Ellipsoids["EPSG::7008"], TestUtilities.ReferenceProvider.Meridians["EPSG::8901"]), null),
             };
 
             this.identifiedObjectsText = new String[]
@@ -71,7 +71,7 @@ namespace AEGIS.Tests.Reference.Converters
                 "GEOGCS[\"GCS_WGS_84\",DATUM[\"World_Geodetic_System_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.017453292519943295]]",
                 "PROJCS[\"UTM Zone 33N\",GEOGCS[\"WGS 84\",DATUM[\"World Geodetic System 1984\",SPHEROID[\"WGS 84\",6378137,298.257223560493]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",15],PARAMETER[\"scale_factor_at_natural_origin\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"Meter\",1],AUTHORITY[\"EPSG\",32633]]",
                 "PROJCS[\"UTM Zone 33N\",GEOGCS[\"WGS 84\",DATUM[\"World Geodetic System 1984\",SPHEROID[\"WGS 84\",6378137,298.257223560493]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",15],PARAMETER[\"scale_factor_at_natural_origin\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"Meter\",1]]",
-                "GEOGCS[\"Unknown\",DATUM[\"D_Unknown\",SPHEROID[\"Clarke_1866\",6378206.4,294.978698213901]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"
+                "GEOGCS[\"Unknown\",DATUM[\"D_Unknown\",SPHEROID[\"Clarke_1866\",6378206.4,294.978698213901]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]",
             };
         }
 

@@ -37,6 +37,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Indicates that the unit is a scale measure.
         /// </summary>
-        Scale
+        Scale,
     }
 }

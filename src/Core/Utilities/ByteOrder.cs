@@ -27,6 +27,6 @@ namespace AEGIS.Utilities
         /// <summary>
         /// Indicates big-endian byte-order.
         /// </summary>
-        BigEndian
+        BigEndian,
     }
 }

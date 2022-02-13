@@ -18,7 +18,6 @@ namespace AEGIS.Algorithms.SweepLines
     using System.Collections.Generic;
     using System.Linq;
     using AEGIS.Collections;
-    using Resources;
 
     /// <summary>
     /// Represents an event queue used by Sweep lines.

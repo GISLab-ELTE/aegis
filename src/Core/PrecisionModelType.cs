@@ -32,6 +32,6 @@ namespace AEGIS
         /// <summary>
         /// Fixed representation using fixed number of decimal places.
         /// </summary>
-        Fixed
+        Fixed,
     }
 }

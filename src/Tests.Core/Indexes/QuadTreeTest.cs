@@ -83,7 +83,7 @@ namespace AEGIS.Tests.Indexes
             List<IBasicGeometry> geometries = new List<IBasicGeometry>
             {
                 this.factory.CreatePoint(65, 65),
-                this.factory.CreatePolygon(new Coordinate(3, 3), new Coordinate(4, 4), new Coordinate(5, 5))
+                this.factory.CreatePolygon(new Coordinate(3, 3), new Coordinate(4, 4), new Coordinate(5, 5)),
             };
             this.tree.Add(geometries);
             this.tree.NumberOfGeometries.ShouldBe(5);
@@ -137,7 +137,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(0, 10, 0),
                 new Coordinate(10, 10, 0),
                 new Coordinate(10, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] secondShell = new Coordinate[]
@@ -146,7 +146,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(0, 15, 0),
                 new Coordinate(15, 15, 0),
                 new Coordinate(15, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] thirdShell = new Coordinate[]
@@ -155,7 +155,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(30, 40, 0),
                 new Coordinate(40, 40, 0),
                 new Coordinate(40, 30, 0),
-                new Coordinate(30, 30, 0)
+                new Coordinate(30, 30, 0),
             };
 
             tree.Add(this.factory.CreatePolygon(firstShell));

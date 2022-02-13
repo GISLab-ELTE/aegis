@@ -100,7 +100,7 @@ namespace AEGIS.Storage.FileSystems.Operations
             return new HadoopBooleanOperationResult
             {
                 Request = this.CompleteRequest,
-                Success = JObject.Parse(await content.ReadAsStringAsync()).Value<Boolean>("boolean")
+                Success = JObject.Parse(await content.ReadAsStringAsync()).Value<Boolean>("boolean"),
             };
         }
     }

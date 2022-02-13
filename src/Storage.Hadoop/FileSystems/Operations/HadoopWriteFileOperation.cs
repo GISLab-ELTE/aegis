@@ -104,7 +104,7 @@ namespace AEGIS.Storage.FileSystems.Operations
             return new HadoopFileStreamingOperationResult
             {
                 Request = this.CompleteRequest,
-                FileStream = await content.ReadAsStreamAsync()
+                FileStream = await content.ReadAsStreamAsync(),
             };
         }
     }

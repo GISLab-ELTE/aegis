@@ -129,7 +129,7 @@ namespace AEGIS.Storage.FileSystems.Operations
                     }
 
                     return fileResult;
-                }).ToArray()
+                }).ToArray(),
             };
         }
     }

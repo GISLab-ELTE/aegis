@@ -50,7 +50,7 @@ namespace AEGIS.Tests.Collections
                 new HashSet<Int32>(),
                 new HashSet<Int32>(Enumerable.Range(1, 1000)),
                 new HashSet<Int32>(Enumerable.Range(1, 10)),
-                new HashSet<Int32>(values)
+                new HashSet<Int32>(values),
             };
         }
 

@@ -42,6 +42,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Undefined case.
         /// </summary>
-        Undefined
+        Undefined,
     }
 }

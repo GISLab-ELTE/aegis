@@ -57,7 +57,7 @@ namespace AEGIS.Algorithms
             /// <summary>
             /// Indicates that the coordinate is above the envelope.
             /// </summary>
-            Top = 8
+            Top = 8,
         }
 
         /// <summary>

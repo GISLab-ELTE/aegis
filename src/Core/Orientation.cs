@@ -37,6 +37,6 @@ namespace AEGIS
         /// <summary>
         /// Indicates that the orientation is undefined.
         /// </summary>
-        Undefined
+        Undefined,
     }
 }

@@ -123,7 +123,7 @@ namespace AEGIS.Reference.Collections.Formula
                 n / 2 - 2 * nSquare / 3 + 5 * Math.Pow(n, 3) / 16 + 41 * Math.Pow(n, 4) / 180,
                 13 * nSquare / 48 - 3 * Math.Pow(n, 3) / 5 + 437 * Math.Pow(n, 4) / 1440,
                 17 * Math.Pow(n, 3) / 480 - 37 * Math.Pow(n, 4) / 840,
-                4397 * Math.Pow(n, 4) / 161280
+                4397 * Math.Pow(n, 4) / 161280,
             };
 
             this.invertedH = new Double[]
@@ -131,7 +131,7 @@ namespace AEGIS.Reference.Collections.Formula
                 n / 2 - 2 * nSquare / 3 + 37 * Math.Pow(n, 3) / 96 + 1 * Math.Pow(n, 4) / 360,
                 1 * nSquare / 48 - 1 * Math.Pow(n, 3) / 15 + 557 * Math.Pow(n, 4) / 1440,
                 61 * Math.Pow(n, 3) / 240 - 103 * Math.Pow(n, 4) / 140,
-                49561 * Math.Pow(n, 4) / 161280
+                49561 * Math.Pow(n, 4) / 161280,
             };
 
             if (this.latitudeOfNaturalOrigin == 0)

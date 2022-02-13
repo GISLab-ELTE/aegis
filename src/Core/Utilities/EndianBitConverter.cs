@@ -17,7 +17,6 @@ namespace AEGIS.Utilities
     using System;
     using AEGIS.Collections.Resources;
     using AEGIS.Numerics;
-    using Resources;
 
     /// <summary>
     /// Converts base data types to an array of bytes, and an array of bytes to base data types with respect to byte-order.

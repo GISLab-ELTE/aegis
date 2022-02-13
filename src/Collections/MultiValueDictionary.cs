@@ -179,7 +179,7 @@ namespace AEGIS.Collections
 
             for (Int32 index = arrayIndex; index < tempArray.Length; ++index)
             {
-                array[index - arrayIndex] = new KeyValuePair<TKey, ICollection<TValue>>(tempArray[index].Key, tempArray[index].Value as ICollection<TValue>);
+                array[index - arrayIndex] = new KeyValuePair<TKey, ICollection<TValue>>(tempArray[index].Key, tempArray[index].Value);
             }
         }
 

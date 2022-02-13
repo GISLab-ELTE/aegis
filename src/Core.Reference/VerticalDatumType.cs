@@ -32,6 +32,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Orthometric datum.
         /// </summary>
-        Orthometric
+        Orthometric,
     }
 }

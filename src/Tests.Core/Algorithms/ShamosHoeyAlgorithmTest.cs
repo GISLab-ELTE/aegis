@@ -57,7 +57,7 @@ namespace AEGIS.Tests.Algorithms
             List<Coordinate[]> coordinateLists = new List<Coordinate[]>
             {
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1) },
-                new Coordinate[] { new Coordinate(0, 1), new Coordinate(1, 0) }
+                new Coordinate[] { new Coordinate(0, 1), new Coordinate(1, 0) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -65,7 +65,7 @@ namespace AEGIS.Tests.Algorithms
             coordinateLists = new List<Coordinate[]>
             {
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(2, 2) },
-                new Coordinate[] { new Coordinate(2, 0), new Coordinate(0, 2) }
+                new Coordinate[] { new Coordinate(2, 0), new Coordinate(0, 2) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -73,7 +73,7 @@ namespace AEGIS.Tests.Algorithms
             coordinateLists = new List<Coordinate[]>
             {
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) },
-                new Coordinate[] { new Coordinate(0, 1), new Coordinate(1, 0) }
+                new Coordinate[] { new Coordinate(0, 1), new Coordinate(1, 0) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -81,7 +81,7 @@ namespace AEGIS.Tests.Algorithms
             coordinateLists = new List<Coordinate[]>
             {
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) },
-                new Coordinate[] { new Coordinate(1, 2), new Coordinate(2, 1) }
+                new Coordinate[] { new Coordinate(1, 2), new Coordinate(2, 1) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -89,7 +89,7 @@ namespace AEGIS.Tests.Algorithms
             coordinateLists = new List<Coordinate[]>
             {
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) },
-                new Coordinate[] { new Coordinate(2, 3), new Coordinate(3, 2) }
+                new Coordinate[] { new Coordinate(2, 3), new Coordinate(3, 2) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -99,7 +99,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate[] { new Coordinate(0, 0), new Coordinate(1, 1), new Coordinate(2, 2), new Coordinate(3, 3) },
                 new Coordinate[] { new Coordinate(0, -1), new Coordinate(-1, 0) },
                 new Coordinate[] { new Coordinate(-1, -2), new Coordinate(-2, -1) },
-                new Coordinate[] { new Coordinate(-2, -3), new Coordinate(-3, -2) }
+                new Coordinate[] { new Coordinate(-2, -3), new Coordinate(-3, -2) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeFalse();
 
@@ -110,7 +110,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate[] { new Coordinate(0, -1), new Coordinate(-1, 0) },
                 new Coordinate[] { new Coordinate(-1, -2), new Coordinate(-2, -1) },
                 new Coordinate[] { new Coordinate(-2, -3), new Coordinate(-3, -2) },
-                new Coordinate[] { new Coordinate(1, 2), new Coordinate(2, 1) }
+                new Coordinate[] { new Coordinate(1, 2), new Coordinate(2, 1) },
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
 
@@ -118,7 +118,7 @@ namespace AEGIS.Tests.Algorithms
             coordinateLists = new List<Coordinate[]>
             {
                 Enumerable.Range(1, 1000).Select(n => new Coordinate(n, n)).ToArray(),
-                Enumerable.Range(1, 1000).Select(n => new Coordinate(1000 - n, n)).ToArray()
+                Enumerable.Range(1, 1000).Select(n => new Coordinate(1000 - n, n)).ToArray(),
             };
             ShamosHoeyAlgorithm.Intersects(coordinateLists).ShouldBeTrue();
         }

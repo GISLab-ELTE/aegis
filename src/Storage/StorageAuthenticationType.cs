@@ -32,6 +32,6 @@ namespace AEGIS.Storage
         /// <summary>
         /// Indicates that the authentication is performed using system credentials.
         /// </summary>
-        SystemCredentials
+        SystemCredentials,
     }
 }

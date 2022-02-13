@@ -45,7 +45,7 @@ namespace AEGIS.Algorithms.SweepLines
             /// <summary>
             /// Indicates that the intersection was passed.
             /// </summary>
-            Passed
+            Passed,
         }
 
         /// <summary>

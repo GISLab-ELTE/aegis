@@ -88,7 +88,7 @@ namespace AEGIS.Indexes.Rectangle
             }
 
             /// <summary>
-            /// Gets the child nodes.
+            /// Gets or sets the child nodes.
             /// </summary>
             /// <value>The list of child nodes.</value>
             public List<Node> Children { get; protected set; }

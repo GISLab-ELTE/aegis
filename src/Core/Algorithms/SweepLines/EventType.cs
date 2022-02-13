@@ -27,6 +27,6 @@ namespace AEGIS.Algorithms.SweepLines
         /// <summary>
         /// Indicates a right event.
         /// </summary>
-        Right
+        Right,
     }
 }

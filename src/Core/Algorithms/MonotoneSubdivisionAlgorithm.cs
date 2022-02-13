@@ -104,7 +104,7 @@ namespace AEGIS.Algorithms
                     {
                         shell[(coordinateCount + coordinateIndex - 1) % coordinateCount],
                         shell[coordinateIndex],
-                        shell[(coordinateCount + coordinateIndex + 1) % coordinateCount]
+                        shell[(coordinateCount + coordinateIndex + 1) % coordinateCount],
                     };
                     this.result.Add(triangle);
                     shell.Remove(shell[coordinateIndex]);

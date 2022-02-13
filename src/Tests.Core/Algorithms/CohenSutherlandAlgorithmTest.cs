@@ -50,26 +50,26 @@ namespace AEGIS.Tests.Algorithms
                 {
                     new Coordinate(5, 15),
                     new Coordinate(15, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 15),
                     new Coordinate(14, 15),
                     new Coordinate(18, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 12),
                     new Coordinate(25, 12),
                     new Coordinate(25, 18),
-                    new Coordinate(5, 18)
+                    new Coordinate(5, 18),
                 },
             };
         }
@@ -154,7 +154,7 @@ namespace AEGIS.Tests.Algorithms
             IEnumerable<IBasicPolygon> source = new[]
             {
                 new BasicPolygon(new[] { new Coordinate(5, 12), new Coordinate(25, 12), new Coordinate(25, 18), new Coordinate(5, 18) }),
-                new BasicPolygon(new[] { new Coordinate(5, 12), new Coordinate(25, 12), new Coordinate(25, 18), new Coordinate(5, 18) })
+                new BasicPolygon(new[] { new Coordinate(5, 12), new Coordinate(25, 12), new Coordinate(25, 18), new Coordinate(5, 18) }),
             };
 
             IReadOnlyList<IReadOnlyList<Coordinate>> actual = CohenSutherlandAlgorithm.Clip(source, this.clippingWindow);
@@ -163,7 +163,7 @@ namespace AEGIS.Tests.Algorithms
                 new[] { new Coordinate(10, 12), new Coordinate(20, 12) },
                 new[] { new Coordinate(20, 18), new Coordinate(10, 18) },
                 new[] { new Coordinate(10, 12), new Coordinate(20, 12) },
-                new[] { new Coordinate(20, 18), new Coordinate(10, 18) }
+                new[] { new Coordinate(20, 18), new Coordinate(10, 18) },
             };
             actual.ShouldBe(expected);
         }

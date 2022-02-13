@@ -36,7 +36,7 @@ namespace AEGIS.Reference.Collections.Formula
             /// <summary>
             /// Indicates a right handed grid.
             /// </summary>
-            RightHanded
+            RightHanded,
         }
 
         /// <summary>

@@ -44,7 +44,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 new Matrix(new Double[2, 2]),
                 new Matrix(new Double[,] { { 1, 3, 5 }, { 2, 4, 7 }, { 1, 1, 0 } }),
                 new Matrix(new Double[,] { { 11, 9, 24, 2 }, { 1, 5, 2, 6 }, { 3, 17, 18, 1 }, { 2, 5, 7, 1 } }),
-                new Matrix(new Double[,] { { 1, 2, 18 }, { 7.5, 4, 13.4 } })
+                new Matrix(new Double[,] { { 1, 2, 18 }, { 7.5, 4, 13.4 } }),
             };
         }
 
@@ -212,7 +212,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
             {
                 new Double[,] { { 5, 4, 1.3 }, { 0, 8.7, 2 }, { 0, 0, 0 } },
                 new Double[,] { { 5, 8, 7.6, 2 }, { 0, 42, 0, 1 }, { 0, 0, 3, 5 }, { 0, 0, 5, 22.4 } },
-                new Double[,] { { 5, 4, 1.3 }, { 0, 8.7, 2 }, { 0, 0, 4 } }
+                new Double[,] { { 5, 4, 1.3 }, { 0, 8.7, 2 }, { 0, 0, 4 } },
             };
 
             MatrixComputations.IsUpperTriangular(new Matrix(values[0])).ShouldBeTrue();
@@ -236,7 +236,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
             {
                 new Double[,] { { 5, 0, 0 }, { 7.6, 8.7, 0 }, { 1.4, 3, 0 } },
                 new Double[,] { { 5, 0, 0, 0 }, { 0, 42, 0, 0 }, { 0, 0, 3, 5 }, { 0, 0, 5, 22.4 } },
-                new Double[,] { { 5, 0, 0 }, { 0, 8.7, 0 }, { 0, 0, 4 } }
+                new Double[,] { { 5, 0, 0 }, { 0, 8.7, 0 }, { 0, 0, 4 } },
             };
 
             MatrixComputations.IsLowerTriangular(new Matrix(values[0])).ShouldBeTrue();

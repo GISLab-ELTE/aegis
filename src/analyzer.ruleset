@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="AEGIS Recommended Rules" Description=" " ToolsVersion="15.0">
+<RuleSet Name="AEGIS Recommended Rules" Description=" " ToolsVersion="17.0">
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="Warning" />
     <Rule Id="CA1001" Action="Warning" />
@@ -594,11 +594,14 @@
     <Rule Id="SA1121" Action="None" />
     <Rule Id="SA1201" Action="None" />
     <Rule Id="SA1204" Action="None" />
+    <Rule Id="SA1314" Action="None" />
     <Rule Id="SA1401" Action="None" />
     <Rule Id="SA1407" Action="None" />
+    <Rule Id="SA1500" Action="None" />
     <Rule Id="SA1502" Action="None" />
     <Rule Id="SA1503" Action="None" />
     <Rule Id="SA1512" Action="None" />
+    <Rule Id="SA1629" Action="None" />
     <Rule Id="SA1652" Action="None" />
   </Rules>
 </RuleSet>

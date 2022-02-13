@@ -85,7 +85,7 @@ namespace AEGIS.Storage.Features
         /// </exception>
         public IFeature CreateFeature(String identifier, IGeometry geometry)
         {
-            (this.GeometryFactory as IStoredGeometryFactory).CreateGeometry(identifier, geometry);
+            this.GeometryFactory.CreateGeometry(identifier, geometry);
 
             return new StoredFeature(this, identifier);
         }
@@ -113,8 +113,8 @@ namespace AEGIS.Storage.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes));
 
-            (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
-            (this.GeometryFactory as IStoredGeometryFactory).CreateGeometry(identifier, geometry);
+            this.AttributeCollectionFactory.CreateCollection(identifier, attributes);
+            this.GeometryFactory.CreateGeometry(identifier, geometry);
 
             return new StoredFeature(this, identifier);
         }
@@ -137,7 +137,7 @@ namespace AEGIS.Storage.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes));
 
-            (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
+            this.AttributeCollectionFactory.CreateCollection(identifier, attributes);
 
             return new StoredFeature(this, identifier);
         }
@@ -159,8 +159,8 @@ namespace AEGIS.Storage.Features
             }
             else
             {
-                (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(other.Identifier, other.Attributes);
-                (this.GeometryFactory as IStoredGeometryFactory).CreateGeometry(other.Identifier, other.Geometry);
+                this.AttributeCollectionFactory.CreateCollection(other.Identifier, other.Attributes);
+                this.GeometryFactory.CreateGeometry(other.Identifier, other.Geometry);
 
                 return new StoredFeature(this, other.Identifier);
             }
@@ -195,7 +195,7 @@ namespace AEGIS.Storage.Features
             if (attributes == null)
                 throw new ArgumentNullException(nameof(attributes));
 
-            (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
+            this.AttributeCollectionFactory.CreateCollection(identifier, attributes);
 
             return new StoredFeatureCollection(this, identifier);
         }
@@ -224,7 +224,7 @@ namespace AEGIS.Storage.Features
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            (this.AttributeCollectionFactory as IStoredAttributeCollectionFactory).CreateCollection(identifier, attributes);
+            this.AttributeCollectionFactory.CreateCollection(identifier, attributes);
 
             StoredFeatureCollection featureCollection = new StoredFeatureCollection(this, identifier);
             List<String> storedIdentifiers = new List<String>();

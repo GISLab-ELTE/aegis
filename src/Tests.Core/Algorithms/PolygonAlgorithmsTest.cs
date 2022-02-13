@@ -37,7 +37,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
                 new Coordinate(130, 100), new Coordinate(5, 100),
-                new Coordinate(5, 5)
+                new Coordinate(5, 5),
             };
             PolygonAlgorithms.Area(shell).ShouldBe(11875);
 
@@ -45,7 +45,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(5.5, 5.5), new Coordinate(130.5, 5.5),
-                new Coordinate(130.5, 100.5), new Coordinate(5.5, 100.5)
+                new Coordinate(130.5, 100.5), new Coordinate(5.5, 100.5),
             };
             IBasicPolygon polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.Area(polygon).ShouldBe(11875);
@@ -54,7 +54,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(-5, 5), new Coordinate(5, 5),
-                new Coordinate(5, 15), new Coordinate(-5, 15)
+                new Coordinate(5, 15), new Coordinate(-5, 15),
             };
             Coordinate[] hole = new[]
             {
@@ -70,7 +70,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(-3, -5), new Coordinate(3, -5),
                 new Coordinate(6, 0), new Coordinate(3, 5),
-                new Coordinate(-3, 5), new Coordinate(-6, 0)
+                new Coordinate(-3, 5), new Coordinate(-6, 0),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.Area(polygon).ShouldBe(90);
@@ -80,7 +80,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(1, 1), new Coordinate(1, 3),
                 new Coordinate(5, 3), new Coordinate(7, 5),
-                new Coordinate(7, 1)
+                new Coordinate(7, 1),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.Area(polygon).ShouldBe(14);
@@ -91,7 +91,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 1), new Coordinate(1, 3),
                 new Coordinate(5, 3), new Coordinate(7, 5),
                 new Coordinate(7, 3), new Coordinate(5, 3),
-                new Coordinate(5, 1)
+                new Coordinate(5, 1),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.Area(polygon).ShouldBe(10);
@@ -111,7 +111,7 @@ namespace AEGIS.Tests.Algorithms
             Coordinate[] shell = new[]
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
-                new Coordinate(130, 100), new Coordinate(5, 100)
+                new Coordinate(130, 100), new Coordinate(5, 100),
             };
             IBasicPolygon polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsConvex(polygon).ShouldBeTrue();
@@ -120,7 +120,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
-                new Coordinate(130, 100), new Coordinate(5, 100)
+                new Coordinate(130, 100), new Coordinate(5, 100),
             };
             Coordinate[] hole = new[]
             {
@@ -135,7 +135,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
                 new Coordinate(130, 100), new Coordinate(70, 70),
-                new Coordinate(5, 100)
+                new Coordinate(5, 100),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsConvex(polygon).ShouldBeFalse();
@@ -145,7 +145,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(6, 7), new Coordinate(7, 6),
                 new Coordinate(9, 6), new Coordinate(9, 8),
-                new Coordinate(8, 10), new Coordinate(7, 9)
+                new Coordinate(8, 10), new Coordinate(7, 9),
             };
             PolygonAlgorithms.IsConvex(shell).ShouldBeTrue();
 
@@ -155,7 +155,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(0, 2), new Coordinate(2, 0),
                 new Coordinate(3, -2), new Coordinate(1, -4),
                 new Coordinate(-1, -4), new Coordinate(-3, -2),
-                new Coordinate(-2, 0)
+                new Coordinate(-2, 0),
             };
             PolygonAlgorithms.IsConvex(shell).ShouldBeTrue();
 
@@ -166,7 +166,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(3, -2), new Coordinate(1, -4),
                 new Coordinate(0, -4),
                 new Coordinate(-1, -4), new Coordinate(-3, -2),
-                new Coordinate(-2, 0)
+                new Coordinate(-2, 0),
             };
             PolygonAlgorithms.IsConvex(shell).ShouldBeTrue();
 
@@ -176,7 +176,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 1), new Coordinate(1, 3),
                 new Coordinate(5, 3), new Coordinate(7, 5),
                 new Coordinate(7, 3), new Coordinate(5, 3),
-                new Coordinate(5, 1)
+                new Coordinate(5, 1),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsConvex(polygon).ShouldBeFalse();
@@ -198,7 +198,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(0, 2), new Coordinate(2, 0),
                 new Coordinate(3, -2), new Coordinate(1, -4),
                 new Coordinate(0, -4), new Coordinate(-1, -4),
-                new Coordinate(-3, -2), new Coordinate(-2, 0)
+                new Coordinate(-3, -2), new Coordinate(-2, 0),
             };
             IBasicPolygon polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeTrue();
@@ -208,7 +208,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
                 new Coordinate(130, 100), new Coordinate(5, 100),
-                new Coordinate(5, 5)
+                new Coordinate(5, 5),
             };
             PolygonAlgorithms.IsValid(shell).ShouldBeTrue();
 
@@ -216,7 +216,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(-5, 5), new Coordinate(5, 5),
-                new Coordinate(5, 15), new Coordinate(-5, 15)
+                new Coordinate(5, 15), new Coordinate(-5, 15),
             };
             Coordinate[] hole = new[]
             {
@@ -229,7 +229,7 @@ namespace AEGIS.Tests.Algorithms
             // two coordinates
             shell = new[]
             {
-                new Coordinate(-5, 5), new Coordinate(5, 5)
+                new Coordinate(-5, 5), new Coordinate(5, 5),
             };
             PolygonAlgorithms.IsValid(shell).ShouldBeFalse();
 
@@ -238,7 +238,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(5, 5), new Coordinate(130, 5),
                 new Coordinate(130, 100), new Coordinate(70, 70),
-                new Coordinate(5, 100)
+                new Coordinate(5, 100),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeTrue();
@@ -249,7 +249,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(2, 2), new Coordinate(2, 5),
                 new Coordinate(4, 5), new Coordinate(3, 3),
                 new Coordinate(6, 3), new Coordinate(5, 5),
-                new Coordinate(7, 5), new Coordinate(7, 2)
+                new Coordinate(7, 5), new Coordinate(7, 2),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeTrue();
@@ -258,11 +258,11 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(1, 1), new Coordinate(6, 1),
-                new Coordinate(2, 6)
+                new Coordinate(2, 6),
             };
             hole = new[]
             {
-                new Coordinate(2, 2), new Coordinate(4, 2)
+                new Coordinate(2, 2), new Coordinate(4, 2),
             };
             polygon = new BasicPolygon(shell, new[] { hole });
             PolygonAlgorithms.IsValid(polygon).ShouldBeFalse();
@@ -271,7 +271,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(2, 2), new Coordinate(7, 5),
-                new Coordinate(2, 5), new Coordinate(7, 2)
+                new Coordinate(2, 5), new Coordinate(7, 2),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeFalse();
@@ -283,7 +283,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(4, 5), new Coordinate(3, 3),
                 new Coordinate(6, 3), new Coordinate(5, 5),
                 new Coordinate(7, 5), new Coordinate(7, 2),
-                new Coordinate(7, 2)
+                new Coordinate(7, 2),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeFalse();
@@ -304,7 +304,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(5, 5, 1), new Coordinate(130, 5),
                 new Coordinate(130, 100), new Coordinate(70, 70),
-                new Coordinate(5, 100)
+                new Coordinate(5, 100),
             };
             polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.IsValid(polygon).ShouldBeFalse();
@@ -325,7 +325,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 0), new Coordinate(10, 0),
                 new Coordinate(10, 10), new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             PolygonAlgorithms.Orientation(coordinates).ShouldBe(Orientation.Counterclockwise);
@@ -343,7 +343,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 0), new Coordinate(0, 10),
                 new Coordinate(10, 10), new Coordinate(10, 0),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             PolygonAlgorithms.Orientation(coordinates).ShouldBe(Orientation.Clockwise);
@@ -353,7 +353,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 0), new Coordinate(0, 10),
                 new Coordinate(0, 20), new Coordinate(0, 30),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             PolygonAlgorithms.Orientation(coordinates).ShouldBe(Orientation.Collinear);
@@ -363,7 +363,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 0), new Coordinate(0, 10),
                 new Coordinate(10, 10), new Coordinate(10, 0),
-                new Coordinate(5, 5), new Coordinate(0, 0)
+                new Coordinate(5, 5), new Coordinate(0, 0),
             };
 
             PolygonAlgorithms.Orientation(coordinates).ShouldBe(Orientation.Clockwise);
@@ -375,7 +375,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(10, 0), new Coordinate(9, 2), new Coordinate(9, 8),
                 new Coordinate(10, 10), new Coordinate(8, 9), new Coordinate(2, 9),
                 new Coordinate(0, 10), new Coordinate(1, 8), new Coordinate(1, 2),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             PolygonAlgorithms.Orientation(coordinates).ShouldBe(Orientation.Counterclockwise);
@@ -391,7 +391,7 @@ namespace AEGIS.Tests.Algorithms
             Coordinate[] shell = new[]
             {
                 new Coordinate(5.5, 5.5), new Coordinate(130.5, 5.5),
-                new Coordinate(130.5, 100.5), new Coordinate(5.5, 100.5)
+                new Coordinate(130.5, 100.5), new Coordinate(5.5, 100.5),
             };
             BasicPolygon polygon = new BasicPolygon(shell, null);
             PolygonAlgorithms.SignedArea(polygon).ShouldBe(-11875);
@@ -400,7 +400,7 @@ namespace AEGIS.Tests.Algorithms
             shell = new[]
             {
                 new Coordinate(3, 3), new Coordinate(6, 1),
-                new Coordinate(2, 1), new Coordinate(3, 3)
+                new Coordinate(2, 1), new Coordinate(3, 3),
             };
             PolygonAlgorithms.SignedArea(shell).ShouldBe(4);
 

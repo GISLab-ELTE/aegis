@@ -65,7 +65,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(14, 11),
                 new Coordinate(13, 13),
                 new Coordinate(12, 13),
-                new Coordinate(11, 11)
+                new Coordinate(11, 11),
             };
 
             expected = new BasicPolygon(expectedShell);
@@ -87,7 +87,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(9, 9),
                 new Coordinate(8, 9),
                 new Coordinate(6, 7),
-                new Coordinate(6, 6)
+                new Coordinate(6, 6),
             };
 
             expected = new BasicPolygon(expectedShell);
@@ -108,7 +108,7 @@ namespace AEGIS.Tests.Algorithms
             expectedShell = new[]
             {
                 new Coordinate(3, 1), new Coordinate(1, 3),
-                new Coordinate(-1, 1), new Coordinate(1, -1)
+                new Coordinate(-1, 1), new Coordinate(1, -1),
             };
 
             expected = new BasicPolygon(expectedShell);
@@ -128,7 +128,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(9, 1),
                 new Coordinate(9, 9),
                 new Coordinate(1, 9),
-                new Coordinate(1, 1)
+                new Coordinate(1, 1),
             };
             Coordinate[][] sourceHoles = new[]
             {
@@ -138,8 +138,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 3),
-                    new Coordinate(3, 3)
-                }
+                    new Coordinate(3, 3),
+                },
             };
 
             actual = MinkowskiSumAlgorithm.Buffer(new BasicPolygon(sourceShell, sourceHoles), 1, 8);
@@ -151,7 +151,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(9.7, 0.3), new Coordinate(10, 1),
                 new Coordinate(10, 9), new Coordinate(9.7, 9.7),
                 new Coordinate(9, 10), new Coordinate(1, 10),
-                new Coordinate(0.3, 9.7), new Coordinate(0, 9)
+                new Coordinate(0.3, 9.7), new Coordinate(0, 9),
             };
             Coordinate[][] expectedHoles = new[]
             {
@@ -162,8 +162,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3.7, 6.3), new Coordinate(4, 7),
                     new Coordinate(6, 7), new Coordinate(6.3, 6.3),
                     new Coordinate(7, 6), new Coordinate(7, 4),
-                    new Coordinate(6.3, 3.7), new Coordinate(6, 3)
-                }
+                    new Coordinate(6.3, 3.7), new Coordinate(6, 3),
+                },
             };
 
             expected = new BasicPolygon(expectedShell, expectedHoles);
@@ -194,7 +194,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 6), new Coordinate(0, 4),
                 new Coordinate(2, 4), new Coordinate(4, 4),
-                new Coordinate(4, 6), new Coordinate(2, 6)
+                new Coordinate(4, 6), new Coordinate(2, 6),
             };
             expected = new BasicPolygon(expectedShell);
 
@@ -209,7 +209,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 3), new Coordinate(1, 1),
                 new Coordinate(3, 1), new Coordinate(5, 3),
                 new Coordinate(7, 6), new Coordinate(7, 8),
-                new Coordinate(5, 10), new Coordinate(3, 10)
+                new Coordinate(5, 10), new Coordinate(3, 10),
             };
             expected = new BasicPolygon(expectedShell);
 
@@ -223,7 +223,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 1), new Coordinate(11, 1),
                 new Coordinate(11, 6), new Coordinate(8, 6),
                 new Coordinate(9, 3), new Coordinate(3, 3),
-                new Coordinate(4, 6), new Coordinate(1, 6)
+                new Coordinate(4, 6), new Coordinate(1, 6),
             };
 
             actual = MinkowskiSumAlgorithm.Buffer(sourceShell, buffer);
@@ -236,7 +236,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(21, 10), new Coordinate(20, 9),
                 new Coordinate(20.67, 7), new Coordinate(17.33, 7),
                 new Coordinate(18, 9), new Coordinate(17, 10),
-                new Coordinate(14, 10), new Coordinate(13, 9)
+                new Coordinate(14, 10), new Coordinate(13, 9),
             };
 
             expected = new BasicPolygon(expectedShell);
@@ -255,7 +255,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 1), new Coordinate(11, 1),
                 new Coordinate(11, 6), new Coordinate(8, 6),
                 new Coordinate(9, 3), new Coordinate(3, 3),
-                new Coordinate(4, 6), new Coordinate(1, 6)
+                new Coordinate(4, 6), new Coordinate(1, 6),
             };
 
             actual = MinkowskiSumAlgorithm.Buffer(sourceShell, buffer);
@@ -267,7 +267,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(14, 6), new Coordinate(11, 9),
                 new Coordinate(8, 9), new Coordinate(6, 7),
                 new Coordinate(4, 9), new Coordinate(1, 9),
-                new Coordinate(-2, 6)
+                new Coordinate(-2, 6),
             };
 
             expected = new BasicPolygon(expectedShell);
@@ -286,7 +286,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(1, 1), new Coordinate(11, 1),
                 new Coordinate(11, 6), new Coordinate(7, 6),
                 new Coordinate(9, 3), new Coordinate(4, 3),
-                new Coordinate(6, 6), new Coordinate(1, 6)
+                new Coordinate(6, 6), new Coordinate(1, 6),
             };
 
             actual = MinkowskiSumAlgorithm.Buffer(sourceShell, buffer);
@@ -297,7 +297,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(25, 9), new Coordinate(24, 10),
                 new Coordinate(20, 10), new Coordinate(19.5, 9.5),
                 new Coordinate(19, 10), new Coordinate(14, 10),
-                new Coordinate(13, 9)
+                new Coordinate(13, 9),
             };
 
             expectedHoles = new[]
@@ -306,8 +306,8 @@ namespace AEGIS.Tests.Algorithms
                 {
                     new Coordinate(19.5, 8.25),
                     new Coordinate(20.3, 7),
-                    new Coordinate(18.6, 7)
-                }
+                    new Coordinate(18.6, 7),
+                },
             };
 
             expected = new BasicPolygon(expectedShell, expectedHoles);
@@ -335,7 +335,7 @@ namespace AEGIS.Tests.Algorithms
                new Coordinate(10, 2),
                new Coordinate(11, 3),
                new Coordinate(10, 4),
-               new Coordinate(9, 3)
+               new Coordinate(9, 3),
             };
 
             sourceShell = new[]
@@ -344,7 +344,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(9, 1),
                 new Coordinate(9, 9),
                 new Coordinate(1, 9),
-                new Coordinate(1, 1)
+                new Coordinate(1, 1),
             };
 
             sourceHoles = new[]
@@ -355,8 +355,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 3),
-                    new Coordinate(3, 3)
-                }
+                    new Coordinate(3, 3),
+                },
             };
 
             actual = MinkowskiSumAlgorithm.Buffer(new BasicPolygon(sourceShell, sourceHoles), new BasicPolygon(buffer));
@@ -366,7 +366,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(10, 4), new Coordinate(11, 3),
                 new Coordinate(19, 3), new Coordinate(20, 4),
                 new Coordinate(20, 12), new Coordinate(19, 13),
-                new Coordinate(11, 13), new Coordinate(10, 12)
+                new Coordinate(11, 13), new Coordinate(10, 12),
             };
 
             expectedHoles = new[]
@@ -376,8 +376,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(14, 6), new Coordinate(13, 7),
                     new Coordinate(13, 9), new Coordinate(14, 10),
                     new Coordinate(16, 10), new Coordinate(17, 9),
-                    new Coordinate(17, 7), new Coordinate(16, 6)
-                }
+                    new Coordinate(17, 7), new Coordinate(16, 6),
+                },
             };
 
             expected = new BasicPolygon(expectedShell, expectedHoles);

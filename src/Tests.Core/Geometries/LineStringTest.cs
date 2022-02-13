@@ -47,7 +47,7 @@ namespace AEGIS.Tests.Geometries
             {
                 new Coordinate(1, 1),
                 new Coordinate(5, 5),
-                new Coordinate(9, 9)
+                new Coordinate(9, 9),
             };
 
             this.zigzag = new List<Coordinate>
@@ -64,7 +64,7 @@ namespace AEGIS.Tests.Geometries
                 new Coordinate(10, 0),
                 new Coordinate(10, 10),
                 new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             this.crossing = new List<Coordinate>
@@ -72,7 +72,7 @@ namespace AEGIS.Tests.Geometries
                 new Coordinate(0, 0),
                 new Coordinate(10, 10),
                 new Coordinate(0, 10),
-                new Coordinate(10, 0)
+                new Coordinate(10, 0),
             };
         }
 

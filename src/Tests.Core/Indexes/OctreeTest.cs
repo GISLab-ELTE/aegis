@@ -76,7 +76,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(0, 10, 10),
                 new Coordinate(10, 10, 10),
                 new Coordinate(10, 0, 15),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
             this.tree.Add(this.factory.CreatePolygon(polygonCoordinates));
             this.tree.NumberOfGeometries.ShouldBe(2);
@@ -97,8 +97,8 @@ namespace AEGIS.Tests.Indexes
                         new Coordinate(0, 15, 10),
                         new Coordinate(15, 15, 0),
                         new Coordinate(15, 0, 8),
-                        new Coordinate(0, 0, 0)
-                    })
+                        new Coordinate(0, 0, 0),
+                    }),
             };
             this.tree.Add(geometries);
             this.tree.NumberOfGeometries.ShouldBe(5);
@@ -151,7 +151,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(0, 10, 10),
                 new Coordinate(10, 10, 10),
                 new Coordinate(10, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] secondShell = new Coordinate[]
@@ -160,7 +160,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(0, 15, 15),
                 new Coordinate(15, 15, 15),
                 new Coordinate(15, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] thirdShell = new Coordinate[]
@@ -169,7 +169,7 @@ namespace AEGIS.Tests.Indexes
                 new Coordinate(30, 40, 40),
                 new Coordinate(40, 40, 40),
                 new Coordinate(40, 30, 50),
-                new Coordinate(30, 30, 0)
+                new Coordinate(30, 30, 0),
             };
 
             tree.Add(this.factory.CreatePolygon(firstShell));

@@ -41,7 +41,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -49,7 +49,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(30, 0),
                     new Coordinate(30, 10),
                     new Coordinate(20, 10),
-                    new Coordinate(20, 0)
+                    new Coordinate(20, 0),
                 },
                 true, null);
 
@@ -64,7 +64,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -77,7 +77,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(30, 0),
                     new Coordinate(30, 10),
                     new Coordinate(20, 10),
-                    new Coordinate(20, 0)
+                    new Coordinate(20, 0),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
@@ -89,7 +89,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(30, 0),
                     new Coordinate(30, 30),
                     new Coordinate(0, 30),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -97,7 +97,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 10),
                     new Coordinate(20, 20),
                     new Coordinate(10, 20),
-                    new Coordinate(10, 10)
+                    new Coordinate(10, 10),
                 },
                 true, null);
 
@@ -110,7 +110,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 10),
                     new Coordinate(20, 20),
                     new Coordinate(10, 20),
-                    new Coordinate(10, 10)
+                    new Coordinate(10, 10),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -123,7 +123,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(30, 0),
                     new Coordinate(30, 30),
                     new Coordinate(0, 30),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 });
             algorithm.ExternalPolygonsA[0].Holes.ShouldBe(new[]
             {
@@ -133,8 +133,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 20),
                     new Coordinate(20, 20),
                     new Coordinate(20, 10),
-                    new Coordinate(10, 10)
-                }
+                    new Coordinate(10, 10),
+                },
             }, 0.0001);
 
             algorithm.ExternalPolygonsB.ShouldBeEmpty();
@@ -154,7 +154,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -162,7 +162,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 0),
                     new Coordinate(20, 10),
                     new Coordinate(10, 10),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 },
                 true, null);
 
@@ -177,7 +177,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(0, 10),
                     new Coordinate(0, 0),
                     new Coordinate(10, 0),
-                    new Coordinate(10, 10)
+                    new Coordinate(10, 10),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -190,7 +190,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 0),
                     new Coordinate(20, 10),
                     new Coordinate(10, 10),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
@@ -202,7 +202,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -210,7 +210,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 0),
                     new Coordinate(20, 20),
                     new Coordinate(10, 20),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 },
                 true, null);
 
@@ -225,7 +225,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(0, 10),
                     new Coordinate(0, 0),
                     new Coordinate(10, 0),
-                    new Coordinate(10, 10)
+                    new Coordinate(10, 10),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -239,7 +239,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 20),
                     new Coordinate(10, 20),
                     new Coordinate(10, 10),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
@@ -251,7 +251,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -259,7 +259,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 6),
                     new Coordinate(10, 10),
                     new Coordinate(6, 10),
-                    new Coordinate(6, 6)
+                    new Coordinate(6, 6),
                 },
                 true, null);
 
@@ -272,7 +272,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(6, 10),
                     new Coordinate(6, 6),
-                    new Coordinate(10, 6)
+                    new Coordinate(10, 6),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -287,7 +287,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 6),
                     new Coordinate(6, 6),
-                    new Coordinate(6, 10)
+                    new Coordinate(6, 10),
                 }, true);
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -320,7 +320,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 10),
                     new Coordinate(3, 10),
                     new Coordinate(5, 5),
-                    new Coordinate(7, 10)
+                    new Coordinate(7, 10),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -334,7 +334,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(7, 10),
                     new Coordinate(5, 5),
-                    new Coordinate(3, 10)
+                    new Coordinate(3, 10),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -355,7 +355,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 10),
                     new Coordinate(0, 10),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -363,7 +363,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(15, 5),
                     new Coordinate(15, 15),
                     new Coordinate(5, 15),
-                    new Coordinate(5, 5)
+                    new Coordinate(5, 5),
                 },
                 true, null);
 
@@ -376,7 +376,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(5, 10),
                     new Coordinate(5, 5),
-                    new Coordinate(10, 5)
+                    new Coordinate(10, 5),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -391,7 +391,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, 5),
                     new Coordinate(5, 5),
-                    new Coordinate(5, 10)
+                    new Coordinate(5, 10),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -406,7 +406,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 15),
                     new Coordinate(5, 10),
                     new Coordinate(10, 10),
-                    new Coordinate(10, 5)
+                    new Coordinate(10, 5),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
@@ -425,7 +425,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(50, 0),
                     new Coordinate(50, 30),
                     new Coordinate(0, 30),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -435,7 +435,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(40, -10),
                     new Coordinate(60, 20),
                     new Coordinate(20, 40),
-                    new Coordinate(10, -10)
+                    new Coordinate(10, -10),
                 },
                 true, null);
 
@@ -454,7 +454,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(50, 25),
                     new Coordinate(40, 30),
                     new Coordinate(18, 30),
-                    new Coordinate(12, 0)
+                    new Coordinate(12, 0),
                 }, 0.001);
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -468,7 +468,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(35, 0),
                     new Coordinate(30, 10),
                     new Coordinate(20, 10),
-                    new Coordinate(15, 0)
+                    new Coordinate(15, 0),
                 },
                 new[]
                 {
@@ -476,22 +476,22 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(0, 30),
                     new Coordinate(0, 0),
                     new Coordinate(12, 0),
-                    new Coordinate(18, 30)
+                    new Coordinate(18, 30),
                 },
                 new[]
                 {
                     new Coordinate(46.66667, 0),
                     new Coordinate(50, 0),
                     new Coordinate(50, 5),
-                    new Coordinate(46.66667, 0)
+                    new Coordinate(46.66667, 0),
                 },
                 new[]
                 {
                     new Coordinate(50, 25),
                     new Coordinate(50, 30),
                     new Coordinate(40, 30),
-                    new Coordinate(50, 25)
-                }
+                    new Coordinate(50, 25),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -503,29 +503,29 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(12, 0),
                     new Coordinate(10, -10),
                     new Coordinate(15, 0),
-                    new Coordinate(12, 0)
+                    new Coordinate(12, 0),
                 },
                 new[]
                 {
                     new Coordinate(35, 0),
                     new Coordinate(40, -10),
                     new Coordinate(46.66667, 0),
-                    new Coordinate(35, 0)
+                    new Coordinate(35, 0),
                 },
                 new[]
                 {
                     new Coordinate(40, 30),
                     new Coordinate(20, 40),
                     new Coordinate(18, 30),
-                    new Coordinate(40, 30)
+                    new Coordinate(40, 30),
                 },
                 new[]
                 {
                     new Coordinate(50, 5),
                     new Coordinate(60, 20),
                     new Coordinate(50, 25),
-                    new Coordinate(50, 5)
-                }
+                    new Coordinate(50, 5),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -537,7 +537,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(60, 0),
                     new Coordinate(60, 30),
                     new Coordinate(0, 30),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 },
                 new[]
                 {
@@ -549,7 +549,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(50, -10),
                     new Coordinate(50, 50),
                     new Coordinate(20, 50),
-                    new Coordinate(10, 40)
+                    new Coordinate(10, 40),
                 },
                 true, null);
 
@@ -562,7 +562,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(12, 0),
                     new Coordinate(18, 30),
                     new Coordinate(10, 30),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 },
                 new[]
                 {
@@ -570,7 +570,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(32, 0),
                     new Coordinate(38, 30),
                     new Coordinate(22, 30),
-                    new Coordinate(28, 0)
+                    new Coordinate(28, 0),
                 },
                 new[]
                 {
@@ -578,8 +578,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(50, 0),
                     new Coordinate(50, 30),
                     new Coordinate(42, 30),
-                    new Coordinate(48, 0)
-                }
+                    new Coordinate(48, 0),
+                },
             }, 0.0001);
             algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -592,7 +592,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(0, 30),
                     new Coordinate(0, 0),
                     new Coordinate(10, 0),
-                    new Coordinate(10, 30)
+                    new Coordinate(10, 30),
                 },
                 new[]
                 {
@@ -600,7 +600,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(28, 0),
                     new Coordinate(22, 30),
                     new Coordinate(18, 30),
-                    new Coordinate(12, 0)
+                    new Coordinate(12, 0),
                 },
                 new[]
                 {
@@ -608,7 +608,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(48, 0),
                     new Coordinate(42, 30),
                     new Coordinate(38, 30),
-                    new Coordinate(32, 0)
+                    new Coordinate(32, 0),
                 },
                 new[]
                 {
@@ -616,8 +616,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(60, 0),
                     new Coordinate(60, 30),
                     new Coordinate(50, 30),
-                    new Coordinate(50, 0)
-                }
+                    new Coordinate(50, 0),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -629,7 +629,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 0),
                     new Coordinate(10, -10),
                     new Coordinate(12, 0),
-                    new Coordinate(10, 0)
+                    new Coordinate(10, 0),
                 },
                 new[]
                 {
@@ -644,22 +644,22 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(20, 50),
                     new Coordinate(10, 40),
                     new Coordinate(10, 30),
-                    new Coordinate(18, 30)
+                    new Coordinate(18, 30),
                 },
                 new[]
                 {
                     new Coordinate(28, 0),
                     new Coordinate(30, -10),
                     new Coordinate(32, 0),
-                    new Coordinate(28, 0)
+                    new Coordinate(28, 0),
                 },
                 new[]
                 {
                     new Coordinate(48, 0),
                     new Coordinate(50, -10),
                     new Coordinate(50, 0),
-                    new Coordinate(48, 0)
-                }
+                    new Coordinate(48, 0),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
         }
@@ -677,7 +677,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(8, 0),
                 new Coordinate(8, 8),
                 new Coordinate(0, 8),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
             Coordinate[][] holesA = new[]
             {
@@ -687,8 +687,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 5),
-                    new Coordinate(5, 5)
-                }
+                    new Coordinate(5, 5),
+                },
             };
             Coordinate[] shellB = new[]
             {
@@ -696,7 +696,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(12, 4),
                 new Coordinate(12, 12),
                 new Coordinate(4, 12),
-                new Coordinate(4, 4)
+                new Coordinate(4, 4),
             };
 
             GreinerHormannAlgorithm algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
@@ -710,7 +710,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(4, 8),
                     new Coordinate(4, 4),
-                    new Coordinate(8, 4)
+                    new Coordinate(8, 4),
                 });
             algorithm.InternalPolygons[0].Holes[0].ShouldBe(
                 new[]
@@ -719,7 +719,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 5),
-                    new Coordinate(5, 5)
+                    new Coordinate(5, 5),
                 }, 0.0001);
 
             algorithm.ExternalPolygonsA[0].IsValid.ShouldBeTrue();
@@ -732,7 +732,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 4),
                     new Coordinate(4, 4),
-                    new Coordinate(4, 8)
+                    new Coordinate(4, 8),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -747,7 +747,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 12),
                     new Coordinate(4, 8),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 4)
+                    new Coordinate(8, 4),
                 },
                 new[]
                 {
@@ -755,8 +755,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 5),
                     new Coordinate(7, 7),
                     new Coordinate(5, 7),
-                    new Coordinate(5, 5)
-                }
+                    new Coordinate(5, 5),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
@@ -767,7 +767,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(8, 0),
                 new Coordinate(8, 8),
                 new Coordinate(0, 8),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
             holesA = new[]
             {
@@ -777,8 +777,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 1),
-                    new Coordinate(5, 1)
-                }
+                    new Coordinate(5, 1),
+                },
             };
             shellB = new[]
             {
@@ -786,7 +786,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(12, 4),
                 new Coordinate(12, 12),
                 new Coordinate(4, 12),
-                new Coordinate(4, 4)
+                new Coordinate(4, 4),
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
@@ -804,7 +804,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 4),
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
-                    new Coordinate(7, 4)
+                    new Coordinate(7, 4),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -822,7 +822,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 4),
                     new Coordinate(7, 1),
                     new Coordinate(5, 1),
-                    new Coordinate(5, 4)
+                    new Coordinate(5, 4),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -837,7 +837,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 12),
                     new Coordinate(4, 8),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 4)
+                    new Coordinate(8, 4),
                 },
                 new[]
                 {
@@ -845,8 +845,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 7),
                     new Coordinate(5, 7),
                     new Coordinate(5, 4),
-                    new Coordinate(7, 4)
-                }
+                    new Coordinate(7, 4),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
 
@@ -857,7 +857,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(8, 0),
                 new Coordinate(8, 8),
                 new Coordinate(0, 8),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
             holesA = new[]
             {
@@ -867,8 +867,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
                     new Coordinate(7, 4),
-                    new Coordinate(5, 4)
-                }
+                    new Coordinate(5, 4),
+                },
             };
             shellB = new[]
             {
@@ -876,7 +876,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(12, 4),
                 new Coordinate(12, 12),
                 new Coordinate(4, 12),
-                new Coordinate(4, 4)
+                new Coordinate(4, 4),
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
@@ -894,7 +894,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 4),
                     new Coordinate(5, 7),
                     new Coordinate(7, 7),
-                    new Coordinate(7, 4)
+                    new Coordinate(7, 4),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -911,7 +911,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 4),
                     new Coordinate(5, 4),
                     new Coordinate(4, 4),
-                    new Coordinate(4, 8)
+                    new Coordinate(4, 8),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -926,7 +926,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 12),
                     new Coordinate(4, 8),
                     new Coordinate(8, 8),
-                    new Coordinate(8, 4)
+                    new Coordinate(8, 4),
                 },
                 new[]
                 {
@@ -934,8 +934,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(7, 7),
                     new Coordinate(5, 7),
                     new Coordinate(5, 4),
-                    new Coordinate(7, 4)
-                }
+                    new Coordinate(7, 4),
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -957,7 +957,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                }
+                },
             };
 
             shellB = new[]
@@ -1020,7 +1020,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                }
+                },
             };
             shellB = new[]
             {
@@ -1053,7 +1053,7 @@ namespace AEGIS.Tests.Algorithms
                         new Coordinate(8, 8),
                         new Coordinate(8, 2),
                         new Coordinate(2, 2),
-                }
+                },
             }, 0.0001);
 
             algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
@@ -1085,7 +1085,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                }
+                },
             };
             shellB = new[]
             {
@@ -1104,7 +1104,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                }
+                },
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, holesB, true, null);
@@ -1129,7 +1129,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(8, 2),
                     new Coordinate(2, 2),
-                }
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsA.ShouldBeEmpty();
             algorithm.ExternalPolygonsB[0].IsValid.ShouldBeTrue();
@@ -1151,7 +1151,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(10, 10),
                     new Coordinate(10, 0),
                     new Coordinate(0, 0),
-                }
+                },
             }, 0.0001);
 
             // first polygon contains second polygon, which in reverse contains the hole of the first polygon
@@ -1161,7 +1161,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(8, 0),
                 new Coordinate(8, 8),
                 new Coordinate(0, 8),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
             holesA = new[]
             {
@@ -1171,8 +1171,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(5, 4),
                     new Coordinate(5, 5),
                     new Coordinate(4, 5),
-                    new Coordinate(4, 4)
-                }
+                    new Coordinate(4, 4),
+                },
             };
 
             shellB = new[]
@@ -1181,7 +1181,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(3, 6),
                 new Coordinate(6, 6),
                 new Coordinate(6, 3),
-                new Coordinate(3, 3)
+                new Coordinate(3, 3),
             };
 
             algorithm = new GreinerHormannAlgorithm(shellA, holesA, shellB, null, true, null);
@@ -1195,7 +1195,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 6),
                     new Coordinate(6, 6),
                     new Coordinate(6, 3),
-                    new Coordinate(3, 3)
+                    new Coordinate(3, 3),
                 });
             algorithm.InternalPolygons[0].Holes.ShouldBe(new[]
             {
@@ -1205,8 +1205,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 5),
                     new Coordinate(5, 5),
                     new Coordinate(5, 4),
-                    new Coordinate(4, 4)
-                }
+                    new Coordinate(4, 4),
+                },
             }, 0.0001);
 
             algorithm.ExternalPolygonsA.Count.ShouldBe(1);
@@ -1218,7 +1218,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 0),
                     new Coordinate(8, 8),
                     new Coordinate(0, 8),
-                    new Coordinate(0, 0)
+                    new Coordinate(0, 0),
                 });
             algorithm.ExternalPolygonsA[0].Holes.ShouldBe(new[]
             {
@@ -1228,8 +1228,8 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 6),
                     new Coordinate(6, 6),
                     new Coordinate(6, 3),
-                    new Coordinate(3, 3)
-                }
+                    new Coordinate(3, 3),
+                },
             }, 0.0001);
 
             algorithm.ExternalPolygonsB.Count.ShouldBe(1);
@@ -1241,7 +1241,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 5),
                     new Coordinate(5, 5),
                     new Coordinate(5, 4),
-                    new Coordinate(4, 4)
+                    new Coordinate(4, 4),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }
@@ -1288,7 +1288,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(6, 8),
                     new Coordinate(2, 8),
                     new Coordinate(2, 2),
-                }
+                },
             }, 0.0001);
             algorithm.InternalPolygons.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -1312,7 +1312,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(6, 8),
                     new Coordinate(6, 1),
                     new Coordinate(4, 1),
-                }
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -1446,7 +1446,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(6, 8),
                     new Coordinate(6, 0),
-                }
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsA.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -1489,7 +1489,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(8, 8),
                     new Coordinate(6, 8),
                     new Coordinate(6, 0),
-                }
+                },
             }, 0.0001);
             algorithm.ExternalPolygonsB.SelectMany(polygon => polygon.Holes).ShouldBeEmpty();
 
@@ -1528,7 +1528,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 8),
                     new Coordinate(2, 8),
                     new Coordinate(2, 3),
-                    new Coordinate(6, 3)
+                    new Coordinate(6, 3),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -1543,7 +1543,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(6, 0),
                     new Coordinate(6, 3),
                     new Coordinate(2, 3),
-                    new Coordinate(2, 8)
+                    new Coordinate(2, 8),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -1590,7 +1590,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(4, 8),
                     new Coordinate(3, 8),
                     new Coordinate(3, 6),
-                    new Coordinate(4, 8)
+                    new Coordinate(4, 8),
                 });
             algorithm.InternalPolygons[0].HoleCount.ShouldBe(0);
 
@@ -1607,7 +1607,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(6, 12),
                     new Coordinate(4, 8),
                     new Coordinate(3, 6),
-                    new Coordinate(3, 8)
+                    new Coordinate(3, 8),
                 });
             algorithm.ExternalPolygonsA[0].HoleCount.ShouldBe(0);
 
@@ -1621,7 +1621,7 @@ namespace AEGIS.Tests.Algorithms
                     new Coordinate(3, 13),
                     new Coordinate(3, 8),
                     new Coordinate(4, 8),
-                    new Coordinate(6, 12)
+                    new Coordinate(6, 12),
                 });
             algorithm.ExternalPolygonsB[0].HoleCount.ShouldBe(0);
         }

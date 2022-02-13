@@ -2236,7 +2236,7 @@ namespace AEGIS.Storage.FileSystems
                 path += this.DirectorySeparator;
 
             // filter the result
-            List<HadoopFileStatusOperationResult> statusList = (result as HadoopFileListingOperationResult).StatusList
+            List<HadoopFileStatusOperationResult> statusList = result.StatusList
                                                                    .Select(status =>
                                                                    {
                                                                        status.Path = path + status.Name;
@@ -2248,7 +2248,7 @@ namespace AEGIS.Storage.FileSystems
             if (recursive)
             {
                 // enqueue the starting directories
-                Queue<String> directories = new Queue<String>((result as HadoopFileListingOperationResult).StatusList
+                Queue<String> directories = new Queue<String>(result.StatusList
                                                                   .Where(status => status.EntryType == FileSystemEntryType.Directory)
                                                                   .Select(status => status.Name));
 
@@ -2274,7 +2274,7 @@ namespace AEGIS.Storage.FileSystems
                     }
 
                     // filter the result
-                    statusList.AddRange((result as HadoopFileListingOperationResult).StatusList
+                    statusList.AddRange(result.StatusList
                                             .Select(status =>
                                             {
                                                 status.Path = path + directoryPath + this.DirectorySeparator + status.Name;
@@ -2283,7 +2283,7 @@ namespace AEGIS.Storage.FileSystems
                                             .Where(status => IsMatch(directoryPath + this.DirectorySeparator + status.Name, searchPattern)));
 
                     // add inner directories to the queue
-                    foreach (String innerDirectory in (result as HadoopFileListingOperationResult).StatusList
+                    foreach (String innerDirectory in result.StatusList
                                                           .Where(status => status.EntryType == FileSystemEntryType.Directory)
                                                           .Select(status => path + directoryPath + this.DirectorySeparator + status.Name))
                         directories.Enqueue(innerDirectory);

@@ -130,7 +130,7 @@ namespace AEGIS.Tests
                 new Envelope(10, 20, 101, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 201, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 1001, 2000),
-                new Envelope(10, 20, 100, 200, 1000, 2001)
+                new Envelope(10, 20, 100, 200, 1000, 2001),
             };
 
             // IEquatable method
@@ -182,7 +182,7 @@ namespace AEGIS.Tests
                 new Envelope(9, 20, 100, 200, 1000, 2000),
                 new Envelope(10, 20, 99, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 999, 2000),
-                new Envelope(9, 21, 99, 201, 999, 2001)
+                new Envelope(9, 21, 99, 201, 999, 2001),
             };
 
             foreach (Envelope envelope in others)
@@ -203,7 +203,7 @@ namespace AEGIS.Tests
                 new Envelope(10, 20, 101, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 199, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 1001, 2000),
-                new Envelope(10, 20, 100, 200, 1000, 1999)
+                new Envelope(10, 20, 100, 200, 1000, 1999),
             };
 
             foreach (Envelope envelope in others)
@@ -237,7 +237,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -255,7 +255,7 @@ namespace AEGIS.Tests
                 new Envelope(10, 20, 101, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 201, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 1001, 2000),
-                new Envelope(10, 20, 100, 200, 1000, 2001)
+                new Envelope(10, 20, 100, 200, 1000, 2001),
             };
 
             foreach (Envelope envelope in others)
@@ -295,7 +295,7 @@ namespace AEGIS.Tests
                 new Envelope(20, 30, 200, 300, 1000, 2000),
                 new Envelope(10, 20, 200, 300, 2000, 3000),
                 new Envelope(20, 30, 100, 200, 2000, 3000),
-                new Envelope(20, 30, 200, 300, 2000, 3000)
+                new Envelope(20, 30, 200, 300, 2000, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -313,7 +313,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -343,7 +343,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -371,7 +371,7 @@ namespace AEGIS.Tests
                 new Envelope(20, 30, 200, 300, 1000, 2000),
                 new Envelope(10, 20, 200, 300, 2000, 3000),
                 new Envelope(20, 30, 100, 200, 2000, 3000),
-                new Envelope(20, 30, 200, 300, 2000, 3000)
+                new Envelope(20, 30, 200, 300, 2000, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -404,7 +404,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -422,7 +422,7 @@ namespace AEGIS.Tests
                 new Envelope(10, 20, 101, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 201, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 1001, 2000),
-                new Envelope(10, 20, 100, 200, 1000, 2001)
+                new Envelope(10, 20, 100, 200, 1000, 2001),
             };
 
             foreach (Envelope envelope in others)
@@ -462,7 +462,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -480,7 +480,7 @@ namespace AEGIS.Tests
                 new Envelope(20, 30, 200, 300, 1000, 2000),
                 new Envelope(10, 20, 200, 300, 2000, 3000),
                 new Envelope(20, 30, 100, 200, 2000, 3000),
-                new Envelope(20, 30, 200, 300, 2000, 3000)
+                new Envelope(20, 30, 200, 300, 2000, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -517,7 +517,7 @@ namespace AEGIS.Tests
                 new Envelope(21, 30, 201, 300, 1000, 2000),
                 new Envelope(10, 20, 201, 300, 2001, 3000),
                 new Envelope(21, 30, 100, 200, 2001, 3000),
-                new Envelope(21, 30, 201, 300, 2001, 3000)
+                new Envelope(21, 30, 201, 300, 2001, 3000),
             };
 
             foreach (Envelope envelope in others)
@@ -538,7 +538,7 @@ namespace AEGIS.Tests
                 new Envelope(9, 20, 100, 200, 1000, 2000),
                 new Envelope(10, 20, 99, 200, 1000, 2000),
                 new Envelope(10, 20, 100, 200, 999, 2000),
-                new Envelope(9, 21, 99, 201, 999, 2001)
+                new Envelope(9, 21, 99, 201, 999, 2001),
             };
 
             foreach (Envelope envelope in others)

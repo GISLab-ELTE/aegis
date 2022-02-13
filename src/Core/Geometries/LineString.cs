@@ -111,7 +111,7 @@ namespace AEGIS.Geometries
                 return new MultiPoint(this.PrecisionModel, this.ReferenceSystem, new Point[]
                 {
                     new Point(this.PrecisionModel, this.ReferenceSystem, this.StartCoordinate),
-                    new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate)
+                    new Point(this.PrecisionModel, this.ReferenceSystem, this.EndCoordinate),
                 });
             }
         }

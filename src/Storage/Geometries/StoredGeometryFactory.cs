@@ -102,7 +102,7 @@ namespace AEGIS.Storage.Geometries
         {
             StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                Coordinate = new Coordinate(x, y)
+                Coordinate = new Coordinate(x, y),
             };
             return point;
         }
@@ -118,7 +118,7 @@ namespace AEGIS.Storage.Geometries
         {
             StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                Coordinate = new Coordinate(x, y, z)
+                Coordinate = new Coordinate(x, y, z),
             };
             return point;
         }
@@ -132,7 +132,7 @@ namespace AEGIS.Storage.Geometries
         {
             StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                Coordinate = coordinate
+                Coordinate = coordinate,
             };
             return point;
         }
@@ -313,7 +313,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                source
+                source,
             };
             return ring;
         }
@@ -331,7 +331,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                source.Where(point => point != null).Select(point => point.Coordinate)
+                source.Where(point => point != null).Select(point => point.Coordinate),
             };
             return ring;
         }
@@ -349,7 +349,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                source
+                source,
             };
             return ring;
         }
@@ -367,7 +367,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLinearRing ring = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), null)
             {
-                source.Where(point => point != null).Select(point => point.Coordinate)
+                source.Where(point => point != null).Select(point => point.Coordinate),
             };
             return ring;
         }
@@ -909,7 +909,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
             {
-                Coordinate = other.Coordinate
+                Coordinate = other.Coordinate,
             };
             return point;
         }
@@ -935,7 +935,7 @@ namespace AEGIS.Storage.Geometries
         {
             StoredPoint point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
             {
-                Coordinate = coordinate
+                Coordinate = coordinate,
             };
             return point;
         }
@@ -973,7 +973,7 @@ namespace AEGIS.Storage.Geometries
             {
                 point = new StoredPoint(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
                 {
-                    Coordinate = other.Coordinate
+                    Coordinate = other.Coordinate,
                 };
             }
 
@@ -1067,7 +1067,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLineString lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
             {
-                other
+                other,
             };
             return lineString;
         }
@@ -1105,7 +1105,7 @@ namespace AEGIS.Storage.Geometries
             {
                 lineString = new StoredLineString(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
                 {
-                    other
+                    other,
                 };
             }
 
@@ -1322,7 +1322,7 @@ namespace AEGIS.Storage.Geometries
 
             StoredLinearRing linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, identifier, indexes)
             {
-                other
+                other,
             };
             return linearRing;
         }
@@ -1360,7 +1360,7 @@ namespace AEGIS.Storage.Geometries
             {
                 linearRing = new StoredLinearRing(this.PrecisionModel, this.ReferenceSystem, this.Driver, this.Driver.CreateIdentifier(), indexes)
                 {
-                    other
+                    other,
                 };
             }
 

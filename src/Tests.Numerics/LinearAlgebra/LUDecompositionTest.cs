@@ -71,7 +71,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 MatrixFactory.CreateSquare(11, 9, 24, 2,
                                            1, 5, 2, 6,
                                            3, 17, 18, 1,
-                                           2, 5, 7, 1)
+                                           2, 5, 7, 1),
             };
 
             this.expectedL = new Matrix[]
@@ -82,7 +82,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 MatrixFactory.CreateSquare(1, 0, 0, 0,
                                            0.272727272727273, 1, 0, 0,
                                            0.0909090909090909, 0.28750, 1, 0,
-                                           0.181818181818182, 0.23125, 0.00359712230215807, 1)
+                                           0.181818181818182, 0.23125, 0.00359712230215807, 1),
             };
 
             this.expectedU = new Matrix[]
@@ -93,7 +93,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 MatrixFactory.CreateSquare(11, 9, 24, 2,
                                            0, 14.54545, 11.45455, 0.45455,
                                            0, 0, -3.47500, 5.68750,
-                                           0, 0, 0, 0.51079)
+                                           0, 0, 0, 0.51079),
             };
 
             this.expectedP = new Matrix[]
@@ -104,7 +104,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 MatrixFactory.CreateSquare(1, 0, 0, 0,
                                            0, 0, 1, 0,
                                            0, 1, 0, 0,
-                                           0, 0, 0, 1)
+                                           0, 0, 0, 1),
             };
 
             this.expectedDeterminant = new Double[] { 4, 284 };
@@ -117,7 +117,7 @@ namespace AEGIS.Tests.Numerics.LinearAlgebra
                 MatrixFactory.CreateSquare(0.72, 0.46, 1.02, -5.23,
                                            0.29, 0.24, 0.60, -2.58,
                                            -0.38, -0.30, -0.65, 3.20,
-                                           -0.23, 0.00, -0.45, 1.96)
+                                           -0.23, 0.00, -0.45, 1.96),
             };
         }
 

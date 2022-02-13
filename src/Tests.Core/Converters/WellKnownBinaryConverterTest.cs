@@ -52,13 +52,13 @@ namespace AEGIS.Tests.Converters
                                        new Coordinate[][]
                                        {
                                            Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                                           Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                                           Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                                        }),
                 this.factory.CreateMultiPoint(Enumerable.Range(1, 4).Select(i => this.factory.CreatePoint(i / 2.0, i / 2.0))),
                 this.factory.CreateMultiLineString(new ILineString[]
                                                {
                                                    this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i, i))),
-                                                   this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
+                                                   this.factory.CreateLineString(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
                                                }),
                 this.factory.CreateMultiPolygon(new IPolygon[]
                 {
@@ -66,10 +66,10 @@ namespace AEGIS.Tests.Converters
                                            new Coordinate[][]
                                            {
                                                Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
-                                               Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray()
+                                               Enumerable.Range(1, 4).Select(i => new Coordinate(i, i)).ToArray(),
                                            }),
-                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0)))
-                })
+                    this.factory.CreatePolygon(Enumerable.Range(1, 4).Select(i => new Coordinate(i / 2.0, i / 2.0))),
+                }),
             };
         }
 

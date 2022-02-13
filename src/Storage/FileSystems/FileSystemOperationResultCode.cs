@@ -57,6 +57,6 @@ namespace AEGIS.Storage.Organization.FileSystems
         /// <summary>
         /// Indicates that the result is unknown.
         /// </summary>
-        Unknown
+        Unknown,
     }
 }

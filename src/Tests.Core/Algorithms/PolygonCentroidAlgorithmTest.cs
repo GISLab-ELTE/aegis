@@ -52,7 +52,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(0, 10),
                 new Coordinate(10, 10),
                 new Coordinate(10, 0),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             this.polygons.Add(new BasicPolygon(shell, null));
@@ -75,7 +75,7 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(-116.894528196, 33.1375486348),
                 new Coordinate(-122.519528196, 36.0313293064),
                 new Coordinate(-126.035153196, 42.2935619329),
-                new Coordinate(-123.222653196, 49.1529676585)
+                new Coordinate(-123.222653196, 49.1529676585),
             };
             this.polygons.Add(new BasicPolygon(shell, null));
             this.polygons.Add(new BasicPolygon(shell.Reverse().ToList(), null));

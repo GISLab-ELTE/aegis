@@ -86,7 +86,7 @@ namespace AEGIS.Reference.Collections.Formula
                 (this.Ellipsoid.EccentricitySquare / 2 + 5 * Math.Pow(this.Ellipsoid.Eccentricity, 4) / 24 + Math.Pow(this.Ellipsoid.Eccentricity, 6) / 12 + 13 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 360),
                 (7 * Math.Pow(this.Ellipsoid.Eccentricity, 4) / 48 + 29 * Math.Pow(this.Ellipsoid.Eccentricity, 6) / 240 + 811 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 11520),
                 (7 * Math.Pow(this.Ellipsoid.Eccentricity, 6) / 120 + 81 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 1120),
-                4279 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 161280
+                4279 * Math.Pow(this.Ellipsoid.Eccentricity, 8) / 161280,
             };
         }
 

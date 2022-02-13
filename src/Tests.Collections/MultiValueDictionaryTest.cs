@@ -102,7 +102,7 @@ namespace AEGIS.Tests.Collections
             dictionary.Count.ShouldBe(2);
             dictionary[2].ShouldBe(new List<String> { "2", "22", "222", "2222" });
 
-            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Add(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" } as ICollection<String>));
+            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Add(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" }));
             dictionary.Count.ShouldBe(3);
             dictionary[3].ShouldBe(new List<String> { "3" });
 
@@ -137,9 +137,9 @@ namespace AEGIS.Tests.Collections
             dictionary.Remove(1).ShouldBeTrue();
             dictionary.Remove(1).ShouldBeFalse();
 
-            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Add(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" } as ICollection<String>));
-            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Remove(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" } as ICollection<String>)).ShouldBeTrue();
-            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Remove(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" } as ICollection<String>)).ShouldBeFalse();
+            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Add(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" }));
+            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Remove(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" })).ShouldBeTrue();
+            (dictionary as ICollection<KeyValuePair<Int32, ICollection<String>>>).Remove(new KeyValuePair<Int32, ICollection<String>>(3, new List<String> { "3" })).ShouldBeFalse();
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace AEGIS.Tests.Collections
 
             foreach (KeyValuePair<Int32, List<String>> value in this.values)
                 dictionary.Add(value.Key, value.Value);
-            dictionary.Keys.ShouldBe(new List<Int32> { 1, 2 } as ICollection<Int32>);
+            dictionary.Keys.ShouldBe(new List<Int32> { 1, 2 });
         }
 
         /// <summary>
@@ -183,8 +183,8 @@ namespace AEGIS.Tests.Collections
 
             List<ICollection<String>> expected = new List<ICollection<String>>()
             {
-                new List<String>() { "1", "11" } as ICollection<String>,
-                new List<String>() { "2", "22" } as ICollection<String>
+                new List<String>() { "1", "11" },
+                new List<String>() { "2", "22" },
             };
 
             dictionary.Values.ShouldBe(expected);

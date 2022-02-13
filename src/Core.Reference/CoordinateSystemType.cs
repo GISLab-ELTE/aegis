@@ -72,6 +72,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// Temporal coordinate system.
         /// </summary>
-        Temporal
+        Temporal,
     }
 }

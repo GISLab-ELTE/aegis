@@ -32,6 +32,6 @@ namespace AEGIS.Reference
         /// <summary>
         /// The equator.
         /// </summary>
-        Equador
+        Equador,
     }
 }

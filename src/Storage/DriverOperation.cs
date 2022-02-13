@@ -47,6 +47,6 @@ namespace AEGIS.Storage
         /// <summary>
         /// Indicates removal of an item.
         /// </summary>
-        Delete
+        Delete,
     }
 }

@@ -50,7 +50,7 @@ namespace AEGIS.Storage.FileSystems.Operations
             /// <summary>
             /// Indicates a DELETE request.
             /// </summary>
-            Delete
+            Delete,
         }
 
         /// <summary>

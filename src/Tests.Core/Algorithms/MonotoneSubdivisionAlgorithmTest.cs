@@ -41,7 +41,7 @@ namespace AEGIS.Tests.Algorithms
             this.source = new List<Coordinate>
             {
                 new Coordinate(0, 0), new Coordinate(-10, 5), new Coordinate(10, 10),
-                new Coordinate(5, 20), new Coordinate(5, -10), new Coordinate(-10, -10)
+                new Coordinate(5, 20), new Coordinate(5, -10), new Coordinate(-10, -10),
             };
         }
 

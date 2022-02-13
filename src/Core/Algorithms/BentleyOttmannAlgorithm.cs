@@ -276,7 +276,7 @@ namespace AEGIS.Algorithms
                         {
                             Vertex = intersection.Coordinate,
                             Below = segmentAbove,
-                            Above = segmentAbove.Above
+                            Above = segmentAbove.Above,
                         };
                         if (!this.eventQueue.Contains(newIntersectionEvent))
                             this.eventQueue.Add(newIntersectionEvent);
@@ -293,7 +293,7 @@ namespace AEGIS.Algorithms
                         {
                             Vertex = intersection.Coordinate,
                             Below = segment.Below,
-                            Above = segment
+                            Above = segment,
                         };
                         if (!this.eventQueue.Contains(newIntersectionEvent))
                             this.eventQueue.Add(newIntersectionEvent);
@@ -327,7 +327,7 @@ namespace AEGIS.Algorithms
                             {
                                 Vertex = intersection.Coordinate,
                                 Below = segment,
-                                Above = segment.Above
+                                Above = segment.Above,
                             };
                             this.eventQueue.Add(intersectionEvent);
                         }
@@ -343,7 +343,7 @@ namespace AEGIS.Algorithms
                             {
                                 Vertex = intersection.Coordinate,
                                 Below = segment.Below,
-                                Above = segment
+                                Above = segment,
                             };
                             this.eventQueue.Add(intersectionEvent);
                         }
@@ -367,7 +367,7 @@ namespace AEGIS.Algorithms
                                 {
                                     Vertex = intersection.Coordinate,
                                     Below = segment.Below,
-                                    Above = segment.Above
+                                    Above = segment.Above,
                                 };
                                 if (!this.eventQueue.Contains(intersectionEvent))
                                     this.eventQueue.Add(intersectionEvent);

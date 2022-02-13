@@ -156,7 +156,7 @@ namespace AEGIS.Tests.Indexes.Rectangle
                 new Coordinate(0, 10, 0),
                 new Coordinate(10, 10, 0),
                 new Coordinate(10, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] secondShell = new Coordinate[]
@@ -165,7 +165,7 @@ namespace AEGIS.Tests.Indexes.Rectangle
                 new Coordinate(0, 15, 0),
                 new Coordinate(15, 15, 0),
                 new Coordinate(15, 0, 0),
-                new Coordinate(0, 0, 0)
+                new Coordinate(0, 0, 0),
             };
 
             Coordinate[] thirdShell = new Coordinate[]
@@ -174,7 +174,7 @@ namespace AEGIS.Tests.Indexes.Rectangle
                 new Coordinate(30, 40, 0),
                 new Coordinate(40, 40, 0),
                 new Coordinate(40, 30, 0),
-                new Coordinate(30, 30, 0)
+                new Coordinate(30, 30, 0),
             };
 
             tree.Add(this.factory.CreatePolygon(firstShell));

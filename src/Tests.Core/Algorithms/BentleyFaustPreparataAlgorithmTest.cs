@@ -37,7 +37,7 @@ namespace AEGIS.Tests.Algorithms
             {
                 new Coordinate(0, 0), new Coordinate(10, 0),
                 new Coordinate(10, 10), new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             IReadOnlyList<Coordinate> convexHull = BentleyFaustPreparataAlgorithm.ApproximateConvexHull(shell);
@@ -53,14 +53,14 @@ namespace AEGIS.Tests.Algorithms
                 new Coordinate(10, 0), new Coordinate(9, 2), new Coordinate(9, 8),
                 new Coordinate(10, 10), new Coordinate(8, 9), new Coordinate(2, 9),
                 new Coordinate(0, 10), new Coordinate(1, 8), new Coordinate(1, 2),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             List<Coordinate> expected = new List<Coordinate>
             {
                 new Coordinate(0, 0), new Coordinate(10, 0),
                 new Coordinate(10, 10), new Coordinate(0, 10),
-                new Coordinate(0, 0)
+                new Coordinate(0, 0),
             };
 
             convexHull = BentleyFaustPreparataAlgorithm.ApproximateConvexHull(shell);

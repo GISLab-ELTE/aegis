@@ -50,26 +50,26 @@ namespace AEGIS.Tests.Algorithms
                 {
                     new Coordinate(5, 15),
                     new Coordinate(15, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 15),
                     new Coordinate(14, 15),
                     new Coordinate(18, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 15),
-                    new Coordinate(25, 15)
+                    new Coordinate(25, 15),
                 },
                 new[]
                 {
                     new Coordinate(5, 12),
                     new Coordinate(25, 12),
                     new Coordinate(25, 18),
-                    new Coordinate(5, 18)
+                    new Coordinate(5, 18),
                 },
             };
         }

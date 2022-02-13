@@ -59,7 +59,7 @@ namespace AEGIS.Tests.Numerics
             {
                 Tuple.Create(-1.0, 2.0), Tuple.Create(7.0, -8.0),
                 Tuple.Create(54.0, 5.0), Tuple.Create(5.7, 15.0), Tuple.Create(-5.0, 7.874), Tuple.Create(5.7, 8.2),
-                Tuple.Create(10.0, -20.0)
+                Tuple.Create(10.0, -20.0),
             };
             Statistics.Correlation(data).ShouldBe(-0.0037, 0.0001);
 
@@ -98,7 +98,7 @@ namespace AEGIS.Tests.Numerics
             {
                 Tuple.Create(-1.0, 2.0), Tuple.Create(7.0, -8.0), Tuple.Create(54.0, 5.0),
                 Tuple.Create(5.7, 15.0), Tuple.Create(-5.0, 7.874), Tuple.Create(5.7, 8.2),
-                Tuple.Create(10.0, -20.0)
+                Tuple.Create(10.0, -20.0),
             }).ShouldBe(-0.73, 0.01);
 
             Should.Throw<ArgumentNullException>(() => Statistics.Covariance(null));

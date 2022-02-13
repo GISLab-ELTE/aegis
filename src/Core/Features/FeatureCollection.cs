@@ -81,7 +81,7 @@ namespace AEGIS.Features
                 if (this.items.ContainsKey(feature.Identifier))
                     throw new ArgumentException(nameof(collection), CoreMessages.CollectionContainsDuplicateIdentifiers);
 
-               this.items.Add(feature.Identifier, feature);
+                this.items.Add(feature.Identifier, feature);
             }
         }
 

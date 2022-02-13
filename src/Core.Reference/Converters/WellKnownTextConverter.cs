@@ -424,8 +424,8 @@ namespace AEGIS.Reference.Converters
 
             result.AppendFormat(@"GEOGCS[""{0}"", {1}, {2}",
                                 referenceSystem.Name,
-                                ToWellKnownText(referenceSystem.Datum as GeodeticDatum),
-                                ToWellKnownText((referenceSystem.Datum as GeodeticDatum).PrimeMeridian));
+                                ToWellKnownText(referenceSystem.Datum),
+                                ToWellKnownText(referenceSystem.Datum.PrimeMeridian));
 
             UnitOfMeasurement linearUnit = null;
             UnitOfMeasurement angularUnit = null;
@@ -460,8 +460,8 @@ namespace AEGIS.Reference.Converters
 
             result.AppendFormat(@"GEOCCS[""{0}"", {1}, {2}",
                                 referenceSystem.Name,
-                                ToWellKnownText(referenceSystem.Datum as GeodeticDatum),
-                                ToWellKnownText((referenceSystem.Datum as GeodeticDatum).PrimeMeridian));
+                                ToWellKnownText(referenceSystem.Datum),
+                                ToWellKnownText(referenceSystem.Datum.PrimeMeridian));
 
             UnitOfMeasurement linearUnit = null;
 
@@ -731,7 +731,7 @@ namespace AEGIS.Reference.Converters
                 coordinateSystem = new CoordinateSystem(String.Empty, String.Empty, CoordinateSystemType.Ellipsoidal, axes);
             }
 
-           return new ProjectedCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, geographicReferenceSystem, coordinateSystem, projection.AreaOfUse, projection);
+            return new ProjectedCoordinateReferenceSystem(IdentifiedObject.GetIdentifier(authorityName, authorityCode), name, geographicReferenceSystem, coordinateSystem, projection.AreaOfUse, projection);
         }
 
         /// <summary>
