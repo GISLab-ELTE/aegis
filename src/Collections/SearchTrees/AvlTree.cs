@@ -125,16 +125,11 @@ namespace AEGIS.Collections.SearchTrees
         /// <param name="node">The root node of the subtree.</param>
         protected void Balance(AvlNode node)
         {
-            UpdateNode(node);
+            UpdateNode(this.root as AvlNode);
             while (node != null)
             {
                 node.Balance = GetBalance(node);
-
-                Int32 newHeight = GetHeight(node);
-                if (newHeight == node.Height)
-                    return;
-
-                node.Height = newHeight;
+                node.Height = GetHeight(node);
 
                 switch (node.Balance)
                 {
