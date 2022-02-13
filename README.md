@@ -1,7 +1,7 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/rrtileuce7uo8je6/branch/master?svg=true)](https://ci.appveyor.com/project/robertogiachetta/aegis/branch/master)
-[![codecov](https://codecov.io/gh/robertogiachetta/aegis/branch/master/graph/badge.svg)](https://codecov.io/gh/robertogiachetta/aegis)
-
 # AEGIS geospatial framework
+
+[![Build Status](https://github.com/AegisSpatial/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/AegisSpatial/aegis/actions?query=branch%3Amaster)
+[![Code Coverage report](https://codecov.io/gh/AegisSpatial/aegis/branch/master/graph/badge.svg?token=Ff6jAKzXC0)](https://codecov.io/gh/AegisSpatial/aegis)
 
 The AEGIS framework is a geospatial toolkit developed on the [.NET runtime](https://github.com/dotnet) facilitating creation of GIS applications.
 

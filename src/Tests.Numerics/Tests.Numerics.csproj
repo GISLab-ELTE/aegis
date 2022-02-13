@@ -9,7 +9,7 @@
     <Description>Numerics library of the AEGIS framework.</Description>
     <Copyright>Copyright Roberto Giachetta 2016-2017</Copyright>
     <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AegisSpatial/aegis</PackageProjectUrl>
     <Version>0.1.0</Version>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 

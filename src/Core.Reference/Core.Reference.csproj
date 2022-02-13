@@ -19,7 +19,7 @@
 
     <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
 
-    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AegisSpatial/aegis</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -11,7 +11,7 @@
     <Description>Storage support for Hadoop Distributed File System.</Description>
     <Copyright>Copyright Roberto Giachetta 2016-2017</Copyright>
     <PackageLicenseUrl>http://opensource.org/licenses/ECL-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/robertogiachetta/aegis</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AegisSpatial/aegis</PackageProjectUrl>
   </PropertyGroup>
 
 
