@@ -43,9 +43,9 @@ namespace AEGIS.Reference.Collections.Local
         private IReferenceCollection<AreaOfUse> areaOfUseCollection;
 
         /// <summary>
-        /// The collection of  <see cref="ReferenceSystem" /> instances.
+        /// The collection of  <see cref="CoordinateReferenceSystem" /> instances.
         /// </summary>
-        private IReferenceCollection<ReferenceSystem> referenceSystemCollection;
+        private IReferenceCollection<CoordinateReferenceSystem> referenceSystemCollection;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalCompoundReferenceSystemCollection" /> class.
@@ -57,7 +57,7 @@ namespace AEGIS.Reference.Collections.Local
         /// or
         /// The reference system collection is null.
         /// </exception>
-        public LocalCompoundReferenceSystemCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<ReferenceSystem> referenceSystemCollection)
+        public LocalCompoundReferenceSystemCollection(IReferenceCollection<AreaOfUse> areaOfUseCollection, IReferenceCollection<CoordinateReferenceSystem> referenceSystemCollection)
             : base(ResourceName, AliasTypeName)
         {
             this.areaOfUseCollection = areaOfUseCollection ?? throw new ArgumentNullException(nameof(areaOfUseCollection));
