@@ -194,8 +194,8 @@ namespace AEGIS.Collections.SearchTrees
         /// <returns>The height of the node.</returns>
         private static Int32 GetHeight(Node node)
         {
-            Int32 leftHeight = (node.LeftChild == null) ? -1 : (node.LeftChild as AvlNode).Height;
-            Int32 rightHeight = (node.RightChild == null) ? -1 : (node.RightChild as AvlNode).Height;
+            Int32 leftHeight = (node.LeftChild as AvlNode)?.Height ?? -1;
+            Int32 rightHeight = (node.RightChild as AvlNode)?.Height ?? -1;
 
             return Math.Max(rightHeight, leftHeight) + 1;
         }
@@ -207,8 +207,8 @@ namespace AEGIS.Collections.SearchTrees
         /// <returns>The balance of the node.</returns>
         private static Int32 GetBalance(Node node)
         {
-            Int32 leftHeight = (node.LeftChild == null) ? -1 : (node.LeftChild as AvlNode).Height;
-            Int32 rightHeight = (node.RightChild == null) ? -1 : (node.RightChild as AvlNode).Height;
+            Int32 leftHeight = (node.LeftChild as AvlNode)?.Height ?? -1;
+            Int32 rightHeight = (node.RightChild as AvlNode)?.Height ?? -1;
 
             return rightHeight - leftHeight;
         }
@@ -216,17 +216,33 @@ namespace AEGIS.Collections.SearchTrees
         /// <summary>
         /// Updates the height and balance for a node and its subtree.
         /// </summary>
+        /// <remarks>
+        /// The update is performed in an iterative approach to increase performance.
+        /// </remarks>
         /// <param name="node">The AVL node.</param>
         private static void UpdateNode(AvlNode node)
         {
-            if (node.LeftChild != null)
-                UpdateNode(node.LeftChild as AvlNode);
+            Queue<AvlNode> processQueue = new Queue<AvlNode>();
+            Stack<AvlNode> updateStack = new Stack<AvlNode>();
+            processQueue.Enqueue(node);
 
-            if (node.RightChild != null)
-                UpdateNode(node.RightChild as AvlNode);
+            while (processQueue.Count > 0)
+            {
+                AvlNode current = processQueue.Dequeue();
+                updateStack.Push(current);
 
-            node.Height = GetHeight(node);
-            node.Balance = GetBalance(node);
+                if (current.LeftChild is AvlNode leftChild)
+                    processQueue.Enqueue(leftChild);
+                if (current.RightChild is AvlNode rightChild)
+                    processQueue.Enqueue(rightChild);
+            }
+
+            while (updateStack.Count > 0)
+            {
+                AvlNode current = updateStack.Pop();
+                current.Height = GetHeight(current);
+                current.Balance = GetBalance(current);
+            }
         }
 
         /// <summary>
