@@ -231,7 +231,7 @@ namespace AEGIS.Indexes
         /// <summary>
         /// The root of the tree.
         /// </summary>
-        private QuadTreeNode root;
+        protected QuadTreeNode root;
 
         /// <summary>
         /// Gets a value indicating whether the index is read-only.
@@ -276,6 +276,13 @@ namespace AEGIS.Indexes
             this.root = new QuadTreeNode(bound);
 
             this.Add(geometries);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuadTree" /> class.
+        /// </summary>
+        protected QuadTree()
+        {
         }
 
         /// <summary>

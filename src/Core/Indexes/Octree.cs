@@ -70,8 +70,8 @@ namespace AEGIS.Indexes
         /// </summary>
         /// <param name="envelope">The maximum indexed region.</param>
         public Octree(Envelope envelope)
-            : base(envelope)
         {
+            this.root = new OctreeNode(envelope);
         }
 
         /// <summary>
@@ -79,8 +79,11 @@ namespace AEGIS.Indexes
         /// </summary>
         /// <param name="geometries">The geometries to add to the tree.</param>
         public Octree(IEnumerable<IBasicGeometry> geometries)
-            : base(geometries)
         {
+            Envelope bound = Envelope.FromEnvelopes(geometries.Select(geometry => geometry.Envelope));
+            this.root = new OctreeNode(bound);
+
+            this.Add(geometries);
         }
     }
 }
