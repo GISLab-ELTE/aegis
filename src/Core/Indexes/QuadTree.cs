@@ -420,7 +420,7 @@ namespace AEGIS.Indexes
         /// Creates a new tree based on an unindexed geometry.
         /// </summary>
         /// <param name="geometry">The geometry.</param>
-        private void CreateNew(IBasicGeometry geometry)
+        protected void CreateNew(IBasicGeometry geometry)
         {
             IEnumerable<IBasicGeometry> allGeometries = this.Search(this.root.Envelope);
             this.root = new QuadTreeNode(Envelope.FromEnvelopes(this.root.Envelope, geometry.Envelope));
