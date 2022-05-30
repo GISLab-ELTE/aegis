@@ -211,14 +211,21 @@ namespace AEGIS.Indexes
             {
                 List<IBasicGeometry> markedForRemove = new List<IBasicGeometry>();
 
+                bool found;
                 foreach (IBasicGeometry geometry in this.contents)
                 {
+                    found = false;
                     foreach (QuadTreeNode child in this.children)
                     {
-                        if (child.Envelope.Contains(geometry.Envelope))
+                        if (found)
+                        {
+                            break;
+                        }
+                        else if (child.Envelope.Contains(geometry.Envelope))
                         {
                             child.Add(geometry);
                             markedForRemove.Add(geometry);
+                            found = true;
                         }
                     }
                 }
@@ -281,6 +288,7 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Initializes a new instance of the <see cref="QuadTree" /> class.
         /// </summary>
+        /// <remarks>This constructor does not properly initializes the object (root will be null), and the constructor of the descendant class calling this must initialize it.</remarks>
         protected QuadTree()
         {
         }
@@ -411,7 +419,7 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Clears all geometries from the index.
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             this.root = new QuadTreeNode(this.root.Envelope);
         }
@@ -420,7 +428,7 @@ namespace AEGIS.Indexes
         /// Creates a new tree based on an unindexed geometry.
         /// </summary>
         /// <param name="geometry">The geometry.</param>
-        protected void CreateNew(IBasicGeometry geometry)
+        protected virtual void CreateNew(IBasicGeometry geometry)
         {
             IEnumerable<IBasicGeometry> allGeometries = this.Search(this.root.Envelope);
             this.root = new QuadTreeNode(Envelope.FromEnvelopes(this.root.Envelope, geometry.Envelope));

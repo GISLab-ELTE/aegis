@@ -89,7 +89,7 @@ namespace AEGIS.Indexes
         /// <summary>
         /// Clears all geometries from the index.
         /// </summary>
-        public new void Clear()
+        public override void Clear()
         {
             this.root = new OctreeNode(this.root.Envelope);
         }
@@ -98,7 +98,7 @@ namespace AEGIS.Indexes
         /// Creates a new tree based on an unindexed geometry.
         /// </summary>
         /// <param name="geometry">The geometry.</param>
-        protected new void CreateNew(IBasicGeometry geometry)
+        protected override void CreateNew(IBasicGeometry geometry)
         {
             IEnumerable<IBasicGeometry> allGeometries = this.Search(this.root.Envelope);
             this.root = new OctreeNode(Envelope.FromEnvelopes(this.root.Envelope, geometry.Envelope));
