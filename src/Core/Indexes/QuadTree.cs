@@ -211,21 +211,15 @@ namespace AEGIS.Indexes
             {
                 List<IBasicGeometry> markedForRemove = new List<IBasicGeometry>();
 
-                bool found;
                 foreach (IBasicGeometry geometry in this.contents)
                 {
-                    found = false;
                     foreach (QuadTreeNode child in this.children)
                     {
-                        if (found)
-                        {
-                            break;
-                        }
-                        else if (child.Envelope.Contains(geometry.Envelope))
+                        if (child.Envelope.Contains(geometry.Envelope))
                         {
                             child.Add(geometry);
                             markedForRemove.Add(geometry);
-                            found = true;
+                            break;
                         }
                     }
                 }
