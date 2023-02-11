@@ -19,6 +19,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Represents a Sweep line segment.
     /// </summary>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public sealed class SweepLineSegment : IEquatable<SweepLineSegment>
     {
         /// <summary>

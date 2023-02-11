@@ -22,6 +22,7 @@ namespace AEGIS.Tests.Numerics.Randomizers
     /// <summary>
     /// Test fixture for the <see cref="MersenneTwisterRandomGenerator" /> class.
     /// </summary>
+    /// <author>Dóra Papp</author>
     [TestFixture]
     public class MersenneTwisterRandomGeneratorTest
     {

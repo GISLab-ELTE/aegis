@@ -23,6 +23,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="DouglasPeuckerAlgorithm" /> class.
     /// </summary>
+    /// <author>Bence Molnár</author>
     [TestFixture]
     public class DouglasPeuckerAlgorithmTest
     {

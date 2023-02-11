@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Gnomonic Projection.
     /// </summary>
+    /// <author>Péter Rónai</author>
     [IdentifiedObject("AEGIS::735137", "Gnomonic Projection")]
     public class GnomonicProjection : CoordinateProjection
     {

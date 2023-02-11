@@ -25,6 +25,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Represents a sweep line.
     /// </summary>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public sealed class SweepLine
     {
         /// <summary>

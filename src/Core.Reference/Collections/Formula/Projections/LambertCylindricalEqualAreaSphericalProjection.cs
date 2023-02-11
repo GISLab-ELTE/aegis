@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents the Lambert Cylindrical Equal Area (spherical case) projection.
     /// </summary>
+    /// <author>Tamás Szabó</author>
     [IdentifiedObject("EPSG::9834", "Lambert Cylindrical Equal Area (spherical case)")]
     public class LambertCylindricalEqualAreaSphericalProjection : LambertCylindricalEqualAreaEllipsoidalProjection
     {

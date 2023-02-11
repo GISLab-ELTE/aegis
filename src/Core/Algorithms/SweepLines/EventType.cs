@@ -17,6 +17,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Defines the endpoint event types.
     /// </summary>
+    /// <author>Máté Cserép</author>
     public enum EventType
     {
         /// <summary>

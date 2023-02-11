@@ -29,6 +29,7 @@ namespace AEGIS.Algorithms
     /// For an input consisting of n line segments, the Winding Number algorithm has a linear complexity of O(2n).
     /// The algorithm assumes that the specified coordinates are valid, ordered, distinct and in the same plane.
     /// </remarks>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public class WindingNumberAlgorithm
     {
         /// <summary>

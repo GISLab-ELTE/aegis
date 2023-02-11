@@ -24,6 +24,7 @@ namespace AEGIS.Tests.Collections
     /// <summary>
     /// Test fixture for the <see cref="MultiValueDictionary{TKey, TValue}" /> class.
     /// </summary>
+    /// <author>Daniel Ballagi</author>
     [TestFixture]
     public class MultiValueDictionaryTest
     {

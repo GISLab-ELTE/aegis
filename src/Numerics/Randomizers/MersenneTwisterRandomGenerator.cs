@@ -24,6 +24,7 @@ namespace AEGIS.Numerics.Randomizers
     /// The Mersenne Twister is by far the most widely used general-purpose pseudorandom number generator. Its name derives from the fact that its period length is chosen to be a Mersenne prime.
     /// This implementation of the Mersenne Twister algorithm is based on the Mersenne prime 2^19937−1, called MT19937.
     /// </remarks>
+    /// <author>Dóra Papp</author>
     public class MersenneTwisterRandomGenerator : Random
     {
         /// <summary>

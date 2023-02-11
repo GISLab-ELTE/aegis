@@ -19,6 +19,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Represents an event.
     /// </summary>
+    /// <author>Máté Cserép</author>
     public class Event
     {
         /// <summary>

@@ -21,6 +21,7 @@ namespace AEGIS.Indexes
     /// <summary>
     /// Represents a 3D Octree, which contains a collection of <see cref="IBasicGeometry" /> instances.
     /// </summary>
+    /// <author>Ákos Horváth, Roland Krisztandl</author>
     public class Octree : QuadTree
     {
         /// <summary>

@@ -22,6 +22,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Bonne projection.
     /// </summary>
+    /// <author>Krisztián Fodor</author>
     [IdentifiedObject("EPSG::9827", "Bonne")]
     public class BonneProjection : CoordinateProjection
     {

@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents the Popular Visualization Pseudo Mercator projection.
     /// </summary>
+    /// <author>Tamás Szabó</author>
     [IdentifiedObject("EPSG::1024", "Popular Visualisation Pseudo Mercator")]
     public class PopularVisualisationPseudoMercatorProjection : MercatorProjection
     {

@@ -23,6 +23,7 @@ namespace AEGIS.Tests.Numerics
     /// <summary>
     /// Test fixture for the <see cref="Calculator" /> class.
     /// </summary>
+    /// <author>Ákos Horváth, Dóra Papp</author>
     [TestFixture]
     public class CalculatorTest
     {

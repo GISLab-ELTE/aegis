@@ -21,6 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Miller Cylindrical Projection.
     /// </summary>
+    /// <author>Péter Rónai</author>
     [IdentifiedObject("ESRI::54002", "Miller Cylindrical Projection")]
     public class MillerCylindricalProjection : CoordinateProjection
     {

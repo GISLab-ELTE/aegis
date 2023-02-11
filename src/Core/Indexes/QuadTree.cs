@@ -21,6 +21,7 @@ namespace AEGIS.Indexes
     /// <summary>
     /// Represents a 2D Quad-tree, which contains a collection of <see cref="IBasicGeometry" /> instances.
     /// </summary>
+    /// <author>Ákos Horváth</author>
     public class QuadTree : ISpatialIndex
     {
         /// <summary>

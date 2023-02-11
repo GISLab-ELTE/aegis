@@ -23,6 +23,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
     /// <summary>
     /// Test fixture for the <see cref="VerticalPerspectiveProjection" /> class.
     /// </summary>
+    /// <author>András Fábiám</author>
     [TestFixture]
     public class VerticalPerspectiveProjectionTest
     {

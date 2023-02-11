@@ -22,6 +22,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a geographic to topocentric conversion.
     /// </summary>
+    /// <author>András Fábián</author>
     [IdentifiedObject("EPSG::9837", "Geographic/topocentric conversion")]
     public class GeographicToTopocentricConversion : CoordinateConversion<GeoCoordinate, Coordinate>
     {

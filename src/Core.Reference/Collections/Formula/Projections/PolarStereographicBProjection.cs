@@ -21,6 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Polar Stereographic (Variant B) Projection.
     /// </summary>
+    /// <author>András Fábián</author>
     [IdentifiedObject("EPSG::9829", "Polar Stereographic (variant B)")]
     public class PolarStereographicBProjection : PolarStereographicProjection
     {

@@ -23,6 +23,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="MinkowskiSumAlgorithm" /> class.
     /// </summary>
+    /// <author>Gréta Bereczki</author>
     [TestFixture]
     public class MinkowskiSumAlgorithmTest
     {

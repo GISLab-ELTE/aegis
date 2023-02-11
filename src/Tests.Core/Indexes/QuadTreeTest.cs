@@ -25,6 +25,7 @@ namespace AEGIS.Tests.Indexes
     /// <summary>
     /// Test fixture for the <see cref="QuadTree" /> class.
     /// </summary>
+    /// <author>Ákos Horváth</author>
     [TestFixture]
     public class QuadTreeTest
     {

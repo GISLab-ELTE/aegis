@@ -22,6 +22,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="RandomPolygonGenerator" /> class.
     /// </summary>
+    /// <author>Orsolya Harazin</author>
     [TestFixture]
     public class RandomPolygonGeneratorTest
     {

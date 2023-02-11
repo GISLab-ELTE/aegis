@@ -29,6 +29,7 @@ namespace AEGIS.Collections
     /// The occurrence of zero elements in a large array is inefficient for both computation and storage.
     /// An array in which there is a large number of zero elements is referred to as being sparse.
     /// </remarks>
+    /// <author>Tamás Szabó</author>
     public class SparseArray<T> : IList<T>, IReadOnlyList<T>
     {
         /// <summary>

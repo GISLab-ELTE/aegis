@@ -25,6 +25,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
     /// <summary>
     /// Test fixture for the <see cref="MillerCylindricalProjection" /> class.
     /// </summary>
+    /// <author>Péter Rónai</author>
     [TestFixture]
     public class MillerCylindricalProjectionTest
     {

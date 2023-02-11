@@ -23,6 +23,7 @@ namespace AEGIS.Indexes.Rectangle
     /// <summary>
     /// Represents a 3D Hilbert R-Tree, which contains a collection of <see cref="IBasicGeometry"/> instances.
     /// </summary>
+    /// <author>Péter Rónai</author>
     public class HilbertRTree : RTree
     {
         /// <summary>

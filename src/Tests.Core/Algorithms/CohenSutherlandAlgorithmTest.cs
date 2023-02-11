@@ -24,6 +24,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="CohenSutherlandAlgorithm" /> class.
     /// </summary>
+    /// <author>Daniel Ballagi</author>
     [TestFixture]
     public class CohenSutherlandAlgorithmTest
     {

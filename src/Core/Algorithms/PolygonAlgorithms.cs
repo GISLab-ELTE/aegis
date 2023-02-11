@@ -24,6 +24,7 @@ namespace AEGIS.Algorithms
     /// <summary>
     /// Contains algorithms for computing planar polygon properties.
     /// </summary>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public static class PolygonAlgorithms
     {
         /// <summary>

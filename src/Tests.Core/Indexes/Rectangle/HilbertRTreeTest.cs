@@ -26,6 +26,7 @@ namespace AEGIS.Tests.Indexes.Rectangle
     /// <summary>
     /// Tests for the <see cref="HilbertRTree"/> class.
     /// </summary>
+    /// <author>Péter Rónai</author>
     [TestFixture]
     public class HilbertRTreeTest
     {

@@ -21,6 +21,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Represents a presorted event queue used by Sweep lines.
     /// </summary>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public sealed class PresortedEventQueue
     {
         /// <summary>

@@ -26,6 +26,7 @@ namespace AEGIS.Algorithms
     /// <remarks>
     /// The algorithm assumes that the polygon is valid, and coordinates are in the same plane.
     /// </remarks>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public class ShamosHoeyAlgorithm
     {
         /// <summary>

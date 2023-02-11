@@ -20,6 +20,7 @@ namespace AEGIS.Algorithms.SweepLines
     /// <summary>
     /// Represents a comparer for <see cref="Event" /> instances.
     /// </summary>
+    /// <author>Máté Cserép</author>
     public sealed class EventComparer : IComparer<Event>
     {
         /// <summary>

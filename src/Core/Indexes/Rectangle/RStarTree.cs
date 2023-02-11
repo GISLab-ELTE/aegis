@@ -21,6 +21,7 @@ namespace AEGIS.Indexes.Rectangle
     /// <summary>
     /// Represents a 3D R*-Tree, which contains a collection of <see cref="IBasicGeometry" /> instances.
     /// </summary>
+    /// <author>Tamás Nagy</author>
     public class RStarTree : RTree
     {
         /// <summary>

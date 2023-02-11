@@ -26,6 +26,7 @@ namespace AEGIS.Collections
     /// In computing, a disjoint-set data structure, also called a union–find data structure or merge–find set,
     /// is a data structure that keeps track of a set of elements partitioned into a number of disjoint (non-overlapping) subsets.
     /// </remarks>
+    /// <author>Dávid Kis</author>
     public interface IDisjointSet<T> : IEnumerable<T>, IEnumerable
     {
         /// <summary>

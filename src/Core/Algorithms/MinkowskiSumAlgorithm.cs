@@ -25,6 +25,7 @@ namespace AEGIS.Algorithms
     /// <remarks>
     /// The implementation assumes that the specified coordinates are valid, in counterclockwise order (clockwise order in case of hole coordinates) and in the same plane.
     /// </remarks>
+    /// <author>Gréta Bereczki</author>
     public class MinkowskiSumAlgorithm
     {
         /// <summary>

@@ -26,6 +26,10 @@ namespace AEGIS.Tests.Indexes.Metric
     using Shouldly;
     using static AEGIS.Indexes.Metric.MTree<IPoint>;
 
+    /// <summary>
+    /// Test fixture for the <see cref="MTree" /> class.
+    /// </summary>
+    /// <author>Péter Rónai</author>
     [TestFixture]
     public class MTreeTest
     {

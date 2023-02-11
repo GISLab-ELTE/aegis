@@ -29,6 +29,7 @@ namespace AEGIS.Algorithms
     /// For an input consisting of n line segments with k crossings, the Bentley–Ottmann algorithm takes time O((n + k) log n).
     /// In cases where k = o(n^2 / log n), this is an improvement on a naive algorithm that tests every pair of segments, which takes O(n^2).
     /// </remarks>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public class BentleyOttmannAlgorithm
     {
         /// <summary>

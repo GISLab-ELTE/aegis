@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Bonne South Orientated projection.
     /// </summary>
+    /// <author>Krisztián Fodor</author>
     [IdentifiedObject("EPSG::9828", "Bonne South Orientated")]
     public class BonneSouthOrientatedProjection : BonneProjection
     {

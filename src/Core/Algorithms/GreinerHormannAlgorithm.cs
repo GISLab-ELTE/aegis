@@ -34,6 +34,7 @@ namespace AEGIS.Algorithms
     /// [1] D. H. Kim, M-J. Kim, An Extension of Polygon Clipping To Resolve Degenerate Cases, 2006
     /// [2] A. Chakraborty, An Extension Of Weiler-Atherton Algorithm To Cope With The Self-intersecting Polygon, 2014
     /// </remarks>
+    /// <author>Máté Cserép</author>
     public class GreinerHormannAlgorithm
     {
         /// <summary>

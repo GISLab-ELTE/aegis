@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Sinusoidal Projection.
     /// </summary>
+    /// <author>Péter Rónai</author>
     [IdentifiedObject("ESRI::53008", "Sinusoidal Projection")]
     public class SinusoidalProjection : CoordinateProjection
     {

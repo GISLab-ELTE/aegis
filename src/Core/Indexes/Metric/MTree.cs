@@ -25,6 +25,7 @@ namespace AEGIS.Indexes.Metric
     /// Represents an arbitrary dimensional M-Tree which can hold any type of data with a distance metric defined.
     /// </summary>
     /// <typeparam name="T">type of data to be indexed</typeparam>
+    /// <author>Péter Rónai</author>
     public class MTree<T>
     {
         /// <summary>

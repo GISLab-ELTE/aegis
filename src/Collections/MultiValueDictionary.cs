@@ -25,6 +25,7 @@ namespace AEGIS.Collections
     /// </summary>
     /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
     /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <author>Daniel Ballagi</author>
     public sealed class MultiValueDictionary<TKey, TValue> : IDictionary<TKey, ICollection<TValue>>
     {
         /// <summary>

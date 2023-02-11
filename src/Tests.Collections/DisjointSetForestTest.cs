@@ -25,6 +25,7 @@ namespace AEGIS.Tests.Collections
     /// <summary>
     /// Test fixture for the <see cref="DisjointSetForest{T}" /> class.
     /// </summary>
+    /// <author>Dávid Kis</author>
     [TestFixture]
     public class DisjointSetForestTest
     {

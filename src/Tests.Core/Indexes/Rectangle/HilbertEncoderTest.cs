@@ -21,6 +21,10 @@ namespace AEGIS.Tests.Indexes.Rectangle
     using Shouldly;
     using static AEGIS.Indexes.Rectangle.HilbertRTree;
 
+    /// <summary>
+    /// Tests for the <see cref="HilbertEncoder"/> class.
+    /// </summary>
+    /// <author>Péter Rónai</author>
     [TestFixture]
     public class HilbertEncoderTest
     {

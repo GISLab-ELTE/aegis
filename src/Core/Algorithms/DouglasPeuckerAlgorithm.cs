@@ -26,6 +26,7 @@ namespace AEGIS.Algorithms
     /// Douglas-Peucker (or Ramer-Douglas-Peucker) algorithm is used to reduce vertexes in a line string, resulting in a similar line string in O(n^2) runtime.
     /// The algorithm assumes that the source is a simple line string without circle.
     /// </remarks>
+    /// <author>Bence Molnár, Roberto Giachetta</author>
     public class DouglasPeuckerAlgorithm
     {
         /// <summary>

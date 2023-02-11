@@ -30,6 +30,7 @@ namespace AEGIS.Collections
     /// This implementation of the <see cref="IDisjointSet{TElement}" /> interface is the Disjoint-set forests that are data structures
     /// where each set is represented by a tree data structure, in which each node holds a reference to its parent node.
     /// </remarks>
+    /// <author>Dávid Kis</author>
     public class DisjointSetForest<T> : IDisjointSet<T>, IEnumerable, IEnumerable<T>
     {
         /// <summary>

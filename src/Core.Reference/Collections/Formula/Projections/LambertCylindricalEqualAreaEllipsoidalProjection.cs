@@ -21,6 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents the Lambert Cylindrical Equal Area (ellipsoidal case) projection.
     /// </summary>
+    /// <author>Tamás Szabó</author>
     [IdentifiedObject("EPSG::9835", "Lambert Cylindrical Equal Area (ellipsoidal case)")]
     public class LambertCylindricalEqualAreaEllipsoidalProjection : CoordinateProjection
     {

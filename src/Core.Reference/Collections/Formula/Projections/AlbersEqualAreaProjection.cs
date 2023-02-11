@@ -21,6 +21,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents an Albers Equal Area projection.
     /// </summary>
+    /// <author>Krisztián Fodor</author>
     [IdentifiedObject("EPSG::9822", "Albers Equal Area")]
     public class AlbersEqualAreaProjection : CoordinateProjection
     {

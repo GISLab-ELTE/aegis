@@ -24,6 +24,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test class for the <see cref="MonotoneSubdivisionAlgorithm" /> class.
     /// </summary>
+    /// <author>Orsolya Harazin, Roberto Giachetta</author>
     [TestFixture]
     public class MonotoneSubdivisionAlgorithmTest
     {

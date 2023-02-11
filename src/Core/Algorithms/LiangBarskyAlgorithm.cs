@@ -30,6 +30,7 @@ namespace AEGIS.Algorithms
     /// efficient than <see cref="CohenSutherlandAlgorithm" />. The idea of the Liang-Barsky clipping algorithm is to
     /// do as much testing as possible before computing line intersections.
     /// </remarks>
+    /// <author>Daniel Ballagi</author>
     public class LiangBarskyAlgorithm
     {
         /// <summary>

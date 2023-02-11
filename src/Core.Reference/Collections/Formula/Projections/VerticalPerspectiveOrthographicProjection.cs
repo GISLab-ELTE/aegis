@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Vertical Perspective projection (orthographic case).
     /// </summary>
+    /// <author>András Fábián</author>
     [IdentifiedObject("EPSG::9839", "Vertical Perspective (Orthographic case)")]
     public class VerticalPerspectiveOrthographicProjection : CoordinateProjection
     {

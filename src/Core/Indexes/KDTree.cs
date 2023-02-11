@@ -27,6 +27,7 @@ namespace AEGIS.Indexes
     /// The tree is balanced when created, but adding or removing elements might leave it unbalanced.
     /// Perform the <see cref="KDTree.RebalanceTree"/> operation to rebalance the tree.
     /// </remarks>
+    /// <author>Ákos Horváth</author>
     public class KDTree : ICoordinateIndex
     {
         /// <summary>

@@ -23,6 +23,7 @@ namespace AEGIS.Tests.Reference.Collections.Formula
     /// <summary>
     /// Test fixture for the <see cref="LambertCylindricalEqualAreaSphericalProjection" /> class.
     /// </summary>
+    /// <author>Tamás Szabó</author>
     [TestFixture]
     public class LambertCylindricalEqualAreaSphericalProjectionTest
     {

@@ -23,6 +23,7 @@ namespace AEGIS.Collections.SearchTrees
     /// </summary>
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public class AvlTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
     {
         /// <summary>

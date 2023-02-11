@@ -25,6 +25,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="WindingNumberAlgorithm" /> class.
     /// </summary>
+    /// <author>Roberto Giachetta, Máté Cserép</author>
     public class WindingNumberAlgorithmTest
     {
         /// <summary>

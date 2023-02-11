@@ -24,6 +24,7 @@ namespace AEGIS.Algorithms
     /// <remarks>
     /// The implementation is based on Rod Stephens's polygon generator algorithm, <see cref="http://csharphelper.com/blog/2012/08/generate-random-polygons-in-c/" />.
     /// </remarks>
+    /// <author>Orsolya Harazin</author>
     public class RandomPolygonGenerator
     {
         /// <summary>

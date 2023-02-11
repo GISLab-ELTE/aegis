@@ -26,6 +26,7 @@ namespace AEGIS.Algorithms
     /// <remarks>
     /// Monotone subdivision is an algorithm for creating the triangulation of the polygon by partitioning to trapezoids, converting them to monotone subdivisions, and triangulating each monotone piece.
     /// </remarks>
+    /// <author>Orsolya Harazin</author>
     public class MonotoneSubdivisionAlgorithm
     {
         /// <summary>

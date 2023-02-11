@@ -27,6 +27,7 @@ namespace AEGIS.Algorithms
     /// clipping window. The algorithm divides a two-dimensional space into 9 regions, and then efficiently determines
     /// the lines and portions of lines that are visible in the center region of interest (the viewport).
     /// </remarks>
+    /// <author>Daniel Ballagi</author>
     public class CohenSutherlandAlgorithm
     {
         /// <summary>

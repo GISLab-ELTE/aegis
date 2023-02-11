@@ -24,6 +24,7 @@ namespace AEGIS.Tests.Algorithms
     /// <summary>
     /// Test fixture for the <see cref="GreinerHormannAlgorithm" /> class.
     /// </summary>
+    /// <author>Máté Cserép</author>
     [TestFixture]
     public class GreinerHormannAlgorithmTest
     {

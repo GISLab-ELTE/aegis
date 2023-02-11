@@ -20,6 +20,7 @@ namespace AEGIS.Reference.Collections.Formula
     /// <summary>
     /// Represents a Vertical Perspective projection.
     /// </summary>
+    /// <author>András Fábián</author>
     [IdentifiedObject("EPSG::9838", "Vertical Perspective")]
     public class VerticalPerspectiveProjection : CoordinateProjection
     {

@@ -26,6 +26,7 @@ namespace AEGIS.Tests.Indexes.Rectangle
     /// <summary>
     /// Text fixture for the <see cref="RStarTree" /> class.
     /// </summary>
+    /// <author>Tamás Nagy</author>
     [TestFixture]
     public class RStarTreeTest
     {
